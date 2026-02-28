@@ -3,24 +3,55 @@
     "stage": "3",
     "company": "Block, Inc.",
     "mapping_date": "2026-02-28",
-    "inputs": ["stage_1a_strategy.json (pillar framework derived from STR-004 through STR-009)", "stage_1b_actions.json", "stage_1c_commitments.json"],
-    "methodology": "Action and commitment classification to pillar framework per prompts/03_map_actions.md. Pillar framework derived from Stage 1A strategy elements (STR-004 through STR-009) as Stage 2 output was not yet available. Each ACT-* and CMT-* was classified as aligned (single or multi-pillar), unaligned, or ambiguous based on direct strategic impact rather than management framing. Resource allocation percentages are rough estimates based on publicly observable signals. Q&A-sourced commitments weighted higher than prepared remarks per methodology.",
-    "limitations": "1. Pillar framework was derived from Stage 1A strategy elements rather than the formal Stage 2 output, which may result in slightly different pillar boundaries. 2. Resource allocation percentages are estimates — actual internal allocation is not publicly disclosed at the pillar level. 3. Some actions serve multiple pillars; primary assignment is a simplification. 4. Commitment status is based on evidence available as of February 28, 2026; many forward-looking commitments cannot yet be fully assessed. 5. The 'unaligned' category may include actions that serve unstated but legitimate strategic purposes."
+    "inputs": ["stage_2_pillars.json", "stage_1b_actions.json", "stage_1c_commitments.json"],
+    "methodology": "Action and commitment classification to pillar framework per prompts/03_map_actions.md. Pillar framework sourced from Stage 2 output (stage_2_pillars.json). Each ACT-* and CMT-* was classified as aligned (single or multi-pillar), unaligned, or ambiguous based on direct strategic impact rather than management framing. Resource allocation percentages are rough estimates based on publicly observable signals. Q&A-sourced commitments weighted higher than prepared remarks per methodology.",
+    "limitations": "1. Resource allocation percentages are estimates — actual internal allocation is not publicly disclosed at the pillar level. 2. Some actions serve multiple pillars; primary assignment is a simplification. 3. Commitment status is based on evidence available as of February 28, 2026; many forward-looking commitments cannot yet be fully assessed. 4. The 'unaligned' category may include actions that serve unstated but legitimate strategic purposes."
   },
   "pillar_framework": {
-    "note": "Pillars derived from Stage 1A strategy elements (STR-004 through STR-009). Numbered by observed priority rank.",
+    "note": "Pillars sourced from Stage 2 output (stage_2_pillars.json). Numbered by priority rank (PIL-001 = highest priority).",
     "pillars": {
-      "PIL-001": "Cash App as Primary Financial App",
-      "PIL-002": "Profitable Growth with Operating Leverage",
-      "PIL-003": "AI-Native Organizational Model",
-      "PIL-004": "Square Ecosystem Growth and Market Share",
-      "PIL-005": "Bitcoin Ecosystem and Proto Mining",
-      "PIL-006": "Connecting Sellers and Consumers"
+      "PIL-001": "AI-Native Transformation",
+      "PIL-002": "Cash App Consumer Financial Platform",
+      "PIL-003": "Profitable Growth and Operating Leverage",
+      "PIL-004": "Square Seller Ecosystem Growth",
+      "PIL-005": "Ecosystem Interconnection",
+      "PIL-006": "Bitcoin and Decentralized Financial Infrastructure"
     }
   },
   "action_mapping": {
     "PIL-001": {
-      "pillar_name": "Cash App as Primary Financial App",
+      "pillar_name": "AI-Native Transformation",
+      "aligned_actions": [
+        {
+          "action_id": "ACT-001",
+          "rationale": "The 40%+ workforce reduction is framed by Dorsey as an AI-native transformation. While also mapped to PIL-003 (profitability), the AI-native thesis is the stated strategic rationale, not merely cost-cutting.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-010",
+          "rationale": "March 2025 layoff of 930 employees was part of the progressive AI-native transformation journey.",
+          "magnitude": "medium"
+        }
+      ],
+      "aligned_commitments": [
+        {
+          "commitment_id": "CMT-010",
+          "status": "in_progress",
+          "status_evidence": "AI productivity thesis backed by 40% code-per-engineer increase (ACT-001 context). Workforce cut executed. Long-term productivity outcomes remain unproven.",
+          "rationale": "Dorsey's core AI-native thesis — smaller teams doing more with AI tools."
+        },
+        {
+          "commitment_id": "CMT-011",
+          "status": "cannot_assess",
+          "status_evidence": "Prediction about broader industry adoption. Some companies (Amazon, eBay) made similar moves, but 'majority within a year' is unverifiable at this stage.",
+          "rationale": "Comparative framing that positions Block as industry leader in AI adoption."
+        }
+      ],
+      "estimated_resource_allocation_pct": 10,
+      "allocation_basis": "The AI-native pillar is primarily an organizational philosophy rather than a discrete investment area. Resource allocation includes AI infrastructure investment, senior AI engineering hires (STR-015), and internal tooling. However, most of the observable financial impact (workforce cuts, margin expansion) is captured under PIL-003. The 10% estimate reflects the incremental AI-specific investment beyond the restructuring itself — tooling, talent, and infrastructure."
+    },
+    "PIL-002": {
+      "pillar_name": "Cash App Consumer Financial Platform",
       "aligned_actions": [
         {
           "action_id": "ACT-004",
@@ -69,10 +100,10 @@
         }
       ],
       "estimated_resource_allocation_pct": 35,
-      "allocation_basis": "Cash App is Block's largest gross profit contributor (~$6B+ of $10.36B FY2025). Lending originations growing 50-223% YoY require significant balance sheet capital. Cash App Green launch, Afterpay integration, and SFS in-house origination all represent material investment. 5 of 18 actions directly mapped. Highest single-pillar concentration."
+      "allocation_basis": "Cash App is Block's largest gross profit contributor (~$6B+ of $10.36B FY2025). Lending originations growing 50-223% YoY require significant balance sheet capital. Cash App Green launch, Afterpay integration, SFS in-house origination, and Cash App Score development represent substantial product investment. 5 of 18 actions directly mapped. Highest single-pillar concentration."
     },
-    "PIL-002": {
-      "pillar_name": "Profitable Growth with Operating Leverage",
+    "PIL-003": {
+      "pillar_name": "Profitable Growth and Operating Leverage",
       "aligned_actions": [
         {
           "action_id": "ACT-001",
@@ -195,39 +226,8 @@
       "estimated_resource_allocation_pct": 25,
       "allocation_basis": "Restructuring charges ($450-$500M), share repurchases ($2.3B), and the organizational transformation from 10K+ to <6K employees represent enormous resource allocation. However, profitability is an outcome of efficiency applied across pillars, not a standalone investment area. The 25% estimate captures the direct restructuring costs and buyback capital, while recognizing that operating leverage improvements flow from actions across all pillars."
     },
-    "PIL-003": {
-      "pillar_name": "AI-Native Organizational Model",
-      "aligned_actions": [
-        {
-          "action_id": "ACT-001",
-          "rationale": "The 40%+ workforce reduction is framed by Dorsey as an AI-native transformation. While also mapped to PIL-002 (profitability), the AI-native thesis is the stated strategic rationale, not merely cost-cutting.",
-          "magnitude": "high"
-        },
-        {
-          "action_id": "ACT-010",
-          "rationale": "March 2025 layoff of 930 employees was part of the progressive AI-native transformation journey.",
-          "magnitude": "medium"
-        }
-      ],
-      "aligned_commitments": [
-        {
-          "commitment_id": "CMT-010",
-          "status": "in_progress",
-          "status_evidence": "AI productivity thesis backed by 40% code-per-engineer increase (ACT-001 context). Workforce cut executed. Long-term productivity outcomes remain unproven.",
-          "rationale": "Dorsey's core AI-native thesis — smaller teams doing more with AI tools."
-        },
-        {
-          "commitment_id": "CMT-011",
-          "status": "cannot_assess",
-          "status_evidence": "Prediction about broader industry adoption. Some companies (Amazon, eBay) made similar moves, but 'majority within a year' is unverifiable at this stage.",
-          "rationale": "Comparative framing that positions Block as industry leader in AI adoption."
-        }
-      ],
-      "estimated_resource_allocation_pct": 10,
-      "allocation_basis": "The AI-native pillar is primarily an organizational philosophy rather than a discrete investment area. Resource allocation includes AI infrastructure investment, senior AI engineering hires (STR-015), and internal tooling. However, most of the observable financial impact (workforce cuts, margin expansion) is captured under PIL-002. The 10% estimate reflects the incremental AI-specific investment beyond the restructuring itself — tooling, talent, and infrastructure."
-    },
     "PIL-004": {
-      "pillar_name": "Square Ecosystem Growth and Market Share",
+      "pillar_name": "Square Seller Ecosystem Growth",
       "aligned_actions": [
         {
           "action_id": "ACT-006",
@@ -258,7 +258,20 @@
       "allocation_basis": "Square processed $250B GPV from 4.5M+ sellers. Sales team scaled from 15 to 140+ reps. 100+ ISO partners added. Marketing spend up 50% in Q2. Hardware investment in Handheld and Register 2.0. International expansion (UK launch). However, Square's gross profit growth (9-11% YoY) is slower than Cash App, suggesting relatively lower incremental investment. The sales scaling and hardware investment are the primary observable resource signals."
     },
     "PIL-005": {
-      "pillar_name": "Bitcoin Ecosystem and Proto Mining",
+      "pillar_name": "Ecosystem Interconnection",
+      "aligned_actions": [
+        {
+          "action_id": "ACT-016",
+          "rationale": "BFCM 2025 (124M transactions, 49.8M consumers, 1.3M businesses) demonstrates cross-platform integration of Square (sellers) + Cash App (consumers) + Afterpay (BNPL). This is the most concrete evidence of the seller-consumer bridge thesis in action.",
+          "magnitude": "low"
+        }
+      ],
+      "aligned_commitments": [],
+      "estimated_resource_allocation_pct": 3,
+      "allocation_basis": "This pillar represents the ecosystem interconnection thesis — bridging Cash App and Square networks via Neighborhoods, local rewards, and integrated commerce. It was introduced in Q3 2025 shareholder letter as 'powering the neighborhood.' Only 1 of 18 actions directly mapped. No standalone commitments. The low allocation reflects that this pillar is more of a strategic narrative than a discrete investment area — the actual investment flows through PIL-002 (Cash App) and PIL-004 (Square) separately."
+    },
+    "PIL-006": {
+      "pillar_name": "Bitcoin and Decentralized Financial Infrastructure",
       "aligned_actions": [
         {
           "action_id": "ACT-003",
@@ -297,51 +310,38 @@
       ],
       "estimated_resource_allocation_pct": 10,
       "allocation_basis": "Bitcoin ecosystem includes Proto mining hardware R&D and manufacturing, Bitkey wallet development, Bitcoin treasury ($777.5M in BTC), and Spiral open-source contributions. However, Bitcoin revenue declined ~20% YoY in Q4 2025, and Proto is in early revenue stage. The 10% estimate reflects meaningful but still nascent investment — mining hardware is capital-intensive but revenue contribution remains small relative to Cash App and Square. TBD/TIDAL resource reallocation increased Bitcoin share from prior periods."
-    },
-    "PIL-006": {
-      "pillar_name": "Connecting Sellers and Consumers",
-      "aligned_actions": [
-        {
-          "action_id": "ACT-016",
-          "rationale": "BFCM 2025 (124M transactions, 49.8M consumers, 1.3M businesses) demonstrates cross-platform integration of Square (sellers) + Cash App (consumers) + Afterpay (BNPL). This is the most concrete evidence of the seller-consumer bridge thesis in action.",
-          "magnitude": "low"
-        }
-      ],
-      "aligned_commitments": [],
-      "estimated_resource_allocation_pct": 3,
-      "allocation_basis": "This pillar represents the ecosystem interconnection thesis — bridging Cash App and Square networks via Neighborhoods, local rewards, and integrated commerce. It was introduced in Q3 2025 shareholder letter as 'powering the neighborhood.' Only 1 of 18 actions directly mapped. No standalone commitments. The low allocation reflects that this pillar is more of a strategic narrative than a discrete investment area — the actual investment flows through PIL-001 (Cash App) and PIL-004 (Square) separately."
     }
   },
   "multi_pillar_actions": [
     {
       "action_id": "ACT-001",
-      "primary_pillar": "PIL-003",
-      "secondary_pillar": "PIL-002",
-      "rationale": "The 40%+ workforce reduction is simultaneously the defining action of the AI-native model (PIL-003, Dorsey's stated rationale) and the primary driver of operating leverage / margin expansion (PIL-002, financial impact). Mapped primarily to PIL-002 for resource allocation since the financial effects dominate, but conceptually originates from PIL-003."
+      "primary_pillar": "PIL-001",
+      "secondary_pillar": "PIL-003",
+      "rationale": "The 40%+ workforce reduction is simultaneously the defining action of the AI-native model (PIL-001, Dorsey's stated rationale) and the primary driver of operating leverage / margin expansion (PIL-003, financial impact). Mapped to both pillars — conceptually originates from PIL-001 (AI-native thesis) but the financial effects are measured under PIL-003 (profitability)."
     },
     {
       "action_id": "ACT-010",
-      "primary_pillar": "PIL-002",
-      "secondary_pillar": "PIL-003",
-      "rationale": "The March 2025 layoff (930 employees) serves both cost discipline (PIL-002) and the broader organizational transformation (PIL-003). Smaller in magnitude than ACT-001 but part of the same multi-year trajectory."
+      "primary_pillar": "PIL-003",
+      "secondary_pillar": "PIL-001",
+      "rationale": "The March 2025 layoff (930 employees) serves both cost discipline (PIL-003) and the broader organizational transformation (PIL-001). Smaller in magnitude than ACT-001 but part of the same multi-year trajectory."
     },
     {
       "action_id": "ACT-005",
-      "primary_pillar": "PIL-001",
-      "secondary_pillar": "PIL-006",
-      "rationale": "Afterpay integration into Cash App primarily deepens Cash App's financial product suite (PIL-001), but the rebrand to 'Cash App Afterpay' and in-store BNPL via Cash App Card also bridges consumer and merchant ecosystems (PIL-006)."
+      "primary_pillar": "PIL-002",
+      "secondary_pillar": "PIL-005",
+      "rationale": "Afterpay integration into Cash App primarily deepens Cash App's financial product suite (PIL-002), but the rebrand to 'Cash App Afterpay' and in-store BNPL via Cash App Card also bridges consumer and merchant ecosystems (PIL-005)."
     },
     {
       "action_id": "ACT-007",
-      "primary_pillar": "PIL-001",
+      "primary_pillar": "PIL-002",
       "secondary_pillar": "PIL-004",
-      "rationale": "The $200B credit milestone spans Cash App Borrow (PIL-001) and Square Loans (PIL-004). Primarily mapped to PIL-001 because Cash App lending (Borrow + Afterpay) represents the majority of lending volume, but Square Loans is a significant secondary component."
+      "rationale": "The $200B credit milestone spans Cash App Borrow (PIL-002) and Square Loans (PIL-004). Primarily mapped to PIL-002 because Cash App lending (Borrow + Afterpay) represents the majority of lending volume, but Square Loans is a significant secondary component."
     },
     {
       "action_id": "ACT-014",
-      "primary_pillar": "PIL-005",
-      "secondary_pillar": "PIL-001",
-      "rationale": "Bitcoin ecosystem results include both Proto mining/Bitkey (PIL-005) and Cash App Bitcoin buys/sells (PIL-001). Cash App's $58B Bitcoin transaction volume is part of the Cash App monetization but strategically belongs to the Bitcoin ecosystem thesis."
+      "primary_pillar": "PIL-006",
+      "secondary_pillar": "PIL-002",
+      "rationale": "Bitcoin ecosystem results include both Proto mining/Bitkey (PIL-006) and Cash App Bitcoin buys/sells (PIL-002). Cash App's $58B Bitcoin transaction volume is part of the Cash App monetization but strategically belongs to the Bitcoin ecosystem thesis."
     }
   ],
   "unaligned_actions": [
@@ -366,6 +366,16 @@
     "fulfillment_rate": 0.75,
     "per_pillar": {
       "PIL-001": {
+        "total": 2,
+        "fulfilled": 0,
+        "in_progress": 1,
+        "partially_fulfilled": 0,
+        "contradicted": 0,
+        "silently_abandoned": 0,
+        "cannot_assess": 1,
+        "notes": "CMT-010 (AI productivity thesis) in progress — backed by 40% code-per-engineer increase but long-term proof pending. CMT-011 (industry prediction) cannot be assessed. Low commitment density despite being the highest-ranked pillar suggests the AI-native thesis is more narrative than measurable."
+      },
+      "PIL-002": {
         "total": 3,
         "fulfilled": 1,
         "in_progress": 2,
@@ -375,7 +385,7 @@
         "cannot_assess": 0,
         "notes": "CMT-018 (Cash App H2 reacceleration) fulfilled with strong evidence. CMT-015 (loss rate <3%) and CMT-021 (Cash App Score) in progress. No contradictions — Cash App execution has been the strongest pillar."
       },
-      "PIL-002": {
+      "PIL-003": {
         "total": 15,
         "fulfilled": 3,
         "in_progress": 11,
@@ -384,16 +394,6 @@
         "silently_abandoned": 0,
         "cannot_assess": 0,
         "notes": "Highest commitment density reflects the centrality of profitability targets. CMT-016, CMT-020, CMT-024 (2025 guidance progression) all fulfilled. CMT-009 (buyback) partially fulfilled. 11 commitments in progress are primarily 2026-2028 forward guidance. Zero contradictions or silent abandonments is notable — all stated financial targets have been met or exceeded."
-      },
-      "PIL-003": {
-        "total": 2,
-        "fulfilled": 0,
-        "in_progress": 1,
-        "partially_fulfilled": 0,
-        "contradicted": 0,
-        "silently_abandoned": 0,
-        "cannot_assess": 1,
-        "notes": "CMT-010 (AI productivity thesis) in progress — backed by 40% code-per-engineer increase but long-term proof pending. CMT-011 (industry prediction) cannot be assessed. Low commitment density despite being a highly visible pillar suggests the AI-native thesis is more narrative than measurable."
       },
       "PIL-004": {
         "total": 2,
@@ -406,6 +406,16 @@
         "notes": "CMT-017 (Square GPV trajectory) fulfilled — growth reached low double digits as committed. CMT-022 (processing headwind) in progress. Relatively thin commitment set for Square suggests management is more conservative in Square promises."
       },
       "PIL-005": {
+        "total": 0,
+        "fulfilled": 0,
+        "in_progress": 0,
+        "partially_fulfilled": 0,
+        "contradicted": 0,
+        "silently_abandoned": 0,
+        "cannot_assess": 0,
+        "notes": "Zero dedicated commitments for the ecosystem interconnection pillar. This is a significant observation — PIL-005 has only 1 action (ACT-016, BFCM) and 0 commitments. This suggests it is more of a narrative framing device than a distinct strategic commitment area. May be better understood as an emergent property of PIL-002 and PIL-004 rather than a standalone pillar."
+      },
+      "PIL-006": {
         "total": 2,
         "fulfilled": 0,
         "in_progress": 2,
@@ -414,26 +424,16 @@
         "silently_abandoned": 0,
         "cannot_assess": 0,
         "notes": "CMT-014 (Bitcoin payments on Square by 2026) and CMT-023 (maintain Bitkey/Proto investment) both in progress. No fulfilled commitments yet — Bitcoin ecosystem is in early execution phase. No contradictions, which is positive given the November 2024 TBD shutdown could have signaled broader Bitcoin retreat."
-      },
-      "PIL-006": {
-        "total": 0,
-        "fulfilled": 0,
-        "in_progress": 0,
-        "partially_fulfilled": 0,
-        "contradicted": 0,
-        "silently_abandoned": 0,
-        "cannot_assess": 0,
-        "notes": "Zero dedicated commitments for the seller-consumer bridge pillar. This is a significant observation — PIL-006 has only 1 action (ACT-016, BFCM) and 0 commitments. This suggests it is more of a narrative framing device than a distinct strategic commitment area. May be better understood as an emergent property of PIL-001 and PIL-004 rather than a standalone pillar."
       }
     }
   },
   "resource_allocation_summary": {
-    "PIL-001": {
+    "PIL-002": {
       "pct": 35,
       "rank": 1,
       "basis": "Largest gross profit segment (~$6B+). Lending originations growing 50-223% require significant balance sheet capital. Cash App Green, Afterpay integration, SFS origination, and Cash App Score development represent substantial product investment. 5 direct actions mapped."
     },
-    "PIL-002": {
+    "PIL-003": {
       "pct": 25,
       "rank": 2,
       "basis": "Restructuring charges ($450-500M), share repurchases ($2.3B), and the 40%+ workforce transformation represent massive observable resource allocation. However, profitability is an outcome metric that benefits from efficiency across all pillars, not purely a standalone investment. 15 commitments mapped — highest density."
@@ -443,20 +443,20 @@
       "rank": 3,
       "basis": "Sales team scaling (15 to 140+ reps), 100+ ISO partners, marketing spend +50%, Square Handheld and Register 2.0 hardware, UK expansion. Square GPV of $250B from 4.5M sellers. Growth slower than Cash App but stable investment."
     },
-    "PIL-005": {
+    "PIL-001": {
+      "pct": 10,
+      "rank": 4,
+      "basis": "AI infrastructure, senior AI engineering hires, internal tooling. Significant conceptual importance but most observable financial impact is captured under PIL-003 (workforce cuts). The 10% reflects incremental AI-specific investment."
+    },
+    "PIL-006": {
       "pct": 10,
       "rank": 4,
       "basis": "Proto mining hardware R&D and manufacturing, Bitkey development, Bitcoin treasury ($777.5M), Spiral. Resource reallocation from TBD/TIDAL. Early-stage revenue contribution. Capital-intensive mining hardware but small relative to Cash App/Square."
     },
-    "PIL-003": {
-      "pct": 10,
-      "rank": 5,
-      "basis": "AI infrastructure, senior AI engineering hires, internal tooling. Significant conceptual importance but most observable financial impact is captured under PIL-002 (workforce cuts). The 10% reflects incremental AI-specific investment."
-    },
-    "PIL-006": {
+    "PIL-005": {
       "pct": 3,
       "rank": 6,
-      "basis": "Minimal standalone investment. Cash App Neighborhoods and local rewards exist but investment flows primarily through PIL-001 and PIL-004. Only 1 action and 0 commitments directly mapped."
+      "basis": "Minimal standalone investment. Cash App Neighborhoods and local rewards exist but investment flows primarily through PIL-002 and PIL-004. Only 1 action and 0 commitments directly mapped."
     },
     "unaligned": {
       "pct": 2,
@@ -465,8 +465,8 @@
   },
   "key_findings": {
     "alignment_assessment": "Strong overall alignment between stated strategy and observable actions. 17 of 18 actions map to identified pillars (94%). Only 1 action is unaligned (S&P 500 inclusion — external event). Zero actions classified as ambiguous. Zero commitments contradicted or silently abandoned. This is an unusually high alignment score, suggesting either: (a) Block's strategy execution is genuinely coherent, or (b) the analysis period captures a company at peak narrative control following a major restructuring announcement.",
-    "pillar_imbalance": "PIL-001 (Cash App) receives the most resource allocation (35%) and strongest execution evidence. PIL-006 (Connecting Sellers and Consumers) has the thinnest evidence — only 1 action and 0 commitments — suggesting it is more aspirational framing than operational priority. PIL-003 (AI-Native) is high in narrative emphasis but low in dedicated measurable commitments (only 2), raising questions about whether the AI thesis is a strategic pillar or a communication strategy for justifying workforce cuts.",
+    "pillar_imbalance": "PIL-002 (Cash App) receives the most resource allocation (35%) and strongest execution evidence. PIL-005 (Ecosystem Interconnection) has the thinnest evidence — only 1 action and 0 commitments — suggesting it is more aspirational framing than operational priority. PIL-001 (AI-Native) is the highest-ranked pillar by C-level airtime but has low dedicated measurable commitments (only 2) and low resource allocation (10%), raising questions about whether the AI thesis is a strategic pillar or a communication strategy for justifying workforce cuts.",
     "commitment_credibility_pattern": "Block demonstrated a consistent pattern of conservative initial guidance, progressive quarterly raises, and actual results exceeding raised guidance. This was observed across 2025: initial $10.22B GP guidance -> Q2 raise to $10.17B -> Q3 raise to $10.243B -> actual $10.36B. All five fulfilled commitments followed this pattern. This builds credibility for the 2026-2028 forward guidance but also suggests the 2028 targets ($15.8B GP, $4.6B AOI, $5.50 EPS) may be materially conservative.",
-    "drift_risk_areas": "1. PIL-003 (AI-Native) has high narrative emphasis but low measurable commitment density — potential narrative-action gap. 2. PIL-006 (Seller-Consumer Bridge) lacks dedicated commitments — may be aspirational. 3. Cash App lending growth (+223% Borrow YoY) with acknowledged higher losses creates credit risk concentration. 4. The 2028 multi-year targets were set before the 40%+ workforce cut, creating a disconnect between stated targets and the new operating model's capacity."
+    "drift_risk_areas": "1. PIL-001 (AI-Native) has high narrative emphasis but low measurable commitment density — potential narrative-action gap. 2. PIL-005 (Ecosystem Interconnection) lacks dedicated commitments — may be aspirational. 3. Cash App lending growth (+223% Borrow YoY) with acknowledged higher losses creates credit risk concentration. 4. The 2028 multi-year targets were set before the 40%+ workforce cut, creating a disconnect between stated targets and the new operating model's capacity."
   }
 }
