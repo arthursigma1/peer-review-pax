@@ -1,0 +1,254 @@
+{
+  "metadata": {
+    "stage": "1A",
+    "company": "Block, Inc.",
+    "extraction_date": "2026-02-28",
+    "sources_analyzed": ["S-001", "S-002", "S-004", "S-005", "S-006", "S-007", "S-015", "S-016"],
+    "methodology": "Manual extraction from strategy-type sources per prompts/01_gather_strategy.md. Documents retrieved via WebSearch and WebFetch from investor relations pages, SEC filings, news coverage, and earnings call transcripts. PDF shareholder letters and investor presentations were binary and could not be directly text-extracted; content was synthesized from multiple secondary sources covering the same documents.",
+    "limitations": "1. Shareholder letter PDFs (S-001, S-004, S-005) and investor presentation PDFs (S-015, S-016) were binary files that could not be directly text-extracted. Content was reconstructed from news coverage, earnings call transcripts, and press releases that referenced these documents. Some granular detail may be missing. 2. The FY 2025 10-K (S-006) was filed February 26, 2026 — 2 days before extraction. Full-text was not fully indexed; content derived from StockTitan summary and search results. 3. Investor Day 2025 (S-002) content is from press releases and news coverage rather than the full presentation slides. 4. All company-produced sources reflect management's chosen narrative. Strategy elements should be treated as claims, not facts. 5. Q1 2025 shareholder letter (S-005) had the least available secondary coverage."
+  },
+  "strategy_elements": [
+    {
+      "id": "STR-001",
+      "type": "mission_vision",
+      "content": "Block's purpose is economic empowerment — helping individuals and businesses manage, move, and grow their money through simple and connected tools. The company builds technology to increase access to the global economy.",
+      "language_register": "aspirational",
+      "source_id": "S-006",
+      "source_date": "2026-02-26",
+      "source_bias": "regulatory-filing",
+      "confidence": 0.95,
+      "notes": "Core mission statement repeated across 10-K filings (S-006, S-007), corporate website, and investor communications. Carried legal liability in 10-K context. Consistent wording since company founding, though emphasis has evolved."
+    },
+    {
+      "id": "STR-002",
+      "type": "mission_vision",
+      "content": "Block's ecosystems are united by a shared purpose of economic empowerment, with each ecosystem serving different people — sellers, consumers, artists, fans, and developers. The company designs and operates connected ecosystems that integrate commerce solutions, financial services, software, hardware, and networks.",
+      "language_register": "aspirational",
+      "source_id": "S-006",
+      "source_date": "2026-02-26",
+      "source_bias": "regulatory-filing",
+      "confidence": 0.95,
+      "notes": "10-K business description section. Frames the multi-ecosystem architecture as mission-driven. Consistent across FY 2024 (S-007) and FY 2025 (S-006) filings."
+    },
+    {
+      "id": "STR-003",
+      "type": "mission_vision",
+      "content": "Intelligence tools have changed what it means to build and run a company. A significantly smaller team, using the tools we're building, can do more and do it better. And intelligence tool capabilities are compounding faster every week.",
+      "language_register": "transitional",
+      "source_id": "S-001",
+      "source_date": "2026-02-26",
+      "source_bias": "company-produced",
+      "confidence": 0.90,
+      "notes": "Direct quote from Jack Dorsey's Q4 2025 shareholder letter. Represents a new vision layer — the AI-native company thesis. Bridges aspiration (AI future) with operational decision (workforce restructuring). Confirmed across multiple news sources covering the letter."
+    },
+    {
+      "id": "STR-004",
+      "type": "strategic_pillar",
+      "content": "AI-Native Organizational Model: Block is restructuring around intelligence tools, flattening organizational structure, reducing from 10,000+ to under 6,000 employees, and placing AI at the core of decision-making, building trust, managing risk, building products, and serving customers.",
+      "language_register": "operational",
+      "source_id": "S-001",
+      "source_date": "2026-02-26",
+      "source_bias": "company-produced",
+      "confidence": 0.90,
+      "notes": "Central strategic pillar of Q4 2025 shareholder letter. Backed by concrete action (40%+ workforce reduction, $450-500M restructuring charges). Dorsey framed as proactive: 'I would rather get there honestly on our own terms than be forced into it reactively.' This represents a major strategic inflection point for the company."
+    },
+    {
+      "id": "STR-005",
+      "type": "strategic_pillar",
+      "content": "Cash App as Primary Financial App: Positioning Cash App as the primary financial application for U.S. households earning up to $150,000, with focus on Primary Banking Actives as the flagship growth metric, expanding into teens and families, and deepening monetization through lending (Borrow), BNPL (Afterpay), and banking products.",
+      "language_register": "operational",
+      "source_id": "S-001",
+      "source_date": "2026-02-26",
+      "source_bias": "company-produced",
+      "confidence": 0.92,
+      "notes": "Consistent across all quarters in 2025 (S-001, S-004, S-005). Primary Banking Actives (9.3M, +22% YoY) is the key metric. Cash App gross profit per PBA is ~10x peer-to-peer-only actives. This pillar showed strong execution: Q4 gross profit +33%, originations +223% YoY. Repeated in 10-K (S-006) and investor presentations (S-015, S-016)."
+    },
+    {
+      "id": "STR-006",
+      "type": "strategic_pillar",
+      "content": "Square Ecosystem Growth and Market Share: Accelerating Square's growth through expanded distribution (direct sales reps grew from 15 to 140+, 100+ ISO partners), focus on food & beverage vertical, larger sellers, and international expansion, with AI-powered seller tools for data insights and automated actions.",
+      "language_register": "operational",
+      "source_id": "S-001",
+      "source_date": "2026-02-26",
+      "source_bias": "company-produced",
+      "confidence": 0.88,
+      "notes": "Consistent across Q1-Q4 2025 shareholder letters (S-001, S-004, S-005). Square gained market share, NVA grew 17% full-year and 29% in Q4. Sales-led NVA +62% Q4 exceeded 40% target. Square GPV targets maintained through 2028 per Investor Day (S-002). Investor presentations (S-015, S-016) provide KPI backing."
+    },
+    {
+      "id": "STR-007",
+      "type": "strategic_pillar",
+      "content": "Bitcoin Ecosystem and Proto Mining: Building a vertically integrated Bitcoin ecosystem through Bitkey (self-custody wallet), Proto (bitcoin mining hardware and software), and Spiral (open source). Proto generated first revenue in Q3 2025 with initial mining rig shipments, seeding what Block frames as potentially the next major ecosystem.",
+      "language_register": "transitional",
+      "source_id": "S-004",
+      "source_date": "2025-11-06",
+      "source_bias": "company-produced",
+      "confidence": 0.82,
+      "notes": "Bitcoin ecosystem is referenced in 10-K (S-006) as a formal revenue engine and in shareholder letters (S-001, S-004). Proto generated first revenue in Q3 2025. However, Bitcoin Ecosystem revenue declined ~20% YoY in Q4 2025 due to crypto market conditions. Company holds 8,883 BTC on balance sheet. Lower confidence due to crypto market dependency and nascent stage of Proto."
+    },
+    {
+      "id": "STR-008",
+      "type": "strategic_pillar",
+      "content": "Profitable Growth with Operating Leverage: Transitioning from growth-at-all-costs to disciplined profitable growth. Targeting Rule of 40 achievement in 2026 (sustained through 2028), with adjusted operating income growing ~30% annually (faster than mid-teens gross profit growth), reaching 25% AOI margin by 2028.",
+      "language_register": "operational",
+      "source_id": "S-002",
+      "source_date": "2025-11-19",
+      "source_bias": "company-produced",
+      "confidence": 0.90,
+      "notes": "Central financial framework from Investor Day 2025 (S-002). Reinforced in Q4 2025 guidance (S-001): 2026 AOI of $3.2B at 26% margin. FY 2024 turnaround from operating loss to $892M profit (S-007) established credibility. 2028 target: $4.6B AOI. The profitability-faster-than-growth thesis is the key investor narrative."
+    },
+    {
+      "id": "STR-009",
+      "type": "strategic_pillar",
+      "content": "Connecting Sellers and Consumers at Scale ('Powering the Neighborhood'): Bridging the Cash App consumer network (59M MAUs) with the Square seller network (4.5M+ sellers) through Cash App Neighborhoods, customizable local rewards at 1% processing rate, and integrated Bitcoin payments for sellers.",
+      "language_register": "transitional",
+      "source_id": "S-004",
+      "source_date": "2025-11-06",
+      "source_bias": "company-produced",
+      "confidence": 0.80,
+      "notes": "Introduced in Q3 2025 shareholder letter (S-004) as 'powering the neighborhood.' Cash App Neighborhoods connects sellers with 58M+ user network. Square Bitcoin enables sellers to accept Bitcoin. This represents the ecosystem interconnection thesis. Lower confidence because it was introduced more recently and execution evidence is early-stage."
+    },
+    {
+      "id": "STR-010",
+      "type": "quantitative_target",
+      "content": "2026 Financial Guidance: Gross Profit of $12.2 billion (18% YoY growth), Adjusted Operating Income of $3.2 billion (26% margin, 54% YoY growth), Adjusted Diluted EPS of $3.66 (54% growth). Q1 2026: $2.8B gross profit (22% growth), $0.67 adjusted diluted EPS.",
+      "language_register": "operational",
+      "source_id": "S-001",
+      "source_date": "2026-02-26",
+      "source_bias": "company-produced",
+      "confidence": 0.92,
+      "notes": "Official 2026 guidance from Q4 2025 shareholder letter, exceeding initial Investor Day 2026 targets ($11.98B GP, $2.70B AOI, $3.20 EPS). Raised guidance signals management confidence. EPS target of $3.66 significantly beat analyst estimate of $3.22. Margin expansion of 6 points expected."
+    },
+    {
+      "id": "STR-011",
+      "type": "quantitative_target",
+      "content": "2028 Multi-Year Targets (Investor Day): Gross Profit of approximately $15.8 billion (mid-teens annual growth), Adjusted Operating Income of $4.6 billion (25% of gross profit), Adjusted EPS of $5.15, Free Cash Flow of $4 billion. Rule of 40 to be achieved in 2026 and sustained through 2028.",
+      "language_register": "operational",
+      "source_id": "S-002",
+      "source_date": "2025-11-19",
+      "source_bias": "company-produced",
+      "confidence": 0.88,
+      "notes": "Formal three-year outlook from Investor Day 2025. These are the company's most explicit long-range financial commitments. Confirmed as unchanged in Q4 2025 earnings call (S-001). Slightly lower confidence than near-term guidance due to 3-year forecast horizon. Note: Q4 2025 earnings raised 2026 targets above Investor Day levels, suggesting these may be conservative."
+    },
+    {
+      "id": "STR-012",
+      "type": "quantitative_target",
+      "content": "FY 2025 Actual Results: $10.36 billion gross profit (17% YoY growth from $8.889B), Q4 gross profit of $2.87 billion (24% YoY growth). Cash App gross profit grew 33% in Q4 to $1.83B. Square GPV reached $65B in Q4. Primary Banking Actives: 9.3 million (+22% YoY).",
+      "language_register": "operational",
+      "source_id": "S-001",
+      "source_date": "2026-02-26",
+      "source_bias": "company-produced",
+      "confidence": 0.95,
+      "notes": "Actual reported results, not forward targets. High confidence as these are audited/reported figures subject to SEC disclosure requirements. Demonstrates execution against the H2 acceleration thesis laid out in Q1 2025 (S-005). Growth accelerated from 14% (Q2) to 18% (Q3) to 24% (Q4)."
+    },
+    {
+      "id": "STR-013",
+      "type": "quantitative_target",
+      "content": "$5 billion stock repurchase program increase authorized at Investor Day 2025. Through April 2025, approximately $600 million already repurchased. Prior authorization was $4 billion (FY 2024: $1.3B executed).",
+      "language_register": "operational",
+      "source_id": "S-002",
+      "source_date": "2025-11-19",
+      "source_bias": "company-produced",
+      "confidence": 0.93,
+      "notes": "Announced at Investor Day (S-002) and confirmed in subsequent filings. Part of broader capital allocation strategy. The $5B increase represents a significant commitment to shareholder returns. Buyback execution rate in Q1 2025 ($600M through April per S-005) shows active deployment."
+    },
+    {
+      "id": "STR-014",
+      "type": "resource_allocation",
+      "content": "AI-Native Workforce Restructuring: Reducing workforce by 40%+ (from 10,000+ to under 6,000). Expected restructuring charges of $450-500 million. Severance includes 20 weeks pay plus one additional week per year of tenure, extended healthcare, and accelerated equity vesting. Immediate large-scale restructuring chosen over gradual cuts.",
+      "language_register": "operational",
+      "source_id": "S-001",
+      "source_date": "2026-02-26",
+      "source_bias": "company-produced",
+      "confidence": 0.95,
+      "notes": "Most significant resource allocation signal in the dataset. Confirmed across shareholder letter (S-001), 8-K filing, and multiple news sources. The $450-500M charge and specific headcount numbers make this highly concrete. Corroborated by 10-K (S-006) risk factor disclosure. This reallocates organizational capital from headcount to AI infrastructure."
+    },
+    {
+      "id": "STR-015",
+      "type": "resource_allocation",
+      "content": "2026 Investment Priorities (per CFO Amrita Ahuja): Three investment frontiers — (1) Talent acquisition of senior AI engineering hires, (2) Go-to-market scaling through sales and marketing expansion, and (3) AI infrastructure including internal tools and foundational capabilities.",
+      "language_register": "operational",
+      "source_id": "S-001",
+      "source_date": "2026-02-26",
+      "source_bias": "company-produced",
+      "confidence": 0.88,
+      "notes": "From Q4 2025 earnings call. CFO Amrita Ahuja explicitly named three investment frontiers for 2026. This is the clearest articulation of where incremental capital will be deployed. The juxtaposition with workforce cuts (STR-014) signals a shift from general headcount to specialized talent and tooling."
+    },
+    {
+      "id": "STR-016",
+      "type": "resource_allocation",
+      "content": "Square Distribution Expansion: Direct sales representatives grew from 15 in Q1 2025 to 140+ by year-end. Added 100+ independent sales organization (ISO) partners. Sales-led New Volume Added grew 62% YoY in Q4, exceeding the 40% internal target. Marketing spending increased 50% sequentially in Q2 2025.",
+      "language_register": "operational",
+      "source_id": "S-001",
+      "source_date": "2026-02-26",
+      "source_bias": "company-produced",
+      "confidence": 0.90,
+      "notes": "Specific, quantified resource allocation to Square go-to-market. The 15-to-140+ sales rep scaling is one of the most concrete resource allocation signals. Reinforced by Q1 shareholder letter (S-005) stating marketing spend up 50%. Execution evidence strong: sales-led NVA exceeded 40% target at 62%."
+    },
+    {
+      "id": "STR-017",
+      "type": "resource_allocation",
+      "content": "Cash App Lending Expansion: Consumer lending origination volume grew 69% to $18.5 billion in Q4 2025. Cash App Borrow originations grew 223% YoY in Q4. Expansion underway via Square Financial Services for state-by-state lending licenses. Portfolio represents significant capital allocation to credit risk.",
+      "language_register": "operational",
+      "source_id": "S-001",
+      "source_date": "2026-02-26",
+      "source_bias": "company-produced",
+      "confidence": 0.88,
+      "notes": "Lending growth rates (69%, 223%) represent substantial capital deployment. The 10-K (S-006) flagged credit risk: transaction/loan losses up 108% YoY in Q4. This resource allocation carries explicit risk acknowledgment in regulatory filings, which increases confidence that the signal is real and material."
+    },
+    {
+      "id": "STR-018",
+      "type": "c_level_framing",
+      "content": "Jack Dorsey frames the AI-native restructuring as an industry-leading strategic choice, not a cost-cutting measure: 'I would rather get there honestly on our own terms than be forced into it reactively. I believe the majority of companies will reach the same conclusion within the next year.' He positions Block as the first major tech company to fully embrace AI-native operations.",
+      "language_register": "aspirational",
+      "source_id": "S-001",
+      "source_date": "2026-02-26",
+      "source_bias": "company-produced",
+      "confidence": 0.88,
+      "notes": "Direct quotes from Q4 2025 shareholder letter. Dorsey's framing is deliberately bold — positioning 40% workforce cuts as visionary rather than defensive. The aspirational register is notable: 'A decision at this scale carries risk, but so does standing still.' This is the dominant narrative frame of the Q4 2025 communications."
+    },
+    {
+      "id": "STR-019",
+      "type": "c_level_framing",
+      "content": "CFO Amrita Ahuja frames the three-year outlook as a 'credible and profitable path' to 2028 targets, emphasizing that profitability is compounding faster than gross profit growth. The financial narrative centers on Rule of 40 achievement, operating leverage, and disciplined capital return through buybacks.",
+      "language_register": "operational",
+      "source_id": "S-002",
+      "source_date": "2025-11-19",
+      "source_bias": "company-produced",
+      "confidence": 0.87,
+      "notes": "Ahuja's framing at Investor Day (S-002) and Q4 earnings call (S-001) consistently centers on the profitability-faster-than-growth thesis. She explicitly calls the path 'credible' — an interesting word choice acknowledging prior skepticism. Her framing complements Dorsey's vision with financial rigor."
+    },
+    {
+      "id": "STR-020",
+      "type": "c_level_framing",
+      "content": "Dorsey's Q3 2025 framing emphasized 'powering the neighborhood' — positioning Block as the bridge between local sellers and consumers. He highlighted Square AI as enabling sellers to 'easily explore their data to uncover even more complex insights' and 'proactively suggest actions to optimize growth.' Topic ordering in Q3: Cash App growth first, Square execution second, Proto third.",
+      "language_register": "transitional",
+      "source_id": "S-004",
+      "source_date": "2025-11-06",
+      "source_bias": "company-produced",
+      "confidence": 0.82,
+      "notes": "Q3 shareholder letter (S-004) shows Dorsey's evolving narrative emphasis. The 'powering the neighborhood' framing introduces the seller-consumer bridge thesis. Topic ordering (Cash App > Square > Proto) reveals implicit prioritization. By Q4, AI-native restructuring dominated the narrative, potentially superseding this more organic growth framing."
+    },
+    {
+      "id": "STR-021",
+      "type": "c_level_framing",
+      "content": "In Q1 2025, despite missing EPS and revenue estimates, Dorsey and management framed the quarter around underlying strength and the H2 acceleration thesis: 'We remain confident in our ability to accelerate Block's gross profit growth in the second half of 2025 and beyond.' This growth acceleration narrative — from 9.5% Q2 through low double digits Q3 to mid-teens Q4 — became the dominant shareholder communication frame through 2025.",
+      "language_register": "transitional",
+      "source_id": "S-005",
+      "source_date": "2025-05-01",
+      "source_bias": "company-produced",
+      "confidence": 0.85,
+      "notes": "Q1 2025 shareholder letter (S-005). Notable for framing a miss as a setup for future strength. The H2 acceleration thesis was ultimately validated: growth went from 14% (Q2) to 18% (Q3) to 24% (Q4), exceeding even the mid-teens Q4 target. This retroactive validation increases confidence in the framing as genuine strategic intent rather than spin."
+    },
+    {
+      "id": "STR-022",
+      "type": "strategic_pillar",
+      "content": "Engineering Velocity and Developer Productivity: Production code shipped per engineer increased 40% since September 2025. Agentic coding tools enable work completion in a 'fraction of time.' Automation initiatives across varying maturity stages. Four core technical focus areas: customer capabilities, composition interfaces, proactive intelligence, and operational orchestration.",
+      "language_register": "operational",
+      "source_id": "S-001",
+      "source_date": "2026-02-26",
+      "source_bias": "company-produced",
+      "confidence": 0.82,
+      "notes": "From Q4 2025 earnings call (derived from S-001). The 40% code-per-engineer increase is a specific operational metric backing the AI-native thesis. The four technical focus areas provide the most granular articulation of what 'AI-native' means operationally. Lower confidence because these productivity metrics are self-reported and early-stage."
+    }
+  ]
+}
