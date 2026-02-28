@@ -1,0 +1,330 @@
+{
+  "metadata": {
+    "stage": "2",
+    "company": "Block, Inc.",
+    "synthesis_date": "2026-02-28",
+    "inputs": ["stage_1a_strategy.json", "stage_1c_commitments.json"],
+    "methodology": "Semantic clustering of 22 STR-* elements and 24 CMT-* commitments into distinct strategic pillars, per prompts/02_map_pillars.md. Priority ranking uses weighted signals: order of mention (20%), C-level airtime (25%), quantitative targets (20%), resource allocation signals (25%), and commitment density (10%). Temporal evolution assessed across Q1 2025 through Q4 2025 shareholder letters and the Investor Day 2025 event. Pillars numbered in priority rank order (PIL-001 = highest priority).",
+    "limitations": "1. Pillar synthesis is primarily driven by management's own framing from company-produced sources (64% of source catalog). External validation is limited to 5 analyst/journalist sources. 2. The AI-Native Transformation pillar (PIL-001) was introduced in Q4 2025 — its high ranking reflects massive C-level airtime and resource allocation in the most recent period, but its long-term durability is unproven. 3. Temporal evolution is assessed over ~14 months (Feb 2025 to Feb 2026), limiting long-term trend confidence. 4. Priority ranking weights are heuristic, not empirically validated. 5. The 'Ecosystem Interconnection' pillar (PIL-005) is analytically inferred from evidence rather than explicitly named by management. 6. TIDAL's strategic role is ambiguous — it appears in the 10-K as a business unit but receives near-zero C-level airtime, suggesting de-emphasis without formal deprecation."
+  },
+  "pillars": [
+    {
+      "id": "PIL-001",
+      "name": "AI-Native Transformation",
+      "description": "Block is restructuring its entire organizational model around artificial intelligence and 'intelligence tools,' reducing workforce by 40%+ to under 6,000 employees, flattening hierarchy, and placing AI at the core of decision-making, product development, risk management, and customer service. This pillar encompasses both the organizational restructuring and the engineering velocity thesis (40% more code shipped per engineer, agentic tools, four technical focus areas: customer capabilities, composition interfaces, proactive intelligence, operational orchestration).",
+      "origin": "company-stated",
+      "priority_rank": 1,
+      "priority_evidence": {
+        "order_of_mention": "Dominated the Q4 2025 shareholder letter (S-001) as the lead topic. Dorsey's opening framing in the earnings call centered entirely on the AI-native thesis. Not mentioned in Q1-Q3 2025 shareholder letters, indicating this was a strategic inflection introduced in Q4 2025.",
+        "c_level_airtime": "Approximately 40-50% of Dorsey's Q4 2025 shareholder letter and earnings call remarks focused on AI-native restructuring. Ahuja's investment priorities (talent, go-to-market, AI infrastructure) directly support this pillar. Combined, this pillar consumed the largest share of C-level airtime in the most recent reporting period.",
+        "quantitative_targets": [
+          "Workforce reduction from 10,000+ to under 6,000 (40%+)",
+          "Restructuring charges of $450-500 million",
+          "Production code per engineer: +40% since September 2025",
+          "2026 investment frontiers: AI engineering talent, AI infrastructure, go-to-market"
+        ],
+        "resource_signals": [
+          "STR-014: $450-500M restructuring charges — largest single resource reallocation in dataset",
+          "STR-015: Three 2026 investment frontiers (AI talent, go-to-market, AI infrastructure)",
+          "STR-022: Engineering velocity metrics and agentic coding tool deployment"
+        ],
+        "commitment_density": "5 commitments: CMT-010 (AI capability thesis), CMT-011 (industry prediction), CMT-012 (restructuring timeline), CMT-013 (H2 2026 benefit timeline), CMT-023 (resource concentration)"
+      },
+      "supporting_elements": ["STR-003", "STR-004", "STR-014", "STR-015", "STR-018", "STR-022", "CMT-010", "CMT-011", "CMT-012", "CMT-013", "CMT-023"],
+      "temporal_trend": "new",
+      "temporal_evidence": "This pillar did not exist in Q1-Q3 2025 communications. AI was mentioned in the context of Square AI seller tools (Q3 2025, S-004) and as a strategic priority in the 10-K (S-006, S-007), but the AI-native organizational transformation thesis — including the 40%+ workforce cut — was introduced in the Q4 2025 shareholder letter (February 26, 2026). The shift from 'AI as a product feature' to 'AI as organizational model' represents a significant strategic inflection. Prior to Q4 2025, Block operated with 10,000+ employees; the restructuring announcement signals a fundamentally different operational philosophy.",
+      "quantitative_targets": [
+        {
+          "metric": "Workforce reduction",
+          "target": "From 10,000+ to under 6,000 (40%+ reduction)",
+          "timeline": "Substantially complete by end of Q2 2026",
+          "source_id": "S-001"
+        },
+        {
+          "metric": "Restructuring charges",
+          "target": "$450-500 million",
+          "timeline": "Majority in Q1 2026",
+          "source_id": "S-001"
+        },
+        {
+          "metric": "Code shipped per engineer",
+          "target": "+40% (since September 2025 baseline)",
+          "timeline": "Achieved by Q4 2025",
+          "source_id": "S-001"
+        }
+      ],
+      "confidence": 0.88,
+      "bias_note": "This pillar is almost entirely supported by company-produced sources from a single reporting period (Q4 2025). Dorsey's framing is deliberately bold and aspirational. The 8-K filing (S-009, regulatory-filing bias) corroborates the workforce reduction specifics, adding legal accountability. External validation from Morgan Stanley upgrade (S-021) supports the thesis. However, the AI-native organizational model is untested at Block's scale, and the pillar's prominence may reflect recency bias — it dominated the most recent communications but has no track record."
+    },
+    {
+      "id": "PIL-002",
+      "name": "Cash App Consumer Financial Platform",
+      "description": "Positioning Cash App as the primary financial application for U.S. households earning up to $150,000 annually, with Primary Banking Actives as the flagship growth metric. The pillar encompasses deepening monetization through banking products, consumer lending (Borrow, originations +223% YoY), BNPL integration (Afterpay), and network expansion to teens and families. Cash App reached 59 million MAUs and 9.3 million Primary Banking Actives by year-end 2025.",
+      "origin": "company-stated",
+      "priority_rank": 2,
+      "priority_evidence": {
+        "order_of_mention": "Cash App performance was consistently discussed first among business segments in Q1-Q4 2025 shareholder letters (S-001, S-004, S-005). At Investor Day (S-002), Cash App gross profit growth targets were highlighted alongside Square GPV. In topic ordering, Cash App precedes Square in every shareholder letter analyzed.",
+        "c_level_airtime": "Approximately 25-30% of C-level commentary across all sources focused on Cash App. Dorsey highlighted Cash App Green launch and lending growth. Ahuja detailed Cash App financial metrics extensively in earnings calls. Cash App received the most segment-specific attention after the AI-native restructuring narrative in Q4 2025.",
+        "quantitative_targets": [
+          "Primary Banking Actives: 9.3 million (+22% YoY), flagship metric",
+          "Cash App gross profit: $1.83B in Q4 (+33% YoY)",
+          "Borrow originations: +223% YoY in Q4",
+          "Consumer lending volume: $18.5B in Q4 (+69% YoY)",
+          "Monthly Active Users: 59 million",
+          "BNPL annualized originations: $3B",
+          "Borrow loss rate target: below 3%",
+          "Cash App gross profit per PBA: ~10x peer-to-peer-only actives"
+        ],
+        "resource_signals": [
+          "STR-017: Cash App Borrow expansion via Square Financial Services state-by-state licensing",
+          "STR-016: Marketing spend +50% sequentially in Q2 2025 (partially Cash App)",
+          "Cash App Green launch (November 2025) — product investment",
+          "Cash App Score pilot for third-party lenders — new revenue stream development"
+        ],
+        "commitment_density": "6 commitments: CMT-001 (GP guidance, partially Cash App-driven), CMT-015 (Borrow loss rate <3%), CMT-018 (H2 Cash App reacceleration — fulfilled), CMT-021 (Cash App Score for third-party lenders), CMT-023 (Cash App as highest-priority initiative), CMT-024 (guidance raises partially Cash App-driven)"
+      },
+      "supporting_elements": ["STR-005", "STR-012", "STR-017", "STR-020", "STR-021", "CMT-001", "CMT-015", "CMT-018", "CMT-021", "CMT-023", "CMT-024"],
+      "temporal_trend": "rising",
+      "temporal_evidence": "Cash App's strategic emphasis has risen consistently through 2025. Q1 2025 (S-005): Cash App growth was softer (~10% YoY), framed as temporary with H2 acceleration expected. Q2 2025 (S-016): Growth accelerated to 16%. Q3 2025 (S-004): 24% YoY growth, Cash App Green launch announced. Q4 2025 (S-001): 33% YoY growth, Primary Banking Actives as flagship metric elevated, lending originations exploding (+223%). The trajectory from 10% to 33% growth over four quarters represents the most dramatic improvement of any business segment. Cash App's share of total gross profit has been increasing, confirming rising strategic importance.",
+      "quantitative_targets": [
+        {
+          "metric": "Primary Banking Actives",
+          "target": "9.3 million (growth trajectory continuing)",
+          "timeline": "Year-end 2025 actual; 2026 growth expected",
+          "source_id": "S-001"
+        },
+        {
+          "metric": "Cash App Borrow loss rate",
+          "target": "Below 3%",
+          "timeline": "Ongoing operational target",
+          "source_id": "S-010"
+        },
+        {
+          "metric": "Monthly Active Users",
+          "target": "Low-single-digit growth in 2026 from 59M base",
+          "timeline": "FY 2026",
+          "source_id": "S-001"
+        },
+        {
+          "metric": "Cash App gross profit growth",
+          "target": "Investor Day multi-year targets maintained",
+          "timeline": "Through 2028",
+          "source_id": "S-002"
+        }
+      ],
+      "confidence": 0.93,
+      "bias_note": "Heavily supported by company-produced sources across all quarters (S-001, S-004, S-005, S-015, S-016). The 10-K (S-006, regulatory-filing) confirms Cash App's scale and lending risk factors, providing independent corroboration. Cash App's 33% Q4 growth and 9.3M PBA are reported figures subject to SEC requirements, increasing confidence. The risk flag is that lending growth (STR-017) carries credit risk acknowledged in the 10-K (losses +108% YoY), which company-produced sources may understate."
+    },
+    {
+      "id": "PIL-003",
+      "name": "Profitable Growth and Operating Leverage",
+      "description": "Transitioning from a growth-oriented technology company to a disciplined profitable growth model. Anchored by the Rule of 40 framework (gross profit growth + AOI margin >= 40), mid-teens annual gross profit growth through 2028, adjusted operating income growing ~30% annually (faster than revenue growth), and significant shareholder capital return through a $9 billion cumulative buyback authorization. The FY 2024 turnaround from operating loss to $892M profit established the foundation, and the 2025-2028 trajectory codifies it.",
+      "origin": "company-stated",
+      "priority_rank": 3,
+      "priority_evidence": {
+        "order_of_mention": "The profitability narrative framed every quarterly communication in 2025. Investor Day 2025 (S-002) was structured around the multi-year financial outlook with Rule of 40 as the headline framework. The Q4 2025 shareholder letter (S-001) led with AI-native but anchored the financial story on raised guidance and margin expansion.",
+        "c_level_airtime": "Approximately 20-25% of C-level commentary. Ahuja's Investor Day presentation was primarily dedicated to this pillar. Her Q4 2025 earnings call framing of 'credible and profitable path' reinforces it. Dorsey's commentary touches profitability less directly but supports it through the workforce restructuring rationale.",
+        "quantitative_targets": [
+          "2026: $12.2B gross profit (18% growth), $3.2B AOI (26% margin), $3.66 EPS",
+          "2028: $15.8B gross profit, $4.6B AOI (25% margin), $5.15 EPS, $4B FCF",
+          "Rule of 40 achievement in 2026, sustained through 2028",
+          "$5B stock repurchase authorization increase ($9B cumulative)",
+          "~$2.3B annual repurchase pace",
+          "Non-GAAP cash flow: 20% of GP (2026), 25% of GP (2028)"
+        ],
+        "resource_signals": [
+          "STR-014: Workforce restructuring directly expands margins",
+          "STR-013: $5B buyback authorization — capital return commitment",
+          "FY 2025 execution: $2.3B in buybacks, progressive guidance raises and beats"
+        ],
+        "commitment_density": "12 commitments: CMT-001 through CMT-009 (all financial guidance and capital allocation), CMT-016 (2025 guidance — fulfilled), CMT-019 ($2.3B annual buyback pace), CMT-020 (Q3 raised guidance — fulfilled), CMT-024 (Q2 raised guidance — fulfilled)"
+      },
+      "supporting_elements": ["STR-008", "STR-010", "STR-011", "STR-012", "STR-013", "STR-019", "CMT-001", "CMT-002", "CMT-003", "CMT-004", "CMT-005", "CMT-006", "CMT-007", "CMT-008", "CMT-009", "CMT-016", "CMT-019", "CMT-020", "CMT-024"],
+      "temporal_trend": "rising",
+      "temporal_evidence": "Profitability emphasis has steadily increased. FY 2024 10-K (S-007): First year of operating profit ($892M vs. -$279M loss in 2023) — established credibility. Q1 2025 (S-005): Despite revenue miss, highlighted 'highest adjusted operating income and EBITDA ever.' Q3 2025 (S-004): Raised guidance again, AOI growing 28% YoY. Investor Day November 2025 (S-002): Rule of 40 framework introduced as the multi-year organizing principle. Q4 2025 (S-001): Guidance raised again to $3.2B AOI (54% growth), margin expansion of 6 points. The pattern shows progressive escalation from 'achieving profitability' (2024) to 'profitability compounding faster than growth' (2025-2026). The workforce restructuring (PIL-001) further accelerates this trajectory.",
+      "quantitative_targets": [
+        {
+          "metric": "Gross profit",
+          "target": "$12.2 billion (18% YoY growth)",
+          "timeline": "FY 2026",
+          "source_id": "S-001"
+        },
+        {
+          "metric": "Adjusted Operating Income",
+          "target": "$3.2 billion (26% margin)",
+          "timeline": "FY 2026",
+          "source_id": "S-001"
+        },
+        {
+          "metric": "Gross profit",
+          "target": "~$15.8 billion (mid-teens annual growth)",
+          "timeline": "FY 2028",
+          "source_id": "S-002"
+        },
+        {
+          "metric": "Adjusted Operating Income",
+          "target": "$4.6 billion (25% of gross profit)",
+          "timeline": "FY 2028",
+          "source_id": "S-002"
+        },
+        {
+          "metric": "Rule of 40",
+          "target": "GP growth % + AOI margin % >= 40",
+          "timeline": "Achieve 2026, sustain through 2028",
+          "source_id": "S-002"
+        },
+        {
+          "metric": "Share repurchases",
+          "target": "~$2.3 billion annually",
+          "timeline": "Ongoing (2025 pace maintained)",
+          "source_id": "S-002"
+        }
+      ],
+      "confidence": 0.92,
+      "bias_note": "This pillar has the strongest quantitative backing and the broadest source support across company-produced, regulatory-filing, and external sources. Investor Day targets carry formal investor accountability. The 10-K (regulatory-filing) confirms the financial trajectory. Morgan Stanley's upgrade (S-021, third-party-analyst) independently validates the profitability thesis with a $93 price target and $3.81 EPS projection. The FY 2025 track record of conservative-then-beat guidance strengthens credibility. Risk: the workforce restructuring's margin impact is front-loaded; maintaining the trajectory through 2028 requires sustained revenue growth."
+    },
+    {
+      "id": "PIL-004",
+      "name": "Square Seller Ecosystem Growth",
+      "description": "Accelerating Square's growth through expanded go-to-market distribution (direct sales reps from 15 to 140+, 100+ ISO partners), vertical focus on food & beverage and larger sellers, international expansion (GPV +24% internationally), AI-powered seller tools for data insights and automated actions, and new hardware (Handheld, Register 2.0). Square processed $250 billion GPV from 4.5 million sellers in FY 2025.",
+      "origin": "company-stated",
+      "priority_rank": 4,
+      "priority_evidence": {
+        "order_of_mention": "Square is consistently discussed second after Cash App in shareholder letters (S-001, S-004, S-005). At Investor Day (S-002), Square GPV targets were presented alongside Cash App targets. In Q1 2025 (S-005), Square market share gains were highlighted as a positive amid the overall revenue miss.",
+        "c_level_airtime": "Approximately 15-20% of C-level commentary. Dorsey highlighted Square AI capabilities and the 'powering the neighborhood' framing. Ahuja detailed Square's financial metrics and processing cost headwinds. Square receives less narrative emphasis than Cash App but has significant operational depth.",
+        "quantitative_targets": [
+          "GPV: $65B Q4 2025, $250B full-year, growth reaching 12%+ in Q1 2026 QTD",
+          "NVA: 17% YoY full-year, 29% Q4 acceleration",
+          "Sales-led NVA: +62% Q4 YoY (exceeded 40% target)",
+          "Food & beverage: +16% YoY GPV growth",
+          "Square GPV targets maintained through 2028 per Investor Day"
+        ],
+        "resource_signals": [
+          "STR-016: Sales reps 15 to 140+, 100+ ISO partners, marketing +50%",
+          "Hardware investment: Square Handheld, Register 2.0",
+          "Square Bitcoin payment integration",
+          "Square AI for seller insights"
+        ],
+        "commitment_density": "3 commitments: CMT-017 (Square GPV growth to low double digits — fulfilled), CMT-022 (processing cost headwind timeline), CMT-014 (Bitcoin payments on Square)"
+      },
+      "supporting_elements": ["STR-006", "STR-009", "STR-012", "STR-016", "STR-020", "CMT-014", "CMT-017", "CMT-022"],
+      "temporal_trend": "stable",
+      "temporal_evidence": "Square has maintained stable strategic emphasis throughout the analysis period. Q1 2025 (S-005): 'Square gained market share' despite overall miss. Q2 2025 (S-016): 11% gross profit growth. Q3 2025 (S-004): 9% gross profit growth, GPV 12%, Neighborhoods launched. Q4 2025 (S-001): GPV $65B, NVA 29% Q4 growth, distribution expansion validated. The distribution expansion strategy (sales reps, ISOs) was introduced in Q1 2025 and scaled consistently. Square's emphasis has been steady rather than rising — it is a reliable growth engine rather than a transformative narrative. The Investor Day maintained Square GPV targets through 2028 without significant revision.",
+      "quantitative_targets": [
+        {
+          "metric": "Gross Payment Volume growth",
+          "target": "Low double digits, reaching 12%+ in Q1 2026",
+          "timeline": "FY 2025-2026",
+          "source_id": "S-001"
+        },
+        {
+          "metric": "Square GPV targets",
+          "target": "Maintained through 2028 per Investor Day",
+          "timeline": "Through 2028",
+          "source_id": "S-002"
+        },
+        {
+          "metric": "Processing cost headwind resolution",
+          "target": "~2pp headwind expected to resolve",
+          "timeline": "By Q2 2026",
+          "source_id": "S-011"
+        }
+      ],
+      "confidence": 0.90,
+      "bias_note": "Well-supported across company-produced sources (all quarterly letters) and regulatory filings (10-K segment data). Square's GPV and seller count are audited metrics in SEC filings. The distribution expansion (15 to 140+ sales reps) is a specific, verifiable claim. External validation is limited — analyst coverage focuses more on Cash App and the AI pivot than on Square fundamentals. The 'powering the neighborhood' framing is company-produced narrative without independent corroboration of its effectiveness."
+    },
+    {
+      "id": "PIL-005",
+      "name": "Ecosystem Interconnection",
+      "description": "Bridging Block's separate ecosystems — primarily the Cash App consumer network (59M MAUs) and the Square seller network (4.5M+ sellers) — into an integrated commerce and financial platform. Manifestations include Cash App Neighborhoods (connecting sellers with Cash App users via customizable local rewards at 1% processing rate), Bitcoin payments on Square (sellers accept Bitcoin via Lightning Network), and Cash App Score for third-party lenders. This pillar represents the strategic thesis that Block's combined ecosystems are worth more than the sum of their parts.",
+      "origin": "analyst-inferred",
+      "priority_rank": 5,
+      "priority_evidence": {
+        "order_of_mention": "Ecosystem interconnection themes appear in Q3 2025 (S-004) under 'powering the neighborhood' and in the 10-K business description (S-006) as 'connected ecosystems.' It is not positioned as a lead topic in any shareholder letter but appears as a supporting theme within Cash App and Square discussions.",
+        "c_level_airtime": "Approximately 5-10% of C-level commentary. Dorsey's 'powering the neighborhood' framing in Q3 2025 (S-004) is the most direct articulation. The 10-K describes 'connected ecosystems' in the business overview section. This pillar receives less dedicated airtime than Cash App, Square, or AI-native restructuring.",
+        "quantitative_targets": [
+          "Cash App Neighborhoods: 1% processing rate",
+          "Bitcoin payments on Square: rollout to all eligible sellers by 2026",
+          "Cash App Score: pilot completed, exploring third-party licensing"
+        ],
+        "resource_signals": [
+          "Product investment in Cash App Neighborhoods feature",
+          "Bitcoin payment integration on Square",
+          "Cash App Score pilot development"
+        ],
+        "commitment_density": "2 commitments: CMT-014 (Bitcoin payments on Square), CMT-021 (Cash App Score for third-party lenders)"
+      },
+      "supporting_elements": ["STR-002", "STR-009", "STR-020", "CMT-014", "CMT-021"],
+      "temporal_trend": "rising",
+      "temporal_evidence": "Ecosystem interconnection was implicit in the 10-K business description (S-006, S-007) but became more explicit through 2025. Q3 2025 (S-004): 'Powering the neighborhood' introduced as a named concept; Cash App Neighborhoods launched. Q4 2025 (S-001): Bitcoin payments on Square progressing, Cash App Score pilot completed. The trajectory shows this theme moving from abstract business model description to concrete product initiatives. However, it has not yet been elevated to a standalone C-level narrative pillar.",
+      "quantitative_targets": [
+        {
+          "metric": "Bitcoin payments on Square",
+          "target": "All eligible Square sellers",
+          "timeline": "2026 (no processing fees until 2027)",
+          "source_id": "S-017"
+        },
+        {
+          "metric": "Cash App Neighborhoods processing rate",
+          "target": "1% rate",
+          "timeline": "Launched Q3 2025",
+          "source_id": "S-004"
+        }
+      ],
+      "confidence": 0.75,
+      "bias_note": "This pillar is analyst-inferred rather than explicitly named by management. The evidence supporting it (Neighborhoods, Bitcoin on Square, Cash App Score) exists but is dispersed across multiple product announcements rather than unified under a single strategic banner. Company-produced sources use language like 'connected ecosystems' and 'powering the neighborhood' but do not formally designate ecosystem interconnection as a named strategic pillar. Lower confidence reflects the inferential nature of the clustering."
+    },
+    {
+      "id": "PIL-006",
+      "name": "Bitcoin and Decentralized Financial Infrastructure",
+      "description": "Building a vertically integrated Bitcoin ecosystem spanning self-custody (Bitkey wallet), mining hardware and software (Proto — modular 819 TH/s rig, open-source fleet management), open-source protocol contributions (Spiral), Bitcoin payments on Square, and Bitcoin treasury management (8,883 BTC held on balance sheet). Proto generated first revenue in Q3 2025 and is framed as potentially the next major Block ecosystem.",
+      "origin": "company-stated",
+      "priority_rank": 6,
+      "priority_evidence": {
+        "order_of_mention": "Bitcoin/Proto is consistently discussed third after Cash App and Square in shareholder letters. In the 10-K (S-006), Bitcoin Ecosystem is one of three formal revenue engines. At Investor Day (S-002), Proto was mentioned as part of the ecosystem scale narrative but received less dedicated attention than Cash App or Square.",
+        "c_level_airtime": "Approximately 5-10% of C-level commentary across the analysis period. Dorsey has a known personal commitment to Bitcoin (public statements, personal Bitcoin holdings), but Block's investor communications devote relatively limited time to the Bitcoin ecosystem compared to Cash App and Square. Proto mining received a brief mention in Q3 (S-004) and Q4 (S-001) earnings calls.",
+        "quantitative_targets": [
+          "Bitcoin Ecosystem revenue: $1.98B Q4 2025 (down ~20% YoY)",
+          "Bitcoin treasury: 8,883 BTC",
+          "Proto: first revenue in Q3 2025, initial rig shipments in Q4"
+        ],
+        "resource_signals": [
+          "Proto hardware development and manufacturing",
+          "Bitkey product expansion",
+          "Spiral open-source contributions",
+          "8,883 BTC on balance sheet (~$500M+ at market prices)"
+        ],
+        "commitment_density": "2 commitments: CMT-014 (Bitcoin payments on Square), CMT-023 (maintaining Bitkey and Proto investments)"
+      },
+      "supporting_elements": ["STR-007", "CMT-014", "CMT-023"],
+      "temporal_trend": "stable",
+      "temporal_evidence": "Bitcoin has been a consistent but secondary pillar throughout the analysis period. FY 2024 10-K (S-007): Bitkey and Proto described as business units. Q3 2025 (S-004): Proto generated first revenue. Q4 2025 (S-001): Proto rig shipments commenced, Bitcoin Ecosystem revenue declined 20% YoY due to crypto market conditions. The Bitcoin ecosystem has maintained stable strategic positioning — it is consistently referenced but never elevated to the dominant narrative. Dorsey's personal Bitcoin advocacy has not translated into disproportionate corporate resource allocation. The revenue decline in Q4 2025 did not trigger alarm or strategic revision, suggesting management views this as market-cyclical rather than structural.",
+      "quantitative_targets": [
+        {
+          "metric": "Bitcoin Ecosystem revenue",
+          "target": "No specific forward target disclosed",
+          "timeline": "N/A",
+          "source_id": "S-001"
+        },
+        {
+          "metric": "Bitcoin payments on Square",
+          "target": "All eligible sellers, no fees until 2027",
+          "timeline": "2026-2027",
+          "source_id": "S-017"
+        }
+      ],
+      "confidence": 0.80,
+      "bias_note": "Bitcoin holds a unique position in Block's narrative — it is core to Dorsey's personal brand and the company's identity (the name 'Block' references blockchain) but receives modest C-level airtime and limited quantitative targets relative to Cash App and Square. The 10-K (regulatory-filing) lists Bitcoin Ecosystem as a formal revenue engine, providing structural confirmation. However, the ~20% YoY Q4 revenue decline and limited forward guidance suggest this pillar's near-term financial contribution is uncertain. External coverage (journalist sources) tends to focus on Block's Bitcoin holdings and Dorsey's advocacy rather than the ecosystem's standalone business merit."
+    }
+  ],
+  "unmapped_elements": [
+    {
+      "element_id": "STR-001",
+      "reason": "Core mission statement ('economic empowerment') is a foundational value statement that spans all pillars rather than belonging to any single one. It provides the overarching purpose for all strategic activity but does not constitute a distinct strategic pillar in itself. It is referenced implicitly in the descriptions of PIL-002 (Cash App financial inclusion), PIL-004 (Square seller empowerment), and PIL-006 (Bitcoin financial access)."
+    },
+    {
+      "element_id": "STR-021",
+      "reason": "The H2 2025 acceleration framing (Q1 2025 shareholder letter) is a C-level communication strategy rather than a distinct pillar. It served as the narrative bridge between Q1 underperformance and H2 execution across multiple pillars (Cash App, Square, profitability). The framing has been retroactively validated by results but does not constitute an ongoing strategic emphasis area."
+    }
+  ]
+}
