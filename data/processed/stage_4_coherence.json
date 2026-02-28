@@ -1,0 +1,343 @@
+{
+  "metadata": {
+    "stage": "4",
+    "company": "Block, Inc.",
+    "analysis_date": "2026-02-28",
+    "inputs": ["stage_2_pillars.json", "stage_3_actions.json", "stage_1a_strategy.json", "stage_1b_actions.json", "stage_1c_commitments.json"],
+    "methodology": "Five-dimension weighted coherence scoring per prompts/04_coherence_analysis.md. Each pillar scored on 1-5 scale across Resource Alignment (30%), Action Consistency (25%), Commitment Fulfillment (20%), Temporal Consistency (15%), and Absence of Contradiction (10%). Pillar IDs follow Stage 2 canonical numbering (PIL-001 through PIL-006). Stage 3 action mappings remapped to canonical IDs: Stage 3 PIL-001->PIL-002, PIL-002->PIL-003, PIL-003->PIL-001, PIL-004->PIL-004, PIL-005->PIL-006, PIL-006->PIL-005.",
+    "scoring_weights": {
+      "resource_alignment": 0.30,
+      "action_consistency": 0.25,
+      "commitment_fulfillment": 0.20,
+      "temporal_consistency": 0.15,
+      "absence_of_contradiction": 0.10
+    },
+    "limitations": "1. Coherence scoring quantifies qualitative assessments, introducing subjectivity; a second analyst might assign different scores to identical evidence. 2. The 1-5 scale and dimension weights are analytical conventions, not empirically calibrated. 3. Shadow strategy identification depends on completeness of Stage 1B action extraction. 4. The analysis is a point-in-time snapshot as of February 28, 2026; Block's AI-native restructuring is mid-execution. 5. Single-analyst limitation: no inter-rater reliability check. 6. Source bias distribution (32% company-produced, 34% journalist, 14% analyst, 8% regulatory-filing, 8% c-level-social, 4% industry-report) may inflate coherence scores for pillars supported primarily by management-produced sources. 7. The AI-native pillar (PIL-001) was introduced only in Q4 2025, making temporal assessment inherently limited."
+  },
+  "pillar_coherence": [
+    {
+      "pillar_id": "PIL-001",
+      "pillar_name": "AI-Native Transformation",
+      "priority_rank": 1,
+      "dimensions": {
+        "resource_alignment": {
+          "score": 4,
+          "evidence": "The $450-500M restructuring charge (ACT-015, S-009) is the largest single capital deployment in Block's history. The workforce reduction from 10,000+ to under 6,000 (ACT-001, S-009) represents a massive organizational resource reallocation. CFO Ahuja identified three 2026 investment frontiers directly supporting this pillar: AI engineering talent, AI infrastructure, and go-to-market (STR-015, S-001). However, Stage 3 estimated only 10% of resource allocation to AI-native specifically (remapped from Stage 3 PIL-003), with the financial impact of workforce cuts captured under PIL-003 (Profitable Growth). The resource allocation is disproportionately large in absolute terms but ambiguous in attribution — most observable financial impact flows to profitability rather than to measurable AI capabilities.",
+          "key_observations": "Massive restructuring spend signals resource commitment, but AI-specific investment (tooling, infrastructure, talent) is not separately quantified. The 10% Stage 3 allocation estimate for AI-native versus 25% for profitability from the same workforce cut reveals the attribution problem."
+        },
+        "action_consistency": {
+          "score": 3,
+          "evidence": "Two actions directly mapped: ACT-001 (40%+ workforce reduction, high magnitude, S-009) and ACT-010 (March 2025 layoff of 930 employees, medium magnitude, S-013). The 40% code-per-engineer increase since September 2025 (STR-022, S-001) provides operational backing. However, only 2 of 18 total actions are directly mapped to this pillar. No product launches, no customer-facing AI products, and no measurable AI output improvements beyond the self-reported code metric are attributable. The AI-native thesis is primarily an organizational model change, not a portfolio of concrete actions advancing AI capabilities.",
+          "key_observations": "The pillar's action evidence is dominated by workforce reductions rather than AI product or capability deliverables. The 40% code-per-engineer metric is self-reported and measures input (code volume), not output quality or customer impact."
+        },
+        "commitment_fulfillment": {
+          "score": 3,
+          "evidence": "Two commitments mapped: CMT-010 (AI capability thesis — in_progress) and CMT-011 (industry prediction that majority of companies will follow within a year — cannot_assess). CMT-010's backing evidence is the 40% code-per-engineer increase, which is early-stage and self-reported. CMT-011 is an aspirational claim about the broader economy with no specific accountability metric. Zero fulfilled commitments for this pillar. The commitment density is notably low (2 of 24 total commitments) for the highest-priority pillar, a significant observation noted in Stage 3.",
+          "key_observations": "Lowest commitment density of any major pillar. The AI-native thesis is heavily narrative-driven with limited measurable promises. This is consistent with either (a) a genuine but early-stage strategic pivot without enough time to generate trackable commitments, or (b) a communication strategy rather than a measurable strategic program."
+        },
+        "temporal_consistency": {
+          "score": 1,
+          "evidence": "This pillar did not exist before Q4 2025. AI was mentioned in Q3 2025 (S-004) only in the context of Square AI seller tools and in the 10-K (S-006, S-007) as a general capability area. The AI-native organizational transformation thesis was introduced in the Q4 2025 shareholder letter (S-001, dated February 26, 2026). Stage 2 classified the temporal trend as 'new.' The shift from 'AI as product feature' to 'AI as organizational model' represents a sharp strategic inflection with zero historical precedent in Block's communications. However, S-040 (Ahuja at Fortune COO Summit, June 2025) reveals discussion of automating 'the company itself' using an internal agentic AI platform codenamed 'Goose,' suggesting the organizational AI thesis was in motion before its public debut.",
+          "key_observations": "The pillar's temporal score is the lowest possible because it is brand new. The S-040 evidence of earlier internal development somewhat mitigates this but does not change the public-facing reality that this pillar appeared abruptly in Q4 2025."
+        },
+        "absence_of_contradiction": {
+          "score": 3,
+          "evidence": "The primary contradiction is between the AI-native framing (this is about building a more capable, AI-powered company) and the financial reality (this is primarily a cost-reduction exercise that delivers $500M+ in annual savings). Dorsey explicitly frames the restructuring as proactive and visionary — 'I would rather get there honestly on our own terms than be forced into it reactively' (STR-018, S-001) — but external sources frame it as job cuts with an AI narrative overlay (S-026, S-027, S-031, S-032). The CoinDesk analysis (S-037) argues workforce cuts are a structural response to stablecoin margin pressure, not an AI productivity play. Truist's Hold rating (S-047) implicitly questions the thesis. The Radical Compliance analysis (S-038) raises concerns about risk management gaps from rapid downsizing in a regulated financial services company. These multiple external contradictions, while not definitive, collectively challenge the pillar's coherence.",
+          "key_observations": "External sources provide significant contradictory framing. The dual-use nature of the workforce cut — simultaneously an AI transformation and a cost reduction — creates inherent tension in the pillar's narrative coherence."
+        }
+      },
+      "composite_score": 2.95,
+      "classification": "Significant Drift",
+      "summary": "PIL-001 receives the highest narrative priority but scores among the lowest on coherence, yielding a Significant Drift classification at 2.95. The pillar is resource-heavy in absolute terms ($450-500M restructuring) but thin on measurable AI-specific actions and commitments. Its temporal score of 1 reflects the abrupt introduction in Q4 2025, and multiple external sources contradict the AI-native framing by interpreting the workforce cuts as cost optimization. The pillar's primary drift indicator is the gap between narrative intensity and actionable, measurable evidence of AI transformation.",
+      "primary_drift_indicators": [
+        "Zero fulfilled commitments despite being the highest-priority pillar",
+        "Only 2 of 24 commitments mapped — lowest commitment density for any major pillar",
+        "Only 2 of 18 actions mapped, both workforce reductions rather than AI capability deliverables",
+        "Brand-new pillar (Q4 2025) with no temporal track record",
+        "Multiple external sources (S-026, S-027, S-031, S-037, S-038, S-047) challenge the AI-native framing",
+        "Self-reported AI productivity metric (40% code-per-engineer) lacks independent validation"
+      ],
+      "bias_consideration": "This pillar is almost entirely supported by company-produced sources from a single reporting period (Q4 2025). Dorsey's bold framing dominates the narrative. The 8-K filing (S-009) adds regulatory-filing credibility to the restructuring specifics but not to the AI-native thesis itself. External sources are predominantly skeptical. The scoring may actually be generous given the evidence base — the resource alignment score of 4 reflects the magnitude of the restructuring investment, but the AI-specificity of that investment is unverifiable from public data."
+    },
+    {
+      "pillar_id": "PIL-002",
+      "pillar_name": "Cash App Consumer Financial Platform",
+      "priority_rank": 2,
+      "dimensions": {
+        "resource_alignment": {
+          "score": 5,
+          "evidence": "Cash App receives the highest resource allocation at an estimated 35% (Stage 3, remapped from PIL-001). It is Block's largest gross profit contributor (~$6B+ of $10.36B FY2025). Five of 18 actions directly mapped — the highest single-pillar concentration: ACT-004 (Cash App Green, medium), ACT-005 (Afterpay integration, medium), ACT-007 ($200B credit milestone, high), ACT-011 (Cash App segment results, high), ACT-018 (lending loss investment, high). Lending originations growing 50-223% YoY require significant balance sheet capital (STR-017, S-001). SFS in-house origination and Cash App Score pilot represent further product investment. Resource allocation clearly exceeds what might be expected for a rank-2 pillar.",
+          "key_observations": "Cash App receives resources proportionate to or exceeding its stated priority. The lending expansion represents particularly aggressive capital deployment."
+        },
+        "action_consistency": {
+          "score": 5,
+          "evidence": "Five direct actions span product launches, financial results, and capital allocation: ACT-004 (Cash App Green launch, November 2025), ACT-005 (Afterpay integration and rebrand to Cash App Afterpay, 2025), ACT-007 ($200B cumulative credit, SFS in-house origination, Cash App Score pilot), ACT-011 (Q4 GP +33%, 59M MAUs, 9.3M PBA, Borrow +223%), ACT-018 (89% lending loss expense growth reflecting deliberate investment). All actions point directionally toward deepening Cash App as a primary financial platform. No contradicting actions identified. Cash App Green, Afterpay integration, and lending expansion represent a coherent product strategy advancing the pillar.",
+          "key_observations": "Strongest action consistency of any pillar. Product launches, financial results, and capital deployment all reinforce the same strategic direction."
+        },
+        "commitment_fulfillment": {
+          "score": 4,
+          "evidence": "Three commitments mapped: CMT-018 (H2 Cash App reacceleration — fulfilled, Cash App GP went from 10% Q1 to 33% Q4), CMT-015 (Borrow loss rate <3% — in_progress, mid-Feb cohorts trending below target per S-010 Q&A), CMT-021 (Cash App Score for third-party lenders — in_progress, pilot completed per S-019). One of three fulfilled, two in progress with positive signals. Zero contradicted or silently abandoned. The H2 reacceleration commitment (CMT-018) was a high-stakes credibility test made during Q1 2025 weakness and was emphatically fulfilled (10% to 33%). Score is 4 rather than 5 because lending risk commitments (CMT-015) remain unresolved — Dec/Jan losses were elevated.",
+          "key_observations": "Strong fulfillment pattern. The H2 reacceleration commitment was a defining test of management credibility and was decisively met."
+        },
+        "temporal_consistency": {
+          "score": 5,
+          "evidence": "Cash App has been consistently emphasized across all quarters in 2025 (S-001, S-004, S-005, S-015, S-016). It is discussed first among business segments in every shareholder letter. Stage 2 classified the temporal trend as 'rising,' with Cash App's share of total gross profit increasing and growth accelerating from 10% (Q1) to 33% (Q4). Primary Banking Actives became the flagship metric across all communications. At Investor Day (S-002), Cash App gross profit targets were presented as a pillar of the multi-year outlook. The emphasis has been not just stable but strengthening throughout the analysis period.",
+          "key_observations": "Most temporally consistent pillar. Rising emphasis across all four quarters of 2025 without narrative disruption."
+        },
+        "absence_of_contradiction": {
+          "score": 4,
+          "evidence": "One minor contradicting signal: lending loss expenses grew 89% YoY in Q3 2025 (ACT-018, S-011), and the 10-K (S-006) flagged credit risk with transaction/loan losses up 108% YoY in Q4. Dec/Jan losses from record first-time Borrow actives were elevated above targets. Management framed higher losses as 'by design' for new borrower acquisition, but the 223% Borrow origination growth rate substantially outpacing loss management capacity could undermine Cash App's financial health if credit conditions deteriorate. This tension is acknowledged rather than hidden, which supports coherence. The Richmond Fed BNPL analysis (S-050) notes regulatory risk to Afterpay from CFPB classification under Reg Z.",
+          "key_observations": "Lending growth versus credit risk is the primary tension. Management's candor about the tension (acknowledging elevated Dec/Jan losses in Q&A) supports rather than undermines coherence, but the risk is real."
+        }
+      },
+      "composite_score": 4.70,
+      "classification": "Aligned",
+      "summary": "PIL-002 achieves the highest coherence score at 4.70, reflecting strong alignment between Block's stated Cash App strategy and its observable execution. Resource allocation is the highest of any pillar (35%), five direct actions span product development and financial results, the H2 reacceleration commitment was emphatically fulfilled, and temporal emphasis has been consistently rising. The primary risk factor is credit quality in the rapidly expanding lending portfolio, which represents a known tension rather than a hidden contradiction.",
+      "primary_drift_indicators": [
+        "Lending loss expenses (+89% Q3, +108% Q4) significantly outpacing revenue growth",
+        "Dec/Jan Borrow cohort losses elevated above the <3% target before mid-Feb normalization",
+        "Regulatory risk to Afterpay from CFPB Reg Z classification (S-050)"
+      ],
+      "bias_consideration": "Cash App's coherence score is well-supported across company-produced sources and regulatory filings. The 10-K (S-006) independently confirms Cash App's scale and lending risk factors. However, most positive metrics (33% growth, 9.3M PBA, 223% Borrow originations) originate from company-produced sources. External analysts (S-043, S-044) validate the Cash App thesis, though sell-side analysts may share management's growth-oriented framing. The lending risk dimension provides an important counter-narrative."
+    },
+    {
+      "pillar_id": "PIL-003",
+      "pillar_name": "Profitable Growth and Operating Leverage",
+      "priority_rank": 3,
+      "dimensions": {
+        "resource_alignment": {
+          "score": 5,
+          "evidence": "Estimated resource allocation of 25% (Stage 3, remapped from PIL-002). Five direct actions mapped: ACT-001 (40%+ workforce reduction, high — drives margin expansion), ACT-002 ($2.3B share repurchases, high), ACT-010 (March 2025 layoff, medium), ACT-013 (consolidated financial results $10.36B GP, high), ACT-015 ($450-500M restructuring charges, high). The $2.3B in buybacks and $450-500M restructuring charges represent the largest observable capital deployments in the dataset. Profitability is both a standalone investment area (buybacks, restructuring) and an outcome of efficiency across all pillars.",
+          "key_observations": "Resource allocation is clearly proportional to priority. The workforce restructuring and buyback program represent the largest capital actions in the dataset."
+        },
+        "action_consistency": {
+          "score": 5,
+          "evidence": "Five actions, four at high magnitude, all directionally supporting the profitability thesis: ACT-001 directly expands margins through workforce reduction, ACT-002 returns capital via buybacks, ACT-010 preceded the larger restructuring as an earlier efficiency step, ACT-013 demonstrates execution ($10.36B GP, Q4 +24% YoY, $2.07B AOI), ACT-015 is the one-time restructuring investment enabling future margin expansion. The quarterly progression from ~$466M Q1 AOI to $588M Q4 shows consistent improvement. No contradicting actions — every action in this pillar reinforces the profitability trajectory.",
+          "key_observations": "Perfect directional consistency. All five actions reinforce the same thesis of expanding margins and returning capital."
+        },
+        "commitment_fulfillment": {
+          "score": 5,
+          "evidence": "Fifteen commitments mapped — the highest density of any pillar: CMT-001 through CMT-009 (all financial guidance and capital allocation targets), CMT-012 (restructuring timeline), CMT-013 (H2 2026 benefit timeline), CMT-016 (2025 guidance — fulfilled), CMT-019 ($2.3B annual buyback pace), CMT-020 (Q3 raised guidance — fulfilled), CMT-024 (Q2 raised guidance — fulfilled). Three fulfilled (CMT-016, CMT-020, CMT-024), one partially fulfilled (CMT-009 — $5B authorization confirmed, $2.3B repurchased in FY2025), eleven in progress (primarily forward-looking 2026-2028 targets). Zero contradicted. Zero silently abandoned. The pattern of conservative initial guidance, progressive quarterly raises, and actual results beating raised guidance was observed consistently throughout 2025: initial $10.22B GP -> Q2 raise $10.17B -> Q3 raise $10.243B -> actual $10.36B.",
+          "key_observations": "Strongest commitment fulfillment record. The conservative-then-beat guidance pattern across three consecutive quarters builds exceptional credibility. Zero contradictions or silent abandonments across 15 commitments."
+        },
+        "temporal_consistency": {
+          "score": 5,
+          "evidence": "Profitability emphasis has steadily increased throughout the analysis period. FY 2024 (S-007): first operating profit ($892M vs. -$279M loss). Q1 2025 (S-005): 'highest adjusted operating income and EBITDA ever' despite revenue miss. Q3 2025 (S-004): raised guidance again, AOI +28% YoY. Investor Day November 2025 (S-002): Rule of 40 framework as organizing principle. Q4 2025 (S-001): raised to $3.2B AOI (54% growth), 6-point margin expansion. Stage 2 classified temporal trend as 'rising.' The trajectory shows progressive escalation from 'achieving profitability' (2024) to 'profitability compounding faster than growth' (2025-2026).",
+          "key_observations": "Strongest temporal consistency. Emphasis has escalated progressively across every reporting period in the analysis window."
+        },
+        "absence_of_contradiction": {
+          "score": 4,
+          "evidence": "One moderate contradicting signal: the 2028 multi-year targets ($15.8B GP, $4.6B AOI, $5.50 EPS) were set at Investor Day in November 2025, before the 40%+ workforce cut was announced in February 2026. The restructuring has materially changed the operating model — the 2026 AOI target jumped from $2.70B (Investor Day) to $3.20B (Q4 2025 guidance). If 2026 delivers $3.20B AOI, the 30% annual growth path to 2028 implies ~$5.4B, well above the $4.6B 2028 target. This suggests the multi-year targets are now materially conservative and disconnected from the post-restructuring operating model. While this is a positive disconnect (targets likely too low rather than too high), it indicates the stated framework has not been updated to reflect the new reality.",
+          "key_observations": "The pre-restructuring multi-year targets are now disconnected from the post-restructuring operating trajectory. This is a coherence gap even though it is directionally positive."
+        }
+      },
+      "composite_score": 4.85,
+      "classification": "Aligned",
+      "summary": "PIL-003 achieves the highest overall coherence score at 4.85, reflecting the strongest alignment between stated strategy and execution in the analysis. Block's profitability pillar benefits from the most robust quantitative backing, the broadest source validation (company-produced, regulatory-filing, and third-party analyst), and a flawless commitment fulfillment pattern. The only notable coherence gap is that the 2028 multi-year targets have not been updated to reflect the post-restructuring operating model, creating a positive disconnect where targets appear materially conservative.",
+      "primary_drift_indicators": [
+        "2028 multi-year targets set before workforce restructuring are now likely materially conservative",
+        "Profitability gains in 2026 are front-loaded from workforce cuts — sustaining the trajectory through 2028 requires sustained revenue growth"
+      ],
+      "bias_consideration": "This pillar has the broadest source support. Quantitative targets are subject to SEC disclosure requirements (10-K, 8-K). External analysts (S-021, S-043, S-044, S-045, S-046, S-048) independently validate the profitability thesis. The FY 2025 track record of conservative-then-beat guidance provides empirical calibration. The primary bias risk is over-attribution of the workforce restructuring to profitability; some of those savings should arguably be credited to the AI-native pillar (PIL-001) or discounted as one-time gains."
+    },
+    {
+      "pillar_id": "PIL-004",
+      "pillar_name": "Square Seller Ecosystem Growth",
+      "priority_rank": 4,
+      "dimensions": {
+        "resource_alignment": {
+          "score": 4,
+          "evidence": "Estimated resource allocation of 15% (Stage 3, unchanged PIL-004). Two actions directly mapped: ACT-006 (Square Handheld and Register 2.0, low magnitude) and ACT-012 (Square segment results — GPV 10%, NVA +17%/+29% Q4, sales-led NVA +62%, high magnitude). Sales team scaled from 15 to 140+ reps (STR-016, S-001), 100+ ISO partners added, marketing spend up 50% sequentially in Q2 2025. The distribution expansion represents significant investment in go-to-market. However, Square's gross profit growth (9-11% YoY) is slower than Cash App (33%), and hardware costs create a 2pp headwind (CMT-022). Resource allocation is generally consistent with rank-4 priority, with minor gaps in investment intensity relative to Cash App.",
+          "key_observations": "Resource allocation is proportionate to priority rank. The sales team scaling (15 to 140+) is one of the most concrete resource signals in the dataset."
+        },
+        "action_consistency": {
+          "score": 4,
+          "evidence": "Two direct actions are supportive: ACT-006 (hardware launches — Square Handheld, Register 2.0) addresses the upmarket seller expansion and international ambitions. ACT-012 (GPV growth reaching 10%, NVA +29% Q4, sales-led NVA +62% exceeding 40% target) demonstrates execution. Multi-pillar action ACT-007 ($200B credit milestone) partially supports Square through Square Loans. The minor inconsistency is that only 2 of 18 actions directly map, and both hardware launches are low magnitude. The sales-led NVA outperformance (+62% vs. 40% target) is a strong positive signal. No contradicting actions.",
+          "key_observations": "Directionally consistent but thin on the number of mapped actions. The sales execution metrics (NVA +62%) are strong."
+        },
+        "commitment_fulfillment": {
+          "score": 4,
+          "evidence": "Two commitments: CMT-017 (Square GPV growth to low double digits — fulfilled; full-year 10%, Q1 2026 QTD >12%) and CMT-022 (processing cost headwind ~2pp continuing until Q2 2026 — in_progress, timeline consistent across Q3 and Q4 calls). One fulfilled, one in progress. Zero contradicted. The thin commitment set (2 of 24) is notable — Stage 3 observed that 'management is more conservative in Square promises.' The processing cost headwind commitment (CMT-022) is a negative commitment (acknowledging a problem), which adds credibility.",
+          "key_observations": "Solid fulfillment rate despite thin commitment density. The GPV trajectory commitment was met on a slightly delayed basis but directionally fulfilled."
+        },
+        "temporal_consistency": {
+          "score": 5,
+          "evidence": "Square has maintained stable strategic emphasis throughout the analysis period. Stage 2 classified temporal trend as 'stable.' Q1 2025 (S-005): 'Square gained market share.' Q2 2025 (S-016): 11% GP growth. Q3 2025 (S-004): 9% GP growth, Neighborhoods launched, GPV 12%. Q4 2025 (S-001): GPV $65B, NVA 29% Q4 growth. The distribution expansion strategy was introduced in Q1 2025 and scaled consistently. Square's emphasis has been steady — a reliable growth engine rather than a transformative narrative. Investor Day maintained Square GPV targets through 2028 without revision.",
+          "key_observations": "Most stable pillar. Consistent emphasis without dramatic narrative shifts. The distribution expansion strategy has been executed methodically over four quarters."
+        },
+        "absence_of_contradiction": {
+          "score": 4,
+          "evidence": "One minor contradicting signal: Square's gross profit growth (9-11%) significantly lags Cash App's (33%), yet Square receives the third-highest resource allocation (15%). The hardware cost headwind (~2pp on gross profit growth) and processing cost headwind (~2pp) each temporarily depress Square's reported profitability, creating an appearance of underperformance relative to investment. These are acknowledged temporary headwinds (CMT-022 — resolution by Q2 2026). External coverage (S-033, The Block) suggests Square may benefit most from the AI-native pivot, providing a positive counterpoint. No actions contradict the Square growth thesis.",
+          "key_observations": "Temporary cost headwinds create a gap between investment and reported profitability, but the timeline for resolution is clearly communicated."
+        }
+      },
+      "composite_score": 4.25,
+      "classification": "Aligned",
+      "summary": "PIL-004 scores 4.25, classified as Aligned. Square demonstrates solid execution consistency with its distribution expansion strategy bearing measurable results (NVA +62% exceeding 40% target), stable temporal emphasis, and fulfilled GPV growth commitments. The pillar's coherence is slightly tempered by thin action and commitment density relative to Cash App and by temporary cost headwinds that depress reported profitability. Square operates as a reliable, steady growth engine rather than a transformative narrative.",
+      "primary_drift_indicators": [
+        "Gross profit growth (9-11%) significantly lags Cash App (33%) despite rank-4 vs. rank-2 priority",
+        "Hardware and processing cost headwinds (~4pp combined) temporarily depress profitability",
+        "Thin action density (2 of 18) and commitment density (2 of 24)"
+      ],
+      "bias_consideration": "Square metrics (GPV, seller count) are audited figures in SEC filings, providing strong independent verification. The distribution expansion claims (15 to 140+ sales reps) are specific and verifiable. External analyst coverage tends to focus more on Cash App and the AI pivot than Square fundamentals, potentially underweighting Square's execution strength."
+    },
+    {
+      "pillar_id": "PIL-005",
+      "pillar_name": "Ecosystem Interconnection",
+      "priority_rank": 5,
+      "dimensions": {
+        "resource_alignment": {
+          "score": 2,
+          "evidence": "Estimated resource allocation of only 3% (Stage 3, remapped from PIL-006) — the lowest of any pillar and ranked last in allocation. Only 1 of 18 actions directly mapped (ACT-016, BFCM 2025, low magnitude). Zero dedicated commitments. Stage 3 noted that 'investment flows primarily through PIL-001 and PIL-004 separately' and that this pillar has 'minimal standalone investment.' The Cash App Neighborhoods feature, Bitcoin payments on Square integration, and Cash App Score pilot are cited as supporting products, but their resource allocation is captured within Cash App and Square pillars respectively rather than as ecosystem interconnection investments.",
+          "key_observations": "Resource allocation is minimal for a rank-5 pillar. The pillar receives less investment than even rank-6 PIL-006 (Bitcoin, 10%). This is a significant mismatch between stated priority and observable resources."
+        },
+        "action_consistency": {
+          "score": 2,
+          "evidence": "Only one action directly mapped: ACT-016 (BFCM 2025 — 124M transactions across Square, Cash App, Afterpay; low magnitude, S-020). This is a seasonal event rather than a strategic initiative. Multi-pillar action ACT-005 (Afterpay integration into Cash App) has a secondary mapping to ecosystem interconnection, and ACT-014 (Bitcoin ecosystem results) secondarily bridges Square and Bitcoin. However, no dedicated strategic actions advance the ecosystem interconnection thesis. Cash App Neighborhoods was introduced in Q3 2025 (S-004) but is not tracked as a separate action in Stage 1B. The evidence base is thin.",
+          "key_observations": "Weakest action consistency of any pillar. The single mapped action is a seasonal marketing event rather than a strategic investment in ecosystem bridges."
+        },
+        "commitment_fulfillment": {
+          "score": 1,
+          "evidence": "Zero commitments mapped to this pillar. Stage 3 explicitly noted: 'Zero dedicated commitments for the seller-consumer bridge pillar. This is a significant observation — PIL-006 [Stage 3 numbering] has only 1 action (ACT-016, BFCM) and 0 commitments. This suggests it is more of a narrative framing device than a distinct strategic commitment area.' Without any commitments, fulfillment cannot be assessed. The absence of commitments for a named strategic pillar is itself a drift signal — management has not made measurable promises related to ecosystem interconnection.",
+          "key_observations": "The complete absence of commitments is the strongest single drift indicator for any pillar. A pillar with zero commitments has no mechanism for accountability."
+        },
+        "temporal_consistency": {
+          "score": 3,
+          "evidence": "Stage 2 classified temporal trend as 'rising,' noting that ecosystem interconnection moved from implicit in the 10-K business description (S-006, S-007) to explicit via 'powering the neighborhood' in Q3 2025 (S-004) and Cash App Neighborhoods launch. However, the Q4 2025 shareholder letter (S-001) was dominated by the AI-native restructuring narrative, and 'powering the neighborhood' was not prominently revisited. The theme appears to have been an emergent narrative in Q3 2025 that was overshadowed by the AI-native pivot in Q4. It has not yet been formally abandoned but has declined in narrative salience.",
+          "key_observations": "The pillar showed rising momentum in Q3 2025 but lost narrative prominence in Q4 2025 as the AI-native restructuring dominated. Its trajectory is uncertain."
+        },
+        "absence_of_contradiction": {
+          "score": 4,
+          "evidence": "No actions directly contradict the ecosystem interconnection thesis. Bitcoin payments on Square (CMT-014, in progress) and Cash App Neighborhoods continue to advance. The main question is one of neglect rather than contradiction — the pillar lacks positive evidence more than it faces negative evidence. The 40%+ workforce reduction (ACT-001) could theoretically impede cross-ecosystem product development if key integration teams are affected, but this is speculative.",
+          "key_observations": "No overt contradictions, but absence of positive evidence is itself a form of drift. The pillar is not being undermined; it is being starved of investment and attention."
+        }
+      },
+      "composite_score": 2.25,
+      "classification": "Significant Drift",
+      "summary": "PIL-005 scores 2.25, classified as Significant Drift. This analyst-inferred pillar shows the widest gap between strategic narrative and execution evidence. With only 1 low-magnitude action, zero commitments, minimal resource allocation (3%), and declining narrative prominence after Q3 2025, ecosystem interconnection appears to be more of an analytical construct than an operational priority. The pillar is better understood as an emergent property of Cash App (PIL-002) and Square (PIL-004) execution rather than a standalone strategic initiative.",
+      "primary_drift_indicators": [
+        "Zero commitments — no management accountability for this pillar",
+        "Only 1 action mapped (low magnitude seasonal event)",
+        "Lowest resource allocation of any pillar (3%)",
+        "Analyst-inferred origin rather than company-stated",
+        "Narrative prominence declined from Q3 to Q4 2025",
+        "No dedicated product team, investment, or KPI for ecosystem bridging"
+      ],
+      "bias_consideration": "This pillar was analyst-inferred (Stage 2 confidence 0.75 — lowest of any pillar). Its inclusion may reflect the analyst's desire to identify a coherent ecosystem thesis rather than reflecting management's actual strategic architecture. The low coherence score partly reflects the inferential nature of the pillar's definition. If this pillar were removed from the framework, the remaining five pillars would show higher average coherence."
+    },
+    {
+      "pillar_id": "PIL-006",
+      "pillar_name": "Bitcoin and Decentralized Financial Infrastructure",
+      "priority_rank": 6,
+      "dimensions": {
+        "resource_alignment": {
+          "score": 3,
+          "evidence": "Estimated resource allocation of 10% (Stage 3, remapped from PIL-005). Four actions mapped: ACT-003 (Proto Rig launch, medium), ACT-008 (TBD/Web5 shutdown and TIDAL scale-back — portfolio rationalization redirecting resources to Proto and Bitkey, medium), ACT-014 (Bitcoin ecosystem segment results, medium), ACT-017 (Bitkey feature expansion, low). Block holds 8,883 BTC on its balance sheet (~$777.5M). Proto hardware development and manufacturing represent capital-intensive investment. The resource allocation is moderate — 10% is appropriate for a rank-6 pillar. However, there is a tension: Bitcoin is deeply embedded in Block's identity (the company name references blockchain) and Dorsey's personal brand, yet resource allocation does not reflect disproportionate CEO-driven investment as might be expected. The TBD shutdown (ACT-008) redirected resources within the Bitcoin ecosystem but also reduced the overall scope of Bitcoin ambitions.",
+          "key_observations": "Resource allocation is roughly proportionate to rank-6 priority. The TBD shutdown represents both focus (more resources to Proto/Bitkey) and retreat (abandoning decentralized internet ambitions)."
+        },
+        "action_consistency": {
+          "score": 4,
+          "evidence": "Four actions are directionally supportive: ACT-003 (Proto Rig and Proto Fleet launch — concrete product execution for mining hardware), ACT-008 (portfolio rationalization focusing Bitcoin investment on Proto and Bitkey), ACT-014 (Bitcoin segment results including 8,883 BTC treasury, Proto mining contribution), ACT-017 (Bitkey inheritance feature, privacy enhancements). The TBD/Web5 shutdown (ACT-008) could be viewed as contradictory (abandoning a Bitcoin ecosystem component) or supportive (concentrating resources on higher-potential Bitcoin initiatives). On balance, the portfolio rationalization strengthens rather than weakens the pillar by focusing execution. The minor inconsistency is that Bitcoin Ecosystem revenue declined ~20% YoY in Q4 2025 due to crypto market conditions, though this is market-driven rather than execution-driven.",
+          "key_observations": "Solid directional consistency. The TBD shutdown demonstrates disciplined portfolio management within the Bitcoin thesis rather than retreat from it."
+        },
+        "commitment_fulfillment": {
+          "score": 3,
+          "evidence": "Two commitments: CMT-014 (Bitcoin payments on Square — all eligible sellers by 2026, no fees until 2027, in_progress) and CMT-023 (maintaining Bitkey and Proto investment — in_progress). Zero fulfilled, two in progress. No contradictions or silent abandonments. The Bitcoin payments on Square commitment has a clear timeline (all eligible sellers in 2026) that can be evaluated. The commitment to 'maintain' Bitkey and Proto investment is vague — no specific dollar amounts or growth targets. The absence of fulfilled commitments and the limited number of commitments (2 of 24) reflect the Bitcoin ecosystem's early execution stage.",
+          "key_observations": "No fulfilled commitments but no failures either. The pillar is in early execution. The vague 'maintain investment' language for CMT-023 limits accountability."
+        },
+        "temporal_consistency": {
+          "score": 4,
+          "evidence": "Stage 2 classified temporal trend as 'stable.' Bitcoin has maintained consistent but secondary emphasis throughout the analysis period. FY 2024 10-K (S-007): Bitkey and Proto described as business units. Q3 2025 (S-004): Proto generated first revenue. Q4 2025 (S-001): Proto rig shipments, Bitcoin revenue declined 20% YoY. The Bitcoin ecosystem is consistently referenced but never elevated to the dominant narrative. Dorsey's personal Bitcoin advocacy has not translated into disproportionate corporate narrative weight. The pillar's stability is notable — it has not been de-emphasized despite the AI-native pivot dominating Q4 2025 communications. Score is 4 rather than 5 because the TBD shutdown (November 2024) narrowed the pillar's scope.",
+          "key_observations": "Consistent secondary emphasis. Neither elevated nor diminished despite the AI-native narrative dominating Q4 2025."
+        },
+        "absence_of_contradiction": {
+          "score": 3,
+          "evidence": "Two contradicting signals: (1) The TBD/Web5 shutdown (ACT-008, November 2024) eliminated Block's decentralized internet initiative, which was part of the broader Bitcoin/crypto thesis. While management reframed this as focusing resources, the $132.3M TIDAL impairment and TBD closure represent a material retreat from the 'decentralized financial infrastructure' aspect of the pillar. (2) Bitcoin Ecosystem revenue declined ~20% YoY in Q4 2025 (market-driven, not execution-driven, but still undermines the pillar's financial viability narrative). (3) The pillar's rank-6 priority despite being core to Dorsey's personal identity and Block's corporate brand (named after blockchain) suggests a disconnect between identity and operational priority. The CoinDesk stablecoin analysis (S-037) questions the long-term viability of Bitcoin payment economics.",
+          "key_observations": "The TBD shutdown and revenue decline are real contradictions. The identity-priority mismatch (Bitcoin in the company name but rank-6 priority) is a subtle but meaningful coherence gap."
+        }
+      },
+      "composite_score": 3.40,
+      "classification": "Minor Drift",
+      "summary": "PIL-006 scores 3.40, classified as Minor Drift. The Bitcoin ecosystem maintains consistent temporal emphasis and shows reasonable action consistency with Proto and Bitkey execution. However, the pillar exhibits drift through the TBD/Web5 shutdown (narrowing scope), declining Bitcoin segment revenue, vague commitment language, and the tension between Bitcoin's centrality to Block's brand identity versus its rank-6 operational priority. The pillar is not being abandoned but is being managed as a modest secondary initiative rather than the transformative decentralized finance vision that Dorsey's public identity might suggest.",
+      "primary_drift_indicators": [
+        "TBD/Web5 shutdown narrowed the pillar's scope from 'decentralized financial infrastructure' to 'mining and self-custody'",
+        "Bitcoin Ecosystem revenue declined ~20% YoY in Q4 2025",
+        "No specific forward financial targets for Bitcoin segment",
+        "Identity-priority mismatch: Bitcoin in company name but rank-6 operational priority",
+        "No fulfilled commitments yet"
+      ],
+      "bias_consideration": "External coverage (journalist sources) tends to focus on Dorsey's Bitcoin advocacy and Block's crypto identity, potentially inflating the perceived importance of this pillar relative to its actual operational priority. The 10-K (regulatory-filing) confirms Bitcoin Ecosystem as a formal revenue engine, providing structural corroboration. However, the absence of forward financial targets for Bitcoin, in contrast to detailed targets for Cash App and profitability, reveals a gap between narrative identity and operational accountability."
+    }
+  ],
+  "shadow_strategies": [
+    {
+      "name": "Consumer Credit Scaling and Risk Appetite Expansion",
+      "description": "Block is aggressively scaling its consumer lending operations far beyond the pace implied by its stated strategic pillars. Cash App Borrow originations grew 223% YoY in Q4 2025, consumer lending volume grew 69% to $18.5B in Q4, and lending loss expenses grew 89% YoY in Q3 — all growth rates that substantially exceed the company's overall gross profit growth of 24% YoY. This credit scaling represents a significant capital deployment and risk undertaking that is embedded within the Cash App pillar but is large enough and distinct enough to constitute a shadow strategy.",
+      "supporting_actions": ["ACT-007", "ACT-018", "ACT-011"],
+      "supporting_commitments": ["CMT-015", "CMT-021"],
+      "estimated_resource_allocation_pct": 12,
+      "interpretation": "emerging_priority",
+      "significance": "high",
+      "analysis": "Consumer lending is formally part of the Cash App pillar (PIL-002), but its growth trajectory (Borrow +223%, total lending +69%, losses +89%) suggests it is becoming a distinct strategic bet rather than merely a product feature within Cash App. The SFS in-house origination of all Borrow loans, the Cash App Score pilot for third-party lenders, and the state-by-state licensing expansion (STR-017) collectively indicate a deliberate buildout of lending infrastructure. The 10-K (S-006) flagged credit risk prominently, and Dec/Jan losses exceeded targets for new borrower cohorts. If lending losses exceed the <3% target persistently, this shadow strategy could impact profitability (PIL-003) and Cash App (PIL-002) coherence. The credit risk dimension is acknowledged by management in Q&A responses (higher reliability per methodology) but receives minimal emphasis in prepared communications, consistent with a shadow strategy pattern where significant resource deployment outpaces narrative framing."
+    },
+    {
+      "name": "Stablecoin and Payment Margin Structural Adaptation",
+      "description": "CoinDesk analysis (S-037) argues that Block's workforce restructuring is not purely an AI productivity play but rather a structural response to stablecoin settlement pressuring traditional payment margins. If stablecoins reduce the cost of payment settlement, Block's fee stack faces long-term compression. The workforce cut — reducing costs to maintain margins — could be interpreted as defensive margin protection rather than offensive AI transformation.",
+      "supporting_actions": ["ACT-001", "ACT-015"],
+      "supporting_commitments": [],
+      "estimated_resource_allocation_pct": 0,
+      "interpretation": "deliberate_omission",
+      "significance": "medium",
+      "analysis": "This shadow strategy is speculative but analytically significant. Block does not publicly discuss stablecoin competitive pressure as a strategic threat, despite operating in an industry where settlement economics are shifting. The CoinDesk analysis (S-037) provides the most developed version of this thesis. If accurate, it reframes the AI-native restructuring (PIL-001) from a visionary pivot to a necessary margin defense, and reframes the workforce cut from an AI bet to a cost structure realignment. The absence of any management discussion of stablecoin competitive dynamics in 50 cataloged sources is itself a signal — either the threat is not material, or it is being deliberately omitted from the strategic narrative. The confidence in this shadow strategy is moderate; it depends on external analysis rather than observable Block actions."
+    }
+  ],
+  "overall_assessment": {
+    "average_coherence_score": 3.73,
+    "overall_classification": "Minor Drift",
+    "priority_execution_gap": "There is a notable priority-execution gap. The highest-priority pillar (PIL-001, AI-Native Transformation, rank 1) has the second-lowest coherence score (2.95, Significant Drift), while the third-priority pillar (PIL-003, Profitable Growth, rank 3) has the highest coherence score (4.85, Aligned). The second-priority pillar (PIL-002, Cash App, rank 2) also outscores the top-priority pillar (4.70 vs. 2.95). This inversion suggests that Block's actual execution priorities (profitability and Cash App) do not match its stated priority ranking (AI-native first). The AI-native pillar's top ranking appears to reflect recency and narrative intensity rather than depth of execution evidence.",
+    "commitment_pattern": "Block demonstrates a systemic pattern of conservative initial guidance followed by progressive quarterly raises and actual results exceeding raised targets. This was observed across all three guidance cycles in FY 2025 (initial, Q2 raise, Q3 raise, actual). Five of five assessable financial commitments were fulfilled. This pattern builds exceptional credibility for forward guidance but also suggests targets may be materially conservative. A secondary pattern is the concentration of commitments: 15 of 24 (63%) map to PIL-003 (Profitable Growth), while PIL-001 (AI-Native, rank 1) and PIL-005 (Ecosystem Interconnection, rank 5) together have only 2 commitments. Commitment density correlates strongly with coherence scores.",
+    "bias_pattern": "Coherence scores are moderately correlated with source diversity. PIL-003 (highest score, 4.85) has the broadest multi-source support: company-produced, regulatory-filing, and multiple third-party analyst validations. PIL-001 (lowest score among company-stated pillars, 2.95) is almost entirely supported by company-produced sources from a single reporting period, with external sources predominantly skeptical. PIL-005 (lowest overall, 2.25) is analyst-inferred with minimal company support. This pattern suggests that pillars with independent validation score higher, which may reflect genuine coherence or may reflect that well-executed pillars attract more external coverage.",
+    "highest_coherence_pillar": {
+      "pillar_id": "PIL-003",
+      "pillar_name": "Profitable Growth and Operating Leverage",
+      "score": 4.85
+    },
+    "lowest_coherence_pillar": {
+      "pillar_id": "PIL-005",
+      "pillar_name": "Ecosystem Interconnection",
+      "score": 2.25
+    },
+    "top_drift_flags": [
+      {
+        "flag": "AI-Native Transformation (PIL-001) is the highest-priority pillar by management framing but scores Significant Drift (2.95) due to zero fulfilled commitments, only 2 mapped actions (both workforce cuts), no temporal track record, and external sources challenging the AI narrative as cost-cutting in disguise.",
+        "severity": "high",
+        "evidence_summary": "ACT-001, ACT-010, ACT-015, CMT-010, CMT-011, STR-014, STR-018, STR-022; external: S-026, S-027, S-031, S-037, S-038, S-047",
+        "confidence": 0.82
+      },
+      {
+        "flag": "Ecosystem Interconnection (PIL-005) is an analyst-inferred pillar with Strategic Disconnect-level evidence: zero commitments, 1 low-magnitude action, 3% resource allocation, and declining narrative prominence after Q3 2025.",
+        "severity": "high",
+        "evidence_summary": "ACT-016, Stage 3 PIL-006 mapping showing 0 commitments and 3% allocation; STR-009, S-004 (Q3 narrative), S-001 (Q4 narrative shift)",
+        "confidence": 0.78
+      },
+      {
+        "flag": "Consumer credit scaling operates as a shadow strategy with lending growth rates (Borrow +223%, total +69%, losses +89%) far exceeding overall business growth (+24% GP), creating a risk concentration that is embedded within the Cash App pillar but not separately tracked as a strategic initiative.",
+        "severity": "medium",
+        "evidence_summary": "ACT-007, ACT-018, ACT-011, CMT-015, STR-017; 10-K risk disclosure S-006; S-036 credit risk analysis",
+        "confidence": 0.80
+      },
+      {
+        "flag": "Priority-execution inversion: the rank-1 pillar (AI-Native, 2.95) scores lower than the rank-3 pillar (Profitable Growth, 4.85) on coherence, suggesting stated priorities do not reflect actual execution priorities.",
+        "severity": "medium",
+        "evidence_summary": "Composite scores: PIL-001 2.95, PIL-002 4.70, PIL-003 4.85, PIL-004 4.25, PIL-005 2.25, PIL-006 3.40",
+        "confidence": 0.85
+      },
+      {
+        "flag": "Bitcoin's identity-priority mismatch: Block's corporate name references blockchain and Dorsey is a prominent Bitcoin advocate, yet the Bitcoin pillar (PIL-006) ranks last in priority and shows Minor Drift (3.40) with declining revenue and no forward financial targets.",
+        "severity": "low",
+        "evidence_summary": "PIL-006 composite 3.40; ACT-008 (TBD shutdown), ACT-014 (revenue -20% YoY); STR-007, CMT-014, CMT-023",
+        "confidence": 0.75
+      }
+    ]
+  }
+}
