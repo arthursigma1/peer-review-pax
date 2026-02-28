@@ -163,6 +163,29 @@ The resource allocation table in the report matches Stage 3:
 | PIL-005 | 3% | 3% | Yes |
 | Unaligned | 2% | 2% | Yes |
 
+### 9. Pillar ID Consistency (Stage 2 Canonical)
+
+**Verdict: PASS**
+
+The report uses Stage 2 canonical pillar IDs consistently throughout all seven sections. Verified mapping:
+
+| Pillar ID | Report Name | Stage 2 Name | Consistent? |
+|-----------|-------------|--------------|-------------|
+| PIL-001 | AI-Native Transformation | AI-Native Transformation | Yes |
+| PIL-002 | Cash App Consumer Financial Platform | Cash App Consumer Financial Platform | Yes |
+| PIL-003 | Profitable Growth and Operating Leverage | Profitable Growth and Operating Leverage | Yes |
+| PIL-004 | Square Seller Ecosystem Growth | Square Seller Ecosystem Growth | Yes |
+| PIL-005 | Ecosystem Interconnection | Ecosystem Interconnection | Yes |
+| PIL-006 | Bitcoin and Decentralized Financial Infrastructure | Bitcoin and Decentralized Financial Infrastructure | Yes |
+
+- [x] All pillar references in the priority ranking table (Section 3) use canonical IDs.
+- [x] All pillar references in commitment fulfillment table (Section 4) use canonical IDs.
+- [x] All pillar references in resource allocation table (Section 4) use canonical IDs.
+- [x] All pillar references in coherence summary table (Section 5) use canonical IDs.
+- [x] All pillar references in Key Findings (Section 6) use canonical IDs.
+- [x] No residual Stage 3 alternative numbering detected (Stage 3 initially used a different pillar ordering that was reconciled in commit `a5d7f0a`).
+- [x] Priority ranks are consistent: PIL-001 = rank 1, PIL-002 = rank 2, PIL-003 = rank 3, PIL-004 = rank 4, PIL-005 = rank 5, PIL-006 = rank 6. These match Stage 2 output.
+
 ---
 
 ## Overall Assessment
