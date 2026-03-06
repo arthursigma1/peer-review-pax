@@ -2,16 +2,16 @@
 
 ## Objective
 
-Score the coherence between Block, Inc.'s stated strategic pillars and its observable actions and commitments across five weighted dimensions. Produce a quantitative assessment of strategic alignment for each pillar, identify patterns of drift, and surface any shadow strategies — areas receiving significant resources that are not reflected in the company's stated strategic framework.
+Score the coherence between {COMPANY}'s stated strategic pillars and its observable actions and commitments across five weighted dimensions. Produce a quantitative assessment of strategic alignment for each pillar, identify patterns of drift, and surface any shadow strategies — areas receiving significant resources that are not reflected in the company's stated strategic framework.
 
 ## Inputs
 
-- Pillar map: `data/processed/stage_2_pillars.json` (PIL-* definitions with priority rankings)
-- Action mapping: `data/processed/stage_3_actions.json` (action/commitment-to-pillar mappings, resource allocation estimates, commitment tracker)
-- Strategy elements: `data/processed/stage_1a_strategy.json` (STR-* for reference)
-- Actions: `data/processed/stage_1b_actions.json` (ACT-* for reference)
-- Commitments: `data/processed/stage_1c_commitments.json` (CMT-* for reference)
-- Source catalog: `data/processed/stage_0_sources.md`
+- Pillar map: `data/processed/{TICKER}/{DATE}/stage_2_pillars.json` (PIL-* definitions with priority rankings)
+- Action mapping: `data/processed/{TICKER}/{DATE}/stage_3_actions.json` (action/commitment-to-pillar mappings, resource allocation estimates, commitment tracker)
+- Strategy elements: `data/processed/{TICKER}/{DATE}/stage_1a_strategy.json` (STR-* for reference)
+- Actions: `data/processed/{TICKER}/{DATE}/stage_1b_actions.json` (ACT-* for reference)
+- Commitments: `data/processed/{TICKER}/{DATE}/stage_1c_commitments.json` (CMT-* for reference)
+- Source catalog: `data/processed/{TICKER}/{DATE}/stage_0_sources.md`
 - This prompt template
 
 ## Method
@@ -136,13 +136,13 @@ Beyond per-pillar scoring, assess systemic patterns:
 
 ## Output Format
 
-Produce a JSON file (`data/processed/stage_4_coherence.json`) with the following schema:
+Produce a JSON file (`data/processed/{TICKER}/{DATE}/stage_4_coherence.json`) with the following schema:
 
 ```json
 {
   "metadata": {
     "stage": "4",
-    "company": "Block, Inc.",
+    "company": "{COMPANY}",
     "analysis_date": "YYYY-MM-DD",
     "inputs": ["stage_2_pillars.json", "stage_3_actions.json", "stage_1a_strategy.json", "stage_1b_actions.json", "stage_1c_commitments.json"],
     "methodology": "Five-dimension weighted coherence scoring per prompts/04_coherence_analysis.md",

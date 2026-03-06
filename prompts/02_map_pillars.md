@@ -2,13 +2,13 @@
 
 ## Objective
 
-Synthesize the individual strategy elements extracted in Stage 1A (and relevant commitments from Stage 1C) into a coherent map of Block, Inc.'s strategic pillars. Each pillar represents a distinct area of strategic emphasis, ranked by observed priority and tracked for temporal evolution. This pillar map serves as the reference structure against which all actions and commitments are evaluated in subsequent stages.
+Synthesize the individual strategy elements extracted in Stage 1A (and relevant commitments from Stage 1C) into a coherent map of {COMPANY}'s strategic pillars. Each pillar represents a distinct area of strategic emphasis, ranked by observed priority and tracked for temporal evolution. This pillar map serves as the reference structure against which all actions and commitments are evaluated in subsequent stages.
 
 ## Inputs
 
-- Strategy elements: `data/processed/stage_1a_strategy.json` (STR-* elements)
-- Commitments: `data/processed/stage_1c_commitments.json` (CMT-* elements, used to corroborate pillar identification)
-- Source catalog: `data/processed/stage_0_sources.md`
+- Strategy elements: `data/processed/{TICKER}/{DATE}/stage_1a_strategy.json` (STR-* elements)
+- Commitments: `data/processed/{TICKER}/{DATE}/stage_1c_commitments.json` (CMT-* elements, used to corroborate pillar identification)
+- Source catalog: `data/processed/{TICKER}/{DATE}/stage_0_sources.md`
 - This prompt template
 
 ## Method
@@ -22,12 +22,7 @@ Group all STR-* elements into candidate pillar clusters using the following appr
 3. **Implicit pillar detection:** If a cluster of elements points to a consistent strategic area that management has not explicitly named, create a pillar and note it as "analyst-inferred" rather than "company-stated."
 4. **Deduplication:** Multiple elements from different sources describing the same pillar should be consolidated under one pillar entry, with all supporting elements listed.
 
-**Expected pillar areas for Block, Inc.** (validate against evidence; do not force-fit):
-- Bitcoin / decentralized financial infrastructure (including TBD, Spiral, mining)
-- Cash App ecosystem growth (direct deposit, lending, investing, commerce)
-- Square / Seller ecosystem (payments, software, banking for businesses)
-- Operational efficiency / cost discipline (Rule of 40, margin expansion, headcount discipline)
-- TIDAL / music and creator economy (may be minor or deprecated)
+**Expected pillar areas:** Review the business segments listed in company_context.json. Use these as initial hypotheses for pillar clustering, but do not force-fit — follow the evidence.
 
 These expectations should not constrain the analysis. If evidence reveals different or additional pillars, follow the evidence.
 
@@ -69,13 +64,13 @@ For each pillar, assign a confidence score (0.0–1.0) reflecting:
 
 ## Output Format
 
-Produce a JSON file (`data/processed/stage_2_pillars.json`) with the following schema:
+Produce a JSON file (`data/processed/{TICKER}/{DATE}/stage_2_pillars.json`) with the following schema:
 
 ```json
 {
   "metadata": {
     "stage": "2",
-    "company": "Block, Inc.",
+    "company": "{COMPANY}",
     "synthesis_date": "YYYY-MM-DD",
     "inputs": ["stage_1a_strategy.json", "stage_1c_commitments.json"],
     "methodology": "Semantic clustering of STR-* elements with priority ranking per prompts/02_map_pillars.md",
@@ -136,7 +131,7 @@ Produce a JSON file (`data/processed/stage_2_pillars.json`) with the following s
 - Pillar synthesis involves analytical judgment — two analysts examining the same elements might produce slightly different pillar structures. Transparency about clustering decisions mitigates this.
 - Priority ranking signals are weighted heuristically; the weights reflect analytical convention but are not empirically validated.
 - Temporal evolution is constrained by the time span of available sources. If sources cover only 12 months, long-term trend assessment is inherently limited.
-- Company-stated pillar names may mask internal complexity (e.g., "Cash App" encompasses lending, payments, investing, and social features with potentially different strategic weights).
+- Company-stated pillar names may mask internal complexity (e.g., a single named pillar may encompass lending, payments, investing, and social features with potentially different strategic weights).
 
 ## Bias Awareness
 

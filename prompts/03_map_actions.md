@@ -6,10 +6,10 @@ Map every extracted action (ACT-*) and commitment (CMT-*) to the strategic pilla
 
 ## Inputs
 
-- Pillar map: `data/processed/stage_2_pillars.json` (PIL-* definitions)
-- Actions: `data/processed/stage_1b_actions.json` (ACT-* elements)
-- Commitments: `data/processed/stage_1c_commitments.json` (CMT-* elements)
-- Source catalog: `data/processed/stage_0_sources.md`
+- Pillar map: `data/processed/{TICKER}/{DATE}/stage_2_pillars.json` (PIL-* definitions)
+- Actions: `data/processed/{TICKER}/{DATE}/stage_1b_actions.json` (ACT-* elements)
+- Commitments: `data/processed/{TICKER}/{DATE}/stage_1c_commitments.json` (CMT-* elements)
+- Source catalog: `data/processed/{TICKER}/{DATE}/stage_0_sources.md`
 - This prompt template
 
 ## Method
@@ -82,13 +82,13 @@ For each action classified as "unaligned":
 
 ## Output Format
 
-Produce a JSON file (`data/processed/stage_3_actions.json`) with the following schema:
+Produce a JSON file (`data/processed/{TICKER}/{DATE}/stage_3_actions.json`) with the following schema:
 
 ```json
 {
   "metadata": {
     "stage": "3",
-    "company": "Block, Inc.",
+    "company": "{COMPANY}",
     "mapping_date": "YYYY-MM-DD",
     "inputs": ["stage_2_pillars.json", "stage_1b_actions.json", "stage_1c_commitments.json"],
     "methodology": "Action and commitment classification to pillar framework per prompts/03_map_actions.md",

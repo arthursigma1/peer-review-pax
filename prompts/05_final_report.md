@@ -2,17 +2,17 @@
 
 ## Objective
 
-Generate a comprehensive, publication-quality analytical report synthesizing all outputs from Stages 0–4 into a coherent assessment of strategic coherence for Block, Inc. The report must be written in formal academic prose, with every factual claim traceable to a specific source identifier (S-*, STR-*, ACT-*, CMT-*, PIL-*). The report is the primary deliverable of the Strategy Drift Detector.
+Generate a comprehensive, publication-quality analytical report synthesizing all outputs from Stages 0–4 into a coherent assessment of strategic coherence for {COMPANY}. The report must be written in formal academic prose, with every factual claim traceable to a specific source identifier (S-*, STR-*, ACT-*, CMT-*, PIL-*). The report is the primary deliverable of the Strategy Drift Detector.
 
 ## Inputs
 
-- Source catalog: `data/processed/stage_0_sources.md`
-- Strategy elements: `data/processed/stage_1a_strategy.json`
-- Action evidence: `data/processed/stage_1b_actions.json`
-- Commitments: `data/processed/stage_1c_commitments.json`
-- Pillar map: `data/processed/stage_2_pillars.json`
-- Action mapping: `data/processed/stage_3_actions.json`
-- Coherence analysis: `data/processed/stage_4_coherence.json`
+- Source catalog: `data/processed/{TICKER}/{DATE}/stage_0_sources.md`
+- Strategy elements: `data/processed/{TICKER}/{DATE}/stage_1a_strategy.json`
+- Action evidence: `data/processed/{TICKER}/{DATE}/stage_1b_actions.json`
+- Commitments: `data/processed/{TICKER}/{DATE}/stage_1c_commitments.json`
+- Pillar map: `data/processed/{TICKER}/{DATE}/stage_2_pillars.json`
+- Action mapping: `data/processed/{TICKER}/{DATE}/stage_3_actions.json`
+- Coherence analysis: `data/processed/{TICKER}/{DATE}/stage_4_coherence.json`
 - This prompt template
 
 ## Method
@@ -169,10 +169,10 @@ Organize findings by severity (most significant first). Include both drift findi
 
 ## Output Format
 
-Produce a markdown file (`data/processed/final_report.md`) structured with the seven sections above, using proper markdown heading levels:
+Produce a markdown file (`data/processed/{TICKER}/{DATE}/final_report.md`) structured with the seven sections above, using proper markdown heading levels:
 
 ```markdown
-# Strategy Drift Analysis: Block, Inc.
+# Strategy Drift Analysis: {COMPANY}
 ## Executive Summary
 ...
 ## Methodology
@@ -193,7 +193,7 @@ Produce a markdown file (`data/processed/final_report.md`) structured with the s
 
 - Use markdown tables for structured data presentations
 - Use blockquotes (`>`) for verbatim quotes from source documents
-- Cite source IDs inline: "Block allocated $X to Bitcoin mining (ACT-007, S-003)"
+- Cite source IDs inline: "{COMPANY} allocated $X to [initiative] (ACT-007, S-003)"
 - Use **bold** for key terms and findings on first reference
 - Use section cross-references where relevant: "as discussed in Section 3"
 - No bullet-point lists in analytical sections — use full paragraphs with academic prose
