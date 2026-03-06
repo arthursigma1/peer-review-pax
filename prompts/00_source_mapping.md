@@ -2,11 +2,11 @@
 
 ## Objective
 
-Systematically identify, catalog, and classify all publicly available information sources pertaining to Block, Inc. (formerly Square, Inc.) that are necessary and sufficient for evaluating strategic coherence. This stage establishes the evidentiary foundation upon which all subsequent analysis depends; no downstream stage may proceed until source sufficiency criteria are satisfied.
+Systematically identify, catalog, and classify all publicly available information sources pertaining to {COMPANY} that are necessary and sufficient for evaluating strategic coherence. This stage establishes the evidentiary foundation upon which all subsequent analysis depends; no downstream stage may proceed until source sufficiency criteria are satisfied.
 
 ## Inputs
 
-- Company identity: **Block, Inc.** (NYSE: XYZ → SQ; legal name change effective December 2021)
+- Company identity: **{COMPANY}** ({EXCHANGE}: {TICKER})
 - Public information domains: SEC filings, investor relations, press/newsroom, third-party analyst coverage, financial journalism
 - No proprietary, leaked, or non-public information may be used
 
@@ -17,14 +17,14 @@ Systematically identify, catalog, and classify all publicly available informatio
 Conduct a structured search across the following source categories:
 
 **A. Strategy Sources** (documents that articulate strategic intent)
-- Annual shareholder letters (Jack Dorsey / CEO communications)
+- Annual shareholder letters ({CEO} / CEO communications)
 - Investor Day presentations and transcripts
 - Annual Reports (10-K filings, specifically MD&A and Business Overview sections)
 - Investor presentations filed with the SEC or hosted on investor relations site
 
 **B. Action/Execution Sources** (documents that reveal operational decisions and resource allocation)
 - Quarterly filings (10-Q, specifically MD&A, segment reporting, and risk factors)
-- Press releases from Block newsroom (product launches, acquisitions, organizational changes)
+- Press releases from {COMPANY} newsroom (product launches, acquisitions, organizational changes)
 - Capital expenditure disclosures and segment financial data
 - Organizational restructuring announcements (e.g., layoffs, reorgs, leadership changes)
 - Earnings call transcripts (both prepared remarks and Q&A)
@@ -33,7 +33,7 @@ Conduct a structured search across the following source categories:
 - Sell-side analyst reports and consensus estimates (where publicly summarized)
 - Financial journalist coverage (e.g., Wall Street Journal, Bloomberg, Reuters)
 - Regulatory actions or filings (CFPB, state regulators, SEC enforcement)
-- Industry reports referencing Block's competitive positioning
+- Industry reports referencing {COMPANY}'s competitive positioning
 
 ### Step 2: Source Classification
 
@@ -62,13 +62,13 @@ After cataloging all sources, evaluate against the following minimum criteria:
 - [ ] **Action/execution sources:** >= 3 sources documenting concrete actions (filings, press releases, financial data)
 - [ ] **External validation:** >= 1 independent source (analyst, journalist, or regulator) providing outside perspective
 - [ ] **Bias distribution:** No single bias category accounts for > 60% of total sources
-- [ ] **Segment coverage:** Sources available for all major business segments (Cash App, Square/Seller, TIDAL/music, Bitcoin/TBD)
+- [ ] **Segment coverage:** Sources available for all major business segments (as identified in company_context.json)
 
 If any criterion is unmet, flag the specific gap and indicate what additional source gathering is required before proceeding to Stage 1.
 
 ## Output Format
 
-Produce a markdown file (`data/processed/stage_0_sources.md`) containing:
+Produce a markdown file (`data/processed/{TICKER}/{DATE}/stage_0_sources.md`) containing:
 
 ### 1. Source Catalog Table
 

@@ -2,12 +2,12 @@
 
 ## Objective
 
-Extract structured forward-looking commitments, guidance statements, and public promises made by Block, Inc. leadership from earnings calls, presentations, and public communications. These commitments form the basis for evaluating whether management follows through on stated intentions, serving as a critical input to commitment fulfillment tracking in Stage 3 and coherence scoring in Stage 4.
+Extract structured forward-looking commitments, guidance statements, and public promises made by {COMPANY} leadership from earnings calls, presentations, and public communications. These commitments form the basis for evaluating whether management follows through on stated intentions, serving as a critical input to commitment fulfillment tracking in Stage 3 and coherence scoring in Stage 4.
 
 ## Inputs
 
-- Source catalog from Stage 0 (`data/processed/stage_0_sources.md`), filtered to earnings transcripts, shareholder letters, and press releases containing forward-looking language
-- Raw document text stored in `data/raw/block_commitments_{source_id}.txt`
+- Source catalog from Stage 0 (`data/processed/{TICKER}/{DATE}/stage_0_sources.md`), filtered to earnings transcripts, shareholder letters, and press releases containing forward-looking language
+- Raw document text stored in `data/raw/{TICKER}/{DATE}/{TICKER_LOWER}_commitments_{source_id}.txt`
 - This prompt template
 
 ## Method
@@ -16,7 +16,7 @@ Extract structured forward-looking commitments, guidance statements, and public 
 
 For each relevant source in the Stage 0 catalog:
 1. Retrieve the full text of the document via web fetch or SEC EDGAR
-2. Save the raw text to `data/raw/block_commitments_{source_id}.txt`
+2. Save the raw text to `data/raw/{TICKER}/{DATE}/{TICKER_LOWER}_commitments_{source_id}.txt`
 3. For earnings transcripts, clearly delineate **prepared remarks** from **Q&A** sections
 
 ### Step 2: Commitment Extraction
@@ -85,13 +85,13 @@ This is a preliminary assessment; Stage 3 will refine these statuses with fuller
 
 ## Output Format
 
-Produce a JSON file (`data/processed/stage_1c_commitments.json`) with the following schema:
+Produce a JSON file (`data/processed/{TICKER}/{DATE}/stage_1c_commitments.json`) with the following schema:
 
 ```json
 {
   "metadata": {
     "stage": "1C",
-    "company": "Block, Inc.",
+    "company": "{COMPANY}",
     "extraction_date": "YYYY-MM-DD",
     "sources_analyzed": ["S-005", "S-006", "..."],
     "methodology": "Manual extraction from forward-looking statements per prompts/01_gather_commitments.md",
@@ -102,7 +102,7 @@ Produce a JSON file (`data/processed/stage_1c_commitments.json`) with the follow
     {
       "id": "CMT-001",
       "statement": "Verbatim or closely paraphrased commitment text",
-      "speaker": "Name and title (e.g., 'Jack Dorsey, CEO' or 'Amrita Ahuja, CFO')",
+      "speaker": "Name and title (e.g., '{CEO}, CEO' or '{CFO}, CFO')",
       "type": "guidance | verbal_commitment | timeline_promise | comparative_framing",
       "context": "prepared_remarks | qa_response | analyst_followup | shareholder_letter | press_release",
       "date": "YYYY-MM-DD",

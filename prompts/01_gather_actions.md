@@ -2,12 +2,12 @@
 
 ## Objective
 
-Extract structured evidence of Block, Inc.'s concrete actions, operational decisions, and resource deployments from public sources. Unlike Stage 1A (which captures *stated intent*), this stage captures *revealed preferences* — what the company actually does with its capital, organizational structure, and product portfolio. The output feeds into Stage 3 (Action-to-Pillar Mapping).
+Extract structured evidence of {COMPANY}'s concrete actions, operational decisions, and resource deployments from public sources. Unlike Stage 1A (which captures *stated intent*), this stage captures *revealed preferences* — what the company actually does with its capital, organizational structure, and product portfolio. The output feeds into Stage 3 (Action-to-Pillar Mapping).
 
 ## Inputs
 
-- Source catalog from Stage 0 (`data/processed/stage_0_sources.md`), filtered to `type: action`
-- Raw document text stored in `data/raw/block_actions_{source_id}.txt`
+- Source catalog from Stage 0 (`data/processed/{TICKER}/{DATE}/stage_0_sources.md`), filtered to `type: action`
+- Raw document text stored in `data/raw/{TICKER}/{DATE}/{TICKER_LOWER}_actions_{source_id}.txt`
 - This prompt template
 
 ## Method
@@ -16,7 +16,7 @@ Extract structured evidence of Block, Inc.'s concrete actions, operational decis
 
 For each source in the Stage 0 catalog with `type: action`:
 1. Retrieve the full text of the document via web fetch or SEC EDGAR
-2. Save the raw text to `data/raw/block_actions_{source_id}.txt`
+2. Save the raw text to `data/raw/{TICKER}/{DATE}/{TICKER_LOWER}_actions_{source_id}.txt`
 3. Note any retrieval failures or partial content in the output
 
 ### Step 2: Evidence Extraction
@@ -51,7 +51,7 @@ Read each document carefully and extract evidence falling into the following cat
 **E. Segment Financial Results**
 - Revenue, gross profit, and operating metrics by business segment
 - Segment growth rates and margin trends (quarter-over-quarter and year-over-year)
-- Inter-segment dynamics (e.g., Bitcoin revenue vs. Cash App subscription revenue)
+- Inter-segment dynamics (e.g., high-volume low-margin revenue vs. subscription revenue)
 - Look for: 10-Q segment reporting, earnings supplements, investor presentations
 
 ### Step 3: Source Hierarchy
@@ -88,13 +88,13 @@ Assign a confidence score (0.0–1.0) to each action based on:
 
 ## Output Format
 
-Produce a JSON file (`data/processed/stage_1b_actions.json`) with the following schema:
+Produce a JSON file (`data/processed/{TICKER}/{DATE}/stage_1b_actions.json`) with the following schema:
 
 ```json
 {
   "metadata": {
     "stage": "1B",
-    "company": "Block, Inc.",
+    "company": "{COMPANY}",
     "extraction_date": "YYYY-MM-DD",
     "sources_analyzed": ["S-002", "S-004", "..."],
     "methodology": "Manual extraction from action-type sources per prompts/01_gather_actions.md",
@@ -110,7 +110,7 @@ Produce a JSON file (`data/processed/stage_1b_actions.json`) with the following 
       "date": "YYYY-MM-DD or YYYY-QN for quarterly data",
       "source_id": "S-002",
       "source_bias": "company-produced | regulatory-filing | third-party-analyst | journalist",
-      "implied_strategic_area": "Brief note on which strategic area this action likely relates to (e.g., 'Bitcoin', 'Cash App growth', 'cost discipline')",
+      "implied_strategic_area": "Brief note on which strategic area this action likely relates to (e.g., 'core product growth', 'cost discipline', 'international expansion')",
       "confidence": 0.90,
       "notes": "Corroborating sources, contextual detail, or caveats"
     }
@@ -135,7 +135,7 @@ If any category yields zero elements, explicitly note this gap in the metadata l
 ## Limitations
 
 - Actions observable through public sources represent only a fraction of operational activity. Internal resource allocation decisions that do not rise to the level of disclosure may be invisible.
-- Financial data from 10-Q filings is aggregated at the segment level; intra-segment allocation (e.g., how much of Cash App's investment goes to lending vs. direct deposit) is generally not disclosed.
+- Financial data from 10-Q filings is aggregated at the segment level; intra-segment allocation (e.g., how investment within a segment is split across sub-products) is generally not disclosed.
 - Press release language is crafted for positive reception and may overstate the significance of routine product updates.
 - Timing gaps: there is typically a 30–45 day lag between quarter-end and 10-Q filing; actions in the current quarter may not yet be documented.
 

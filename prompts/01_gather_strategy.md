@@ -2,12 +2,12 @@
 
 ## Objective
 
-Extract structured strategy elements from Block, Inc. public documents that articulate the company's strategic intent, priorities, and direction. Each extracted element must be traceable to a specific source, tagged for bias, and assessed for confidence. The output of this stage feeds directly into Stage 2 (Pillar Synthesis).
+Extract structured strategy elements from {COMPANY} public documents that articulate the company's strategic intent, priorities, and direction. Each extracted element must be traceable to a specific source, tagged for bias, and assessed for confidence. The output of this stage feeds directly into Stage 2 (Pillar Synthesis).
 
 ## Inputs
 
-- Source catalog from Stage 0 (`data/processed/stage_0_sources.md`), filtered to `type: strategy`
-- Raw document text stored in `data/raw/block_strategy_{source_id}.txt`
+- Source catalog from Stage 0 (`data/processed/{TICKER}/{DATE}/stage_0_sources.md`), filtered to `type: strategy`
+- Raw document text stored in `data/raw/{TICKER}/{DATE}/{TICKER_LOWER}_strategy_{source_id}.txt`
 - This prompt template
 
 ## Method
@@ -16,7 +16,7 @@ Extract structured strategy elements from Block, Inc. public documents that arti
 
 For each source in the Stage 0 catalog with `type: strategy`:
 1. Retrieve the full text of the document via web fetch or SEC EDGAR
-2. Save the raw text to `data/raw/block_strategy_{source_id}.txt`
+2. Save the raw text to `data/raw/{TICKER}/{DATE}/{TICKER_LOWER}_strategy_{source_id}.txt`
 3. Note any retrieval failures or partial content in the output
 
 ### Step 2: Element Extraction
@@ -72,13 +72,13 @@ Assign a confidence score (0.0–1.0) to each element based on:
 
 ## Output Format
 
-Produce a JSON file (`data/processed/stage_1a_strategy.json`) with the following schema:
+Produce a JSON file (`data/processed/{TICKER}/{DATE}/stage_1a_strategy.json`) with the following schema:
 
 ```json
 {
   "metadata": {
     "stage": "1A",
-    "company": "Block, Inc.",
+    "company": "{COMPANY}",
     "extraction_date": "YYYY-MM-DD",
     "sources_analyzed": ["S-001", "S-003", "..."],
     "methodology": "Manual extraction from strategy-type sources per prompts/01_gather_strategy.md",
@@ -125,7 +125,7 @@ If any category yields zero elements, explicitly note this gap in the metadata l
 ## Bias Awareness
 
 1. **Source bias is inherited:** Every element carries the bias classification of its source document. Company-produced sources (shareholder letters, investor day) are designed to present a favorable narrative and may emphasize areas of strength while downplaying challenges.
-2. **Confirmation bias risk:** The analyst may unconsciously seek elements that confirm expected pillars (e.g., "Bitcoin" for Block). Mitigate by extracting *all* strategy-relevant statements before categorizing.
+2. **Confirmation bias risk:** The analyst may unconsciously seek elements that confirm expected pillars. Mitigate by extracting *all* strategy-relevant statements before categorizing.
 3. **Recency bias:** More recent documents are easier to recall and may receive disproportionate attention. Process documents chronologically and track element counts per source to ensure balance.
 4. **Framing effects:** C-level framing may use deliberately vague language to maintain strategic flexibility. Flag vague elements explicitly rather than interpreting them into specificity.
 5. **Regulatory filings as corrective:** 10-K MD&A sections carry legal liability for material misstatement, making them a more reliable (though less granular) check on company-produced narratives.
