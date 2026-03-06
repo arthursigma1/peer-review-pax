@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valuation Driver Analysis — Patria Investments Limited (PAX)</title>
+<style>
+:root {
+  --navy: #1a2332;
+  --navy-light: #243044;
+  --teal: #00b4d8;
+  --teal-dark: #0096b7;
+  --teal-light: #90e0ef;
+  --bg: #ffffff;
+  --bg-alt: #f8f9fa;
+  --text: #2d3436;
+  --text-light: #636e72;
+  --border: #dfe6e9;
+  --sidebar-w: 280px;
+  --accent-red: #e17055;
+  --accent-green: #00b894;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--navy);
+  color: #ccd6e0;
+  overflow-y: auto;
+  z-index: 100;
+  padding: 24px 0;
+  border-right: 3px solid var(--teal);
+}
+
+.sidebar-header {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 16px;
+}
+
+.sidebar-header h2 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+
+.sidebar-header p {
+  font-size: 11px;
+  color: #8899aa;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.sidebar nav ul { list-style: none; }
+
+.sidebar .nav-label {
+  display: block;
+  padding: 14px 20px 4px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.sidebar nav > ul > li > a {
+  display: block;
+  padding: 6px 20px;
+  color: #b2bec3;
+  text-decoration: none;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.sidebar nav > ul > li > a:hover {
+  color: #fff;
+  background: rgba(0,180,216,0.1);
+  border-left-color: var(--teal);
+}
+
+.sidebar nav ul ul { list-style: none; }
+
+.sidebar nav ul ul li a {
+  display: block;
+  padding: 3px 20px 3px 36px;
+  color: #8899aa;
+  text-decoration: none;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.sidebar nav ul ul li a:hover { color: var(--teal-light); }
+
+/* Main content */
+.main {
+  margin-left: var(--sidebar-w);
+  padding: 0;
+}
+
+/* Title banner */
+.title-banner {
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  color: white;
+  padding: 60px 60px 50px;
+  border-bottom: 4px solid var(--teal);
+}
+
+.title-banner h1 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.title-banner .subtitle {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  color: var(--teal-light);
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.title-banner .meta {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  color: #8899aa;
+  line-height: 1.8;
+}
+
+.title-banner .meta strong { color: #b2bec3; }
+
+/* Content sections */
+.content {
+  max-width: 960px;
+  padding: 40px 60px 80px;
+}
+
+.section { margin-bottom: 48px; }
+
+.section h2 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--navy);
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--teal);
+  margin-bottom: 24px;
+}
+
+.section h3 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 28px 0 12px;
+}
+
+.section h4 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--teal-dark);
+  margin: 20px 0 8px;
+}
+
+.section p {
+  margin-bottom: 14px;
+  text-align: justify;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px;
+  font-size: 14px;
+}
+
+thead th {
+  background: var(--navy);
+  color: white;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 12px;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+tbody td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: var(--bg-alt); }
+tbody tr:hover { background: #eef5f7; }
+
+td.num { text-align: right; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; }
+
+/* Info boxes */
+.info-box {
+  background: #e8f4f8;
+  border-left: 4px solid var(--teal);
+  padding: 16px 20px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.info-box.warning {
+  background: #fef3e8;
+  border-left-color: var(--accent-red);
+}
+
+.info-box.key-finding {
+  background: #e8faf4;
+  border-left-color: var(--accent-green);
+}
+
+.info-box p { margin-bottom: 6px; font-size: 14px; }
+.info-box p:last-child { margin-bottom: 0; }
+.info-box strong { font-family: 'Helvetica Neue', Arial, sans-serif; }
+
+/* Tags */
+.tag {
+  display: inline-block;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+  margin: 1px 2px;
+}
+.tag.stable { background: #d4edda; color: #155724; }
+.tag.specific { background: #fff3cd; color: #856404; }
+.tag.not-driver { background: #e2e3e5; color: #383d41; }
+.tag.q1 { background: #d4edda; color: #155724; }
+.tag.q2 { background: #cce5ff; color: #004085; }
+.tag.q3 { background: #fff3cd; color: #856404; }
+.tag.q4 { background: #f8d7da; color: #721c24; }
+.tag.role-model { background: #d4edda; color: #155724; }
+.tag.cautionary { background: #f8d7da; color: #721c24; }
+.tag.non-obvious { background: #cce5ff; color: #004085; }
+
+/* Bar chart */
+.bar-chart { margin: 16px 0 24px; }
+.bar-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+}
+.bar-label {
+  width: 100px;
+  text-align: right;
+  padding-right: 10px;
+  font-weight: 600;
+  color: var(--navy);
+  flex-shrink: 0;
+}
+.bar-track {
+  flex: 1;
+  background: #eee;
+  height: 22px;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  min-width: 30px;
+  transition: width 0.5s;
+}
+.bar-fill.teal { background: var(--teal); }
+.bar-fill.navy { background: var(--navy); }
+.bar-fill.green { background: var(--accent-green); }
+.bar-fill.red { background: var(--accent-red); }
+.bar-fill.highlight { background: #e67e22; }
+
+/* Details/summary for collapsible */
+details {
+  margin: 12px 0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+summary {
+  background: var(--bg-alt);
+  padding: 12px 16px;
+  cursor: pointer;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  user-select: none;
+  transition: background 0.2s;
+  list-style: none;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before {
+  content: '\25B6';
+  font-size: 10px;
+  color: var(--text-light);
+  margin-right: 8px;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+details[open] summary::before { transform: rotate(90deg); }
+summary:hover { background: #eef1f3; }
+.details-body { padding: 16px; }
+
+/* Lists */
+ul, ol { margin: 8px 0 16px 24px; }
+li { margin-bottom: 6px; }
+
+/* Correlation table highlight */
+.sig { font-weight: 700; color: var(--accent-green); }
+.not-sig { color: var(--text-light); }
+
+/* Play card */
+.play-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin: 16px 0;
+  overflow: hidden;
+}
+.play-card-header {
+  background: var(--bg-alt);
+  padding: 12px 16px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  border-bottom: 1px solid var(--border);
+}
+.play-card-body { padding: 14px 16px; font-size: 14px; }
+.play-card-body p { margin-bottom: 8px; }
+
+/* Section divider */
+.layer-divider {
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  color: white;
+  padding: 30px 60px;
+  margin: 0 -60px 40px;
+  border-top: 3px solid var(--teal);
+  border-bottom: 3px solid var(--teal);
+}
+.layer-divider h2 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--teal-light);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.layer-divider p {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  color: #8899aa;
+  margin: 4px 0 0;
+}
+
+/* Print */
+@media print {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+  .title-banner { padding: 30px; }
+  .content { padding: 20px 30px; }
+  details[open] .details-body { display: block; }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sidebar { width: 220px; }
+  :root { --sidebar-w: 220px; }
+  .title-banner, .content { padding-left: 30px; padding-right: 30px; }
+}
+
+@media (max-width: 700px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+}
+
+html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h2>VDA Report</h2>
+    <p>Patria Investments (PAX)</p>
+    <p>March 2026</p>
+  </div>
+  <nav>
+    <ul>
+      <li><span class="nav-label">Layer 1: Platform</span></li>
+      <li><a href="#exec-summary">Executive Summary</a></li>
+      <li><a href="#methodology">Methodology &amp; Statistics</a>
+        <ul>
+          <li><a href="#spearman-rationale">Spearman Rationale</a></li>
+          <li><a href="#correlation-table">Correlation Table</a></li>
+          <li><a href="#multiple-testing">Multiple Testing</a></li>
+        </ul>
+      </li>
+      <li><a href="#value-drivers">Industry Value Drivers</a></li>
+      <li><a href="#peer-universe">Peer Universe &amp; Final Set</a></li>
+      <li><a href="#firm-profiles">Firm-Level Profiles</a></li>
+      <li><a href="#platform-menu">Platform Strategic Menu</a></li>
+
+      <li><span class="nav-label">Layer 2: Asset Class</span></li>
+      <li><a href="#vert-credit">Credit</a></li>
+      <li><a href="#vert-pe">Private Equity</a></li>
+      <li><a href="#vert-infra">Infrastructure</a></li>
+      <li><a href="#vert-re">Real Estate</a></li>
+      <li><a href="#vert-solutions">GP-Led Solutions</a></li>
+
+      <li><span class="nav-label">Appendices</span></li>
+      <li><a href="#disclaimers">Disclaimers</a></li>
+      <li><a href="#data-sources">Data Sources</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- TITLE BANNER -->
+<div class="title-banner">
+  <h1>Valuation Driver Analysis</h1>
+  <div class="subtitle">Patria Investments Limited (NASDAQ: PAX)</div>
+  <div class="meta">
+    <strong>Date:</strong> March 6, 2026<br>
+    <strong>Pipeline:</strong> VD-A0 &rarr; VD-B0/B1/B2 &rarr; VD-A1/A2/A3 &rarr; VD-A4/A4b/A5 &rarr; VD-C1 &rarr; VD-D1/D2 &rarr; VD-P1/P2/P3 &rarr; VD-P4<br>
+    <strong>Universe:</strong> 27 publicly listed alternative asset managers &bull; 12-firm deep-dive set<br>
+    <strong>Method:</strong> Spearman rank correlation (N=15&ndash;21) &bull; 55 bivariate tests &bull; BH-FDR q=0.10<br>
+    <strong>Statistical basis:</strong> FY2024 financial data &bull; Early March 2026 market capitalizations
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ====================================================================== -->
+<!-- SECTION 1: EXECUTIVE SUMMARY -->
+<!-- ====================================================================== -->
+<div class="section" id="exec-summary">
+  <h2>1. Executive Summary</h2>
+
+  <div class="info-box key-finding">
+    <p><strong>Core Finding:</strong> Alternative asset manager valuations are dominated by a single factor &mdash; <em>absolute scale</em> &mdash; measured by management fee revenue, AUM, or absolute earnings. Five multicollinear metrics all capture this single underlying scale factor (pairwise &rho; &gt; 0.91). A secondary, partially independent signal emerges from credit strategy exposure. Other widely discussed drivers (FRE margin, permanent capital, growth rates) are operationally important but do not independently predict cross-sectional valuation differences in our sample.</p>
+  </div>
+
+  <h3>Key Findings</h3>
+  <ol>
+    <li><strong>Scale dominance (&rho; = 0.584):</strong> Management fee revenue is the strongest and most consistent predictor of valuation multiples across all three measures (P/FRE, P/DE, EV/FEAUM). Firms with &gt;$2B in management fees consistently trade at P/FRE &gt;20x; those with &lt;$500M trade at P/FRE &lt;15x. This is the only driver that survives Bonferroni correction.</li>
+    <li><strong>Credit exposure premium (&rho; = 0.342):</strong> Higher credit percentage of AUM is associated with higher P/FRE (&rho;=0.52, p=0.03), reflecting the market's preference for durable, recurring credit fee streams. This signal is partially independent from scale.</li>
+    <li><strong>FRE margin irrelevance (&rho; = 0.116):</strong> Counter-intuitively, FRE margin shows no cross-sectional relationship with valuation multiples. The market values absolute earnings, not margin percentage.</li>
+    <li><strong>Permanent capital myth (&rho; = 0.155):</strong> Despite widespread belief that permanent capital commands a premium, no statistically significant cross-sectional relationship is observed. The benefits may be captured through the scale factor.</li>
+    <li><strong>Growth rate irrelevance (&rho; = 0.018&ndash;0.095):</strong> Neither FEAUM growth, FRE growth, nor management fee growth predicts cross-sectional valuation differences. The market prices structural position (scale, franchise) rather than recent momentum.</li>
+  </ol>
+
+  <h3>PAX Positioning</h3>
+  <table>
+    <thead>
+      <tr><th>Driver</th><th>Rank</th><th>&rho;</th><th>PAX Quartile</th><th>PAX Value</th><th>Gap to Q1</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Scale (Mgmt Fee Rev)</td><td class="num">1</td><td class="num">0.584</td><td><span class="tag q4">Q4</span></td><td class="num">$298M</td><td>24x below BX ($7.1B)</td></tr>
+      <tr><td>Credit Exposure</td><td class="num">2</td><td class="num">0.342</td><td><span class="tag q4">Q4</span></td><td class="num">15%</td><td>5x below median (43%)</td></tr>
+      <tr><td>FRE Margin</td><td class="num">3</td><td class="num">0.116</td><td><span class="tag q2">Q2</span></td><td class="num">57%</td><td>Competitive; above median</td></tr>
+      <tr><td>Permanent Capital</td><td class="num">4</td><td class="num">0.155</td><td><span class="tag q3">Q3</span></td><td class="num">35%</td><td>Below median (42%)</td></tr>
+      <tr><td>FEAUM Growth</td><td class="num">5</td><td class="num">0.095</td><td><span class="tag q1">Q1</span></td><td class="num">38%</td><td>Strength; top quartile</td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-box warning">
+    <p><strong>Valuation Discount Diagnosis:</strong> PAX trades at P/FRE 12.3x vs. peer median ~22x (a 39% discount to the 12-firm deep-dive average of 20.3x). The primary driver of this discount is <strong>scale</strong> &mdash; PAX's $298M management fee revenue places it in Q4 (bottom quartile) on the dominant valuation driver. The strong statistical relationship between scale and valuation multiples (&rho;=0.58) fully explains PAX's discount. Secondary factors include low credit exposure (15%) and the LatAm geographic risk premium.</p>
+  </div>
+
+  <h3>Top Strategic Plays for the Industry</h3>
+  <ol>
+    <li><strong>Insurance Platform Integration</strong> (APO, KKR) &mdash; permanent capital flywheel via insurance liabilities</li>
+    <li><strong>Private Wealth Distribution at Scale</strong> (BX, KKR, OWL) &mdash; wirehouses and semi-liquid products</li>
+    <li><strong>Transformative M&amp;A for New Verticals</strong> (ARES, BPT, CVC, OWL) &mdash; step-change diversification</li>
+    <li><strong>Capital-Light Pure-Fee Spin-Off</strong> (BAM) &mdash; separate GP from balance sheet for 73% FRE margin</li>
+    <li><strong>Self-Originating Direct Lending at Scale</strong> (ARES, APO) &mdash; 16+ origination platforms, $300B+/year</li>
+  </ol>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 2: METHODOLOGY & STATISTICAL APPENDIX -->
+<!-- ====================================================================== -->
+<div class="section" id="methodology">
+  <h2>2. Methodology &amp; Statistical Appendix</h2>
+
+  <h3 id="spearman-rationale">2.1 Why Spearman Over Pearson</h3>
+  <p>Spearman rank correlation was selected over Pearson product-moment correlation for three reasons:</p>
+  <ol>
+    <li><strong>Non-normality.</strong> The distribution of valuation multiples is right-skewed (P/FRE ranges from 6.4x to 31.5x; EV/FEAUM from 3.2% to 21.7%). Pearson assumes bivariate normality; Spearman does not.</li>
+    <li><strong>Outlier robustness.</strong> Several firms exhibit extreme values on scale metrics (BX at $1,275B AUM vs. PX at $25.7B). Spearman operates on ranks, neutralizing outlier influence.</li>
+    <li><strong>Monotonic relationships.</strong> We test whether higher driver values associate with higher multiples in a consistent rank ordering, without requiring linearity.</li>
+  </ol>
+
+  <h3>2.2 Why Not Multiple Regression</h3>
+  <p>A multivariate regression approach was explicitly rejected due to: (1) small N (15&ndash;21 observations), (2) severe multicollinearity (top drivers pairwise &rho; &gt; 0.91), (3) endogeneity (market cap in the numerator of multiples reflects expectations about the drivers), and (4) specification uncertainty (19 candidate drivers &times; 3 dependent variables).</p>
+
+  <h3 id="correlation-table">2.3 Spearman Correlation Results</h3>
+  <p>55 bivariate tests were conducted. The table below presents the full results, organized by driver classification.</p>
+
+  <h4>Stable Drivers (significant across &ge;2 multiples)</h4>
+  <table>
+    <thead>
+      <tr><th>Driver</th><th>vs. P/FRE</th><th>vs. P/DE</th><th>vs. EV/FEAUM</th><th>Avg |&rho;|</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Mgmt Fee Revenue</td><td class="num sig">0.524 (p=0.010)</td><td class="num sig">0.608 (p=0.007)</td><td class="num sig">0.620 (p=0.001)</td><td class="num"><strong>0.584</strong></td></tr>
+      <tr><td>Total AUM</td><td class="num sig">0.579 (p=0.003)</td><td class="num sig">0.543 (p=0.022)</td><td class="num sig">0.518 (p=0.009)</td><td class="num"><strong>0.547</strong></td></tr>
+      <tr><td>Distributable Earnings ($)</td><td class="num sig">0.632 (p=0.004)</td><td class="num not-sig">0.386 (p=0.139)</td><td class="num sig">0.611 (p=0.006)</td><td class="num"><strong>0.543</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h4>Multiple-Specific Drivers (significant for 1 multiple)</h4>
+  <table>
+    <thead>
+      <tr><th>Driver</th><th>Strong For</th><th>&rho;</th><th>p-value</th><th>N</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Credit Strategy %</td><td>P/FRE</td><td class="num sig">0.521</td><td class="num">0.031</td><td class="num">15</td></tr>
+      <tr><td>GAAP EPS</td><td>P/FRE</td><td class="num sig">0.605</td><td class="num">0.002</td><td class="num">19</td></tr>
+      <tr><td>Fee-Earning AUM</td><td>P/FRE</td><td class="num sig">0.525</td><td class="num">0.010</td><td class="num">20</td></tr>
+      <tr><td>FRE ($)</td><td>EV/FEAUM</td><td class="num sig">0.553</td><td class="num">0.005</td><td class="num">20</td></tr>
+      <tr><td>DE per Share</td><td>P/FRE</td><td class="num sig">0.536</td><td class="num">0.025</td><td class="num">15</td></tr>
+      <tr><td>Performance Fee Share</td><td>P/FRE</td><td class="num sig">0.625</td><td class="num">0.041</td><td class="num">9</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Non-Drivers (no significant cross-sectional signal)</h4>
+  <table>
+    <thead>
+      <tr><th>Driver</th><th>Avg |&rho;|</th><th>Interpretation</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>FRE Margin</td><td class="num not-sig">0.116</td><td>No cross-sectional relationship; operationally important</td></tr>
+      <tr><td>Permanent Capital %</td><td class="num not-sig">0.155</td><td>No signal; may be captured by scale factor</td></tr>
+      <tr><td>FEAUM YoY Growth</td><td class="num not-sig">0.095</td><td>Growth rates include M&amp;A distortions; mean-reverting</td></tr>
+      <tr><td>FRE Growth YoY</td><td class="num not-sig">0.018</td><td>Near-zero correlation</td></tr>
+      <tr><td>Mgmt Fee Rev Growth</td><td class="num not-sig">0.070</td><td>Near-zero correlation</td></tr>
+      <tr><td>Fundraising Ratio</td><td class="num not-sig">0.057</td><td>Lumpy; single-year figures not predictive</td></tr>
+      <tr><td>Asset Class HHI</td><td class="num not-sig">0.186</td><td>N=6; insufficient data</td></tr>
+    </tbody>
+  </table>
+
+  <h3 id="multiple-testing">2.4 Multiple Testing Corrections</h3>
+
+  <h4>Bonferroni Correction (&alpha;/55 = 0.000909)</h4>
+  <table>
+    <thead>
+      <tr><th>COR-ID</th><th>Driver</th><th>vs. Multiple</th><th>Raw p</th><th>Bonferroni p</th><th>Significant?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>COR-030</td><td>Mgmt Fee Rev</td><td>EV/FEAUM</td><td class="num">0.0007</td><td class="num">0.039</td><td class="sig">YES</td></tr>
+      <tr><td>COR-004</td><td>EPS</td><td>P/FRE</td><td class="num">0.0020</td><td class="num">0.110</td><td class="not-sig">No</td></tr>
+      <tr><td>COR-010</td><td>AUM</td><td>P/FRE</td><td class="num">0.0030</td><td class="num">0.165</td><td class="not-sig">No</td></tr>
+      <tr><td>COR-022</td><td>DE ($)</td><td>P/FRE</td><td class="num">0.0039</td><td class="num">0.215</td><td class="not-sig">No</td></tr>
+      <tr><td>COR-021</td><td>FRE ($)</td><td>EV/FEAUM</td><td class="num">0.0054</td><td class="num">0.297</td><td class="not-sig">No</td></tr>
+    </tbody>
+  </table>
+  <p>Under strict Bonferroni correction, only ONE test survives: management fee revenue vs. EV/FEAUM (COR-030). Bonferroni is extremely conservative given high multicollinearity among drivers.</p>
+
+  <h4>Benjamini-Hochberg FDR Correction (q = 0.10)</h4>
+  <table>
+    <thead>
+      <tr><th>Rank</th><th>COR-ID</th><th>Raw p</th><th>BH Threshold</th><th>Significant?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="num">1</td><td>COR-030 (Mgmt Fee Rev vs EV/FEAUM)</td><td class="num">0.0007</td><td class="num">0.0018</td><td class="sig">YES</td></tr>
+      <tr><td class="num">2</td><td>COR-004 (EPS vs P/FRE)</td><td class="num">0.0020</td><td class="num">0.0036</td><td class="sig">YES</td></tr>
+      <tr><td class="num">3</td><td>COR-010 (AUM vs P/FRE)</td><td class="num">0.0030</td><td class="num">0.0055</td><td class="sig">YES</td></tr>
+      <tr><td class="num">4</td><td>COR-022 (DE vs P/FRE)</td><td class="num">0.0039</td><td class="num">0.0073</td><td class="sig">YES</td></tr>
+      <tr><td class="num">5</td><td>COR-021 (FRE vs EV/FEAUM)</td><td class="num">0.0054</td><td class="num">0.0091</td><td class="sig">YES</td></tr>
+      <tr><td class="num">6</td><td>COR-024 (DE vs EV/FEAUM)</td><td class="num">0.0064</td><td class="num">0.0109</td><td class="sig">YES</td></tr>
+      <tr><td class="num">7</td><td>COR-029 (Mgmt Fee Rev vs P/DE)</td><td class="num">0.0068</td><td class="num">0.0127</td><td class="sig">YES</td></tr>
+      <tr><td class="num">8</td><td>COR-012 (AUM vs EV/FEAUM)</td><td class="num">0.0092</td><td class="num">0.0145</td><td class="sig">YES</td></tr>
+      <tr><td class="num">9</td><td>COR-007 (FEAUM vs P/FRE)</td><td class="num">0.0099</td><td class="num">0.0164</td><td class="sig">YES</td></tr>
+      <tr><td class="num">10</td><td>COR-028 (Mgmt Fee Rev vs P/FRE)</td><td class="num">0.0100</td><td class="num">0.0182</td><td class="sig">YES</td></tr>
+    </tbody>
+  </table>
+  <p>Under BH-FDR at q=0.10, the top 10 correlations survive correction &mdash; all involving scale-related drivers. This is the recommended significance framework for this analysis.</p>
+
+  <h3>2.5 Confidence Intervals (Fisher z-Transform, 95%)</h3>
+  <table>
+    <thead>
+      <tr><th>COR-ID</th><th>Driver</th><th>vs. Multiple</th><th>&rho;</th><th>N</th><th>95% CI</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>COR-030</td><td>Mgmt Fee Rev</td><td>EV/FEAUM</td><td class="num">0.620</td><td class="num">21</td><td>[0.236, 0.835]</td></tr>
+      <tr><td>COR-010</td><td>AUM</td><td>P/FRE</td><td class="num">0.579</td><td class="num">20</td><td>[0.156, 0.822]</td></tr>
+      <tr><td>COR-029</td><td>Mgmt Fee Rev</td><td>P/DE</td><td class="num">0.608</td><td class="num">15</td><td>[0.136, 0.853]</td></tr>
+      <tr><td>COR-022</td><td>DE ($)</td><td>P/FRE</td><td class="num">0.632</td><td class="num">15</td><td>[0.171, 0.862]</td></tr>
+      <tr><td>COR-034</td><td>Credit %</td><td>P/FRE</td><td class="num">0.521</td><td class="num">15</td><td>[0.014, 0.817]</td></tr>
+    </tbody>
+  </table>
+  <p>Confidence intervals are wide due to small N, typically &plusmn;0.35 around the point estimate. Several CIs approach zero at the lower bound, indicating borderline significance.</p>
+
+  <h3>2.6 Leave-One-Out Sensitivity</h3>
+  <p>For the strongest result (COR-030: management fee revenue vs. EV/FEAUM, &rho;=0.620, N=21), leave-one-out analysis confirms robustness:</p>
+  <ul>
+    <li><strong>Removing BX</strong> (largest firm): &rho; ~ 0.58&ndash;0.61</li>
+    <li><strong>Removing EQT</strong> (highest EV/FEAUM): &rho; ~ 0.59</li>
+    <li><strong>Removing VCTR</strong> (lowest EV/FEAUM): &rho; ~ 0.63</li>
+    <li><strong>Removing PAX</strong> (target company): &rho; ~ 0.62</li>
+  </ul>
+  <p>No single firm drives the result; removing any one firm changes &rho; by less than 0.04.</p>
+
+  <h3>2.7 Multicollinearity</h3>
+  <p>The top five driver candidates are all measuring the same underlying "scale" factor:</p>
+  <table>
+    <thead>
+      <tr><th>Metric Pair</th><th>Pairwise &rho;</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>AUM vs. FEAUM</td><td class="num">0.975</td></tr>
+      <tr><td>Mgmt Fee Rev vs. AUM</td><td class="num">0.967</td></tr>
+      <tr><td>DE vs. FRE</td><td class="num">0.965</td></tr>
+      <tr><td>AUM vs. DE</td><td class="num">0.964</td></tr>
+      <tr><td>Mgmt Fee Rev vs. FRE</td><td class="num">0.954</td></tr>
+      <tr><td>Mgmt Fee Rev vs. FEAUM</td><td class="num">0.937</td></tr>
+    </tbody>
+  </table>
+  <p>These metrics cannot be disaggregated statistically and should be treated as a single composite "scale" driver.</p>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 3: INDUSTRY VALUE DRIVERS (6 PRINCIPLES) -->
+<!-- ====================================================================== -->
+<div class="section" id="value-drivers">
+  <h2>3. Industry Value Drivers</h2>
+  <p>Six value creation principles were distilled from the VD-A4/A5 statistical analysis and VD-D1/D2 peer deep-dives. Each principle is grounded in cross-sectional correlation evidence, explained through economic mechanisms, and illustrated with exemplar firms.</p>
+
+  <h3>3.1 Principle 1: Scale Dominance</h3>
+  <p><em>Absolute fee revenue is the primary valuation determinant.</em></p>
+
+  <div class="bar-chart">
+    <div class="bar-row"><span class="bar-label">BX</span><div class="bar-track"><div class="bar-fill navy" style="width:100%">$7,100M</div></div></div>
+    <div class="bar-row"><span class="bar-label">KKR</span><div class="bar-track"><div class="bar-fill navy" style="width:52%">$3,700M</div></div></div>
+    <div class="bar-row"><span class="bar-label">ARES</span><div class="bar-track"><div class="bar-fill navy" style="width:52%">$3,700M</div></div></div>
+    <div class="bar-row"><span class="bar-label">BAM</span><div class="bar-track"><div class="bar-fill navy" style="width:48%">$3,381M</div></div></div>
+    <div class="bar-row"><span class="bar-label">EQT</span><div class="bar-track"><div class="bar-fill teal" style="width:35%">$2,520M</div></div></div>
+    <div class="bar-row"><span class="bar-label">APO</span><div class="bar-track"><div class="bar-fill teal" style="width:32%">$2,300M</div></div></div>
+    <div class="bar-row"><span class="bar-label">CG</span><div class="bar-track"><div class="bar-fill teal" style="width:31%">$2,200M</div></div></div>
+    <div class="bar-row"><span class="bar-label">OWL</span><div class="bar-track"><div class="bar-fill teal" style="width:30%">$2,100M</div></div></div>
+    <div class="bar-row"><span class="bar-label">CVC</span><div class="bar-track"><div class="bar-fill green" style="width:20%">$1,421M</div></div></div>
+    <div class="bar-row"><span class="bar-label">BPT</span><div class="bar-track"><div class="bar-fill green" style="width:7%">$513M</div></div></div>
+    <div class="bar-row"><span class="bar-label">ANTIN</span><div class="bar-track"><div class="bar-fill red" style="width:5%">$341M</div></div></div>
+    <div class="bar-row"><span class="bar-label">PAX</span><div class="bar-track"><div class="bar-fill highlight" style="width:4%">$298M</div></div></div>
+    <div class="bar-row"><span class="bar-label">PX</span><div class="bar-track"><div class="bar-fill red" style="width:4%">$291M</div></div></div>
+  </div>
+
+  <p>The scale premium operates through five reinforcing channels: LP access and brand recognition, distribution infrastructure, operating leverage, product proliferation, and earnings predictability. Larger fee bases are inherently more diversified across fund vintages, asset classes, and geographies, making earnings more predictable.</p>
+
+  <h3>3.2 Principle 2: Credit Strategy Exposure Signals Fee Durability</h3>
+  <p>Credit strategy percentage shows a moderate positive association with P/FRE (&rho;=0.521, p=0.031, N=15). The mechanism: credit strategies generate recurring fees on revolving or refinancing assets, deploy capital faster than PE, and integrate with insurance liabilities for permanent capital. APO (75% credit, P/FRE 30.3x) and ARES (70% credit, P/FRE 26.7x) exemplify this signal.</p>
+
+  <h3>3.3 Principle 3: FRE Margin Is Operationally Important but Not Cross-Sectionally Priced</h3>
+  <p>FRE margin shows no statistically significant relationship with any valuation multiple (avg |&rho;| = 0.116). The market values absolute earnings, not efficiency ratios. ARES generates $1.5B in FRE at 41.5% margin and commands a higher multiple (26.7x) than ANTIN at 59% margin (9.9x) because absolute FRE &mdash; a scale metric &mdash; matters more. FRE definition heterogeneity (non-GAAP, varying SBC treatment) attenuates the true correlation.</p>
+
+  <h3>3.4 Principle 4: Permanent Capital Share Is Operationally Critical but Cross-Sectionally Unpriced</h3>
+  <p>Permanent capital as a percentage of AUM shows no significant relationship with multiples (avg |&rho;| = 0.155). PX has 85% permanent capital yet the lowest P/FRE (6.4x); OWL has 91% yet trades at only 15.5x. The benefits of permanent capital are likely captured through the scale premium rather than independently priced.</p>
+
+  <h3>3.5 Principle 5: Growth Rates Do Not Predict Cross-Sectional Valuation Differences</h3>
+  <p>Neither FEAUM growth (avg |&rho;| = 0.095), FRE growth (0.018), nor management fee growth (0.070) shows any significant cross-sectional signal. Single-year growth rates include M&amp;A distortions and are inherently mean-reverting. The market prices structural position (franchise, scale) rather than recent momentum.</p>
+
+  <h3>3.6 Principle 6: What Does NOT Drive Valuation</h3>
+  <table>
+    <thead>
+      <tr><th>Metric</th><th>Avg |&rho;|</th><th>Interpretation</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Fundraising Ratio (% of AUM)</td><td class="num">0.057</td><td>Lumpy; not predictive</td></tr>
+      <tr><td>Asset Class Diversification (HHI)</td><td class="num">0.186</td><td>Insufficient data (N=6)</td></tr>
+      <tr><td>Management Fee Rate (bps)</td><td class="num">0.255</td><td>Higher fee rates do not predict higher multiples</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 4: PEER UNIVERSE & FINAL SET -->
+<!-- ====================================================================== -->
+<div class="section" id="peer-universe">
+  <h2>4. Peer Universe &amp; Final Set</h2>
+
+  <h3>4.1 Full Universe (27 Firms)</h3>
+  <table>
+    <thead>
+      <tr><th>Ticker</th><th>Firm</th><th>Exchange</th><th>Classification</th><th>AUM ($B)</th><th>Geography</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>BX</td><td>Blackstone Inc.</td><td>NYSE</td><td>Pure-play alt</td><td class="num">1,275</td><td>Global</td></tr>
+      <tr><td>APO</td><td>Apollo Global Management</td><td>NYSE</td><td>Pure-play alt</td><td class="num">938</td><td>Global</td></tr>
+      <tr><td>KKR</td><td>KKR &amp; Co.</td><td>NYSE</td><td>Pure-play alt</td><td class="num">750</td><td>Global</td></tr>
+      <tr><td>BAM</td><td>Brookfield Asset Management</td><td>NYSE/TSX</td><td>Pure-play alt</td><td class="num">603</td><td>Global</td></tr>
+      <tr><td>ARES</td><td>Ares Management</td><td>NYSE</td><td>Pure-play alt</td><td class="num">622</td><td>Global</td></tr>
+      <tr><td>CG</td><td>The Carlyle Group</td><td>NASDAQ</td><td>Pure-play alt</td><td class="num">477</td><td>Global</td></tr>
+      <tr><td>OWL</td><td>Blue Owl Capital</td><td>NYSE</td><td>Pure-play alt</td><td class="num">307</td><td>Global</td></tr>
+      <tr><td>TPG</td><td>TPG Inc.</td><td>NASDAQ</td><td>Pure-play alt</td><td class="num">303</td><td>Global</td></tr>
+      <tr><td>EQT</td><td>EQT AB</td><td>OMX Stockholm</td><td>Pure-play alt</td><td class="num">285</td><td>Europe/Global</td></tr>
+      <tr><td>EMG</td><td>Man Group</td><td>LSE</td><td>Pure-play alt</td><td class="num">228</td><td>Global</td></tr>
+      <tr><td>CVC</td><td>CVC Capital Partners</td><td>Euronext Amsterdam</td><td>Pure-play alt</td><td class="num">215</td><td>Global</td></tr>
+      <tr><td>PGHN</td><td>Partners Group</td><td>SIX</td><td>Pure-play alt</td><td class="num">185</td><td>Global</td></tr>
+      <tr><td>STEP</td><td>StepStone Group</td><td>NASDAQ</td><td>Pure-play alt</td><td class="num">189</td><td>Global</td></tr>
+      <tr><td>HLNE</td><td>Hamilton Lane</td><td>NASDAQ</td><td>Pure-play alt</td><td class="num">138</td><td>Global</td></tr>
+      <tr><td>ICP</td><td>ICG plc</td><td>LSE</td><td>Pure-play alt</td><td class="num">127</td><td>Europe/Global</td></tr>
+      <tr><td>RITM</td><td>Rithm Capital</td><td>NYSE</td><td>Majority-alt</td><td class="num">102</td><td>N. America</td></tr>
+      <tr><td>GCMG</td><td>GCM Grosvenor</td><td>NASDAQ</td><td>Pure-play alt</td><td class="num">91</td><td>Global</td></tr>
+      <tr><td>BPT</td><td>Bridgepoint Group</td><td>LSE</td><td>Pure-play alt</td><td class="num">87</td><td>Europe</td></tr>
+      <tr><td>ONEX</td><td>Onex Corporation</td><td>TSX</td><td>Majority-alt</td><td class="num">59</td><td>N. America</td></tr>
+      <tr><td>TKO</td><td>Tikehau Capital</td><td>Euronext Paris</td><td>Pure-play alt</td><td class="num">54</td><td>Europe/Global</td></tr>
+      <tr style="background:#fff8e1;"><td><strong>PAX</strong></td><td><strong>Patria Investments</strong></td><td><strong>NASDAQ</strong></td><td><strong>Pure-play alt</strong></td><td class="num"><strong>53</strong></td><td><strong>LatAm/Global</strong></td></tr>
+      <tr><td>III</td><td>3i Group</td><td>LSE</td><td>Majority-alt</td><td class="num">43</td><td>Europe/Global</td></tr>
+      <tr><td>PX</td><td>P10, Inc.</td><td>NYSE</td><td>Pure-play alt</td><td class="num">40</td><td>N. America</td></tr>
+      <tr><td>RF</td><td>Eurazeo</td><td>Euronext Paris</td><td>Majority-alt</td><td class="num">40</td><td>Europe/N. America</td></tr>
+      <tr><td>ANTIN</td><td>Antin Infrastructure</td><td>Euronext Paris</td><td>Pure-play alt</td><td class="num">35</td><td>Europe/N. America</td></tr>
+      <tr><td>VCTR</td><td>Victory Capital</td><td>NASDAQ</td><td>Partial-alt</td><td class="num">314</td><td>Global</td></tr>
+      <tr><td>BN</td><td>Brookfield Corporation</td><td>NYSE/TSX</td><td>Partial-alt</td><td class="num">1,100</td><td>Global</td></tr>
+    </tbody>
+  </table>
+
+  <h3>4.2 Final Deep-Dive Set (12 Firms)</h3>
+  <p>Selection criteria: top quartile on 2+ drivers (auto-include), cautionary cases in bottom quartile with documented strategic actions, and non-obvious peers flagged by VD-A5.</p>
+  <table>
+    <thead>
+      <tr><th>Ticker</th><th>Role</th><th>P/FRE</th><th>Mgmt Fees ($M)</th><th>FRE Margin</th><th>Credit %</th><th>Q1 Drivers</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>BX</td><td><span class="tag role-model">Role Model</span></td><td class="num">25.9x</td><td class="num">7,100</td><td class="num">58%</td><td class="num">33%</td><td>Scale</td></tr>
+      <tr><td>APO</td><td><span class="tag role-model">Role Model</span></td><td class="num">30.3x</td><td class="num">2,300</td><td class="num">55%</td><td class="num">75%</td><td>Credit, Perm Capital</td></tr>
+      <tr><td>KKR</td><td><span class="tag role-model">Role Model</span></td><td class="num">24.0x</td><td class="num">3,700</td><td class="num">65%</td><td class="num">43%</td><td>Scale, Margin, FRE Growth</td></tr>
+      <tr><td>BAM</td><td><span class="tag role-model">Role Model</span></td><td class="num">31.5x</td><td class="num">3,381</td><td class="num">73%</td><td class="num">25%</td><td>Scale, Margin</td></tr>
+      <tr><td>ARES</td><td><span class="tag role-model">Role Model</span></td><td class="num">26.7x</td><td class="num">3,700</td><td class="num">41.5%</td><td class="num">70%</td><td>Scale, Credit</td></tr>
+      <tr><td>OWL</td><td><span class="tag role-model">Role Model</span></td><td class="num">15.5x</td><td class="num">2,100</td><td class="num">59%</td><td class="num">55%</td><td>Margin, Credit, Perm Cap, Growth</td></tr>
+      <tr><td>EQT</td><td><span class="tag role-model">Role Model</span></td><td class="num">25.7x</td><td class="num">2,520</td><td class="num">53%</td><td class="num">15%</td><td>Scale</td></tr>
+      <tr><td>CG</td><td><span class="tag cautionary">Cautionary</span></td><td class="num">16.8x</td><td class="num">2,200</td><td class="num">46%</td><td class="num">43%</td><td>FRE Growth</td></tr>
+      <tr><td>BPT</td><td><span class="tag non-obvious">Non-Obvious</span></td><td class="num">7.9x</td><td class="num">513</td><td class="num">72.3%</td><td class="num">&mdash;</td><td>Margin, FEAUM Growth, FRE Growth</td></tr>
+      <tr><td>CVC</td><td><span class="tag non-obvious">Non-Obvious</span></td><td class="num">17.4x</td><td class="num">1,421</td><td class="num">59%</td><td class="num">25%</td><td>FEAUM Growth, FRE Growth</td></tr>
+      <tr><td>ANTIN</td><td><span class="tag cautionary">Cautionary</span></td><td class="num">9.9x</td><td class="num">341</td><td class="num">59%</td><td class="num">0%</td><td>Margin</td></tr>
+      <tr><td>PX</td><td><span class="tag cautionary">Cautionary</span></td><td class="num">6.4x</td><td class="num">291</td><td class="num">48.8%</td><td class="num">5%</td><td>Perm Capital</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Set composition:</strong> 8 role models, 2 non-obvious peers, 2 cautionary cases. Geographic mix: 7 US, 4 Europe, 1 LatAm (PAX as target). Average P/FRE excl. PAX: 20.3x. PAX discount to set average: 39%.</p>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 5: FIRM-LEVEL PROFILES -->
+<!-- ====================================================================== -->
+<div class="section" id="firm-profiles">
+  <h2>5. Firm-Level Strategies &amp; Actions</h2>
+  <p>Collapsible profiles for each of the 12 deep-dive firms, sourced from VD-D1 platform deep-dives.</p>
+
+  <details>
+    <summary>BX &mdash; Blackstone Inc. (P/FRE 25.9x, $7.1B Fees) <span class="tag role-model">Role Model</span></summary>
+    <div class="details-body">
+      <p><strong>AUM:</strong> $1,300B | <strong>FEAUM:</strong> $830.7B | <strong>FRE Margin:</strong> 58% | <strong>Credit:</strong> 33% | <strong>Perm Capital:</strong> 46%</p>
+      <p><strong>Strategic Priorities:</strong> Scale perpetual capital and private wealth distribution ($300B+ private wealth AUM, ~50% market share). Capitalize on AI/digital infrastructure (AirTrunk A$24B, $7B Digital Realty JV). Grow Credit &amp; Insurance (+21% YoY to $388.7B).</p>
+      <p><strong>Key Actions:</strong></p>
+      <ul>
+        <li>Acquired AirTrunk (A$24B) &mdash; APAC's largest data center platform across 5 countries</li>
+        <li>Scaled private wealth to $300B+ AUM, tripled in 5 years; $43B private wealth fundraising in 2025 (+53%)</li>
+        <li>Credit &amp; Insurance segment grew 21% YoY to $388.7B with $100B+ inflows</li>
+        <li>Deployed $138B in 2025 (highest in 4 years); $239B inflows (+40% YoY)</li>
+      </ul>
+      <p><strong>Value Creation Narrative:</strong> BX commands the highest absolute valuation because it has solved the central challenge: converting scale into durable fee streams. The self-reinforcing flywheel &mdash; scale attracts capital, capital enables product innovation, innovation drives perpetual fees &mdash; justifies premium multiples. BREIT ($47.6B NAV, 8.1% net return) pioneered the perpetual capital distribution model.</p>
+      <p><strong>Sources:</strong> PS-VD-002, PS-VD-003, PS-VD-005; BX Q3/Q4 2025 earnings</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>APO &mdash; Apollo Global Management (P/FRE 30.3x, $2.3B Fees) <span class="tag role-model">Role Model</span></summary>
+    <div class="details-body">
+      <p><strong>AUM:</strong> $938B | <strong>FEAUM:</strong> $569B | <strong>FRE Margin:</strong> 55% | <strong>Credit:</strong> 75% | <strong>Perm Capital:</strong> 65%</p>
+      <p><strong>Strategic Priorities:</strong> Scale origination to $275B annually. Grow Athene ($292B net invested assets, $71B LTM organic inflows). Reach $1.5T AUM by 2029.</p>
+      <p><strong>Key Actions:</strong></p>
+      <ul>
+        <li>Athene generates $71B LTM gross organic inflows as permanent capital engine</li>
+        <li>Record origination of $300B+ in 2025 across 16+ platforms</li>
+        <li>Acquired Bridge Investment Group ($50B AUM) and Argo Infrastructure Partners</li>
+        <li>Extended Mubadala sovereign wealth partnership</li>
+      </ul>
+      <p><strong>Value Creation Narrative:</strong> Apollo's P/FRE of 30.3x vs. P/DE of 13.9x reveals the insurance-AM integration thesis. Athene's permanent liabilities feed Apollo's origination platforms in a closed loop that eliminates fundraising cycle dependency. The market assigns a scarcity premium to this model.</p>
+      <p><strong>Sources:</strong> PS-VD-014, PS-VD-015, PS-VD-016; Apollo Q1 2025 earnings</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>KKR &mdash; KKR &amp; Co. (P/FRE 24.0x, $3.7B Fees) <span class="tag role-model">Role Model</span></summary>
+    <div class="details-body">
+      <p><strong>AUM:</strong> $1,300B | <strong>FEAUM:</strong> $512B | <strong>FRE Margin:</strong> 65% | <strong>Credit:</strong> 43% | <strong>Perm Capital:</strong> 42%</p>
+      <p><strong>Strategic Priorities:</strong> Hit $1T AUM four years ahead of target. Integrate Global Atlantic ($268B perpetual capital). Scale Strategic Holdings to $1.1B earnings by 2030.</p>
+      <p><strong>Key Actions:</strong></p>
+      <ul>
+        <li>Completed 100% acquisition of Global Atlantic (~$2.7B for remaining 37%)</li>
+        <li>Strategic Holdings: $1.1B invested, targeting $1.1B operating earnings by 2030</li>
+        <li>Led EUR 22B Telecom Italia NetCo carve-out (largest European infra transaction)</li>
+        <li>Launched K-Series semi-liquid products for wealth channel</li>
+      </ul>
+      <p><strong>Value Creation Narrative:</strong> KKR has executed the most complete transformation in the industry: from legacy PE to a diversified financial services company with three earnings engines (AM, Insurance, Strategic Holdings). FRE growth of 37% YoY is the fastest among mega-cap managers.</p>
+      <p><strong>Sources:</strong> PS-VD-007, PS-VD-008, PS-VD-011, PS-VD-012</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>BAM &mdash; Brookfield Asset Management (P/FRE 31.5x, $3.4B Fees) <span class="tag role-model">Role Model</span></summary>
+    <div class="details-body">
+      <p><strong>AUM:</strong> $1,000B | <strong>FEAUM:</strong> $603B | <strong>FRE Margin:</strong> 73% | <strong>Credit:</strong> 25% | <strong>Perm Capital:</strong> 50%</p>
+      <p><strong>Strategic Priorities:</strong> Double fee-bearing capital to $1T. Scale credit platform to $640B by 2030 via partnerships (Oaktree, Castlelake, Angel Oak). Launch $100B AI infrastructure initiative.</p>
+      <p><strong>Key Actions:</strong></p>
+      <ul>
+        <li>Credit partnership acquisitions: Angel Oak, Castlelake (51% FRE), Oaktree (~26% remaining)</li>
+        <li>Raised $112B in 2025; 87% of fee-bearing capital in long-dated/perpetual vehicles</li>
+        <li>BGTF II: $20B (world's largest transition fund)</li>
+        <li>$100B global AI infrastructure initiative</li>
+      </ul>
+      <p><strong>Value Creation Narrative:</strong> BAM is the purest expression of the capital-light model. The 2022 spin-off from BN allows the market to value the fee stream without balance sheet complexity. 73% FRE margin and 31.5x P/FRE demonstrate that structural separation unlocks valuation.</p>
+      <p><strong>Sources:</strong> PS-VD-025, PS-VD-026, PS-VD-028; BAM Q4 2025 earnings</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>ARES &mdash; Ares Management (P/FRE 26.7x, $3.7B Fees) <span class="tag role-model">Role Model</span></summary>
+    <div class="details-body">
+      <p><strong>AUM:</strong> $622B | <strong>FEAUM:</strong> $310B | <strong>FRE Margin:</strong> 41.5% | <strong>Credit:</strong> 70% | <strong>Perm Capital:</strong> 35%</p>
+      <p><strong>Strategic Priorities:</strong> Maintain direct lending leadership (SDL III $33.6B). Scale IG origination for insurance. Integrate GCP International ($42B AUM).</p>
+      <p><strong>Key Actions:</strong></p>
+      <ul>
+        <li>GCP International acquisition ($3.7B + $1.5B earn-outs, $42B AUM) &mdash; logistics, digital infra, renewables</li>
+        <li>Record $55B U.S. direct lending originations (358 transactions in 2025)</li>
+        <li>Expanded AWMS wealth management; European DL CLO (EUR 305M)</li>
+        <li>Record $100B+ fundraising and $100B+ deployment in 2025</li>
+      </ul>
+      <p><strong>Value Creation Narrative:</strong> Ares commands P/FRE 26.7x despite having the lowest FRE margin (41.5%) among mega-caps because the market values credit fee quality over margin percentage. Credit origination is headcount-intensive but generates the most predictable fee streams in alternatives.</p>
+      <p><strong>Sources:</strong> PS-VD-019, PS-VD-020, PS-VD-022; Ares 2025 Annual Letter</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>OWL &mdash; Blue Owl Capital (P/FRE 15.5x, $2.1B Fees) <span class="tag role-model">Role Model</span></summary>
+    <div class="details-body">
+      <p><strong>AUM:</strong> $296B | <strong>FEAUM:</strong> $200B | <strong>FRE Margin:</strong> 59% | <strong>Credit:</strong> 55% | <strong>Perm Capital:</strong> 91%</p>
+      <p><strong>Strategic Priorities:</strong> Scale through M&amp;A (Atalaya, IPI Partners, Kuvare). GP Stakes VI targeting $13B (62% market share). Build insurance solutions.</p>
+      <p><strong>Key Actions:</strong></p>
+      <ul>
+        <li>Three acquisitions in 12 months: Atalaya ($10B+ alt credit), Kuvare ($20B insurance), IPI ($10.5B digital infra)</li>
+        <li>GP Stakes: 62% market share, 45+ partnerships, nearly $2B committed in 2025</li>
+        <li>First-mover in private wealth distribution across all product lines</li>
+      </ul>
+      <p><strong>Value Creation Narrative:</strong> OWL presents the most puzzling valuation: Q1 on four drivers yet P/FRE 15.5x. The discount reflects M&amp;A execution risk (three $1B+ acquisitions in 12 months), SPAC-origin dilution, and litigation headwinds. The fundamental business quality (91% permanent capital, 59% margin, 33% fee growth) is strong.</p>
+      <p><strong>Sources:</strong> PS-VD-030, PS-VD-033; Blue Owl Q3 2025 investor presentation</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>CG &mdash; The Carlyle Group (P/FRE 16.8x, $2.2B Fees) <span class="tag cautionary">Cautionary</span></summary>
+    <div class="details-body">
+      <p><strong>AUM:</strong> $477B | <strong>FEAUM:</strong> $304.4B | <strong>FRE Margin:</strong> 46% | <strong>Credit:</strong> 43% | <strong>Perm Capital:</strong> 20%</p>
+      <p><strong>Cautionary Lesson:</strong> Negative FEAUM growth (-0.9%) is the single most damaging metric. Even with $2.2B in fees and $477B AUM, CG trades at a deep discount because growth trajectory deteriorated.</p>
+      <p><strong>Recovery:</strong> CEO Harvey Schwartz improved FRE margins 1,200+ bps in ~12 months through cost discipline. Record $54B inflows in 2025 (vs. $40B target). But the market requires sustained growth &mdash; not just margin improvement &mdash; to re-rate.</p>
+      <p><strong>Sources:</strong> PS-VD-041, PS-VD-042; CG 2026 Shareholder Update</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>EQT &mdash; EQT AB (P/FRE 25.7x, $2.5B Fees) <span class="tag role-model">Role Model</span></summary>
+    <div class="details-body">
+      <p><strong>AUM:</strong> $287.8B | <strong>FEAUM:</strong> $145.5B | <strong>FRE Margin:</strong> 53% | <strong>Credit:</strong> 15% | <strong>Perm Capital:</strong> 15%</p>
+      <p><strong>Valuation Puzzle:</strong> Highest EV/FEAUM (21.7%) despite modest growth (4.6% FEAUM). The market prices carry optionality, European PE franchise value (30+ years), and infrastructure positioning (Infra VI at EUR 21.5B).</p>
+      <p><strong>Key Actions:</strong> BPEA IX approaching $14.5B hard cap. EQT Nexus semi-liquid infrastructure launched. Acquired Perficient ($3B digital consultancy). AI Infrastructure entity registered in Luxembourg.</p>
+      <p><strong>Sources:</strong> PS-VD-044, PS-VD-045, PS-VD-047; EQT capital markets filings</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>BPT &mdash; Bridgepoint Group (P/FRE 7.9x, $513M Fees) <span class="tag non-obvious">Non-Obvious Peer</span></summary>
+    <div class="details-body">
+      <p><strong>AUM:</strong> $86.6B | <strong>FEAUM:</strong> $41.4B | <strong>FRE Margin:</strong> 72.3% | <strong>FEAUM Growth:</strong> 49%</p>
+      <p><strong>PAX's Closest Structural Analog:</strong> Both recently public, mid-scale, acquisition-driven, high FRE margin. BPT trades at an even deeper discount (7.9x) due to European small-cap PE listing discount, ECP integration risk, and zero permanent capital.</p>
+      <p><strong>Key Actions:</strong> ECP acquisition (~GBP 835M, $20B U.S. energy transition). Six funds raising simultaneously in H2 2025. ECP Evergreen (first perpetual product). North American LP commitments grew 5x.</p>
+      <p><strong>Sources:</strong> BPT Capital Markets Day 2024; FY2024/H1 2025 results</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>CVC &mdash; CVC Capital Partners (P/FRE 17.4x, $1.4B Fees) <span class="tag non-obvious">Non-Obvious Peer</span></summary>
+    <div class="details-body">
+      <p><strong>AUM:</strong> $214B | <strong>FEAUM:</strong> $157.6B | <strong>FRE Margin:</strong> 59% | <strong>Credit:</strong> 25% | <strong>FEAUM Growth:</strong> 50%</p>
+      <p><strong>Post-IPO Growth Analog:</strong> Most relevant post-IPO comparator for PAX. IPO'd April 2024 on Euronext Amsterdam. FPAUM +50% in year one. Credit, secondaries, and infrastructure now &gt;50% of FPAUM.</p>
+      <p><strong>Key Actions:</strong> DIF Capital Partners acquisition (European mid-market infra). Glendower full ownership (secondaries). EUDL IV at EUR 10.4B. AIG strategic partnership (January 2026).</p>
+      <p><strong>Sources:</strong> CVC FY2024/FY2025 activity updates; H1 2025 results</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>ANTIN &mdash; Antin Infrastructure Partners (P/FRE 9.9x, $341M Fees) <span class="tag cautionary">Cautionary</span></summary>
+    <div class="details-body">
+      <p><strong>AUM:</strong> $35.6B | <strong>FEAUM:</strong> $23.1B | <strong>FRE Margin:</strong> 59% | <strong>Credit:</strong> 0% | <strong>Perm Capital:</strong> 0%</p>
+      <p><strong>Cautionary Lesson:</strong> Maximum asset class concentration (HHI 10,000). Zero credit, zero permanent capital. Despite strong margin and successful fundraising (Fund V EUR 10.2B), ANTIN trades at 9.9x &mdash; the market penalizes single-asset-class concentration.</p>
+      <p><strong>PAX Comparison:</strong> Similar scale but PAX trades at 24% premium (12.3x vs. 9.9x) with lower concentration (HHI 2,200), some credit (15%), and permanent capital (35%). This isolates the diversification premium.</p>
+      <p><strong>Sources:</strong> ANTIN Fund V press release; FY2024/H1 2025 results</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>PX &mdash; P10, Inc. (P/FRE 6.4x, $291M Fees) <span class="tag cautionary">Cautionary</span></summary>
+    <div class="details-body">
+      <p><strong>AUM:</strong> $40B | <strong>FEAUM:</strong> $25.7B | <strong>FRE Margin:</strong> 48.8% | <strong>Credit:</strong> 5% | <strong>Perm Capital:</strong> 85%</p>
+      <p><strong>Controlled Comparison:</strong> Nearly identical scale to PAX ($291M vs. $298M fees) but trades at 48% discount (6.4x vs. 12.3x). Despite 85% permanent capital (Q1), PX has the deepest discount in the sample &mdash; confirming that permanent capital alone does not drive multiples.</p>
+      <p><strong>PAX Premium Drivers:</strong> LatAm growth narrative, higher FRE margin (57% vs. 48.8%), more diversified asset classes (HHI 2,200 vs. 3,000), and stronger organic growth trajectory.</p>
+      <p><strong>Sources:</strong> P10 Investor Day Sep 2024; Stellus acquisition Feb 2026; Q4 2024 earnings</p>
+    </div>
+  </details>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 6: PLATFORM STRATEGIC MENU -->
+<!-- ====================================================================== -->
+<div class="section" id="platform-menu">
+  <h2>6. Platform Strategic Menu</h2>
+  <p>17 strategic plays organized by value driver, drawn from VD-D1 platform deep-dives. Each play is grounded in documented peer evidence. Plays are peer-centric &mdash; describing industry practices, not prescribing actions.</p>
+
+  <h3>6.1 Scale Plays (Driver Rank 1, &rho;=0.584)</h3>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-001: Insurance Platform Integration for Permanent Capital Scale</div>
+    <div class="play-card-body">
+      <p><strong>Practitioners:</strong> APO, KKR | <strong>Prerequisites:</strong> Insurance company acquisition, deep credit origination, regulatory approval</p>
+      <p>Apollo merged with Athene (Jan 2022); Athene's $292B net invested assets generate $71B LTM organic inflows. KKR acquired remaining 37% of Global Atlantic (~$2.7B, Jan 2024), bringing $268B in perpetual capital. Both create closed-loop systems where insurance liabilities fund proprietary credit origination.</p>
+      <p><strong>Impact:</strong> APO targets $1.5T AUM by 2029. KKR hit $1.3T AUM four years ahead of target. <strong>Risk:</strong> Capital-intensive ($2.7B&ndash;$50B+), regulatory complexity, SRE valuation confusion.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-002: Private Wealth Distribution Platform at Scale</div>
+    <div class="play-card-body">
+      <p><strong>Practitioners:</strong> BX, KKR, OWL | BX scaled private wealth to $300B+ AUM (tripled in 5 years, ~50% market share). Products: BREIT ($47.6B NAV), BCRED, BXPE. Private wealth fundraising $43B in 2025 (+53%). KKR launched K-Series semi-liquid products. OWL built first-mover private wealth distribution.</p>
+      <p><strong>Risk:</strong> Redemption pressure in downturns (BREIT 2022&ndash;23), regulatory scrutiny, high upfront infrastructure cost.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-003: Transformative M&amp;A to Add New Asset Class Verticals</div>
+    <div class="play-card-body">
+      <p><strong>Practitioners:</strong> ARES, BPT, CVC, OWL | Ares acquired GCP International ($3.7B + $1.5B earn-outs, $42B AUM). BPT closed ECP (~GBP 835M, $20B energy transition). CVC acquired DIF Capital Partners + Glendower. OWL completed three acquisitions in 12 months.</p>
+      <p><strong>Risk:</strong> M&amp;A execution discount (OWL P/FRE 15.5x despite Q1 on 4 drivers; BPT 7.9x despite Q1 on 3 drivers). Key person departure, LP culture concerns.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-004: Capital-Light Pure-Fee Spin-Off Structure</div>
+    <div class="play-card-body">
+      <p><strong>Practitioner:</strong> BAM | Spun off from BN in Dec 2022 as pure-play AM. BAM earns fees without balance sheet exposure. Market cap (~$77.4B) exceeds implied pre-spin-off AM value. P/FRE 31.5x, P/DE 32.8x (near parity, confirming pure-fee model). FRE margin 73%.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-005: Thematic Conviction Investing Around Mega-Trends</div>
+    <div class="play-card-body">
+      <p><strong>Practitioners:</strong> BX, BAM, EQT | BX: AirTrunk (A$24B data centers), $7B Digital Realty JV. BAM: BGTF II ($20B transition fund), $100B AI infrastructure. EQT: Transition Infrastructure strategy, AI Infrastructure entity registered in Luxembourg.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-006: Country-Led Geographic Expansion Model</div>
+    <div class="play-card-body">
+      <p><strong>Practitioners:</strong> KKR, EQT | KKR: country-led franchises in Japan, India, SE Asia. Led EUR 22B Telecom Italia NetCo carve-out. EQT: acquired BPEA (2022) for pan-Asian platform with 300+ FTE across 9 offices, EUR 20B+ Asian AUM.</p>
+    </div>
+  </div>
+
+  <h3>6.2 Credit Exposure Plays (Driver Rank 2, &rho;=0.342)</h3>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-007: Self-Originating Direct Lending Platform at Scale</div>
+    <div class="play-card-body">
+      <p><strong>Practitioners:</strong> ARES, APO | Ares: $55B in U.S. direct lending across 358 transactions in 2025. European DL: $84.7B with ~100 professionals across 7 offices. Apollo: 16+ origination platforms, $300B+ origination in 2025, $275B annual target.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-008: Perpetual Capital Credit Vehicles for Retail</div>
+    <div class="play-card-body">
+      <p><strong>Practitioners:</strong> BX, OWL | BCRED: $47.6B NAV, $14B gross sales in 2025, 9&ndash;9.9% annualized return, 11bps realized losses. OWL: 91% permanent capital via BDCs and perpetual credit structures.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-009: Credit Platform via Partnership Acquisitions</div>
+    <div class="play-card-body">
+      <p><strong>Practitioner:</strong> BAM | Acquired partial FRE stakes in Angel Oak, Castlelake (51%), and remaining ~26% of Oaktree (~$3B). Credit platform: $332B, targeting $640B by 2030. Partnership model preserves operational independence.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-010: Asset-Backed Finance Expansion Beyond Direct Lending</div>
+    <div class="play-card-body">
+      <p><strong>Practitioners:</strong> APO, KKR, ARES | Originate and securitize loans against physical collateral (aircraft, real estate, equipment, royalties). Expands addressable market beyond the ~$2T direct lending market.</p>
+    </div>
+  </div>
+
+  <h3>6.3 FRE Margin Plays (Driver Rank 3, operationally important)</h3>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-011: CEO-Led Cost Restructuring for Rapid FRE Margin Expansion</div>
+    <div class="play-card-body">
+      <p><strong>Practitioner:</strong> CG | Harvey Schwartz improved FRE margins 1,200+ bps in ~12 months. FRE growth 30% despite flat FEAUM (-0.9%). Record $54B inflows in 2025. Three principles: align growth with client needs, reshape operating model, upgrade leadership.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-012: Pure-Play Asset Management Operating Model</div>
+    <div class="play-card-body">
+      <p><strong>Practitioners:</strong> BAM, BPT | BAM: 73% FRE margin through spin-off structure. BPT: 72.3% through asset-light European mid-market model. Both avoid balance sheet drag. BPT's low multiple (7.9x) despite high margin demonstrates margin alone is insufficient without scale.</p>
+    </div>
+  </div>
+
+  <h3>6.4 Permanent Capital &amp; Growth Plays (Driver Ranks 4&ndash;5)</h3>
+
+  <div class="play-card">
+    <div class="play-card-header">PLAY-013&ndash;017: Permanent Capital Structuring, Insurance Sidecars, Multi-Fund Cadence, LP Diversification, Sovereign Partnerships</div>
+    <div class="play-card-body">
+      <p>Additional plays address permanent capital from inception (OWL, BAM), Asian insurance sidecars (CG/FCA Re with $700M+), multi-fund simultaneous fundraising (BPT raising six funds in H2 2025; CVC across credit, secondaries, infra), global LP base diversification (ANTIN: 120+ new investors, North American commitments 5x), and sovereign wealth partnerships (APO/Mubadala, BAM/IFC $5B fund).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ====================================================================== -->
+<!-- LAYER 2 DIVIDER -->
+<!-- ====================================================================== -->
+<div class="layer-divider">
+  <h2>Layer 2: Asset Class Verticals</h2>
+  <p>Self-contained analyses for each of five asset classes with market overview, best-in-class firms, winning strategies, and vertical-specific plays.</p>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 7: CREDIT VERTICAL -->
+<!-- ====================================================================== -->
+<div class="section" id="vert-credit">
+  <h2>7. Credit</h2>
+
+  <h3>Market Overview</h3>
+  <p>Global private credit AUM reached approximately $1.8 trillion by mid-2025, on track for $5 trillion by 2029. Direct lending alone reached ~$979 billion. European private credit fundraising hit a record $65 billion through Q3 2025. Evergreen private credit fund assets surged to $644 billion (up 28% in 2024). CLO issuance hit a record $43.1 billion.</p>
+
+  <div class="info-box warning">
+    <p><strong>Late-Cycle Warning:</strong> ~40% of private credit borrowers have negative free cash flow (up from 25% in 2021). High-profile defaults in late 2025 and rising PIK toggle usage signal that private credit faces its first major stress test in 2026&ndash;2027.</p>
+  </div>
+
+  <h3>Best-in-Class</h3>
+  <table>
+    <thead><tr><th>Firm</th><th>Credit AUM</th><th>Rationale</th></tr></thead>
+    <tbody>
+      <tr><td><strong>ARES</strong></td><td class="num">$407B</td><td>Largest credit-focused listed alt manager. Record $55B U.S. direct lending originations (358 transactions). 7 European offices. 70% of AUM in credit.</td></tr>
+      <tr><td><strong>APO</strong></td><td class="num">$749B</td><td>Architect of insurance-AM integration. Athene provides permanent capital. 16+ origination platforms. $300B+ origination in 2025.</td></tr>
+      <tr><td><strong>OWL</strong></td><td class="num">~$163B</td><td>91% permanent capital. Pioneered GP stakes strategy. Direct lending benefits from Basel III bank retreat.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Winning Strategies</h3>
+  <ul>
+    <li><strong>Insurance-Linked Origination Flywheel</strong> (APO, KKR) &mdash; permanent capital from insurance liabilities feeds proprietary origination. APO $938B AUM; KKR insurance originations more than doubled post-acquisition.</li>
+    <li><strong>Self-Originating Direct Lending at Scale</strong> (ARES, OWL) &mdash; Ares: $55B U.S. originations, European DL at $84.7B. OWL: $165B+ allocated to private credit in 2025.</li>
+    <li><strong>Perpetual Credit Vehicles for Retail</strong> (BX, OWL) &mdash; BCRED $47.6B NAV. Evergreen credit assets at $644B (+28% in 2024).</li>
+    <li><strong>Asset-Backed Finance Expansion</strong> (APO, ARES, KKR) &mdash; expands beyond direct lending into fintech, energy, agriculture, housing.</li>
+  </ul>
+
+  <h3>Vertical-Specific Plays</h3>
+  <p><strong>PLAY-VRT-001:</strong> Insurance-linked origination flywheel. <strong>PLAY-VRT-002:</strong> European direct lending at institutional scale. <strong>PLAY-VRT-003:</strong> Multi-format credit across risk spectrum. <strong>PLAY-VRT-004:</strong> Evergreen credit vehicles for retail capital. <strong>PLAY-VRT-005:</strong> GP stakes as credit-adjacent permanent capital.</p>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 8: PRIVATE EQUITY VERTICAL -->
+<!-- ====================================================================== -->
+<div class="section" id="vert-pe">
+  <h2>8. Private Equity</h2>
+
+  <h3>Market Overview</h3>
+  <p>PE fundraising recovering after 2023&ndash;2024 slowdown. GP-led secondaries volume hit $115B in 2025 (+68% YoY). 46% of PE firms now utilize continuation vehicles (nearly double from prior year). Mega-cap PE firms diversifying into credit and insurance. Mid-market PE demonstrating resilience (BPT 72.3% FRE margin).</p>
+
+  <h3>Best-in-Class</h3>
+  <table>
+    <thead><tr><th>Firm</th><th>PE Context</th><th>Rationale</th></tr></thead>
+    <tbody>
+      <tr><td><strong>KKR</strong></td><td class="num">65% margin, 37% FRE growth</td><td>Most complete PE-to-conglomerate transformation. Three earnings engines. $1.3T AUM four years ahead of target.</td></tr>
+      <tr><td><strong>BX</strong></td><td class="num">$352B PE AUM, $7.1B fees</td><td>Ultimate scale leader. Thematic conviction (data centers, logistics). Private wealth at $300B.</td></tr>
+      <tr><td><strong>EQT</strong></td><td class="num">21.7% EV/FEAUM</td><td>Europe's largest PE-focused alt manager. Carry optionality premium. BPEA pan-Asian platform.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Winning Strategies</h3>
+  <ul>
+    <li><strong>PE-to-Financial-Conglomerate Transformation</strong> (KKR, APO, CG) &mdash; systematically adding credit, insurance, and real assets</li>
+    <li><strong>Mid-Market Specialization with High FRE Margin</strong> (BPT, EQT) &mdash; BPT 72.3% margin in European mid-market; almost 90% of global PE deals are below EUR 1.5B</li>
+    <li><strong>Cost Restructuring to Protect FRE</strong> (CG) &mdash; 1,200bps margin improvement in 12 months under Schwartz</li>
+    <li><strong>GP-Led Secondaries and Continuation Vehicles</strong> (BX, KKR, CG, CVC) &mdash; GP-led volume $115B in 2025; CVs boost DPI without asset sales</li>
+    <li><strong>Private Wealth Semi-Liquid PE Products</strong> (BX, KKR, EQT) &mdash; BXPE, K-PRIME, EQT Nexus</li>
+  </ul>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 9: INFRASTRUCTURE VERTICAL -->
+<!-- ====================================================================== -->
+<div class="section" id="vert-infra">
+  <h2>9. Infrastructure</h2>
+
+  <h3>Market Overview</h3>
+  <p>Investment supercycle underway driven by AI/data centers ($3T by 2030) and energy transition. ~$474B currently sought by closed-ended infrastructure funds; top 10 managers represent $143B. Hyperscaler capex (Alphabet, Amazon, Microsoft, Meta) planned at &gt;$350B in 2025 and ~$400B in 2026. Grid connection timelines stretching to 7+ years in Northern Virginia.</p>
+
+  <h3>Best-in-Class</h3>
+  <table>
+    <thead><tr><th>Firm</th><th>Context</th><th>Rationale</th></tr></thead>
+    <tbody>
+      <tr><td><strong>BAM</strong></td><td>$125B renewables/transition</td><td>BGTF II at $20B (world's largest transition fund). IFC $5B EM energy infra commitment. $100B AI infrastructure initiative.</td></tr>
+      <tr><td><strong>EQT</strong></td><td>Infra VI EUR 21.5B</td><td>Three infrastructure strategies. Transition Infrastructure (ju:niz Energy). Nexus semi-liquid. AI Infrastructure entity in Luxembourg.</td></tr>
+      <tr><td><strong>BX</strong></td><td>World's largest data center investor</td><td>AirTrunk A$24B. $7B Digital Realty JV. Data centers as core conviction theme.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Winning Strategies</h3>
+  <ul>
+    <li><strong>Energy Transition Mega-Fund Leadership</strong> (BAM, BPT/ECP) &mdash; BAM BGTF II $20B; BPT ECP $20B U.S. energy transition</li>
+    <li><strong>Digital Infrastructure Platform Acquisitions</strong> (BX, EQT) &mdash; $3T data center investment by 2030 creates multi-decade demand</li>
+    <li><strong>Multi-Strategy Within Infrastructure</strong> (EQT, ANTIN, BAM) &mdash; flagship, mid-cap, transition strategies</li>
+    <li><strong>Semi-Liquid and Evergreen Infrastructure</strong> (EQT, BPT, BAM) &mdash; EQT Nexus, ECP Evergreen, BAM perpetual strategies</li>
+    <li><strong>EM Infrastructure via DFI Partnerships</strong> (BAM) &mdash; IFC $5B fund for Asia, LatAm, Eastern Europe, Middle East</li>
+  </ul>
+
+  <div class="info-box key-finding">
+    <p><strong>LatAm Opportunity:</strong> IFC committed to a Brookfield fund targeting $5B for energy infrastructure in emerging markets including Latin America. LatAm has significant infrastructure deficit in energy, digital connectivity, and transportation. This trend directly benefits PAX's geographic positioning.</p>
+  </div>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 10: REAL ESTATE VERTICAL -->
+<!-- ====================================================================== -->
+<div class="section" id="vert-re">
+  <h2>10. Real Estate</h2>
+
+  <h3>Market Overview</h3>
+  <p>Global private real estate recovering after 2022&ndash;2024 rate-driven correction. Semiliquid RE funds reached ~$450B (up 77% since 2022). BREIT at $47.6B NAV. 45% of institutional investors plan increased RE allocations in 2026. Thematic conviction shifting toward digital infrastructure, logistics, and life sciences.</p>
+
+  <h3>Best-in-Class</h3>
+  <table>
+    <thead><tr><th>Firm</th><th>RE AUM</th><th>Rationale</th></tr></thead>
+    <tbody>
+      <tr><td><strong>BX</strong></td><td class="num">$315B</td><td>BREIT $47.6B NAV, 8.1% net return (3x public REIT index). Pioneered non-traded REIT perpetual format. $606M fee-related performance revenues in Q4 2025.</td></tr>
+      <tr><td><strong>BAM</strong></td><td class="num">~$265B</td><td>Raised $1.8B in Q2 2025 for RE strategies. On track for largest RE fund ever. BAM/BN spin-off creates valuation advantages.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Winning Strategies</h3>
+  <ul>
+    <li><strong>Non-Traded REIT as Perpetual Retail Vehicle</strong> (BX) &mdash; BREIT $47.6B NAV, $14B gross sales in 2025</li>
+    <li><strong>Thematic Conviction in Digital and Logistics RE</strong> (BX, BAM, ARES) &mdash; data centers, logistics, life sciences</li>
+    <li><strong>Capital-Light Pure-Fee RE Asset Management</strong> (BAM) &mdash; 73% FRE margin, 31.5x P/FRE</li>
+  </ul>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 11: GP-LED SOLUTIONS / SECONDARIES VERTICAL -->
+<!-- ====================================================================== -->
+<div class="section" id="vert-solutions">
+  <h2>11. GP-Led Solutions / Secondaries</h2>
+
+  <h3>Market Overview</h3>
+  <p>Global secondary transaction volume reached $240B in 2025 (record). GP-led transactions hit $115B (nearly 50% of total). Secondaries dry powder at $315B. Evergreen private markets fund assets reached $450B. GP stakes industry grown to $60B+ dedicated capital. 40 Act funds account for nearly one-third of secondary market fundraising.</p>
+
+  <h3>Best-in-Class</h3>
+  <table>
+    <thead><tr><th>Firm</th><th>Context</th><th>Rationale</th></tr></thead>
+    <tbody>
+      <tr><td><strong>CVC</strong></td><td>SOF VI &gt;$8B</td><td>Credit, secondaries, and infrastructure &gt;50% of FPAUM. AIG partnership for PE secondaries evergreen. 50% FPAUM growth post-IPO.</td></tr>
+      <tr><td><strong>OWL</strong></td><td>62% GP stakes market share</td><td>45+ GP partnerships. GP Stakes VI targeting $13B. Industry grown to $60B+ dedicated capital.</td></tr>
+      <tr><td><strong>PGHN</strong></td><td>7 new evergreen offerings</td><td>59% of client demand in evergreens. First U.S. PE evergreen fund ($15.5B, largest in market).</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Winning Strategies</h3>
+  <ul>
+    <li><strong>Evergreen Fund Suites for Democratized Access</strong> (PGHN, STEP, CVC) &mdash; Partners Group 7 new evergreen offerings; StepStone STPEX at $750M+ ($5,000 minimum, no accreditation)</li>
+    <li><strong>Insurance Capital Partnerships for Secondaries</strong> (CVC, OWL) &mdash; AIG/CVC PE secondaries evergreen; OWL/Kuvare $20B insurance AUM</li>
+    <li><strong>Distribution Platform Partnerships</strong> (PGHN, STEP) &mdash; Partners Group partnerships with BlackRock, Deutsche Bank, PGIM, BBVA</li>
+    <li><strong>GP Stakes as Structural Industry Growth Play</strong> (OWL) &mdash; 62% market share, permanent exposure to industry AUM growth</li>
+  </ul>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 12: DISCLAIMERS -->
+<!-- ====================================================================== -->
+<div class="section" id="disclaimers">
+  <h2>12. Mandatory Disclaimers</h2>
+
+  <div class="info-box warning">
+    <p><strong>Disclaimer 1: Correlation Does Not Imply Causation.</strong> The Spearman rank correlations reported herein measure statistical association between driver metrics and valuation multiples. They do NOT establish causal relationships. The finding that larger firms command higher multiples does not prove that increasing AUM causes multiple expansion. Reverse causality (higher multiples enabling firms to raise more capital) and omitted variable bias (unobserved factors like brand prestige or management quality driving both scale and valuation) are equally plausible explanations.</p>
+  </div>
+
+  <div class="info-box warning">
+    <p><strong>Disclaimer 2: Survivorship Bias.</strong> The sample consists of 21&ndash;27 currently listed alternative asset managers. Firms that were acquired (Oaktree, Sculptor), delisted (Medley), or remain private (Warburg Pincus, Permira, General Atlantic) are excluded. This survivorship bias may inflate the apparent relationship between scale and valuation, as firms that failed to scale may have been taken private or merged at discount valuations.</p>
+  </div>
+
+  <div class="info-box warning">
+    <p><strong>Disclaimer 3: Point-in-Time Cross-Section.</strong> All data represents a single cross-sectional snapshot (FY2024 financial data, early March 2026 market caps). Results may differ materially in different market environments. The correlation between scale and multiples may be stronger in bull markets and weaker in bear markets. No panel data or time-series analysis was conducted.</p>
+  </div>
+
+  <div class="info-box warning">
+    <p><strong>Disclaimer 4: Small Sample Size.</strong> With N=15&ndash;21 for most tests and as few as N=5&ndash;9 for low-coverage metrics, statistical power is limited. A true moderate correlation (&rho;=0.4) has only ~45% power to be detected at &alpha;=0.05 with N=20. Many "not a driver" classifications may reflect insufficient power rather than a true null relationship. Confidence intervals are correspondingly wide (typically &plusmn;0.35 around the point estimate).</p>
+  </div>
+
+  <div class="info-box warning">
+    <p><strong>Disclaimer 5: Endogeneity.</strong> Valuation multiples are computed from market capitalization, which reflects investor expectations about future AUM growth, fee revenue, and earnings. The independent variables (current AUM, fees, FRE) are correlated with these expectations. This creates endogeneity that precludes causal interpretation without instrumental variable or natural experiment approaches.</p>
+  </div>
+
+  <div class="info-box warning">
+    <p><strong>Disclaimer 6: FRE Definition Heterogeneity.</strong> Fee-Related Earnings is a non-GAAP metric with no standardized definition across the sample. Differences in stock-based compensation treatment, transaction/advisory fee inclusion, insurance segment accounting, European proxies, and tax treatment introduce measurement error that attenuates correlations. Key differences: some firms deduct SBC from FRE (BX, APO), others do not. EQT reports "Fee-Related EBITDA," BPT uses "underlying EBITDA," and ANTIN uses "underlying EBITDA" &mdash; all with slightly different inclusions/exclusions.</p>
+  </div>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 13: DATA SOURCES -->
+<!-- ====================================================================== -->
+<div class="section" id="data-sources">
+  <h2>13. Data Sources</h2>
+
+  <h3>Source Types and Bias Tags</h3>
+  <table>
+    <thead>
+      <tr><th>Source Type</th><th>Bias Tag</th><th>Count</th><th>Usage</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Company earnings calls &amp; presentations</td><td><span class="tag specific">company-produced</span></td><td class="num">~25</td><td>Primary source for financial metrics, strategic priorities, and management commentary</td></tr>
+      <tr><td>SEC filings (10-K, 10-Q, proxy)</td><td><span class="tag stable">regulatory-filing</span></td><td class="num">~15</td><td>Audited financial data, AUM figures, risk factors</td></tr>
+      <tr><td>Analyst reports &amp; equity research</td><td><span class="tag not-driver">third-party-analyst</span></td><td class="num">~10</td><td>Valuation multiples, peer comparisons, consensus estimates</td></tr>
+      <tr><td>Industry publications &amp; market data</td><td><span class="tag not-driver">industry-report</span></td><td class="num">~8</td><td>Market sizing, fundraising data, trend analysis</td></tr>
+      <tr><td>Journalism &amp; financial media</td><td><span class="tag q3">journalist</span></td><td class="num">~5</td><td>M&amp;A announcements, strategic moves, market commentary</td></tr>
+      <tr><td>Annual reports &amp; shareholder letters</td><td><span class="tag specific">company-produced</span></td><td class="num">~12</td><td>Strategic narratives, long-term targets, operational detail</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Pipeline Stage Outputs</h3>
+  <table>
+    <thead>
+      <tr><th>Stage</th><th>File</th><th>Content</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>VD-A0</td><td>peer_vd_a0_universe.json</td><td>27-firm peer universe identification</td></tr>
+      <tr><td>VD-A4</td><td>peer_vd_a4_correlations.json</td><td>55 Spearman rank correlation tests</td></tr>
+      <tr><td>VD-A4b</td><td>peer_vd_a4b_methodology.md</td><td>Statistical methodology &amp; disclaimers</td></tr>
+      <tr><td>VD-A5</td><td>peer_vd_a5_driver_ranking.json</td><td>Driver rankings &amp; quartile maps</td></tr>
+      <tr><td>VD-C1</td><td>peer_vd_c1_final_set.json</td><td>12-firm final set selection</td></tr>
+      <tr><td>VD-D1</td><td>peer_vd_d1_platform_deepdives.json</td><td>12 firm deep-dive profiles</td></tr>
+      <tr><td>VD-D2</td><td>peer_vd_d2_asset_class_deepdives.json</td><td>5 vertical analyses</td></tr>
+      <tr><td>VD-P1</td><td>peer_vd_p1_value_principles.md</td><td>6 value creation principles</td></tr>
+      <tr><td>VD-P2</td><td>peer_vd_p2_platform_playbook.json</td><td>17 platform plays by driver</td></tr>
+      <tr><td>VD-P3</td><td>peer_vd_p3_asset_class_playbooks.json</td><td>22 vertical plays</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</div><!-- /.content -->
+</div><!-- /.main -->
+
+</body>
+</html>

@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valuation Driver Analysis — Methodology &amp; Pipeline Design</title>
+<style>
+:root {
+  --navy: #1a2332;
+  --navy-light: #243044;
+  --teal: #00b4d8;
+  --teal-dark: #0096b7;
+  --teal-light: #90e0ef;
+  --bg: #ffffff;
+  --bg-alt: #f8f9fa;
+  --text: #2d3436;
+  --text-light: #636e72;
+  --border: #dfe6e9;
+  --sidebar-w: 280px;
+  --accent-red: #e17055;
+  --accent-green: #00b894;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--navy);
+  color: #ccd6e0;
+  overflow-y: auto;
+  z-index: 100;
+  padding: 24px 0;
+  border-right: 3px solid var(--teal);
+}
+
+.sidebar-header {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 16px;
+}
+
+.sidebar-header h2 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+
+.sidebar-header p {
+  font-size: 11px;
+  color: #8899aa;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav > ul > li > a {
+  display: block;
+  padding: 8px 20px;
+  color: #b2bec3;
+  text-decoration: none;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.sidebar nav > ul > li > a:hover,
+.sidebar nav > ul > li > a.active {
+  color: #fff;
+  background: rgba(0,180,216,0.1);
+  border-left-color: var(--teal);
+}
+
+.sidebar nav ul ul {
+  list-style: none;
+}
+
+.sidebar nav ul ul li a {
+  display: block;
+  padding: 4px 20px 4px 36px;
+  color: #8899aa;
+  text-decoration: none;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.sidebar nav ul ul li a:hover {
+  color: var(--teal-light);
+}
+
+/* Main content */
+.main {
+  margin-left: var(--sidebar-w);
+  padding: 0;
+}
+
+/* Title banner */
+.title-banner {
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  color: white;
+  padding: 60px 60px 50px;
+  border-bottom: 4px solid var(--teal);
+}
+
+.title-banner h1 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.title-banner .subtitle {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  color: var(--teal-light);
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.title-banner .meta {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  color: #8899aa;
+  line-height: 1.8;
+}
+
+.title-banner .meta strong {
+  color: #b2bec3;
+}
+
+.classification-badge {
+  display: inline-block;
+  background: rgba(0,180,216,0.15);
+  border: 1px solid var(--teal);
+  color: var(--teal-light);
+  padding: 3px 12px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 12px;
+}
+
+/* Content sections */
+.content {
+  max-width: 900px;
+  padding: 40px 60px 80px;
+}
+
+.section {
+  margin-bottom: 48px;
+}
+
+.section h2 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--navy);
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--teal);
+  margin-bottom: 24px;
+}
+
+.section h3 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 28px 0 12px;
+}
+
+.section h4 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--teal-dark);
+  margin: 20px 0 8px;
+}
+
+.section p {
+  margin-bottom: 14px;
+  text-align: justify;
+}
+
+/* Collapsible sections */
+.collapsible {
+  margin: 16px 0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.collapsible-header {
+  background: var(--bg-alt);
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.collapsible-header:hover {
+  background: #eef1f3;
+}
+
+.collapsible-header::after {
+  content: '\25BC';
+  font-size: 10px;
+  color: var(--text-light);
+  transition: transform 0.3s;
+}
+
+.collapsible-header.collapsed::after {
+  transform: rotate(-90deg);
+}
+
+.collapsible-body {
+  padding: 16px;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
+}
+
+.collapsible-body.hidden {
+  max-height: 0;
+  padding: 0 16px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px;
+  font-size: 14px;
+}
+
+thead th {
+  background: var(--navy);
+  color: white;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 14px;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--bg-alt);
+}
+
+tbody tr:hover {
+  background: #eef5f7;
+}
+
+/* Info boxes */
+.info-box {
+  background: #e8f4f8;
+  border-left: 4px solid var(--teal);
+  padding: 16px 20px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.info-box.warning {
+  background: #fef3e8;
+  border-left-color: var(--accent-red);
+}
+
+.info-box.key-finding {
+  background: #e8faf4;
+  border-left-color: var(--accent-green);
+}
+
+.info-box p {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.info-box p:last-child { margin-bottom: 0; }
+
+.info-box strong {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Pipeline diagram */
+.pipeline-diagram {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 24px;
+  margin: 20px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* Formula blocks */
+.formula {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin: 12px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+  margin: 1px 2px;
+}
+.tag.stable { background: #d4edda; color: #155724; }
+.tag.specific { background: #fff3cd; color: #856404; }
+.tag.context { background: #e2e3e5; color: #383d41; }
+.tag.dependent { background: #cce5ff; color: #004085; }
+
+/* Lists */
+ul, ol {
+  margin: 8px 0 16px 24px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+/* Code inline */
+code {
+  background: #f1f3f5;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  color: var(--navy);
+}
+
+/* Print */
+@media print {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+  .title-banner { padding: 30px; }
+  .content { padding: 20px 30px; }
+  .collapsible-body.hidden { max-height: none; padding: 16px; }
+  .collapsible-header::after { display: none; }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sidebar { width: 220px; }
+  :root { --sidebar-w: 220px; }
+  .title-banner, .content { padding-left: 30px; padding-right: 30px; }
+}
+
+@media (max-width: 700px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar Navigation -->
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h2>VDA Methodology</h2>
+    <p>Patria Investments (PAX)</p>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#executive-summary">1. Executive Summary</a></li>
+      <li>
+        <a href="#analytical-framework">2. Analytical Framework</a>
+        <ul>
+          <li><a href="#hybrid-approach">2.1 Hybrid Approach</a></li>
+          <li><a href="#dependent-variables">2.2 Dependent Variables</a></li>
+          <li><a href="#metric-taxonomy">2.3 Metric Taxonomy</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#pipeline">3. Pipeline Architecture</a>
+        <ul>
+          <li><a href="#pipeline-overview">3.1 Overview</a></li>
+          <li><a href="#track-a">3.2 Track A (Quant)</a></li>
+          <li><a href="#track-b">3.3 Track B (Qual)</a></li>
+          <li><a href="#convergence">3.4 Convergence</a></li>
+          <li><a href="#phase2">3.5 Phase 2: Deep-Dives</a></li>
+          <li><a href="#phase3">3.6 Phase 3: Playbook</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#statistical-methodology">4. Statistical Methodology</a>
+        <ul>
+          <li><a href="#spearman">4.1 Spearman Correlation</a></li>
+          <li><a href="#multiple-comparisons">4.2 Multiple Comparisons</a></li>
+          <li><a href="#bootstrap">4.3 Bootstrap CIs</a></li>
+          <li><a href="#sensitivity">4.4 Sensitivity Analysis</a></li>
+          <li><a href="#multicollinearity">4.5 Multicollinearity</a></li>
+          <li><a href="#disclaimers">4.6 Limitations</a></li>
+        </ul>
+      </li>
+      <li><a href="#agent-architecture">5. Agent Architecture</a></li>
+      <li><a href="#data-model">6. Data Model</a></li>
+      <li><a href="#source-strategy">7. Source Strategy</a></li>
+      <li><a href="#output-design">8. Output Design</a></li>
+      <li><a href="#design-decisions">9. Design Decisions</a></li>
+      <li>
+        <a href="#appendices">10. Appendices</a>
+        <ul>
+          <li><a href="#appendix-a">A: Metric Definitions</a></li>
+          <li><a href="#appendix-b">B: Peer Universe</a></li>
+          <li><a href="#appendix-c">C: Statistical Formulas</a></li>
+          <li><a href="#appendix-d">D: Glossary</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+
+  <!-- Title Banner -->
+  <div class="title-banner">
+    <h1>Valuation Driver Analysis</h1>
+    <div class="subtitle">Alternative Asset Management Industry &mdash; Methodology &amp; Pipeline Design Document</div>
+    <div class="meta">
+      <strong>Prepared for:</strong> Patria Investments Limited (NASDAQ: PAX)<br>
+      <strong>Date:</strong> March 2026<br>
+      <strong>Version:</strong> 1.0<br>
+      <strong>Status:</strong> Design &mdash; Not Yet Executed
+    </div>
+    <div class="classification-badge">Internal &mdash; Strategic Planning</div>
+  </div>
+
+  <div class="content">
+
+    <!-- 1. Executive Summary -->
+    <div class="section" id="executive-summary">
+      <h2>1. Executive Summary</h2>
+      <p>This document specifies the methodology and pipeline design for a Valuation Driver Analysis (VDA) of the publicly listed alternative asset management industry. The analysis employs a hybrid statistical-qualitative approach to address three interrelated research questions: (i) which operational and financial metrics exhibit statistically significant correlation with valuation multiples across the universe of listed alternative asset managers; (ii) what concrete strategic actions have peer firms executed to move those metrics; and (iii) what is the resulting menu of empirically grounded strategic plays, organized by value driver, that an alternative asset manager could evaluate for adoption.</p>
+
+      <p>The quantitative layer applies Spearman rank correlation analysis across three distinct valuation multiples &mdash; Price-to-Fee-Related-Earnings (P/FRE), Price-to-Distributable-Earnings (P/DE), and Enterprise-Value-to-Fee-Earning-AUM (EV/FEAUM) &mdash; to a universe of approximately 25 publicly listed firms. Metrics that correlate with all three multiples are classified as <em>stable value drivers</em>, providing robust, framework-independent signals. The qualitative layer then traces the causal chain from strategic actions to metric movements through deep-dive analysis of 9&ndash;12 selected peers.</p>
+
+      <p>The analytical posture is explicitly <strong>peer-centric</strong>: the pipeline studies what peers are doing on their own terms, synthesizes cross-sectional patterns, and produces a strategic playbook independent of any one firm&rsquo;s prior commitments. PAX&rsquo;s current strategy does not serve as a baseline and enters the analysis only when leadership chooses to compare the playbook against their own trajectory.</p>
+
+      <p>The final output is a navigable, two-layer HTML document: Layer 1 addresses platform-level value drivers and firm-level strategic menus (for C-suite, IR, and corporate strategy); Layer 2 provides asset-class-specific deep-dives and vertical playbooks (for individual business unit heads in Credit, Private Equity, Infrastructure, Real Estate, and GP-Led Solutions). Each layer is independently browsable, evidence-cited, and accompanied by full statistical documentation including confidence intervals, sensitivity analyses, and mandatory disclaimers.</p>
+    </div>
+
+    <!-- 2. Analytical Framework -->
+    <div class="section" id="analytical-framework">
+      <h2>2. Analytical Framework</h2>
+
+      <h3 id="hybrid-approach">2.1 Why a Hybrid Statistical-Qualitative Approach</h3>
+      <p>The quantitative universe of publicly listed alternative asset managers comprises approximately 25 firms globally. This sample size is insufficient for reliable multiple regression analysis. The hybrid approach resolves this constraint by separating the work into two methodologically distinct tracks.</p>
+
+      <div class="info-box warning">
+        <p><strong>Why not multiple regression?</strong> With N &asymp; 25 observations and 15+ candidate predictor variables, a conventional regression would consume all available degrees of freedom and produce unstable coefficient estimates. Multicollinearity between candidate metrics (e.g., FEAUM growth and AUM growth at &rho; &gt; 0.8) would render individual coefficients uninterpretable. Overfitting to idiosyncratic noise rather than systematic patterns would be unavoidable.</p>
+      </div>
+
+      <table>
+        <thead>
+          <tr><th>Approach</th><th>Requirement</th><th>Feasibility (N&asymp;25)</th><th>Interpretability</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Multiple Regression</td><td>N &gt; 5&times; predictors; normality; no multicollinearity</td><td>Not feasible</td><td>High (if assumptions met)</td></tr>
+          <tr><td>Spearman Rank Correlation</td><td>Monotonic relationship; no distributional assumptions</td><td>Feasible</td><td>High &mdash; pairwise, interpretable</td></tr>
+          <tr><td>Qualitative Deep-Dive</td><td>Rich public source material</td><td>Feasible</td><td>Causal narrative, not statistical</td></tr>
+          <tr><td><strong>Hybrid (adopted)</strong></td><td>Both of the above</td><td><strong>Feasible</strong></td><td><strong>Both statistical and causal</strong></td></tr>
+        </tbody>
+      </table>
+
+      <p>The quantitative layer identifies <em>what matters</em> &mdash; which metrics correlate with higher valuation. The qualitative layer identifies <em>how to move it</em> &mdash; which strategic actions peers have demonstrated to be effective. Neither layer is analytically sufficient alone; their combination produces conclusions that are simultaneously data-anchored and causally interpretable.</p>
+
+      <h3 id="dependent-variables">2.2 Multiple Dependent Variables</h3>
+      <p>Using a single valuation multiple as the dependent variable risks producing results that are artifacts of that multiple&rsquo;s inherent bias rather than genuine value drivers. This analysis employs three multiples, each capturing a different facet of how the market prices alternative asset managers:</p>
+
+      <table>
+        <thead>
+          <tr><th>Multiple</th><th>Formula</th><th>What It Rewards</th><th>Inherent Bias</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>P/FRE</strong></td>
+            <td>Market Cap &divide; Fee-Related Earnings</td>
+            <td>Fee quality, recurring earnings, margin stability</td>
+            <td>Penalizes performance-fee-heavy models; ignores carry</td>
+          </tr>
+          <tr>
+            <td><strong>P/DE</strong></td>
+            <td>Market Cap &divide; Distributable Earnings</td>
+            <td>Total earnings power including realized carry</td>
+            <td>Volatile; rewards carry-heavy years; cyclical</td>
+          </tr>
+          <tr>
+            <td><strong>EV/FEAUM</strong></td>
+            <td>Enterprise Value &divide; Fee-Earning AUM</td>
+            <td>Scale, fee rate, AUM quality</td>
+            <td>Ignores profitability entirely; rewards AUM accumulation</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box key-finding">
+        <p><strong>Stable Value Drivers</strong> are defined as metrics exhibiting Spearman &rho; &gt; 0.5 with <em>all three</em> multiples simultaneously. These represent the most robust signals &mdash; relationships that hold regardless of which valuation lens is applied. Metrics correlating with only one multiple are classified as <em>multiple-specific drivers</em>: informative but less conclusive.</p>
+      </div>
+
+      <h3 id="metric-taxonomy">2.3 Metric Taxonomy</h3>
+      <p>All candidate metrics are organized into seven categories of driver candidates, one category of contextual metrics (excluded from correlation analysis), and the three dependent variables.</p>
+
+      <table>
+        <thead>
+          <tr><th>Category</th><th>Metric</th><th>Unit</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr><td rowspan="3"><strong>Earnings</strong></td><td>Distributable Earnings per share (DE/share)</td><td>USD</td><td><span class="tag stable">Driver</span></td></tr>
+          <tr><td>Earnings per share, GAAP (EPS)</td><td>USD</td><td><span class="tag stable">Driver</span></td></tr>
+          <tr><td>DE/share growth, 3-year CAGR</td><td>%</td><td><span class="tag stable">Driver</span></td></tr>
+
+          <tr><td rowspan="4"><strong>Scale</strong></td><td>Fee-Earning AUM (FEAUM)</td><td>USD bn</td><td><span class="tag stable">Driver</span></td></tr>
+          <tr><td>Total AUM</td><td>USD bn</td><td><span class="tag stable">Driver</span></td></tr>
+          <tr><td>FEAUM growth, year-over-year</td><td>%</td><td><span class="tag stable">Driver</span></td></tr>
+          <tr><td>FEAUM growth, 3-year CAGR</td><td>%</td><td><span class="tag stable">Driver</span></td></tr>
+
+          <tr><td rowspan="2"><strong>Organic Growth</strong></td><td>Net organic FEAUM growth</td><td>%</td><td><span class="tag stable">Driver</span></td></tr>
+          <tr><td>Fundraising as % of AUM</td><td>%</td><td><span class="tag stable">Driver</span></td></tr>
+
+          <tr><td rowspan="3"><strong>Mix &amp; Diversification</strong></td><td>Asset class Herfindahl-Hirschman Index (HHI)</td><td>0&ndash;10,000</td><td><span class="tag stable">Driver</span></td></tr>
+          <tr><td>Permanent capital as % of FEAUM</td><td>%</td><td><span class="tag stable">Driver</span></td></tr>
+          <tr><td>Credit strategies as % of AUM</td><td>%</td><td><span class="tag stable">Driver</span></td></tr>
+
+          <tr><td rowspan="3"><strong>Efficiency</strong></td><td>FRE margin</td><td>%</td><td><span class="tag stable">Driver</span></td></tr>
+          <tr><td>FRE growth, year-over-year</td><td>%</td><td><span class="tag stable">Driver</span></td></tr>
+          <tr><td>Compensation-to-revenue ratio</td><td>%</td><td><span class="tag stable">Driver</span></td></tr>
+
+          <tr><td rowspan="2"><strong>Fee Quality</strong></td><td>Management fee rate (FRE/FEAUM)</td><td>bps</td><td><span class="tag stable">Driver</span></td></tr>
+          <tr><td>Performance fee share of total revenue</td><td>%</td><td><span class="tag stable">Driver</span></td></tr>
+
+          <tr><td rowspan="3"><strong>Market Structure</strong></td><td>Average daily trading volume</td><td>shares</td><td><span class="tag context">Context only</span></td></tr>
+          <tr><td>Passive ownership percentage</td><td>%</td><td><span class="tag context">Context only</span></td></tr>
+          <tr><td>Free float percentage</td><td>%</td><td><span class="tag context">Context only</span></td></tr>
+
+          <tr><td rowspan="3"><strong>Valuation</strong></td><td>P/FRE</td><td>x</td><td><span class="tag dependent">Dependent</span></td></tr>
+          <tr><td>P/DE</td><td>x</td><td><span class="tag dependent">Dependent</span></td></tr>
+          <tr><td>EV/FEAUM</td><td>%</td><td><span class="tag dependent">Dependent</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <p><strong>Market Structure metrics are excluded from correlation analysis.</strong> Average daily trading volume and passive ownership percentage are consequences of investor behavior and index inclusion decisions, not strategic levers management can pull. They are collected as contextual data to characterize the peer universe but are not tested as valuation drivers.</p>
+      </div>
+
+      <div class="info-box">
+        <p><strong>Asset Class HHI</strong> is calculated as the sum of squared proportional shares across asset classes, multiplied by 10,000. A firm with 100% in one asset class scores 10,000 (maximum concentration); a firm equally distributed across five classes scores 2,000. This is preferred over a simple count of asset classes because it captures relative weight, not merely presence.</p>
+      </div>
+    </div>
+
+    <!-- 3. Pipeline Architecture -->
+    <div class="section" id="pipeline">
+      <h2>3. Pipeline Architecture</h2>
+
+      <h3 id="pipeline-overview">3.1 Overview</h3>
+      <p>The pipeline consists of three phases executed across five waves, with two parallel tracks in Phase 1 that converge before Phase 2 deep-dives.</p>
+
+      <div class="pipeline-diagram">Phase 1: SCREEN (parallel tracks)
+&#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+&#9474;  Track A (Quantitative)              Track B (Qualitative)         &#9474;
+&#9474;  VD-A0  Peer Universe                VD-B0  Source Mapping          &#9474;
+&#9474;  VD-A1  Metric Taxonomy              VD-B1  Strategy Extraction     &#9474;
+&#9474;  VD-A2  Data Collection              VD-B2  Action Cataloging       &#9474;
+&#9474;  VD-A3  Standardization                                             &#9474;
+&#9474;  VD-A4  Correlation Analysis                                        &#9474;
+&#9474;  VD-A4b Statistical Documentation                                   &#9474;
+&#9474;  VD-A5  Value Driver Ranking                                        &#9474;
+&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;
+                          &#9474;
+                     VD-C1: CONVERGENCE
+                 (Quant + Qual + User List)
+                          &#9474;
+Phase 2: DEEP-DIVES (parallel)
+&#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+&#9474;  VD-D1  Platform Deep-Dives (9-12 firms, firm-level strategy)     &#9474;
+&#9474;  VD-D2  Asset Class Deep-Dives (5 verticals, best-in-class)      &#9474;
+&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;
+                          &#9474;
+Phase 3: PLAYBOOK (sequential)
+&#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+&#9474;  VD-P1  Value Creation Principles                                  &#9474;
+&#9474;  VD-P2  Platform Strategic Menu (by value driver)                  &#9474;
+&#9474;  VD-P3  Asset Class Playbooks (by vertical)                       &#9474;
+&#9474;  VD-P4  Final Navigable Report (HTML)                             &#9474;
+&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;</div>
+
+      <h3 id="track-a">3.2 Track A &mdash; Quantitative Screen</h3>
+
+      <div class="collapsible">
+        <div class="collapsible-header">VD-A0: Peer Universe Identification</div>
+        <div class="collapsible-body">
+          <p><strong>Objective:</strong> Catalog all publicly listed firms where alternative asset management constitutes &gt;50% of revenue.</p>
+          <p><strong>Scope:</strong> Global. Classification by business model composition:</p>
+          <table>
+            <thead><tr><th>Class</th><th>Definition</th></tr></thead>
+            <tbody>
+              <tr><td><code>pure-play-alt</code></td><td>&ge; 90% of revenue from alternatives</td></tr>
+              <tr><td><code>majority-alt</code></td><td>60&ndash;89% of revenue from alternatives</td></tr>
+              <tr><td><code>partial-alt</code></td><td>Meaningful alternatives segment; majority from other activities</td></tr>
+            </tbody>
+          </table>
+          <p><strong>Expected universe:</strong> US (BX, KKR, APO, ARES, BAM, OWL, TPG, CG, BN, STEP, HLN, AMK, VCTR); Europe (EQT, PGHN, ICP, MAN); LatAm (PAX). Additional firms surfaced during research.</p>
+          <p><strong>Output:</strong> <code>peer_vd_a0_universe.json</code></p>
+        </div>
+      </div>
+
+      <div class="collapsible">
+        <div class="collapsible-header">VD-A1: Metric Taxonomy Definition</div>
+        <div class="collapsible-body">
+          <p><strong>Objective:</strong> Define all metrics with precise formulas, data sources, and collection priority. See Section 2.3 for the full taxonomy. Each metric receives a unique identifier (MET-VD-NNN) and a documented data source hierarchy.</p>
+          <p><strong>Output:</strong> <code>peer_vd_a1_metrics.json</code></p>
+        </div>
+      </div>
+
+      <div class="collapsible">
+        <div class="collapsible-header">VD-A2: Data Collection</div>
+        <div class="collapsible-body">
+          <p><strong>Objective:</strong> Extract quantitative data for all firms across all metrics.</p>
+          <p><strong>Sources (priority order):</strong> (1) Most recent earnings release; (2) 20-F / 10-K annual filings; (3) Investor presentations and supplements; (4) Filesystem drop zone for proprietary data.</p>
+          <p><strong>Time periods:</strong> Most recent FY (FY1), prior FY (FY2), and 3-year history where available for CAGR calculations.</p>
+          <p><strong>Rules:</strong> Missing data recorded as null with explicit missing_reason. No estimation or interpolation permitted.</p>
+          <p><strong>Output:</strong> <code>peer_vd_a2_raw_data.json</code></p>
+        </div>
+      </div>
+
+      <div class="collapsible">
+        <div class="collapsible-header">VD-A3: Data Standardization</div>
+        <div class="collapsible-body">
+          <p><strong>Normalizations:</strong></p>
+          <ol>
+            <li><strong>Currency:</strong> Convert all values to USD at period-end exchange rates. Document rate, date, and source.</li>
+            <li><strong>Fiscal year:</strong> Align to calendar year or trailing twelve months (TTM).</li>
+            <li><strong>FRE definition:</strong> Document each firm&rsquo;s disclosed FRE definition; flag material heterogeneity.</li>
+            <li><strong>Coverage:</strong> Metrics with &lt;15 of ~25 firms reporting marked as &ldquo;low coverage.&rdquo;</li>
+            <li><strong>Outliers:</strong> Values &gt;2&sigma; from cross-sectional mean flagged for review.</li>
+          </ol>
+          <p><strong>Output:</strong> <code>peer_vd_a3_standardized.json</code></p>
+        </div>
+      </div>
+
+      <div class="collapsible">
+        <div class="collapsible-header">VD-A4: Correlation Analysis</div>
+        <div class="collapsible-body">
+          <p><strong>Method:</strong> Spearman rank correlation for each driver metric &times; 3 multiples (&asymp;45 pairwise tests).</p>
+          <table>
+            <thead><tr><th>Classification</th><th>Criterion</th></tr></thead>
+            <tbody>
+              <tr><td><span class="tag stable">Stable value driver</span></td><td>&rho; &gt; 0.5 across all three multiples</td></tr>
+              <tr><td><span class="tag specific">Multiple-specific driver</span></td><td>&rho; &gt; 0.5 for exactly one multiple</td></tr>
+              <tr><td>Moderate signal</td><td>0.3 &le; &rho; &le; 0.5 for at least one multiple</td></tr>
+              <tr><td>Not a driver</td><td>&rho; &lt; 0.3 for all three multiples</td></tr>
+            </tbody>
+          </table>
+          <p><strong>Output:</strong> <code>peer_vd_a4_correlations.json</code></p>
+        </div>
+      </div>
+
+      <div class="collapsible">
+        <div class="collapsible-header">VD-A4b: Statistical Documentation &amp; Explainability</div>
+        <div class="collapsible-body">
+          <p>This is a critical stage producing a standalone methodology document. See Section 4 for full statistical methodology specification. Includes: bootstrap confidence intervals, Bonferroni correction, leave-one-out sensitivity, temporal stability checks, multicollinearity assessment, and all mandatory disclaimers.</p>
+          <p><strong>Output:</strong> <code>peer_vd_a4b_methodology.md</code></p>
+        </div>
+      </div>
+
+      <div class="collapsible">
+        <div class="collapsible-header">VD-A5: Value Driver Ranking</div>
+        <div class="collapsible-body">
+          <p><strong>Deliverables:</strong></p>
+          <ul>
+            <li>Top 5&ndash;6 stable drivers ranked by average |&rho;| across three multiples</li>
+            <li>Per-driver quartile map of all firms in the universe</li>
+            <li>Identification of &ldquo;non-obvious peers&rdquo; &mdash; firms not in the initial qualitative set but ranking top-quartile on 2+ stable drivers</li>
+          </ul>
+          <p><strong>Output:</strong> <code>peer_vd_a5_driver_ranking.json</code></p>
+        </div>
+      </div>
+
+      <h3 id="track-b">3.3 Track B &mdash; Qualitative Early Research</h3>
+
+      <div class="collapsible">
+        <div class="collapsible-header">VD-B0: Source Mapping</div>
+        <div class="collapsible-body">
+          <p><strong>Scope:</strong> 12&ndash;15 &ldquo;obvious&rdquo; peers: BX, KKR, APO, ARES, BAM, OWL, TPG, CG, EQT, PGHN, STEP, HLN, BN, ICP, AMK.</p>
+          <p><strong>Standard sources:</strong> 20-F/10-K, Investor Day materials, earnings call transcripts, earnings supplements, M&amp;A press releases, CEO interviews, industry reports.</p>
+          <p><strong>Non-obvious sources:</strong> State pension fund board documents (CalPERS, CalSTRS, CPPIB &mdash; contain independent GP assessments); job posting data (reveals capability build-out); patent and trademark filings; conference speaker slot assignments.</p>
+          <p><strong>Output:</strong> <code>peer_vd_b0_sources.json</code></p>
+        </div>
+      </div>
+
+      <div class="collapsible">
+        <div class="collapsible-header">VD-B1: Strategy Extraction</div>
+        <div class="collapsible-body">
+          <p>For each peer, produce a standalone strategic profile classified along ten dimensions:</p>
+          <table>
+            <thead><tr><th>#</th><th>Dimension</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Geographic reach</td><td>Global / Regional / Local; primary expansion markets</td></tr>
+              <tr><td>2</td><td>Asset focus</td><td>Large cap / Mid market / Lower-mid market</td></tr>
+              <tr><td>3</td><td>Asset class mix</td><td>Distribution of AUM across PE, Credit, Infra, RE, Solutions</td></tr>
+              <tr><td>4</td><td>Origination model</td><td>Captive / Primary originator / Structuring / Syndicated</td></tr>
+              <tr><td>5</td><td>Fund type emphasis</td><td>Drawdown / Evergreen / Listed / SMA</td></tr>
+              <tr><td>6</td><td>Capital source</td><td>Proprietary / Captive pool / Non-captive</td></tr>
+              <tr><td>7</td><td>Distribution strategy</td><td>Direct / Consultants / Distributors / Wealth channel</td></tr>
+              <tr><td>8</td><td>Client segment</td><td>Institutional sub-segments vs. Individual sub-segments</td></tr>
+              <tr><td>9</td><td>Growth model</td><td>Organic / Geographic / Product adjacency / M&amp;A</td></tr>
+              <tr><td>10</td><td>Stated priorities</td><td>Top 3&ndash;5 from most recent Investor Day or annual report</td></tr>
+            </tbody>
+          </table>
+          <p><strong>Output:</strong> <code>peer_vd_b1_strategies.json</code></p>
+        </div>
+      </div>
+
+      <div class="collapsible">
+        <div class="collapsible-header">VD-B2: Action Cataloging</div>
+        <div class="collapsible-body">
+          <p>For each peer, catalog concrete strategic actions (last 2&ndash;3 years) across seven categories: M&amp;A, product launches, geographic expansion, distribution shifts, capital structure changes, organizational changes, technology/operations.</p>
+          <p>For each action: description, stated rationale, observable metric impact (where disclosed), timeline, source citation.</p>
+          <p><strong>Output:</strong> <code>peer_vd_b2_actions.json</code></p>
+        </div>
+      </div>
+
+      <h3 id="convergence">3.4 Convergence &mdash; VD-C1</h3>
+      <p>The convergence stage merges Track A and Track B outputs to determine the final 9&ndash;12 peers for Phase 2 deep-dives.</p>
+
+      <table>
+        <thead><tr><th>Criterion</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>Quantitative relevance</td><td>Top quartile on 2+ stable value drivers from VD-A5</td></tr>
+          <tr><td>Qualitative relevance</td><td>Strategic instructiveness; diversity of approaches represented</td></tr>
+          <tr><td>User priority</td><td>Peers nominated by the commissioning team</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Inclusion rules:</strong> Auto-include if top-quartile on 2+ stable drivers. Include as cautionary case if bottom-quartile with well-documented strategy. Flag non-obvious peers surfaced by Track A for review.</p>
+      <p><strong>Output:</strong> <code>peer_vd_c1_final_set.json</code></p>
+
+      <h3 id="phase2">3.5 Phase 2 &mdash; Deep-Dives</h3>
+
+      <h4>VD-D1: Platform-Level Deep-Dives</h4>
+      <p>For each of the 9&ndash;12 final peers, a six-section structured profile:</p>
+      <ol>
+        <li><strong>Identity and scale</strong> &mdash; AUM, FEAUM, geography, asset class mix, ownership structure</li>
+        <li><strong>Strategic agenda</strong> &mdash; top 3&ndash;5 stated priorities with source citations</li>
+        <li><strong>Key actions (2&ndash;3 year horizon)</strong> &mdash; full catalog from VD-B2, enriched</li>
+        <li><strong>Performance on stable value drivers</strong> &mdash; quartile position on top 5&ndash;6 drivers with context</li>
+        <li><strong>Value creation narrative</strong> &mdash; what makes this firm trade at premium/discount</li>
+        <li><strong>Transferable insights</strong> &mdash; 3&ndash;5 lessons, stated independently of PAX</li>
+      </ol>
+      <p><strong>Output:</strong> <code>peer_vd_d1_platform_deepdives.json</code></p>
+
+      <h4>VD-D2: Asset Class Deep-Dives</h4>
+      <table>
+        <thead><tr><th>Vertical</th><th>Reference Firms</th><th>Key Questions</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Credit</strong></td><td>ARES, OWL, HLN</td><td>Direct lending vs. CLO vs. mezzanine; origination model; scale advantages</td></tr>
+          <tr><td><strong>Private Equity</strong></td><td>KKR, APO, CG, TPG</td><td>Mid-market vs. mega; sector specialization; co-investment; GP-led secondaries</td></tr>
+          <tr><td><strong>Infrastructure</strong></td><td>BAM, EQT</td><td>Core vs. value-added; energy transition; digital infrastructure</td></tr>
+          <tr><td><strong>Real Estate</strong></td><td>BX, BAM</td><td>PERE vs. core; credit-oriented RE; perpetual vehicles; retail access</td></tr>
+          <tr><td><strong>GP-Led Solutions</strong></td><td>STEP, HLN, PGHN</td><td>Primaries vs. secondaries vs. co-invest; portfolio construction; fee model</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Output:</strong> <code>peer_vd_d2_asset_class_deepdives.json</code></p>
+
+      <h3 id="phase3">3.6 Phase 3 &mdash; Playbook</h3>
+
+      <h4>VD-P1: Value Creation Principles</h4>
+      <p>Industry-level synthesis of the 5&ndash;6 stable value drivers. For each: plain-language restatement of the statistical finding, underlying economic mechanism, illustrative firms, and boundary conditions.</p>
+
+      <h4>VD-P2: Platform Strategic Menu</h4>
+      <p>Organized <strong>by value driver</strong>, not by peer. For each stable driver: enumerate proven plays, which peers executed them, observed metric impact, prerequisites, risks. The structure presents evidence without recommending specific plays.</p>
+
+      <h4>VD-P3: Asset Class Playbooks</h4>
+      <p>Parallel structure at the vertical level, drawing on VD-D2 findings.</p>
+
+      <h4>VD-P4: Final Navigable Report</h4>
+      <p>Two-layer HTML with sidebar navigation, collapsible sections, data tables, statistical appendix, and mandatory disclaimers. See Section 8 for full output design specification.</p>
+    </div>
+
+    <!-- 4. Statistical Methodology -->
+    <div class="section" id="statistical-methodology">
+      <h2>4. Statistical Methodology</h2>
+
+      <h3 id="spearman">4.1 Spearman Rank Correlation</h3>
+      <p>The Spearman rank correlation coefficient (&rho;) measures the strength and direction of the monotonic relationship between two variables. Unlike the Pearson coefficient, it does not assume linearity, normality, or interval-scale data. It operates on rank-transformed data, making it robust to outliers and appropriate for the ordinal comparisons inherent in small-sample cross-sectional analysis.</p>
+
+      <div class="formula">
+        &rho; = 1 &minus; (6 &sum; d<sub>i</sub>&sup2;) / (n(n&sup2; &minus; 1))
+      </div>
+
+      <p>where d<sub>i</sub> is the difference between ranks of paired observations and n is the number of observations.</p>
+
+      <table>
+        <thead><tr><th>|&rho;| Range</th><th>Interpretation</th></tr></thead>
+        <tbody>
+          <tr><td>0.7 &ndash; 1.0</td><td>Strong monotonic relationship</td></tr>
+          <tr><td>0.5 &ndash; 0.7</td><td>Moderate monotonic relationship</td></tr>
+          <tr><td>0.3 &ndash; 0.5</td><td>Weak monotonic relationship</td></tr>
+          <tr><td>0.0 &ndash; 0.3</td><td>Negligible relationship</td></tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <p><strong>Why Spearman over Pearson?</strong> (1) Non-parametric: no assumption of bivariate normality, which cannot be verified with N&asymp;25. (2) Robust to outliers: BX and KKR are 5&ndash;10&times; larger than median peers; Pearson would be disproportionately influenced by these observations. (3) No linearity assumption: the relationship between FRE margin and P/FRE may be monotonic but non-linear (e.g., concave &mdash; diminishing marginal reward for very high margins).</p>
+      </div>
+
+      <h3 id="multiple-comparisons">4.2 Multiple Comparison Correction</h3>
+      <p>With approximately 15 driver metrics and 3 valuation multiples, the analysis tests ~45 pairwise correlations. Without correction, the probability of at least one false positive at &alpha; = 0.05 would exceed 90%. The Bonferroni method is applied:</p>
+
+      <div class="formula">
+        &alpha;<sub>adjusted</sub> = &alpha; / k = 0.05 / 45 &asymp; 0.0011
+      </div>
+
+      <p>This is deliberately conservative. The Benjamini-Hochberg False Discovery Rate (FDR) procedure would be less conservative and potentially more powerful, but for a small-N analysis where false positives carry high strategic cost, the Bonferroni approach is preferred. The corrected threshold is reported alongside uncorrected p-values for transparency.</p>
+
+      <table>
+        <thead><tr><th>Confidence Class</th><th>Criterion</th></tr></thead>
+        <tbody>
+          <tr><td><strong>High confidence</strong></td><td>p &lt; 0.01 after Bonferroni correction</td></tr>
+          <tr><td><strong>Moderate confidence</strong></td><td>p &lt; 0.05 after correction</td></tr>
+          <tr><td><strong>Suggestive</strong></td><td>p &lt; 0.10 after correction</td></tr>
+          <tr><td><strong>Not significant</strong></td><td>p &ge; 0.10 after correction</td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="bootstrap">4.3 Bootstrap Confidence Intervals</h3>
+      <p>For each Spearman &rho; estimate, 1,000 bootstrap samples are drawn with replacement from the original N observations. The &rho; is recalculated on each bootstrap sample, producing an empirical distribution from which the 2.5th and 97.5th percentiles are extracted as the 95% confidence interval.</p>
+
+      <div class="info-box">
+        <p><strong>Interpretation:</strong> With N&asymp;25, bootstrap confidence intervals will be wide. A correlation of &rho; = 0.6 might have a 95% CI of [0.25, 0.82]. This imprecision is a feature, not a bug &mdash; it honestly represents the uncertainty inherent in small-sample analysis. Confidence intervals that include zero are flagged regardless of point estimate magnitude.</p>
+      </div>
+
+      <h3 id="sensitivity">4.4 Sensitivity Analysis</h3>
+      <h4>Leave-One-Out Analysis</h4>
+      <p>For each statistically significant correlation, recompute &rho; N times, each time excluding one firm. If the removal of any single firm (particularly BX or KKR, which are scale outliers) causes the correlation to drop below the significance threshold, the finding is flagged as &ldquo;fragile &mdash; dependent on [firm name].&rdquo;</p>
+
+      <h4>Temporal Stability</h4>
+      <p>Where two years of data are available (FY1 and FY2), compute correlations on each year independently. A driver that appears in both periods is more credible than one present in only one. Drivers present in FY1 but not FY2 are flagged as &ldquo;potentially regime-dependent.&rdquo;</p>
+
+      <h3 id="multicollinearity">4.5 Multicollinearity Assessment</h3>
+      <p>Compute the pairwise Spearman correlation matrix among all top-ranked stable drivers. If two drivers exhibit |&rho;| &gt; 0.7 with each other, they likely represent the same underlying signal (e.g., FEAUM growth and DE/share growth may both proxy for &ldquo;franchise momentum&rdquo;).</p>
+
+      <p>When collinear pairs are identified: (1) document both metrics and their inter-correlation; (2) retain the metric with stronger theoretical grounding as a direct causal antecedent of valuation; (3) report the excluded metric as an &ldquo;alternative proxy&rdquo; in the appendix.</p>
+
+      <h3 id="disclaimers">4.6 Limitations and Mandatory Disclaimers</h3>
+      <p>The following disclaimers are mandatory in all outputs and must be reproduced verbatim in the final report:</p>
+
+      <div class="info-box warning">
+        <p><strong>1. Correlation does not imply causation.</strong> A positive correlation between a metric and a valuation multiple may reflect reverse causation (premium-valued firms can afford to invest in activities that improve the metric), common-cause confounding, or chance. Example: high FRE margin may not <em>cause</em> a P/FRE premium; instead, both may be driven by an unobserved factor such as management quality or brand strength.</p>
+        <p><strong>2. Survivorship bias.</strong> The universe consists of currently listed firms. Firms that were delisted, acquired, or failed are excluded, potentially biasing the analysis toward characteristics associated with survival rather than value creation.</p>
+        <p><strong>3. Point-in-time limitation.</strong> The analysis reflects conditions as of the most recent data collection period. Correlations may not be stable across market cycles &mdash; credit-heavy managers may trade at a premium during high-rate environments but not during credit crises.</p>
+        <p><strong>4. Small-N limitation.</strong> With approximately 25 observations, statistical power is limited. Confidence intervals are wide. Findings should be treated as generating hypotheses for further investigation, not as definitive causal claims.</p>
+        <p><strong>5. Endogeneity.</strong> Several candidate drivers may be simultaneously caused by and causally related to valuation multiples. High valuations enable cheaper equity issuance, which enables M&amp;A, which grows AUM. No instrumental variable analysis is conducted.</p>
+        <p><strong>6. FRE definition heterogeneity.</strong> Fee-Related Earnings is not a GAAP or IFRS measure. Firm-specific definitions vary in their treatment of depreciation, amortization, transaction fees, and certain compensation items. Correlations involving FRE-based metrics are subject to measurement error.</p>
+      </div>
+    </div>
+
+    <!-- 5. Agent Architecture -->
+    <div class="section" id="agent-architecture">
+      <h2>5. Agent Architecture</h2>
+
+      <table>
+        <thead><tr><th>Agent</th><th>Pipeline Stages</th><th>Track / Phase</th></tr></thead>
+        <tbody>
+          <tr><td><code>universe-scout</code></td><td>VD-A0</td><td>Track A</td></tr>
+          <tr><td><code>metric-architect</code></td><td>VD-A1, VD-A3, VD-A4, VD-A4b, VD-A5</td><td>Track A</td></tr>
+          <tr><td><code>data-collector</code></td><td>VD-A2</td><td>Track A</td></tr>
+          <tr><td><code>source-mapper</code></td><td>VD-B0</td><td>Track B</td></tr>
+          <tr><td><code>strategy-extractor</code></td><td>VD-B1, VD-B2</td><td>Track B</td></tr>
+          <tr><td><code>convergence-analyst</code></td><td>VD-C1</td><td>Convergence</td></tr>
+          <tr><td><code>deep-dive-analyst</code></td><td>VD-D1, VD-D2</td><td>Phase 2</td></tr>
+          <tr><td><code>playbook-synthesizer</code></td><td>VD-P1, VD-P2, VD-P3</td><td>Phase 3</td></tr>
+          <tr><td><code>report-builder</code></td><td>VD-P4</td><td>Phase 3</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Execution Waves</h3>
+      <table>
+        <thead><tr><th>Wave</th><th>Mode</th><th>Agents</th><th>Stages</th><th>Quality Gate</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Parallel</td><td>universe-scout, source-mapper, metric-architect</td><td>VD-A0, VD-A1, VD-B0</td><td>&ge;20 firms; &ge;3 sources per qual peer; consistent taxonomy</td></tr>
+          <tr><td>2</td><td>Parallel</td><td>data-collector, strategy-extractor</td><td>VD-A2, VD-B1, VD-B2</td><td>&ge;60% metric coverage for &ge;80% of firms; &ge;2 actions per peer</td></tr>
+          <tr><td>3</td><td>Sequential</td><td>metric-architect, convergence-analyst</td><td>VD-A3 &rarr; A4 &rarr; A4b &rarr; A5 &rarr; C1</td><td>Final set 9&ndash;12 firms; all stats documented; non-obvious peers resolved</td></tr>
+          <tr><td>4</td><td>Parallel</td><td>deep-dive-analyst (&times;2)</td><td>VD-D1, VD-D2</td><td>Profiles consistent; insights evidence-grounded</td></tr>
+          <tr><td>5</td><td>Sequential</td><td>playbook-synthesizer, report-builder</td><td>VD-P1 &rarr; P2 &rarr; P3 &rarr; P4</td><td>All disclaimers present; navigation functional; cross-references valid</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 6. Data Model -->
+    <div class="section" id="data-model">
+      <h2>6. Data Model</h2>
+
+      <h3>Output Files</h3>
+      <table>
+        <thead><tr><th>File</th><th>Stage</th><th>Format</th></tr></thead>
+        <tbody>
+          <tr><td><code>peer_vd_a0_universe.json</code></td><td>VD-A0</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_a1_metrics.json</code></td><td>VD-A1</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_a2_raw_data.json</code></td><td>VD-A2</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_a3_standardized.json</code></td><td>VD-A3</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_a4_correlations.json</code></td><td>VD-A4</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_a4b_methodology.md</code></td><td>VD-A4b</td><td>Markdown</td></tr>
+          <tr><td><code>peer_vd_a5_driver_ranking.json</code></td><td>VD-A5</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_b0_sources.json</code></td><td>VD-B0</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_b1_strategies.json</code></td><td>VD-B1</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_b2_actions.json</code></td><td>VD-B2</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_c1_final_set.json</code></td><td>VD-C1</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_d1_platform_deepdives.json</code></td><td>VD-D1</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_d2_asset_class_deepdives.json</code></td><td>VD-D2</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_p1_value_principles.md</code></td><td>VD-P1</td><td>Markdown</td></tr>
+          <tr><td><code>peer_vd_p2_platform_playbook.json</code></td><td>VD-P2</td><td>JSON</td></tr>
+          <tr><td><code>peer_vd_p3_asset_class_playbooks.json</code></td><td>VD-P3</td><td>JSON</td></tr>
+          <tr><td><code>final_report.html</code></td><td>VD-P4</td><td>HTML</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Identifier Scheme</h3>
+      <table>
+        <thead><tr><th>Pattern</th><th>Entity</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><code>FIRM-NNN</code></td><td>Firm in VD-A0 universe</td><td>FIRM-001 (Blackstone)</td></tr>
+          <tr><td><code>MET-VD-NNN</code></td><td>Metric in VD-A1 taxonomy</td><td>MET-VD-001 (FEAUM)</td></tr>
+          <tr><td><code>DP-NNN</code></td><td>Raw data point</td><td>DP-0042</td></tr>
+          <tr><td><code>COR-NNN</code></td><td>Correlation result</td><td>COR-007 (FEAUM CAGR &times; P/FRE)</td></tr>
+          <tr><td><code>DVR-NNN</code></td><td>Stable value driver</td><td>DVR-001 (FRE margin)</td></tr>
+          <tr><td><code>PS-VD-NNN</code></td><td>Source document</td><td>PS-VD-015</td></tr>
+          <tr><td><code>ACT-VD-NNN</code></td><td>Peer strategic action</td><td>ACT-VD-033</td></tr>
+          <tr><td><code>PLAY-NNN</code></td><td>Strategic play</td><td>PLAY-007</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 7. Source Strategy -->
+    <div class="section" id="source-strategy">
+      <h2>7. Source Strategy</h2>
+
+      <p>All analysis is conducted from publicly available information by default. A filesystem drop zone at <code>data/raw/pax/</code> accommodates proprietary or subscriber-gated data when available.</p>
+
+      <table>
+        <thead><tr><th>Source Type</th><th>Examples</th><th>Bias Tag</th><th>Accessibility</th></tr></thead>
+        <tbody>
+          <tr><td>Annual reports</td><td>20-F, 10-K</td><td><code>regulatory-filing</code></td><td>Public (SEC EDGAR)</td></tr>
+          <tr><td>Periodic reports</td><td>6-K, 10-Q</td><td><code>regulatory-filing</code></td><td>Public</td></tr>
+          <tr><td>Investor Day materials</td><td>Slides, transcripts</td><td><code>company-produced</code></td><td>Usually public (IR sites)</td></tr>
+          <tr><td>Earnings call transcripts</td><td>Q&amp;A and prepared remarks</td><td><code>company-produced</code></td><td>Public / some paywalled</td></tr>
+          <tr><td>Press releases</td><td>M&amp;A, fund closes</td><td><code>company-produced</code></td><td>Public</td></tr>
+          <tr><td>Industry reports</td><td>Preqin, Bain, McKinsey</td><td><code>industry-report</code></td><td>Partially public</td></tr>
+          <tr><td>Sell-side research</td><td>Initiation, thematic</td><td><code>third-party-analyst</code></td><td>Paywalled (drop zone)</td></tr>
+          <tr><td>Pension fund board docs</td><td>CalPERS, CalSTRS memos</td><td><code>third-party-analyst</code></td><td>Public record</td></tr>
+          <tr><td>Job postings</td><td>LinkedIn, firm careers</td><td><code>company-produced</code></td><td>Public</td></tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <p><strong>Bias mitigation requirement:</strong> For every strategic claim, the analyst must identify whether the claim rests predominantly on company-produced, regulatory, or independent third-party sources. Claims resting solely on company-produced sources are explicitly qualified. No claim is treated as established fact unless corroborated by at least one non-company-produced source.</p>
+      </div>
+    </div>
+
+    <!-- 8. Output Design -->
+    <div class="section" id="output-design">
+      <h2>8. Output Design</h2>
+
+      <p>The final report is a two-layer, navigable HTML document. Each layer is independently accessible to serve different consumer groups within the organization.</p>
+
+      <table>
+        <thead><tr><th>Layer</th><th>Content</th><th>Consumer</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Layer 1: Platform</strong></td><td>Executive summary, methodology, value driver findings, firm-level strategies, platform strategic menu</td><td>C-suite, Investor Relations, Corporate Strategy</td></tr>
+          <tr><td rowspan="5"><strong>Layer 2: Asset Class</strong></td><td>Credit vertical deep-dive &amp; playbook</td><td>Credit BU leadership</td></tr>
+          <tr><td>Private Equity vertical deep-dive &amp; playbook</td><td>PE BU leadership</td></tr>
+          <tr><td>Infrastructure vertical deep-dive &amp; playbook</td><td>Infrastructure BU leadership</td></tr>
+          <tr><td>Real Estate vertical deep-dive &amp; playbook</td><td>RE BU leadership</td></tr>
+          <tr><td>GP-Led Solutions vertical deep-dive &amp; playbook</td><td>Solutions BU leadership</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Technical features:</strong> Sidebar navigation with two-layer structure; collapsible sections for deep content; sortable data tables; statistical appendix with correlation matrices and confidence intervals; mandatory disclaimers section; print-friendly layout.</p>
+    </div>
+
+    <!-- 9. Key Design Decisions -->
+    <div class="section" id="design-decisions">
+      <h2>9. Key Design Decisions</h2>
+
+      <table>
+        <thead><tr><th>#</th><th>Decision</th><th>Rationale</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Hybrid over pure regression</td><td>N&asymp;25 makes regression statistically unreliable. Spearman correlation + qualitative deep-dives is more robust and produces interpretable output for a strategic audience.</td></tr>
+          <tr><td>2</td><td>Three valuation multiples</td><td>&ldquo;Stable drivers&rdquo; must be robust across P/FRE, P/DE, and EV/FEAUM. Each captures a different facet of value; single-multiple analysis risks artifacts.</td></tr>
+          <tr><td>3</td><td>Peer-centric framing</td><td>Studying peers on their own terms avoids confirmation bias. The playbook is built from evidence, not from PAX&rsquo;s prior commitments.</td></tr>
+          <tr><td>4</td><td>Two-tier peer structure</td><td>~25 for statistical validity; 9&ndash;12 for qualitative depth. Track A refines the qualitative set at convergence.</td></tr>
+          <tr><td>5</td><td>Parallel tracks in Phase 1</td><td>Qualitative fieldwork does not wait for quantitative findings. Reduces elapsed time; ensures profiles exist before VD-C1.</td></tr>
+          <tr><td>6</td><td>Market structure metrics excluded</td><td>Trading volume and passive ownership are consequences of investor behavior, not strategic levers. Including them would identify correlations with no actionable implications.</td></tr>
+          <tr><td>7</td><td>HHI for diversification</td><td>Captures relative weight across asset classes, not merely presence. A firm with 80% in one class and 20% in another is not &ldquo;diversified&rdquo; in the same way as 20%/20%/20%/20%/20%.</td></tr>
+          <tr><td>8</td><td>Permanent capital as driver candidate</td><td>Perpetual and open-end capital reduces fundraising treadmill, smooths earnings, and the market has increasingly rewarded it with valuation premiums.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 10. Appendices -->
+    <div class="section" id="appendices">
+      <h2>10. Appendices</h2>
+
+      <h3 id="appendix-a">Appendix A: Full Metric Definitions</h3>
+      <div class="collapsible">
+        <div class="collapsible-header">Expand metric definitions</div>
+        <div class="collapsible-body">
+          <table>
+            <thead><tr><th>Metric</th><th>Definition</th><th>Primary Source</th></tr></thead>
+            <tbody>
+              <tr><td>DE/share</td><td>Distributable Earnings divided by diluted share count. DE typically defined as FRE + realized performance income + realized investment income &minus; taxes &minus; preferred distributions.</td><td>Earnings release</td></tr>
+              <tr><td>EPS (GAAP)</td><td>Net income attributable to common shareholders divided by diluted share count per ASC 260.</td><td>10-K / 20-F</td></tr>
+              <tr><td>FEAUM</td><td>Fee-Earning Assets Under Management. AUM on which the firm earns management fees. Excludes AUM on which fees have not yet been activated (e.g., unfunded commitments in drawdown funds past investment period).</td><td>Earnings supplement</td></tr>
+              <tr><td>Net organic FEAUM growth</td><td>(New subscriptions + commitments activated &minus; redemptions &minus; expirations) / Beginning FEAUM. Excludes M&amp;A and market appreciation.</td><td>Earnings release / supplement</td></tr>
+              <tr><td>Asset class HHI</td><td>&sum;(s<sub>i</sub>&sup2;) &times; 10,000, where s<sub>i</sub> is the share of FEAUM in asset class i. Range: 10,000 (single class) to ~1,667 (six equal classes).</td><td>Calculated from FEAUM breakdown</td></tr>
+              <tr><td>Permanent capital %</td><td>FEAUM in perpetual, evergreen, or open-end vehicles (no contractual termination date) as a percentage of total FEAUM.</td><td>Earnings supplement / 10-K</td></tr>
+              <tr><td>FRE margin</td><td>Fee-Related Earnings / Management Fee Revenue. Measures operating efficiency of the fee-based business excluding carry and investment income.</td><td>Earnings release</td></tr>
+              <tr><td>Comp-to-revenue ratio</td><td>Total compensation and benefits / Total management fee revenue. Lower ratio indicates greater operating leverage.</td><td>10-K / earnings release</td></tr>
+              <tr><td>Mgmt fee rate</td><td>FRE / FEAUM, expressed in basis points. Proxy for average management fee charged across all strategies.</td><td>Calculated</td></tr>
+              <tr><td>Performance fee share</td><td>Performance/incentive fees as a percentage of total revenue (management fees + performance fees + investment income).</td><td>Earnings release</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 id="appendix-b">Appendix B: Peer Universe Candidates</h3>
+      <div class="collapsible">
+        <div class="collapsible-header">Expand peer universe</div>
+        <div class="collapsible-body">
+          <table>
+            <thead><tr><th>Ticker</th><th>Firm</th><th>Region</th><th>Expected Class</th></tr></thead>
+            <tbody>
+              <tr><td>BX</td><td>Blackstone Inc.</td><td>US</td><td>pure-play-alt</td></tr>
+              <tr><td>KKR</td><td>KKR &amp; Co. Inc.</td><td>US</td><td>pure-play-alt</td></tr>
+              <tr><td>APO</td><td>Apollo Global Management</td><td>US</td><td>majority-alt</td></tr>
+              <tr><td>ARES</td><td>Ares Management Corp.</td><td>US</td><td>pure-play-alt</td></tr>
+              <tr><td>BAM</td><td>Brookfield Asset Management</td><td>US/Canada</td><td>pure-play-alt</td></tr>
+              <tr><td>OWL</td><td>Blue Owl Capital</td><td>US</td><td>pure-play-alt</td></tr>
+              <tr><td>TPG</td><td>TPG Inc.</td><td>US</td><td>pure-play-alt</td></tr>
+              <tr><td>CG</td><td>The Carlyle Group</td><td>US</td><td>pure-play-alt</td></tr>
+              <tr><td>BN</td><td>Brookfield Corporation</td><td>Canada</td><td>majority-alt</td></tr>
+              <tr><td>STEP</td><td>StepStone Group</td><td>US</td><td>pure-play-alt</td></tr>
+              <tr><td>HLN</td><td>Hamilton Lane</td><td>US</td><td>pure-play-alt</td></tr>
+              <tr><td>AMK</td><td>AssetMark Financial</td><td>US</td><td>partial-alt</td></tr>
+              <tr><td>VCTR</td><td>Victory Capital Holdings</td><td>US</td><td>partial-alt</td></tr>
+              <tr><td>EQT</td><td>EQT AB</td><td>Sweden</td><td>pure-play-alt</td></tr>
+              <tr><td>PGHN</td><td>Partners Group Holding</td><td>Switzerland</td><td>pure-play-alt</td></tr>
+              <tr><td>ICP</td><td>Intermediate Capital Group</td><td>UK</td><td>pure-play-alt</td></tr>
+              <tr><td>MAN</td><td>Man Group plc</td><td>UK</td><td>majority-alt</td></tr>
+              <tr><td>PAX</td><td>Patria Investments Limited</td><td>LatAm</td><td>pure-play-alt</td></tr>
+            </tbody>
+          </table>
+          <p><em>Additional candidates to be evaluated during VD-A0: BSIG, IVZ (alts segment), BEN (alts segment), HLNE, and non-US-listed managers identified during research.</em></p>
+        </div>
+      </div>
+
+      <h3 id="appendix-c">Appendix C: Statistical Formulas</h3>
+      <div class="collapsible">
+        <div class="collapsible-header">Expand statistical formulas</div>
+        <div class="collapsible-body">
+          <h4>Spearman Rank Correlation Coefficient</h4>
+          <div class="formula">&rho;<sub>s</sub> = 1 &minus; (6 &sum;<sub>i=1</sub><sup>n</sup> d<sub>i</sub>&sup2;) / (n(n&sup2; &minus; 1))</div>
+          <p>where d<sub>i</sub> = rank(X<sub>i</sub>) &minus; rank(Y<sub>i</sub>) and n = number of paired observations.</p>
+
+          <h4>Bonferroni Corrected Significance Threshold</h4>
+          <div class="formula">&alpha;<sub>Bonferroni</sub> = &alpha; / k</div>
+          <p>where &alpha; = 0.05 (family-wise error rate) and k = number of simultaneous tests (&asymp;45).</p>
+
+          <h4>Herfindahl-Hirschman Index</h4>
+          <div class="formula">HHI = &sum;<sub>i=1</sub><sup>N</sup> s<sub>i</sub>&sup2; &times; 10,000</div>
+          <p>where s<sub>i</sub> is the proportional share of FEAUM in asset class i. Range: 10,000/N (equal distribution) to 10,000 (single class).</p>
+
+          <h4>Bootstrap 95% Confidence Interval</h4>
+          <div class="formula">CI<sub>95</sub> = [&rho;*<sub>(25)</sub>, &rho;*<sub>(975)</sub>]</div>
+          <p>where &rho;*<sub>(k)</sub> is the k-th ordered value from B = 1,000 bootstrap replications of &rho;<sub>s</sub>.</p>
+        </div>
+      </div>
+
+      <h3 id="appendix-d">Appendix D: Glossary</h3>
+      <div class="collapsible">
+        <div class="collapsible-header">Expand glossary</div>
+        <div class="collapsible-body">
+          <table>
+            <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+            <tbody>
+              <tr><td><strong>AUM</strong></td><td>Assets Under Management. Total capital managed or advised by the firm.</td></tr>
+              <tr><td><strong>FEAUM</strong></td><td>Fee-Earning Assets Under Management. Subset of AUM on which management fees are currently charged.</td></tr>
+              <tr><td><strong>FRE</strong></td><td>Fee-Related Earnings. Non-GAAP measure of profitability from recurring management fees, excluding performance fees, investment income, and unrealized gains.</td></tr>
+              <tr><td><strong>DE</strong></td><td>Distributable Earnings. FRE + realized performance income + realized investment income &minus; taxes. Represents cash earnings available for distribution to shareholders.</td></tr>
+              <tr><td><strong>HHI</strong></td><td>Herfindahl-Hirschman Index. Measure of market concentration; here applied to asset class diversification within a firm.</td></tr>
+              <tr><td><strong>Permanent Capital</strong></td><td>AUM in vehicles with no contractual termination date (perpetual, evergreen, open-end structures).</td></tr>
+              <tr><td><strong>GPMS</strong></td><td>Global Private Market Solutions. Multi-strategy platform offering primaries, secondaries, and co-investments.</td></tr>
+              <tr><td><strong>CLO</strong></td><td>Collateralized Loan Obligation. Structured credit vehicle pooling leveraged loans.</td></tr>
+              <tr><td><strong>PERE</strong></td><td>Private Equity Real Estate. Opportunistic/value-add real estate investment strategies.</td></tr>
+              <tr><td><strong>SMA</strong></td><td>Separately Managed Account. Customized, single-LP investment vehicle.</td></tr>
+              <tr><td><strong>LP</strong></td><td>Limited Partner. Investor in a fund managed by the alternative asset manager (the GP).</td></tr>
+              <tr><td><strong>GP</strong></td><td>General Partner. The fund manager entity; in this context, the alternative asset manager itself.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px; color: var(--text-light); text-align: center;">
+      <p>Valuation Driver Analysis &mdash; Methodology Document v1.0 &mdash; March 2026</p>
+      <p>Prepared for Patria Investments Limited (NASDAQ: PAX) &mdash; Internal Use Only</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- JavaScript: Collapsible sections and sidebar scroll tracking -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Collapsible sections
+  document.querySelectorAll('.collapsible-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+      this.classList.toggle('collapsed');
+      var body = this.nextElementSibling;
+      body.classList.toggle('hidden');
+    });
+  });
+
+  // Sidebar active tracking
+  var links = document.querySelectorAll('.sidebar nav a');
+  var sections = [];
+  links.forEach(function(link) {
+    var id = link.getAttribute('href');
+    if (id && id.startsWith('#')) {
+      var el = document.querySelector(id);
+      if (el) sections.push({ el: el, link: link });
+    }
+  });
+
+  function updateActive() {
+    var scrollPos = window.scrollY + 120;
+    var current = null;
+    for (var i = sections.length - 1; i >= 0; i--) {
+      if (sections[i].el.offsetTop <= scrollPos) {
+        current = sections[i];
+        break;
+      }
+    }
+    links.forEach(function(l) { l.classList.remove('active'); });
+    if (current) current.link.classList.add('active');
+  }
+
+  window.addEventListener('scroll', updateActive);
+  updateActive();
+
+  // Smooth scroll
+  links.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var id = this.getAttribute('href');
+      if (id && id.startsWith('#')) {
+        e.preventDefault();
+        var target = document.querySelector(id);
+        if (target) {
+          window.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

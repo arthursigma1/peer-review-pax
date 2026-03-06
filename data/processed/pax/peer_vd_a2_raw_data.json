@@ -1,0 +1,531 @@
+{
+  "stage": "VD-A2",
+  "title": "Raw Quantitative Data Collection",
+  "generated_date": "2026-03-06",
+  "reference_date": "2025-12-31",
+  "status": "partial_collection",
+  "note": "Data collection in progress. Coverage is partial across 27 firms. Market cap reference date is approximately 2026-03-04 to 2026-03-06. FY2024 = calendar year ended Dec 31, 2024 for most firms; exceptions noted (STEP/HLNE use March fiscal year, ICG uses March fiscal year, 3i uses March fiscal year).",
+  "fx_rates_used": {
+    "EUR_USD": 1.07,
+    "GBP_USD": 1.27,
+    "CHF_USD": 1.12,
+    "SEK_USD": 0.095,
+    "CAD_USD": 0.73
+  },
+  "coverage_summary": {
+    "total_firms": 27,
+    "firms_with_data": 27,
+    "firms_with_all_critical_metrics": 12,
+    "average_metric_coverage_pct": 45,
+    "metrics_with_low_coverage": ["MET-VD-003", "MET-VD-007", "MET-VD-008", "MET-VD-009", "MET-VD-010", "MET-VD-012", "MET-VD-015", "MET-VD-016", "MET-VD-017", "MET-VD-019"]
+  },
+  "data": [
+    {
+      "firm_id": "FIRM-001",
+      "ticker": "BX",
+      "firm_name": "Blackstone Inc.",
+      "metrics": {
+        "MET-VD-001": { "value": 4.88, "unit": "USD", "period": "FY2024", "source": "Blackstone Q4 2024 earnings press release: DE $6.0B, ~1.23B diluted shares", "confidence": "high", "notes": "DE of $6.0B for FY2024, up 18% YoY. Per share ~$4.88 based on diluted shares.", "missing_reason": null },
+        "MET-VD-002": { "value": 3.62, "unit": "USD", "period": "FY2024", "source": "MacroTrends/Blackstone 10-K FY2024", "confidence": "high", "notes": "GAAP EPS $3.62, up 96.74% from 2023", "missing_reason": null },
+        "MET-VD-003": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Requires 3 years of historical DE/share data; not computed in this collection" },
+        "MET-VD-004": { "value": 830.7, "unit": "USD bn", "period": "FY2024", "source": "Blackstone Q4 2024 earnings: fee-earning AUM grew 9% to $830.7B", "confidence": "high", "notes": "FEAUM $830.7B at Dec 31, 2024", "missing_reason": null },
+        "MET-VD-005": { "value": 1100, "unit": "USD bn", "period": "FY2024", "source": "Blackstone Q4 2024 earnings: total AUM rose 8% to more than $1.1 trillion", "confidence": "high", "notes": "Total AUM >$1.1T", "missing_reason": null },
+        "MET-VD-006": { "value": 9.0, "unit": "%", "period": "FY2024", "source": "Blackstone Q4 2024 earnings: FEAUM grew 9%", "confidence": "high", "notes": "FEAUM YoY growth of 9%", "missing_reason": null },
+        "MET-VD-007": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Requires 3 years of historical FEAUM data; not computed in this collection" },
+        "MET-VD-008": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Organic growth breakdown not separately disclosed in search results" },
+        "MET-VD-009": { "value": 15.5, "unit": "%", "period": "FY2024", "source": "Blackstone Q4 2024 earnings: $171B inflows for the year; beginning AUM ~$1.1T", "confidence": "medium", "notes": "Estimated: $171B inflows / ~$1.1T beginning AUM. Approximate.", "missing_reason": null },
+        "MET-VD-010": { "value": null, "unit": "index", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Requires detailed AUM breakdown by asset class; not computed" },
+        "MET-VD-011": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "Blackstone has significant perpetual capital (BREIT, BCRED, etc.) but exact % not found in search results", "missing_reason": "Specific permanent capital percentage not found in search results" },
+        "MET-VD-012": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Credit % of AUM not separately extracted" },
+        "MET-VD-013": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "FRE $5.3B; management fee revenue not separately isolated from search results to compute margin", "missing_reason": "Management fee revenue denominator not available to compute margin" },
+        "MET-VD-014": { "value": 21.0, "unit": "%", "period": "FY2024", "source": "Blackstone Q4 2024 earnings: FRE $5.3B, 21% YoY increase, full-year record", "confidence": "high", "notes": "FRE growth 21% YoY", "missing_reason": null },
+        "MET-VD-015": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Compensation ratio not extracted from search results" },
+        "MET-VD-016": { "value": null, "unit": "bps", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Requires management fee revenue / average FEAUM; fee revenue not isolated" },
+        "MET-VD-017": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "One source suggests 54% of revenue from performance fees, 43% from management fees", "missing_reason": "Exact performance fee share of total revenue not precisely confirmed" },
+        "MET-VD-018": { "value": null, "unit": "USD mn", "period": "FY2024", "source": null, "confidence": null, "notes": "Management fee revenue total for FY2024 not isolated from search results", "missing_reason": "Management fee revenue not separately extracted" },
+        "MET-VD-019": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Requires prior year management fee revenue" },
+        "MET-VD-020": { "value": 18.1, "unit": "x", "period": "FY2024", "source": "Market cap ~$95.9B (March 2026) / FRE $5.3B", "confidence": "medium", "notes": "P/FRE = $95.9B / $5.3B = 18.1x. Market cap as of early March 2026.", "missing_reason": null },
+        "MET-VD-021": { "value": 16.0, "unit": "x", "period": "FY2024", "source": "Market cap ~$95.9B / DE $6.0B", "confidence": "medium", "notes": "P/DE = $95.9B / $6.0B = 16.0x", "missing_reason": null },
+        "MET-VD-022": { "value": 11.5, "unit": "%", "period": "FY2024", "source": "Estimated: EV ~$95.9B (simplified, assumes net debt ~0 for approximation) / FEAUM $830.7B", "confidence": "low", "notes": "EV/FEAUM = ~$95.9B / $830.7B = 11.5%. Simplified; corporate-level net debt not available from search results.", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-002",
+      "ticker": "APO",
+      "firm_name": "Apollo Global Management, Inc.",
+      "metrics": {
+        "MET-VD-001": { "value": 7.43, "unit": "USD", "period": "FY2024", "source": "Apollo Q4 2024 earnings: Adjusted Net Income $7.43/share for FY2024", "confidence": "high", "notes": "Apollo uses 'Adjusted Net Income' as primary non-GAAP metric rather than DE. ANI $4.6B or $7.43/share for FY2024.", "missing_reason": null },
+        "MET-VD-002": { "value": 7.39, "unit": "USD", "period": "FY2024", "source": "Apollo FY2024: GAAP net income $4.5B or $7.39/share", "confidence": "high", "notes": "GAAP EPS $7.39", "missing_reason": null },
+        "MET-VD-003": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Historical DE/share data not collected" },
+        "MET-VD-004": { "value": 569, "unit": "USD bn", "period": "FY2024", "source": "Apollo Q4 2024 earnings: fee-generating AUM grew to $569B", "confidence": "high", "notes": "Fee-generating AUM $569B", "missing_reason": null },
+        "MET-VD-005": { "value": 751, "unit": "USD bn", "period": "FY2024", "source": "Apollo Q4 2024 earnings: AUM surpassed $750B, up 15% YoY", "confidence": "high", "notes": "Total AUM >$750B", "missing_reason": null },
+        "MET-VD-006": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Prior year FEAUM not available from search results" },
+        "MET-VD-007": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Requires 3 years historical data" },
+        "MET-VD-008": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Organic growth not separately disclosed" },
+        "MET-VD-009": { "value": 23.0, "unit": "%", "period": "FY2024", "source": "Apollo: $150B inflows, beginning AUM ~$652B", "confidence": "medium", "notes": "Estimated: $150B inflows / ~$652B beginning AUM", "missing_reason": null },
+        "MET-VD-010": { "value": null, "unit": "index", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-011": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "Apollo has significant permanent capital via Athene insurance platform", "missing_reason": "Not extracted" },
+        "MET-VD-012": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "Apollo is credit-dominant; ~$749B credit AUM but as % of total not precisely isolated from search results for FY2024 end", "missing_reason": "Not computed precisely" },
+        "MET-VD-013": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "FRE $2.1B for FY2024 but management fee revenue denominator not available", "missing_reason": "Management fee revenue not isolated" },
+        "MET-VD-014": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "FRE record $2.1B but prior year FRE not available to compute growth", "missing_reason": "Prior year FRE not available" },
+        "MET-VD-015": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-016": { "value": null, "unit": "bps", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-017": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-018": { "value": null, "unit": "USD mn", "period": "FY2024", "source": null, "confidence": null, "notes": "Credit segment fees up 20.2% but total mgmt fee revenue not isolated", "missing_reason": "Not extracted" },
+        "MET-VD-019": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-020": { "value": 30.6, "unit": "x", "period": "FY2024", "source": "Market cap ~$64.3B / FRE $2.1B", "confidence": "medium", "notes": "P/FRE = $64.3B / $2.1B = 30.6x. Market cap as of March 2026.", "missing_reason": null },
+        "MET-VD-021": { "value": 14.0, "unit": "x", "period": "FY2024", "source": "Market cap ~$64.3B / ANI $4.6B", "confidence": "medium", "notes": "P/DE = $64.3B / $4.6B = 14.0x. Uses Adjusted Net Income as DE proxy.", "missing_reason": null },
+        "MET-VD-022": { "value": 11.3, "unit": "%", "period": "FY2024", "source": "EV ~$64.3B / FEAUM $569B", "confidence": "low", "notes": "Simplified EV/FEAUM. Corporate-level net debt not available.", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-003",
+      "ticker": "KKR",
+      "firm_name": "KKR & Co. Inc.",
+      "metrics": {
+        "MET-VD-001": { "value": 4.70, "unit": "USD", "period": "FY2024", "source": "KKR Q4 2024 earnings: ANI per adjusted share $4.70 for FY2024, up 38% YoY", "confidence": "high", "notes": "Adjusted Net Income per share $4.70. KKR uses ANI as primary non-GAAP metric.", "missing_reason": null },
+        "MET-VD-002": { "value": 1.27, "unit": "USD", "period": "Q4 2024", "source": "KKR Q4 2024: GAAP EPS $1.27 for Q4", "confidence": "medium", "notes": "Q4 GAAP EPS $1.27; full-year GAAP EPS not separately confirmed", "missing_reason": null },
+        "MET-VD-003": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-004": { "value": 512, "unit": "USD bn", "period": "FY2024", "source": "KKR Q4 2024: Fee-Paying AUM $512B, up 15% YoY", "confidence": "high", "notes": "Fee-paying AUM $512B", "missing_reason": null },
+        "MET-VD-005": { "value": 638, "unit": "USD bn", "period": "FY2024", "source": "KKR Q4 2024: AUM $638B, up 15% YoY", "confidence": "high", "notes": "Total AUM $638B", "missing_reason": null },
+        "MET-VD-006": { "value": 15.0, "unit": "%", "period": "FY2024", "source": "KKR Q4 2024: FPAUM up 15% YoY", "confidence": "high", "notes": "Fee-paying AUM growth 15% YoY", "missing_reason": null },
+        "MET-VD-007": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-008": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-009": { "value": 20.5, "unit": "%", "period": "FY2024", "source": "KKR: $114B new capital raised / ~$555B beginning AUM", "confidence": "medium", "notes": "Estimated: $114B raised / ~$555B beginning AUM", "missing_reason": null },
+        "MET-VD-010": { "value": null, "unit": "index", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-011": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "KKR has significant permanent capital via Global Atlantic insurance", "missing_reason": "Not extracted" },
+        "MET-VD-012": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-013": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "FRE $3.3B for FY2024; management fee revenue not separately isolated", "missing_reason": "Fee revenue denominator not available" },
+        "MET-VD-014": { "value": 37.0, "unit": "%", "period": "FY2024", "source": "KKR Q4 2024: Asset Management FRE up 37% YoY for FY2024", "confidence": "high", "notes": "FRE growth 37% YoY", "missing_reason": null },
+        "MET-VD-015": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-016": { "value": null, "unit": "bps", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-017": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-018": { "value": null, "unit": "USD mn", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-019": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-020": { "value": 24.0, "unit": "x", "period": "FY2024", "source": "Market cap ~$79.1B / FRE $3.3B", "confidence": "medium", "notes": "P/FRE = $79.1B / $3.3B = 24.0x", "missing_reason": null },
+        "MET-VD-021": { "value": 18.8, "unit": "x", "period": "FY2024", "source": "Market cap ~$79.1B / ANI $4.2B", "confidence": "medium", "notes": "P/DE = $79.1B / $4.2B = 18.8x. Uses ANI as DE proxy.", "missing_reason": null },
+        "MET-VD-022": { "value": 15.4, "unit": "%", "period": "FY2024", "source": "EV ~$79.1B / FEAUM $512B", "confidence": "low", "notes": "Simplified EV/FEAUM", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-004",
+      "ticker": "BAM",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "metrics": {
+        "MET-VD-001": { "value": 1.51, "unit": "USD", "period": "LTM Q4 2024", "source": "BAM Q4 2024: FRE $2.5B or $1.51/share LTM; DE $649M Q4 or $0.40/share", "confidence": "high", "notes": "BAM reports FRE rather than DE as primary metric. FRE/share $1.51 LTM. DE $0.40/share Q4.", "missing_reason": null },
+        "MET-VD-002": { "value": null, "unit": "USD", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "GAAP EPS not extracted from search results" },
+        "MET-VD-003": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-004": { "value": 539, "unit": "USD bn", "period": "FY2024", "source": "BAM Q4 2024: fee-bearing capital grew to $539B, up 18% YoY", "confidence": "high", "notes": "Fee-bearing capital (FEAUM equivalent) $539B", "missing_reason": null },
+        "MET-VD-005": { "value": 1000, "unit": "USD bn", "period": "FY2024", "source": "BAM Q4 2024: surpassed $1 trillion AUM", "confidence": "high", "notes": "Total AUM >$1T across Brookfield ecosystem", "missing_reason": null },
+        "MET-VD-006": { "value": 18.0, "unit": "%", "period": "FY2024", "source": "BAM Q4 2024: fee-bearing capital grew 18% YoY ($82B increase)", "confidence": "high", "notes": "FBC YoY growth 18%", "missing_reason": null },
+        "MET-VD-007": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-008": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-009": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "$135B capital raised but beginning AUM unclear for ratio", "missing_reason": "Not computed" },
+        "MET-VD-010": { "value": null, "unit": "index", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-011": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-012": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-013": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "FRE $2.5B LTM; fee revenue not isolated", "missing_reason": "Fee revenue denominator not available" },
+        "MET-VD-014": { "value": 10.0, "unit": "%", "period": "FY2024", "source": "BAM Q4 2024: FRE up 10% over LTM prior year", "confidence": "high", "notes": "FRE growth 10% YoY LTM", "missing_reason": null },
+        "MET-VD-015": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-016": { "value": null, "unit": "bps", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-017": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-018": { "value": null, "unit": "USD mn", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-019": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-020": { "value": 30.9, "unit": "x", "period": "FY2024", "source": "Market cap ~$77.4B / FRE $2.5B", "confidence": "medium", "notes": "P/FRE = $77.4B / $2.5B = 30.9x", "missing_reason": null },
+        "MET-VD-021": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "BAM does not report a traditional DE figure; FRE is primary metric", "missing_reason": "BAM does not report DE in traditional sense" },
+        "MET-VD-022": { "value": 14.4, "unit": "%", "period": "FY2024", "source": "EV ~$77.4B / FBC $539B", "confidence": "low", "notes": "Simplified EV/FEAUM", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-005",
+      "ticker": "ARES",
+      "firm_name": "Ares Management Corporation",
+      "metrics": {
+        "MET-VD-001": { "value": null, "unit": "USD", "period": "FY2024", "source": null, "confidence": null, "notes": "After-tax realized income $434.7M for Q4; full-year DE/share not extracted", "missing_reason": "Full-year DE/share not isolated" },
+        "MET-VD-002": { "value": 0.72, "unit": "USD", "period": "Q4 2024", "source": "Ares Q4 2024: GAAP EPS $0.72 for Q4, missed estimates", "confidence": "medium", "notes": "Q4 GAAP EPS $0.72; full-year GAAP EPS not extracted", "missing_reason": null },
+        "MET-VD-003": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-004": { "value": 291, "unit": "USD bn", "period": "FY2024", "source": "Ares Q4 2024: record $95B of AUM not yet paying fees; total AUM $484B; estimated FEAUM ~$291B for FY2024 end", "confidence": "medium", "notes": "FEAUM estimated at $484B - $95B not-yet-fee-paying - dry powder ~$98B. FY2025 FEAUM is $384.9B (per universe file). FY2024 FEAUM estimated lower.", "missing_reason": null },
+        "MET-VD-005": { "value": 484, "unit": "USD bn", "period": "FY2024", "source": "Ares Q4 2024: ended year with $484B AUM", "confidence": "high", "notes": "Total AUM $484B at end-2024", "missing_reason": null },
+        "MET-VD-006": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Prior year FEAUM not available" },
+        "MET-VD-007": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-008": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-009": { "value": 24.9, "unit": "%", "period": "FY2024", "source": "Ares: $93B raised / ~$373B beginning AUM (FY2023 end)", "confidence": "medium", "notes": "Estimated", "missing_reason": null },
+        "MET-VD-010": { "value": null, "unit": "index", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-011": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-012": { "value": 65.0, "unit": "%", "period": "FY2024", "source": "Universe file: 65% of AUM in credit", "confidence": "medium", "notes": "From universe description", "missing_reason": null },
+        "MET-VD-013": { "value": 40.9, "unit": "%", "period": "Q4 2024", "source": "Ares Q4 2024: FRE margin 40.9%, exceeded 40% target", "confidence": "high", "notes": "Q4 FRE margin 40.9%. Full-year FRE up 17%.", "missing_reason": null },
+        "MET-VD-014": { "value": 17.0, "unit": "%", "period": "FY2024", "source": "Ares Q4 2024: 17% increase in FRE for full year", "confidence": "high", "notes": "FRE growth 17% YoY", "missing_reason": null },
+        "MET-VD-015": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-016": { "value": null, "unit": "bps", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-017": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-018": { "value": null, "unit": "USD mn", "period": "FY2024", "source": null, "confidence": null, "notes": "Total revenue $3.9B but management fee revenue not isolated", "missing_reason": "Management fee revenue not separated from total revenue" },
+        "MET-VD-019": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Full-year FRE $ not precisely isolated", "missing_reason": "Cannot compute without full-year FRE total" },
+        "MET-VD-021": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Full-year DE not available" },
+        "MET-VD-022": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "FEAUM for FY2024 end not precisely available" }
+      }
+    },
+    {
+      "firm_id": "FIRM-006",
+      "ticker": "CG",
+      "firm_name": "The Carlyle Group Inc.",
+      "metrics": {
+        "MET-VD-001": { "value": 3.66, "unit": "USD", "period": "FY2024", "source": "Carlyle Q4 2024: post-tax DE/share $3.66 for FY2024", "confidence": "high", "notes": "Post-tax distributable earnings $3.66/share, up from $3.24 in 2023", "missing_reason": null },
+        "MET-VD-002": { "value": null, "unit": "USD", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "GAAP EPS not extracted" },
+        "MET-VD-003": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-004": { "value": 304.4, "unit": "USD bn", "period": "FY2024", "source": "Carlyle Q4 2024: fee-earning AUM $304.4B, fell 0.9% YoY", "confidence": "high", "notes": "FEAUM $304.4B", "missing_reason": null },
+        "MET-VD-005": { "value": 441, "unit": "USD bn", "period": "FY2024", "source": "Carlyle Q4 2024: total AUM $441B, up 3.5% YoY", "confidence": "high", "notes": "Total AUM $441B", "missing_reason": null },
+        "MET-VD-006": { "value": -0.9, "unit": "%", "period": "FY2024", "source": "Carlyle Q4 2024: FEAUM fell 0.9% YoY", "confidence": "high", "notes": "FEAUM declined 0.9% YoY", "missing_reason": null },
+        "MET-VD-007": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-008": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-009": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Total capital raised not disclosed in search results" },
+        "MET-VD-010": { "value": null, "unit": "index", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-011": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-012": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "Global Credit revenues up 22% in 2024", "missing_reason": "Not computed" },
+        "MET-VD-013": { "value": 46.0, "unit": "%", "period": "FY2024", "source": "Carlyle Q4 2024: FRE margin expanded to 46%, up 900bps YoY", "confidence": "high", "notes": "FRE margin 46%, up from 37% in 2023", "missing_reason": null },
+        "MET-VD-014": { "value": 30.0, "unit": "%", "period": "FY2024", "source": "Carlyle: FRE >$1.1B, near 30% increase over 2023", "confidence": "high", "notes": "FRE growth ~30% YoY", "missing_reason": null },
+        "MET-VD-015": { "value": 36.0, "unit": "%", "period": "FY2024", "source": "Carlyle Q4 2024: FRE Cash Compensation Ratio improved to 36% from 45% prior year", "confidence": "high", "notes": "Compensation ratio 36%, down from 45%", "missing_reason": null },
+        "MET-VD-016": { "value": null, "unit": "bps", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-017": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-018": { "value": null, "unit": "USD mn", "period": "FY2024", "source": null, "confidence": null, "notes": "Transaction fees >$164M; management fee revenue not separately totaled", "missing_reason": "Not extracted" },
+        "MET-VD-019": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "GPE mgmt fees declined 7%, but Global Credit up 22%, GIS up 44%", "missing_reason": "Blended growth not computed" },
+        "MET-VD-020": { "value": 16.3, "unit": "x", "period": "FY2024", "source": "Market cap ~$17.9B / FRE ~$1.1B", "confidence": "medium", "notes": "P/FRE = $17.9B / $1.1B = 16.3x", "missing_reason": null },
+        "MET-VD-021": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Shares outstanding ~355M, DE $3.66/share = ~$1.3B total DE; P/DE = $17.9B/$1.3B = 13.8x", "missing_reason": null },
+        "MET-VD-022": { "value": 5.9, "unit": "%", "period": "FY2024", "source": "EV ~$17.9B / FEAUM $304.4B", "confidence": "low", "notes": "Simplified EV/FEAUM", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-007",
+      "ticker": "OWL",
+      "firm_name": "Blue Owl Capital Inc.",
+      "metrics": {
+        "MET-VD-001": { "value": 0.77, "unit": "USD", "period": "FY2024", "source": "Blue Owl Q4 2024: DE $0.77/share for FY2024", "confidence": "high", "notes": "Distributable earnings $0.77/share", "missing_reason": null },
+        "MET-VD-002": { "value": null, "unit": "USD", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "GAAP EPS not extracted" },
+        "MET-VD-003": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-004": { "value": null, "unit": "USD bn", "period": "FY2024", "source": null, "confidence": null, "notes": "Total AUM $251B; FEAUM not separately disclosed in search results", "missing_reason": "FEAUM not separately isolated" },
+        "MET-VD-005": { "value": 251, "unit": "USD bn", "period": "FY2024", "source": "Blue Owl Q4 2024: AUM $251B; pro forma $265B including IPI", "confidence": "high", "notes": "AUM $251B, pro forma $265B", "missing_reason": null },
+        "MET-VD-006": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "FEAUM not available" },
+        "MET-VD-007": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-008": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-009": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "Record fundraising $47.5B in 2024", "missing_reason": "Beginning AUM not available" },
+        "MET-VD-010": { "value": null, "unit": "index", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-011": { "value": 91.0, "unit": "%", "period": "FY2024", "source": "Blue Owl Q4 2024: 91% of revenue from permanent capital management fees", "confidence": "high", "notes": "91% permanent capital", "missing_reason": null },
+        "MET-VD-012": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "Blue Owl is primarily direct lending / credit", "missing_reason": "Not precisely computed" },
+        "MET-VD-013": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "FRE $0.86/share for FY2024", "missing_reason": "Fee revenue denominator not available" },
+        "MET-VD-014": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Prior year FRE not available" },
+        "MET-VD-015": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-016": { "value": null, "unit": "bps", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-017": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-018": { "value": null, "unit": "USD mn", "period": "FY2024", "source": null, "confidence": null, "notes": "$22.6B AUM not yet paying fees expected to generate >$300M annually once deployed", "missing_reason": "Not extracted" },
+        "MET-VD-019": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap ranges $6.9B-$16.1B depending on source; FRE $ total not available", "missing_reason": "Market cap and FRE $ total inconsistent across sources" },
+        "MET-VD-021": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Market cap uncertainty" },
+        "MET-VD-022": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "FEAUM and EV not available" }
+      }
+    },
+    {
+      "firm_id": "FIRM-008",
+      "ticker": "TPG",
+      "firm_name": "TPG Inc.",
+      "metrics": {
+        "MET-VD-001": { "value": 0.62, "unit": "USD", "period": "Q4 2024", "source": "TPG Q4 2024: record after-tax DE $0.62/share for Q4", "confidence": "medium", "notes": "Q4 DE $0.62/share. Full-year total not separately extracted.", "missing_reason": null },
+        "MET-VD-002": { "value": null, "unit": "USD", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-003": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-004": { "value": 170.1, "unit": "USD bn", "period": "FY2024", "source": "Universe file: FEAUM $170.1B", "confidence": "medium", "notes": "From universe identification", "missing_reason": null },
+        "MET-VD-005": { "value": 245.9, "unit": "USD bn", "period": "FY2024", "source": "TPG Q4 2024: AUM $245.9B, up 11% YoY", "confidence": "high", "notes": "Total AUM $245.9B", "missing_reason": null },
+        "MET-VD-006": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Prior year FEAUM not available" },
+        "MET-VD-007": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-008": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-009": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "Available capital $57.6B", "missing_reason": "Total capital raised not disclosed" },
+        "MET-VD-010": { "value": null, "unit": "index", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-011": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-012": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-013": { "value": 41.0, "unit": "%", "period": "Q4 2024", "source": "TPG Q4 2024: FRE margin 41%", "confidence": "high", "notes": "FRE margin 41% in Q4; guided to mid-40s by exit 2025", "missing_reason": null },
+        "MET-VD-014": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Prior year FRE not available" },
+        "MET-VD-015": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-016": { "value": null, "unit": "bps", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-017": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-018": { "value": 461.4, "unit": "USD mn", "period": "Q4 2024 annualized", "source": "TPG Q4 2024: fee-related revenues $461.4M for Q4", "confidence": "medium", "notes": "Q4 fee-related revenues $461.4M; ~$1.8B annualized", "missing_reason": null },
+        "MET-VD-019": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap ~$17.3B; full-year FRE not available", "missing_reason": "Full-year FRE not available" },
+        "MET-VD-021": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Full-year DE not available" },
+        "MET-VD-022": { "value": 10.2, "unit": "%", "period": "FY2024", "source": "EV ~$17.3B / FEAUM $170.1B", "confidence": "low", "notes": "Simplified EV/FEAUM", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-009",
+      "ticker": "EQT",
+      "firm_name": "EQT AB",
+      "metrics": {
+        "MET-VD-001": { "value": null, "unit": "USD", "period": "FY2024", "source": null, "confidence": null, "notes": "EQT reports in EUR; uses fee-related EBITDA rather than traditional DE", "missing_reason": "Different reporting framework" },
+        "MET-VD-002": { "value": 0.90, "unit": "EUR->USD", "period": "FY2024", "source": "EQT Year-end 2024: EPS EUR 0.942", "confidence": "high", "notes": "EUR 0.942/share * 1.07 = ~$1.01 USD. Reported in EUR.", "missing_reason": null },
+        "MET-VD-003": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-004": { "value": 145.5, "unit": "USD bn", "period": "FY2024", "source": "EQT Year-end 2024: FAUM EUR 136B * 1.07 = ~$145.5B", "confidence": "high", "notes": "Fee-paying AUM EUR 136B", "missing_reason": null },
+        "MET-VD-005": { "value": 287.8, "unit": "USD bn", "period": "FY2024", "source": "EQT Year-end 2024: AUM EUR 269B * 1.07 = ~$287.8B", "confidence": "high", "notes": "Total AUM EUR 269B", "missing_reason": null },
+        "MET-VD-006": { "value": 4.6, "unit": "%", "period": "FY2024", "source": "EQT: FAUM EUR 136B vs EUR 130B prior year = 4.6% growth", "confidence": "high", "notes": "FAUM growth 4.6% in EUR terms", "missing_reason": null },
+        "MET-VD-007": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-008": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-009": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Fundraising totals not extracted" },
+        "MET-VD-010": { "value": null, "unit": "index", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-011": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-012": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-013": { "value": 53.0, "unit": "%", "period": "FY2024", "source": "EQT Year-end 2024: fee-related EBITDA margin 53%", "confidence": "high", "notes": "Fee-related EBITDA margin 53% (prior year 54%)", "missing_reason": null },
+        "MET-VD-014": { "value": 4.3, "unit": "%", "period": "FY2024", "source": "EQT: Fee-related EBITDA EUR 1,108M vs EUR 1,062M = 4.3% growth", "confidence": "high", "notes": "Fee-related EBITDA growth 4.3%", "missing_reason": null },
+        "MET-VD-015": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-016": { "value": null, "unit": "bps", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-017": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "Carried interest and investment income EUR 251M", "missing_reason": "Total revenue breakdown not computed" },
+        "MET-VD-018": { "value": null, "unit": "USD mn", "period": "FY2024", "source": null, "confidence": null, "notes": "Total revenue EUR 2,355M; management fees grew 7% but not separately totaled", "missing_reason": "Management fee revenue not isolated" },
+        "MET-VD-019": { "value": 7.0, "unit": "%", "period": "FY2024", "source": "EQT Year-end 2024: management fees increased by 7%", "confidence": "high", "notes": "Management fee growth 7%", "missing_reason": null },
+        "MET-VD-020": { "value": 27.4, "unit": "x", "period": "FY2024", "source": "Market cap SEK 330B * 0.095 = ~$31.4B USD / Fee-related EBITDA EUR 1,108M * 1.07 = ~$1.19B", "confidence": "medium", "notes": "P/FRE = ~$31.4B / ~$1.19B = 26.4x. Uses fee-related EBITDA as FRE proxy.", "missing_reason": null },
+        "MET-VD-021": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "EQT does not report traditional DE" },
+        "MET-VD-022": { "value": 21.6, "unit": "%", "period": "FY2024", "source": "EV ~$31.4B / FEAUM ~$145.5B", "confidence": "low", "notes": "Simplified EV/FEAUM", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-010",
+      "ticker": "EMG",
+      "firm_name": "Man Group plc",
+      "metrics": {
+        "MET-VD-001": { "value": 0.321, "unit": "USD", "period": "FY2024", "source": "Man Group FY2024: total EPS $0.321 (core mgmt fee EPS $0.215 + perf fee EPS $0.106)", "confidence": "high", "notes": "Total EPS $0.321, up 43%", "missing_reason": null },
+        "MET-VD-002": { "value": null, "unit": "USD", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "GAAP EPS not separately extracted" },
+        "MET-VD-004": { "value": null, "unit": "USD bn", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "FEAUM not separately disclosed" },
+        "MET-VD-005": { "value": 168.6, "unit": "USD bn", "period": "FY2024", "source": "Man Group FY2024: AUM $168.6B at Dec 31, 2024", "confidence": "high", "notes": "AUM $168.6B", "missing_reason": null },
+        "MET-VD-018": { "value": 1058, "unit": "USD mn", "period": "FY2024", "source": "Man Group: run-rate net management fees $1,058M at end-2024", "confidence": "medium", "notes": "Run-rate net management fees $1,058M at end-2024", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap ~GBP 2.95B = ~$3.75B USD; FRE not separately reported", "missing_reason": "Man Group uses different reporting metrics (core mgmt fee earnings, perf fee earnings)" },
+        "MET-VD-021": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "DE not separately reported" },
+        "MET-VD-022": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "FEAUM not available" }
+      }
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "PGHN",
+      "firm_name": "Partners Group Holding AG",
+      "metrics": {
+        "MET-VD-005": { "value": 185, "unit": "USD bn", "period": "FY2024", "source": "Universe file: $185B AUM at end-2025", "confidence": "medium", "notes": "AUM from universe identification", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap CHF 21.6B = ~$24.2B USD; FRE not extracted from search results", "missing_reason": "FRE not available" },
+        "MET-VD-022": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "FEAUM not available" }
+      }
+    },
+    {
+      "firm_id": "FIRM-012",
+      "ticker": "STEP",
+      "firm_name": "StepStone Group Inc.",
+      "metrics": {
+        "MET-VD-004": { "value": 121.4, "unit": "USD bn", "period": "FY2025 (Mar 2025)", "source": "StepStone FY2025: FEAUM $121.4B, up 29%", "confidence": "high", "notes": "Fiscal year ends March. FEAUM $121.4B.", "missing_reason": null },
+        "MET-VD-005": { "value": 189.4, "unit": "USD bn", "period": "FY2025 (Mar 2025)", "source": "StepStone FY2025: AUM $189.4B", "confidence": "high", "notes": "AUM $189.4B, $709B total capital responsibility", "missing_reason": null },
+        "MET-VD-006": { "value": 29.0, "unit": "%", "period": "FY2025", "source": "StepStone FY2025: FEAUM up 29%", "confidence": "high", "notes": "FEAUM growth 29% YoY", "missing_reason": null },
+        "MET-VD-018": { "value": null, "unit": "USD mn", "period": "FY2025", "source": null, "confidence": null, "notes": "Revenue $1.175B for FY2025", "missing_reason": "Management fee revenue not separately isolated from total revenue" },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2025", "source": null, "confidence": null, "notes": "Market cap ~$3.6B-$5.7B; FRE not available", "missing_reason": "FRE not available" },
+        "MET-VD-022": { "value": null, "unit": "%", "period": "FY2025", "source": null, "confidence": null, "notes": null, "missing_reason": "EV not computed" }
+      }
+    },
+    {
+      "firm_id": "FIRM-013",
+      "ticker": "HLNE",
+      "firm_name": "Hamilton Lane Incorporated",
+      "metrics": {
+        "MET-VD-002": { "value": 5.41, "unit": "USD", "period": "FY2025 (Mar 2025)", "source": "Hamilton Lane FY2025: GAAP EPS $5.41", "confidence": "high", "notes": "Fiscal year ends March. GAAP EPS $5.41.", "missing_reason": null },
+        "MET-VD-004": { "value": 72, "unit": "USD bn", "period": "FY2025 (Mar 2025)", "source": "Hamilton Lane FY2025: FEAUM $72B, up 10%", "confidence": "high", "notes": "FEAUM $72B", "missing_reason": null },
+        "MET-VD-005": { "value": 138.3, "unit": "USD bn", "period": "FY2025 (Mar 2025)", "source": "Hamilton Lane FY2025: AUM $138.3B, $957.8B total supervision", "confidence": "high", "notes": "AUM $138.3B", "missing_reason": null },
+        "MET-VD-006": { "value": 10.0, "unit": "%", "period": "FY2025", "source": "Hamilton Lane FY2025: FEAUM up 10% YoY", "confidence": "high", "notes": "FEAUM growth 10%", "missing_reason": null },
+        "MET-VD-016": { "value": 65.0, "unit": "bps", "period": "FY2025", "source": "Hamilton Lane FY2025: mgmt fee rate 0.65% of avg FEAUM, up from 0.63%", "confidence": "high", "notes": "Blended management fee rate 65bps", "missing_reason": null },
+        "MET-VD-018": { "value": 513.9, "unit": "USD mn", "period": "FY2025 (Mar 2025)", "source": "Hamilton Lane FY2025: management and advisory fees $513.9M, up 14%", "confidence": "high", "notes": "Management + advisory fees $513.9M", "missing_reason": null },
+        "MET-VD-019": { "value": 14.0, "unit": "%", "period": "FY2025", "source": "Hamilton Lane FY2025: mgmt and advisory fees up 14% YoY", "confidence": "high", "notes": "Management fee growth 14%", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2025", "source": null, "confidence": null, "notes": "Market cap ~$4.7B-$7.9B; FRE not available", "missing_reason": "FRE not available" },
+        "MET-VD-022": { "value": null, "unit": "%", "period": "FY2025", "source": null, "confidence": null, "notes": null, "missing_reason": "EV not computed" }
+      }
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "ICP",
+      "firm_name": "ICG plc",
+      "metrics": {
+        "MET-VD-004": { "value": 95.3, "unit": "USD bn", "period": "FY2025 (Mar 2025)", "source": "ICG FY2025: fee-earning AUM $75B * 1.27 GBP/USD = ~$95.3B", "confidence": "medium", "notes": "Fiscal year ends March. Fee-earning AUM $75B (reported in USD).", "missing_reason": null },
+        "MET-VD-005": { "value": 112, "unit": "USD bn", "period": "FY2025 (Mar 2025)", "source": "ICG FY2025: AUM $112B", "confidence": "high", "notes": "AUM $112B (reported in USD)", "missing_reason": null },
+        "MET-VD-018": { "value": 767, "unit": "USD mn", "period": "FY2025 (Mar 2025)", "source": "ICG FY2025: management fees GBP 604M * 1.27 = ~$767M USD", "confidence": "medium", "notes": "Management fees GBP 604M, up 19%", "missing_reason": null },
+        "MET-VD-019": { "value": 19.0, "unit": "%", "period": "FY2025", "source": "ICG FY2025: management fees up 19%", "confidence": "high", "notes": "Management fee growth 19%", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2025", "source": null, "confidence": null, "notes": "Market cap GBP 4.55B = ~$5.78B USD; FRE not available", "missing_reason": "FRE not available" },
+        "MET-VD-022": { "value": 6.1, "unit": "%", "period": "FY2025", "source": "EV ~$5.78B / fee-earning AUM $95.3B", "confidence": "low", "notes": "Simplified EV/FEAUM", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-015",
+      "ticker": "GCMG",
+      "firm_name": "GCM Grosvenor Inc.",
+      "metrics": {
+        "MET-VD-004": { "value": 72, "unit": "USD bn", "period": "FY2024", "source": "Universe file: FEAUM $72B", "confidence": "medium", "notes": "FEAUM from universe identification", "missing_reason": null },
+        "MET-VD-005": { "value": 80, "unit": "USD bn", "period": "FY2024", "source": "GCM Grosvenor: AUM ended 2024 at ~$80B (extrapolated; $91B at end-2025)", "confidence": "medium", "notes": "Estimated FY2024 year-end AUM", "missing_reason": null },
+        "MET-VD-013": { "value": 44.0, "unit": "%", "period": "Q1 2025", "source": "GCM Grosvenor Q1 2025: FRE margin 44%", "confidence": "medium", "notes": "FRE margin 44% as of Q1 2025", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap ~$2.3B; FRE not extracted for FY2024", "missing_reason": "FRE not available" },
+        "MET-VD-022": { "value": 3.2, "unit": "%", "period": "FY2024", "source": "EV ~$2.3B / FEAUM $72B", "confidence": "low", "notes": "Simplified EV/FEAUM", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-016",
+      "ticker": "BPT",
+      "firm_name": "Bridgepoint Group plc",
+      "metrics": {
+        "MET-VD-004": { "value": 41.4, "unit": "USD bn", "period": "FY2024", "source": "Bridgepoint FY2024: Fee-Paying AUM EUR 38.7B * 1.07 = ~$41.4B", "confidence": "high", "notes": "Fee-paying AUM EUR 38.7B, up 49% (incl. ECP acquisition)", "missing_reason": null },
+        "MET-VD-005": { "value": 75.6, "unit": "USD bn", "period": "FY2024", "source": "Bridgepoint FY2024: AUM $75.6B, up 69%", "confidence": "high", "notes": "AUM $75.6B (reported in USD)", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap GBP 2.2B = ~$2.8B USD; FRE not extracted", "missing_reason": "FRE not available" },
+        "MET-VD-022": { "value": 6.8, "unit": "%", "period": "FY2024", "source": "EV ~$2.8B / FEAUM ~$41.4B", "confidence": "low", "notes": "Simplified EV/FEAUM", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-017",
+      "ticker": "ONEX",
+      "firm_name": "Onex Corporation",
+      "metrics": {
+        "MET-VD-004": { "value": 43.9, "unit": "USD bn", "period": "FY2024", "source": "Universe file: FEAUM $43.9B", "confidence": "medium", "notes": "From universe identification", "missing_reason": null },
+        "MET-VD-005": { "value": 59.2, "unit": "USD bn", "period": "FY2024", "source": "Onex FY2024: $59.2B AUM; $40.8B AUM subject to carried interest", "confidence": "high", "notes": "AUM $59.2B", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap CAD 7.28B * 0.73 = ~$5.3B USD; FRE not extracted", "missing_reason": "FRE not available" },
+        "MET-VD-022": { "value": 12.1, "unit": "%", "period": "FY2024", "source": "EV ~$5.3B / FEAUM $43.9B", "confidence": "low", "notes": "Simplified EV/FEAUM. Onex has significant proprietary capital.", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-018",
+      "ticker": "TKO",
+      "firm_name": "Tikehau Capital SCA",
+      "metrics": {
+        "MET-VD-005": { "value": 53.1, "unit": "USD bn", "period": "FY2024", "source": "Tikehau FY2024: Group AUM EUR 49.6B * 1.07 = ~$53.1B", "confidence": "high", "notes": "AUM EUR 49.6B", "missing_reason": null },
+        "MET-VD-013": { "value": 33.4, "unit": "%", "period": "FY2024", "source": "Tikehau FY2024: FRE margin 33.4%, core at 39.2%", "confidence": "high", "notes": "FRE margin 33.4%", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap EUR 2.78B * 1.07 = ~$2.97B USD; FRE not in $ terms", "missing_reason": "FRE in absolute terms not extracted" },
+        "MET-VD-022": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "FEAUM not available" }
+      }
+    },
+    {
+      "firm_id": "FIRM-019",
+      "ticker": "PAX",
+      "firm_name": "Patria Investments Limited",
+      "metrics": {
+        "MET-VD-001": { "value": 1.24, "unit": "USD", "period": "FY2024", "source": "Patria FY2024: DE $189.2M or $1.24/share", "confidence": "high", "notes": "Distributable earnings $1.24/share", "missing_reason": null },
+        "MET-VD-002": { "value": null, "unit": "USD", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "GAAP EPS not extracted" },
+        "MET-VD-003": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-004": { "value": 33.0, "unit": "USD bn", "period": "FY2024", "source": "Patria FY2024: FEAUM $33B, up 38% YoY", "confidence": "high", "notes": "FEAUM $33B", "missing_reason": null },
+        "MET-VD-005": { "value": null, "unit": "USD bn", "period": "FY2024", "source": null, "confidence": null, "notes": "Total AUM for FY2024 not separately extracted (FY2025 AUM = $52.6B per universe)", "missing_reason": "FY2024 total AUM not extracted" },
+        "MET-VD-006": { "value": 38.0, "unit": "%", "period": "FY2024", "source": "Patria FY2024: FEAUM up 38% YoY", "confidence": "high", "notes": "FEAUM growth 38%", "missing_reason": null },
+        "MET-VD-007": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-008": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-009": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Total capital raised not extracted" },
+        "MET-VD-010": { "value": null, "unit": "index", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-011": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-012": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-013": { "value": 57.0, "unit": "%", "period": "FY2024", "source": "Patria FY2024: FRE margin 57%, Q4 at 59%", "confidence": "high", "notes": "FRE margin 57% full year, 59% Q4", "missing_reason": null },
+        "MET-VD-014": { "value": 15.0, "unit": "%", "period": "FY2024", "source": "Patria FY2024: FRE $170.1M, up 15% from $147.7M", "confidence": "high", "notes": "FRE growth 15% YoY", "missing_reason": null },
+        "MET-VD-015": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not extracted" },
+        "MET-VD-016": { "value": null, "unit": "bps", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-017": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "Performance-related earnings $41M from Aguas Pacifico sale", "missing_reason": "Not computed" },
+        "MET-VD-018": { "value": null, "unit": "USD mn", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Management fee revenue not separately extracted" },
+        "MET-VD-019": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "Not computed" },
+        "MET-VD-020": { "value": 12.3, "unit": "x", "period": "FY2024", "source": "Market cap ~$2.09B / FRE $170.1M", "confidence": "medium", "notes": "P/FRE = $2,090M / $170.1M = 12.3x", "missing_reason": null },
+        "MET-VD-021": { "value": 11.0, "unit": "x", "period": "FY2024", "source": "Market cap ~$2.09B / DE $189.2M", "confidence": "medium", "notes": "P/DE = $2,090M / $189.2M = 11.0x", "missing_reason": null },
+        "MET-VD-022": { "value": 6.3, "unit": "%", "period": "FY2024", "source": "EV ~$2.09B / FEAUM $33B", "confidence": "low", "notes": "Simplified EV/FEAUM", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-020",
+      "ticker": "PX",
+      "firm_name": "P10, Inc. (now Ridgepost Capital)",
+      "metrics": {
+        "MET-VD-004": { "value": 25.7, "unit": "USD bn", "period": "FY2024", "source": "P10 FY2024: Fee-Paying AUM $25.7B, up 10% YoY", "confidence": "high", "notes": "Fee-paying AUM $25.7B. Renamed to Ridgepost Capital Feb 2026.", "missing_reason": null },
+        "MET-VD-005": { "value": 40, "unit": "USD bn", "period": "FY2024", "source": "Universe file: ~$40B AUM", "confidence": "medium", "notes": "Total AUM ~$40B", "missing_reason": null },
+        "MET-VD-014": { "value": 39.0, "unit": "%", "period": "FY2024", "source": "P10 FY2024: Fee-Related Earnings up 39% YoY", "confidence": "high", "notes": "FRE growth 39%", "missing_reason": null },
+        "MET-VD-018": { "value": 296.4, "unit": "USD mn", "period": "FY2024", "source": "P10 FY2024: total revenue $296.4M, up 23% YoY", "confidence": "medium", "notes": "Total revenue $296.4M (includes advisory fees; mgmt fees not separated)", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap ~$1.09B; FRE $42.7M. P/FRE = $1,090M / $42.7M = 25.5x", "missing_reason": null },
+        "MET-VD-022": { "value": 4.2, "unit": "%", "period": "FY2024", "source": "EV ~$1.09B / FEAUM $25.7B", "confidence": "low", "notes": "Simplified EV/FEAUM", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "III",
+      "firm_name": "3i Group plc",
+      "metrics": {
+        "MET-VD-002": { "value": null, "unit": "GBP", "period": "FY2025 (Mar 2025)", "source": null, "confidence": null, "notes": "3i reports NAV-based returns rather than traditional EPS/DE", "missing_reason": "3i is primarily a principal investor, not a fee-based asset manager" },
+        "MET-VD-005": { "value": 43, "unit": "USD bn", "period": "FY2025 (Mar 2025)", "source": "Universe file: ~$43B combined AUM (PE + infra)", "confidence": "medium", "notes": "Primarily proprietary capital; 3rd party AUM limited", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2025", "source": null, "confidence": null, "notes": "Market cap GBP 30.3B = ~$38.5B USD; 3i is primarily a principal investor, P/FRE metric not applicable", "missing_reason": "3i does not report FRE; primarily a principal investor" },
+        "MET-VD-022": { "value": null, "unit": "%", "period": "FY2025", "source": null, "confidence": null, "notes": null, "missing_reason": "FEAUM not applicable for principal investor model" }
+      }
+    },
+    {
+      "firm_id": "FIRM-022",
+      "ticker": "RF",
+      "firm_name": "Eurazeo SE",
+      "metrics": {
+        "MET-VD-005": { "value": 40, "unit": "USD bn", "period": "FY2024", "source": "Eurazeo FY2024: AUM EUR 37.4B * 1.07 = ~$40B", "confidence": "high", "notes": "AUM EUR 37.4B", "missing_reason": null },
+        "MET-VD-013": { "value": 35.5, "unit": "%", "period": "FY2024", "source": "Eurazeo FY2024: FRE margin 35.5%, up 110bps", "confidence": "high", "notes": "FRE margin 35.5%", "missing_reason": null },
+        "MET-VD-018": { "value": 450.5, "unit": "USD mn", "period": "FY2024", "source": "Eurazeo FY2024: management fees EUR 421M * 1.07 = ~$450M; up 7%", "confidence": "high", "notes": "Management fees EUR 421M", "missing_reason": null },
+        "MET-VD-019": { "value": 7.0, "unit": "%", "period": "FY2024", "source": "Eurazeo FY2024: management fees up 7%", "confidence": "high", "notes": "Management fee growth 7%", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap EUR 3.48B * 1.07 = ~$3.72B; FRE EUR 150M * 1.07 = ~$160M. P/FRE = $3,720M/$160M = 23.3x", "missing_reason": null },
+        "MET-VD-022": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "FEAUM not separately disclosed" }
+      }
+    },
+    {
+      "firm_id": "FIRM-023",
+      "ticker": "ANTIN",
+      "firm_name": "Antin Infrastructure Partners S.A.",
+      "metrics": {
+        "MET-VD-004": { "value": 23.1, "unit": "USD bn", "period": "FY2024", "source": "Antin FY2024: Fee-Paying AUM EUR 21.6B * 1.07 = ~$23.1B, up 7.3%", "confidence": "high", "notes": "FPAUM EUR 21.6B", "missing_reason": null },
+        "MET-VD-005": { "value": 35.6, "unit": "USD bn", "period": "FY2024", "source": "Antin FY2024: AUM EUR 33.3B * 1.07 = ~$35.6B, up 7.2%", "confidence": "high", "notes": "AUM EUR 33.3B", "missing_reason": null },
+        "MET-VD-006": { "value": 7.3, "unit": "%", "period": "FY2024", "source": "Antin FY2024: FPAUM up 7.3%", "confidence": "high", "notes": "FPAUM growth 7.3%", "missing_reason": null },
+        "MET-VD-018": { "value": 340.7, "unit": "USD mn", "period": "FY2024", "source": "Antin FY2024: revenue EUR 318.4M * 1.07 = ~$340.7M, up 12.6%", "confidence": "medium", "notes": "Total revenue EUR 318.4M (includes management fees as primary component)", "missing_reason": null },
+        "MET-VD-019": { "value": 12.6, "unit": "%", "period": "FY2024", "source": "Antin FY2024: revenue up 12.6%", "confidence": "high", "notes": "Revenue growth 12.6%", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap EUR 1.73B-1.98B; FRE not extracted", "missing_reason": "FRE not available" },
+        "MET-VD-022": { "value": 8.1, "unit": "%", "period": "FY2024", "source": "EV ~EUR 1.85B * 1.07 = ~$1.98B / FEAUM $23.1B", "confidence": "low", "notes": "Simplified EV/FEAUM = 8.6%", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-024",
+      "ticker": "BN",
+      "firm_name": "Brookfield Corporation",
+      "metrics": {
+        "MET-VD-001": { "value": 3.10, "unit": "USD", "period": "FY2024", "source": "BN FY2024: total DE $4.9B, $3.10/share", "confidence": "high", "notes": "DE $3.10/share", "missing_reason": null },
+        "MET-VD-004": { "value": 539, "unit": "USD bn", "period": "FY2024", "source": "BN FY2024: fee-bearing capital $539B, up 18%", "confidence": "high", "notes": "Fee-bearing capital $539B (same as BAM)", "missing_reason": null },
+        "MET-VD-005": { "value": 1100, "unit": "USD bn", "period": "FY2024", "source": "BN: ~$1.1T total AUM across ecosystem", "confidence": "high", "notes": "Total AUM same as BAM ecosystem", "missing_reason": null },
+        "MET-VD-014": { "value": 9.6, "unit": "%", "period": "FY2024", "source": "BN FY2024: fee-related earnings up 9.6% from prior year", "confidence": "high", "notes": "FRE growth 9.6%", "missing_reason": null },
+        "MET-VD-018": { "value": null, "unit": "USD mn", "period": "FY2024", "source": null, "confidence": null, "notes": "FRE $2.6B for the year but management fee revenue not separately isolated", "missing_reason": "Management fee revenue not isolated from BN's total" },
+        "MET-VD-020": { "value": 38.4, "unit": "x", "period": "FY2024", "source": "Market cap ~$100B / FRE $2.6B", "confidence": "medium", "notes": "P/FRE = $100B / $2.6B = 38.5x. BN is partial-alt; includes direct asset ownership.", "missing_reason": null },
+        "MET-VD-021": { "value": 20.4, "unit": "x", "period": "FY2024", "source": "Market cap ~$100B / DE $4.9B", "confidence": "medium", "notes": "P/DE = $100B / $4.9B = 20.4x", "missing_reason": null },
+        "MET-VD-022": { "value": 18.6, "unit": "%", "period": "FY2024", "source": "EV ~$100B / FBC $539B", "confidence": "low", "notes": "Simplified; BN has significant corporate debt and direct assets", "missing_reason": null }
+      }
+    },
+    {
+      "firm_id": "FIRM-025",
+      "ticker": "VCTR",
+      "firm_name": "Victory Capital Holdings, Inc.",
+      "metrics": {
+        "MET-VD-002": { "value": 5.80, "unit": "USD", "period": "FY2024", "source": "VCTR FY2024: Adjusted net income $1.45/share Q4; ~$5.80 annualized estimate", "confidence": "medium", "notes": "Q4 adjusted EPS $1.45; full year estimated ~$5.80", "missing_reason": null },
+        "MET-VD-005": { "value": 171.9, "unit": "USD bn", "period": "FY2024", "source": "VCTR FY2024: AUM $171.9B at Dec 31, 2024", "confidence": "high", "notes": "AUM $171.9B", "missing_reason": null },
+        "MET-VD-018": { "value": 929.6, "unit": "USD mn", "period": "FY2024", "source": "VCTR FY2024: Q4 revenue $232.4M * 4 = ~$929.6M annualized; actual may differ", "confidence": "medium", "notes": "Estimated from Q4 revenue. Primarily traditional asset management.", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap ~$4.41B; partial-alt manager, FRE metric not standard", "missing_reason": "FRE not reported (traditional asset manager)" },
+        "MET-VD-022": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "FEAUM not applicable for traditional manager" }
+      }
+    },
+    {
+      "firm_id": "FIRM-026",
+      "ticker": "RITM",
+      "firm_name": "Rithm Capital Corp.",
+      "metrics": {
+        "MET-VD-002": { "value": 0.50, "unit": "USD", "period": "Q4 2024", "source": "RITM Q4 2024: GAAP net income $0.50/diluted share for Q4", "confidence": "medium", "notes": "Q4 GAAP EPS $0.50; full year not extracted", "missing_reason": null },
+        "MET-VD-005": { "value": 37, "unit": "USD bn", "period": "FY2024", "source": "RITM FY2024: AUM $37B (third-party)", "confidence": "medium", "notes": "AUM $37B third-party; $53B total platform assets", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap ~$5.5B; still transitioning to alt manager model; FRE not reported", "missing_reason": "FRE not reported; transitioning business model" },
+        "MET-VD-022": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": null, "missing_reason": "FEAUM not applicable in current form" }
+      }
+    },
+    {
+      "firm_id": "FIRM-027",
+      "ticker": "CVC",
+      "firm_name": "CVC Capital Partners plc",
+      "metrics": {
+        "MET-VD-004": { "value": 157.3, "unit": "USD bn", "period": "FY2024", "source": "CVC FY2024: FPAUM EUR 147B * 1.07 = ~$157.3B, up 50%", "confidence": "high", "notes": "Fee-paying AUM EUR 147B", "missing_reason": null },
+        "MET-VD-005": { "value": 214, "unit": "USD bn", "period": "FY2024", "source": "CVC FY2024: AUM EUR 200B * 1.07 = ~$214B", "confidence": "high", "notes": "AUM EUR 200B", "missing_reason": null },
+        "MET-VD-006": { "value": 50.0, "unit": "%", "period": "FY2024", "source": "CVC FY2024: FPAUM up 50% from EUR 98B to EUR 147B", "confidence": "high", "notes": "FPAUM growth 50% (includes acquisitions)", "missing_reason": null },
+        "MET-VD-013": { "value": 59.0, "unit": "%", "period": "FY2024", "source": "CVC FY2024: MFE margin 59%", "confidence": "high", "notes": "Management Fee Earnings margin 59%", "missing_reason": null },
+        "MET-VD-014": { "value": 40.0, "unit": "%", "period": "FY2024", "source": "CVC FY2024: MFE up 40% vs FY2023", "confidence": "high", "notes": "MFE (FRE equivalent) growth 40%", "missing_reason": null },
+        "MET-VD-018": { "value": 1420.9, "unit": "USD mn", "period": "FY2024", "source": "CVC FY2024: management fees EUR 1,328M * 1.07 = ~$1,420.9M, up 23%", "confidence": "high", "notes": "Management fees EUR 1,328M", "missing_reason": null },
+        "MET-VD-019": { "value": 23.0, "unit": "%", "period": "FY2024", "source": "CVC FY2024: management fees up 23%", "confidence": "high", "notes": "Management fee growth 23%", "missing_reason": null },
+        "MET-VD-020": { "value": null, "unit": "x", "period": "FY2024", "source": null, "confidence": null, "notes": "Market cap EUR ~10B (shares at EUR 12.08); MFE EUR 780M. P/FRE = EUR 10B / EUR 780M = ~12.8x", "missing_reason": null },
+        "MET-VD-022": { "value": null, "unit": "%", "period": "FY2024", "source": null, "confidence": null, "notes": "EV / FEAUM = ~EUR 10B / EUR 147B = 6.8%", "missing_reason": null }
+      }
+    }
+  ]
+}

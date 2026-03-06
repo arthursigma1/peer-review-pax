@@ -1,0 +1,427 @@
+{
+  "stage": "VD-A0",
+  "title": "Peer Universe Identification",
+  "generated_date": "2026-03-06",
+  "universe_count": 27,
+  "classification_summary": {
+    "pure_play_alt": 21,
+    "majority_alt": 4,
+    "partial_alt": 2
+  },
+  "firms": [
+    {
+      "firm_id": "FIRM-001",
+      "legal_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "exchange": "NYSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 1275,
+      "latest_feaum_usd_bn": 906,
+      "primary_asset_classes": ["private_equity", "real_estate", "credit", "hedge_funds", "infrastructure"],
+      "geography": "Global",
+      "headquarters": "New York, NY, USA",
+      "inclusion_rationale": "World's largest alternative asset manager by AUM; dominant across all major alternative asset classes"
+    },
+    {
+      "firm_id": "FIRM-002",
+      "legal_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "exchange": "NYSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 938,
+      "latest_feaum_usd_bn": 709,
+      "primary_asset_classes": ["credit", "private_equity", "real_estate", "infrastructure"],
+      "geography": "Global",
+      "headquarters": "New York, NY, USA",
+      "inclusion_rationale": "Second-largest listed alt manager; dominant credit franchise with $749B in credit AUM; integrated insurance platform via Athene"
+    },
+    {
+      "firm_id": "FIRM-003",
+      "legal_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "exchange": "NYSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 750,
+      "latest_feaum_usd_bn": null,
+      "primary_asset_classes": ["private_equity", "credit", "real_estate", "infrastructure"],
+      "geography": "Global",
+      "headquarters": "New York, NY, USA",
+      "inclusion_rationale": "Iconic PE franchise with ~$750B+ AUM at end-2025; raised record $129B in 2025; diversified into credit and insurance (Global Atlantic)"
+    },
+    {
+      "firm_id": "FIRM-004",
+      "legal_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "exchange": "NYSE / TSX",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 603,
+      "latest_feaum_usd_bn": 603,
+      "primary_asset_classes": ["infrastructure", "real_estate", "renewable_energy", "private_equity", "credit"],
+      "geography": "Global",
+      "headquarters": "Toronto, ON, Canada",
+      "inclusion_rationale": "Pure-play asset management arm spun out from Brookfield Corporation (BN) in Dec 2022; fee-bearing capital of $603B; capital-light fee model"
+    },
+    {
+      "firm_id": "FIRM-005",
+      "legal_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "exchange": "NYSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 622.5,
+      "latest_feaum_usd_bn": 384.9,
+      "primary_asset_classes": ["credit", "real_assets", "private_equity", "secondaries"],
+      "geography": "Global",
+      "headquarters": "Los Angeles, CA, USA",
+      "inclusion_rationale": "Leading credit-focused alternative manager; 65% of AUM in credit; $622.5B AUM at end-2025, up 29% YoY"
+    },
+    {
+      "firm_id": "FIRM-006",
+      "legal_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "exchange": "NASDAQ",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 477,
+      "latest_feaum_usd_bn": null,
+      "primary_asset_classes": ["private_equity", "credit", "real_assets", "investment_solutions"],
+      "geography": "Global",
+      "headquarters": "Washington, D.C., USA",
+      "inclusion_rationale": "One of the original mega-cap PE firms; $477B AUM at end-2025; diversifying into credit and insurance"
+    },
+    {
+      "firm_id": "FIRM-007",
+      "legal_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "exchange": "NYSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 307,
+      "latest_feaum_usd_bn": null,
+      "primary_asset_classes": ["direct_lending", "gp_stakes", "real_estate", "technology_lending"],
+      "geography": "Global",
+      "headquarters": "New York, NY, USA",
+      "inclusion_rationale": "Fast-growing alt manager focused on permanent capital vehicles; $307B AUM at end-2025, up 52% YoY; GP stakes strategy provides unique diversification"
+    },
+    {
+      "firm_id": "FIRM-008",
+      "legal_name": "TPG Inc.",
+      "ticker": "TPG",
+      "exchange": "NASDAQ",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 303,
+      "latest_feaum_usd_bn": 170.1,
+      "primary_asset_classes": ["private_equity", "growth_equity", "impact_investing", "real_estate", "credit"],
+      "geography": "Global",
+      "headquarters": "Fort Worth, TX, USA",
+      "inclusion_rationale": "IPO in Jan 2022; $303B AUM at end-2025; differentiated by TPG Rise (impact) and Angelo Gordon credit platform"
+    },
+    {
+      "firm_id": "FIRM-009",
+      "legal_name": "EQT AB",
+      "ticker": "EQT",
+      "exchange": "OMX Stockholm",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 285,
+      "latest_feaum_usd_bn": 149,
+      "primary_asset_classes": ["private_equity", "infrastructure", "real_estate", "growth_equity", "venture_capital"],
+      "geography": "Europe / Global",
+      "headquarters": "Stockholm, Sweden",
+      "inclusion_rationale": "Largest European-headquartered listed alt manager; EUR 270B AUM (~$285B) at end-2025; ranked #2 PE firm globally by PEI 300"
+    },
+    {
+      "firm_id": "FIRM-010",
+      "legal_name": "Man Group plc",
+      "ticker": "EMG",
+      "exchange": "LSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 227.6,
+      "latest_feaum_usd_bn": null,
+      "primary_asset_classes": ["hedge_funds", "quantitative_strategies", "credit", "private_markets"],
+      "geography": "Global",
+      "headquarters": "London, UK",
+      "inclusion_rationale": "Leading liquid alternatives / quant manager; $227.6B AUM at end-2025, up 35% YoY; includes AHL (systematic) and GLG (discretionary)"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "legal_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "exchange": "SIX Swiss Exchange",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 185,
+      "latest_feaum_usd_bn": null,
+      "primary_asset_classes": ["private_equity", "private_credit", "private_infrastructure", "private_real_estate"],
+      "geography": "Global",
+      "headquarters": "Baar, Switzerland",
+      "inclusion_rationale": "Leading private markets firm with direct investing approach; $185B AUM at end-2025, up 21% YoY; strong in evergreen/semi-liquid formats"
+    },
+    {
+      "firm_id": "FIRM-012",
+      "legal_name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "exchange": "NASDAQ",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 189,
+      "latest_feaum_usd_bn": null,
+      "primary_asset_classes": ["private_equity", "private_credit", "infrastructure", "real_estate"],
+      "geography": "Global",
+      "headquarters": "New York, NY, USA",
+      "inclusion_rationale": "Private markets solutions provider with $709B total capital responsibility; $189B discretionary AUM; specialist in fund-of-funds and co-investments"
+    },
+    {
+      "firm_id": "FIRM-013",
+      "legal_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "exchange": "NASDAQ",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 138.3,
+      "latest_feaum_usd_bn": 72,
+      "primary_asset_classes": ["private_equity", "private_credit", "infrastructure", "real_estate"],
+      "geography": "Global",
+      "headquarters": "Bala Cynwyd, PA, USA",
+      "inclusion_rationale": "Private markets specialist; $138.3B AUM + $819.5B advisory AUM = $957.8B total supervision; competitor to StepStone in PE solutions"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "legal_name": "ICG plc (Intermediate Capital Group)",
+      "ticker": "ICP",
+      "exchange": "LSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 127,
+      "latest_feaum_usd_bn": null,
+      "primary_asset_classes": ["private_credit", "private_equity", "real_assets"],
+      "geography": "Europe / Global",
+      "headquarters": "London, UK",
+      "inclusion_rationale": "Leading European alternative credit manager; $127B AUM at end-2025; strong in structured/mezzanine credit"
+    },
+    {
+      "firm_id": "FIRM-015",
+      "legal_name": "GCM Grosvenor Inc.",
+      "ticker": "GCMG",
+      "exchange": "NASDAQ",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 91,
+      "latest_feaum_usd_bn": 72,
+      "primary_asset_classes": ["hedge_funds", "private_equity", "infrastructure", "real_estate"],
+      "geography": "Global",
+      "headquarters": "Chicago, IL, USA",
+      "inclusion_rationale": "Global alternatives allocator; $91B AUM at end-2025; 72% of AUM in private asset strategies; specialist in customized portfolios for institutions"
+    },
+    {
+      "firm_id": "FIRM-016",
+      "legal_name": "Bridgepoint Group plc",
+      "ticker": "BPT",
+      "exchange": "LSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 87,
+      "latest_feaum_usd_bn": 40,
+      "primary_asset_classes": ["private_equity", "private_credit", "infrastructure"],
+      "geography": "Europe",
+      "headquarters": "London, UK",
+      "inclusion_rationale": "European mid-market PE specialist; ~$87B AUM at H1 2025; IPO in 2021; private credit AUM doubled since IPO to EUR 14B"
+    },
+    {
+      "firm_id": "FIRM-017",
+      "legal_name": "Onex Corporation",
+      "ticker": "ONEX",
+      "exchange": "TSX",
+      "classification": "majority-alt",
+      "latest_aum_usd_bn": 59.2,
+      "latest_feaum_usd_bn": 43.9,
+      "primary_asset_classes": ["private_equity", "credit"],
+      "geography": "North America",
+      "headquarters": "Toronto, ON, Canada",
+      "inclusion_rationale": "Canadian alt manager with $59.2B AUM; combines third-party fund management with significant proprietary capital deployment"
+    },
+    {
+      "firm_id": "FIRM-018",
+      "legal_name": "Tikehau Capital SCA",
+      "ticker": "TKO",
+      "exchange": "Euronext Paris",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 54,
+      "latest_feaum_usd_bn": null,
+      "primary_asset_classes": ["credit", "real_assets", "private_equity", "capital_markets_strategies"],
+      "geography": "Europe / Global",
+      "headquarters": "Paris, France",
+      "inclusion_rationale": "European multi-strategy alt manager; EUR 50.6B AUM (~$54B) at Q1 2025; diversified across credit, real assets, PE"
+    },
+    {
+      "firm_id": "FIRM-019",
+      "legal_name": "Patria Investments Limited",
+      "ticker": "PAX",
+      "exchange": "NASDAQ",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 52.6,
+      "latest_feaum_usd_bn": 40.8,
+      "primary_asset_classes": ["private_equity", "infrastructure", "credit", "real_estate"],
+      "geography": "Latin America / Global",
+      "headquarters": "George Town, Cayman Islands (operations in Sao Paulo, Brazil)",
+      "inclusion_rationale": "TARGET COMPANY — Leading Latin American alternative asset manager; $52.6B AUM at end-2025, up 26% YoY; FEAUM of $40.8B; expanding globally via acquisitions"
+    },
+    {
+      "firm_id": "FIRM-020",
+      "legal_name": "P10, Inc.",
+      "ticker": "PX",
+      "exchange": "NYSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 40,
+      "latest_feaum_usd_bn": 29.1,
+      "primary_asset_classes": ["private_equity", "private_credit", "venture_capital"],
+      "geography": "North America",
+      "headquarters": "Dallas, TX, USA",
+      "inclusion_rationale": "Mid-market PE/VC solutions provider; ~$40B AUM; focus on access-constrained strategies in lower-middle market; recently acquired Stellus Capital"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "legal_name": "3i Group plc",
+      "ticker": "III",
+      "exchange": "LSE",
+      "classification": "majority-alt",
+      "latest_aum_usd_bn": 43,
+      "latest_feaum_usd_bn": null,
+      "primary_asset_classes": ["private_equity", "infrastructure"],
+      "geography": "Europe / Global",
+      "headquarters": "London, UK",
+      "inclusion_rationale": "FTSE 100 listed PE/infrastructure investor; GBP 36B PE AUM + GBP 6.9B infra AUM at Sep 2025 (~$43B combined); primarily proprietary capital with growing third-party management"
+    },
+    {
+      "firm_id": "FIRM-022",
+      "legal_name": "Eurazeo SE",
+      "ticker": "RF",
+      "exchange": "Euronext Paris",
+      "classification": "majority-alt",
+      "latest_aum_usd_bn": 40,
+      "latest_feaum_usd_bn": null,
+      "primary_asset_classes": ["private_equity", "private_debt", "real_assets"],
+      "geography": "Europe / North America",
+      "headquarters": "Paris, France",
+      "inclusion_rationale": "European mid-market specialist; EUR 37.4B AUM (~$40B) at Sep 2025; transitioning from holding company to pure-play third-party asset manager"
+    },
+    {
+      "firm_id": "FIRM-023",
+      "legal_name": "Antin Infrastructure Partners S.A.",
+      "ticker": "ANTIN",
+      "exchange": "Euronext Paris",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 35,
+      "latest_feaum_usd_bn": 23,
+      "primary_asset_classes": ["infrastructure"],
+      "geography": "Europe / North America",
+      "headquarters": "Paris, France",
+      "inclusion_rationale": "Pure-play infrastructure manager; EUR 33.3B AUM (~$35B) at end-2025; specialist focus makes it a relevant comp for PAX's infrastructure franchise"
+    },
+    {
+      "firm_id": "FIRM-024",
+      "legal_name": "Brookfield Corporation",
+      "ticker": "BN",
+      "exchange": "NYSE / TSX",
+      "classification": "partial-alt",
+      "latest_aum_usd_bn": 1100,
+      "latest_feaum_usd_bn": null,
+      "primary_asset_classes": ["infrastructure", "real_estate", "renewable_energy", "private_equity", "insurance", "credit"],
+      "geography": "Global",
+      "headquarters": "Toronto, ON, Canada",
+      "inclusion_rationale": "Parent of BAM (FIRM-004); includes both asset management fees AND direct asset ownership; ~$1.1T total AUM across ecosystem; classified partial-alt as majority of value is direct asset ownership and insurance, not pure fee-based management"
+    },
+    {
+      "firm_id": "FIRM-025",
+      "legal_name": "Victory Capital Holdings, Inc.",
+      "ticker": "VCTR",
+      "exchange": "NASDAQ",
+      "classification": "partial-alt",
+      "latest_aum_usd_bn": 313.8,
+      "latest_feaum_usd_bn": null,
+      "primary_asset_classes": ["traditional_equity", "traditional_fixed_income", "alternative_investments", "solutions"],
+      "geography": "Global",
+      "headquarters": "San Antonio, TX, USA",
+      "inclusion_rationale": "Primarily traditional asset manager; classified partial-alt as majority of $313.8B AUM is in traditional equity/fixed income strategies; alternative investments are a smaller segment; included given MarketVector index inclusion and growing alt exposure"
+    },
+    {
+      "firm_id": "FIRM-026",
+      "legal_name": "Rithm Capital Corp.",
+      "ticker": "RITM",
+      "exchange": "NYSE",
+      "classification": "majority-alt",
+      "latest_aum_usd_bn": 102,
+      "latest_feaum_usd_bn": 55,
+      "primary_asset_classes": ["credit", "real_estate", "hedge_funds", "mortgage_origination"],
+      "geography": "North America",
+      "headquarters": "New York, NY, USA",
+      "inclusion_rationale": "Transitioning from mortgage REIT to diversified alt manager via acquisitions of Sculptor Capital ($37B AUM) and Crestline; $102B total investable assets including $55B third-party AUM; still in transition phase"
+    },
+    {
+      "firm_id": "FIRM-027",
+      "legal_name": "CVC Capital Partners plc",
+      "ticker": "CVC",
+      "exchange": "Euronext Amsterdam",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 215,
+      "latest_feaum_usd_bn": 157,
+      "primary_asset_classes": ["private_equity", "credit", "secondaries", "infrastructure"],
+      "geography": "Global",
+      "headquarters": "Luxembourg (operations in London, UK)",
+      "inclusion_rationale": "Major European PE firm; IPO'd on Euronext Amsterdam April 2024; ~EUR 200B AUM (~$215B); FPAUM EUR 148B (~$157B) at end-2025; strong credit, secondaries and infrastructure alongside flagship PE"
+    }
+  ],
+  "methodology_notes": "Universe compiled from multiple sources: (1) MarketVector Alternative Asset Managers Index (MVAALT) constituents, (2) BlueStar Top 10 US Listed Alternative Asset Managers Index (BUALT), (3) web searches for 'publicly traded alternative asset managers' across US, European, and other exchanges, (4) individual verification of AUM from Q4 2025 / FY 2025 earnings releases and annual reports. AUM figures are as of December 31, 2025 unless otherwise noted. Fee-earning AUM (FEAUM) reported where disclosed. Classification based on estimated revenue mix: pure-play-alt (>=90% from alternatives), majority-alt (60-89%), partial-alt (<60% but meaningful segment). Coverage assessment: strong for US-listed managers, good for UK/European-listed, adequate for Canadian-listed. Latin American coverage relies primarily on PAX as the only significant listed pure-play LatAm alt manager.",
+  "known_exclusions": [
+    {
+      "firm": "Oaktree Capital Group",
+      "reason": "Taken private by Brookfield in 2019; no longer independently publicly traded; AUM managed within BAM/BN ecosystem"
+    },
+    {
+      "firm": "Petershill Partners (PHLL)",
+      "reason": "Announced delisting from London Stock Exchange in 2025; will return to Goldman Sachs Asset Management unit as wholly-owned subsidiary"
+    },
+    {
+      "firm": "Sculptor Capital Management (formerly Och-Ziff)",
+      "reason": "Acquired by Rithm Capital (RITM) in November 2023; no longer independently publicly traded; included via RITM (FIRM-027)"
+    },
+    {
+      "firm": "Medley Management (MDLY)",
+      "reason": "Delisted; no longer publicly traded"
+    },
+    {
+      "firm": "Cowen Group (COWN)",
+      "reason": "Acquired by TD Bank in 2023; no longer independently publicly traded"
+    },
+    {
+      "firm": "Ardian",
+      "reason": "Not publicly listed; remains a private partnership"
+    },
+    {
+      "firm": "Permira",
+      "reason": "Not publicly listed; remains a private partnership"
+    },
+    {
+      "firm": "Nordic Capital",
+      "reason": "Not publicly listed; remains a private partnership (portfolio company NOBA Bank IPO'd, but manager itself is private)"
+    },
+    {
+      "firm": "Warburg Pincus",
+      "reason": "Not publicly listed; remains a private partnership"
+    },
+    {
+      "firm": "CVC Capital Partners",
+      "reason": "INCLUDED as FIRM-027 — IPO'd on Euronext Amsterdam in April 2024; confirmed publicly listed"
+    },
+    {
+      "firm": "General Atlantic",
+      "reason": "Not publicly listed; remains a private partnership"
+    },
+    {
+      "firm": "AQR Capital Management",
+      "reason": "Not publicly listed; private firm with ~$160B AUM"
+    },
+    {
+      "firm": "Thoma Bravo",
+      "reason": "Not publicly listed; remains a private partnership"
+    },
+    {
+      "firm": "Vista Equity Partners",
+      "reason": "Not publicly listed; remains a private partnership"
+    },
+    {
+      "firm": "Advent International",
+      "reason": "Not publicly listed; remains a private partnership"
+    }
+  ]
+}
