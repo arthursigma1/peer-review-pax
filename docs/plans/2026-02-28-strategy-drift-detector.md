@@ -1,5 +1,7 @@
 # Strategy Drift Detector — Agent Team Execution Plan
 
+> **Note:** This plan was originally written for Block, Inc. For reusable execution, use `/analyze-drift TICKER` which automates this entire pipeline for any company. See `.claude/skills/analyze-drift/SKILL.md`.
+
 > **For Claude:** Execute this plan using `TeamCreate` and the `Agent` tool to spawn and coordinate a team of specialized agents.
 
 **Goal:** Evaluate whether Block, Inc.'s actions and execution are coherent with its stated strategic pillars — using only public information, executed entirely through a coordinated agent team in Claude Code.
