@@ -53,12 +53,25 @@ Set `TICKER_LOWER` to the lowercase version of `TICKER`.
 
 ## Step 1: Create Directory Structure
 
-Create the following directories:
+Check if `data/processed/{TICKER}/{DATE}/` already exists. If it does, find the highest existing run suffix:
+
+```bash
+# Look for {DATE}, {DATE}-run2, {DATE}-run3, etc.
+ls -d data/processed/{TICKER}/{DATE}* 2>/dev/null
+```
+
+- If `{DATE}/` does not exist → use `{DATE}` as-is
+- If `{DATE}/` exists but `{DATE}-run2/` does not → set `DATE` to `{DATE}-run2`
+- If `{DATE}-run2/` exists → set `DATE` to `{DATE}-run3`, and so on
+
+After resolving, create the directories:
 
 ```
 data/processed/{TICKER}/{DATE}/
 data/raw/{TICKER}/{DATE}/
 ```
+
+Display to the user: "Output directory: `data/processed/{TICKER}/{DATE}/`" (so they know which run this is).
 
 ## Step 2: Company Context Discovery
 
@@ -845,7 +858,31 @@ Instructions:
 >
 > **Output C:** `data/processed/{TICKER}/{DATE}/5-playbook/asset_class_playbooks.json`
 
-Wait for playbook-synthesizer to complete, then spawn the report-builder and target-lens agents **in parallel** (they share the same inputs and have no dependency on each other):
+Wait for playbook-synthesizer to complete.
+
+### Checkpoint CP-3: Fact Checker (Playbook Verification)
+
+After playbook-synthesizer produces outputs and BEFORE report-builder generates the final HTML:
+
+1. Read playbook outputs: `5-playbook/value_principles.md`, `5-playbook/platform_playbook.json`, `5-playbook/asset_class_playbooks.json`
+2. Read evidence files: `4-deep-dives/platform_profiles.json`, `4-deep-dives/asset_class_analysis.json`, `3-analysis/driver_ranking.json`
+3. Send to claim-auditor via SendMessage:
+   - Checkpoint: CP-3
+   - Stage audited: VD-P1, VD-P2, VD-P3
+   - Files audited: `5-playbook/platform_playbook.json`, `5-playbook/asset_class_playbooks.json`
+   - Audit focus: sycophantic_fabrication, confidence_miscalibration
+4. Wait for claim-auditor response
+5. Parse the audit JSON:
+   - If verdict is `PASSED` → save `audit_cp3_playbook.json`, proceed to report-builder
+   - If verdict is `BLOCKED`:
+     a. Send blocked_claims to playbook-synthesizer with revision instructions
+     b. Wait for revised output
+     c. Re-dispatch claim-auditor (max 2 retries)
+     d. If still blocked → forcibly downgrade, save audit file, proceed
+6. Pass any INFERRED claims list to report-builder so it uses hedged language for those specific claims
+7. Log: `[CLAIM-AUDIT] CP-3 PASSED (N/N claims)` or `[CLAIM-AUDIT] CP-3 BLOCKED (N ungrounded, N fabricated)`
+
+Then spawn the report-builder and target-lens agents **in parallel** (they share the same inputs and have no dependency on each other):
 
 ### Agent: report-builder
 

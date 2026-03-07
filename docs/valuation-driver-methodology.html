@@ -441,12 +441,22 @@ code {
         </ul>
       </li>
       <li><a href="#agent-architecture">5. Agent Architecture</a></li>
-      <li><a href="#data-model">6. Data Model</a></li>
-      <li><a href="#source-strategy">7. Source Strategy</a></li>
-      <li><a href="#output-design">8. Output Design</a></li>
-      <li><a href="#design-decisions">9. Design Decisions</a></li>
       <li>
-        <a href="#appendices">10. Appendices</a>
+        <a href="#claim-verification">6. Claim Verification</a>
+        <ul>
+          <li><a href="#theoretical-foundation">6.1 Theoretical Foundation</a></li>
+          <li><a href="#audit-dimensions">6.2 Audit Dimensions</a></li>
+          <li><a href="#checkpoints">6.3 Checkpoints</a></li>
+          <li><a href="#verdict-taxonomy">6.4 Verdict Taxonomy</a></li>
+          <li><a href="#enforcement">6.5 Enforcement &amp; Retry</a></li>
+        </ul>
+      </li>
+      <li><a href="#data-model">7. Data Model</a></li>
+      <li><a href="#source-strategy">8. Source Strategy</a></li>
+      <li><a href="#output-design">9. Output Design</a></li>
+      <li><a href="#design-decisions">10. Design Decisions</a></li>
+      <li>
+        <a href="#appendices">11. Appendices</a>
         <ul>
           <li><a href="#appendix-a">A: Metric Definitions</a></li>
           <li><a href="#appendix-b">B: Peer Universe</a></li>
@@ -822,7 +832,7 @@ Phase 3: PLAYBOOK (sequential)
       <p>Parallel structure at the vertical level, drawing on VD-D2 findings.</p>
 
       <h4>VD-P4: Final Navigable Report</h4>
-      <p>Two-layer HTML with sidebar navigation, collapsible sections, data tables, statistical appendix, and mandatory disclaimers. See Section 8 for full output design specification.</p>
+      <p>Two-layer HTML with sidebar navigation, collapsible sections, data tables, statistical appendix, and mandatory disclaimers. See Section 9 for full output design specification.</p>
     </div>
 
     <!-- 4. Statistical Methodology -->
@@ -935,9 +945,108 @@ Phase 3: PLAYBOOK (sequential)
       </table>
     </div>
 
-    <!-- 6. Data Model -->
+    <!-- 6. Claim Verification -->
+    <div class="section" id="claim-verification">
+      <h2>6. Claim Verification</h2>
+
+      <p>The pipeline incorporates inline claim verification at three checkpoints to prevent <em>over-compliance hallucination</em> &mdash; the tendency for LLM agents to produce plausible-sounding but unsupported claims. The verification framework draws on findings from Gao et al. (2025, arXiv:2512.01797v2) regarding over-compliance neurons in large language models.</p>
+
+      <h3 id="theoretical-foundation">6.1 Theoretical Foundation</h3>
+
+      <p>H-Neurons research demonstrates that hallucination in LLMs stems from over-compliance: the model prioritizes producing plausible answers over acknowledging uncertainty. In the VDA pipeline, this manifests as confident-sounding causal narratives built on correlational evidence, fabricated transferable insights with no upstream data support, and language that overstates evidence strength.</p>
+
+      <p>Tiers 1&ndash;2 of the pipeline (data points and cataloged actions) have strong source controls &mdash; every value requires a <code>PS-VD-*</code> or <code>ACT-VD-*</code> citation. <strong>Tier 3 &mdash; causal narratives, transferable insights, anti-patterns, and playbook recommendations &mdash; is inherently inferential</strong> and is where over-compliance manifests as fabricated or unsupported claims.</p>
+
+      <div class="info-box">
+        <strong>Why structural enforcement?</strong> Over-compliance originates in pre-training, not alignment. It is a persistent risk regardless of prompt engineering quality. Structural verification via hard gates at checkpoints is the prompt-level analog of neuron suppression: it forces the producing agent to acknowledge uncertainty rather than fabricate plausible content.
+      </div>
+
+      <h3 id="audit-dimensions">6.2 Audit Dimensions</h3>
+
+      <p>Each claim extracted from a pipeline output is checked against four over-compliance dimensions:</p>
+
+      <table>
+        <thead><tr><th>Dimension</th><th>Audit Question</th><th>Primary Targets</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Invalid premises</strong></td><td>Does this claim rest on an upstream output that was itself weak or flagged?</td><td>Causal narratives building on moderate-signal correlations (&rho; = 0.3&ndash;0.5), driver rankings</td></tr>
+          <tr><td><strong>Misleading context</strong></td><td>Is the sole source <code>company-produced</code> or <code>c-level-social</code>? If so, is it corroborated?</td><td>Strategy profiles, <code>stated_rationale</code> fields, management commentary</td></tr>
+          <tr><td><strong>Sycophantic fabrication</strong></td><td>Does this claim exist in upstream evidence, or was it generated to fill a gap?</td><td>Transferable insights, anti-patterns, PLAY-* recommendations</td></tr>
+          <tr><td><strong>Confidence miscalibration</strong></td><td>Does the language match evidence strength? Causal language for correlational evidence?</td><td>Value principles, playbook narratives, statistical claims</td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="checkpoints">6.3 Checkpoints</h3>
+
+      <p>Three verification checkpoints are embedded within the pipeline execution flow:</p>
+
+      <div class="pipeline-diagram">
+        <div class="pipeline-row">
+          <div class="pipeline-node node-quant">VD-A2 merge<br><small>Data Collection</small></div>
+          <div class="pipeline-arrow">&rarr;</div>
+          <div class="pipeline-node" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-color: #22c55e; color: #166534;"><strong>CP-1</strong><br><small>Fact Checker</small></div>
+          <div class="pipeline-arrow">&rarr;</div>
+          <div class="pipeline-node node-quant">VD-A3<br><small>Standardize</small></div>
+        </div>
+        <div class="pipeline-row" style="margin-top: 12px;">
+          <div class="pipeline-node node-qual">VD-D1/D2<br><small>Deep-Dives</small></div>
+          <div class="pipeline-arrow">&rarr;</div>
+          <div class="pipeline-node" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-color: #22c55e; color: #166534;"><strong>CP-2</strong><br><small>Fact Checker</small></div>
+          <div class="pipeline-arrow">&rarr;</div>
+          <div class="pipeline-node node-merge">VD-P1<br><small>Playbook</small></div>
+        </div>
+        <div class="pipeline-row" style="margin-top: 12px;">
+          <div class="pipeline-node node-merge">VD-P2/P3<br><small>Playbook</small></div>
+          <div class="pipeline-arrow">&rarr;</div>
+          <div class="pipeline-node" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-color: #22c55e; color: #166534;"><strong>CP-3</strong><br><small>Fact Checker</small></div>
+          <div class="pipeline-arrow">&rarr;</div>
+          <div class="pipeline-node node-merge">VD-P4<br><small>Final Report</small></div>
+        </div>
+      </div>
+
+      <table>
+        <thead><tr><th>Checkpoint</th><th>After Stage</th><th>Verifies</th><th>Evidence Files</th><th>Primary Dimensions</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CP-1</strong></td><td>VD-A2 merge (Gate 2)</td><td>Metric values, source IDs, confidence levels</td><td><code>source_catalog.json</code>, tier files</td><td>Invalid premises, misleading context</td></tr>
+          <tr><td><strong>CP-2</strong></td><td>VD-D1/D2 (Gate 4)</td><td>Causal narratives, transferable insights, value creation stories</td><td><code>correlations.json</code>, <code>driver_ranking.json</code>, <code>strategic_actions.json</code></td><td><em>All four</em> (critical gate)</td></tr>
+          <tr><td><strong>CP-3</strong></td><td>VD-P2/P3 (pre-Gate 5)</td><td>PLAY-* recommendations, anti-patterns, target company lens</td><td><code>platform_profiles.json</code>, <code>asset_class_analysis.json</code>, <code>driver_ranking.json</code></td><td>Sycophantic fabrication, confidence miscalibration</td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="verdict-taxonomy">6.4 Verdict Taxonomy</h3>
+
+      <table>
+        <thead><tr><th>Verdict</th><th>Definition</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag" style="background: #dcfce7; color: #166534;">GROUNDED</span></td><td>Cited evidence supports claim at stated confidence</td><td>Pass</td></tr>
+          <tr><td><span class="tag" style="background: #dbeafe; color: #1e40af;">INFERRED</span></td><td>Legitimate inference from evidence, but not directly observed</td><td>Pass &mdash; must be labeled with hedged language in downstream outputs</td></tr>
+          <tr><td><span class="tag" style="background: #fef9c3; color: #854d0e;">WEAK-EVIDENCE</span></td><td>Evidence exists but is thinner than claim implies</td><td>Annotated &mdash; flows through with caveat</td></tr>
+          <tr><td><span class="tag" style="background: #fee2e2; color: #991b1b;">UNGROUNDED</span></td><td>No evidence found in upstream files</td><td><strong>Hard block</strong> &mdash; revision required</td></tr>
+          <tr><td><span class="tag" style="background: #fecaca; color: #7f1d1d;">FABRICATED</span></td><td>Claim contradicts upstream evidence</td><td><strong>Hard block</strong> &mdash; revision required</td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="enforcement">6.5 Enforcement &amp; Retry</h3>
+
+      <div class="info-box warning">
+        <strong>Hard Block Rule.</strong> If any claim in a pipeline output receives an <code>UNGROUNDED</code> or <code>FABRICATED</code> verdict, the entire checkpoint is blocked. The pipeline cannot proceed until the producing agent revises the flagged claims.
+      </div>
+
+      <p>The enforcement protocol operates as follows:</p>
+
+      <ol>
+        <li>On <code>UNGROUNDED</code> or <code>FABRICATED</code> verdict, the pipeline pauses.</li>
+        <li>The auditor produces a structured revision message specifying: which claims failed, why, what specific evidence (citation ID) is needed or what language downgrade is required.</li>
+        <li>The revision message is dispatched back to the producing agent.</li>
+        <li>The producing agent re-runs with revision instructions appended to its original prompt.</li>
+        <li><strong>Maximum retries: 2.</strong> After two failed revision attempts, the claim is forcibly downgraded to <code>INFERRED</code> with an explicit caveat in the final report, and the pipeline continues.</li>
+      </ol>
+
+      <p><strong>INFERRED claim propagation:</strong> Claims marked <code>INFERRED</code> carry a labeling requirement. Downstream agents must use hedged language (&ldquo;the data suggests&rdquo;, &ldquo;management attributes&rdquo;, &ldquo;appears to correlate with&rdquo;) and must not use definitive language (&ldquo;demonstrates&rdquo;, &ldquo;drives&rdquo;, &ldquo;proves&rdquo;).</p>
+    </div>
+
+    <!-- 7. Data Model -->
     <div class="section" id="data-model">
-      <h2>6. Data Model</h2>
+      <h2>7. Data Model</h2>
 
       <h3>Output Files</h3>
       <table>
@@ -979,9 +1088,9 @@ Phase 3: PLAYBOOK (sequential)
       </table>
     </div>
 
-    <!-- 7. Source Strategy -->
+    <!-- 8. Source Strategy -->
     <div class="section" id="source-strategy">
-      <h2>7. Source Strategy</h2>
+      <h2>8. Source Strategy</h2>
 
       <p>All analysis is conducted from publicly available information by default. A filesystem drop zone at <code>data/raw/pax/</code> accommodates proprietary or subscriber-gated data when available.</p>
 
@@ -1005,9 +1114,9 @@ Phase 3: PLAYBOOK (sequential)
       </div>
     </div>
 
-    <!-- 8. Output Design -->
+    <!-- 9. Output Design -->
     <div class="section" id="output-design">
-      <h2>8. Output Design</h2>
+      <h2>9. Output Design</h2>
 
       <p>The final report is a two-layer, navigable HTML document. Each layer is independently accessible to serve different consumer groups within the organization.</p>
 
@@ -1026,9 +1135,9 @@ Phase 3: PLAYBOOK (sequential)
       <p><strong>Technical features:</strong> Sidebar navigation with two-layer structure; collapsible sections for deep content; sortable data tables; statistical appendix with correlation matrices and confidence intervals; mandatory disclaimers section; print-friendly layout.</p>
     </div>
 
-    <!-- 9. Key Design Decisions -->
+    <!-- 10. Key Design Decisions -->
     <div class="section" id="design-decisions">
-      <h2>9. Key Design Decisions</h2>
+      <h2>10. Key Design Decisions</h2>
 
       <table>
         <thead><tr><th>#</th><th>Decision</th><th>Rationale</th></tr></thead>
@@ -1045,9 +1154,9 @@ Phase 3: PLAYBOOK (sequential)
       </table>
     </div>
 
-    <!-- 10. Appendices -->
+    <!-- 11. Appendices -->
     <div class="section" id="appendices">
-      <h2>10. Appendices</h2>
+      <h2>11. Appendices</h2>
 
       <h3 id="appendix-a">Appendix A: Full Metric Definitions</h3>
       <div class="collapsible">

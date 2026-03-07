@@ -267,7 +267,7 @@ Output ONLY valid JSON matching this schema:
       {/* Main content */}
       <main className="flex-1 min-h-0">
         {screen === "home" && (
-          <div className="h-full flex items-center justify-center">
+          <div className="h-full overflow-y-auto flex items-start justify-center py-8">
             <div className="w-full max-w-md space-y-6 px-6">
               <div className="text-center mb-8">
                 <h2 className="text-2xl font-bold text-zinc-100 tracking-tight">
@@ -428,6 +428,7 @@ Output ONLY valid JSON matching this schema:
             logs={pipeline.logs}
             startTime={pipeline.startTime}
             isRunning={pipeline.isRunning}
+            checkpoints={pipeline.checkpoints}
             onRerunFromStep={pipeline.config ? (stepIndex) => {
               pipeline.start(pipeline.config!, stepIndex);
             } : undefined}

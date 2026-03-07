@@ -416,6 +416,7 @@ Produce an HTML report with sidebar navigation and two distinct layers addressab
 | Platform Profiler | VD-D1 | Phase 2 |
 | Sector Specialist | VD-D2 | Phase 2 |
 | Report Composer | VD-P2, VD-P3, VD-P4 | Phase 3 |
+| Fact Checker | CP-1, CP-2, CP-3 | Verification |
 
 ## Execution: 5 Waves
 
@@ -457,6 +458,70 @@ Quality gates occur between each wave. The team lead reviews outputs against exp
 | Gate 2 | Wave 2 data collection | Coverage >= 60% of metrics for >= 80% of universe firms; all valuation multiples are populated for all firms; VD-B1/B2 profiles are substantive (>= 2 concrete actions per firm) |
 | Gate 3 | Wave 3 convergence | Final peer set is 9–12 firms with documented rationale; non-obvious peers flagged by Track A are resolved; all stable drivers pass statistical documentation review in VD-A4b |
 | Gate 4 | Wave 4 deep-dives | Platform and vertical deep-dives are internally consistent; transferable insights are grounded in documented evidence, not inference |
+
+## Claim Verification
+
+The pipeline incorporates inline claim verification at three checkpoints to prevent over-compliance hallucination — the tendency for LLM agents to produce plausible-sounding but unsupported claims, particularly in Tier 3 outputs (causal narratives, transferable insights, playbook recommendations). The verification framework draws on findings from Gao et al. (2025, arXiv:2512.01797v2) regarding over-compliance neurons in large language models.
+
+### Theoretical Foundation
+
+H-Neurons research demonstrates that hallucination in LLMs stems from over-compliance: the model prioritizes producing plausible answers over acknowledging uncertainty. This manifests in the VDA pipeline as confident-sounding causal narratives, fabricated transferable insights, and confidence-miscalibrated language — particularly in Phase 2 and Phase 3 outputs where agents construct interpretive claims from correlational evidence.
+
+Structural enforcement via hard gates at verification checkpoints is the prompt-level analog of neuron suppression: it forces the producing agent to acknowledge uncertainty rather than fabricate plausible content.
+
+### 4-Dimension Audit Matrix
+
+Each claim is checked against four over-compliance dimensions:
+
+| Dimension | Audit Question | Primary Targets |
+|---|---|---|
+| Invalid premises | Does this claim rest on an upstream output that was itself weak or flagged? | Causal narratives building on moderate-signal correlations, driver rankings |
+| Misleading context | Is the sole source `company-produced` or `c-level-social`? If so, is it corroborated? | Strategy profiles, `stated_rationale` fields, management commentary |
+| Sycophantic fabrication | Does this claim exist in upstream evidence, or was it generated to fill a gap? | Transferable insights, anti-patterns, PLAY-* recommendations |
+| Confidence miscalibration | Does the language match evidence strength? (Causal language for correlational evidence?) | Value principles, playbook narratives, statistical methodology propagation |
+
+### Checkpoints
+
+Three verification checkpoints are embedded within the pipeline:
+
+| Checkpoint | After Stage | Verifies | Evidence Files | Primary Dimensions |
+|---|---|---|---|---|
+| CP-1 | VD-A2 merge (Gate 2) | Metric values, source_ids, confidence levels | `source_catalog.json`, tier files | Invalid premises, misleading context |
+| CP-2 | VD-D1/D2 (Gate 4) | Causal narratives, transferable insights, value creation stories | `correlations.json`, `driver_ranking.json`, `strategic_actions.json` | All 4 (critical gate) |
+| CP-3 | VD-P2/P3 (pre-Gate 5) | PLAY-* recommendations, anti-patterns, target company lens | `platform_profiles.json`, `asset_class_analysis.json`, `driver_ranking.json` | Sycophantic fabrication, confidence miscalibration |
+
+### Verdict Taxonomy
+
+| Verdict | Definition | Action |
+|---|---|---|
+| `GROUNDED` | Cited evidence supports claim at stated confidence | Pass |
+| `INFERRED` | Legitimate inference from evidence, but not directly observed | Pass — must be labeled with hedged language in downstream outputs |
+| `WEAK-EVIDENCE` | Evidence exists but is thinner than claim implies | Annotated — flows through with caveat |
+| `UNGROUNDED` | No evidence found in upstream files | Hard block — revision required |
+| `FABRICATED` | Claim contradicts upstream evidence | Hard block — revision required |
+
+### Enforcement and Retry Logic
+
+1. On `UNGROUNDED` or `FABRICATED` verdict, the pipeline pauses.
+2. The auditor produces a revision message specifying: which claims failed, why, what evidence is needed or what language downgrade is required.
+3. The revision message is sent back to the producing agent.
+4. The producing agent re-runs with revision instructions appended.
+5. Maximum retries: 2. After two failed attempts, the claim is forcibly downgraded to `INFERRED` with an explicit caveat in the final report, and the pipeline continues.
+
+### INFERRED Claim Handling
+
+Claims marked `INFERRED` propagate with hedging requirements:
+- Downstream agents receive the `INFERRED` label alongside the claim
+- Final report must use hedged language: "the data suggests", "management attributes", "appears to correlate with" — never "demonstrates", "drives", "proves"
+- The audit JSON file documents the labeling requirement per claim
+
+### Output Files
+
+| File | Checkpoint | Location |
+|---|---|---|
+| `audit_cp1_data.json` | CP-1 | `{step-folder}/` |
+| `audit_cp2_deep_dives.json` | CP-2 | `{step-folder}/` |
+| `audit_cp3_playbook.json` | CP-3 | `{step-folder}/` |
 
 ## Metric Taxonomy Framework
 
@@ -572,6 +637,9 @@ For every firm profile and every strategic claim, the analyst is required to ide
 | `5-playbook/final_report.html` | VD-P4 | HTML |
 | `6-review/methodology_review.md` | Review | Markdown |
 | `6-review/results_review.md` | Review | Markdown |
+| `audit_cp1_data.json` | CP-1 | JSON |
+| `audit_cp2_deep_dives.json` | CP-2 | JSON |
+| `audit_cp3_playbook.json` | CP-3 | JSON |
 
 Default location: `data/processed/{ticker}/{date}/{step-folder}/`
 

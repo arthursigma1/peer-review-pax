@@ -27,12 +27,24 @@ Set `TICKER_LOWER` to the lowercase version of `TICKER`.
 
 ## Step 1: Create Directory Structure
 
-Create the following directories:
+Check if `data/processed/{TICKER}/{DATE}/` already exists. If it does, find the highest existing run suffix:
+
+```bash
+ls -d data/processed/{TICKER}/{DATE}* 2>/dev/null
+```
+
+- If `{DATE}/` does not exist → use `{DATE}` as-is
+- If `{DATE}/` exists but `{DATE}-run2/` does not → set `DATE` to `{DATE}-run2`
+- If `{DATE}-run2/` exists → set `DATE` to `{DATE}-run3`, and so on
+
+After resolving, create the directories:
 
 ```
 data/processed/{TICKER}/{DATE}/
 data/raw/{TICKER}/{DATE}/
 ```
+
+Display to the user: "Output directory: `data/processed/{TICKER}/{DATE}/`"
 
 ## Step 2: Stage -1 — Company Context Discovery
 

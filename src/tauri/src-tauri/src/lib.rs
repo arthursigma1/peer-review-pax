@@ -54,6 +54,27 @@ fn get_project_root() -> String {
         .to_string()
 }
 
+/// Check if a directory name matches YYYY-MM-DD or YYYY-MM-DD-runN
+fn is_run_dir(name: &str) -> bool {
+    if name.len() < 10 {
+        return false;
+    }
+    // Validate calendar date via chrono (rejects invalid dates like 2026-13-01)
+    if chrono::NaiveDate::parse_from_str(&name[..10], "%Y-%m-%d").is_err() {
+        return false;
+    }
+    // Exact YYYY-MM-DD
+    if name.len() == 10 {
+        return true;
+    }
+    // YYYY-MM-DD-runN
+    name.get(10..).map_or(false, |suffix| {
+        suffix.starts_with("-run")
+            && suffix.len() > 4
+            && suffix[4..].chars().all(|c| c.is_ascii_digit())
+    })
+}
+
 /// List all date-stamped analysis runs for a ticker
 #[tauri::command]
 fn list_analysis_runs(ticker: String) -> Vec<String> {
@@ -69,8 +90,7 @@ fn list_analysis_runs(ticker: String) -> Vec<String> {
                 .filter(|e| e.file_type().map(|t| t.is_dir()).unwrap_or(false))
                 .filter_map(|e| {
                     let name = e.file_name().to_string_lossy().to_string();
-                    // Match YYYY-MM-DD pattern
-                    if name.len() == 10 && name.chars().nth(4) == Some('-') {
+                    if is_run_dir(&name) {
                         Some(name)
                     } else {
                         None
@@ -82,6 +102,27 @@ fn list_analysis_runs(ticker: String) -> Vec<String> {
     runs.sort();
     runs.reverse(); // newest first
     runs
+}
+
+/// Resolve the next available run directory name for today
+#[tauri::command]
+fn resolve_next_run_dir(ticker: String) -> String {
+    let today = chrono::Local::now().format("%Y-%m-%d").to_string();
+    let existing = list_analysis_runs(ticker);
+    // Filter to today's runs: "2026-03-07", "2026-03-07-run2", etc.
+    let today_runs: Vec<&String> = existing.iter().filter(|r| r.starts_with(&today)).collect();
+    if today_runs.is_empty() {
+        return today;
+    }
+    // Find highest -runN among today's runs
+    let max_n = today_runs.iter().filter_map(|r| {
+        if r.len() == today.len() {
+            Some(1) // base date counts as run 1
+        } else {
+            r.get(today.len()..).and_then(|s| s.strip_prefix("-run")).and_then(|n| n.parse::<u32>().ok())
+        }
+    }).max().unwrap_or(1);
+    format!("{}-run{}", today, max_n + 1)
 }
 
 #[tauri::command]
@@ -556,6 +597,7 @@ pub fn run() {
             detect_existing_session,
             read_json_as_table,
             copy_tone_files,
+            resolve_next_run_dir,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

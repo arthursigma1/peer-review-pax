@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import type { ToneProfile } from "../types/pipeline";
-import { DEFAULT_TONE_PROFILE } from "../types/pipeline";
+import { DEFAULT_TONE_PROFILE, INITIAL_CHECKPOINTS } from "../types/pipeline";
 
 interface AgentDef {
   id: string;
@@ -188,6 +188,16 @@ const DEFAULT_CONFIG: AgentConfig = {
       retry_strategy: "same_prompt",
     },
     {
+      id: "claim-auditor", name: "Fact Checker",
+      role: "Verifies all claims against upstream evidence using 4-dimension over-compliance audit (invalid premises, misleading context, sycophantic fabrication, confidence miscalibration). Produces structured verdicts per claim. Hard-blocks pipeline on ungrounded or fabricated claims.",
+      instructions: "Read the output file(s) being audited and all upstream evidence files. Extract every factual claim, causal assertion, and recommendation. For each claim, check against 4 audit dimensions: (1) Invalid premises — does the claim rest on weak upstream output? (2) Misleading context — is the sole source company-produced without corroboration? (3) Sycophantic fabrication — does the claim exist in evidence or was it generated to fill a gap? (4) Confidence miscalibration — does language match evidence strength? Assign verdict: GROUNDED, INFERRED, WEAK-EVIDENCE, UNGROUNDED, or FABRICATED. If any UNGROUNDED or FABRICATED → overall BLOCKED.",
+      step: -1, parallel: false, model: "claude-opus-4-6", temperature: 0.0, max_output_tokens: 32000, timeout_minutes: 15,
+      tools: ["Read", "Grep", "Glob"],
+      input_files: ["(checkpoint-dependent)"],
+      output_files: ["audit_cp1_data.json", "audit_cp2_deep_dives.json", "audit_cp3_playbook.json"],
+      retry_strategy: "simplified_prompt",
+    },
+    {
       id: "methodology-reviewer", name: "Methodology Reviewer",
       role: "Reviews statistical methodology, data coverage, metric selection, and peer selection logic",
       instructions: "Read all pipeline outputs and the design doc. Identify gaps in: statistical methodology (correlation approach, sample size, corrections), data coverage (missing metrics, firms with low coverage), metric selection (missing drivers, redundant metrics), peer selection logic (inclusion/exclusion criteria). Produce structured improvement report with severity ratings.",
@@ -353,12 +363,47 @@ export function AgentsOrg() {
                       </button>
                     ))}
                   </div>
+                  {/* Checkpoint indicators */}
+                  {INITIAL_CHECKPOINTS.filter((cp) => cp.afterStep === step.index).map((cp) => (
+                    <div key={cp.id} className="ml-4 my-1 flex items-center gap-2 px-3 py-1 rounded border border-dashed border-emerald-500/30 bg-emerald-500/5 text-emerald-400 text-[10px]">
+                      <span>&#x1F6E1;</span>
+                      <span className="font-mono">{cp.id}</span>
+                      <span className="text-zinc-500">{cp.name}</span>
+                      <span className="ml-auto text-zinc-600 text-[9px]">Opus</span>
+                    </div>
+                  ))}
                   {step.index < config.steps.length - 1 && (
                     <div className="flex justify-center py-1"><span className="text-zinc-700 text-xs">↓</span></div>
                   )}
                 </div>
               );
             })}
+            {/* Verification agents (step=-1) */}
+            {(() => {
+              const verificationAgents = config.agents.filter((a) => a.step === -1);
+              if (verificationAgents.length === 0) return null;
+              return (
+                <div className="space-y-1 pt-2 border-t border-zinc-800/60">
+                  <div className="px-3 py-2 rounded-md ring-1 text-emerald-400 bg-emerald-500/10 ring-emerald-500/30">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-mono opacity-60">&#x1F6E1;</span>
+                      <span className="text-xs font-medium">Claim Verification</span>
+                    </div>
+                    <div className="text-[10px] opacity-50 mt-0.5 font-mono">{INITIAL_CHECKPOINTS.map((cp) => cp.id).join(", ")}</div>
+                  </div>
+                  <div className="pl-4 space-y-0.5">
+                    {verificationAgents.map((agent) => (
+                      <button key={agent.id} onClick={() => setSelectedAgent(agent.id)}
+                        className={`w-full text-left px-3 py-1.5 rounded text-xs transition-colors flex items-center gap-2 ${selectedAgent === agent.id ? "bg-zinc-800 text-zinc-100" : "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-300"}`}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-violet-400" />
+                        <span className="truncate">{agent.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
             {/* Model legend */}
             <div className="pt-4 border-t border-zinc-800/60 space-y-1.5">
               <h4 className="text-[10px] uppercase tracking-wider text-zinc-600">Model Legend</h4>
@@ -380,8 +425,8 @@ export function AgentsOrg() {
                 <div>
                   <div className="flex items-center gap-3 mb-1">
                     <h2 className="text-lg font-semibold text-zinc-100">{selected.name}</h2>
-                    <span className={`text-[10px] px-2 py-0.5 rounded ring-1 ${STEP_COLORS[selected.step]}`}>
-                      {config.steps[selected.step]?.name}
+                    <span className={`text-[10px] px-2 py-0.5 rounded ring-1 ${selected.step === -1 ? "text-emerald-400 bg-emerald-500/10 ring-emerald-500/30" : STEP_COLORS[selected.step]}`}>
+                      {selected.step === -1 ? "Claim Verification" : config.steps[selected.step]?.name}
                     </span>
                   </div>
                   <p className="text-xs text-zinc-500 font-mono">{selected.id}</p>
@@ -511,7 +556,7 @@ export function AgentsOrg() {
                 </div>
 
                 {/* Quality Gate */}
-                {config.steps[selected.step]?.gate_criteria.length > 0 && (
+                {selected.step !== -1 && config.steps[selected.step]?.gate_criteria.length > 0 && (
                   <div className="pt-2 border-t border-zinc-800/60">
                     <label className="block text-[10px] uppercase tracking-wider text-zinc-500 mb-2">Quality Gate — {config.steps[selected.step].name}</label>
                     <div className="space-y-1">

@@ -7,8 +7,9 @@ import type {
   PipelineAgent,
   QualityGate,
   StepStatus,
+  Checkpoint,
 } from "../types/pipeline";
-import { PIPELINE_STEPS, AGENT_NAMES } from "../types/pipeline";
+import { PIPELINE_STEPS, AGENT_NAMES, DEFAULT_TONE_PROFILE, INITIAL_CHECKPOINTS } from "../types/pipeline";
 import { parseCLILine } from "../lib/cli";
 
 interface PipelineSnapshot {
@@ -18,6 +19,7 @@ interface PipelineSnapshot {
   startTime: number | null;
   logs: string[];
   config: PipelineConfig | null;
+  checkpoints: Checkpoint[];
   savedAt: number;
 }
 
@@ -32,6 +34,16 @@ function createInitialSteps(): PipelineStep[] {
   }));
 }
 
+function createInitialCheckpoints(): Checkpoint[] {
+  return INITIAL_CHECKPOINTS.map((cp) => ({
+    ...cp,
+    status: "pending" as const,
+    summary: null,
+    blockedClaims: [],
+    retryCount: 0,
+  }));
+}
+
 export function usePipeline() {
   const [steps, setSteps] = useState<PipelineStep[]>(createInitialSteps());
   const [currentStep, setCurrentStep] = useState<number>(-1);
@@ -40,6 +52,7 @@ export function usePipeline() {
   const [logs, setLogs] = useState<string[]>([]);
   const [pendingGate, setPendingGate] = useState<QualityGate | null>(null);
   const [config, setConfig] = useState<PipelineConfig | null>(null);
+  const [checkpoints, setCheckpoints] = useState<Checkpoint[]>(createInitialCheckpoints());
   const childRef = useRef<any | null>(null);
 
   const addLog = useCallback((line: string) => {
@@ -88,6 +101,12 @@ export function usePipeline() {
     []
   );
 
+  const updateCheckpoint = useCallback((id: string, updates: Partial<Checkpoint>) => {
+    setCheckpoints((prev) =>
+      prev.map((cp) => (cp.id === id ? { ...cp, ...updates } : cp))
+    );
+  }, []);
+
   const start = useCallback(
     async (pipelineConfig: PipelineConfig, fromStep?: number) => {
       setConfig(pipelineConfig);
@@ -109,6 +128,7 @@ export function usePipeline() {
       setStartTime(Date.now());
       setLogs([]);
       setPendingGate(null);
+      setCheckpoints(createInitialCheckpoints());
 
       const args = [
         "--print",
@@ -194,6 +214,35 @@ export function usePipeline() {
                   results: [],
                   notes: "",
                 });
+              }
+              break;
+            case "checkpoint":
+              if (parsed.checkpointId && parsed.checkpointStatus) {
+                const updates: Partial<Checkpoint> = { status: parsed.checkpointStatus };
+                if (parsed.retryAttempt !== undefined) {
+                  updates.retryCount = parsed.retryAttempt;
+                }
+                if (parsed.checkpointStatus === "passed" && parsed.claimsTotal) {
+                  updates.summary = {
+                    total: parsed.claimsTotal,
+                    grounded: parsed.claimsPassed ?? 0,
+                    inferred: 0,
+                    weakEvidence: 0,
+                    ungrounded: 0,
+                    fabricated: 0,
+                  };
+                }
+                if (parsed.checkpointStatus === "blocked") {
+                  updates.summary = {
+                    total: 0,
+                    grounded: 0,
+                    inferred: 0,
+                    weakEvidence: 0,
+                    ungrounded: parsed.claimsUngrounded ?? 0,
+                    fabricated: parsed.claimsFabricated ?? 0,
+                  };
+                }
+                updateCheckpoint(parsed.checkpointId, updates);
               }
               break;
             case "error":
@@ -283,7 +332,7 @@ export function usePipeline() {
         setIsRunning(false);
       }
     },
-    [addLog, updateStep, addAgent, currentStep]
+    [addLog, updateStep, addAgent, updateCheckpoint, currentStep]
   );
 
   const approveGate = useCallback(
@@ -326,24 +375,31 @@ export function usePipeline() {
     setLogs([]);
     setPendingGate(null);
     setConfig(null);
+    setCheckpoints(createInitialCheckpoints());
   }, []);
 
+  // Use a ref to capture latest state so saveState callback is stable
+  const stateRef = useRef({ steps, currentStep, isRunning, startTime, logs, config, checkpoints });
+  stateRef.current = { steps, currentStep, isRunning, startTime, logs, config, checkpoints };
+
   const saveState = useCallback(() => {
-    if (!config) return;
+    const s = stateRef.current;
+    if (!s.config) return;
     const snapshot: PipelineSnapshot = {
-      steps,
-      currentStep,
-      isRunning,
-      startTime,
-      logs: logs.slice(-500), // Keep last 500 lines
-      config,
+      steps: s.steps,
+      currentStep: s.currentStep,
+      isRunning: s.isRunning,
+      startTime: s.startTime,
+      logs: s.logs.slice(-500), // Keep last 500 lines
+      config: s.config,
+      checkpoints: s.checkpoints,
       savedAt: Date.now(),
     };
     invoke("save_pipeline_state", {
-      ticker: config.ticker,
+      ticker: s.config.ticker,
       state: JSON.stringify(snapshot),
     }).catch(console.error);
-  }, [steps, currentStep, isRunning, startTime, logs, config]);
+  }, []);
 
   useEffect(() => {
     if (!isRunning) return;
@@ -382,11 +438,12 @@ export function usePipeline() {
 
       setConfig({
         ticker: ticker.toUpperCase(),
-        sector: "Alternative Asset Management",
+        sector: "", // Resolved from company_context.json at pipeline start
         autoMode: false,
         sellSideDir: null,
         consultingDir: null,
         referencePeers: null,
+        toneProfile: DEFAULT_TONE_PROFILE,
       });
       setIsRunning(false);
       return true;
@@ -407,6 +464,9 @@ export function usePipeline() {
       setStartTime(snapshot.startTime);
       setLogs(snapshot.logs);
       setConfig(snapshot.config);
+      if (snapshot.checkpoints) {
+        setCheckpoints(snapshot.checkpoints);
+      }
       // Mark as NOT running since the CLI process is gone
       setIsRunning(false);
       // Mark any "running" steps/agents as "failed" since the process died
@@ -434,6 +494,7 @@ export function usePipeline() {
     logs,
     pendingGate,
     config,
+    checkpoints,
     start,
     stop,
     reset,

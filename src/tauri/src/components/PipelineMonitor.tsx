@@ -1,7 +1,8 @@
 import { useState } from "react";
-import type { PipelineStep } from "../types/pipeline";
+import type { PipelineStep, Checkpoint } from "../types/pipeline";
 import { StepCard } from "./StepCard";
 import { AgentCard } from "./AgentCard";
+import { CheckpointBar } from "./CheckpointBar";
 import { formatElapsed } from "../lib/cli";
 
 interface PipelineMonitorProps {
@@ -10,6 +11,7 @@ interface PipelineMonitorProps {
   logs: string[];
   startTime: number | null;
   isRunning: boolean;
+  checkpoints: Checkpoint[];
   onRerunFromStep?: (stepIndex: number) => void;
 }
 
@@ -19,6 +21,7 @@ export function PipelineMonitor({
   logs,
   startTime,
   isRunning,
+  checkpoints,
   onRerunFromStep,
 }: PipelineMonitorProps) {
   const [selectedStep, setSelectedStep] = useState<number>(0);
@@ -66,12 +69,18 @@ export function PipelineMonitor({
         {/* Step sidebar */}
         <div className="w-72 border-r border-zinc-800/80 p-4 space-y-2 overflow-y-auto">
           {steps.map((step) => (
-            <StepCard
-              key={step.index}
-              step={step}
-              isActive={selectedStep === step.index}
-              onClick={() => setSelectedStep(step.index)}
-            />
+            <div key={step.index}>
+              <StepCard
+                step={step}
+                isActive={selectedStep === step.index}
+                onClick={() => setSelectedStep(step.index)}
+              />
+              {checkpoints
+                .filter((cp) => cp.afterStep === step.index)
+                .map((cp) => (
+                  <CheckpointBar key={cp.id} checkpoint={cp} />
+                ))}
+            </div>
           ))}
         </div>
 

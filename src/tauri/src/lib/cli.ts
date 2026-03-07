@@ -1,10 +1,17 @@
 import { AGENT_NAMES } from "../types/pipeline";
-import type { StepStatus, AgentStatus } from "../types/pipeline";
+import type { StepStatus, AgentStatus, CheckpointStatus } from "../types/pipeline";
 
 interface ParsedLine {
-  type: "step_start" | "step_complete" | "agent_start" | "agent_complete" | "gate" | "log" | "error";
+  type: "step_start" | "step_complete" | "agent_start" | "agent_complete" | "gate" | "log" | "error" | "checkpoint";
   stepIndex?: number;
   agentId?: string;
+  checkpointId?: string;
+  checkpointStatus?: CheckpointStatus;
+  claimsPassed?: number;
+  claimsTotal?: number;
+  claimsUngrounded?: number;
+  claimsFabricated?: number;
+  retryAttempt?: number;
   message: string;
 }
 
@@ -23,6 +30,38 @@ const STEP_NAME_TO_INDEX: Record<string, number> = {
 };
 
 export function parseCLILine(line: string): ParsedLine {
+  // Check for claim audit lines (prefix guard — avoids 4 regex attempts on common log lines)
+  if (line.includes("[CLAIM-AUDIT]")) {
+    const cpScanMatch = line.match(/\[CLAIM-AUDIT\] (CP-\d) scanning/);
+    if (cpScanMatch) {
+      return { type: "checkpoint", checkpointId: cpScanMatch[1], checkpointStatus: "scanning", message: line };
+    }
+
+    const cpPassedMatch = line.match(/\[CLAIM-AUDIT\] (CP-\d) PASSED \((\d+)\/(\d+) claims?\)/);
+    if (cpPassedMatch) {
+      return {
+        type: "checkpoint", checkpointId: cpPassedMatch[1], checkpointStatus: "passed",
+        claimsPassed: parseInt(cpPassedMatch[2]), claimsTotal: parseInt(cpPassedMatch[3]),
+        message: line,
+      };
+    }
+
+    const cpBlockedMatch = line.match(/\[CLAIM-AUDIT\] (CP-\d) BLOCKED \((\d+) ungrounded, (\d+) fabricated\)/);
+    if (cpBlockedMatch) {
+      return {
+        type: "checkpoint", checkpointId: cpBlockedMatch[1], checkpointStatus: "blocked",
+        claimsUngrounded: parseInt(cpBlockedMatch[2]), claimsFabricated: parseInt(cpBlockedMatch[3]),
+        message: line,
+      };
+    }
+
+    const cpRetryMatch = line.match(/\[CLAIM-AUDIT\] (CP-\d) retrying \(attempt (\d+)\/2\)/);
+    if (cpRetryMatch) {
+      return { type: "checkpoint", checkpointId: cpRetryMatch[1], checkpointStatus: "retrying",
+        retryAttempt: parseInt(cpRetryMatch[2]), message: line };
+    }
+  }
+
   // Check for step start
   for (const pattern of STEP_PATTERNS) {
     const match = line.match(pattern);

@@ -37,6 +37,36 @@ export interface GateResult {
   detail: string;
 }
 
+export type CheckpointStatus = "pending" | "scanning" | "passed" | "blocked" | "retrying";
+
+export interface ClaimSummary {
+  total: number;
+  grounded: number;
+  inferred: number;
+  weakEvidence: number;
+  ungrounded: number;
+  fabricated: number;
+}
+
+export interface BlockedClaim {
+  claimId: string;
+  claimText: string;
+  verdict: "UNGROUNDED" | "FABRICATED";
+  dimension: string;
+  reasoning: string;
+  requiredFix: string;
+}
+
+export interface Checkpoint {
+  id: string;
+  name: string;
+  afterStep: number;
+  status: CheckpointStatus;
+  summary: ClaimSummary | null;
+  blockedClaims: BlockedClaim[];
+  retryCount: number;
+}
+
 export interface OutputFile {
   filename: string;
   path: string;
@@ -89,6 +119,12 @@ export interface PipelineConfig {
   toneProfile: ToneProfile;
 }
 
+export const INITIAL_CHECKPOINTS: Omit<Checkpoint, "status" | "summary" | "blockedClaims" | "retryCount">[] = [
+  { id: "CP-1", name: "Post-Data Fact Check", afterStep: 1 },
+  { id: "CP-2", name: "Post-Deep-Dive Fact Check", afterStep: 3 },
+  { id: "CP-3", name: "Post-Playbook Fact Check", afterStep: 4 },
+];
+
 export const PIPELINE_STEPS: Omit<PipelineStep, "status" | "agents" | "gate" | "startedAt" | "completedAt">[] = [
   {
     index: 0,
@@ -140,6 +176,7 @@ export const AGENT_NAMES: Record<string, string> = {
   "playbook-synthesizer": "Insight Synthesizer",
   "report-builder": "Report Composer",
   "target-lens": "Target Company Lens",
+  "claim-auditor": "Fact Checker",
   "methodology-reviewer": "Methodology Reviewer",
   "results-reviewer": "Results Reviewer",
 };

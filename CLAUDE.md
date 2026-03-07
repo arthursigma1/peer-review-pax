@@ -144,6 +144,7 @@ Output: `data/processed/{TICKER}/{YYYY-MM-DD}/6-review/methodology_review.md` + 
 - Every claim in peer reports must cite source IDs (PS-*, PEER-*, MET-*, BENCH-*, RANK-*, PIL-*)
 - Every claim in VDA reports must cite source IDs (PS-VD-*, FIRM-*, MET-VD-*, COR-*, DVR-*, ACT-VD-*, PLAY-*, ANTI-*)
 - Per-company directory convention: `data/processed/{ticker}/`, `data/raw/{ticker}/`
+- Multiple runs per day use incremental suffix: `YYYY-MM-DD`, `YYYY-MM-DD-run2`, `YYYY-MM-DD-run3`
 - VDA data collection always splits into 3 parallel tiers (~9 firms each)
 - VDA output files use folder structure: `{ticker}/{date}/{step-folder}/` where step folders are: `1-universe`, `2-data`, `3-analysis`, `4-deep-dives`, `5-playbook`, `6-review`
 - VDA playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN)
