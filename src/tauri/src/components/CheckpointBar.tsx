@@ -7,7 +7,7 @@ interface CheckpointBarProps {
 
 const STATUS_STYLES: Record<string, string> = {
   pending: "border-dashed border-zinc-700 text-zinc-500",
-  scanning: "border-teal-400 text-teal-300 animate-pulse",
+  scanning: "border-teal-400 text-teal-300",
   passed: "border-emerald-500 text-emerald-400",
   blocked: "border-red-500 text-red-400",
   retrying: "border-amber-500 text-amber-400",

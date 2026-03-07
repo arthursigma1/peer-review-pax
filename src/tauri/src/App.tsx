@@ -351,7 +351,7 @@ Output ONLY valid JSON matching this schema:
                 : s === "monitor" ? "Pipeline"
                 : s === "results" ? "Results"
                 : "Agents"}
-              <kbd className={`text-[9px] px-1 py-0.5 rounded ${
+              <kbd className={`text-[9px] px-1 py-0.5 rounded hidden lg:inline ${
                 screen === s ? "bg-zinc-700 text-zinc-400" : "bg-zinc-800/60 text-zinc-500"
               }`}>⌘{i + 1}</kbd>
             </button>
@@ -369,8 +369,9 @@ Output ONLY valid JSON matching this schema:
                   Valuation Driver Analysis
                 </h2>
                 <p className="text-sm text-zinc-500 mt-2">
-                  Identify what drives valuation multiples and build a strategic
-                  playbook
+                  Identify what drives valuation multiples and build a strategic playbook.
+                  Enter a ticker to begin — the pipeline will scan peers, collect data,
+                  and generate an actionable report.
                 </p>
               </div>
 

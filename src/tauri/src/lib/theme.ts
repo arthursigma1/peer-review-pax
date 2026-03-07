@@ -60,7 +60,7 @@ export const STATUS_TEXT: Record<string, string> = {
 export const STATUS_DOT: Record<string, string> = {
   idle: "bg-zinc-600",
   pending: "bg-zinc-600",
-  running: "bg-teal-400 animate-pulse",
+  running: "bg-teal-400",
   complete: "bg-emerald-400",
   failed: "bg-red-400",
 };

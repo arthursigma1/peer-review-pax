@@ -32,7 +32,7 @@ export const StepCard = memo(function StepCard({ step, isActive, onClick }: Step
       <div className="flex items-center gap-3">
         <span
           className={`text-lg ${
-            step.status === "running" ? "text-teal-400 animate-pulse" :
+            step.status === "running" ? "text-teal-400" :
             step.status === "complete" ? "text-emerald-400" :
             step.status === "failed" ? "text-red-400" : "text-zinc-500"
           }`}

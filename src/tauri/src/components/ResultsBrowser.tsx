@@ -17,10 +17,10 @@ interface ResultsBrowserProps {
   watcherError?: string | null;
 }
 
-const FILE_ICONS: Record<string, string> = {
-  json: "{ }",
-  md: "M",
-  html: "</>",
+const FILE_ICONS: Record<string, { icon: string; color: string }> = {
+  json: { icon: "{ }", color: "text-teal-500" },
+  md: { icon: "M", color: "text-blue-400" },
+  html: { icon: "</>", color: "text-amber-400" },
 };
 
 
@@ -242,8 +242,8 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                         `}
                       >
                         <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-mono text-teal-500 w-5 text-center shrink-0">
-                            {FILE_ICONS[file.file_type] || "?"}
+                          <span className={`text-[10px] font-mono w-5 text-center shrink-0 ${FILE_ICONS[file.file_type]?.color ?? "text-zinc-500"}`}>
+                            {FILE_ICONS[file.file_type]?.icon ?? "?"}
                           </span>
                           <span className="truncate flex-1 font-mono text-xs">{file.filename}</span>
                           <span className="text-[10px] text-zinc-400 shrink-0">{formatFileSize(file.size)}</span>

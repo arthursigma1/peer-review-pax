@@ -46,14 +46,16 @@ export function PipelineMonitor({
       <div className="px-6 py-4 border-b border-zinc-800/80">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
-            {isRunning && (
-              <div className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-            )}
-            <span className="text-sm text-zinc-300">
+            {isRunning ? (
+              <div className="w-2 h-2 rounded-full bg-teal-400" />
+            ) : completedSteps >= 5 ? (
+              <div className="w-2 h-2 rounded-full bg-emerald-400" />
+            ) : null}
+            <span className={`text-sm ${completedSteps >= 5 && !isRunning ? "text-emerald-400 font-medium" : "text-zinc-300"}`}>
               {isRunning
                 ? `Step ${currentStep + 1} of ${steps.length}`
                 : completedSteps >= 5
-                ? "Pipeline Complete"
+                ? "✓ Pipeline Complete"
                 : completedSteps > 0
                 ? `${completedSteps}/${steps.length} Steps Complete`
                 : "Pipeline Ready"}

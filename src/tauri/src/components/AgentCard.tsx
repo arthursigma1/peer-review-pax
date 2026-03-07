@@ -71,7 +71,7 @@ export const AgentCard = memo(function AgentCard({ agent, isExpanded, onToggle }
               {agent.friendlyName} — {agent.logs.length} lines
             </span>
             {agent.status === "running" && (
-              <span className="text-[10px] text-teal-500 animate-pulse">
+              <span className="text-[10px] text-teal-500">
                 live
               </span>
             )}
