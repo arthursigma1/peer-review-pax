@@ -1,0 +1,276 @@
+{
+  "metadata": {
+    "pipeline": "VDA",
+    "step": "VD-C1",
+    "step_name": "Convergence and Final Peer Set Selection",
+    "agent": "convergence-analyst",
+    "target_company": "Patria Investments Limited",
+    "target_ticker": "PAX",
+    "generated_date": "2026-03-07",
+    "run_id": "2026-03-07-run2",
+    "selection_criteria": {
+      "auto_include": "Q1 on 2+ of 3 confirmed independent stable value drivers (DVR-001: FEAUM, DVR-002: EPS, DVR-003: FRE Margin)",
+      "cautionary_case": "Bottom quartile on stable drivers with well-documented strategic actions or instructive failure patterns",
+      "geographic_diversity": "At least 1 European peer required",
+      "scale_comparability": "At least 1 firm comparable to PAX scale (~$40-60B AUM)",
+      "source_minimum": "Minimum 2 sources per firm before deep-dive",
+      "metric_coverage_minimum": "At least 60% metric coverage in standardized data"
+    },
+    "independent_drivers_used": [
+      "DVR-001: Fee-Earning AUM (avg_abs_rho=0.6949, independent signal confirmed)",
+      "DVR-002: Earnings per Share (avg_abs_rho=0.7286, independent signal confirmed)",
+      "DVR-003: Fee-Related Earnings Margin (avg_abs_rho=0.5424, independent signal confirmed)"
+    ]
+  },
+  "final_set": [
+    {
+      "firm_id": "FIRM-002",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "inclusion_rationale": "Auto-include: Q1 on DVR-001 (FEAUM $921.7B, rank 1/23) and DVR-003 (FRE Margin 71.3%, rank 1/23). Industry leader by scale and efficiency. Largest alternative asset manager globally. 6 strategic actions documented covering M&A, product-launch, distribution-shift, and geographic-expansion. Sets the benchmark for valuation premium drivers.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 5,
+      "metric_coverage_pct": 70.6,
+      "q1_independent_drivers": ["DVR-001", "DVR-003"],
+      "strategic_actions_count": 6
+    },
+    {
+      "firm_id": "FIRM-003",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "inclusion_rationale": "Auto-include: Q1 on DVR-001 (FEAUM $604.0B, rank 3/23) and DVR-003 (FRE Margin 69.0%, rank 2/23). Multi-platform model with insurance integration (Global Atlantic), balance sheet co-investment approach, and capital markets arm. 6 strategic actions spanning M&A, product-launch, distribution-shift, and capital-structure-change. Provides template for scaling with embedded capital.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 5,
+      "metric_coverage_pct": 64.7,
+      "q1_independent_drivers": ["DVR-001", "DVR-003"],
+      "strategic_actions_count": 6
+    },
+    {
+      "firm_id": "FIRM-004",
+      "firm_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "inclusion_rationale": "Auto-include: Q1 on DVR-001 (FEAUM $709.0B, rank 2/23) and DVR-002 (EPS $5.54, rank 3/16). Credit-dominant origination platform integrated with Athene insurance. 5 strategic actions covering M&A, product-launch, geographic-expansion, distribution-shift, and technology-operations. Exemplifies the insurance-alternatives convergence thesis.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 47.1,
+      "q1_independent_drivers": ["DVR-001", "DVR-002"],
+      "strategic_actions_count": 5
+    },
+    {
+      "firm_id": "FIRM-006",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "inclusion_rationale": "Auto-include: Q1 on DVR-001 (FEAUM $603.0B, rank 4/23) and DVR-003 (FRE Margin 58.0%, rank 6/23). Real-asset-heavy platform with infrastructure and renewable power focus. PAX has meaningful infrastructure exposure, making BAM's asset class mix directly relevant for comparison. 5 strategic actions documented via parent Brookfield Corporation (BN).",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 47.1,
+      "q1_independent_drivers": ["DVR-001", "DVR-003"],
+      "strategic_actions_count": 5
+    },
+    {
+      "firm_id": "FIRM-015",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "inclusion_rationale": "Auto-include: Q1 on DVR-002 (EPS CHF 48.83/~$54.69 USD, rank 1/16) and DVR-003 (FRE Margin 62%, rank 4/23). Swiss-listed direct investing specialist. European peer providing geographic diversity. High-touch, direct-investment model contrasts with PAX's fund-of-funds heritage. 5 strategic actions covering product-launch, distribution-shift, M&A, and geographic-expansion.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 64.7,
+      "q1_independent_drivers": ["DVR-002", "DVR-003"],
+      "strategic_actions_count": 5
+    },
+    {
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "inclusion_rationale": "Strong inclusion: Q1 on DVR-001 (FEAUM $384.9B, rank 6/23). Credit-dominant platform (65% of AUM) with fastest organic growth among mega-caps (FEAUM +30% YoY). Q1 on non-independent drivers DVR-004 (Total AUM), DVR-005 (DE/share), DVR-006 (Credit %). 5 well-documented strategic actions spanning M&A, capital-structure-change, distribution-shift, and technology-operations. Critical comparator for PAX's credit expansion thesis.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 58.8,
+      "q1_independent_drivers": ["DVR-001"],
+      "strategic_actions_count": 5
+    },
+    {
+      "firm_id": "FIRM-008",
+      "firm_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "inclusion_rationale": "Strong inclusion: Q1 on DVR-003 (FRE Margin 62.0%, rank 3/23). Permanent capital model (85% of management fees from permanent capital vehicles) provides instructive comparison for PAX's perpetual capital aspirations. 5 strategic actions heavily weighted toward M&A-driven platform expansion. Mid-scale ($187.7B FEAUM) but growing rapidly, demonstrating how a mid-tier firm scales without legacy fund structures.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 52.9,
+      "q1_independent_drivers": ["DVR-003"],
+      "strategic_actions_count": 5
+    },
+    {
+      "firm_id": "FIRM-011",
+      "firm_name": "EQT AB",
+      "ticker": "EQT",
+      "inclusion_rationale": "Included for European diversity and strategic instructiveness. Swedish-listed thematic PE/infrastructure firm with AUM of EUR 270B ($291.6B). Coller Capital acquisition expanding into secondaries. EQT's operating model emphasizes value creation through portfolio company transformation — a contrasting approach to PAX's LatAm-focused model. 5 strategic actions covering M&A, product-launch, and organizational-change. Q2 on FEAUM and FRE Margin; provides European mid-to-large-scale comparator.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 64.7,
+      "q1_independent_drivers": [],
+      "strategic_actions_count": 5
+    },
+    {
+      "firm_id": "FIRM-009",
+      "firm_name": "Carlyle Group Inc.",
+      "ticker": "CG",
+      "inclusion_rationale": "Included for strategic breadth and playbook diversity. No Q1 on independent drivers (FEAUM Q2, FRE Margin Q3) but 6 strategic actions representing the most diverse action type set: organizational-change, distribution-shift, M&A, and capital-structure-change. Largest traditional PE firm undergoing strategic pivot toward credit and insurance. Relevant as a case study in platform transformation from PE-centric to multi-strategy, a path PAX may consider.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 58.8,
+      "q1_independent_drivers": [],
+      "strategic_actions_count": 6
+    },
+    {
+      "firm_id": "FIRM-012",
+      "firm_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "inclusion_rationale": "Included for private-markets-solutions model and technology-led differentiation. Q1 on DVR-002 (EPS $4.35, rank 4/16). Private markets advisory and fund solutions specialist with $1T+ in assets under management and supervision. 5 strategic actions covering product-launch, distribution-shift, geographic-expansion, and technology-operations — the most tech-focused action set in the peer group. Relevant for PAX's distribution innovation and private wealth penetration ambitions.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 3,
+      "metric_coverage_pct": 52.9,
+      "q1_independent_drivers": ["DVR-002"],
+      "strategic_actions_count": 5
+    },
+    {
+      "firm_id": "FIRM-016",
+      "firm_name": "StepStone Group, Inc.",
+      "ticker": "STEP",
+      "inclusion_rationale": "Cautionary case: Q4 on DVR-002 (EPS -$1.55, rank 16/16) and DVR-003 (FRE Margin 37%, rank 20/23) despite strong AUM growth (FEAUM Q3, $138.6B). Demonstrates that rapid AUM scaling does not automatically translate to earnings quality or valuation premium. Negative EPS despite $219.8B total AUM and record fundraising raises questions about cost structure scalability. 4 strategic actions covering product-launch, distribution-shift, and technology-operations. Instructive counterexample for PAX on the importance of margin discipline alongside growth.",
+      "cautionary_case": true,
+      "non_obvious_peer": false,
+      "source_count": 3,
+      "metric_coverage_pct": 58.8,
+      "q1_independent_drivers": [],
+      "strategic_actions_count": 4
+    },
+    {
+      "firm_id": "FIRM-018",
+      "firm_name": "Vinci Compass Investments Ltd.",
+      "ticker": "VINP",
+      "inclusion_rationale": "Cautionary case and PAX-scale comparable. AUM of $59.0B ($45.3B FEAUM), closest to PAX's $52.6B AUM / $40.8B FEAUM. Brazilian-headquartered LatAm alt manager — the most directly comparable firm to PAX in terms of geography, scale, and market positioning. Q4 on DVR-002 (EPS $0.45) and DVR-003 (FRE Margin 30.4%) despite Q1 on FRE Growth (63% YoY). Demonstrates that high growth does not compensate for low margins in valuation. Full metric coverage (100%). Non-obvious peer flagged for DVR-007 (FRE Growth Q1). Direct head-to-head peer for PAX in LatAm alternatives.",
+      "cautionary_case": true,
+      "non_obvious_peer": true,
+      "source_count": 0,
+      "metric_coverage_pct": 100.0,
+      "q1_independent_drivers": [],
+      "strategic_actions_count": 0,
+      "source_gap_note": "No dedicated sources in the source catalog. Deep-dive team will need to gather VINP-specific sources (20-F, earnings releases, investor presentations) before profiling. VINP data was collected by tier-3 data collector from public filings."
+    }
+  ],
+  "excluded_candidates": [
+    {
+      "ticker": "BN",
+      "firm_name": "Brookfield Corporation",
+      "exclusion_rationale": "Excluded to avoid double-counting with BAM (Brookfield Asset Management). BN is the parent holding company; BAM is the listed asset management subsidiary. Including both would over-represent a single organizational group. BAM retained as the more relevant pure-play asset management comparator. BN's strategic actions (5) are incorporated via BAM's profile where relevant."
+    },
+    {
+      "ticker": "TPG",
+      "firm_name": "TPG Inc.",
+      "exclusion_rationale": "Borderline candidate. Q2 on FEAUM ($170.1B), Q3 on FRE Margin (45%). No Q1 on any independent driver. 4 strategic actions (M&A, distribution-shift, product-launch) are reasonably diverse but less instructive than included peers. Metric coverage adequate (58.8%) and source count sufficient (3). Excluded to keep set at 12; would be first add-back if any included firm proves under-documented during deep-dives."
+    },
+    {
+      "ticker": "ICP",
+      "firm_name": "Intermediate Capital Group plc",
+      "exclusion_rationale": "European credit specialist (Q3 on FEAUM, N/A on EPS and FRE Margin in driver ranking). Only 47.1% metric coverage — below 60% threshold. While ICP has 5 well-diversified strategic actions and 3 sources, the low metric coverage and absence from 2 of 3 independent driver rankings limits quantitative comparability. European diversity already provided by PGHN (Switzerland) and EQT (Sweden)."
+    },
+    {
+      "ticker": "ANTIN",
+      "firm_name": "Antin Infrastructure Partners S.A.",
+      "exclusion_rationale": "Q4 on DVR-001 (FEAUM $24.6B), Q3 on DVR-002 and DVR-003. Full metric coverage (100%) but no sources in the source catalog and no strategic actions documented. Non-obvious peer flagged for DVR-008 (Management Fee Rate Q1) but DVR-008 is not an independent driver (avg_abs_rho=0.18, weakest signal). Narrow infrastructure-only model provides less strategic breadth than other European peers (EQT, PGHN). Scale ($37.8B AUM) comparable to PAX but without documented actions, deep-dive would lack qualitative depth."
+    },
+    {
+      "ticker": "CVC",
+      "firm_name": "CVC Capital Partners plc",
+      "exclusion_rationale": "Recently listed (2024 IPO). Q2 on FEAUM ($159.8B), Q3 on EPS, Q2 on FRE Margin. No Q1 on any independent driver. No sources in source catalog, no strategic actions documented. Metric coverage adequate (58.8%) but qualitative data gaps would limit deep-dive instructiveness. Non-obvious peer flagged for DVR-007 (FRE Growth Q1) but FRE Growth is not an independent driver."
+    },
+    {
+      "ticker": "GCMG",
+      "firm_name": "GCM Grosvenor Inc.",
+      "exclusion_rationale": "Q3 on FEAUM ($72.0B), Q3 on FRE Margin (44%). No Q1 on any independent driver. No sources in catalog, no strategic actions. Metric coverage adequate (58.8%) but without qualitative data, deep-dive would be purely quantitative. Fund-of-funds / advisory model is structurally comparable to PAX but insufficient documentation to profile meaningfully."
+    },
+    {
+      "ticker": "RPC",
+      "firm_name": "Ridgepost Capital, Inc. (formerly P10, Inc.)",
+      "exclusion_rationale": "Q4 on DVR-001 (FEAUM $29.4B) and DVR-002 (EPS $0.21), Q3 on DVR-003 (FRE Margin 48.1%). Bottom quartile on 2 of 3 independent drivers. Non-obvious peer flagged for DVR-008 (Management Fee Rate Q1) but DVR-008 is the weakest signal. No sources in catalog, no strategic actions. Full metric coverage (100%) but qualitative gaps prevent meaningful deep-dive. Very low valuation multiples (P/FRE 5.5x, EV/FEAUM 3.9x) but without documented strategic context, the reasons are unexplorable."
+    },
+    {
+      "ticker": "III",
+      "firm_name": "3i Group plc",
+      "exclusion_rationale": "Structurally different business model: direct balance sheet investing rather than third-party fund management. Q1 on DVR-002 (EPS GBP 8.14) reflects high per-share price from concentrated portfolio approach, not comparable earnings quality. Q4 on DVR-001 (FEAUM $8.8B) and no FRE Margin data. Only 47.1% metric coverage — below 60% threshold. No sources in catalog, no strategic actions. Inclusion would compare a listed investment trust to a fund management platform."
+    },
+    {
+      "ticker": "BPT",
+      "firm_name": "Bridgepoint Group plc",
+      "exclusion_rationale": "No Q1 on any independent driver (FEAUM Q3, EPS Q4, FRE Margin Q2). Mid-European PE firm ($86.6B AUM). 4 strategic actions documented but metric coverage only 58.8%. European diversity already covered by PGHN and EQT. Borderline — would be considered if European representation were insufficient."
+    },
+    {
+      "ticker": "TKO",
+      "firm_name": "Tikehau Capital S.C.A.",
+      "exclusion_rationale": "French-listed multi-asset manager ($57.0B AUM). PAX-comparable scale but no Q1 on any independent driver (FEAUM Q3, EPS Q2, FRE Margin Q4). No sources in catalog, no strategic actions documented. Low FRE Margin (41%) despite similar scale to PAX — potentially instructive as cautionary case, but lack of qualitative data limits usefulness. VINP already serves as the PAX-scale cautionary comparator with richer data."
+    },
+    {
+      "ticker": "RF",
+      "firm_name": "Rithm Capital Corp.",
+      "exclusion_rationale": "Q4 on DVR-001 (FEAUM $31.3B), Q2 on DVR-002. No Q1 on any independent driver. Primarily a mortgage REIT / specialty finance platform — structurally dissimilar to alternative asset management. Metric coverage adequate (88.2%) but no sources and no strategic actions. Business model divergence limits comparability."
+    },
+    {
+      "ticker": "EMG",
+      "firm_name": "Man Group plc / Emerging Markets Group",
+      "exclusion_rationale": "Q4 on DVR-003 (FRE Margin 27.3%), Q4 on DVR-007 (FRE Growth -9%). No Q1 on any independent driver. No sources in catalog, no strategic actions. Metric coverage adequate (70.6%) but quantitative-only profile. Systematic/quant-heavy model is structurally different from PAX's alternatives approach."
+    }
+  ],
+  "total_final_set_size": 12,
+  "selection_summary": {
+    "auto_included": 5,
+    "auto_included_firms": ["BX", "KKR", "APO", "BAM", "PGHN"],
+    "qualitative_included": 5,
+    "qualitative_included_firms": ["ARES", "OWL", "EQT", "CG", "HLNE"],
+    "cautionary_cases": 2,
+    "cautionary_case_firms": ["STEP", "VINP"],
+    "non_obvious_peers_included": 1,
+    "non_obvious_peer_firms": ["VINP"],
+    "european_peers": 2,
+    "european_peer_firms": ["PGHN", "EQT"],
+    "pax_scale_comparables": 1,
+    "pax_scale_comparable_firms": ["VINP"]
+  },
+  "flagged_gaps": [
+    "VINP (Vinci Compass) has 0 sources in the source catalog and 0 strategic actions documented. Deep-dive team must gather dedicated sources (20-F SEC filings, quarterly earnings releases, investor presentations) before profiling. Tier-3 quantitative data exists but qualitative coverage is absent.",
+    "APO and BAM have 47.1% metric coverage each — below the 60% threshold but auto-included due to Q1 on 2+ independent drivers. Deep-dive team should prioritize filling metric gaps for these firms from their 4 available sources.",
+    "STEP has only 3 sources. Deep-dive team may need supplemental sources (additional earnings transcripts, sell-side research) to fully profile the cautionary dynamics.",
+    "HLNE has only 3 sources and 52.9% metric coverage — adequate but thin. Supplemental data collection may be needed during deep-dive.",
+    "No LatAm-headquartered peer with full qualitative coverage is available besides VINP. PAX's LatAm positioning is unique in the peer universe, limiting direct geographic comparability."
+  ],
+  "diversity_assessment": {
+    "geographic_coverage": {
+      "US": ["BX", "KKR", "APO", "ARES", "OWL", "CG", "HLNE", "STEP"],
+      "Europe": ["PGHN (Switzerland)", "EQT (Sweden)"],
+      "Latin_America": ["VINP (Brazil)"]
+    },
+    "scale_distribution": {
+      "mega_cap_500B_plus": ["BX ($921.7B FEAUM)", "APO ($709.0B)", "KKR ($604.0B)", "BAM ($603.0B)"],
+      "large_cap_100B_500B": ["ARES ($384.9B)", "OWL ($187.7B)", "EQT ($152.3B)", "HLNE ($146.1B)", "STEP ($138.6B)", "CG ($337.0B)"],
+      "pax_scale_sub_100B": ["VINP ($45.3B)"]
+    },
+    "business_model_diversity": {
+      "multi_strategy_platform": ["BX", "KKR", "APO", "CG", "EQT"],
+      "credit_dominant": ["ARES", "OWL"],
+      "real_asset_infrastructure_heavy": ["BAM"],
+      "private_markets_solutions_advisory": ["HLNE", "STEP"],
+      "direct_investing_specialist": ["PGHN"],
+      "latam_alternatives": ["VINP"]
+    }
+  }
+}

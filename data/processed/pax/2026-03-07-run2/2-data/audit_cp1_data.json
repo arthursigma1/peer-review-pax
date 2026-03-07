@@ -1,0 +1,103 @@
+{
+  "checkpoint": "CP-1",
+  "stage_audited": "VD-A2",
+  "audit_date": "2026-03-07",
+  "run_id": "2026-03-07-run2",
+  "verdict": "PASSED",
+  "claims_audited": 15,
+  "claims_passed": 11,
+  "claims_flagged": 4,
+  "flags_by_dimension": {
+    "invalid_premises": 1,
+    "misleading_context": 2,
+    "sycophantic_fabrication": 0,
+    "confidence_miscalibration": 1
+  },
+  "blocked_claims": [],
+  "inferred_claims": [
+    {
+      "claim_id": "PAX-MET-VD-017-FY2025",
+      "firm": "PAX",
+      "metric": "Perf fee share",
+      "value": "7%",
+      "reason": "DE ($200.9M) minus FRE ($202.5M) is slightly negative, indicating near-zero realized performance fees in FY2025. The 7% figure is based on 'historical pattern' rather than current-year evidence. Must use hedged language in downstream analysis (e.g., 'historically around 7%', not 'is 7%').",
+      "required_action": "Mark as INFERRED in any downstream usage. Use hedged language."
+    }
+  ],
+  "flagged_claims": [
+    {
+      "flag_id": "FLAG-CP1-001",
+      "dimension": "invalid_premises",
+      "severity": "minor",
+      "firm": "PAX",
+      "metric": "MET-VD-010 (Asset class HHI)",
+      "issue": "Raw HHI calculation from stated share percentages (29^2+26^2+19^2+12^2+9^2+6^2) sums to 2139, not the reported 2050. The downward adjustment of ~4% is attributed to 'slight rounding in share percentages' but is not mathematically justified. Either the share percentages should be re-stated to produce 2050, or the value should be ~2139.",
+      "impact": "Low. HHI is a relative concentration measure and the 89-point difference does not change the qualitative interpretation (moderately diversified in both cases).",
+      "recommended_action": "Accept 2139 as the HHI value derived from stated shares, or recompute with precise shares. Not blocking."
+    },
+    {
+      "flag_id": "FLAG-CP1-002",
+      "dimension": "misleading_context",
+      "severity": "minor",
+      "firm": "APO",
+      "metric": "MET-VD-004 (FEAUM) extraction notes",
+      "issue": "The extraction notes for APO FEAUM state 'up 25% YoY' which refers to total AUM growth ($751B to $938B = 24.9%), not FEAUM growth ($638B to $709B = 11.1%). The value itself ($709B) and the separately computed FEAUM YoY metric (11.1%) are correct, but the embedded note on MET-VD-004 conflates the two growth rates.",
+      "impact": "Low. The actual FEAUM value and the explicit YoY growth metric are both correct. Only the annotation text is misleading.",
+      "recommended_action": "Correct the MET-VD-004 note to say 'up 11.1% YoY' for FEAUM, distinguishing from total AUM growth of 25%. Not blocking."
+    },
+    {
+      "flag_id": "FLAG-CP1-003",
+      "dimension": "confidence_miscalibration",
+      "severity": "minor",
+      "firm": "OWL",
+      "metric": "MET-VD-011 (Permanent capital %)",
+      "issue": "Reported as 100% with 'high' confidence, but the supporting notes state '~85-91% of management fees are from permanent capital vehicles.' The reconciliation ('effectively 100% is in long-dated or perpetual structures') conflates 'long-dated' with 'permanent/perpetual.' True perpetual capital is 85-91%, not 100%.",
+      "impact": "Medium. In cross-firm comparisons, OWL at 100% vs. peers at 30-45% overstates the structural gap. A value of ~88% would still be industry-leading but more precise.",
+      "recommended_action": "Downgrade to 'medium' confidence or revise value to ~88% with a note distinguishing permanent from long-dated. Not blocking since OWL's structural advantage is directionally correct."
+    },
+    {
+      "flag_id": "FLAG-CP1-004",
+      "dimension": "misleading_context",
+      "severity": "minor",
+      "firm": "PAX",
+      "metric": "MET-VD-017 (Perf fee share)",
+      "issue": "Perf fee share of 7% is stated for FY2025, but current-year DE minus FRE is slightly negative (-$1.6M), suggesting near-zero realized performance fees. The 7% is based on 'historical pattern' rather than FY2025 actuals. This should be explicitly marked as an estimate based on prior years, not current-year data.",
+      "impact": "Medium. Downstream correlation analysis could incorrectly treat this as a current-year observed data point rather than a historical estimate.",
+      "recommended_action": "Re-label as INFERRED. Use hedged language in any downstream reference. Not blocking."
+    }
+  ],
+  "consistency_checks": {
+    "valuation_multiples_verified": {
+      "PAX_P_FRE": {"calculation": "$2.12B / $202.5M = 10.47x", "reported": 10.5, "status": "PASS"},
+      "PAX_P_DE": {"calculation": "$2.12B / $200.9M = 10.55x", "reported": 10.6, "status": "PASS"},
+      "PAX_EV_FEAUM": {"calculation": "($2.12B + $0.10B) / $40.8B = 5.44%", "reported": 5.4, "status": "PASS"},
+      "BX_P_FRE": {"calculation": "$189.2B / $5.7B = 33.19x", "reported": 33.2, "status": "PASS"},
+      "BX_P_DE": {"calculation": "$189.2B / $7.1B = 26.65x", "reported": 26.6, "status": "PASS"},
+      "BX_EV_FEAUM": {"calculation": "$189.2B / $921.7B = 20.53%", "reported": 20.5, "status": "PASS"},
+      "CG_P_FRE": {"calculation": "$21.3B / $1.24B = 17.18x", "reported": 17.2, "status": "PASS"},
+      "CG_P_DE": {"calculation": "$21.3B / $1.7B = 12.53x", "reported": 12.5, "status": "PASS"}
+    },
+    "derived_metrics_verified": {
+      "BX_FEAUM_YoY": {"calculation": "($921.7B - $830.7B) / $830.7B = 10.95%", "reported": 11.0, "status": "PASS"},
+      "KKR_FEAUM_YoY": {"calculation": "($604B - $512B) / $512B = 18.0%", "reported": 18.0, "status": "PASS"},
+      "APO_FEAUM_YoY": {"calculation": "($709B - $638B) / $638B = 11.13%", "reported": 11.1, "status": "PASS"},
+      "PAX_Fundraising_ratio": {"calculation": "$7.7B / $41.9B = 18.38%", "reported": 18.4, "status": "PASS"},
+      "PAX_Mgmt_fee_rate": {"calculation": "$344M / $36.9B * 10,000 = 93.2 bps", "reported": 93.0, "status": "PASS"},
+      "ARES_FEAUM_FY2024_backtest": {"calculation": "$384.9B / 1.315 = $292.8B", "reported": 292.8, "status": "PASS"},
+      "EQT_FEAUM_FX": {"calculation": "EUR 141B * 1.08 = $152.28B", "reported": 152.3, "status": "PASS"},
+      "EQT_FRE_margin": {"calculation": "EUR 1,194M / EUR 2,283M = 52.3%", "reported": 52, "status": "PASS"}
+    },
+    "tier_to_merged_consistency": {
+      "status": "PASS",
+      "notes": "All sampled tier-level values (PAX from tier 3, BX from tier 1, EQT from tier 2) match corresponding entries in quantitative_data.json. Source IDs are preserved correctly through merge."
+    }
+  },
+  "structural_observations": [
+    "Market cap reference dates differ across tiers: Tier 1 uses Dec 31 2025, Tier 2 uses Feb 28 2026, Tier 3 uses Mar 6 2026. This is documented in metadata but could introduce systematic bias in valuation multiples (up to ~2 months of market movement). Noted but not blocking as it is disclosed.",
+    "Several firms use fiscal years ending March 31 (STEP, HLNE, ICG, III), requiring LTM or quarterly proxies. These are appropriately marked with lower confidence where applicable.",
+    "Tier 2 firms (EQT, CVC, ANTIN, BPT) have partial-year data due to later reporting schedules. Confidence ratings appropriately reflect this limitation.",
+    "BAM and BN share the same underlying AUM ($603B FBC, ~$1.1T total) since BN is the parent holding company. This is correctly documented but downstream correlation analysis must treat them as non-independent observations.",
+    "Source ID namespaces differ between tiers: Tier 1 uses PS-VD-1XX, Tier 2 uses PS-VD-T2-0XX, Tier 3 uses PS-VD-T3-0XX. No ID collisions detected."
+  ],
+  "notes": "CP-1 audit PASSED with 4 minor flags and 1 INFERRED claim. No blocked claims. All flagged issues are annotation-level concerns that do not compromise the integrity of the core quantitative values. Valuation multiples and derived metrics show strong internal consistency across all verified data points. The merged quantitative_data.json faithfully reflects its tier-level source files. Data quality is sufficient to proceed to Step 3 (Find What Drives Value)."
+}

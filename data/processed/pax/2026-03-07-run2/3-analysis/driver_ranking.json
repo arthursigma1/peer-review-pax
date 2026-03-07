@@ -1,0 +1,1303 @@
+{
+  "metadata": {
+    "pipeline": "VDA",
+    "step": "3-analysis",
+    "step_name": "Value Driver Ranking (VD-A5)",
+    "generated_date": "2026-03-07",
+    "run_id": "2026-03-07-run2",
+    "company": "Patria Investments Limited",
+    "ticker": "PAX",
+    "total_drivers_ranked": 8,
+    "methodology_notes": [
+      "Drivers ranked by average absolute Spearman rho across three valuation multiples (P/FRE, P/DE, EV/FEAUM)",
+      "Partial correlation results from VD-A4b incorporated to distinguish independent signals from scale-confounded ones",
+      "Total AUM included for completeness but flagged as confounded by FEAUM (partial rho ~0.12)",
+      "Credit % included as moderate signal but also confounded by FEAUM",
+      "Quartiles computed on full sample of firms with available data (higher = better for all listed drivers)",
+      "Non-obvious peers: firms in Q1 on 2+ top drivers that were not in the VD-B0 qualitative peer list"
+    ]
+  },
+  "drivers": [
+    {
+      "driver_id": "DVR-001",
+      "metric_id": "MET-VD-004",
+      "driver_name": "Fee-Earning AUM",
+      "avg_abs_rho": 0.6949,
+      "correlation_classification": "stable_value_driver",
+      "confidence_class": "moderate_confidence",
+      "independent_signal": true,
+      "independence_note": "Is the scale variable itself. Strongest raw signal; only correlation surviving strictest Bonferroni (p=0.0003).",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.7647,
+          "p_value": 0.0003,
+          "p_value_bh_adjusted": 0.0255,
+          "bh_significant": true,
+          "n": 17
+        },
+        "P/DE": {
+          "rho": 0.6905,
+          "p_value": 0.058,
+          "p_value_bh_adjusted": 0.348,
+          "bh_significant": false,
+          "n": 8
+        },
+        "EV/FEAUM": {
+          "rho": 0.6294,
+          "p_value": 0.009,
+          "p_value_bh_adjusted": 0.13,
+          "bh_significant": false,
+          "n": 16
+        }
+      },
+      "quartile_analysis": {
+        "n_firms": 23,
+        "direction": "higher_is_better",
+        "top_quartile_firms": [
+          "BX",
+          "APO",
+          "KKR",
+          "BAM",
+          "BN",
+          "ARES"
+        ],
+        "bottom_quartile_firms": [
+          "PAX",
+          "RF",
+          "RPC",
+          "ANTIN",
+          "III"
+        ],
+        "pax_position": {
+          "quartile": "Q4",
+          "value": 40.8,
+          "rank": 19,
+          "total": 23
+        },
+        "all_firms": {
+          "BX": {
+            "value": 921.7,
+            "quartile": "Q1"
+          },
+          "APO": {
+            "value": 709.0,
+            "quartile": "Q1"
+          },
+          "KKR": {
+            "value": 604.0,
+            "quartile": "Q1"
+          },
+          "BAM": {
+            "value": 603.0,
+            "quartile": "Q1"
+          },
+          "BN": {
+            "value": 603.0,
+            "quartile": "Q1"
+          },
+          "ARES": {
+            "value": 384.9,
+            "quartile": "Q1"
+          },
+          "CG": {
+            "value": 337.0,
+            "quartile": "Q2"
+          },
+          "OWL": {
+            "value": 187.7,
+            "quartile": "Q2"
+          },
+          "TPG": {
+            "value": 170.1,
+            "quartile": "Q2"
+          },
+          "CVC": {
+            "value": 159.8,
+            "quartile": "Q2"
+          },
+          "EQT": {
+            "value": 152.3,
+            "quartile": "Q2"
+          },
+          "HLNE": {
+            "value": 146.1,
+            "quartile": "Q2"
+          },
+          "STEP": {
+            "value": 138.6,
+            "quartile": "Q3"
+          },
+          "ICP": {
+            "value": 94.5,
+            "quartile": "Q3"
+          },
+          "GCMG": {
+            "value": 72.0,
+            "quartile": "Q3"
+          },
+          "TKO": {
+            "value": 45.4,
+            "quartile": "Q3"
+          },
+          "VINP": {
+            "value": 45.3,
+            "quartile": "Q3"
+          },
+          "BPT": {
+            "value": 44.0,
+            "quartile": "Q3"
+          },
+          "PAX": {
+            "value": 40.8,
+            "quartile": "Q4"
+          },
+          "RF": {
+            "value": 31.3,
+            "quartile": "Q4"
+          },
+          "RPC": {
+            "value": 29.4,
+            "quartile": "Q4"
+          },
+          "ANTIN": {
+            "value": 24.6,
+            "quartile": "Q4"
+          },
+          "III": {
+            "value": 8.8,
+            "quartile": "Q4"
+          }
+        }
+      },
+      "non_obvious_peers_in_q1": []
+    },
+    {
+      "driver_id": "DVR-002",
+      "metric_id": "MET-VD-002",
+      "driver_name": "Earnings per Share (GAAP)",
+      "avg_abs_rho": 0.7286,
+      "correlation_classification": "stable_value_driver",
+      "confidence_class": "moderate_confidence",
+      "independent_signal": true,
+      "independence_note": "Independent signal confirmed. Partial rho drops only 0.04-0.07 after controlling for FEAUM.",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.6648,
+          "p_value": 0.0132,
+          "p_value_bh_adjusted": 0.1397,
+          "bh_significant": false,
+          "n": 13
+        },
+        "P/DE": {
+          "rho": 0.7714,
+          "p_value": 0.0724,
+          "p_value_bh_adjusted": 0.3692,
+          "bh_significant": false,
+          "n": 6
+        },
+        "EV/FEAUM": {
+          "rho": 0.7495,
+          "p_value": 0.002,
+          "p_value_bh_adjusted": 0.0408,
+          "bh_significant": true,
+          "n": 14
+        }
+      },
+      "quartile_analysis": {
+        "n_firms": 16,
+        "direction": "higher_is_better",
+        "top_quartile_firms": [
+          "PGHN",
+          "III",
+          "APO",
+          "HLNE"
+        ],
+        "bottom_quartile_firms": [
+          "VINP",
+          "RPC",
+          "BPT",
+          "STEP"
+        ],
+        "pax_position": {
+          "quartile": "Q3",
+          "value": 0.54,
+          "rank": 12,
+          "total": 16
+        },
+        "all_firms": {
+          "PGHN": {
+            "value": 48.832,
+            "quartile": "Q1"
+          },
+          "III": {
+            "value": 8.14,
+            "quartile": "Q1"
+          },
+          "APO": {
+            "value": 5.54,
+            "quartile": "Q1"
+          },
+          "HLNE": {
+            "value": 4.35,
+            "quartile": "Q1"
+          },
+          "BX": {
+            "value": 3.87,
+            "quartile": "Q2"
+          },
+          "RF": {
+            "value": 2.5,
+            "quartile": "Q2"
+          },
+          "KKR": {
+            "value": 2.38,
+            "quartile": "Q2"
+          },
+          "TKO": {
+            "value": 0.83,
+            "quartile": "Q2"
+          },
+          "ANTIN": {
+            "value": 0.7,
+            "quartile": "Q3"
+          },
+          "EQT": {
+            "value": 0.6674,
+            "quartile": "Q3"
+          },
+          "CVC": {
+            "value": 0.5832,
+            "quartile": "Q3"
+          },
+          "PAX": {
+            "value": 0.54,
+            "quartile": "Q3"
+          },
+          "VINP": {
+            "value": 0.45,
+            "quartile": "Q4"
+          },
+          "RPC": {
+            "value": 0.21,
+            "quartile": "Q4"
+          },
+          "BPT": {
+            "value": 0.1346,
+            "quartile": "Q4"
+          },
+          "STEP": {
+            "value": -1.55,
+            "quartile": "Q4"
+          }
+        }
+      },
+      "non_obvious_peers_in_q1": [
+        "III"
+      ]
+    },
+    {
+      "driver_id": "DVR-003",
+      "metric_id": "MET-VD-013",
+      "driver_name": "Fee-Related Earnings Margin",
+      "avg_abs_rho": 0.5424,
+      "correlation_classification": "multiple_specific_driver",
+      "confidence_class": "moderate_confidence",
+      "independent_signal": true,
+      "independence_note": "Partially attenuated but retains independent efficiency signal. EV/FEAUM partial drops from 0.61 to 0.41.",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.4037,
+          "p_value": 0.0865,
+          "p_value_bh_adjusted": 0.4061,
+          "bh_significant": false,
+          "n": 19
+        },
+        "P/DE": {
+          "rho": 0.5152,
+          "p_value": 0.1276,
+          "p_value_bh_adjusted": 0.4109,
+          "bh_significant": false,
+          "n": 10
+        },
+        "EV/FEAUM": {
+          "rho": 0.7083,
+          "p_value": 0.0015,
+          "p_value_bh_adjusted": 0.0382,
+          "bh_significant": true,
+          "n": 17
+        }
+      },
+      "quartile_analysis": {
+        "n_firms": 23,
+        "direction": "higher_is_better",
+        "top_quartile_firms": [
+          "BX",
+          "KKR",
+          "OWL",
+          "PGHN",
+          "PAX",
+          "BAM"
+        ],
+        "bottom_quartile_firms": [
+          "TKO",
+          "STEP",
+          "RF",
+          "VINP",
+          "EMG"
+        ],
+        "pax_position": {
+          "quartile": "Q1",
+          "value": 58.9,
+          "rank": 5,
+          "total": 23
+        },
+        "all_firms": {
+          "BX": {
+            "value": 71.3,
+            "quartile": "Q1"
+          },
+          "KKR": {
+            "value": 69.0,
+            "quartile": "Q1"
+          },
+          "OWL": {
+            "value": 62.0,
+            "quartile": "Q1"
+          },
+          "PGHN": {
+            "value": 62,
+            "quartile": "Q1"
+          },
+          "PAX": {
+            "value": 58.9,
+            "quartile": "Q1"
+          },
+          "BAM": {
+            "value": 58.0,
+            "quartile": "Q1"
+          },
+          "BN": {
+            "value": 58.0,
+            "quartile": "Q2"
+          },
+          "APO": {
+            "value": 57.0,
+            "quartile": "Q2"
+          },
+          "CVC": {
+            "value": 56,
+            "quartile": "Q2"
+          },
+          "BPT": {
+            "value": 53,
+            "quartile": "Q2"
+          },
+          "EQT": {
+            "value": 52,
+            "quartile": "Q2"
+          },
+          "HLNE": {
+            "value": 50,
+            "quartile": "Q2"
+          },
+          "ANTIN": {
+            "value": 50.0,
+            "quartile": "Q3"
+          },
+          "RPC": {
+            "value": 48.1,
+            "quartile": "Q3"
+          },
+          "CG": {
+            "value": 47.0,
+            "quartile": "Q3"
+          },
+          "TPG": {
+            "value": 45.0,
+            "quartile": "Q3"
+          },
+          "GCMG": {
+            "value": 44,
+            "quartile": "Q3"
+          },
+          "ARES": {
+            "value": 41.7,
+            "quartile": "Q3"
+          },
+          "TKO": {
+            "value": 41.0,
+            "quartile": "Q4"
+          },
+          "STEP": {
+            "value": 37,
+            "quartile": "Q4"
+          },
+          "RF": {
+            "value": 36.0,
+            "quartile": "Q4"
+          },
+          "VINP": {
+            "value": 30.4,
+            "quartile": "Q4"
+          },
+          "EMG": {
+            "value": 27.3,
+            "quartile": "Q4"
+          }
+        }
+      },
+      "non_obvious_peers_in_q1": [
+        "PAX"
+      ]
+    },
+    {
+      "driver_id": "DVR-004",
+      "metric_id": "MET-VD-005",
+      "driver_name": "Total AUM",
+      "avg_abs_rho": 0.5896,
+      "correlation_classification": "stable_value_driver",
+      "confidence_class": "moderate_confidence",
+      "independent_signal": false,
+      "independence_note": "CONFOUNDED by FEAUM. Partial rho collapses from ~0.69 to ~0.12. Total AUM and FEAUM measure the same underlying factor (rho=0.96).",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.6895,
+          "p_value": 0.0011,
+          "p_value_bh_adjusted": 0.0374,
+          "bh_significant": true,
+          "n": 19
+        },
+        "P/DE": {
+          "rho": 0.5273,
+          "p_value": 0.1173,
+          "p_value_bh_adjusted": 0.4063,
+          "bh_significant": false,
+          "n": 10
+        },
+        "EV/FEAUM": {
+          "rho": 0.5521,
+          "p_value": 0.0175,
+          "p_value_bh_adjusted": 0.1598,
+          "bh_significant": false,
+          "n": 18
+        }
+      },
+      "quartile_analysis": {
+        "n_firms": 25,
+        "direction": "higher_is_better",
+        "top_quartile_firms": [
+          "BX",
+          "BAM",
+          "BN",
+          "HLNE",
+          "APO",
+          "KKR",
+          "ARES"
+        ],
+        "bottom_quartile_firms": [
+          "TKO",
+          "PAX",
+          "RF",
+          "ANTIN",
+          "RPC",
+          "III"
+        ],
+        "pax_position": {
+          "quartile": "Q4",
+          "value": 52.6,
+          "rank": 21,
+          "total": 25
+        },
+        "all_firms": {
+          "BX": {
+            "value": 1274.9,
+            "quartile": "Q1"
+          },
+          "BAM": {
+            "value": 1100.0,
+            "quartile": "Q1"
+          },
+          "BN": {
+            "value": 1100.0,
+            "quartile": "Q1"
+          },
+          "HLNE": {
+            "value": 1017.6,
+            "quartile": "Q1"
+          },
+          "APO": {
+            "value": 938.0,
+            "quartile": "Q1"
+          },
+          "KKR": {
+            "value": 744.0,
+            "quartile": "Q1"
+          },
+          "ARES": {
+            "value": 622.5,
+            "quartile": "Q1"
+          },
+          "CG": {
+            "value": 477.0,
+            "quartile": "Q2"
+          },
+          "OWL": {
+            "value": 307.4,
+            "quartile": "Q2"
+          },
+          "TPG": {
+            "value": 303.0,
+            "quartile": "Q2"
+          },
+          "EQT": {
+            "value": 291.6,
+            "quartile": "Q2"
+          },
+          "EMG": {
+            "value": 227.6,
+            "quartile": "Q2"
+          },
+          "STEP": {
+            "value": 219.8,
+            "quartile": "Q2"
+          },
+          "CVC": {
+            "value": 205.0,
+            "quartile": "Q3"
+          },
+          "PGHN": {
+            "value": 185.0,
+            "quartile": "Q3"
+          },
+          "ICP": {
+            "value": 127.0,
+            "quartile": "Q3"
+          },
+          "GCMG": {
+            "value": 90.9,
+            "quartile": "Q3"
+          },
+          "BPT": {
+            "value": 86.6,
+            "quartile": "Q3"
+          },
+          "VINP": {
+            "value": 59.0,
+            "quartile": "Q3"
+          },
+          "TKO": {
+            "value": 57.0,
+            "quartile": "Q4"
+          },
+          "PAX": {
+            "value": 52.6,
+            "quartile": "Q4"
+          },
+          "RF": {
+            "value": 40.5,
+            "quartile": "Q4"
+          },
+          "ANTIN": {
+            "value": 37.8,
+            "quartile": "Q4"
+          },
+          "RPC": {
+            "value": 29.4,
+            "quartile": "Q4"
+          },
+          "III": {
+            "value": 8.8,
+            "quartile": "Q4"
+          }
+        }
+      },
+      "non_obvious_peers_in_q1": []
+    },
+    {
+      "driver_id": "DVR-005",
+      "metric_id": "MET-VD-001",
+      "driver_name": "Distributable Earnings per Share",
+      "avg_abs_rho": 0.5505,
+      "correlation_classification": "moderate_signal",
+      "confidence_class": "not_significant",
+      "independent_signal": null,
+      "independence_note": "Mixed. Small sample for partial correlation (n=7-10). Raw signal moderate; needs more data.",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.3182,
+          "p_value": 0.3403,
+          "p_value_bh_adjusted": 0.6901,
+          "bh_significant": false,
+          "n": 11
+        },
+        "P/DE": {
+          "rho": 0.5,
+          "p_value": 0.207,
+          "p_value_bh_adjusted": 0.491,
+          "bh_significant": false,
+          "n": 8
+        },
+        "EV/FEAUM": {
+          "rho": 0.8333,
+          "p_value": 0.0102,
+          "p_value_bh_adjusted": 0.13,
+          "bh_significant": false,
+          "n": 8
+        }
+      },
+      "quartile_analysis": {
+        "n_firms": 14,
+        "direction": "higher_is_better",
+        "top_quartile_firms": [
+          "BX",
+          "ARES",
+          "HLNE",
+          "CG"
+        ],
+        "bottom_quartile_firms": [
+          "TPG",
+          "STEP",
+          "EMG"
+        ],
+        "pax_position": {
+          "quartile": "Q2",
+          "value": 1.27,
+          "rank": 7,
+          "total": 14
+        },
+        "all_firms": {
+          "BX": {
+            "value": 5.57,
+            "quartile": "Q1"
+          },
+          "ARES": {
+            "value": 4.76,
+            "quartile": "Q1"
+          },
+          "HLNE": {
+            "value": 4.41,
+            "quartile": "Q1"
+          },
+          "CG": {
+            "value": 4.2,
+            "quartile": "Q1"
+          },
+          "BN": {
+            "value": 2.67,
+            "quartile": "Q2"
+          },
+          "BAM": {
+            "value": 1.65,
+            "quartile": "Q2"
+          },
+          "PAX": {
+            "value": 1.27,
+            "quartile": "Q2"
+          },
+          "RPC": {
+            "value": 0.92,
+            "quartile": "Q3"
+          },
+          "OWL": {
+            "value": 0.84,
+            "quartile": "Q3"
+          },
+          "ANTIN": {
+            "value": 0.82,
+            "quartile": "Q3"
+          },
+          "VINP": {
+            "value": 0.77,
+            "quartile": "Q3"
+          },
+          "TPG": {
+            "value": 0.71,
+            "quartile": "Q4"
+          },
+          "STEP": {
+            "value": 0.65,
+            "quartile": "Q4"
+          },
+          "EMG": {
+            "value": 0.276,
+            "quartile": "Q4"
+          }
+        }
+      },
+      "non_obvious_peers_in_q1": []
+    },
+    {
+      "driver_id": "DVR-006",
+      "metric_id": "MET-VD-012",
+      "driver_name": "Credit Percentage of AUM",
+      "avg_abs_rho": 0.3948,
+      "correlation_classification": "moderate_signal",
+      "confidence_class": "not_significant",
+      "independent_signal": false,
+      "independence_note": "CONFOUNDED by FEAUM. Raw associations disappear after controlling for scale.",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.476,
+          "p_value": 0.0459,
+          "p_value_bh_adjusted": 0.2926,
+          "bh_significant": false,
+          "n": 18
+        },
+        "P/DE": {
+          "rho": 0.3833,
+          "p_value": 0.3085,
+          "p_value_bh_adjusted": 0.6422,
+          "bh_significant": false,
+          "n": 9
+        },
+        "EV/FEAUM": {
+          "rho": 0.325,
+          "p_value": 0.2031,
+          "p_value_bh_adjusted": 0.491,
+          "bh_significant": false,
+          "n": 17
+        }
+      },
+      "quartile_analysis": {
+        "n_firms": 23,
+        "direction": "higher_is_better",
+        "top_quartile_firms": [
+          "APO",
+          "ARES",
+          "ICP",
+          "OWL",
+          "CG",
+          "KKR"
+        ],
+        "bottom_quartile_firms": [
+          "RPC",
+          "EMG",
+          "EQT",
+          "ANTIN",
+          "III"
+        ],
+        "pax_position": {
+          "quartile": "Q2",
+          "value": 26.0,
+          "rank": 10,
+          "total": 23
+        },
+        "all_firms": {
+          "APO": {
+            "value": 72.0,
+            "quartile": "Q1"
+          },
+          "ARES": {
+            "value": 65.3,
+            "quartile": "Q1"
+          },
+          "ICP": {
+            "value": 55,
+            "quartile": "Q1"
+          },
+          "OWL": {
+            "value": 53.0,
+            "quartile": "Q1"
+          },
+          "CG": {
+            "value": 44.3,
+            "quartile": "Q1"
+          },
+          "KKR": {
+            "value": 43.3,
+            "quartile": "Q1"
+          },
+          "TKO": {
+            "value": 40.0,
+            "quartile": "Q2"
+          },
+          "BX": {
+            "value": 34.7,
+            "quartile": "Q2"
+          },
+          "TPG": {
+            "value": 30.7,
+            "quartile": "Q2"
+          },
+          "PAX": {
+            "value": 26.0,
+            "quartile": "Q2"
+          },
+          "RF": {
+            "value": 25.0,
+            "quartile": "Q2"
+          },
+          "CVC": {
+            "value": 23,
+            "quartile": "Q2"
+          },
+          "STEP": {
+            "value": 20,
+            "quartile": "Q3"
+          },
+          "HLNE": {
+            "value": 20,
+            "quartile": "Q3"
+          },
+          "VINP": {
+            "value": 20.0,
+            "quartile": "Q3"
+          },
+          "BPT": {
+            "value": 19,
+            "quartile": "Q3"
+          },
+          "PGHN": {
+            "value": 15,
+            "quartile": "Q3"
+          },
+          "GCMG": {
+            "value": 13,
+            "quartile": "Q3"
+          },
+          "RPC": {
+            "value": 10.0,
+            "quartile": "Q4"
+          },
+          "EMG": {
+            "value": 8,
+            "quartile": "Q4"
+          },
+          "EQT": {
+            "value": 5,
+            "quartile": "Q4"
+          },
+          "ANTIN": {
+            "value": 0.0,
+            "quartile": "Q4"
+          },
+          "III": {
+            "value": 0.0,
+            "quartile": "Q4"
+          }
+        }
+      },
+      "non_obvious_peers_in_q1": []
+    },
+    {
+      "driver_id": "DVR-007",
+      "metric_id": "MET-VD-014",
+      "driver_name": "FRE Growth, Year-over-Year",
+      "avg_abs_rho": 0.2601,
+      "correlation_classification": "moderate_signal",
+      "confidence_class": "not_significant",
+      "independent_signal": null,
+      "independence_note": "Not tested in partial correlations. Moderate P/FRE signal (rho=0.33) but weak EV/FEAUM signal.",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.3339,
+          "p_value": 0.1624,
+          "p_value_bh_adjusted": 0.4733,
+          "bh_significant": false,
+          "n": 19
+        },
+        "P/DE": {
+          "rho": 0.4303,
+          "p_value": 0.2145,
+          "p_value_bh_adjusted": 0.4973,
+          "bh_significant": false,
+          "n": 10
+        },
+        "EV/FEAUM": {
+          "rho": -0.016,
+          "p_value": 0.9515,
+          "p_value_bh_adjusted": 0.9757,
+          "bh_significant": false,
+          "n": 17
+        }
+      },
+      "quartile_analysis": {
+        "n_firms": 22,
+        "direction": "higher_is_better",
+        "top_quartile_firms": [
+          "VINP",
+          "HLNE",
+          "ARES",
+          "TPG",
+          "CVC",
+          "APO"
+        ],
+        "bottom_quartile_firms": [
+          "EQT",
+          "PGHN",
+          "RPC",
+          "EMG",
+          "ANTIN"
+        ],
+        "pax_position": {
+          "quartile": "Q2",
+          "value": 19.0,
+          "rank": 9,
+          "total": 22
+        },
+        "all_firms": {
+          "VINP": {
+            "value": 63.0,
+            "quartile": "Q1"
+          },
+          "HLNE": {
+            "value": 37,
+            "quartile": "Q1"
+          },
+          "ARES": {
+            "value": 30.0,
+            "quartile": "Q1"
+          },
+          "TPG": {
+            "value": 25.0,
+            "quartile": "Q1"
+          },
+          "CVC": {
+            "value": 25,
+            "quartile": "Q1"
+          },
+          "APO": {
+            "value": 23.0,
+            "quartile": "Q1"
+          },
+          "BAM": {
+            "value": 20.0,
+            "quartile": "Q2"
+          },
+          "STEP": {
+            "value": 20.0,
+            "quartile": "Q2"
+          },
+          "PAX": {
+            "value": 19.0,
+            "quartile": "Q2"
+          },
+          "OWL": {
+            "value": 19.0,
+            "quartile": "Q2"
+          },
+          "KKR": {
+            "value": 14.0,
+            "quartile": "Q2"
+          },
+          "CG": {
+            "value": 12.0,
+            "quartile": "Q3"
+          },
+          "TKO": {
+            "value": 12.0,
+            "quartile": "Q3"
+          },
+          "GCMG": {
+            "value": 11.0,
+            "quartile": "Q3"
+          },
+          "BPT": {
+            "value": 11,
+            "quartile": "Q3"
+          },
+          "BX": {
+            "value": 9.0,
+            "quartile": "Q3"
+          },
+          "RF": {
+            "value": 8.0,
+            "quartile": "Q3"
+          },
+          "EQT": {
+            "value": 7.8,
+            "quartile": "Q4"
+          },
+          "PGHN": {
+            "value": 5,
+            "quartile": "Q4"
+          },
+          "RPC": {
+            "value": -5.0,
+            "quartile": "Q4"
+          },
+          "EMG": {
+            "value": -9.0,
+            "quartile": "Q4"
+          },
+          "ANTIN": {
+            "value": -14.4,
+            "quartile": "Q4"
+          }
+        }
+      },
+      "non_obvious_peers_in_q1": [
+        "VINP",
+        "CVC"
+      ]
+    },
+    {
+      "driver_id": "DVR-008",
+      "metric_id": "MET-VD-016",
+      "driver_name": "Management Fee Rate",
+      "avg_abs_rho": 0.1832,
+      "correlation_classification": "moderate_signal",
+      "confidence_class": "not_significant",
+      "independent_signal": null,
+      "independence_note": "Not tested in partial correlations. Weak average signal; moderate EV/FEAUM only (rho=0.43).",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.0857,
+          "p_value": 0.7613,
+          "p_value_bh_adjusted": 0.9168,
+          "bh_significant": false,
+          "n": 15
+        },
+        "P/DE": {
+          "rho": -0.0333,
+          "p_value": 0.9322,
+          "p_value_bh_adjusted": 0.9757,
+          "bh_significant": false,
+          "n": 9
+        },
+        "EV/FEAUM": {
+          "rho": 0.4307,
+          "p_value": 0.109,
+          "p_value_bh_adjusted": 0.4063,
+          "bh_significant": false,
+          "n": 15
+        }
+      },
+      "quartile_analysis": {
+        "n_firms": 18,
+        "direction": "higher_is_better",
+        "top_quartile_firms": [
+          "EQT",
+          "ANTIN",
+          "ARES",
+          "RPC",
+          "BPT"
+        ],
+        "bottom_quartile_firms": [
+          "KKR",
+          "GCMG",
+          "EMG",
+          "VINP"
+        ],
+        "pax_position": {
+          "quartile": "Q3",
+          "value": 93.0,
+          "rank": 11,
+          "total": 18
+        },
+        "all_firms": {
+          "EQT": {
+            "value": 159,
+            "quartile": "Q1"
+          },
+          "ANTIN": {
+            "value": 140.0,
+            "quartile": "Q1"
+          },
+          "ARES": {
+            "value": 108.7,
+            "quartile": "Q1"
+          },
+          "RPC": {
+            "value": 108.0,
+            "quartile": "Q1"
+          },
+          "BPT": {
+            "value": 106,
+            "quartile": "Q1"
+          },
+          "PGHN": {
+            "value": 99,
+            "quartile": "Q2"
+          },
+          "ICP": {
+            "value": 97,
+            "quartile": "Q2"
+          },
+          "CVC": {
+            "value": 97,
+            "quartile": "Q2"
+          },
+          "TPG": {
+            "value": 96.5,
+            "quartile": "Q2"
+          },
+          "RF": {
+            "value": 96.0,
+            "quartile": "Q3"
+          },
+          "PAX": {
+            "value": 93.0,
+            "quartile": "Q3"
+          },
+          "BX": {
+            "value": 91.3,
+            "quartile": "Q3"
+          },
+          "TKO": {
+            "value": 87.0,
+            "quartile": "Q3"
+          },
+          "CG": {
+            "value": 82.4,
+            "quartile": "Q3"
+          },
+          "KKR": {
+            "value": 73.5,
+            "quartile": "Q4"
+          },
+          "GCMG": {
+            "value": 55,
+            "quartile": "Q4"
+          },
+          "EMG": {
+            "value": 52,
+            "quartile": "Q4"
+          },
+          "VINP": {
+            "value": 47.0,
+            "quartile": "Q4"
+          }
+        }
+      },
+      "non_obvious_peers_in_q1": [
+        "ANTIN",
+        "RPC"
+      ]
+    }
+  ],
+  "pax_positioning": {
+    "ticker": "PAX",
+    "positioning": {
+      "DVR-001": {
+        "driver_name": "Fee-Earning AUM",
+        "quartile": "Q4",
+        "value": 40.8,
+        "rank": "19/23"
+      },
+      "DVR-002": {
+        "driver_name": "Earnings per Share (GAAP)",
+        "quartile": "Q3",
+        "value": 0.54,
+        "rank": "12/16"
+      },
+      "DVR-003": {
+        "driver_name": "Fee-Related Earnings Margin",
+        "quartile": "Q1",
+        "value": 58.9,
+        "rank": "5/23"
+      },
+      "DVR-004": {
+        "driver_name": "Total AUM",
+        "quartile": "Q4",
+        "value": 52.6,
+        "rank": "21/25"
+      },
+      "DVR-005": {
+        "driver_name": "Distributable Earnings per Share",
+        "quartile": "Q2",
+        "value": 1.27,
+        "rank": "7/14"
+      },
+      "DVR-006": {
+        "driver_name": "Credit Percentage of AUM",
+        "quartile": "Q2",
+        "value": 26.0,
+        "rank": "10/23"
+      },
+      "DVR-007": {
+        "driver_name": "FRE Growth, Year-over-Year",
+        "quartile": "Q2",
+        "value": 19.0,
+        "rank": "9/22"
+      },
+      "DVR-008": {
+        "driver_name": "Management Fee Rate",
+        "quartile": "Q3",
+        "value": 93.0,
+        "rank": "11/18"
+      }
+    },
+    "strengths": [
+      "Fee-Related Earnings Margin",
+      "Distributable Earnings per Share",
+      "Credit Percentage of AUM",
+      "FRE Growth, Year-over-Year"
+    ],
+    "weaknesses": [
+      "Fee-Earning AUM",
+      "Earnings per Share (GAAP)",
+      "Total AUM",
+      "Management Fee Rate"
+    ],
+    "narrative": "PAX ranks in Q1 on 1 drivers, Q2 on 3, Q3 on 2, Q4 on 2. Its primary strength is FRE margin (Q1, top-quintile efficiency). Its primary weakness is scale (FEAUM Q4, Total AUM Q4) \u2014 the single strongest valuation driver. This scale disadvantage explains much of PAX's valuation discount (P/FRE 10.5x vs peer median ~20x)."
+  },
+  "non_obvious_peers": [
+    {
+      "ticker": "III",
+      "firm_name": "3i Group plc",
+      "q1_count": 1,
+      "q1_drivers": [
+        "DVR-002 (Earnings per Share (GAAP))"
+      ],
+      "valuation_multiples": {},
+      "recommendation": "No firm outside the qualitative peer list reaches Q1 on 2+ top drivers. These firms appear in Q1 on 1 driver each \u2014 borderline candidates for deep-dive if their specific driver expertise is relevant to PAX's strategy."
+    },
+    {
+      "ticker": "VINP",
+      "firm_name": "Vinci Compass Investments Ltd.",
+      "q1_count": 1,
+      "q1_drivers": [
+        "DVR-007 (FRE Growth, Year-over-Year)"
+      ],
+      "valuation_multiples": {
+        "p_fre": 15.2,
+        "p_de": 14.9,
+        "ev_feaum": 1.7
+      },
+      "recommendation": "No firm outside the qualitative peer list reaches Q1 on 2+ top drivers. These firms appear in Q1 on 1 driver each \u2014 borderline candidates for deep-dive if their specific driver expertise is relevant to PAX's strategy."
+    },
+    {
+      "ticker": "CVC",
+      "firm_name": "CVC Capital Partners plc",
+      "q1_count": 1,
+      "q1_drivers": [
+        "DVR-007 (FRE Growth, Year-over-Year)"
+      ],
+      "valuation_multiples": {
+        "p_fre": 18.9,
+        "ev_feaum": 9.0
+      },
+      "recommendation": "No firm outside the qualitative peer list reaches Q1 on 2+ top drivers. These firms appear in Q1 on 1 driver each \u2014 borderline candidates for deep-dive if their specific driver expertise is relevant to PAX's strategy."
+    },
+    {
+      "ticker": "ANTIN",
+      "firm_name": "Antin Infrastructure Partners S.A.",
+      "q1_count": 1,
+      "q1_drivers": [
+        "DVR-008 (Management Fee Rate)"
+      ],
+      "valuation_multiples": {
+        "p_fre": 11.4,
+        "p_de": 13.4,
+        "ev_feaum": 7.4
+      },
+      "recommendation": "No firm outside the qualitative peer list reaches Q1 on 2+ top drivers. These firms appear in Q1 on 1 driver each \u2014 borderline candidates for deep-dive if their specific driver expertise is relevant to PAX's strategy."
+    },
+    {
+      "ticker": "RPC",
+      "firm_name": "Ridgepost Capital, Inc. (formerly P10, Inc.)",
+      "q1_count": 1,
+      "q1_drivers": [
+        "DVR-008 (Management Fee Rate)"
+      ],
+      "valuation_multiples": {
+        "p_fre": 5.5,
+        "p_de": 7.1,
+        "ev_feaum": 3.9
+      },
+      "recommendation": "No firm outside the qualitative peer list reaches Q1 on 2+ top drivers. These firms appear in Q1 on 1 driver each \u2014 borderline candidates for deep-dive if their specific driver expertise is relevant to PAX's strategy."
+    }
+  ],
+  "non_obvious_peers_note": "No firm outside the VD-B0 qualitative peer list (15 firms) reaches Q1 on 2 or more top drivers. This confirms the qualitative peer selection was comprehensive. Five firms appear in Q1 on exactly 1 driver: III (EPS), VINP (FRE growth), CVC (FRE growth), ANTIN (Mgmt fee rate), RPC (Mgmt fee rate). VINP, CVC, ANTIN, and RPC are already in the tier 2/3 data collection universe. III (3i Group) is a listed PE firm with a very different business model (direct balance sheet investing) \u2014 its Q1 EPS position reflects high per-share price, not comparable earnings quality."
+}

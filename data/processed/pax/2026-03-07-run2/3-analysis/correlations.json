@@ -1,0 +1,3996 @@
+{
+  "metadata": {
+    "pipeline": "VDA",
+    "step": "3-analysis",
+    "step_name": "Correlation Analysis (VD-A4)",
+    "generated_date": "2026-03-07",
+    "run_id": "2026-03-07-run2",
+    "company": "Patria Investments Limited",
+    "ticker": "PAX",
+    "methodology": {
+      "method": "Spearman rank correlation",
+      "rationale": "Non-parametric, robust to outliers and non-normality, appropriate for small N. Does not require distributional assumptions.",
+      "consistent_sub_sample": [
+        "ANTIN",
+        "BAM",
+        "BX",
+        "EMG",
+        "GCMG",
+        "PAX",
+        "PGHN",
+        "RPC",
+        "VINP"
+      ],
+      "consistent_sub_sample_n": 9,
+      "full_sample_n_by_multiple": {
+        "p_fre": 19,
+        "p_de": 10,
+        "ev_feaum": 18
+      },
+      "multiple_testing_correction": "Benjamini-Hochberg FDR at q=0.10",
+      "total_correlations_computed": 102,
+      "insufficient_data_threshold": "N < 10 flagged as insufficient for evaluation",
+      "classification_criteria": {
+        "stable_value_driver": "abs(rho) > 0.5 across all three multiples",
+        "multiple_specific_driver": "abs(rho) > 0.5 for exactly one multiple",
+        "moderate_signal": "0.3 <= abs(rho) <= 0.5 for at least one multiple",
+        "not_a_driver": "abs(rho) < 0.3 for all three multiples",
+        "insufficient_data": "N < 10 or fewer than 3 paired observations"
+      }
+    },
+    "sample_notes": {
+      "consistent_sub_sample": "N=9 firms with all 3 multiples. All correlations on this sample have N<10, so all are flagged as insufficient_data per methodology requirements. Raw rho values are provided for directional reference.",
+      "full_sample": "Per-multiple samples ranging from N=10 (P/DE) to N=19 (P/FRE). Provides more statistical power but sacrifices cross-multiple comparability since different firm sets are used for each multiple.",
+      "recommendation": "Use full-sample results for driver classification given the small consistent sub-sample. Flag stable_value_driver classifications as provisional where any constituent multiple has N<15."
+    }
+  },
+  "bam_bn_treatment": {
+    "issue": "BAM (Brookfield Asset Management) and BN (Brookfield Corporation) share identical AUM figures (FEAUM=$603B, Total AUM=$1,100B) because BAM is the asset-light manager spun out of BN. Including both would violate the independence assumption.",
+    "resolution": "BN excluded from all correlation samples. BN has only P/DE (17.5x) and no P/FRE or EV/FEAUM, so it would not have appeared in the consistent sub-sample regardless. BAM is retained as the pure-play AM entity.",
+    "impact": "Minimal. BN was only present in 1-of-3 multiples and would not have entered the consistent sub-sample."
+  },
+  "correlations": [
+    {
+      "correlation_id": "COR-001",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-001",
+      "driver_metric_name": "Distributable Earnings per Share",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.5714,
+      "p_value": 0.1802,
+      "p_value_bh_adjusted": 0.491,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "RPC",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.5714 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-002",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-001",
+      "driver_metric_name": "Distributable Earnings per Share",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.6429,
+      "p_value": 0.1194,
+      "p_value_bh_adjusted": 0.4063,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "RPC",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.6429 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-003",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-001",
+      "driver_metric_name": "Distributable Earnings per Share",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.8929,
+      "p_value": 0.0068,
+      "p_value_bh_adjusted": 0.1156,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "RPC",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.8929 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-004",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-002",
+      "driver_metric_name": "Earnings per Share (GAAP)",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.7714,
+      "p_value": 0.0724,
+      "p_value_bh_adjusted": 0.3692,
+      "n_firms_included": 6,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "RPC",
+        "PGHN",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=6 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.7714 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-005",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-002",
+      "driver_metric_name": "Earnings per Share (GAAP)",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.7714,
+      "p_value": 0.0724,
+      "p_value_bh_adjusted": 0.3692,
+      "n_firms_included": 6,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "RPC",
+        "PGHN",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=6 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.7714 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-006",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-002",
+      "driver_metric_name": "Earnings per Share (GAAP)",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.8857,
+      "p_value": 0.0188,
+      "p_value_bh_adjusted": 0.1598,
+      "n_firms_included": 6,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "RPC",
+        "PGHN",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=6 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.8857 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-007",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-003",
+      "driver_metric_name": "DE/Share Growth, 3-Year CAGR",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.4,
+      "p_value": 0.6,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 4,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=4 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.4 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-008",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-003",
+      "driver_metric_name": "DE/Share Growth, 3-Year CAGR",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.4,
+      "p_value": 0.6,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 4,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=4 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.4 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-009",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-003",
+      "driver_metric_name": "DE/Share Growth, 3-Year CAGR",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": -0.8,
+      "p_value": 0.2,
+      "p_value_bh_adjusted": 0.491,
+      "n_firms_included": 4,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=4 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.8 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-010",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-004",
+      "driver_metric_name": "Fee-Earning AUM",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.8571,
+      "p_value": 0.0137,
+      "p_value_bh_adjusted": 0.1397,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.8571 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-011",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-004",
+      "driver_metric_name": "Fee-Earning AUM",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.8214,
+      "p_value": 0.0234,
+      "p_value_bh_adjusted": 0.1836,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.8214 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-012",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-004",
+      "driver_metric_name": "Fee-Earning AUM",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.3571,
+      "p_value": 0.4316,
+      "p_value_bh_adjusted": 0.7358,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.3571 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-013",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-005",
+      "driver_metric_name": "Total AUM",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.7167,
+      "p_value": 0.0298,
+      "p_value_bh_adjusted": 0.2171,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.7167 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-014",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-005",
+      "driver_metric_name": "Total AUM",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.6,
+      "p_value": 0.0876,
+      "p_value_bh_adjusted": 0.4061,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.6 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-015",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-005",
+      "driver_metric_name": "Total AUM",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.3833,
+      "p_value": 0.3085,
+      "p_value_bh_adjusted": 0.6422,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.3833 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-016",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-006",
+      "driver_metric_name": "FEAUM Growth, Year-over-Year",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": -0.3013,
+      "p_value": 0.4308,
+      "p_value_bh_adjusted": 0.7358,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.3013 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-017",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-006",
+      "driver_metric_name": "FEAUM Growth, Year-over-Year",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": -0.3013,
+      "p_value": 0.4308,
+      "p_value_bh_adjusted": 0.7358,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.3013 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-018",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-006",
+      "driver_metric_name": "FEAUM Growth, Year-over-Year",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": -0.1172,
+      "p_value": 0.764,
+      "p_value_bh_adjusted": 0.9168,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.1172 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-019",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-007",
+      "driver_metric_name": "FEAUM Growth, 3-Year CAGR",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.4,
+      "p_value": 0.6,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 4,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=4 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.4 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-020",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-007",
+      "driver_metric_name": "FEAUM Growth, 3-Year CAGR",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.4,
+      "p_value": 0.6,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 4,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=4 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.4 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-021",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-007",
+      "driver_metric_name": "FEAUM Growth, 3-Year CAGR",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.0,
+      "p_value": 1.0,
+      "p_value_bh_adjusted": 1.0,
+      "n_firms_included": 4,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=4 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.0 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-022",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-008",
+      "driver_metric_name": "Net Organic FEAUM Growth",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.0857,
+      "p_value": 0.8717,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 6,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=6 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.0857 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-023",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-008",
+      "driver_metric_name": "Net Organic FEAUM Growth",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": -0.0286,
+      "p_value": 0.9572,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 6,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=6 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.0286 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-024",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-008",
+      "driver_metric_name": "Net Organic FEAUM Growth",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.0857,
+      "p_value": 0.8717,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 6,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=6 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.0857 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-025",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-009",
+      "driver_metric_name": "Fundraising as Percentage of AUM",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.0167,
+      "p_value": 0.9661,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.0167 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-026",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-009",
+      "driver_metric_name": "Fundraising as Percentage of AUM",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": -0.0333,
+      "p_value": 0.9322,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.0333 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-027",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-009",
+      "driver_metric_name": "Fundraising as Percentage of AUM",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.3,
+      "p_value": 0.4328,
+      "p_value_bh_adjusted": 0.7358,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.3 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-028",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-010",
+      "driver_metric_name": "Asset Class Herfindahl-Hirschman Index",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": -0.4762,
+      "p_value": 0.2329,
+      "p_value_bh_adjusted": 0.5164,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.4762 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-029",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-010",
+      "driver_metric_name": "Asset Class Herfindahl-Hirschman Index",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": -0.5,
+      "p_value": 0.207,
+      "p_value_bh_adjusted": 0.491,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.5 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-030",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-010",
+      "driver_metric_name": "Asset Class Herfindahl-Hirschman Index",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": -0.0714,
+      "p_value": 0.8665,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.0714 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-031",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-011",
+      "driver_metric_name": "Permanent Capital Percentage",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.2571,
+      "p_value": 0.6228,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 6,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=6 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.2571 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-032",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-011",
+      "driver_metric_name": "Permanent Capital Percentage",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.3714,
+      "p_value": 0.4685,
+      "p_value_bh_adjusted": 0.7834,
+      "n_firms_included": 6,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=6 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.3714 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-033",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-011",
+      "driver_metric_name": "Permanent Capital Percentage",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.2,
+      "p_value": 0.704,
+      "p_value_bh_adjusted": 0.8757,
+      "n_firms_included": 6,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=6 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.2 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-034",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-012",
+      "driver_metric_name": "Credit Percentage of AUM",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.5952,
+      "p_value": 0.1195,
+      "p_value_bh_adjusted": 0.4063,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.5952 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-035",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-012",
+      "driver_metric_name": "Credit Percentage of AUM",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.619,
+      "p_value": 0.1017,
+      "p_value_bh_adjusted": 0.4063,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.619 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-036",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-012",
+      "driver_metric_name": "Credit Percentage of AUM",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.381,
+      "p_value": 0.3518,
+      "p_value_bh_adjusted": 0.6901,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.381 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-037",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-013",
+      "driver_metric_name": "Fee-Related Earnings Margin",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.5667,
+      "p_value": 0.1116,
+      "p_value_bh_adjusted": 0.4063,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.5667 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-038",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-013",
+      "driver_metric_name": "Fee-Related Earnings Margin",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.5667,
+      "p_value": 0.1116,
+      "p_value_bh_adjusted": 0.4063,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.5667 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-039",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-013",
+      "driver_metric_name": "Fee-Related Earnings Margin",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.9167,
+      "p_value": 0.0005,
+      "p_value_bh_adjusted": 0.0255,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.9167 provided for reference only.",
+      "bh_significant": true
+    },
+    {
+      "correlation_id": "COR-040",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-014",
+      "driver_metric_name": "FRE Growth, Year-over-Year",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.4667,
+      "p_value": 0.2054,
+      "p_value_bh_adjusted": 0.491,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.4667 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-041",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-014",
+      "driver_metric_name": "FRE Growth, Year-over-Year",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.5333,
+      "p_value": 0.1392,
+      "p_value_bh_adjusted": 0.4303,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.5333 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-042",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-014",
+      "driver_metric_name": "FRE Growth, Year-over-Year",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.05,
+      "p_value": 0.8984,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.05 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-043",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-015",
+      "driver_metric_name": "Compensation-to-Revenue Ratio",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": -0.1,
+      "p_value": 0.8729,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 5,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=5 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.1 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-044",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-015",
+      "driver_metric_name": "Compensation-to-Revenue Ratio",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": -0.3,
+      "p_value": 0.6238,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 5,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=5 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.3 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-045",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-015",
+      "driver_metric_name": "Compensation-to-Revenue Ratio",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": -0.9,
+      "p_value": 0.0374,
+      "p_value_bh_adjusted": 0.2543,
+      "n_firms_included": 5,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=5 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.9 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-046",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-016",
+      "driver_metric_name": "Management Fee Rate",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": -0.2143,
+      "p_value": 0.6103,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.2143 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-047",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-016",
+      "driver_metric_name": "Management Fee Rate",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": -0.0952,
+      "p_value": 0.8225,
+      "p_value_bh_adjusted": 0.9755,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.0952 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-048",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-016",
+      "driver_metric_name": "Management Fee Rate",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.619,
+      "p_value": 0.1017,
+      "p_value_bh_adjusted": 0.4063,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.619 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-049",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-017",
+      "driver_metric_name": "Performance Fee Share of Total Revenue",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.3571,
+      "p_value": 0.4316,
+      "p_value_bh_adjusted": 0.7358,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.3571 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-050",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-017",
+      "driver_metric_name": "Performance Fee Share of Total Revenue",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.2143,
+      "p_value": 0.6445,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification. Raw rho=0.2143 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-051",
+      "sample": "consistent",
+      "driver_metric_id": "MET-VD-017",
+      "driver_metric_name": "Performance Fee Share of Total Revenue",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": -0.0714,
+      "p_value": 0.879,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification. Raw rho=-0.0714 provided for reference only.",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-052",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-001",
+      "driver_metric_name": "Distributable Earnings per Share",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.3182,
+      "p_value": 0.3403,
+      "p_value_bh_adjusted": 0.6901,
+      "n_firms_included": 11,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "OWL",
+        "TPG",
+        "CG",
+        "STEP",
+        "RPC",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "moderate_signal",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-053",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-001",
+      "driver_metric_name": "Distributable Earnings per Share",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.5,
+      "p_value": 0.207,
+      "p_value_bh_adjusted": 0.491,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "CG",
+        "RPC",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-054",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-001",
+      "driver_metric_name": "Distributable Earnings per Share",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.8333,
+      "p_value": 0.0102,
+      "p_value_bh_adjusted": 0.13,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "STEP",
+        "RPC",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-055",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-002",
+      "driver_metric_name": "Earnings per Share (GAAP)",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.6648,
+      "p_value": 0.0132,
+      "p_value_bh_adjusted": 0.1397,
+      "n_firms_included": 13,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "STEP",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "CVC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "stable_value_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-056",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-002",
+      "driver_metric_name": "Earnings per Share (GAAP)",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.7714,
+      "p_value": 0.0724,
+      "p_value_bh_adjusted": 0.3692,
+      "n_firms_included": 6,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "RPC",
+        "PGHN",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=6 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-057",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-002",
+      "driver_metric_name": "Earnings per Share (GAAP)",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.7495,
+      "p_value": 0.002,
+      "p_value_bh_adjusted": 0.0408,
+      "n_firms_included": 14,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "STEP",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "CVC",
+        "BPT",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "stable_value_driver",
+      "notes": "",
+      "bh_significant": true
+    },
+    {
+      "correlation_id": "COR-058",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-003",
+      "driver_metric_name": "DE/Share Growth, 3-Year CAGR",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.4,
+      "p_value": 0.6,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 4,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=4 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-059",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-003",
+      "driver_metric_name": "DE/Share Growth, 3-Year CAGR",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.4,
+      "p_value": 0.6,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 4,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=4 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-060",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-003",
+      "driver_metric_name": "DE/Share Growth, 3-Year CAGR",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": -0.8,
+      "p_value": 0.2,
+      "p_value_bh_adjusted": 0.491,
+      "n_firms_included": 4,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=4 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-061",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-004",
+      "driver_metric_name": "Fee-Earning AUM",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.7647,
+      "p_value": 0.0003,
+      "p_value_bh_adjusted": 0.0255,
+      "n_firms_included": 17,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "BAM",
+        "OWL",
+        "TPG",
+        "CG",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "CVC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "stable_value_driver",
+      "notes": "",
+      "bh_significant": true
+    },
+    {
+      "correlation_id": "COR-062",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-004",
+      "driver_metric_name": "Fee-Earning AUM",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.6905,
+      "p_value": 0.058,
+      "p_value_bh_adjusted": 0.348,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "CG",
+        "GCMG",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-063",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-004",
+      "driver_metric_name": "Fee-Earning AUM",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.6294,
+      "p_value": 0.009,
+      "p_value_bh_adjusted": 0.13,
+      "n_firms_included": 16,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "BAM",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "ICP",
+        "CVC",
+        "BPT",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "stable_value_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-064",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-005",
+      "driver_metric_name": "Total AUM",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.6895,
+      "p_value": 0.0011,
+      "p_value_bh_adjusted": 0.0374,
+      "n_firms_included": 19,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "BAM",
+        "OWL",
+        "TPG",
+        "CG",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "EMG",
+        "CVC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "stable_value_driver",
+      "notes": "",
+      "bh_significant": true
+    },
+    {
+      "correlation_id": "COR-065",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-005",
+      "driver_metric_name": "Total AUM",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.5273,
+      "p_value": 0.1173,
+      "p_value_bh_adjusted": 0.4063,
+      "n_firms_included": 10,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "CG",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "stable_value_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-066",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-005",
+      "driver_metric_name": "Total AUM",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.5521,
+      "p_value": 0.0175,
+      "p_value_bh_adjusted": 0.1598,
+      "n_firms_included": 18,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "BAM",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "ICP",
+        "EMG",
+        "CVC",
+        "BPT",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "stable_value_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-067",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-006",
+      "driver_metric_name": "FEAUM Growth, Year-over-Year",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": -0.2024,
+      "p_value": 0.406,
+      "p_value_bh_adjusted": 0.7358,
+      "n_firms_included": 19,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "BAM",
+        "OWL",
+        "TPG",
+        "CG",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "EMG",
+        "CVC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "not_a_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-068",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-006",
+      "driver_metric_name": "FEAUM Growth, Year-over-Year",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": -0.2927,
+      "p_value": 0.4118,
+      "p_value_bh_adjusted": 0.7358,
+      "n_firms_included": 10,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "CG",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "not_a_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-069",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-006",
+      "driver_metric_name": "FEAUM Growth, Year-over-Year",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": -0.1377,
+      "p_value": 0.5859,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 18,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "BAM",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "ICP",
+        "EMG",
+        "CVC",
+        "BPT",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "not_a_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-070",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-007",
+      "driver_metric_name": "FEAUM Growth, 3-Year CAGR",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": -0.5798,
+      "p_value": 0.2278,
+      "p_value_bh_adjusted": 0.5163,
+      "n_firms_included": 6,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=6 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-071",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-007",
+      "driver_metric_name": "FEAUM Growth, 3-Year CAGR",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.4,
+      "p_value": 0.6,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 4,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=4 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-072",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-007",
+      "driver_metric_name": "FEAUM Growth, 3-Year CAGR",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": -0.6307,
+      "p_value": 0.1289,
+      "p_value_bh_adjusted": 0.4109,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "ICP",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-073",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-008",
+      "driver_metric_name": "Net Organic FEAUM Growth",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": -0.2395,
+      "p_value": 0.5678,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-074",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-008",
+      "driver_metric_name": "Net Organic FEAUM Growth",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": -0.0286,
+      "p_value": 0.9572,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 6,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=6 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-075",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-008",
+      "driver_metric_name": "Net Organic FEAUM Growth",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": -0.1916,
+      "p_value": 0.6494,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-076",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-009",
+      "driver_metric_name": "Fundraising as Percentage of AUM",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.3404,
+      "p_value": 0.1539,
+      "p_value_bh_adjusted": 0.4617,
+      "n_firms_included": 19,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "BAM",
+        "OWL",
+        "TPG",
+        "CG",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "EMG",
+        "CVC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "moderate_signal",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-077",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-009",
+      "driver_metric_name": "Fundraising as Percentage of AUM",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": -0.0303,
+      "p_value": 0.9338,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 10,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "CG",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "not_a_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-078",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-009",
+      "driver_metric_name": "Fundraising as Percentage of AUM",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.1226,
+      "p_value": 0.6392,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 17,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "BAM",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "ICP",
+        "EMG",
+        "CVC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "not_a_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-079",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-010",
+      "driver_metric_name": "Asset Class Herfindahl-Hirschman Index",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": -0.2354,
+      "p_value": 0.4178,
+      "p_value_bh_adjusted": 0.7358,
+      "n_firms_included": 14,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "EMG",
+        "CVC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "not_a_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-080",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-010",
+      "driver_metric_name": "Asset Class Herfindahl-Hirschman Index",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": -0.5,
+      "p_value": 0.207,
+      "p_value_bh_adjusted": 0.491,
+      "n_firms_included": 8,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=8 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-081",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-010",
+      "driver_metric_name": "Asset Class Herfindahl-Hirschman Index",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.0133,
+      "p_value": 0.9611,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 16,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "ICP",
+        "EMG",
+        "CVC",
+        "BPT",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "not_a_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-082",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-011",
+      "driver_metric_name": "Permanent Capital Percentage",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.1049,
+      "p_value": 0.7456,
+      "p_value_bh_adjusted": 0.9163,
+      "n_firms_included": 12,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "BAM",
+        "OWL",
+        "TPG",
+        "CG",
+        "RPC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "not_a_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-083",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-011",
+      "driver_metric_name": "Permanent Capital Percentage",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.3214,
+      "p_value": 0.4821,
+      "p_value_bh_adjusted": 0.7931,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "CG",
+        "RPC",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-084",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-011",
+      "driver_metric_name": "Permanent Capital Percentage",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.1833,
+      "p_value": 0.6368,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "BAM",
+        "RPC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-085",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-012",
+      "driver_metric_name": "Credit Percentage of AUM",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.476,
+      "p_value": 0.0459,
+      "p_value_bh_adjusted": 0.2926,
+      "n_firms_included": 18,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "OWL",
+        "TPG",
+        "CG",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "EMG",
+        "CVC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "moderate_signal",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-086",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-012",
+      "driver_metric_name": "Credit Percentage of AUM",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.3833,
+      "p_value": 0.3085,
+      "p_value_bh_adjusted": 0.6422,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "CG",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-087",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-012",
+      "driver_metric_name": "Credit Percentage of AUM",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.325,
+      "p_value": 0.2031,
+      "p_value_bh_adjusted": 0.491,
+      "n_firms_included": 17,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "ICP",
+        "EMG",
+        "CVC",
+        "BPT",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "moderate_signal",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-088",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-013",
+      "driver_metric_name": "Fee-Related Earnings Margin",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.4037,
+      "p_value": 0.0865,
+      "p_value_bh_adjusted": 0.4061,
+      "n_firms_included": 19,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "BAM",
+        "OWL",
+        "TPG",
+        "CG",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "EMG",
+        "CVC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "moderate_signal",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-089",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-013",
+      "driver_metric_name": "Fee-Related Earnings Margin",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.5152,
+      "p_value": 0.1276,
+      "p_value_bh_adjusted": 0.4109,
+      "n_firms_included": 10,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "CG",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "multiple_specific_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-090",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-013",
+      "driver_metric_name": "Fee-Related Earnings Margin",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.7083,
+      "p_value": 0.0015,
+      "p_value_bh_adjusted": 0.0382,
+      "n_firms_included": 17,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "BAM",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "EMG",
+        "CVC",
+        "BPT",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "multiple_specific_driver",
+      "notes": "",
+      "bh_significant": true
+    },
+    {
+      "correlation_id": "COR-091",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-014",
+      "driver_metric_name": "FRE Growth, Year-over-Year",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.3339,
+      "p_value": 0.1624,
+      "p_value_bh_adjusted": 0.4733,
+      "n_firms_included": 19,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "BAM",
+        "OWL",
+        "TPG",
+        "CG",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "EMG",
+        "CVC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "moderate_signal",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-092",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-014",
+      "driver_metric_name": "FRE Growth, Year-over-Year",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.4303,
+      "p_value": 0.2145,
+      "p_value_bh_adjusted": 0.4973,
+      "n_firms_included": 10,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "BAM",
+        "CG",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "moderate_signal",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-093",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-014",
+      "driver_metric_name": "FRE Growth, Year-over-Year",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": -0.016,
+      "p_value": 0.9515,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 17,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "APO",
+        "BAM",
+        "STEP",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "EMG",
+        "CVC",
+        "BPT",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "not_a_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-094",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-015",
+      "driver_metric_name": "Compensation-to-Revenue Ratio",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.036,
+      "p_value": 0.9389,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "EMG",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-095",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-015",
+      "driver_metric_name": "Compensation-to-Revenue Ratio",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": -0.3,
+      "p_value": 0.6238,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 5,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=5 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-096",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-015",
+      "driver_metric_name": "Compensation-to-Revenue Ratio",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": -0.5045,
+      "p_value": 0.2482,
+      "p_value_bh_adjusted": 0.5386,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "RPC",
+        "EMG",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-097",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-016",
+      "driver_metric_name": "Management Fee Rate",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.0857,
+      "p_value": 0.7613,
+      "p_value_bh_adjusted": 0.9168,
+      "n_firms_included": 15,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "TPG",
+        "CG",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "EMG",
+        "CVC",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "not_a_driver",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-098",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-016",
+      "driver_metric_name": "Management Fee Rate",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": -0.0333,
+      "p_value": 0.9322,
+      "p_value_bh_adjusted": 0.9757,
+      "n_firms_included": 9,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "CG",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=9 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-099",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-016",
+      "driver_metric_name": "Management Fee Rate",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.4307,
+      "p_value": 0.109,
+      "p_value_bh_adjusted": 0.4063,
+      "n_firms_included": 15,
+      "firms_included": [
+        "PAX",
+        "BX",
+        "KKR",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "ICP",
+        "EMG",
+        "CVC",
+        "BPT",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "moderate_signal",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-100",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-017",
+      "driver_metric_name": "Performance Fee Share of Total Revenue",
+      "valuation_multiple": "P/FRE",
+      "spearman_rho": 0.3333,
+      "p_value": 0.3466,
+      "p_value_bh_adjusted": 0.6901,
+      "n_firms_included": 10,
+      "firms_included": [
+        "PAX",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "moderate_signal",
+      "notes": "",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-101",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-017",
+      "driver_metric_name": "Performance Fee Share of Total Revenue",
+      "valuation_multiple": "P/DE",
+      "spearman_rho": 0.2143,
+      "p_value": 0.6445,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 7,
+      "firms_included": [
+        "PAX",
+        "GCMG",
+        "RPC",
+        "PGHN",
+        "EMG",
+        "ANTIN",
+        "VINP"
+      ],
+      "classification": "insufficient_data",
+      "notes": "N=7 < 10 \u2014 insufficient data for reliable classification",
+      "bh_significant": false
+    },
+    {
+      "correlation_id": "COR-102",
+      "sample": "full",
+      "driver_metric_id": "MET-VD-017",
+      "driver_metric_name": "Performance Fee Share of Total Revenue",
+      "valuation_multiple": "EV/FEAUM",
+      "spearman_rho": 0.1909,
+      "p_value": 0.5739,
+      "p_value_bh_adjusted": 0.8178,
+      "n_firms_included": 11,
+      "firms_included": [
+        "PAX",
+        "GCMG",
+        "RPC",
+        "EQT",
+        "PGHN",
+        "EMG",
+        "BPT",
+        "ANTIN",
+        "TKO",
+        "VINP",
+        "RF"
+      ],
+      "classification": "not_a_driver",
+      "notes": "",
+      "bh_significant": false
+    }
+  ],
+  "driver_ranking": [
+    {
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "avg_abs_rho": 0.8095,
+      "max_abs_rho": 0.8857,
+      "max_n": 6,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.7714,
+          "p_value": 0.0724,
+          "n": 6,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.7714,
+          "p_value": 0.0724,
+          "n": 6,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.8857,
+          "p_value": 0.0188,
+          "n": 6,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-001",
+      "metric_name": "Distributable Earnings per Share",
+      "avg_abs_rho": 0.7024,
+      "max_abs_rho": 0.8929,
+      "max_n": 7,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.5714,
+          "p_value": 0.1802,
+          "n": 7,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.6429,
+          "p_value": 0.1194,
+          "n": 7,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.8929,
+          "p_value": 0.0068,
+          "n": 7,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-013",
+      "metric_name": "Fee-Related Earnings Margin",
+      "avg_abs_rho": 0.6834,
+      "max_abs_rho": 0.9167,
+      "max_n": 9,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.5667,
+          "p_value": 0.1116,
+          "n": 9,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.5667,
+          "p_value": 0.1116,
+          "n": 9,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.9167,
+          "p_value": 0.0005,
+          "n": 9,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-004",
+      "metric_name": "Fee-Earning AUM",
+      "avg_abs_rho": 0.6785,
+      "max_abs_rho": 0.8571,
+      "max_n": 7,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.8571,
+          "p_value": 0.0137,
+          "n": 7,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.8214,
+          "p_value": 0.0234,
+          "n": 7,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.3571,
+          "p_value": 0.4316,
+          "n": 7,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-005",
+      "metric_name": "Total AUM",
+      "avg_abs_rho": 0.5667,
+      "max_abs_rho": 0.7167,
+      "max_n": 9,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.7167,
+          "p_value": 0.0298,
+          "n": 9,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.6,
+          "p_value": 0.0876,
+          "n": 9,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.3833,
+          "p_value": 0.3085,
+          "n": 9,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "avg_abs_rho": 0.5333,
+      "max_abs_rho": 0.8,
+      "max_n": 4,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.4,
+          "p_value": 0.6,
+          "n": 4,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.4,
+          "p_value": 0.6,
+          "n": 4,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": -0.8,
+          "p_value": 0.2,
+          "n": 4,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-012",
+      "metric_name": "Credit Percentage of AUM",
+      "avg_abs_rho": 0.5317,
+      "max_abs_rho": 0.619,
+      "max_n": 8,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.5952,
+          "p_value": 0.1195,
+          "n": 8,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.619,
+          "p_value": 0.1017,
+          "n": 8,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.381,
+          "p_value": 0.3518,
+          "n": 8,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-015",
+      "metric_name": "Compensation-to-Revenue Ratio",
+      "avg_abs_rho": 0.4333,
+      "max_abs_rho": 0.9,
+      "max_n": 5,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": -0.1,
+          "p_value": 0.8729,
+          "n": 5,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": -0.3,
+          "p_value": 0.6238,
+          "n": 5,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": -0.9,
+          "p_value": 0.0374,
+          "n": 5,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-014",
+      "metric_name": "FRE Growth, Year-over-Year",
+      "avg_abs_rho": 0.35,
+      "max_abs_rho": 0.5333,
+      "max_n": 9,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.4667,
+          "p_value": 0.2054,
+          "n": 9,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.5333,
+          "p_value": 0.1392,
+          "n": 9,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.05,
+          "p_value": 0.8984,
+          "n": 9,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-010",
+      "metric_name": "Asset Class Herfindahl-Hirschman Index",
+      "avg_abs_rho": 0.3492,
+      "max_abs_rho": 0.5,
+      "max_n": 8,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": -0.4762,
+          "p_value": 0.2329,
+          "n": 8,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": -0.5,
+          "p_value": 0.207,
+          "n": 8,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": -0.0714,
+          "p_value": 0.8665,
+          "n": 8,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-016",
+      "metric_name": "Management Fee Rate",
+      "avg_abs_rho": 0.3095,
+      "max_abs_rho": 0.619,
+      "max_n": 8,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": -0.2143,
+          "p_value": 0.6103,
+          "n": 8,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": -0.0952,
+          "p_value": 0.8225,
+          "n": 8,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.619,
+          "p_value": 0.1017,
+          "n": 8,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-011",
+      "metric_name": "Permanent Capital Percentage",
+      "avg_abs_rho": 0.2762,
+      "max_abs_rho": 0.3714,
+      "max_n": 6,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.2571,
+          "p_value": 0.6228,
+          "n": 6,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.3714,
+          "p_value": 0.4685,
+          "n": 6,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.2,
+          "p_value": 0.704,
+          "n": 6,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-007",
+      "metric_name": "FEAUM Growth, 3-Year CAGR",
+      "avg_abs_rho": 0.2667,
+      "max_abs_rho": 0.4,
+      "max_n": 4,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.4,
+          "p_value": 0.6,
+          "n": 4,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.4,
+          "p_value": 0.6,
+          "n": 4,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.0,
+          "p_value": 1.0,
+          "n": 4,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-006",
+      "metric_name": "FEAUM Growth, Year-over-Year",
+      "avg_abs_rho": 0.2399,
+      "max_abs_rho": 0.3013,
+      "max_n": 9,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": -0.3013,
+          "p_value": 0.4308,
+          "n": 9,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": -0.3013,
+          "p_value": 0.4308,
+          "n": 9,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": -0.1172,
+          "p_value": 0.764,
+          "n": 9,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-017",
+      "metric_name": "Performance Fee Share of Total Revenue",
+      "avg_abs_rho": 0.2143,
+      "max_abs_rho": 0.3571,
+      "max_n": 7,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.3571,
+          "p_value": 0.4316,
+          "n": 7,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.2143,
+          "p_value": 0.6445,
+          "n": 7,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": -0.0714,
+          "p_value": 0.879,
+          "n": 7,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-009",
+      "metric_name": "Fundraising as Percentage of AUM",
+      "avg_abs_rho": 0.1167,
+      "max_abs_rho": 0.3,
+      "max_n": 9,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.0167,
+          "p_value": 0.9661,
+          "n": 9,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": -0.0333,
+          "p_value": 0.9322,
+          "n": 9,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.3,
+          "p_value": 0.4328,
+          "n": 9,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "avg_abs_rho": 0.0667,
+      "max_abs_rho": 0.0857,
+      "max_n": 6,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.0857,
+          "p_value": 0.8717,
+          "n": 6,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": -0.0286,
+          "p_value": 0.9572,
+          "n": 6,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.0857,
+          "p_value": 0.8717,
+          "n": 6,
+          "classification": "insufficient_data"
+        }
+      }
+    }
+  ],
+  "multicollinearity": [
+    {
+      "metric_1": "MET-VD-001",
+      "metric_1_name": "Distributable Earnings per Share",
+      "metric_2": "MET-VD-012",
+      "metric_2_name": "Credit Percentage of AUM",
+      "spearman_rho": 0.7143,
+      "p_value": 0.1108,
+      "n": 6,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-001",
+      "metric_1_name": "Distributable Earnings per Share",
+      "metric_2": "MET-VD-013",
+      "metric_2_name": "Fee-Related Earnings Margin",
+      "spearman_rho": 0.9286,
+      "p_value": 0.0025,
+      "n": 7,
+      "risk": "high",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-001",
+      "metric_1_name": "Distributable Earnings per Share",
+      "metric_2": "MET-VD-015",
+      "metric_2_name": "Compensation-to-Revenue Ratio",
+      "spearman_rho": -0.9,
+      "p_value": 0.0374,
+      "n": 5,
+      "risk": "high",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-002",
+      "metric_1_name": "Earnings per Share (GAAP)",
+      "metric_2": "MET-VD-005",
+      "metric_2_name": "Total AUM",
+      "spearman_rho": 0.7143,
+      "p_value": 0.1108,
+      "n": 6,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-002",
+      "metric_1_name": "Earnings per Share (GAAP)",
+      "metric_2": "MET-VD-013",
+      "metric_2_name": "Fee-Related Earnings Margin",
+      "spearman_rho": 0.8286,
+      "p_value": 0.0416,
+      "n": 6,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-003",
+      "metric_1_name": "DE/Share Growth, 3-Year CAGR",
+      "metric_2": "MET-VD-004",
+      "metric_2_name": "Fee-Earning AUM",
+      "spearman_rho": 1.0,
+      "p_value": 0.0,
+      "n": 4,
+      "risk": "high",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-003",
+      "metric_1_name": "DE/Share Growth, 3-Year CAGR",
+      "metric_2": "MET-VD-005",
+      "metric_2_name": "Total AUM",
+      "spearman_rho": 0.8,
+      "p_value": 0.2,
+      "n": 4,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-003",
+      "metric_1_name": "DE/Share Growth, 3-Year CAGR",
+      "metric_2": "MET-VD-010",
+      "metric_2_name": "Asset Class Herfindahl-Hirschman Index",
+      "spearman_rho": -1.0,
+      "p_value": 0.0,
+      "n": 4,
+      "risk": "high",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-003",
+      "metric_1_name": "DE/Share Growth, 3-Year CAGR",
+      "metric_2": "MET-VD-012",
+      "metric_2_name": "Credit Percentage of AUM",
+      "spearman_rho": 0.8,
+      "p_value": 0.2,
+      "n": 4,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-003",
+      "metric_1_name": "DE/Share Growth, 3-Year CAGR",
+      "metric_2": "MET-VD-014",
+      "metric_2_name": "FRE Growth, Year-over-Year",
+      "spearman_rho": 1.0,
+      "p_value": 0.0,
+      "n": 4,
+      "risk": "high",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-003",
+      "metric_1_name": "DE/Share Growth, 3-Year CAGR",
+      "metric_2": "MET-VD-016",
+      "metric_2_name": "Management Fee Rate",
+      "spearman_rho": -1.0,
+      "p_value": 0.0,
+      "n": 4,
+      "risk": "high",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-003",
+      "metric_1_name": "DE/Share Growth, 3-Year CAGR",
+      "metric_2": "MET-VD-017",
+      "metric_2_name": "Performance Fee Share of Total Revenue",
+      "spearman_rho": 0.8,
+      "p_value": 0.2,
+      "n": 4,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-004",
+      "metric_1_name": "Fee-Earning AUM",
+      "metric_2": "MET-VD-005",
+      "metric_2_name": "Total AUM",
+      "spearman_rho": 0.9643,
+      "p_value": 0.0005,
+      "n": 7,
+      "risk": "high",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-004",
+      "metric_1_name": "Fee-Earning AUM",
+      "metric_2": "MET-VD-012",
+      "metric_2_name": "Credit Percentage of AUM",
+      "spearman_rho": 0.7714,
+      "p_value": 0.0724,
+      "n": 6,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-004",
+      "metric_1_name": "Fee-Earning AUM",
+      "metric_2": "MET-VD-016",
+      "metric_2_name": "Management Fee Rate",
+      "spearman_rho": -0.7714,
+      "p_value": 0.0724,
+      "n": 6,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-004",
+      "metric_1_name": "Fee-Earning AUM",
+      "metric_2": "MET-VD-017",
+      "metric_2_name": "Performance Fee Share of Total Revenue",
+      "spearman_rho": 0.9,
+      "p_value": 0.0374,
+      "n": 5,
+      "risk": "high",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-005",
+      "metric_1_name": "Total AUM",
+      "metric_2": "MET-VD-007",
+      "metric_2_name": "FEAUM Growth, 3-Year CAGR",
+      "spearman_rho": 0.8,
+      "p_value": 0.2,
+      "n": 4,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-005",
+      "metric_1_name": "Total AUM",
+      "metric_2": "MET-VD-017",
+      "metric_2_name": "Performance Fee Share of Total Revenue",
+      "spearman_rho": 0.8929,
+      "p_value": 0.0068,
+      "n": 7,
+      "risk": "high",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-006",
+      "metric_1_name": "FEAUM Growth, Year-over-Year",
+      "metric_2": "MET-VD-008",
+      "metric_2_name": "Net Organic FEAUM Growth",
+      "spearman_rho": 0.8117,
+      "p_value": 0.0499,
+      "n": 6,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-007",
+      "metric_1_name": "FEAUM Growth, 3-Year CAGR",
+      "metric_2": "MET-VD-012",
+      "metric_2_name": "Credit Percentage of AUM",
+      "spearman_rho": 0.8,
+      "p_value": 0.2,
+      "n": 4,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-007",
+      "metric_1_name": "FEAUM Growth, 3-Year CAGR",
+      "metric_2": "MET-VD-017",
+      "metric_2_name": "Performance Fee Share of Total Revenue",
+      "spearman_rho": 0.8,
+      "p_value": 0.2,
+      "n": 4,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-008",
+      "metric_1_name": "Net Organic FEAUM Growth",
+      "metric_2": "MET-VD-017",
+      "metric_2_name": "Performance Fee Share of Total Revenue",
+      "spearman_rho": 0.9429,
+      "p_value": 0.0048,
+      "n": 6,
+      "risk": "high",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-010",
+      "metric_1_name": "Asset Class Herfindahl-Hirschman Index",
+      "metric_2": "MET-VD-012",
+      "metric_2_name": "Credit Percentage of AUM",
+      "spearman_rho": -0.8333,
+      "p_value": 0.0102,
+      "n": 8,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-010",
+      "metric_1_name": "Asset Class Herfindahl-Hirschman Index",
+      "metric_2": "MET-VD-014",
+      "metric_2_name": "FRE Growth, Year-over-Year",
+      "spearman_rho": -0.9048,
+      "p_value": 0.002,
+      "n": 8,
+      "risk": "high",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-012",
+      "metric_1_name": "Credit Percentage of AUM",
+      "metric_2": "MET-VD-014",
+      "metric_2_name": "FRE Growth, Year-over-Year",
+      "spearman_rho": 0.7857,
+      "p_value": 0.0208,
+      "n": 8,
+      "risk": "moderate",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    },
+    {
+      "metric_1": "MET-VD-013",
+      "metric_1_name": "Fee-Related Earnings Margin",
+      "metric_2": "MET-VD-015",
+      "metric_2_name": "Compensation-to-Revenue Ratio",
+      "spearman_rho": -1.0,
+      "p_value": 0.0,
+      "n": 5,
+      "risk": "high",
+      "note": "These drivers are highly correlated and may be capturing the same underlying factor. Results for both should be interpreted with caution."
+    }
+  ],
+  "summary": {
+    "stable_drivers": [],
+    "multiple_specific_drivers": [],
+    "moderate_signals": [],
+    "not_drivers": [],
+    "insufficient_data": [
+      "MET-VD-002 (Earnings per Share (GAAP))",
+      "MET-VD-001 (Distributable Earnings per Share)",
+      "MET-VD-013 (Fee-Related Earnings Margin)",
+      "MET-VD-004 (Fee-Earning AUM)",
+      "MET-VD-005 (Total AUM)",
+      "MET-VD-003 (DE/Share Growth, 3-Year CAGR)",
+      "MET-VD-012 (Credit Percentage of AUM)",
+      "MET-VD-015 (Compensation-to-Revenue Ratio)",
+      "MET-VD-014 (FRE Growth, Year-over-Year)",
+      "MET-VD-010 (Asset Class Herfindahl-Hirschman Index)",
+      "MET-VD-016 (Management Fee Rate)",
+      "MET-VD-011 (Permanent Capital Percentage)",
+      "MET-VD-007 (FEAUM Growth, 3-Year CAGR)",
+      "MET-VD-006 (FEAUM Growth, Year-over-Year)",
+      "MET-VD-017 (Performance Fee Share of Total Revenue)",
+      "MET-VD-009 (Fundraising as Percentage of AUM)",
+      "MET-VD-008 (Net Organic FEAUM Growth)"
+    ],
+    "multicollinear_pairs_count": 26,
+    "full_sample": {
+      "stable_drivers": [
+        "MET-VD-002 (Earnings per Share (GAAP))",
+        "MET-VD-004 (Fee-Earning AUM)",
+        "MET-VD-005 (Total AUM)"
+      ],
+      "multiple_specific_drivers": [
+        "MET-VD-013 (Fee-Related Earnings Margin)"
+      ],
+      "moderate_signals": [
+        "MET-VD-001 (Distributable Earnings per Share)",
+        "MET-VD-012 (Credit Percentage of AUM)",
+        "MET-VD-014 (FRE Growth, Year-over-Year)",
+        "MET-VD-017 (Performance Fee Share of Total Revenue)",
+        "MET-VD-016 (Management Fee Rate)",
+        "MET-VD-009 (Fundraising as Percentage of AUM)"
+      ],
+      "not_drivers": [
+        "MET-VD-010 (Asset Class Herfindahl-Hirschman Index)",
+        "MET-VD-006 (FEAUM Growth, Year-over-Year)",
+        "MET-VD-011 (Permanent Capital Percentage)"
+      ],
+      "insufficient_data": [
+        "MET-VD-007 (FEAUM Growth, 3-Year CAGR)",
+        "MET-VD-003 (DE/Share Growth, 3-Year CAGR)",
+        "MET-VD-015 (Compensation-to-Revenue Ratio)",
+        "MET-VD-008 (Net Organic FEAUM Growth)"
+      ]
+    }
+  },
+  "full_sample_driver_ranking": [
+    {
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "avg_abs_rho": 0.7286,
+      "overall_classification": "stable_value_driver",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.6648,
+          "p_value": 0.0132,
+          "p_value_bh_adjusted": 0.1397,
+          "bh_significant": false,
+          "n": 13,
+          "classification": "stable_value_driver"
+        },
+        "P/DE": {
+          "rho": 0.7714,
+          "p_value": 0.0724,
+          "p_value_bh_adjusted": 0.3692,
+          "bh_significant": false,
+          "n": 6,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.7495,
+          "p_value": 0.002,
+          "p_value_bh_adjusted": 0.0408,
+          "bh_significant": true,
+          "n": 14,
+          "classification": "stable_value_driver"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-004",
+      "metric_name": "Fee-Earning AUM",
+      "avg_abs_rho": 0.6949,
+      "overall_classification": "stable_value_driver",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.7647,
+          "p_value": 0.0003,
+          "p_value_bh_adjusted": 0.0255,
+          "bh_significant": true,
+          "n": 17,
+          "classification": "stable_value_driver"
+        },
+        "P/DE": {
+          "rho": 0.6905,
+          "p_value": 0.058,
+          "p_value_bh_adjusted": 0.348,
+          "bh_significant": false,
+          "n": 8,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.6294,
+          "p_value": 0.009,
+          "p_value_bh_adjusted": 0.13,
+          "bh_significant": false,
+          "n": 16,
+          "classification": "stable_value_driver"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-005",
+      "metric_name": "Total AUM",
+      "avg_abs_rho": 0.5896,
+      "overall_classification": "stable_value_driver",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.6895,
+          "p_value": 0.0011,
+          "p_value_bh_adjusted": 0.0374,
+          "bh_significant": true,
+          "n": 19,
+          "classification": "stable_value_driver"
+        },
+        "P/DE": {
+          "rho": 0.5273,
+          "p_value": 0.1173,
+          "p_value_bh_adjusted": 0.4063,
+          "bh_significant": false,
+          "n": 10,
+          "classification": "stable_value_driver"
+        },
+        "EV/FEAUM": {
+          "rho": 0.5521,
+          "p_value": 0.0175,
+          "p_value_bh_adjusted": 0.1598,
+          "bh_significant": false,
+          "n": 18,
+          "classification": "stable_value_driver"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-001",
+      "metric_name": "Distributable Earnings per Share",
+      "avg_abs_rho": 0.5505,
+      "overall_classification": "moderate_signal",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.3182,
+          "p_value": 0.3403,
+          "p_value_bh_adjusted": 0.6901,
+          "bh_significant": false,
+          "n": 11,
+          "classification": "moderate_signal"
+        },
+        "P/DE": {
+          "rho": 0.5,
+          "p_value": 0.207,
+          "p_value_bh_adjusted": 0.491,
+          "bh_significant": false,
+          "n": 8,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.8333,
+          "p_value": 0.0102,
+          "p_value_bh_adjusted": 0.13,
+          "bh_significant": false,
+          "n": 8,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-013",
+      "metric_name": "Fee-Related Earnings Margin",
+      "avg_abs_rho": 0.5424,
+      "overall_classification": "multiple_specific_driver",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.4037,
+          "p_value": 0.0865,
+          "p_value_bh_adjusted": 0.4061,
+          "bh_significant": false,
+          "n": 19,
+          "classification": "moderate_signal"
+        },
+        "P/DE": {
+          "rho": 0.5152,
+          "p_value": 0.1276,
+          "p_value_bh_adjusted": 0.4109,
+          "bh_significant": false,
+          "n": 10,
+          "classification": "multiple_specific_driver"
+        },
+        "EV/FEAUM": {
+          "rho": 0.7083,
+          "p_value": 0.0015,
+          "p_value_bh_adjusted": 0.0382,
+          "bh_significant": true,
+          "n": 17,
+          "classification": "multiple_specific_driver"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-007",
+      "metric_name": "FEAUM Growth, 3-Year CAGR",
+      "avg_abs_rho": 0.5368,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": -0.5798,
+          "p_value": 0.2278,
+          "p_value_bh_adjusted": 0.5163,
+          "bh_significant": false,
+          "n": 6,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.4,
+          "p_value": 0.6,
+          "p_value_bh_adjusted": 0.8178,
+          "bh_significant": false,
+          "n": 4,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": -0.6307,
+          "p_value": 0.1289,
+          "p_value_bh_adjusted": 0.4109,
+          "bh_significant": false,
+          "n": 7,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "avg_abs_rho": 0.5333,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.4,
+          "p_value": 0.6,
+          "p_value_bh_adjusted": 0.8178,
+          "bh_significant": false,
+          "n": 4,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": 0.4,
+          "p_value": 0.6,
+          "p_value_bh_adjusted": 0.8178,
+          "bh_significant": false,
+          "n": 4,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": -0.8,
+          "p_value": 0.2,
+          "p_value_bh_adjusted": 0.491,
+          "bh_significant": false,
+          "n": 4,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-012",
+      "metric_name": "Credit Percentage of AUM",
+      "avg_abs_rho": 0.3948,
+      "overall_classification": "moderate_signal",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.476,
+          "p_value": 0.0459,
+          "p_value_bh_adjusted": 0.2926,
+          "bh_significant": false,
+          "n": 18,
+          "classification": "moderate_signal"
+        },
+        "P/DE": {
+          "rho": 0.3833,
+          "p_value": 0.3085,
+          "p_value_bh_adjusted": 0.6422,
+          "bh_significant": false,
+          "n": 9,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.325,
+          "p_value": 0.2031,
+          "p_value_bh_adjusted": 0.491,
+          "bh_significant": false,
+          "n": 17,
+          "classification": "moderate_signal"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-015",
+      "metric_name": "Compensation-to-Revenue Ratio",
+      "avg_abs_rho": 0.2802,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.036,
+          "p_value": 0.9389,
+          "p_value_bh_adjusted": 0.9757,
+          "bh_significant": false,
+          "n": 7,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": -0.3,
+          "p_value": 0.6238,
+          "p_value_bh_adjusted": 0.8178,
+          "bh_significant": false,
+          "n": 5,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": -0.5045,
+          "p_value": 0.2482,
+          "p_value_bh_adjusted": 0.5386,
+          "bh_significant": false,
+          "n": 7,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-014",
+      "metric_name": "FRE Growth, Year-over-Year",
+      "avg_abs_rho": 0.2601,
+      "overall_classification": "moderate_signal",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.3339,
+          "p_value": 0.1624,
+          "p_value_bh_adjusted": 0.4733,
+          "bh_significant": false,
+          "n": 19,
+          "classification": "moderate_signal"
+        },
+        "P/DE": {
+          "rho": 0.4303,
+          "p_value": 0.2145,
+          "p_value_bh_adjusted": 0.4973,
+          "bh_significant": false,
+          "n": 10,
+          "classification": "moderate_signal"
+        },
+        "EV/FEAUM": {
+          "rho": -0.016,
+          "p_value": 0.9515,
+          "p_value_bh_adjusted": 0.9757,
+          "bh_significant": false,
+          "n": 17,
+          "classification": "not_a_driver"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-010",
+      "metric_name": "Asset Class Herfindahl-Hirschman Index",
+      "avg_abs_rho": 0.2496,
+      "overall_classification": "not_a_driver",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": -0.2354,
+          "p_value": 0.4178,
+          "p_value_bh_adjusted": 0.7358,
+          "bh_significant": false,
+          "n": 14,
+          "classification": "not_a_driver"
+        },
+        "P/DE": {
+          "rho": -0.5,
+          "p_value": 0.207,
+          "p_value_bh_adjusted": 0.491,
+          "bh_significant": false,
+          "n": 8,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.0133,
+          "p_value": 0.9611,
+          "p_value_bh_adjusted": 0.9757,
+          "bh_significant": false,
+          "n": 16,
+          "classification": "not_a_driver"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-017",
+      "metric_name": "Performance Fee Share of Total Revenue",
+      "avg_abs_rho": 0.2462,
+      "overall_classification": "moderate_signal",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.3333,
+          "p_value": 0.3466,
+          "p_value_bh_adjusted": 0.6901,
+          "bh_significant": false,
+          "n": 10,
+          "classification": "moderate_signal"
+        },
+        "P/DE": {
+          "rho": 0.2143,
+          "p_value": 0.6445,
+          "p_value_bh_adjusted": 0.8178,
+          "bh_significant": false,
+          "n": 7,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.1909,
+          "p_value": 0.5739,
+          "p_value_bh_adjusted": 0.8178,
+          "bh_significant": false,
+          "n": 11,
+          "classification": "not_a_driver"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-006",
+      "metric_name": "FEAUM Growth, Year-over-Year",
+      "avg_abs_rho": 0.2109,
+      "overall_classification": "not_a_driver",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": -0.2024,
+          "p_value": 0.406,
+          "p_value_bh_adjusted": 0.7358,
+          "bh_significant": false,
+          "n": 19,
+          "classification": "not_a_driver"
+        },
+        "P/DE": {
+          "rho": -0.2927,
+          "p_value": 0.4118,
+          "p_value_bh_adjusted": 0.7358,
+          "bh_significant": false,
+          "n": 10,
+          "classification": "not_a_driver"
+        },
+        "EV/FEAUM": {
+          "rho": -0.1377,
+          "p_value": 0.5859,
+          "p_value_bh_adjusted": 0.8178,
+          "bh_significant": false,
+          "n": 18,
+          "classification": "not_a_driver"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-011",
+      "metric_name": "Permanent Capital Percentage",
+      "avg_abs_rho": 0.2032,
+      "overall_classification": "not_a_driver",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.1049,
+          "p_value": 0.7456,
+          "p_value_bh_adjusted": 0.9163,
+          "bh_significant": false,
+          "n": 12,
+          "classification": "not_a_driver"
+        },
+        "P/DE": {
+          "rho": 0.3214,
+          "p_value": 0.4821,
+          "p_value_bh_adjusted": 0.7931,
+          "bh_significant": false,
+          "n": 7,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.1833,
+          "p_value": 0.6368,
+          "p_value_bh_adjusted": 0.8178,
+          "bh_significant": false,
+          "n": 9,
+          "classification": "insufficient_data"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-016",
+      "metric_name": "Management Fee Rate",
+      "avg_abs_rho": 0.1832,
+      "overall_classification": "moderate_signal",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.0857,
+          "p_value": 0.7613,
+          "p_value_bh_adjusted": 0.9168,
+          "bh_significant": false,
+          "n": 15,
+          "classification": "not_a_driver"
+        },
+        "P/DE": {
+          "rho": -0.0333,
+          "p_value": 0.9322,
+          "p_value_bh_adjusted": 0.9757,
+          "bh_significant": false,
+          "n": 9,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": 0.4307,
+          "p_value": 0.109,
+          "p_value_bh_adjusted": 0.4063,
+          "bh_significant": false,
+          "n": 15,
+          "classification": "moderate_signal"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-009",
+      "metric_name": "Fundraising as Percentage of AUM",
+      "avg_abs_rho": 0.1644,
+      "overall_classification": "moderate_signal",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.3404,
+          "p_value": 0.1539,
+          "p_value_bh_adjusted": 0.4617,
+          "bh_significant": false,
+          "n": 19,
+          "classification": "moderate_signal"
+        },
+        "P/DE": {
+          "rho": -0.0303,
+          "p_value": 0.9338,
+          "p_value_bh_adjusted": 0.9757,
+          "bh_significant": false,
+          "n": 10,
+          "classification": "not_a_driver"
+        },
+        "EV/FEAUM": {
+          "rho": 0.1226,
+          "p_value": 0.6392,
+          "p_value_bh_adjusted": 0.8178,
+          "bh_significant": false,
+          "n": 17,
+          "classification": "not_a_driver"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "avg_abs_rho": 0.1532,
+      "overall_classification": "insufficient_data",
+      "per_multiple": {
+        "P/FRE": {
+          "rho": -0.2395,
+          "p_value": 0.5678,
+          "p_value_bh_adjusted": 0.8178,
+          "bh_significant": false,
+          "n": 8,
+          "classification": "insufficient_data"
+        },
+        "P/DE": {
+          "rho": -0.0286,
+          "p_value": 0.9572,
+          "p_value_bh_adjusted": 0.9757,
+          "bh_significant": false,
+          "n": 6,
+          "classification": "insufficient_data"
+        },
+        "EV/FEAUM": {
+          "rho": -0.1916,
+          "p_value": 0.6494,
+          "p_value_bh_adjusted": 0.8178,
+          "bh_significant": false,
+          "n": 8,
+          "classification": "insufficient_data"
+        }
+      }
+    }
+  ]
+}

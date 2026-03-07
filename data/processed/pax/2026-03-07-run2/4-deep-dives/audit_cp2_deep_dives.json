@@ -1,0 +1,162 @@
+{
+  "checkpoint": "CP-2",
+  "stage_audited": "VD-D1, VD-D2",
+  "audit_date": "2026-03-07",
+  "run_id": "2026-03-07-run2",
+  "verdict": "PASSED",
+  "claims_audited": 18,
+  "claims_passed": 13,
+  "claims_flagged": 5,
+  "flags_by_dimension": {
+    "invalid_premises": 1,
+    "misleading_context": 2,
+    "sycophantic_fabrication": 0,
+    "confidence_miscalibration": 2
+  },
+  "blocked_claims": [],
+  "inferred_claims": [
+    {
+      "claim_id": "BX-private-wealth-market-share",
+      "location": "platform_profiles.json, BX transferable_insights[2]",
+      "claim": "Blackstone has ~50% estimated market share of private wealth alternative revenue",
+      "reason": "The ~50% market share figure is described as 'estimated' in the source (PS-VD-002, Blackstone's own earnings call). There is no independent third-party verification of this claim. The denominator ('private wealth alternative revenue') is undefined and could be scoped to support the narrative. Must use hedged language: 'Blackstone estimates approximately 50% market share' rather than stating it as fact.",
+      "required_action": "Mark as INFERRED. Attribute to company's own estimate in downstream usage."
+    },
+    {
+      "claim_id": "APO-parallel-bank-framing",
+      "location": "platform_profiles.json, APO value_creation_narrative; asset_class_analysis.json, VERT-001 origination_model",
+      "claim": "Apollo acts as a 'parallel bank' capturing spreads that traditional banks relinquish under regulatory constraints",
+      "reason": "The 'parallel bank' framing is Apollo's own investor relations narrative (PS-VD-010, Investor Day presentation). While directionally accurate, it presents Apollo's model in the most favorable framing without noting risks (regulatory scrutiny of non-bank lending, credit cycle exposure, concentration in investment-grade origination). The framing is propagated uncritically from company sources.",
+      "required_action": "Mark as INFERRED. In downstream usage, attribute as 'Apollo positions itself as a parallel bank' and note the regulatory/cycle risks."
+    }
+  ],
+  "flagged_claims": [
+    {
+      "flag_id": "FLAG-CP2-001",
+      "dimension": "invalid_premises",
+      "severity": "moderate",
+      "location": "platform_profiles.json, metadata.stable_value_drivers_assessed; asset_class_analysis.json, metadata.stable_drivers_referenced",
+      "claim": "DVR-003 (FRE Margin, avg_abs_rho=0.5424) is listed as a 'stable value driver' alongside DVR-001 and DVR-002",
+      "issue": "The upstream driver_ranking.json classifies DVR-003 as 'multiple_specific_driver', not 'stable_value_driver'. The classification criteria require rho > 0.5 across ALL THREE multiples for 'stable' status. DVR-003 has rho=0.40 for P/FRE (below 0.5), rho=0.52 for P/DE, and rho=0.71 for EV/FEAUM. It qualifies as rho > 0.5 for only two of three multiples. The deep-dives upgraded this classification without justification, treating FRE Margin as equally validated as FEAUM and EPS when the correlation evidence is weaker.",
+      "impact": "Moderate. The deep-dives build extensive narratives around FRE Margin as a co-equal 'stable value driver.' While FRE Margin is clearly important (especially for EV/FEAUM where rho=0.71), elevating it to 'stable' status overstates the cross-multiple evidence. PAX's Q1 positioning on FRE Margin is presented as a major competitive advantage, which is directionally correct but should be caveated as a 'multiple-specific driver, strongest for EV/FEAUM.'",
+      "recommended_action": "In the playbook, correctly label DVR-003 as a multiple-specific driver (strongest for EV/FEAUM) rather than a stable value driver. Note that PAX's Q1 FRE Margin is most impactful for EV/FEAUM valuation, not universally across all multiples. Not blocking because the underlying correlation data is correct; only the classification label is inflated."
+    },
+    {
+      "flag_id": "FLAG-CP2-002",
+      "dimension": "misleading_context",
+      "severity": "minor",
+      "location": "asset_class_analysis.json, VERT-001 (Credit), ARES classification_basis",
+      "claim": "ARES is described as having 'Fastest organic FEAUM growth among mega-caps (+30% YoY, Q1 on DVR-007)'",
+      "issue": "The 31.5% FEAUM growth includes inorganic contribution from the GCP International acquisition (~$44B AUM). The upstream data notes state 'Aided by GCP acquisition.' Describing this as 'organic' growth is misleading. The 31.5% figure is total FEAUM growth (organic + inorganic), not organic growth alone.",
+      "impact": "Minor. The classification_basis text uses 'organic' loosely. The underlying metric (31.5% YoY) is correct, but mislabeling it as 'organic' overstates ARES's organic growth capability relative to peers.",
+      "recommended_action": "Change 'organic' to 'total' in the ARES classification_basis. If organic growth data is available, state it separately. Not blocking."
+    },
+    {
+      "flag_id": "FLAG-CP2-003",
+      "dimension": "confidence_miscalibration",
+      "severity": "minor",
+      "location": "platform_profiles.json, BX value_creation_narrative",
+      "claim": "Blackstone commands the highest valuation premium in alternative asset management because it has achieved a rare combination of scale dominance and margin leadership simultaneously... no other firm matches both metrics",
+      "issue": "The narrative uses causal language ('because') to link BX's Q1 FEAUM and Q1 FRE Margin to its valuation premium. While the correlation data supports a positive association between scale/margin and valuation, the correlation analysis itself cautions that sample sizes are small (N=17-19) and most correlations do not survive BH correction. The narrative presents correlational evidence as causal explanation. Additionally, KKR also has Q1 on both FEAUM and FRE Margin (rank 3 and rank 2 respectively), so the claim that 'no other firm matches both metrics' is overstated.",
+      "impact": "Minor. The directional insight is sound (BX's scale and margin justify a premium), but the language overstates certainty. KKR contradicts the uniqueness claim.",
+      "recommended_action": "Soften causal language to 'is associated with' rather than 'because.' Acknowledge KKR as also achieving Q1 on both metrics. Not blocking."
+    },
+    {
+      "flag_id": "FLAG-CP2-004",
+      "dimension": "misleading_context",
+      "severity": "minor",
+      "location": "asset_class_analysis.json, VERT-005 (GP-Led Solutions), STEP cautionary_lessons",
+      "claim": "StepStone's EPS is -$1.55 (Q4) and FRE Margin is 37% (Q4)",
+      "issue": "StepStone's -$1.55 EPS is a GAAP quarterly figure (Q3 FY2026, quarter ended Dec 2025), heavily distorted by mark-to-market adjustments and equity-based compensation. The non-GAAP adjusted net income per share for the same quarter was $0.65 (positive). Using the negative GAAP EPS as the primary cautionary metric without prominently noting the positive adjusted EPS overstates the 'value destruction' narrative. The driver ranking (DVR-002) also uses STEP's -$1.55 as its EPS value, placing STEP in Q4, but this is a quarterly GAAP figure compared to full-year figures for most other firms.",
+      "impact": "Moderate. StepStone's classification as a 'cautionary case' relies heavily on the -$1.55 GAAP EPS. If adjusted EPS ($0.65, positive) were used instead, StepStone would move from Q4 to Q3 on DVR-002, significantly weakening the 'AUM growth without margin discipline destroys value' narrative. The cautionary lesson about FRE Margin (37%) remains valid regardless.",
+      "recommended_action": "Add prominent context noting that STEP's adjusted ANI/share was $0.65 (positive) for the same quarter. The cautionary case should be anchored primarily on FRE Margin (37%) rather than GAAP EPS. Not blocking but requires downstream correction in playbook."
+    },
+    {
+      "flag_id": "FLAG-CP2-005",
+      "dimension": "confidence_miscalibration",
+      "severity": "minor",
+      "location": "asset_class_analysis.json, VERT-001 (Credit), vertical_dynamics.scale_advantages",
+      "claim": "Empirically confirmed: FEAUM (DVR-001, rho=0.69) is the strongest driver of credit platform valuations",
+      "issue": "The rho=0.69 is the average across all three multiples for the FULL peer set (not credit-only). The correlation analysis was not run on the credit sub-sample alone. Stating that FEAUM is 'empirically confirmed' as the strongest driver of 'credit platform valuations' specifically extrapolates the full-sample finding to a sub-sample without evidence. The rho could be higher or lower within the credit-dominant subset.",
+      "impact": "Minor. The directional claim is plausible (scale likely matters for credit platforms), but the language 'empirically confirmed' overstates the evidence. The correlation was computed across all alt managers, not specifically for credit firms.",
+      "recommended_action": "Rephrase to 'consistent with the full-sample finding that FEAUM is a stable value driver (rho=0.69)' rather than claiming credit-specific empirical confirmation. Not blocking."
+    }
+  ],
+  "act_vd_citation_verification": {
+    "total_unique_citations_checked": 28,
+    "citations_verified_against_strategic_actions": 28,
+    "citations_not_found": 0,
+    "citations_with_firm_mismatch": 0,
+    "citations_checked": [
+      "ACT-VD-001 (BX, AirTrunk): VERIFIED - matches strategic_actions.json",
+      "ACT-VD-002 (BX, BXPE launch): VERIFIED",
+      "ACT-VD-003 (BX, BCRED record): VERIFIED",
+      "ACT-VD-004 (BX, AI data center vehicle): VERIFIED",
+      "ACT-VD-005 (BX, wealth distribution): VERIFIED",
+      "ACT-VD-006 (KKR, Global Atlantic): VERIFIED",
+      "ACT-VD-007 (KKR, Arctos): VERIFIED",
+      "ACT-VD-008 (KKR, K-ABF): VERIFIED",
+      "ACT-VD-009 (KKR, APAC expansion): VERIFIED",
+      "ACT-VD-010 (APO, Investor Day): VERIFIED",
+      "ACT-VD-011 (APO, origination platform): VERIFIED",
+      "ACT-VD-012 (APO, Athene distribution): VERIFIED",
+      "ACT-VD-013 (ARES, GCP International): VERIFIED",
+      "ACT-VD-014 (ARES, BlueCove): VERIFIED",
+      "ACT-VD-015 (ARES, Aspida): VERIFIED",
+      "ACT-VD-016 (ARES, democratization): VERIFIED",
+      "ACT-VD-017 (BAM, Oaktree full ownership): VERIFIED",
+      "ACT-VD-018 (BAM, BAIIF launch): VERIFIED",
+      "ACT-VD-019 (BAM, QIA JV): VERIFIED",
+      "ACT-VD-020 (BAM, wealth distribution): VERIFIED",
+      "ACT-VD-021 (OWL, IPI Partners): VERIFIED",
+      "ACT-VD-022 (OWL, Kuvare): VERIFIED",
+      "ACT-VD-023 (OWL, Atalaya): VERIFIED",
+      "ACT-VD-024 (OWL, LP Solutions): VERIFIED",
+      "ACT-VD-033 (EQT, Coller Capital): VERIFIED",
+      "ACT-VD-034 (EQT, Perficient): VERIFIED",
+      "ACT-VD-059 (BX, QTS/data centers): VERIFIED",
+      "ACT-VD-071 (EQT, record realizations): VERIFIED"
+    ],
+    "sycophantic_fabrication_detected": false,
+    "notes": "All 28 ACT-VD citations sampled from platform_profiles.json and asset_class_analysis.json were found in strategic_actions.json with matching firm_id and consistent descriptions. No fabricated citations detected."
+  },
+  "driver_ranking_consistency": {
+    "DVR-001_FEAUM": {
+      "ranking_classification": "stable_value_driver",
+      "deep_dive_treatment": "stable_value_driver",
+      "status": "CONSISTENT"
+    },
+    "DVR-002_EPS": {
+      "ranking_classification": "stable_value_driver",
+      "deep_dive_treatment": "stable_value_driver",
+      "status": "CONSISTENT"
+    },
+    "DVR-003_FRE_Margin": {
+      "ranking_classification": "multiple_specific_driver",
+      "deep_dive_treatment": "stable_value_driver (listed in stable_value_drivers_assessed)",
+      "status": "INCONSISTENT - classification upgraded without justification (FLAG-CP2-001)"
+    }
+  },
+  "quantitative_cross_checks": {
+    "BX_FEAUM_rank": {"driver_ranking": "1/23", "platform_profile": "1/23", "status": "CONSISTENT"},
+    "BX_FRE_margin_rank": {"driver_ranking": "1/23 (71.3%)", "platform_profile": "1/23", "status": "CONSISTENT"},
+    "KKR_FEAUM_rank": {"driver_ranking": "3/23 (604.0B)", "platform_profile": "3/23", "status": "CONSISTENT"},
+    "KKR_FRE_margin_rank": {"driver_ranking": "2/23 (69.0%)", "platform_profile": "2/23", "status": "CONSISTENT"},
+    "APO_FEAUM_rank": {"driver_ranking": "2/23 (709.0B)", "platform_profile": "2/23", "status": "CONSISTENT"},
+    "APO_EPS_rank": {"driver_ranking": "3/16 (5.54)", "platform_profile": "3/16", "status": "CONSISTENT"},
+    "PAX_FRE_margin_rank": {"driver_ranking": "5/23 Q1 (58.9%)", "platform_profile": "Q1", "status": "CONSISTENT"},
+    "PAX_FEAUM_rank": {"driver_ranking": "19/23 Q4 (40.8B)", "asset_class": "Q4", "status": "CONSISTENT"},
+    "ARES_FEAUM_value": {"quantitative_data": "384.9B", "deep_dive": "384.9B", "status": "CONSISTENT"},
+    "OWL_perm_capital": {"quantitative_data": "100% (flagged in CP-1)", "deep_dive": "85% of management fees", "status": "NOTE - deep-dive uses more precise 85% figure, contradicting the 100% in quantitative data. Deep-dive is more accurate."}
+  },
+  "structural_observations": [
+    "Platform profiles are well-structured with consistent schema across all 12 firms profiled. Each firm has identity, strategic agenda, key actions, performance on drivers, value creation narrative, and transferable insights.",
+    "Asset class analysis covers 5 verticals (Credit, PE, Infrastructure, Real Estate, GP-Led Solutions) with reference firms, winning strategies, vertical dynamics, emerging trends, and PAX positioning — comprehensive coverage.",
+    "The deep-dives make heavy use of ACT-VD citations (75 total actions cataloged). All 28 sampled citations verified. No fabricated action citations detected.",
+    "Value creation narratives are detailed and generally well-grounded in upstream data, though several use causal language that exceeds what the correlational evidence supports.",
+    "PAX positioning sections across all 5 verticals are balanced — they acknowledge both strengths (FRE Margin Q1, LatAm expertise) and gaps (scale, no insurance, limited geographic diversification). This reduces sycophancy risk for the target company.",
+    "The OWL permanent capital figure in the deep-dives (85%) is more accurate than the quantitative data (100%), suggesting the platform profiler corrected the data collector's overstatement. This is a positive quality signal.",
+    "StepStone as a cautionary case is a valuable analytical contribution, but the reliance on GAAP EPS (-$1.55) rather than adjusted ANI ($0.65) weakens the argument."
+  ],
+  "notes": "CP-2 audit PASSED with 5 flags (1 moderate, 4 minor) and 2 INFERRED claims. No blocked claims. Zero sycophantic fabrication detected across 28 ACT-VD citations verified. The most significant finding is FLAG-CP2-001: DVR-003 (FRE Margin) was upgraded from 'multiple_specific_driver' to 'stable_value_driver' in the deep-dives without justification. This affects downstream playbook framing but does not invalidate the analysis because the underlying correlation data is correctly cited (rho values are accurate). The playbook should correctly label DVR-003 as multiple-specific (strongest for EV/FEAUM). Data quality across deep-dives is high — quantitative values are internally consistent, firm rankings match driver_ranking.json, and all strategic action citations are grounded in upstream evidence. Proceed to Step 5 (Build the Playbook) with noted corrections."
+}

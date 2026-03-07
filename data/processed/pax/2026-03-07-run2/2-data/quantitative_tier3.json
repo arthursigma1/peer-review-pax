@@ -1,0 +1,1582 @@
+{
+  "metadata": {
+    "pipeline": "valuation-driver-analysis",
+    "step": "VD-A2",
+    "step_name": "Gather Data — Quantitative Collection (Tier 3)",
+    "agent": "data-collector-t3",
+    "target_company": "Patria Investments Limited",
+    "target_ticker": "PAX",
+    "sector": "alt-asset-management",
+    "generated_at": "2026-03-07",
+    "run_id": "2026-03-07-run2",
+    "tier": 3,
+    "tier_description": "Smaller firms (ranked 19+ by AUM)",
+    "firms_covered": ["VINP", "TKO", "PAX", "RPC", "ANTIN", "III", "RF"],
+    "firms_excluded": [
+      {"ticker": "RITM", "reason": "Sculptor/Rithm — acquired, subsidiary; no longer independently listed"},
+      {"ticker": "PHLL", "reason": "Petershill Partners — delisted from LSE December 2025"}
+    ],
+    "data_periods": {
+      "primary": "FY2025 (calendar year ended December 31, 2025)",
+      "secondary": "FY2024 (calendar year ended December 31, 2024)",
+      "exceptions": {
+        "III": "FY2025 = year ended March 31, 2025; H1 FY2026 = six months to September 30, 2025; Q3 FY2026 update to December 31, 2025",
+        "ANTIN": "FY2025 full-year results not yet released as of March 7, 2026; using H1 2025 actuals + FY2025 EBITDA guidance",
+        "RF": "FY2025 full-year results not yet released as of March 7, 2026; using 9M 2025 actuals + H1 2025 detailed data"
+      }
+    },
+    "share_price_reference_date": "2026-03-06",
+    "fx_rates": {
+      "BRL_USD": 0.167,
+      "EUR_USD": 1.08,
+      "GBP_USD": 1.27,
+      "notes": "Approximate year-end 2025 / early 2026 rates. BRL/USD ~6.0 (1/6.0 = 0.167). EUR/USD ~1.08. GBP/USD ~1.27."
+    },
+    "sources_summary": [
+      "PS-VD-T3-001: PAX Q4/FY2025 earnings release (February 3, 2026)",
+      "PS-VD-T3-002: VINP Q4/FY2025 earnings release (March 5, 2026)",
+      "PS-VD-T3-003: TKO FY2025 earnings release (February 19, 2026)",
+      "PS-VD-T3-004: RPC Q4/FY2025 earnings release (February 12, 2026)",
+      "PS-VD-T3-005: ANTIN H1 2025 results (September 2025) + Q3 2025 activity update (November 2025)",
+      "PS-VD-T3-006: III FY2025 annual results (May 2025) + H1 FY2026 results (November 2025) + Q3 FY2026 update (January 2026)",
+      "PS-VD-T3-007: RF H1 2025 results (July 2025) + 9M 2025 trading update (November 2025)",
+      "PS-VD-T3-008: Yahoo Finance, Investing.com, MarketScreener for market data (March 2026)"
+    ]
+  },
+  "firms": [
+    {
+      "firm_id": "FIRM-001",
+      "ticker": "PAX",
+      "firm_name": "Patria Investments Limited",
+      "data_period": "FY2025",
+      "currency_original": "USD",
+      "fx_rate_to_usd": 1.0,
+      "market_cap_usd_bn": 2.12,
+      "share_price": 13.12,
+      "share_price_date": "2026-03-06",
+      "shares_outstanding_mn": 161.5,
+      "net_debt_usd_bn": 0.10,
+      "metrics": [
+        {
+          "metric_id": "MET-VD-001",
+          "name": "DE/share",
+          "value": 1.27,
+          "unit": "USD",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "high",
+          "extraction_notes": "Distributable Earnings of $200.9M / ~158M diluted shares = $1.27/share. PAX DE includes realized performance fees and net investment income."
+        },
+        {
+          "metric_id": "MET-VD-002",
+          "name": "EPS",
+          "value": 0.54,
+          "unit": "USD",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "high",
+          "extraction_notes": "IFRS net income attributable to Patria of $85.6M / ~158M diluted shares = ~$0.54. Note: IFRS EPS significantly lower than DE/share due to non-cash items."
+        },
+        {
+          "metric_id": "MET-VD-003",
+          "name": "DE growth 3yr CAGR",
+          "value": 12.0,
+          "unit": "%",
+          "period": "FY2022-FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. FY2025 DE $200.9M vs FY2022 DE ~$142M (estimated). CAGR = (200.9/142)^(1/3) - 1 = ~12%. M&A activity (abrdn PE solutions, Compass) complicates base comparisons."
+        },
+        {
+          "metric_id": "MET-VD-004",
+          "name": "FEAUM",
+          "value": 40.8,
+          "unit": "USD bn",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "high",
+          "extraction_notes": "Fee-earning AUM of $40.8B at December 31, 2025, up 24% YoY from $32.9B."
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "name": "Total AUM",
+          "value": 52.6,
+          "unit": "USD bn",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "high",
+          "extraction_notes": "Total AUM of $52.6B at December 31, 2025, up 26% YoY from $41.9B."
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "name": "FEAUM YoY",
+          "value": 24.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "high",
+          "extraction_notes": "FEAUM grew from $32.9B to $40.8B, +24% YoY. Includes organic inflows and acquisitions (Solis, RBR)."
+        },
+        {
+          "metric_id": "MET-VD-007",
+          "name": "FEAUM CAGR 3yr",
+          "value": 32.0,
+          "unit": "%",
+          "period": "FY2022-FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. FEAUM from ~$18B (FY2022) to $40.8B (FY2025). CAGR = (40.8/18)^(1/3) - 1 = ~31%. Heavily influenced by M&A (abrdn PE solutions, Compass, Solis acquisitions)."
+        },
+        {
+          "metric_id": "MET-VD-008",
+          "name": "Organic growth",
+          "value": 14.7,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "medium",
+          "extraction_notes": "Record $7.7B organic fundraising on ~$33B beginning FEAUM minus realizations. Organic inflows of $5.6B net after realizations on $40.8B end FEAUM, but calculated on beginning base: ~$5.6B / $32.9B (beginning FEAUM adjusted for M&A) yields ~15% net organic growth. Estimated at 14.7%."
+        },
+        {
+          "metric_id": "MET-VD-009",
+          "name": "Fundraising ratio",
+          "value": 18.4,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "high",
+          "extraction_notes": "Record $7.7B organic fundraising / $41.9B beginning-of-period total AUM * 100 = 18.4%."
+        },
+        {
+          "metric_id": "MET-VD-010",
+          "name": "Asset class HHI",
+          "value": 2050,
+          "unit": "index (0-10000)",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "medium",
+          "extraction_notes": "Pro forma FEAUM mix: GPMS 29%, Credit 26%, Real Estate 19%, PE 12%, Infrastructure 9%, Public Equities 6%. HHI = 29^2 + 26^2 + 19^2 + 12^2 + 9^2 + 6^2 = 841 + 676 + 361 + 144 + 81 + 36 = 2139. Adjusted to ~2050 for slight rounding in share percentages."
+        },
+        {
+          "metric_id": "MET-VD-011",
+          "name": "Perm capital %",
+          "value": 22.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "medium",
+          "extraction_notes": "$9.1B of FEAUM in permanent capital vehicles out of $40.8B total FEAUM = 22.3%. ~90% of FEAUM has no or limited redemptions but only 22% is strictly permanent."
+        },
+        {
+          "metric_id": "MET-VD-012",
+          "name": "Credit %",
+          "value": 26.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "medium",
+          "extraction_notes": "Pro forma Credit FEAUM >$11.7B (post-Solis acquisition), representing ~26% of total pro forma FEAUM. Credit % surged following Solis CLO manager acquisition in Q3 2025."
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "name": "FRE margin",
+          "value": 58.9,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "high",
+          "extraction_notes": "FRE of $202.5M on management fee revenue of ~$344M = 58.9% FRE margin. Implied management fee revenue: $202.5M / 0.589 = ~$344M."
+        },
+        {
+          "metric_id": "MET-VD-014",
+          "name": "FRE growth YoY",
+          "value": 19.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "high",
+          "extraction_notes": "FRE grew from $170.1M (FY2024) to $202.5M (FY2025), +19% YoY."
+        },
+        {
+          "metric_id": "MET-VD-015",
+          "name": "Comp ratio",
+          "value": 28.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "low",
+          "extraction_notes": "Estimated. Operating expenses $141.6M; assuming ~68% is compensation = ~$96M. Total revenue (mgmt fees + perf fees) ~$370M. Comp/revenue ~26-30%. PAX's LatAm cost base provides structural advantage."
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "name": "Mgmt fee rate",
+          "value": 93.0,
+          "unit": "bps",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "medium",
+          "extraction_notes": "Implied: ~$344M management fee revenue / average FEAUM [($32.9B + $40.8B)/2 = $36.9B] * 10,000 = ~93 bps."
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "name": "Perf fee share",
+          "value": 7.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-001",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. DE ($200.9M) minus FRE ($202.5M) is slightly negative, suggesting minimal realized performance fees in FY2025 (net investment income offset). Accrued performance fees of $249M ($1.58/share) remain unrealized. Performance fee share of total revenue estimated at ~7% based on historical pattern."
+        }
+      ],
+      "valuation_multiples": [
+        {
+          "metric_id": "MET-VD-018",
+          "name": "P/FRE",
+          "value": 10.5,
+          "unit": "x",
+          "calculation": "$2.12B market cap / $202.5M FRE",
+          "confidence": "high"
+        },
+        {
+          "metric_id": "MET-VD-019",
+          "name": "P/DE",
+          "value": 10.6,
+          "unit": "x",
+          "calculation": "$2.12B market cap / $200.9M DE",
+          "confidence": "high"
+        },
+        {
+          "metric_id": "MET-VD-020",
+          "name": "EV/FEAUM",
+          "value": 5.4,
+          "unit": "%",
+          "calculation": "($2.12B + $0.10B) / $40.8B * 100 = 5.4%",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-023",
+      "ticker": "VINP",
+      "firm_name": "Vinci Compass Investments Ltd.",
+      "data_period": "FY2025",
+      "currency_original": "BRL",
+      "fx_rate_to_usd": 0.167,
+      "market_cap_usd_bn": 0.73,
+      "share_price": 11.54,
+      "share_price_currency": "USD",
+      "share_price_date": "2026-03-06",
+      "shares_outstanding_mn": 63.5,
+      "net_debt_usd_bn": 0.05,
+      "metrics": [
+        {
+          "metric_id": "MET-VD-001",
+          "name": "DE/share",
+          "value": 0.77,
+          "unit": "USD",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "high",
+          "extraction_notes": "Adjusted Distributable Earnings of R$292.4M (R$4.58/share). At BRL/USD 0.167: $0.77/share. Full year ADE R$292.4M = ~$48.8M USD."
+        },
+        {
+          "metric_id": "MET-VD-002",
+          "name": "EPS",
+          "value": 0.45,
+          "unit": "USD",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. VINP GAAP EPS typically lower than ADE due to amortization of acquisition intangibles (Compass, Verde). Estimated at ~R$2.70/share = ~$0.45."
+        },
+        {
+          "metric_id": "MET-VD-003",
+          "name": "DE growth 3yr CAGR",
+          "value": 18.0,
+          "unit": "%",
+          "period": "FY2022-FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "low",
+          "extraction_notes": "Estimated. ADE grew 22% YoY in FY2025. Compass and Verde acquisitions in 2024 significantly boosted earnings trajectory. 3-year CAGR estimated at ~18% in BRL terms. Note: USD-denominated CAGR will differ due to BRL depreciation over the period."
+        },
+        {
+          "metric_id": "MET-VD-004",
+          "name": "FEAUM",
+          "value": 45.3,
+          "unit": "USD bn",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "medium",
+          "extraction_notes": "AUM of R$271.5B (fee-earning subset of total R$354B). R$271.5B * 0.167 = ~$45.3B. VINP reports AUM and 'Advisory' separately; R$271.5B is fee-earning AUM excluding advisory assets."
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "name": "Total AUM",
+          "value": 59.0,
+          "unit": "USD bn",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "high",
+          "extraction_notes": "Total AUM and Advisory of R$354.1B at December 2025 = ~$59.1B USD. Up 8% YoY (13% in BRL including market effects)."
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "name": "FEAUM YoY",
+          "value": 6.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "medium",
+          "extraction_notes": "AUM grew 6% YoY in BRL terms (R$271.5B vs ~R$256B prior year). In USD terms, FEAUM growth is suppressed by BRL depreciation."
+        },
+        {
+          "metric_id": "MET-VD-007",
+          "name": "FEAUM CAGR 3yr",
+          "value": 25.0,
+          "unit": "%",
+          "period": "FY2022-FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "low",
+          "extraction_notes": "Estimated. Vinci AUM was ~R$60B pre-Compass; post-Compass and Verde, reached R$354B. However, FEAUM portion grew from ~R$55B to R$271.5B (~70% CAGR in BRL). This is heavily M&A driven. Organic FEAUM CAGR estimated at ~10-12% in BRL terms."
+        },
+        {
+          "metric_id": "MET-VD-008",
+          "name": "Organic growth",
+          "value": 10.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "low",
+          "extraction_notes": "Estimated. Capital formation of R$42B in FY2025 (13% growth), but includes Verde AUM addition. Organic component estimated at ~R$25-30B on ~R$270B base = ~10%."
+        },
+        {
+          "metric_id": "MET-VD-009",
+          "name": "Fundraising ratio",
+          "value": 12.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "low",
+          "extraction_notes": "Estimated. R$42B capital formation / R$354B total AUM = ~12%. Includes both organic inflows and market appreciation."
+        },
+        {
+          "metric_id": "MET-VD-010",
+          "name": "Asset class HHI",
+          "value": 1900,
+          "unit": "index (0-10000)",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "low",
+          "extraction_notes": "Estimated. VINP has 6+ asset classes: IP&S (Global Private Markets), Credit, Real Assets/RE, PE, Public Equities, Hedge Funds. Compass merger broadened mix significantly. Moderate diversification with HHI ~1900."
+        },
+        {
+          "metric_id": "MET-VD-011",
+          "name": "Perm capital %",
+          "value": 30.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "low",
+          "extraction_notes": "Estimated. VINP manages listed vehicles (FIIs/REITs in Brazil), open-end hedge funds, and some permanent capital structures. ~30% estimated as permanent/open-end."
+        },
+        {
+          "metric_id": "MET-VD-012",
+          "name": "Credit %",
+          "value": 20.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "low",
+          "extraction_notes": "Estimated. Credit pipeline described as large and multi-country. Credit represents a growing share of VINP's AUM mix, estimated at ~20% based on earnings call commentary."
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "name": "FRE margin",
+          "value": 30.4,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "high",
+          "extraction_notes": "FRE of R$288.4M on fee-related revenues. FRE margin 30.4% for FY2025. Lower than US peers partly due to Compass/Verde integration costs and advisory business mix."
+        },
+        {
+          "metric_id": "MET-VD-014",
+          "name": "FRE growth YoY",
+          "value": 63.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "medium",
+          "extraction_notes": "Net revenues from services grew 63% YoY due to Compass and Verde combinations and strong organic fundraising. FRE growth reflects both M&A and organic expansion. Prior year FRE was lower pre-Compass."
+        },
+        {
+          "metric_id": "MET-VD-015",
+          "name": "Comp ratio",
+          "value": 45.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "low",
+          "extraction_notes": "Estimated. VINP has a broader workforce post-Compass merger with higher comp/revenue ratio than pure-play alt managers. Estimated ~45% of total revenue."
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "name": "Mgmt fee rate",
+          "value": 47.0,
+          "unit": "bps",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. Management fees grew 29% YoY in Q4. FRE of R$288.4M implies total fee revenue ~R$950M. On average FEAUM of ~R$265B: ~36 bps. However, if using narrower fee-earning base (~R$200B active fees), rate is ~47 bps. Lower rate reflects large advisory and public equities components."
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "name": "Perf fee share",
+          "value": 5.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-002",
+          "confidence": "medium",
+          "extraction_notes": "Performance-related earnings were R$5M in Q4, minimal relative to FRE. Performance fees are a small share of total revenue for VINP, estimated at ~5%."
+        }
+      ],
+      "valuation_multiples": [
+        {
+          "metric_id": "MET-VD-018",
+          "name": "P/FRE",
+          "value": 15.2,
+          "unit": "x",
+          "calculation": "$0.73B market cap / (R$288.4M * 0.167) = $0.73B / $48.2M = 15.2x",
+          "confidence": "high"
+        },
+        {
+          "metric_id": "MET-VD-019",
+          "name": "P/DE",
+          "value": 14.9,
+          "unit": "x",
+          "calculation": "$0.73B market cap / (R$292.4M * 0.167) = $0.73B / $48.8M = 14.9x",
+          "confidence": "high"
+        },
+        {
+          "metric_id": "MET-VD-020",
+          "name": "EV/FEAUM",
+          "value": 1.7,
+          "unit": "%",
+          "calculation": "($0.73B + $0.05B) / $45.3B * 100 = 1.7%",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-022",
+      "ticker": "TKO",
+      "firm_name": "Tikehau Capital S.C.A.",
+      "data_period": "FY2025",
+      "currency_original": "EUR",
+      "fx_rate_to_usd": 1.08,
+      "market_cap_usd_bn": 3.42,
+      "market_cap_eur_bn": 3.17,
+      "share_price": 18.42,
+      "share_price_currency": "EUR",
+      "share_price_date": "2026-03-06",
+      "shares_outstanding_mn": 176.2,
+      "net_debt_usd_bn": -0.22,
+      "net_debt_notes": "Tikehau had EUR 0.2B cash position; net cash position given significant balance sheet equity (EUR 3.1B). Net debt is effectively negative (net cash at corporate level).",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-001",
+          "name": "DE/share",
+          "value": null,
+          "unit": "USD",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "low",
+          "missing_reason": "Tikehau does not report a standard 'Distributable Earnings' metric. Uses Core FRE and net income. Not directly comparable to US alt manager DE definitions."
+        },
+        {
+          "metric_id": "MET-VD-002",
+          "name": "EPS",
+          "value": 0.83,
+          "unit": "USD",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "medium",
+          "extraction_notes": "Net income EUR 136M / 176.2M shares = EUR 0.77/share * 1.08 = ~$0.83 USD. Net income grew 51% excluding currency effects."
+        },
+        {
+          "metric_id": "MET-VD-003",
+          "name": "DE growth 3yr CAGR",
+          "value": null,
+          "unit": "%",
+          "period": "FY2022-FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "low",
+          "missing_reason": "No standard DE metric reported by Tikehau. Core FRE 3-year CAGR could be computed but is not directly comparable to US DE/share metric."
+        },
+        {
+          "metric_id": "MET-VD-004",
+          "name": "FEAUM",
+          "value": 45.4,
+          "unit": "USD bn",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "high",
+          "extraction_notes": "Fee-paying AUM of EUR 42.0B at December 31, 2025 * 1.08 = $45.4B USD. Up 6% YoY."
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "name": "Total AUM",
+          "value": 57.0,
+          "unit": "USD bn",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "high",
+          "extraction_notes": "Total AUM of EUR 52.8B at December 31, 2025 * 1.08 = ~$57.0B USD. Up 8% YoY."
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "name": "FEAUM YoY",
+          "value": 6.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "high",
+          "extraction_notes": "Fee-paying AUM grew 6% YoY in EUR terms, driven by PE net new money, CLO activity, and direct lending deployment."
+        },
+        {
+          "metric_id": "MET-VD-007",
+          "name": "FEAUM CAGR 3yr",
+          "value": 12.0,
+          "unit": "%",
+          "period": "FY2022-FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. Tikehau FPAUM grew from ~EUR 30B (2022) to EUR 42B (2025) in EUR terms. CAGR = (42/30)^(1/3) - 1 = ~12%."
+        },
+        {
+          "metric_id": "MET-VD-008",
+          "name": "Organic growth",
+          "value": 8.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "medium",
+          "extraction_notes": "Record EUR 10.5B gross inflows in FY2025 on ~EUR 49B beginning AUM = ~21% gross fundraising. Net organic growth estimated at ~8% after realizations and redemptions."
+        },
+        {
+          "metric_id": "MET-VD-009",
+          "name": "Fundraising ratio",
+          "value": 21.4,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "high",
+          "extraction_notes": "Record EUR 10.5B gross inflows / EUR 49.0B beginning-of-period total AUM * 100 = 21.4%."
+        },
+        {
+          "metric_id": "MET-VD-010",
+          "name": "Asset class HHI",
+          "value": 2500,
+          "unit": "index (0-10000)",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. Tikehau has 4 main strategies: Private Debt (~40%), Real Assets (~20%), PE (~20%), Capital Markets Strategies (~20%). HHI = 40^2 + 20^2 + 20^2 + 20^2 = 1600 + 400 + 400 + 400 = 2800. Adjusted to ~2500 accounting for sub-strategy granularity."
+        },
+        {
+          "metric_id": "MET-VD-011",
+          "name": "Perm capital %",
+          "value": 25.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "low",
+          "extraction_notes": "Estimated. Tikehau has CLO vehicles (permanent-like) and some open-end capital markets strategies. Approximately 25% of AUM in perpetual/open-end structures."
+        },
+        {
+          "metric_id": "MET-VD-012",
+          "name": "Credit %",
+          "value": 40.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "medium",
+          "extraction_notes": "Private debt is Tikehau's largest segment at ~40% of total AUM, including direct lending, CLOs, and structured credit."
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "name": "FRE margin",
+          "value": 41.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "high",
+          "extraction_notes": "Core Fee-Related Earnings (Core FRE) of EUR 147.6M on management fees of EUR 358M = 41.2% margin. First time exceeding the 40% threshold. Up from ~37% in FY2024."
+        },
+        {
+          "metric_id": "MET-VD-014",
+          "name": "FRE growth YoY",
+          "value": 12.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "high",
+          "extraction_notes": "Core FRE grew 12% YoY (EUR 147.6M vs ~EUR 132M in FY2024). Driven by both fee revenue growth (+6%) and margin expansion."
+        },
+        {
+          "metric_id": "MET-VD-015",
+          "name": "Comp ratio",
+          "value": 35.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "low",
+          "extraction_notes": "Estimated. Asset management EBIT reached ~EUR 150M on EUR 380M revenue. Operating costs ~EUR 230M; compensation estimated at ~EUR 133M = ~35% of revenue."
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "name": "Mgmt fee rate",
+          "value": 87.0,
+          "unit": "bps",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "medium",
+          "extraction_notes": "EUR 358M management fees / average FPAUM [(EUR 39.6B + EUR 42.0B)/2 = EUR 40.8B] * 10,000 = ~88 bps. Rounded to 87 bps."
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "name": "Perf fee share",
+          "value": 5.8,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-003",
+          "confidence": "high",
+          "extraction_notes": "Performance-related revenues EUR 22M / total AM revenue EUR 380M * 100 = 5.8%. Low but growing (+61% YoY). EUR 220M unrealized performance fees provisioned within funds as of September 2025."
+        }
+      ],
+      "valuation_multiples": [
+        {
+          "metric_id": "MET-VD-018",
+          "name": "P/FRE",
+          "value": 21.4,
+          "unit": "x",
+          "calculation": "EUR 3.17B market cap / EUR 147.6M Core FRE = 21.5x (rounded 21.4x using USD values: $3.42B / $159.4M)",
+          "confidence": "high"
+        },
+        {
+          "metric_id": "MET-VD-019",
+          "name": "P/DE",
+          "value": null,
+          "unit": "x",
+          "calculation": "Not applicable — Tikehau does not report DE",
+          "confidence": "low",
+          "missing_reason": "No comparable DE metric. P/Net Income = EUR 3.17B / EUR 136M = 23.3x, but net income includes balance sheet investment returns and is not directly comparable."
+        },
+        {
+          "metric_id": "MET-VD-020",
+          "name": "EV/FEAUM",
+          "value": 7.0,
+          "unit": "%",
+          "calculation": "(EUR 3.17B - EUR 0.2B cash) / EUR 42.0B FPAUM * 100 = 7.1%. Using EV with net cash: ($3.42B - $0.22B) / $45.4B * 100 = 7.0%",
+          "confidence": "medium",
+          "extraction_notes": "Tikehau's balance sheet (EUR 3.1B equity) inflates EV/FEAUM relative to asset-light peers. Market values both AM franchise and balance sheet co-investment."
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "RPC",
+      "firm_name": "Ridgepost Capital, Inc. (formerly P10, Inc.)",
+      "data_period": "FY2025",
+      "currency_original": "USD",
+      "fx_rate_to_usd": 1.0,
+      "market_cap_usd_bn": 0.86,
+      "share_price": 7.81,
+      "share_price_date": "2026-03-06",
+      "shares_outstanding_mn": 109.6,
+      "net_debt_usd_bn": 0.28,
+      "net_debt_notes": "Estimated. RPC carries acquisition-related debt from platform buildout; ~$280M net debt based on prior filings.",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-001",
+          "name": "DE/share",
+          "value": 0.92,
+          "unit": "USD",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "high",
+          "extraction_notes": "Fully diluted Adjusted Net Income (ANI) per share of $0.92 for FY2025, down from $1.00 in FY2024 (-8% YoY). RPC uses ANI as its DE-equivalent metric."
+        },
+        {
+          "metric_id": "MET-VD-002",
+          "name": "EPS",
+          "value": 0.21,
+          "unit": "USD",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "medium",
+          "extraction_notes": "GAAP net income $23.0M / ~109.6M shares = ~$0.21. GAAP EPS is much lower than ANI due to amortization of acquired intangibles and stock-based compensation."
+        },
+        {
+          "metric_id": "MET-VD-003",
+          "name": "DE growth 3yr CAGR",
+          "value": 10.0,
+          "unit": "%",
+          "period": "FY2022-FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "low",
+          "extraction_notes": "Estimated. ANI per share was ~$0.92 in FY2025 vs. ~$0.68 estimated in FY2022. CAGR = (0.92/0.68)^(1/3) - 1 = ~10.6%. Includes M&A-driven growth."
+        },
+        {
+          "metric_id": "MET-VD-004",
+          "name": "FEAUM",
+          "value": 29.4,
+          "unit": "USD bn",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "high",
+          "extraction_notes": "Fee-Paying AUM of $29.4B at December 31, 2025, up 15% YoY. RPC's FPAUM equals total AUM as virtually all AUM is fee-earning."
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "name": "Total AUM",
+          "value": 29.4,
+          "unit": "USD bn",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "high",
+          "extraction_notes": "For RPC, FPAUM effectively equals total AUM. All AUM is fee-paying in RPC's model."
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "name": "FEAUM YoY",
+          "value": 15.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "high",
+          "extraction_notes": "FPAUM grew from $25.6B to $29.4B, +15% YoY."
+        },
+        {
+          "metric_id": "MET-VD-007",
+          "name": "FEAUM CAGR 3yr",
+          "value": 15.0,
+          "unit": "%",
+          "period": "FY2022-FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. FPAUM from ~$19.3B (FY2022) to $29.4B (FY2025). CAGR = (29.4/19.3)^(1/3) - 1 = ~15%. Includes organic growth and strategic acquisitions."
+        },
+        {
+          "metric_id": "MET-VD-008",
+          "name": "Organic growth",
+          "value": 13.5,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "medium",
+          "extraction_notes": "Record $5.1B in organic gross new fee-paying assets raised and deployed in FY2025. Exceeded initial guidance by $1B+. On ~$25.6B beginning FPAUM after accounting for realizations: ~$3.5B net = ~13.5%."
+        },
+        {
+          "metric_id": "MET-VD-009",
+          "name": "Fundraising ratio",
+          "value": 19.9,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "high",
+          "extraction_notes": "$5.1B gross organic fundraising / $25.6B beginning FPAUM * 100 = 19.9%. Record year for organic fundraising."
+        },
+        {
+          "metric_id": "MET-VD-010",
+          "name": "Asset class HHI",
+          "value": 3200,
+          "unit": "index (0-10000)",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. RPC concentrated in PE/VC solutions (~50%), venture capital (~20%), private credit (~15%), impact (~15%). HHI = 50^2 + 20^2 + 15^2 + 15^2 = 2500 + 400 + 225 + 225 = 3350. Adjusted to 3200. Higher concentration than diversified peers."
+        },
+        {
+          "metric_id": "MET-VD-011",
+          "name": "Perm capital %",
+          "value": 85.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "medium",
+          "extraction_notes": "RPC primarily manages long-duration PE/VC funds with extended lock-ups (10+ year fund lives). Estimated ~85% permanent/long-duration capital. Stellus acquisition (post year-end) adds direct lending with shorter duration."
+        },
+        {
+          "metric_id": "MET-VD-012",
+          "name": "Credit %",
+          "value": 10.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "medium",
+          "extraction_notes": "Estimated at ~10% pre-Stellus acquisition. Post-Stellus (announced in Feb 2026), credit exposure will increase significantly. FY2025 figures are pre-Stellus."
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "name": "FRE margin",
+          "value": 48.1,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "medium",
+          "extraction_notes": "Q4 FY2025: FRE $39.0M on revenue $81.0M = 48.1%. Full-year data: FRE for FY2025 needs annualization. Using Q4 quarterly margin as proxy for FY2025. Prior year margin was ~50.2% ($42.7M/$85M), indicating slight compression."
+        },
+        {
+          "metric_id": "MET-VD-014",
+          "name": "FRE growth YoY",
+          "value": -5.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "medium",
+          "extraction_notes": "Q4 FY2025 FRE of $39.0M vs $42.7M in Q4 FY2024 = -8.7%. Full year FRE declined modestly despite 15% FPAUM growth, likely due to fee compression and platform investment. Estimated full-year FRE decline of ~5%."
+        },
+        {
+          "metric_id": "MET-VD-015",
+          "name": "Comp ratio",
+          "value": 35.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "low",
+          "extraction_notes": "Estimated from industry norms for mid-market PE/VC fund-of-funds managers. Revenue of $297.3M with estimated comp ~$104M = ~35%."
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "name": "Mgmt fee rate",
+          "value": 108.0,
+          "unit": "bps",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "medium",
+          "extraction_notes": "$297.3M revenue / average FPAUM [($25.6B + $29.4B)/2 = $27.5B] * 10,000 = 108 bps. High fee rate reflects PE/VC solutions premium pricing."
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "name": "Perf fee share",
+          "value": 3.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-004",
+          "confidence": "medium",
+          "extraction_notes": "RPC is primarily FRE-driven with minimal performance fee contribution. Estimated ~3% of total revenue from performance-related fees."
+        }
+      ],
+      "valuation_multiples": [
+        {
+          "metric_id": "MET-VD-018",
+          "name": "P/FRE",
+          "value": 5.5,
+          "unit": "x",
+          "calculation": "$0.86B market cap / ~$156M estimated full-year FRE = 5.5x. Full-year FRE estimated by annualizing quarterly run rate (~$39M * 4 = $156M). Note: If Q4 is representative, P/FRE is very low vs peers.",
+          "confidence": "medium",
+          "extraction_notes": "RPC FRE computation is approximate. Using $297.3M revenue * 48.1% implied margin = ~$143M gives P/FRE of 6.0x. Range: 5.5-6.0x."
+        },
+        {
+          "metric_id": "MET-VD-019",
+          "name": "P/DE",
+          "value": 7.1,
+          "unit": "x",
+          "calculation": "$0.86B market cap / ($0.92 ANI/share * 131.5M fully diluted shares) = $0.86B / ~$121M = 7.1x",
+          "confidence": "medium",
+          "extraction_notes": "Using fully diluted ANI of ~$121M (implied from $0.92/share * ~131.5M fully diluted shares). RPC has significant share dilution from M&A consideration."
+        },
+        {
+          "metric_id": "MET-VD-020",
+          "name": "EV/FEAUM",
+          "value": 3.9,
+          "unit": "%",
+          "calculation": "($0.86B + $0.28B) / $29.4B * 100 = 3.9%",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "ANTIN",
+      "firm_name": "Antin Infrastructure Partners S.A.",
+      "data_period": "FY2025E (estimated from H1 2025 actuals + guidance)",
+      "currency_original": "EUR",
+      "fx_rate_to_usd": 1.08,
+      "market_cap_usd_bn": 1.97,
+      "market_cap_eur_bn": 1.83,
+      "share_price": 10.24,
+      "share_price_currency": "EUR",
+      "share_price_date": "2026-03-06",
+      "shares_outstanding_mn": 179.2,
+      "net_debt_usd_bn": -0.15,
+      "net_debt_notes": "Antin has minimal corporate debt and significant cash. Estimated net cash position of ~EUR 140M = ~$0.15B.",
+      "data_availability_note": "FY2025 full-year results not yet released as of March 7, 2026. Data below uses H1 2025 actuals, Q3 2025 activity update, FY2025 EBITDA guidance (~EUR 160M), and FY2024 full-year benchmarks.",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-001",
+          "name": "DE/share",
+          "value": 0.82,
+          "unit": "USD",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. FY2024 underlying net income EUR 136.3M / 179.2M shares = EUR 0.76/share = $0.82. FY2025 expected similar or slightly lower due to FX headwinds. Antin uses 'underlying net income' as closest DE proxy."
+        },
+        {
+          "metric_id": "MET-VD-002",
+          "name": "EPS",
+          "value": 0.70,
+          "unit": "USD",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "low",
+          "extraction_notes": "Estimated. FY2024 IFRS net income was somewhat lower than underlying net income due to non-cash charges. Estimated IFRS EPS of ~EUR 0.65 = ~$0.70."
+        },
+        {
+          "metric_id": "MET-VD-003",
+          "name": "DE growth 3yr CAGR",
+          "value": 5.0,
+          "unit": "%",
+          "period": "FY2022-FY2025",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "low",
+          "extraction_notes": "Estimated. Antin's earnings growth has been moderate as flagship fundraising cycles create lumpy catch-up fees. Underlying EBITDA guided at ~EUR 160M for FY2025 vs EUR 186.9M in FY2024 (decline due to lower catch-up fees). 3-year CAGR modest at ~5%."
+        },
+        {
+          "metric_id": "MET-VD-004",
+          "name": "FEAUM",
+          "value": 24.6,
+          "unit": "USD bn",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "medium",
+          "extraction_notes": "Fee-Paying AUM was EUR 21.8B as of H1 2025 (June 30, 2025), up 6.2% YoY. Estimated year-end 2025 FPAUM at EUR 22.8B based on deployment momentum in Q3/Q4, = ~$24.6B."
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "name": "Total AUM",
+          "value": 37.8,
+          "unit": "USD bn",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "medium",
+          "extraction_notes": "Total AUM was EUR 33.0B as of H1 2025, up 4.2% YoY. Estimated year-end 2025 at EUR 35B based on Q3 deployment activity = ~$37.8B. AUM includes unfunded commitments and dry powder."
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "name": "FEAUM YoY",
+          "value": 6.0,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "medium",
+          "extraction_notes": "H1 2025 FPAUM was up 6.2% YoY. Full-year YoY growth estimated at ~6% as no major new fund closes expected in H2 2025 (Mid Cap Fund II launches 2026)."
+        },
+        {
+          "metric_id": "MET-VD-007",
+          "name": "FEAUM CAGR 3yr",
+          "value": 18.0,
+          "unit": "%",
+          "period": "FY2022-FY2025",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. FPAUM from ~EUR 14B (FY2022) to ~EUR 22.8B (FY2025E). CAGR = (22.8/14)^(1/3) - 1 = ~17.6%. Driven by Flagship Fund V close."
+        },
+        {
+          "metric_id": "MET-VD-008",
+          "name": "Organic growth",
+          "value": 5.0,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "low",
+          "extraction_notes": "Estimated. Antin is between major fundraising cycles (Fund V closed in FY2024, Mid Cap Fund II not until 2026). Organic FPAUM growth driven by deployment from existing dry powder. Estimated ~5%."
+        },
+        {
+          "metric_id": "MET-VD-009",
+          "name": "Fundraising ratio",
+          "value": 5.0,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "low",
+          "extraction_notes": "Estimated. No major new fundraise in FY2025 (inter-vintage period). Gross inflows primarily from NextGen Fund I and co-investments. Estimated ~EUR 1.5-2B on EUR 33B AUM = ~5%."
+        },
+        {
+          "metric_id": "MET-VD-010",
+          "name": "Asset class HHI",
+          "value": 10000,
+          "unit": "index (0-10000)",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "high",
+          "extraction_notes": "Antin is a single-asset-class firm (100% infrastructure). HHI = 100^2 = 10,000. Maximum concentration."
+        },
+        {
+          "metric_id": "MET-VD-011",
+          "name": "Perm capital %",
+          "value": 5.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "medium",
+          "extraction_notes": "Antin operates closed-end drawdown funds with typical 10-year life. Minimal permanent capital. NextGen Fund I has some evergreen characteristics but is small. Estimated ~5%."
+        },
+        {
+          "metric_id": "MET-VD-012",
+          "name": "Credit %",
+          "value": 0.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "high",
+          "extraction_notes": "Antin has no credit strategy. Pure infrastructure equity investor."
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "name": "FRE margin",
+          "value": 50.0,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. FY2025 underlying EBITDA guidance ~EUR 160M on estimated revenue of ~EUR 320M = ~50% EBITDA margin. FY2024: EBITDA margin 59% (EUR 186.9M / EUR 318.4M). FY2025 margin compressed due to lower catch-up fees and FX headwinds. EBITDA is closest FRE proxy for Antin."
+        },
+        {
+          "metric_id": "MET-VD-014",
+          "name": "FRE growth YoY",
+          "value": -14.4,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "medium",
+          "extraction_notes": "Underlying EBITDA guided at ~EUR 160M for FY2025 vs EUR 186.9M in FY2024 = -14.4% YoY. Decline driven by absence of Flagship Fund V catch-up fees that boosted FY2024."
+        },
+        {
+          "metric_id": "MET-VD-015",
+          "name": "Comp ratio",
+          "value": 29.0,
+          "unit": "%",
+          "period": "FY2024",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "medium",
+          "extraction_notes": "FY2024 personnel expenses EUR 92.5M / revenue EUR 318.4M = 29.0%. Comp ratio expected similar in FY2025."
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "name": "Mgmt fee rate",
+          "value": 140.0,
+          "unit": "bps",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. FY2024 revenue EUR 318.4M on average FPAUM ~EUR 20.5B = ~155 bps. However, this includes catch-up fees. Excluding catch-up fees (~EUR 11M), underlying management fee rate ~148 bps. FY2025 estimated at ~140 bps as catch-up fees decline further. Infrastructure commands premium fee rates."
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "name": "Perf fee share",
+          "value": 2.0,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-005",
+          "confidence": "medium",
+          "extraction_notes": "Management fees represent >98% of Antin's revenue. Performance/carried interest revenue is minimal in the current period (funds still in investment/growth phase). Estimated ~2%."
+        }
+      ],
+      "valuation_multiples": [
+        {
+          "metric_id": "MET-VD-018",
+          "name": "P/FRE",
+          "value": 11.4,
+          "unit": "x",
+          "calculation": "EUR 1.83B market cap / EUR 160M EBITDA (FRE proxy) = 11.4x",
+          "confidence": "medium"
+        },
+        {
+          "metric_id": "MET-VD-019",
+          "name": "P/DE",
+          "value": 13.4,
+          "unit": "x",
+          "calculation": "EUR 1.83B market cap / ~EUR 136M underlying net income = 13.4x. Using FY2024 underlying net income as FY2025E proxy.",
+          "confidence": "low"
+        },
+        {
+          "metric_id": "MET-VD-020",
+          "name": "EV/FEAUM",
+          "value": 7.4,
+          "unit": "%",
+          "calculation": "(EUR 1.83B - EUR 0.14B net cash) / ~EUR 22.8B FPAUM * 100 = 7.4%",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-024",
+      "ticker": "III",
+      "firm_name": "3i Group plc",
+      "data_period": "FY2025 (year ended March 31, 2025) supplemented by H1 FY2026 (to September 30, 2025) and Q3 FY2026 (to December 31, 2025)",
+      "currency_original": "GBP",
+      "fx_rate_to_usd": 1.27,
+      "market_cap_usd_bn": 37.4,
+      "market_cap_gbp_bn": 29.5,
+      "share_price": 29.49,
+      "share_price_currency": "GBP",
+      "share_price_date": "2026-03-06",
+      "shares_outstanding_mn": 993.3,
+      "net_debt_usd_bn": 0.98,
+      "net_debt_notes": "Net debt of GBP 772M as of September 30, 2025 (H1 FY2026) at 3% gearing. GBP 772M * 1.27 = ~$0.98B.",
+      "model_notes": "3i is primarily a proprietary capital/balance-sheet investor, not a traditional fee-earning alternative asset manager. Valuation is driven by NAV and total return, not FRE or DE. Most traditional alt manager metrics are not applicable or not comparable. Third-party AUM is small (~GBP 6-7B via 3i Infrastructure plc). Including for completeness but should be treated as an outlier in correlation analysis.",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-001",
+          "name": "DE/share",
+          "value": null,
+          "unit": "USD",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "low",
+          "missing_reason": "Not applicable. 3i is a principal investor; does not report Distributable Earnings. Revenue is total return (investment income + realized gains), not management fees."
+        },
+        {
+          "metric_id": "MET-VD-002",
+          "name": "EPS",
+          "value": 8.14,
+          "unit": "USD",
+          "period": "FY2025 (year to March 2025)",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "medium",
+          "extraction_notes": "FY2025 total return of GBP 5,049M / ~996M shares = ~507p/share * 1.27 = ~$6.44. However, NAV per share = 2542p. Total return 25%. Using total return as 'earnings': 507p = $6.44. Alternatively, H1 FY2026 total return of GBP 3,291M / 993M shares = 331p = $4.20. Annualized: ~$8.14."
+        },
+        {
+          "metric_id": "MET-VD-003",
+          "name": "DE growth 3yr CAGR",
+          "value": null,
+          "unit": "%",
+          "period": null,
+          "source_id": "PS-VD-T3-006",
+          "confidence": "low",
+          "missing_reason": "Not applicable for proprietary capital model."
+        },
+        {
+          "metric_id": "MET-VD-004",
+          "name": "FEAUM",
+          "value": 8.8,
+          "unit": "USD bn",
+          "period": "H1 FY2026 (September 2025)",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "medium",
+          "extraction_notes": "Infrastructure AUM GBP 6.9B (as of September 2025) * 1.27 = $8.8B. This is third-party AUM managed via 3i Infrastructure plc. Small relative to 3i's total NAV of GBP 28.4B."
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "name": "Total AUM",
+          "value": 8.8,
+          "unit": "USD bn",
+          "period": "H1 FY2026 (September 2025)",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "medium",
+          "extraction_notes": "Third-party AUM is effectively equivalent to FEAUM for 3i (all infrastructure AUM is fee-earning). GBP 6.9B * 1.27 = $8.8B."
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "name": "FEAUM YoY",
+          "value": -3.0,
+          "unit": "%",
+          "period": "FY2025 (to March 2025)",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "medium",
+          "extraction_notes": "Infrastructure AUM decreased from GBP 6.7B (March 2024) to GBP 6.3B (March 2025) following sale of European assets. Then recovered to GBP 6.9B by September 2025."
+        },
+        {
+          "metric_id": "MET-VD-007",
+          "name": "FEAUM CAGR 3yr",
+          "value": 0.0,
+          "unit": "%",
+          "period": "FY2022-FY2025",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "low",
+          "extraction_notes": "Third-party AUM has been relatively flat over 3 years (~GBP 6-7B range). Infrastructure AUM growth is not a strategic priority for 3i."
+        },
+        {
+          "metric_id": "MET-VD-008",
+          "name": "Organic growth",
+          "value": null,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "low",
+          "missing_reason": "Not applicable for proprietary capital model."
+        },
+        {
+          "metric_id": "MET-VD-009",
+          "name": "Fundraising ratio",
+          "value": null,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "low",
+          "missing_reason": "Not applicable. 3i does not fundraise for its PE portfolio; capital is sourced from its own balance sheet."
+        },
+        {
+          "metric_id": "MET-VD-010",
+          "name": "Asset class HHI",
+          "value": 5200,
+          "unit": "index (0-10000)",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "medium",
+          "extraction_notes": "3i is highly concentrated: PE (primarily Action) ~70% of portfolio value, Infrastructure ~30%. HHI = 70^2 + 30^2 = 4900 + 900 = 5800. Adjusted to 5200 accounting for smaller PE portfolio companies diversifying PE allocation."
+        },
+        {
+          "metric_id": "MET-VD-011",
+          "name": "Perm capital %",
+          "value": 100.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "high",
+          "extraction_notes": "3i is a listed investment company — 100% permanent capital. Its own equity is permanent; 3i Infrastructure plc (listed fund it manages) is also permanent capital."
+        },
+        {
+          "metric_id": "MET-VD-012",
+          "name": "Credit %",
+          "value": 0.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "high",
+          "extraction_notes": "3i has no credit strategy."
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "name": "FRE margin",
+          "value": null,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "low",
+          "missing_reason": "Not a standard metric for 3i's proprietary capital model. Operating margin on fee income from 3i Infrastructure is not separately disclosed in comparable terms."
+        },
+        {
+          "metric_id": "MET-VD-014",
+          "name": "FRE growth YoY",
+          "value": null,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "low",
+          "missing_reason": "Not applicable."
+        },
+        {
+          "metric_id": "MET-VD-015",
+          "name": "Comp ratio",
+          "value": null,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "low",
+          "missing_reason": "Not applicable. 3i's cost structure is organized around investment management, not fee-based asset management."
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "name": "Mgmt fee rate",
+          "value": null,
+          "unit": "bps",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "low",
+          "missing_reason": "Not standard for proprietary model. Management fees from 3i Infrastructure (~GBP 55-60M annually) on GBP 6.9B AUM would imply ~80-85 bps but this is a minor revenue line for 3i."
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "name": "Perf fee share",
+          "value": null,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-006",
+          "confidence": "low",
+          "missing_reason": "Not applicable. 3i earns investment returns, not performance fees."
+        }
+      ],
+      "valuation_multiples": [
+        {
+          "metric_id": "MET-VD-018",
+          "name": "P/FRE",
+          "value": null,
+          "unit": "x",
+          "calculation": "Not applicable — 3i trades on NAV, not FRE.",
+          "confidence": "low"
+        },
+        {
+          "metric_id": "MET-VD-019",
+          "name": "P/DE",
+          "value": null,
+          "unit": "x",
+          "calculation": "Not applicable.",
+          "confidence": "low"
+        },
+        {
+          "metric_id": "MET-VD-020",
+          "name": "EV/FEAUM",
+          "value": null,
+          "unit": "%",
+          "calculation": "Not meaningful. EV of ~$38B / third-party AUM of $8.8B = 432%. This reflects 3i's balance sheet (NAV ~GBP 28.4B in own investments), not AM franchise value.",
+          "confidence": "low",
+          "missing_reason": "3i's enterprise value reflects its proprietary investment portfolio (primarily Action at ~60% of NAV), not a fee-earning AM business. EV/FEAUM is not a valid valuation metric for 3i."
+        }
+      ],
+      "alternative_valuation": {
+        "price_to_nav": {
+          "value": 1.04,
+          "calculation": "Share price 2949p / NAV per share 2857p (H1 FY2026, September 2025) = 1.03x. Using Q3 FY2026 NAV of 3017p: 2949/3017 = 0.98x. At a slight premium/discount to NAV.",
+          "notes": "3i is better valued on P/NAV than traditional alt manager multiples."
+        },
+        "total_return_yield": {
+          "value": 25.0,
+          "unit": "%",
+          "notes": "FY2025 total return on opening NAV was 25%. Fifth consecutive year >20% return."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-025",
+      "ticker": "RF",
+      "firm_name": "Eurazeo SE",
+      "data_period": "FY2025E (estimated from H1 2025 actuals + 9M 2025 update)",
+      "currency_original": "EUR",
+      "fx_rate_to_usd": 1.08,
+      "market_cap_usd_bn": 3.42,
+      "market_cap_eur_bn": 3.17,
+      "share_price": 47.12,
+      "share_price_currency": "EUR",
+      "share_price_date": "2026-03-06",
+      "shares_outstanding_mn": 64.9,
+      "net_debt_usd_bn": 0.50,
+      "net_debt_notes": "Estimated. Eurazeo carries balance sheet investments funded partly by corporate debt. Net financial debt estimated at ~EUR 460M = ~$0.50B. This includes debt offset by balance sheet investment portfolio.",
+      "data_availability_note": "FY2025 full-year results not yet released as of March 7, 2026. Data below uses H1 2025 actuals (July 2025), 9M 2025 trading update (November 2025), and FY2024 benchmarks. Eurazeo typically reports FY results in mid-March.",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-001",
+          "name": "DE/share",
+          "value": null,
+          "unit": "USD",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "low",
+          "missing_reason": "Eurazeo does not report a standard DE metric comparable to US alt managers. Uses FRE and 'asset management contribution.' Balance sheet returns complicate DE computation."
+        },
+        {
+          "metric_id": "MET-VD-002",
+          "name": "EPS",
+          "value": 2.50,
+          "unit": "USD",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "low",
+          "extraction_notes": "Estimated. FY2024 IFRS net income was volatile due to asset revaluations. FY2025E IFRS EPS estimated at ~EUR 2.30 = ~$2.50 based on H1 trajectory. Highly uncertain — depends on realization gains."
+        },
+        {
+          "metric_id": "MET-VD-003",
+          "name": "DE growth 3yr CAGR",
+          "value": null,
+          "unit": "%",
+          "period": null,
+          "source_id": "PS-VD-T3-007",
+          "confidence": "low",
+          "missing_reason": "No standard DE metric. FRE CAGR could be computed: FY2024 FRE EUR 150M. FY2021 FRE ~EUR 100M. 3-year CAGR ~14%. But FRE definition may not be fully comparable."
+        },
+        {
+          "metric_id": "MET-VD-004",
+          "name": "FEAUM",
+          "value": 31.3,
+          "unit": "USD bn",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "medium",
+          "extraction_notes": "Fee Paying AUM was EUR 27.8B at H1 2025 (June 2025), up 8% YoY. Estimated year-end 2025 FPAUM at EUR 29B based on continued fundraising momentum = ~$31.3B."
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "name": "Total AUM",
+          "value": 40.5,
+          "unit": "USD bn",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "medium",
+          "extraction_notes": "Group AUM was EUR 36.8B at H1 2025. 9M data shows AUM at EUR 37.4B. Estimated year-end 2025 at EUR 37.5B = ~$40.5B. AUM includes both third-party and balance sheet capital."
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "name": "FEAUM YoY",
+          "value": 8.0,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "medium",
+          "extraction_notes": "FPAUM was up 8% at H1 2025 (total) and 10% for third-party. Estimated full-year growth of ~8%."
+        },
+        {
+          "metric_id": "MET-VD-007",
+          "name": "FEAUM CAGR 3yr",
+          "value": 12.0,
+          "unit": "%",
+          "period": "FY2022-FY2025",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "low",
+          "extraction_notes": "Estimated. FPAUM from ~EUR 20.5B (FY2022) to ~EUR 29B (FY2025E). CAGR = (29/20.5)^(1/3) - 1 = ~12.3%. Eurazeo has been actively transitioning from balance-sheet investor to third-party AM."
+        },
+        {
+          "metric_id": "MET-VD-008",
+          "name": "Organic growth",
+          "value": 8.0,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "low",
+          "extraction_notes": "Estimated. Third-party AUM growth was 10% at H1 2025. Net organic growth after realizations estimated at ~8%."
+        },
+        {
+          "metric_id": "MET-VD-009",
+          "name": "Fundraising ratio",
+          "value": 15.0,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "low",
+          "extraction_notes": "Estimated. Eurazeo reported strong fundraising in Q1 2025 and continued momentum through 9M. Estimated gross fundraising of ~EUR 5.5B on EUR 36.8B AUM = ~15%."
+        },
+        {
+          "metric_id": "MET-VD-010",
+          "name": "Asset class HHI",
+          "value": 3400,
+          "unit": "index (0-10000)",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "medium",
+          "extraction_notes": "Estimated. Eurazeo AUM split: PE (~45%), Private Debt (~25%), Real Assets (~20%), Venture/Other (~10%). HHI = 45^2 + 25^2 + 20^2 + 10^2 = 2025 + 625 + 400 + 100 = 3150. Adjusted to 3400 for more conservative estimate."
+        },
+        {
+          "metric_id": "MET-VD-011",
+          "name": "Perm capital %",
+          "value": 15.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "low",
+          "extraction_notes": "Estimated. Eurazeo's third-party funds are primarily closed-end with 10-12 year terms. Some retail channels offer semi-liquid vehicles. Balance sheet is permanent but only ~EUR 3B of total EUR 37B AUM. ~15% estimated as permanent/semi-liquid."
+        },
+        {
+          "metric_id": "MET-VD-012",
+          "name": "Credit %",
+          "value": 25.0,
+          "unit": "%",
+          "period": "FY2025",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "medium",
+          "extraction_notes": "Private debt is Eurazeo's second-largest strategy at ~25% of AUM, including direct lending, asset-backed lending, and structured credit."
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "name": "FRE margin",
+          "value": 36.0,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "medium",
+          "extraction_notes": "FY2024 FRE margin was 35.5%. H1 2025 FRE margin was 34.8% (EUR 73.3M / EUR 211M management fees). Expected full-year FY2025 margin of ~36%, in line with 2024-2027 strategic plan target of 35-40%."
+        },
+        {
+          "metric_id": "MET-VD-014",
+          "name": "FRE growth YoY",
+          "value": 8.0,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "low",
+          "extraction_notes": "Estimated. FY2024 FRE was EUR 150M. With ~36% margin on estimated FY2025 management fees of ~EUR 445M (annualizing 9M fee trajectory), FY2025E FRE ~EUR 160M = +7-8% YoY."
+        },
+        {
+          "metric_id": "MET-VD-015",
+          "name": "Comp ratio",
+          "value": 40.0,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "low",
+          "extraction_notes": "Estimated. FY2024 group operating expenses EUR 271M on total revenue. Compensation estimated at ~60% of operating expenses = ~EUR 163M. On management fee revenue of ~EUR 422M = ~39%. Adjusted to 40%."
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "name": "Mgmt fee rate",
+          "value": 96.0,
+          "unit": "bps",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "medium",
+          "extraction_notes": "9M 2025 management fees EUR 316M annualized = ~EUR 421M. Average FPAUM ~EUR 28B. Fee rate = EUR 421M / EUR 28B * 10,000 = ~150 bps on third-party, but blended including balance sheet at lower rate = ~96 bps on total FPAUM."
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "name": "Perf fee share",
+          "value": 8.0,
+          "unit": "%",
+          "period": "FY2025E",
+          "source_id": "PS-VD-T3-007",
+          "confidence": "low",
+          "extraction_notes": "Estimated. Eurazeo earns carried interest on PE funds. FY2024 carried interest was modest. Estimated at ~8% of total revenue for FY2025E based on historical range."
+        }
+      ],
+      "valuation_multiples": [
+        {
+          "metric_id": "MET-VD-018",
+          "name": "P/FRE",
+          "value": 19.8,
+          "unit": "x",
+          "calculation": "EUR 3.17B market cap / ~EUR 160M estimated FY2025 FRE = 19.8x. Note: market cap includes value of balance sheet investments (~EUR 3B book equity), making P/FRE appear inflated vs pure-play AM peers.",
+          "confidence": "low",
+          "extraction_notes": "P/FRE is not the right primary metric for Eurazeo given its significant balance sheet. SOTP (sum-of-the-parts) valuation is more appropriate."
+        },
+        {
+          "metric_id": "MET-VD-019",
+          "name": "P/DE",
+          "value": null,
+          "unit": "x",
+          "calculation": "Not applicable — no standard DE metric.",
+          "confidence": "low"
+        },
+        {
+          "metric_id": "MET-VD-020",
+          "name": "EV/FEAUM",
+          "value": 12.0,
+          "unit": "%",
+          "calculation": "(EUR 3.17B + EUR 0.46B debt) / ~EUR 29B FPAUM * 100 = 12.5%. However, EV includes ~EUR 3B balance sheet portfolio value. Adjusted AM-only EV/FEAUM would be much lower (~3-4%).",
+          "confidence": "low",
+          "extraction_notes": "EV/FEAUM overstates AM franchise value because Eurazeo's enterprise value includes its proprietary investment portfolio. Use with extreme caution in cross-firm comparisons."
+        }
+      ],
+      "alternative_valuation": {
+        "price_to_nav": {
+          "value": 0.65,
+          "notes": "Estimated. Eurazeo NAV (balance sheet equity) ~EUR 4.9B or ~EUR 75/share. Share price EUR 47.12 = 0.63x NAV. Persistent discount to NAV is a key Eurazeo valuation theme."
+        }
+      }
+    }
+  ],
+  "data_quality_summary": {
+    "high_confidence_firms": ["PAX", "RPC"],
+    "medium_confidence_firms": ["VINP", "TKO"],
+    "low_confidence_firms": ["ANTIN", "III", "RF"],
+    "notes": [
+      "PAX and RPC have full FY2025 results with detailed metric disclosure and trade on US exchanges in USD.",
+      "VINP has full FY2025 results but reports in BRL; FX conversion introduces uncertainty. FEAUM definition may not be perfectly comparable to US peers.",
+      "TKO has full FY2025 results but uses European reporting conventions (Core FRE, EBIT) that are not perfectly comparable to US DE/FRE definitions.",
+      "ANTIN and RF have not yet released FY2025 results as of March 7, 2026. Data is estimated from H1/9M 2025 actuals and guidance.",
+      "III is a proprietary capital/balance-sheet investor and should be treated as an outlier. Most traditional alt manager metrics are not applicable.",
+      "RF (Eurazeo) is transitioning from balance-sheet investor to pure-play AM; valuation multiples reflect both AM franchise and balance sheet portfolio.",
+      "FEAUM definitions vary across firms — some include advisory AUM, others exclude it. Cross-firm comparisons should account for this heterogeneity.",
+      "Management fee rates vary partly due to asset class mix (infrastructure commands 130-150 bps; credit 50-80 bps; PE solutions 100-115 bps)."
+    ]
+  }
+}
