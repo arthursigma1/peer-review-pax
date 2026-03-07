@@ -1,0 +1,23 @@
+[package]
+name = "vda-dashboard"
+version = "0.1.0"
+description = "Valuation Driver Analysis Pipeline Dashboard"
+authors = ["peer-review-pax"]
+edition = "2021"
+
+[lib]
+name = "vda_dashboard_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-shell = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+notify = { version = "7", default-features = false, features = ["macos_fsevent"] }
+tokio = { version = "1", features = ["full"] }
+percent-encoding = "2"

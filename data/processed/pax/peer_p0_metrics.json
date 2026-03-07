@@ -1,0 +1,314 @@
+{
+  "metadata": {
+    "stage": "P0b",
+    "company": "Patria Investments Limited",
+    "ticker": "PAX",
+    "analysis_date": "2026-03-06",
+    "total_metrics_defined": 18,
+    "categories": 8,
+    "priority_breakdown": {
+      "high": 11,
+      "medium": 5,
+      "low": 2
+    },
+    "methodology_notes": "Metrics selected to cover 8 dimensions of alternative asset manager performance. Prioritized by (1) data availability across the peer group, (2) analytical value for competitive positioning, (3) cross-firm comparability. Metrics that distinguish business model quality over pure scale are weighted higher. All metrics are measurable from publicly available sources (SEC filings, earnings releases, investor presentations).",
+    "bias_mitigations": [
+      "Metrics defined across all 8 categories before applying prioritization to avoid favoring PAX's business model profile",
+      "Selectively disclosed metrics (IRR, fund returns) flagged as potentially biased toward firms with stronger performance",
+      "Definitional variance documented for every metric where the same name may mean different things across firms",
+      "Point-in-time metrics (valuation) noted as market-dependent; multi-year averages recommended where feasible"
+    ]
+  },
+  "metrics": [
+    {
+      "id": "MET-001",
+      "name": "Total AUM",
+      "category": "Scale",
+      "unit": "USD billions",
+      "definition": "Total assets under management across all fund strategies, including committed but uncalled capital, co-investment vehicles, and any separately managed accounts or advisory mandates reported as AUM by the firm.",
+      "calculation": "Sum of all fund-level AUM as reported by the firm in its most recent quarterly or annual disclosure. For firms reporting in non-USD currencies, convert at period-end exchange rate.",
+      "data_sources": [
+        "20-F / 10-K — Business overview, AUM tables",
+        "Quarterly earnings releases — AUM rollforward schedules",
+        "Investor presentations — AUM breakdowns by strategy"
+      ],
+      "relevance": "Primary scale indicator for alternative asset managers. Larger AUM platforms generally command higher management fee revenue, greater brand recognition, and improved access to deal flow. Critical baseline for normalizing other metrics (fee rates, fundraising yield).",
+      "comparability_issues": "AUM definitions vary significantly. Some firms include advisory or sub-advisory assets; others exclude them. Some include permanent capital vehicles at NAV, others at committed capital. Patria reports AUM in USD but operates primarily in Latin America, so currency translation effects can create apparent AUM growth or decline unrelated to organic activity. Firms like Brookfield include insurance-related assets that inflate total AUM relative to fee-earning capacity.",
+      "priority": "high"
+    },
+    {
+      "id": "MET-002",
+      "name": "Fee-Earning AUM (FEAUM)",
+      "category": "Scale",
+      "unit": "USD billions",
+      "definition": "The subset of total AUM on which the firm actively earns management fees. Excludes AUM that is committed but not yet deployed (unless fees are charged on committed capital), co-investment vehicles with no fee, and assets in post-investment-period funds where fees have stepped down to zero.",
+      "calculation": "Sum of AUM across all funds and vehicles that are currently generating management fees, as reported by the firm. For funds that charge fees on invested capital, only the invested portion is included. For funds charging on committed capital, the full committed amount is included.",
+      "data_sources": [
+        "20-F / 10-K — FEAUM disclosure (often in MD&A or business overview)",
+        "Quarterly earnings releases — FEAUM rollforward",
+        "Earnings supplements — FEAUM by strategy/vintage"
+      ],
+      "relevance": "More analytically useful than total AUM because it directly links to management fee revenue. The ratio of FEAUM to total AUM indicates how efficiently a firm monetizes its asset base. A growing gap between AUM and FEAUM can signal deployment challenges or aging fund vintages.",
+      "comparability_issues": "Fee basis differs by fund type: some funds charge on committed capital (inflating FEAUM relative to deployed capital), while others charge on invested capital or NAV. Step-down provisions (fees declining from committed to invested capital after the investment period) create temporal comparability issues. Not all firms disclose FEAUM; some report only total AUM.",
+      "priority": "high"
+    },
+    {
+      "id": "MET-003",
+      "name": "Total Fundraising (TTM)",
+      "category": "Scale",
+      "unit": "USD billions",
+      "definition": "Total new capital commitments raised across all fund strategies during the trailing twelve-month period. Includes initial closings, subsequent closings, and any new vehicle launches. Excludes recycled capital and reinvested distributions.",
+      "calculation": "Sum of capital raised as reported in quarterly earnings releases or 20-F, aggregated over the most recent four quarters. If the firm reports only annual fundraising, use the most recent full-year figure.",
+      "data_sources": [
+        "Quarterly earnings releases — fundraising activity section",
+        "20-F / 10-K — fundraising discussion in MD&A",
+        "Investor presentations — capital formation slides"
+      ],
+      "relevance": "Fundraising is the leading indicator of future AUM growth and fee revenue. Strong fundraising signals LP confidence in the platform. TTM smooths quarterly lumpiness inherent in fund closings.",
+      "comparability_issues": "Fundraising timing is lumpy — a firm closing a large flagship fund in a given quarter can dominate the TTM figure. Some firms include co-investment capital in fundraising totals, others do not. Firms with permanent capital vehicles (e.g., listed REITs, BDCs) may not report capital formation in the same fundraising metric. Reporting lag can differ by up to one quarter across firms.",
+      "priority": "high"
+    },
+    {
+      "id": "MET-004",
+      "name": "Fee-Related Earnings (FRE)",
+      "category": "Profitability",
+      "unit": "USD millions",
+      "definition": "A non-GAAP profitability measure representing earnings derived from recurring management fees and fee-related revenues, minus the operating expenses required to generate those fees. Excludes realized and unrealized performance fees (carried interest), investment income, and non-cash items like equity-based compensation.",
+      "calculation": "FRE = Management fees + other fee-related revenues (e.g., transaction/advisory fees, portfolio company fees) - compensation and benefits (cash, excluding equity-based comp) - general and administrative expenses. Exact line items vary by firm; use the firm's own reported FRE figure as the primary source.",
+      "data_sources": [
+        "Quarterly earnings releases — non-GAAP financial summary",
+        "20-F / 10-K — segment reporting or supplemental non-GAAP disclosures",
+        "Earnings supplements — FRE bridge or waterfall"
+      ],
+      "relevance": "FRE isolates the quality and sustainability of earnings from the core asset management business. It strips out volatile performance fees and investment income, revealing the recurring profitability of the platform. The market increasingly values FRE as the most reliable earnings stream for alternative managers.",
+      "comparability_issues": "FRE is a non-GAAP measure with no standardized definition. Key differences across firms include: (1) whether equity-based compensation is excluded (most firms exclude it, but not all), (2) treatment of transaction/advisory fees (some firms net these against fund-level expenses), (3) inclusion or exclusion of fundraising placement fees as an expense, (4) IFRS vs. GAAP firms may have different cost classification. Always record the firm's specific FRE definition alongside the value.",
+      "priority": "high"
+    },
+    {
+      "id": "MET-005",
+      "name": "FRE Margin",
+      "category": "Profitability",
+      "unit": "%",
+      "definition": "Fee-Related Earnings as a percentage of management fee revenue (and other fee-related revenue). Measures operating efficiency of the fee-based business, indicating how much of each dollar of management fees translates into pre-tax, pre-performance-fee profit.",
+      "calculation": "FRE Margin = FRE / (Management fees + other fee-related revenues) x 100. Use the denominator consistent with the firm's own FRE margin disclosure where available.",
+      "data_sources": [
+        "Quarterly earnings releases — non-GAAP summary (often reported directly)",
+        "Derived from FRE and management fee disclosures in 20-F / 10-K",
+        "Investor presentations — margin trend data"
+      ],
+      "relevance": "The single most important efficiency metric for alternative asset managers. Higher FRE margins indicate operating leverage, scalable platforms, and disciplined cost management. Margins typically range from 30-65% across the industry, with larger, more established platforms generally achieving higher margins. Margin expansion over time is a key value creation signal.",
+      "comparability_issues": "Denominator definition differs: some firms include transaction fees, advisory fees, and monitoring fees in fee-related revenue; others include only base management fees. Whether equity-based compensation is deducted from FRE affects the margin. Firms with higher allocation of shared costs to non-fee business segments may report artificially elevated FRE margins. Emerging managers with front-loaded fundraising expenses may have temporarily depressed margins.",
+      "priority": "high"
+    },
+    {
+      "id": "MET-006",
+      "name": "Distributable Earnings (DE)",
+      "category": "Profitability",
+      "unit": "USD millions",
+      "definition": "A non-GAAP measure of total cash earnings available for distribution to shareholders. Includes FRE plus realized performance fees (net of related compensation), realized investment income, and other realized cash items, minus taxes and other cash charges. Excludes unrealized gains/losses and non-cash items.",
+      "calculation": "DE = FRE + realized performance fee income (net of performance fee compensation) + realized principal investment income - cash taxes - other net cash charges. Use the firm's own reported DE figure, noting whether it is pre-tax or after-tax.",
+      "data_sources": [
+        "Quarterly earnings releases — non-GAAP financial summary",
+        "20-F / 10-K — supplemental non-GAAP disclosures",
+        "Earnings supplements — DE bridge or waterfall"
+      ],
+      "relevance": "DE captures the full cash-generation capacity of the alternative asset manager, including both recurring fee income and realized carry. It represents the earnings base from which dividends are typically paid. The ratio of DE to FRE indicates how much incremental earnings the firm generates from performance fees and investment income beyond its base management business.",
+      "comparability_issues": "Even more heterogeneous than FRE across firms. Key differences: (1) pre-tax vs. after-tax presentation (Patria reports after-tax DE), (2) treatment of equity-based compensation (included or excluded), (3) whether realized investment losses offset gains, (4) handling of clawback provisions for carry, (5) some firms include fee-related performance revenue in DE but not FRE. IFRS firms may classify items differently. Always record the specific DE definition alongside the value.",
+      "priority": "high"
+    },
+    {
+      "id": "MET-007",
+      "name": "Distributable Earnings per Share",
+      "category": "Profitability",
+      "unit": "USD",
+      "definition": "Distributable earnings per diluted share outstanding. Represents the per-share cash earnings capacity of the firm, analogous to GAAP EPS but based on the firm's non-GAAP DE measure.",
+      "calculation": "DE per share = Distributable Earnings / Weighted average diluted shares outstanding. Some firms report on a 'per adjusted share' basis that includes exchangeable units (e.g., partnership units in UP-C structures).",
+      "data_sources": [
+        "Quarterly earnings releases — per share data table",
+        "20-F / 10-K — supplemental non-GAAP disclosures",
+        "Earnings supplements — per share metrics"
+      ],
+      "relevance": "The per-share metric enables direct comparison of earnings power across firms of different sizes and share counts. DE per share is the primary input for P/DE valuation multiples. Growth in DE per share (vs. growth in total DE) accounts for dilution from equity issuance or unit conversions.",
+      "comparability_issues": "Share count basis differs materially: (1) UP-C structures (common among former partnerships like APO, ARES) have complex unit economics with exchangeable LP units, (2) some firms report per 'adjusted share' including all potential dilution, others use basic GAAP diluted shares, (3) share buybacks and issuance can distort period-over-period comparisons. Patria uses a Class A + Class B share structure; ensure the correct fully-diluted count is used.",
+      "priority": "medium"
+    },
+    {
+      "id": "MET-008",
+      "name": "AUM Growth (YoY %)",
+      "category": "Growth",
+      "unit": "%",
+      "definition": "Year-over-year percentage change in total AUM, comparing the most recent period-end AUM to the same period one year prior. Captures the combined effect of fundraising, market appreciation/depreciation, deployment, realizations, and currency effects.",
+      "calculation": "AUM Growth = (AUM_current - AUM_prior_year) / AUM_prior_year x 100. For quarterly comparisons, use the same quarter in the prior year to eliminate seasonality.",
+      "data_sources": [
+        "Quarterly earnings releases — AUM rollforward",
+        "20-F / 10-K — AUM discussion in MD&A",
+        "Investor presentations — AUM growth history"
+      ],
+      "relevance": "AUM growth is the most visible top-line growth metric for alternative managers. Organic AUM growth (excluding acquisitions and market movements) is a stronger indicator of competitive strength, but total AUM growth is more consistently reported and comparable across firms. Sustained above-peer AUM growth signals market share gains.",
+      "comparability_issues": "AUM growth conflates organic and inorganic components. Firms that have completed acquisitions (e.g., Patria acquiring entities in Latin America) will show elevated growth that is not directly comparable to organic growers. Currency effects are material for LatAm-focused managers like Patria. Some firms restate prior-period AUM for definitional changes, complicating YoY calculations. Ideally decompose into organic growth, M&A, market performance, and FX, but this decomposition is not always disclosed.",
+      "priority": "high"
+    },
+    {
+      "id": "MET-009",
+      "name": "FEAUM Growth (YoY %)",
+      "category": "Growth",
+      "unit": "%",
+      "definition": "Year-over-year percentage change in fee-earning AUM. Captures the growth in the asset base that directly generates management fee revenue, net of step-downs, realizations, and new fund activations.",
+      "calculation": "FEAUM Growth = (FEAUM_current - FEAUM_prior_year) / FEAUM_prior_year x 100.",
+      "data_sources": [
+        "Quarterly earnings releases — FEAUM rollforward",
+        "20-F / 10-K — FEAUM discussion",
+        "Investor presentations — FEAUM bridge"
+      ],
+      "relevance": "More directly linked to revenue growth than total AUM growth. Divergence between AUM growth and FEAUM growth can signal either (a) strong fundraising that has not yet converted to fee-earning status, or (b) fee step-downs and realizations eroding the fee base. FEAUM growth is a leading indicator of management fee trajectory.",
+      "comparability_issues": "Same definitional issues as FEAUM (MET-002). Additionally, FEAUM growth can be distorted by fund activations (a fund beginning its fee-earning period) or fee basis transitions (committed to invested capital). Not all firms disclose FEAUM with sufficient historical data for YoY comparison.",
+      "priority": "high"
+    },
+    {
+      "id": "MET-010",
+      "name": "FRE Growth (YoY %)",
+      "category": "Growth",
+      "unit": "%",
+      "definition": "Year-over-year percentage change in Fee-Related Earnings. Measures the growth rate of the recurring, high-quality earnings stream from the core management fee business.",
+      "calculation": "FRE Growth = (FRE_current_period - FRE_prior_year_period) / FRE_prior_year_period x 100. Use the same period (quarterly or annual) for comparison.",
+      "data_sources": [
+        "Quarterly earnings releases — non-GAAP financial summary",
+        "20-F / 10-K — supplemental non-GAAP disclosures",
+        "Derived from FRE figures in consecutive annual filings"
+      ],
+      "relevance": "FRE growth directly measures the improvement in sustainable, recurring profitability. It captures the combined effects of FEAUM growth, fee rate stability, and operating leverage. Faster FRE growth relative to FEAUM growth indicates margin expansion. FRE growth is a primary driver of equity valuation for alt managers.",
+      "comparability_issues": "Non-GAAP nature means FRE definitions may change over time within a single firm (restatements, reclassifications). One-time items (placement fees, catch-up management fees for new fund closings) can inflate or depress FRE in individual periods. Year-over-year comparisons may be misleading if the firm completed an acquisition that materially changed its cost structure or revenue base.",
+      "priority": "high"
+    },
+    {
+      "id": "MET-011",
+      "name": "Management Fee Rate",
+      "category": "Fee Quality",
+      "unit": "bps (basis points)",
+      "definition": "The effective management fee rate earned across the platform, calculated as total management fee revenue divided by average fee-earning AUM during the period. Represents the blended fee rate the firm charges its LPs.",
+      "calculation": "Management Fee Rate = (Annual management fee revenue / Average FEAUM over the period) x 10,000. Average FEAUM = (beginning FEAUM + ending FEAUM) / 2. For quarterly annualization, multiply quarterly fees by 4 or use trailing 12 months.",
+      "data_sources": [
+        "20-F / 10-K — management fee revenue (income statement or segment data)",
+        "Quarterly earnings releases — management fees and FEAUM",
+        "Investor presentations — fee rate disclosures"
+      ],
+      "relevance": "Fee rate is a key indicator of pricing power, asset class mix, and LP value proposition. Higher fee rates (80-150+ bps) typically correspond to private equity and growth equity strategies; lower rates (30-70 bps) correspond to real assets, infrastructure, and credit. The fee rate trend signals whether a firm can sustain or grow its pricing in an increasingly competitive fundraising environment.",
+      "comparability_issues": "Blended fee rates are heavily influenced by asset class mix. A firm with 80% private equity AUM will have a higher blended rate than one with 80% credit/real assets, even if both charge market rates within their respective strategies. Fee rate can also be distorted by catch-up fees on new fund closings or step-downs on maturing funds. Some firms do not separately disclose management fees from other fee-related revenue, making precise calculation difficult.",
+      "priority": "high"
+    },
+    {
+      "id": "MET-012",
+      "name": "Fee-Related Revenue Stability",
+      "category": "Fee Quality",
+      "unit": "%",
+      "definition": "The proportion of total revenue derived from management fees and other recurring fee-related sources, as opposed to volatile performance fees (carried interest), incentive fees, and investment income. Measures the predictability and durability of the firm's revenue base.",
+      "calculation": "Fee-Related Revenue Stability = Management fees / Total revenues x 100. Alternatively, (Management fees + other recurring fee-related revenues) / Total revenues x 100. Use total segment revenues (non-GAAP) where available for better cross-firm comparability.",
+      "data_sources": [
+        "20-F / 10-K — income statement or segment reporting",
+        "Quarterly earnings releases — revenue breakdown",
+        "Investor presentations — revenue composition charts"
+      ],
+      "relevance": "Higher fee-related revenue stability indicates a more predictable, lower-volatility earnings stream. The market assigns premium valuations to firms with high management fee concentration (70%+) because these revenues are contractual, recurring, and less sensitive to market cycles. Firms heavily reliant on performance fees face earnings volatility and valuation discounts.",
+      "comparability_issues": "Revenue classification varies: some firms report transaction fees, advisory fees, and monitoring fees as fee-related revenue; others classify them separately. Performance fee revenue can include both realized and unrealized components (GAAP requires mark-to-market in some cases), inflating the denominator and depressing this ratio. IFRS vs. GAAP revenue recognition differences can affect the composition. Firms with significant principal investment income (balance sheet co-investment) may have a lower ratio without necessarily having less stable management fee streams.",
+      "priority": "medium"
+    },
+    {
+      "id": "MET-013",
+      "name": "Dry Powder Ratio",
+      "category": "Capital Deployment",
+      "unit": "%",
+      "definition": "The ratio of uncalled capital commitments (dry powder) to total AUM. Represents the proportion of the firm's AUM that has been committed by LPs but not yet deployed into investments.",
+      "calculation": "Dry Powder Ratio = Dry Powder / Total AUM x 100. Dry powder = Total AUM - Invested capital (at cost or fair value, depending on firm reporting).",
+      "data_sources": [
+        "20-F / 10-K — AUM rollforward tables, capital commitments disclosure",
+        "Quarterly earnings releases — AUM composition or dry powder commentary",
+        "Investor presentations — AUM bridge showing uncalled capital"
+      ],
+      "relevance": "Dry powder represents future deployment capacity and fee-earning potential. A moderate dry powder ratio (20-35%) indicates healthy fundraising with active deployment. An excessively high ratio (>40%) may signal deployment challenges, potentially leading to commitment-period expirations and fee step-downs. A very low ratio (<15%) may indicate the firm needs to fundraise soon to sustain activity.",
+      "comparability_issues": "Not all firms disclose dry powder directly; it may need to be inferred from AUM rollforward data. The definition of dry powder can vary — some firms include recycled capital, others do not. For credit and liquid strategies, the concept of dry powder may not apply in the same way as for drawdown-style private equity or infrastructure funds. Firms with large permanent capital vehicles will have structurally lower dry powder ratios.",
+      "priority": "medium"
+    },
+    {
+      "id": "MET-014",
+      "name": "Fundraising Yield",
+      "category": "Fundraising",
+      "unit": "%",
+      "definition": "Total capital raised during the trailing twelve months as a percentage of beginning-of-period total AUM. Measures the firm's ability to raise new capital relative to its existing scale.",
+      "calculation": "Fundraising Yield = Capital Raised (TTM) / AUM at beginning of TTM period x 100.",
+      "data_sources": [
+        "Quarterly earnings releases — fundraising activity / capital raised",
+        "20-F / 10-K — MD&A fundraising discussion",
+        "Investor presentations — fundraising history"
+      ],
+      "relevance": "Fundraising yield normalizes capital raising for firm size, enabling comparison between large and small platforms. A yield above 15-25% typically indicates strong LP demand and the ability to launch new strategies or grow existing ones. Declining yield may signal market saturation, LP fatigue, or competitive positioning challenges. Particularly relevant for Patria as a mid-sized manager competing against larger global platforms.",
+      "comparability_issues": "Fundraising is inherently lumpy — a firm may raise a large flagship fund every 3-4 years, creating volatile year-to-year yields. Firms with continuous fundraising vehicles (open-ended funds, BDCs, permanent capital) may show more stable but lower yields. Co-investment capital may or may not be included. The denominator (beginning-of-period AUM) may include assets from different segments with varying fundraising cycles.",
+      "priority": "medium"
+    },
+    {
+      "id": "MET-015",
+      "name": "Fund Size Progression",
+      "category": "Fundraising",
+      "unit": "%",
+      "definition": "Percentage change in the size of the latest flagship fund vintage compared to the immediately preceding vintage in the same strategy. Measures whether the firm is growing its core fund franchises over time.",
+      "calculation": "Fund Size Progression = (Latest Flagship Fund Size - Prior Vintage Fund Size) / Prior Vintage Fund Size x 100. Calculated per flagship strategy and then averaged or reported individually.",
+      "data_sources": [
+        "20-F / 10-K — fund listing or fundraising history",
+        "Investor presentations — fund family/vintage history",
+        "Press releases — fund closing announcements",
+        "Third-party databases (Preqin, PitchBook) for historical vintage sizes"
+      ],
+      "relevance": "Fund size progression is one of the clearest signals of LP confidence and competitive positioning. Managers that consistently grow their flagship funds by 30-50%+ per vintage demonstrate strong track records and LP relationships. Flat or declining fund sizes may indicate performance issues or market share loss. For Patria, this metric is particularly relevant for its PE and infrastructure flagship strategies.",
+      "comparability_issues": "Timing of fund closings varies — a fund may take 12-24 months to reach final close, making the 'latest' vintage ambiguous during fundraising. Currency effects matter for non-USD-denominated funds. Some firms have multiple flagships across strategies, requiring strategy-level comparison rather than a single blended figure. Data availability can be limited for firms that do not disclose individual fund sizes in public filings.",
+      "priority": "low"
+    },
+    {
+      "id": "MET-016",
+      "name": "Net IRR (Flagship Fund)",
+      "category": "Returns",
+      "unit": "%",
+      "definition": "Net internal rate of return (after management fees and carried interest) for the firm's most recent flagship fund vintage with meaningful performance data (typically 3+ years since inception). Measures the firm's investment performance and value creation for LPs.",
+      "calculation": "Net IRR as reported by the firm for the relevant fund vintage. IRR is calculated based on actual cash flows (contributions and distributions) plus remaining NAV. 'Net' means after deducting all management fees and performance allocations.",
+      "data_sources": [
+        "20-F / 10-K — investment performance tables (where disclosed)",
+        "Investor presentations — track record slides",
+        "Fund fact sheets or marketing materials (limited public availability)",
+        "Third-party databases (Preqin, PitchBook, Cambridge Associates)"
+      ],
+      "relevance": "Investment returns are the fundamental driver of LP capital allocation decisions and fundraising success. Strong net IRRs (>15% for PE, >10% for infrastructure) enable larger fund raises and higher fee rates. Poor performance eventually manifests in fundraising difficulties and AUM decline. This metric directly links investment quality to business outcomes.",
+      "comparability_issues": "Returns data is among the least comparable and least available metrics. Key issues: (1) not all firms publicly disclose fund-level returns, (2) vintage year effects dominate — comparing funds from different vintage years is misleading, (3) unrealized NAV inflates IRR for younger funds (J-curve effect), (4) gross vs. net IRR must be carefully distinguished, (5) IRR can be manipulated through the timing of capital calls and credit facility usage (subscription lines of credit inflate early-period IRR). This metric is availability-constrained and may not be obtainable for all peers.",
+      "priority": "low"
+    },
+    {
+      "id": "MET-017",
+      "name": "P/FRE Multiple",
+      "category": "Valuation",
+      "unit": "x",
+      "definition": "Market capitalization divided by annualized Fee-Related Earnings. The primary valuation multiple for alternative asset managers, reflecting the market's assessment of the firm's recurring fee earnings stream.",
+      "calculation": "P/FRE = Market capitalization / (FRE, trailing twelve months or annualized latest quarter). Market cap = share price x fully diluted shares outstanding. For firms with UP-C structures, use the total enterprise equity value including exchangeable units.",
+      "data_sources": [
+        "Market capitalization from stock price data (exchange quotes)",
+        "FRE from quarterly earnings releases or 20-F / 10-K",
+        "Equity research reports — often report P/FRE directly"
+      ],
+      "relevance": "P/FRE is the consensus valuation metric for publicly traded alternative asset managers. Multiples typically range from 15-35x, with higher multiples awarded to firms with faster FRE growth, higher FRE margins, greater AUM durability (permanent capital), and stronger fundraising trajectories. PAX's P/FRE relative to peers directly indicates whether the market values its FRE stream at a premium or discount.",
+      "comparability_issues": "FRE definition heterogeneity (see MET-004) directly flows through to P/FRE comparisons. Share structures differ (UP-C vs. standard corporation), affecting the appropriate market cap calculation. Using trailing vs. forward FRE can yield meaningfully different multiples, especially for fast-growing firms. Tax status (C-corp vs. pass-through) affects after-tax FRE comparisons. Market cap is point-in-time and can shift substantially with market conditions.",
+      "priority": "high"
+    },
+    {
+      "id": "MET-018",
+      "name": "EV/FEAUM",
+      "category": "Valuation",
+      "unit": "bps (basis points)",
+      "definition": "Enterprise value divided by fee-earning AUM, expressed in basis points. Measures how much the market is willing to pay per dollar of fee-earning assets managed. Normalizes valuation for the scale of the fee-earning platform.",
+      "calculation": "EV/FEAUM = (Enterprise Value / FEAUM) x 10,000. Enterprise Value = Market capitalization + total debt - cash and equivalents. FEAUM as of the most recent reporting period. Result expressed in basis points (1 bps = 0.01%).",
+      "data_sources": [
+        "Market capitalization from stock price data",
+        "Debt and cash from most recent balance sheet (20-F / 10-K or quarterly filing)",
+        "FEAUM from quarterly earnings releases or 20-F / 10-K"
+      ],
+      "relevance": "EV/FEAUM complements P/FRE by anchoring valuation to the asset base rather than earnings. It is particularly useful for comparing firms at different stages of margin development — a firm with low current FRE margins but large FEAUM may trade at a low P/FRE but high EV/FEAUM, signaling the market expects margin expansion. Typical range is 100-400 bps for publicly traded alt managers. Higher values indicate the market assigns greater value per dollar managed, reflecting expected fee rates, margins, and growth.",
+      "comparability_issues": "FEAUM definition differences (see MET-002) directly affect this multiple. Enterprise value calculation requires debt and cash data, which may include fund-level borrowings that are not truly corporate obligations. For firms with significant balance sheet co-investments, net debt may understate the operating leverage. Currency denomination of FEAUM vs. market cap can create mismatches for non-US firms. Point-in-time market data sensitivity applies.",
+      "priority": "medium"
+    }
+  ]
+}

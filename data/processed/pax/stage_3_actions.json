@@ -1,0 +1,537 @@
+{
+  "metadata": {
+    "stage": "3",
+    "company": "Patria Investments Limited",
+    "ticker": "PAX",
+    "mapping_date": "2026-03-06",
+    "inputs": ["stage_2_pillars.json", "stage_1b_actions.json", "stage_1c_commitments.json"],
+    "methodology": "Action and commitment classification to pillar framework per prompts/03_map_actions.md. Each ACT-* and CMT-* classified as aligned (single or multi-pillar), unaligned, or ambiguous based on direct strategic impact rather than management framing. Resource allocation percentages are rough estimates based on publicly observable signals: acquisition values, fundraising allocation by segment, management airtime, and organizational signals. Q&A-sourced commitments weighted higher than prepared remarks per methodology.",
+    "limitations": "1. Resource allocation percentages are estimates — actual internal allocation is not publicly disclosed at the pillar level. 2. Many actions serve multiple pillars due to Patria's interconnected pillar structure (diversification subsumes asset-class pillars; M&A feeds multiple pillars). Primary assignment is a simplification. 3. Commitment status is based on evidence available as of March 6, 2026; 15 of 20 commitments are in_progress with multi-year horizons. 4. The 'unaligned' category is minimal — Patria's actions are unusually well-aligned with stated strategy, which may itself be an analytical risk (management may be framing all actions to fit the narrative rather than the actions genuinely serving stated pillars). 5. FEAUM data used for segment allocation is company-reported; independent verification limited to press releases and Bloomberg reporting."
+  },
+  "pillar_framework": {
+    "note": "Pillars sourced from Stage 2 output (stage_2_pillars.json). Numbered by priority rank (PIL-001 = highest priority).",
+    "pillars": {
+      "PIL-001": "Multi-Asset Platform Diversification",
+      "PIL-002": "Credit Platform Buildout",
+      "PIL-003": "Infrastructure Leadership in Latin America",
+      "PIL-004": "Organic Fundraising Excellence and FRE Growth",
+      "PIL-005": "M&A-Driven Inorganic Growth",
+      "PIL-006": "GPMS Expansion and U.S. Market Entry"
+    }
+  },
+  "action_mapping": {
+    "PIL-001": {
+      "pillar_name": "Multi-Asset Platform Diversification",
+      "aligned_actions": [
+        {
+          "action_id": "ACT-002",
+          "rationale": "RBR acquisition adds real estate REIT capability, expanding platform breadth into listed permanent capital vehicles. Real estate FEAUM grows to $8.5B, and permanent capital reaches ~22% of total FEAUM. Directly diversifies the asset class mix beyond PE/Infrastructure/Credit.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-007",
+          "rationale": "Peru office opening extends geographic footprint to a sixth LatAm market, directly advancing multi-regional diversification. Enables local origination and distribution in a new Andean market.",
+          "magnitude": "medium"
+        },
+        {
+          "action_id": "ACT-008",
+          "rationale": "Moneda rebrand completion signals full integration of the 2021 acquisition that added credit and public equities to Patria's platform. This organizational milestone consolidates the diversified platform under a unified brand architecture.",
+          "magnitude": "medium"
+        },
+        {
+          "action_id": "ACT-013",
+          "rationale": "FEAUM growth to $40.8B (+24% YoY) and total AUM of $52.6B are direct measures of platform scale. The 3.5x AUM growth from IPO reflects the cumulative result of platform diversification. No single segment dominates, validating the diversification thesis.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-018",
+          "rationale": "Asian SWF commitments of ~$1B represent geographic diversification of the LP base, a critical component of platform resilience. Demonstrates that the diversified product suite attracts global institutional capital beyond traditional LatAm/North American investor base.",
+          "magnitude": "high"
+        }
+      ],
+      "aligned_commitments": [
+        {
+          "commitment_id": "CMT-002",
+          "status": "in_progress",
+          "status_evidence": "Year 1 (2025) exceeded on fundraising ($7.7B vs $6B) and met FRE ($202.5M within $200-225M). FEAUM at $40.8B vs $70B 3-year target. 2026-2027 delivery requires continued diversified growth plus M&A. $7.7B of $21B cumulative target achieved (37%).",
+          "rationale": "The Investor Day 3-year framework is the strategic anchor for the entire platform — $21B fundraising, $70B FEAUM, $260-290M FRE targets all presuppose successful multi-asset diversification."
+        },
+        {
+          "commitment_id": "CMT-005",
+          "status": "in_progress",
+          "status_evidence": "2027 targets maintained across all earnings calls. FEAUM gap from $40.8B to $70B requires ~72% growth in 2 years — ambitious but partially supported by $6.6B in announced M&A FEAUM and strong organic trajectory. $18B M&A target over 3 years is the bridge.",
+          "rationale": "The $70B FEAUM target for 2027 is the definitive measure of whether platform diversification achieves critical mass."
+        },
+        {
+          "commitment_id": "CMT-007",
+          "status": "in_progress",
+          "status_evidence": "CEO's confidence statement validated by Year 1 results. Language escalated from 'confident' to 'strong position to achieve and hopefully exceed.' 2026-2027 delivery pending.",
+          "rationale": "Meta-commitment expressing confidence in the overall diversified platform strategy."
+        },
+        {
+          "commitment_id": "CMT-008",
+          "status": "fulfilled",
+          "status_evidence": "Validated by record $7.7B fundraising across diversified asset classes and FRE margin expansion to 58.9%. No single segment dominated fundraising. ACT-011 and ACT-012 provide direct evidence.",
+          "rationale": "Direct assertion that platform diversification is delivering financial results."
+        },
+        {
+          "commitment_id": "CMT-015",
+          "status": "in_progress",
+          "status_evidence": "Year 1 strongly validates: fundraising +28% vs target, FRE within guidance, margins within target. 2026-2027 remain to be demonstrated. Confidence language has escalated each quarter.",
+          "rationale": "CEO's commitment to achieving/exceeding Investor Day objectives is fundamentally a platform diversification commitment."
+        },
+        {
+          "commitment_id": "CMT-020",
+          "status": "in_progress",
+          "status_evidence": "Peru office announced Jan 29, 2026. License application in progress. No opening date confirmed yet. Timeline target is 2026.",
+          "rationale": "Geographic expansion to Peru directly serves multi-regional platform diversification."
+        }
+      ],
+      "estimated_resource_allocation_pct": 15,
+      "allocation_basis": "PIL-001 is an overarching meta-pillar. The 15% allocation represents actions that serve diversification per se rather than any specific asset-class pillar: RBR acquisition ($1.3B FEAUM for real estate — a segment without its own pillar), Peru office, Moneda integration, LP base diversification, and AUM/FEAUM growth reporting. Most capital and organizational resources are captured by the asset-class-specific pillars (PIL-002, PIL-003, PIL-006) which are themselves components of diversification. The residual 15% captures the platform-level coordination and segments (Real Estate, Public Equities, PE) not represented by their own pillar."
+    },
+    "PIL-002": {
+      "pillar_name": "Credit Platform Buildout",
+      "aligned_actions": [
+        {
+          "action_id": "ACT-001",
+          "rationale": "Solis acquisition ($3.5B FEAUM in CLO/ABS) is the single largest action advancing credit buildout. Increases Credit FEAUM by >40% to $11.7B, making credit >25% of total FEAUM. Demonstrates commitment to inorganic credit scaling.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-005",
+          "rationale": "First dedicated private credit fund ($314M) represents organic credit product development — the complement to Solis's inorganic addition. 15.6% gross IRR and >70% deployment validate the investment thesis.",
+          "magnitude": "medium"
+        },
+        {
+          "action_id": "ACT-006",
+          "rationale": "Second vintage credit fund (target >$500M) demonstrates sustained organic credit scaling, not a one-off. 60%+ increase over first fund signals confidence in market opportunity and LP demand.",
+          "magnitude": "medium"
+        }
+      ],
+      "aligned_commitments": [
+        {
+          "commitment_id": "CMT-010",
+          "status": "fulfilled",
+          "status_evidence": "Solis closed January 2, 2026, within Q1 2026 timeline commitment. Close was achieved in 37 days from announcement — exceptionally fast. Year-one accretion remains to be verified but management confirmed expectation at Q4 call.",
+          "rationale": "Solis close timeline commitment is directly tied to credit platform expansion execution."
+        },
+        {
+          "commitment_id": "CMT-012",
+          "status": "fulfilled",
+          "status_evidence": "Pro-forma Credit FEAUM exceeds $11.7B post-Solis close. Credit at ~26% of pro-forma FEAUM ($11.7B / ~$45.6B). Target met via ACT-001 (Solis acquisition).",
+          "rationale": "Quantitative threshold commitment (credit >25% of FEAUM) that measures the structural shift in business mix."
+        },
+        {
+          "commitment_id": "CMT-017",
+          "status": "in_progress",
+          "status_evidence": "Second credit fund preparation announced Feb 11, 2026. Target >$500M per Bloomberg. Fundraising not yet commenced. Builds on first fund's 15.6% IRR as track record.",
+          "rationale": "Organic credit fundraising commitment that demonstrates sustained commitment beyond a single fund."
+        }
+      ],
+      "estimated_resource_allocation_pct": 20,
+      "allocation_basis": "Credit received the largest single acquisition by FEAUM (Solis at $3.5B, approximately 53% of total Q4 2025 acquisition FEAUM). Organic credit fundraising was $1.8B in 2025 (23% of total $7.7B). Two dedicated credit fund launches (first vintage $314M, second vintage >$500M target) plus the Solis deal represent concentrated capital and organizational effort. Head of Private Credit (Montero) has dedicated management airtime. Credit's 26% of pro-forma FEAUM and rapidly rising cadence of announcements (monthly in Q4 2025-Q1 2026) support a 20% resource allocation estimate."
+    },
+    "PIL-003": {
+      "pillar_name": "Infrastructure Leadership in Latin America",
+      "aligned_actions": [
+        {
+          "action_id": "ACT-004",
+          "rationale": "Infrastructure Fund V at $2.9B is the signature action for this pillar — largest LatAm infrastructure fund ever, oversubscribed, validated by AIIB as LP. Directly reinforces Patria's infrastructure market leadership position.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-015",
+          "rationale": "Tria energy trading platform expansion (Raizen Power acquisition) is an infrastructure-adjacent initiative. Energy trading serves infrastructure portfolio companies and extends Patria's value chain in the energy sector. Maps to PIL-003 as primary since energy is within infrastructure's domain.",
+          "magnitude": "medium"
+        },
+        {
+          "action_id": "ACT-019",
+          "rationale": "Infrastructure Fund III's projected $20M performance fee in 2026 demonstrates the maturation of infrastructure vintage funds into carry-generating assets. Validates the long-term infrastructure investment cycle.",
+          "magnitude": "medium"
+        }
+      ],
+      "aligned_commitments": [
+        {
+          "commitment_id": "CMT-009",
+          "status": "in_progress",
+          "status_evidence": "FEAUM grew from ~$35B (Q1 2025) to $40.8B (Q4 2025), implying significant capital deployment. Q3 2025 still showed >$3B pending FEAUM. 4-6 quarter timeline extends through Q2-Q3 2026. Infrastructure Fund V is a primary deployment vehicle.",
+          "rationale": "Pending capital deployment commitment is heavily infrastructure-weighted given Fund V's $2.9B and ongoing deployment into highways, renewables, electric mobility, sanitation."
+        },
+        {
+          "commitment_id": "CMT-018",
+          "status": "in_progress",
+          "status_evidence": "Tria/Raizen Power definitive agreement signed Dec 19, 2025. Subject to CADE approval. Closing pending. Contributed $4M to 2025 DE.",
+          "rationale": "Tria energy trading is an infrastructure-adjacent commitment that extends Patria's infrastructure value chain."
+        }
+      ],
+      "estimated_resource_allocation_pct": 15,
+      "allocation_basis": "Infrastructure Fund V ($2.9B) was the single largest organic fundraise in 2025, representing ~30% of total $7.7B fundraising in the infra segment alone ($2.3B in infrastructure per management). However, infrastructure is only 9% of FEAUM — its capital allocation is concentrated in periodic large flagship fund vintages rather than continuous spend. Tria energy platform adds incremental resource commitment. Two dedicated infrastructure Managing Partners (Pinto, Sales) signal organizational priority. The 15% estimate reflects the infrastructure fundraising share, the Tria initiative, and Fund III carry crystallization, tempered by the cyclical nature of flagship fund closes."
+    },
+    "PIL-004": {
+      "pillar_name": "Organic Fundraising Excellence and FRE Growth",
+      "aligned_actions": [
+        {
+          "action_id": "ACT-009",
+          "rationale": "Share buyback program (7M shares authorized, TRS for 1.5M) is a capital return mechanism enabled by FRE and DE generation. Directly tied to translating fundraising/FRE success into shareholder value.",
+          "magnitude": "medium"
+        },
+        {
+          "action_id": "ACT-010",
+          "rationale": "Dividend increase to $0.65/share (+8%) is a direct expression of confidence in sustainable FRE growth. The ~$100M annual payout is funded by FRE/DE cash flow.",
+          "magnitude": "medium"
+        },
+        {
+          "action_id": "ACT-011",
+          "rationale": "Record $7.7B organic fundraising is the definitive action for this pillar. Exceeded the upwardly revised $6.6B target by 17%. Demonstrates execution of the organic fundraising excellence thesis.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-012",
+          "rationale": "FY2025 FRE of $202.5M (+19% YoY) with FRE margin expansion to 58.9% directly measures execution against the FRE growth and operating leverage thesis. Q4 margin of 63.6% shows the trajectory.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-014",
+          "rationale": "Distributable earnings of $200.9M ($1.27/share) and IFRS net income of $85.6M represent the bottom-line translation of fundraising and FRE growth. Revenue of $405.8M provides the top-line context.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-016",
+          "rationale": "FY2024 baseline results (FRE $170.1M, fundraising $5.5B) provide the comparison base that validates the 2025 growth trajectory. Exceeded 2024 FRE target of $170M.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-017",
+          "rationale": "Q3 2024 quarterly results (FRE $40.6M, fundraising >$2B) established the YoY comparison baseline and demonstrated the initial fundraising momentum from diversified platforms.",
+          "magnitude": "medium"
+        },
+        {
+          "action_id": "ACT-020",
+          "rationale": "Operating expense discipline ($36.1M quarterly baseline) and tax rate optimization (~10% via UK entity) are direct enablers of FRE margin expansion. These operational efficiencies translate fundraising growth into FRE growth.",
+          "magnitude": "low"
+        }
+      ],
+      "aligned_commitments": [
+        {
+          "commitment_id": "CMT-001",
+          "status": "fulfilled",
+          "status_evidence": "FY2025 actual: $7.7B fundraising (exceeded $6B by 28%), FRE $202.5M (within $200-225M range), FRE margin 58.9% (within 58-60% target). All three metrics met or exceeded. Validated by ACT-011 and ACT-012.",
+          "rationale": "2025 annual guidance is the primary quantitative commitment for this pillar."
+        },
+        {
+          "commitment_id": "CMT-003",
+          "status": "in_progress",
+          "status_evidence": "2026 FRE guidance of $225-245M introduced at Q3 2025 earnings and reiterated at Q4. Represents 11-21% growth over 2025 actual. No 2026 results yet available.",
+          "rationale": "2026 FRE guidance is the next forward target for the pillar."
+        },
+        {
+          "commitment_id": "CMT-004",
+          "status": "in_progress",
+          "status_evidence": "2026 organic fundraising target of $7B set at Q4 2025 earnings. CEO described as conservative. 2025 actual was $7.7B, so $7B implies potential moderation vs. 2025 run rate.",
+          "rationale": "2026 fundraising target directly measures organic fundraising excellence."
+        },
+        {
+          "commitment_id": "CMT-006",
+          "status": "fulfilled",
+          "status_evidence": "Mid-year guidance raise from $6B to $6.3-6.6B was validated by FY2025 actual of $7.7B. The upward revision itself signals management's commitment to exceeding initial targets.",
+          "rationale": "Mid-year fundraising guidance increase demonstrates discipline in setting and revising targets."
+        },
+        {
+          "commitment_id": "CMT-013",
+          "status": "in_progress",
+          "status_evidence": "Dividend increase to $0.65/share declared. First 2026 payment made. Full year requires four quarterly payments. Funded by FRE/DE generation.",
+          "rationale": "Dividend commitment is a direct output of FRE growth — management commits to returning a portion of growing earnings."
+        },
+        {
+          "commitment_id": "CMT-014",
+          "status": "in_progress",
+          "status_evidence": "1.5M shares acquired via TRS in Q3 2025. Additional 3M authorized in Q4 2025. Patria Partners committed to 2.5M shares. Ongoing execution through 2026-2027. Share count expected 158-160M.",
+          "rationale": "Buyback commitment is a capital return mechanism funded by FRE/DE growth."
+        },
+        {
+          "commitment_id": "CMT-019",
+          "status": "in_progress",
+          "status_evidence": "Fee rate at 92bps as of Q4 2025, expected to trend to ~90bps. Reflects mix shift toward larger vehicles and credit/GPMS products. No specific timeline provided.",
+          "rationale": "Fee rate guidance directly impacts FRE calculation — a 2bps compression requires offsetting FEAUM growth to maintain FRE targets."
+        }
+      ],
+      "estimated_resource_allocation_pct": 25,
+      "allocation_basis": "PIL-004 is the outcome pillar — it captures the financial results of all other pillars' execution. The 25% allocation reflects the significant organizational resources dedicated to fundraising (global distribution team, LP relationships, SMA structuring), FRE management (operating expense discipline, tax optimization), and capital return execution (buyback program, dividend administration). Management dedicates ~20-25% of earnings call airtime to fundraising volumes, FRE trajectory, and margin dynamics. The CFO's entire mandate is FRE/DE management. However, PIL-004 is partially an output of PIL-001 through PIL-003 rather than an independent resource allocation area."
+    },
+    "PIL-005": {
+      "pillar_name": "M&A-Driven Inorganic Growth",
+      "aligned_actions": [
+        {
+          "action_id": "ACT-001",
+          "rationale": "Solis acquisition ($3.5B FEAUM) is the largest single M&A transaction in the analysis period. Represents 53% of total Q4 2025 acquisition FEAUM. Structured as 51% stake with founders continuing — consistent with Patria's integration approach.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-002",
+          "rationale": "RBR acquisition ($1.3B FEAUM, 12 REIT funds) is the second M&A transaction in the Q4 2025 burst. Adds permanent capital real estate capability. Accretive in year one.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-003",
+          "rationale": "WP Global Partners ($1.8B FEAUM) is the third Q4 2025 acquisition and Patria's first U.S. deal. All-cash at 1.7% of FEAUM + earnout demonstrates valuation discipline. Adds U.S. lower-middle-market PE solutions.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-008",
+          "rationale": "Moneda integration completion (rebrand to 'Moneda Patria Investments') demonstrates the end-to-end M&A integration capability. The 3-year integration cycle from Dec 2021 combination to May 2024 rebrand provides a precedent for Solis/RBR/WP integration timelines.",
+          "magnitude": "medium"
+        }
+      ],
+      "aligned_commitments": [
+        {
+          "commitment_id": "CMT-010",
+          "status": "fulfilled",
+          "status_evidence": "Solis closed Jan 2, 2026, within Q1 2026 commitment. 37-day close from announcement to completion. Year-one accretion pending 2026 results.",
+          "rationale": "M&A close timeline commitment — demonstrates execution capability."
+        },
+        {
+          "commitment_id": "CMT-011",
+          "status": "fulfilled",
+          "status_evidence": "RBR closed Feb 2026, within Q1 2026 commitment. No regulatory hurdles required. Year-one accretion pending 2026 results.",
+          "rationale": "M&A close timeline commitment for real estate acquisition."
+        },
+        {
+          "commitment_id": "CMT-016",
+          "status": "in_progress",
+          "status_evidence": "WP Global deal signed Feb 2, 2026. Closing timeline not specified. Subject to customary conditions. Expected to be accretive in year one.",
+          "rationale": "M&A close and accretion commitment for the U.S. market entry acquisition."
+        }
+      ],
+      "estimated_resource_allocation_pct": 15,
+      "allocation_basis": "Three acquisitions in Q4 2025 added $6.6B FEAUM, representing 37% of the $18B three-year M&A target. Cash deployed for acquisitions is significant but exact amounts are limited (WP Global at 1.7% of FEAUM = ~$31M base; Solis and RBR terms not disclosed). Deferred payments through 2028 total ~$110M. 2026 contingent payments ~$100M. M&A execution requires dedicated deal team, legal (Latham & Watkins), financial advisory (Raymond James), and integration management resources. However, M&A is a mechanism that feeds other pillars rather than consuming ongoing operating resources — the 15% reflects the concentrated but episodic nature of deal activity."
+    },
+    "PIL-006": {
+      "pillar_name": "GPMS Expansion and U.S. Market Entry",
+      "aligned_actions": [
+        {
+          "action_id": "ACT-003",
+          "rationale": "WP Global Partners acquisition is the defining action for PIL-006. It establishes Patria's first U.S. presence (New York, Chicago), adds $1.8B FEAUM to GPMS, and shifts ~40% of GPMS assets to the U.S. This is the single action that converts PIL-006 from aspiration to execution.",
+          "magnitude": "high"
+        },
+        {
+          "action_id": "ACT-007",
+          "rationale": "Peru office opening expands geographic reach within LatAm, complementing the U.S. expansion. While a smaller-scale action than WP Global, it demonstrates the broader geographic expansion dimension of PIL-006 — Patria is expanding in multiple directions simultaneously.",
+          "magnitude": "medium"
+        }
+      ],
+      "aligned_commitments": [
+        {
+          "commitment_id": "CMT-016",
+          "status": "in_progress",
+          "status_evidence": "WP Global deal signed Feb 2, 2026. Closing pending customary conditions. Pro-forma GPMS FEAUM >$13.3B with ~40% U.S. assets. Year-one accretion commitment depends on close timing.",
+          "rationale": "WP close and integration commitment directly determines whether U.S. market entry materializes."
+        },
+        {
+          "commitment_id": "CMT-020",
+          "status": "in_progress",
+          "status_evidence": "Peru office announced Jan 29, 2026. Regulatory license application in progress. Opening expected 2026 but no specific date confirmed.",
+          "rationale": "Peru office timeline commitment is the LatAm dimension of geographic expansion."
+        }
+      ],
+      "estimated_resource_allocation_pct": 10,
+      "allocation_basis": "GPMS is the largest segment by FEAUM share (29%, ~$13.6B pro forma) but receives relatively modest dedicated management attention compared to credit or infrastructure. WP Global acquisition ($1.8B FEAUM, ~$31M base price) is the primary PIL-006 resource deployment. Peru office is a small-scale operational investment. GPMS fundraising was ~$2B in 2025 (~26% of total). However, much of GPMS's growth is organic and embedded within PIL-004 fundraising metrics rather than requiring discrete PIL-006 investment. The 10% reflects the incremental U.S. entry investment plus Peru office, net of overlap with PIL-004 and PIL-005."
+    }
+  },
+  "multi_pillar_actions": [
+    {
+      "action_id": "ACT-001",
+      "primary_pillar": "PIL-002",
+      "secondary_pillars": ["PIL-005"],
+      "rationale": "Solis acquisition serves PIL-002 (Credit Buildout) as its primary strategic impact — adding $3.5B Credit FEAUM and making credit >25% of total. It also serves PIL-005 (M&A-Driven Growth) as the mechanism of execution. Primary assignment to PIL-002 because the strategic significance is in *what* was acquired (credit capability), not *how* (via acquisition)."
+    },
+    {
+      "action_id": "ACT-002",
+      "primary_pillar": "PIL-001",
+      "secondary_pillars": ["PIL-005"],
+      "rationale": "RBR acquisition serves PIL-001 (Platform Diversification) as primary — it adds real estate REIT capability, a segment without its own dedicated pillar. Also serves PIL-005 (M&A) as mechanism. Real Estate does not have a standalone pillar, so the diversification effect is the primary strategic contribution."
+    },
+    {
+      "action_id": "ACT-003",
+      "primary_pillar": "PIL-006",
+      "secondary_pillars": ["PIL-005", "PIL-001"],
+      "rationale": "WP Global acquisition is the signature action for PIL-006 (GPMS/U.S. Entry) — it establishes the U.S. presence and transforms GPMS geography. Also serves PIL-005 (M&A mechanism) and PIL-001 (platform diversification via geographic and product expansion). Primary to PIL-006 because U.S. entry is the most strategically novel dimension."
+    },
+    {
+      "action_id": "ACT-004",
+      "primary_pillar": "PIL-003",
+      "secondary_pillars": ["PIL-004"],
+      "rationale": "Infrastructure Fund V serves PIL-003 (Infrastructure Leadership) as the definitive action. Also contributes to PIL-004 (Fundraising Excellence) since $2.9B represents ~38% of FY2025 infrastructure segment fundraising. Primary to PIL-003 because the strategic significance is infrastructure market leadership, not just the fundraising volume."
+    },
+    {
+      "action_id": "ACT-007",
+      "primary_pillar": "PIL-001",
+      "secondary_pillars": ["PIL-006"],
+      "rationale": "Peru office serves PIL-001 (geographic diversification of the platform) and PIL-006 (geographic expansion beyond current markets). Primary to PIL-001 because the diversification impact is broader than GPMS-specific expansion."
+    },
+    {
+      "action_id": "ACT-008",
+      "primary_pillar": "PIL-005",
+      "secondary_pillars": ["PIL-001", "PIL-002"],
+      "rationale": "Moneda integration completion demonstrates M&A integration capability (PIL-005), validates the diversification thesis by showing successful platform consolidation (PIL-001), and has specific credit significance since Moneda brought the largest LatAm credit platform (PIL-002). Primary to PIL-005 because the action itself is about integration execution."
+    },
+    {
+      "action_id": "ACT-011",
+      "primary_pillar": "PIL-004",
+      "secondary_pillars": ["PIL-001"],
+      "rationale": "Record $7.7B organic fundraising is the primary measure of PIL-004 (Fundraising Excellence). Also validates PIL-001 (Platform Diversification) since fundraising was spread across all asset classes. Primary to PIL-004 because fundraising volume is the direct metric."
+    },
+    {
+      "action_id": "ACT-015",
+      "primary_pillar": "PIL-003",
+      "secondary_pillars": ["PIL-001"],
+      "rationale": "Tria energy platform expansion is an infrastructure-adjacent initiative (PIL-003), extending Patria's energy value chain. Also contributes to PIL-001 (diversification into energy trading as a new business line). Primary to PIL-003 because energy is within infrastructure's domain."
+    },
+    {
+      "action_id": "ACT-018",
+      "primary_pillar": "PIL-001",
+      "secondary_pillars": ["PIL-004"],
+      "rationale": "Asian SWF commitments of ~$1B diversify the LP base geographically (PIL-001) and contribute to record fundraising volumes (PIL-004). Primary to PIL-001 because the strategic significance is geographic LP diversification, a platform-level achievement."
+    }
+  ],
+  "unaligned_actions": [
+    {
+      "action_id": "ACT-009",
+      "description": "Share buyback program (7M shares authorized, TRS for 1.5M shares). Progressive capital return expansion throughout 2025.",
+      "magnitude": "medium",
+      "analysis": "Share buybacks are a capital allocation decision that does not directly advance any growth-oriented strategic pillar. While mapped to PIL-004 in the aligned actions (as a capital return enabled by FRE growth), the buyback itself is a shareholder value mechanism rather than a strategic growth initiative. It is partially unaligned in the sense that it represents capital that could otherwise be deployed toward M&A (PIL-005) or organic investment. However, given Patria's ~$220M annual cash generation and the buyback's modest scale (~$70-100M at current prices for 7M shares), it does not materially compete with growth investment. This is a routine capital return action for a mature alternative asset manager, not a shadow strategy indicator.",
+      "potential_theme": "Capital return to shareholders — not a shadow strategy but a category of actions that sits outside the growth-oriented pillar framework"
+    },
+    {
+      "action_id": "ACT-010",
+      "description": "Dividend increase to $0.65/share for 2026 (~$100M annual payout).",
+      "magnitude": "medium",
+      "analysis": "Similar to ACT-009, the dividend increase is a capital return mechanism rather than a growth initiative. The 8% increase signals confidence in FRE sustainability but does not advance any specific strategic pillar. The ~$100M payout represents approximately 50% of expected FRE, leaving substantial capital for reinvestment. This is a routine action for an alternative asset manager with growing distributable earnings. Not a shadow strategy indicator.",
+      "potential_theme": "Capital return to shareholders (same theme as ACT-009)"
+    }
+  ],
+  "ambiguous_mappings": [],
+  "commitment_tracker": {
+    "total": 20,
+    "fulfilled": 5,
+    "in_progress": 15,
+    "partially_fulfilled": 0,
+    "contradicted": 0,
+    "silently_abandoned": 0,
+    "cannot_assess": 0,
+    "fulfillment_rate_note": "Fulfillment rate calculation: 5 fulfilled / (20 total - 15 in_progress) = 5/5 = 1.00 (100%). However, this rate is misleadingly high because 15 of 20 commitments are still in_progress with multi-year horizons (through 2027). The 100% rate applies only to the 5 commitments whose evaluation period has concluded. No commitments have been contradicted or silently abandoned.",
+    "per_pillar": {
+      "PIL-001": {
+        "total": 6,
+        "fulfilled": 1,
+        "in_progress": 5,
+        "contradicted": 0,
+        "silently_abandoned": 0,
+        "notes": "CMT-008 fulfilled (diversification paying off). CMT-002, CMT-005, CMT-007, CMT-015, CMT-020 in progress with 2026-2027 horizons."
+      },
+      "PIL-002": {
+        "total": 3,
+        "fulfilled": 2,
+        "in_progress": 1,
+        "contradicted": 0,
+        "silently_abandoned": 0,
+        "notes": "CMT-010 (Solis close) and CMT-012 (credit >25% of FEAUM) both fulfilled. CMT-017 (second credit fund >$500M) in progress."
+      },
+      "PIL-003": {
+        "total": 2,
+        "fulfilled": 0,
+        "in_progress": 2,
+        "contradicted": 0,
+        "silently_abandoned": 0,
+        "notes": "CMT-009 (capital deployment) and CMT-018 (Tria/Raizen) both in progress with near-term timelines."
+      },
+      "PIL-004": {
+        "total": 7,
+        "fulfilled": 2,
+        "in_progress": 5,
+        "contradicted": 0,
+        "silently_abandoned": 0,
+        "notes": "CMT-001 (2025 guidance) and CMT-006 (raised fundraising target) fulfilled. CMT-003, CMT-004, CMT-013, CMT-014, CMT-019 in progress for 2026-2027."
+      },
+      "PIL-005": {
+        "total": 3,
+        "fulfilled": 2,
+        "in_progress": 1,
+        "contradicted": 0,
+        "silently_abandoned": 0,
+        "notes": "CMT-010 (Solis close) and CMT-011 (RBR close) fulfilled on schedule. CMT-016 (WP Global close) in progress."
+      },
+      "PIL-006": {
+        "total": 2,
+        "fulfilled": 0,
+        "in_progress": 2,
+        "contradicted": 0,
+        "silently_abandoned": 0,
+        "notes": "CMT-016 (WP close) and CMT-020 (Peru office) both in progress. Both are recent announcements (Jan-Feb 2026)."
+      }
+    },
+    "cross_pillar_commitment_notes": "Some commitments map to multiple pillars (CMT-010 appears under both PIL-002 and PIL-005; CMT-016 under both PIL-005 and PIL-006; CMT-020 under both PIL-001 and PIL-006). The per-pillar totals therefore sum to more than 20. Primary pillar assignment is used for the summary above, with cross-references noted."
+  },
+  "resource_allocation_summary": {
+    "PIL-001": {
+      "pct": 15,
+      "basis": "Meta-pillar capturing platform-level diversification actions not attributable to a specific asset class: RBR real estate acquisition ($1.3B FEAUM), Peru office, Moneda integration, LP base diversification, AUM reporting. Most resources are captured by asset-class pillars below."
+    },
+    "PIL-002": {
+      "pct": 20,
+      "basis": "Largest single acquisition (Solis $3.5B FEAUM), two dedicated credit fund launches ($314M + >$500M target), $1.8B organic credit fundraising in 2025. Fastest-rising pillar with concentrated Q4 2025-Q1 2026 resource deployment."
+    },
+    "PIL-003": {
+      "pct": 15,
+      "basis": "Infrastructure Fund V ($2.9B, ~30% of total fundraising), Tria energy platform acquisition, Fund III carry crystallization ($20M projected). Two dedicated infrastructure Managing Partners. Cyclical flagship fund nature means concentrated but periodic resource deployment."
+    },
+    "PIL-004": {
+      "pct": 25,
+      "basis": "Outcome pillar capturing fundraising operations, FRE management, operating expense discipline, tax optimization, and capital return mechanisms (dividend, buyback). Global distribution team, CFO mandate, and ~20-25% of earnings call airtime. Partially an output of other pillars."
+    },
+    "PIL-005": {
+      "pct": 15,
+      "basis": "Three acquisitions totaling $6.6B FEAUM (37% of 3-year $18B target). Deal team, legal/financial advisory, integration management. Deferred payments ~$110M through 2028. Episodic but concentrated resource deployment."
+    },
+    "PIL-006": {
+      "pct": 10,
+      "basis": "WP Global acquisition ($1.8B FEAUM, ~$31M base), Peru office, GPMS organic fundraising (~$2B in 2025). Nascent pillar with resource deployment primarily via the WP deal. GPMS segment growth largely organic and embedded in PIL-004 fundraising."
+    },
+    "total": 100,
+    "methodology_note": "Percentages are estimated based on: (1) acquisition FEAUM values as proxy for capital deployed per pillar, (2) organic fundraising allocation by segment, (3) management airtime per pillar across earnings calls, (4) organizational signals (dedicated leadership, office openings). Double-counting is minimized by assigning each action's primary resource impact to a single pillar. The total sums to 100% but actual overlaps mean the effective resource allocation is more distributed. Capital return actions (ACT-009, ACT-010) are classified as unaligned and not included in the 100% allocation."
+  },
+  "key_observations": [
+    {
+      "observation": "Unusually high strategy-action alignment",
+      "detail": "Only 2 of 20 actions (ACT-009 buyback, ACT-010 dividend) are classified as unaligned, and these are routine capital return mechanisms rather than shadow strategies. Every growth-oriented action maps clearly to at least one stated pillar. This suggests either (a) genuinely disciplined strategic execution, or (b) management is highly effective at framing all actions within the stated strategic narrative. The absence of any discontinued initiatives or strategic retreats (zero ACT elements of type 'discontinued_initiative') is notable and could indicate survivorship bias in reporting."
+    },
+    {
+      "observation": "Zero contradicted or silently abandoned commitments",
+      "detail": "Of 20 commitments tracked, 5 are fulfilled and 15 are in progress. None are contradicted or silently abandoned. This is exceptional commitment follow-through for a 14-month analysis period. The risk is that many in_progress commitments have multi-year horizons (2027 targets), and the true test of follow-through is still ahead. The pattern of conservative guidance followed by over-delivery (2024: $5B target, $5.5B actual; 2025: $6B target -> $6.6B revised -> $7.7B actual) creates positive credibility but may also create inflated expectations."
+    },
+    {
+      "observation": "M&A is the enabler but management downplays it",
+      "detail": "PIL-005 (M&A) captured $6.6B in FEAUM across three deals in Q4 2025 — 37% of the 3-year $18B target in approximately two months. Yet management emphasizes that only ~10% of 2027 FRE comes from acquisitions. This framing tension is analytically important: the $70B FEAUM target by 2027 requires $18B of acquisitions (from $40.8B organic + $18B inorganic + ~$11B organic growth = ~$70B), meaning M&A provides ~26% of the FEAUM target. The narrative prioritization of organic growth over M&A may understate actual M&A dependence."
+    },
+    {
+      "observation": "Credit pillar is rising faster than any other",
+      "detail": "PIL-002 (Credit) has the densest action cadence: Solis acquisition (Nov 2025), first credit fund deployment >70% (ongoing), second vintage announcement (Feb 2026), Moneda credit platform integration (completed May 2024). Credit FEAUM grew from ~$5B (Moneda at IPO) to $12.1B pro-forma — a 142% increase. It is now the second-largest segment at 26% of FEAUM. The velocity of credit-related announcements (monthly in Q4 2025-Q1 2026) is unmatched by any other pillar."
+    },
+    {
+      "observation": "PIL-006 (GPMS/U.S.) is the most nascent and vulnerable pillar",
+      "detail": "With only 2 aligned actions, 2 commitments (both in_progress), and 10% estimated resource allocation, PIL-006 is the least developed pillar. The WP Global acquisition converts it from aspiration to execution, but U.S. market entry is weeks old as of March 2026. Integration risk is non-trivial: WP's New York/Chicago operations are culturally and geographically distant from Patria's LatAm DNA. The 'analyst-inferred' origin classification (Stage 2) reinforces that this may be a single transaction rather than a sustained strategic campaign."
+    },
+    {
+      "observation": "Capital return actions cluster outside the pillar framework",
+      "detail": "ACT-009 (buyback, 7M shares) and ACT-010 (dividend, $0.65/share) are the only unaligned actions. Together they represent ~$170-200M in annual capital return (~$100M dividend + ~$70-100M buyback). This is approximately 85-100% of FY2025 FRE ($202.5M). The capital return commitment is large relative to FRE but does not directly compete with growth investment since PAX generates ~$220M in cash annually. The pillar framework is growth-oriented; capital return is a legitimate parallel strategy that the framework does not capture as a separate pillar."
+    },
+    {
+      "observation": "Infrastructure leadership position is validated but AUM share is declining",
+      "detail": "PIL-003 (Infrastructure) achieved the highest-profile single action (Fund V at $2.9B, largest in LatAm) and has the strongest external validation (Bloomberg, AIIB, Infrastructure Investor). However, infrastructure is only 9% of FEAUM — far below Credit (26%), GPMS (29%), or Real Estate (~14%). As the platform diversifies, infrastructure's relative share is declining even as absolute amounts grow. The question for Stage 4 is whether Patria's brand identity as an 'infrastructure firm' will create tension as credit and GPMS become the dominant segments."
+    },
+    {
+      "observation": "Tria energy trading is a potential shadow strategy",
+      "detail": "ACT-015 (Tria energy platform, Raizen Power acquisition) is mapped to PIL-003 as infrastructure-adjacent, but it could represent the seed of an emerging energy trading/services pillar that does not fit neatly into the current framework. With revenue >R$1.5B and ambitions to become 'one of Brazil's largest independent energy traders,' Tria may evolve beyond infrastructure adjacency into a standalone business line. Currently $4M of DE contribution is modest, but management's 'excitement regarding long-term potential' language warrants monitoring."
+    }
+  ]
+}

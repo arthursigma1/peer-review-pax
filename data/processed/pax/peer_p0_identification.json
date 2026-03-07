@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "stage": "P0",
+    "company": "Patria Investments Limited",
+    "ticker": "PAX",
+    "analysis_date": "2026-03-06",
+    "methodology": "Peer selection per prompts/peer/p00_peer_identification.md",
+    "limitations": "AUM figures are point-in-time (FY2025 year-end or most recent available). VINP AUM converted from BRL to USD at approximate prevailing rates (~BRL 5.9/USD). EQT AUM converted from EUR to USD at ~1.07 rate. ARES slightly exceeds 10x AUM filter (11.8x) but included as dominant credit-focused alts benchmark. P10 recently rebranded to Ridgepost Capital (Feb 2026); ticker and historical data remain under PX. Vinci Partners rebranded to Vinci Compass Investments in late 2025. Peer selection involves judgment; different analysts may select different groups. Strategy similarity is subjective as asset class categorizations vary across firms."
+  },
+  "target_company": {
+    "name": "Patria Investments Limited",
+    "ticker": "PAX",
+    "exchange": "NASDAQ",
+    "aum": "$52.6 billion",
+    "aum_usd_billions": 52.6,
+    "feaum": "$40.8 billion",
+    "primary_strategies": ["Private Equity", "Infrastructure", "Credit", "Real Estate", "GPMS (Advisory/Fund-of-Funds)"],
+    "geography": "Latin America (primarily Brazil, Chile, Colombia), entering U.S. via WP Global Partners acquisition",
+    "ipo_year": 2021,
+    "fee_related_earnings_mm": 202.5,
+    "management_fees_mm": 338.7
+  },
+  "peers": [
+    {
+      "id": "PEER-001",
+      "name": "Vinci Compass Investments (formerly Vinci Partners)",
+      "ticker": "VINP",
+      "exchange": "NASDAQ",
+      "aum": "~$60 billion (BRL 354 billion)",
+      "aum_usd_billions": 60,
+      "aum_currency": "BRL (reported); ~USD 60B converted",
+      "primary_strategies": ["Private Equity", "Infrastructure", "Credit", "Real Estate", "Public Equities", "Hedge Funds"],
+      "geography": "Brazil (primary), Latin America, growing global LP base",
+      "classification": "both",
+      "selection_rationale": "Most direct comparable to PAX. Brazilian-listed (NASDAQ ADR) alternative asset manager with similar AUM scale (~$60B vs PAX $52.6B), overlapping LatAm geography, and analogous strategy mix across PE, infrastructure, credit, and real estate. Acquired Compass Group and Verde in 2024-2025, expanding LatAm footprint. Both firms compete for LatAm institutional and global LP capital.",
+      "data_availability": "high",
+      "key_differences": "VINP has significant public equities and hedge fund strategies that PAX lacks. VINP is more Brazil-concentrated vs. PAX's broader LatAm footprint (Chile, Colombia). VINP reports in BRL; currency translation creates comparability noise. VINP lacks a direct equivalent to PAX's GPMS advisory/fund-of-funds segment."
+    },
+    {
+      "id": "PEER-002",
+      "name": "P10 Inc (rebranding to Ridgepost Capital)",
+      "ticker": "PX",
+      "exchange": "NYSE",
+      "aum": "~$40 billion",
+      "aum_usd_billions": 40,
+      "aum_currency": "USD",
+      "primary_strategies": ["Private Equity", "Private Credit", "Venture Capital"],
+      "geography": "United States (primary), global",
+      "classification": "scale",
+      "selection_rationale": "Closest AUM scale peer among publicly listed pure-play alts managers (~$40B vs PAX $52.6B, ratio 0.76x). Multi-strategy alternatives platform built through acquisitions (paralleling PAX's M&A-driven growth). Fee-paying AUM of ~$29B comparable to PAX's $40.8B FEAUM. Both are sub-$100B AUM managers competing against much larger incumbents.",
+      "data_availability": "high",
+      "key_differences": "PX is U.S.-focused with no LatAm exposure. PX includes venture capital strategies that PAX lacks. PX has no infrastructure or real estate strategies. PX is mid/lower-middle market focused vs. PAX's broader mandate. PX recently rebranding to Ridgepost Capital (Feb 2026)."
+    },
+    {
+      "id": "PEER-003",
+      "name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "exchange": "NASDAQ",
+      "aum": "$138 billion (discretionary); $958 billion total AUM & supervision",
+      "aum_usd_billions": 138,
+      "aum_currency": "USD",
+      "primary_strategies": ["Private Equity (Fund-of-Funds)", "Infrastructure", "Credit", "Real Estate", "Advisory/SMA"],
+      "geography": "Global (North America, Europe, Asia Pacific, Middle East)",
+      "classification": "strategy",
+      "selection_rationale": "Business model most comparable to PAX's GPMS segment (advisory, fund-of-funds, separately managed accounts). Both firms serve as private markets allocators/advisors alongside direct fund management. HLNE's $138B discretionary AUM is 2.6x PAX, within the 10x filter. HLNE's massive non-discretionary advisory AUM ($820B) demonstrates the scalability of the advisory/GPMS model PAX is developing.",
+      "data_availability": "high",
+      "key_differences": "HLNE is primarily an allocator/advisor rather than direct fund manager; PAX manages more direct investment strategies. HLNE is global vs. PAX's LatAm focus. HLNE discretionary AUM is 2.6x PAX's total AUM. HLNE has 30+ year track record vs. PAX's shorter public history. HLNE has no LatAm-specific strategies."
+    },
+    {
+      "id": "PEER-004",
+      "name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "exchange": "NASDAQ",
+      "aum": "$189 billion (as of March 2025); $723 billion total capital responsibility",
+      "aum_usd_billions": 189,
+      "aum_currency": "USD",
+      "primary_strategies": ["Private Equity", "Infrastructure", "Private Debt", "Real Estate", "Advisory/Fund-of-Funds"],
+      "geography": "Global (North America, Europe, Asia, Australia)",
+      "classification": "strategy",
+      "selection_rationale": "Strategy mix highly comparable to PAX across all four core asset classes (PE, infrastructure, credit, real estate) plus advisory/fund-of-funds services analogous to GPMS. STEP's business model combines direct investing with advisory, mirroring PAX's dual approach. AUM at 3.6x PAX, well within 10x filter. Growing private wealth channel parallels PAX's distribution expansion.",
+      "data_availability": "high",
+      "key_differences": "STEP is 3.6x PAX's AUM scale. STEP is globally diversified vs. PAX's LatAm concentration. STEP's advisory/SMA business is a larger proportion of total AUM. STEP uses a fiscal year ending March 31. STEP has no LatAm-specific expertise or dedicated LatAm strategies."
+    },
+    {
+      "id": "PEER-005",
+      "name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "exchange": "NYSE",
+      "aum": "$307 billion",
+      "aum_usd_billions": 307,
+      "aum_currency": "USD",
+      "primary_strategies": ["Credit (Direct Lending, Alternative Credit, IG Credit, CLOs)", "Real Assets (Real Estate, Digital Infrastructure)", "GP Strategic Capital"],
+      "geography": "United States (primary), global",
+      "classification": "strategy",
+      "selection_rationale": "Credit-focused alternatives platform provides direct comparison to PAX's growing credit strategy. GP Strategic Capital business is a unique comp for PAX's GPMS segment (both involve partnerships with/services to other GPs). ~85% permanent capital vehicles offer comparison to PAX's fee-earning AUM model. AUM at 5.8x PAX, within 10x filter.",
+      "data_availability": "high",
+      "key_differences": "OWL is 5.8x PAX's AUM. OWL is overwhelmingly U.S.-focused with no LatAm presence. OWL lacks private equity or infrastructure fund strategies. OWL's GP Strategic Capital model (equity stakes in other GPs) differs from PAX's GPMS advisory model. OWL's permanent capital model creates structurally different fee dynamics."
+    },
+    {
+      "id": "PEER-006",
+      "name": "EQT AB",
+      "ticker": "EQT",
+      "exchange": "NASDAQ Stockholm (OMX)",
+      "aum": "~$285 billion (EUR 270 billion)",
+      "aum_usd_billions": 285,
+      "aum_currency": "EUR (reported); ~USD 285B converted",
+      "primary_strategies": ["Private Equity", "Infrastructure", "Real Estate", "Secondaries (via Coller Capital)"],
+      "geography": "Europe (primary), Asia, United States, global",
+      "classification": "strategy",
+      "selection_rationale": "Strong strategy overlap with PAX in PE, infrastructure, and real estate. Both firms are non-U.S.-headquartered alts managers listed on major exchanges and competing globally. EQT's acquisition-driven growth strategy (BPEA, Exeter, Coller) parallels PAX's inorganic growth (Moneda, Igah, WP Global). AUM at 5.4x PAX, within 10x filter. EQT demonstrates the growth trajectory of a scaled PE/infra platform.",
+      "data_availability": "high",
+      "key_differences": "EQT is 5.4x PAX's AUM. EQT is Europe/Asia-focused vs. PAX's LatAm focus. EQT lacks a credit strategy (PAX's fastest growing segment). EQT reports in EUR on Stockholm exchange; different investor base and regulatory environment. EQT lacks an advisory/fund-of-funds segment comparable to GPMS."
+    },
+    {
+      "id": "PEER-007",
+      "name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "exchange": "NYSE",
+      "aum": "$622.5 billion",
+      "aum_usd_billions": 622.5,
+      "aum_currency": "USD",
+      "primary_strategies": ["Credit ($407B AUM)", "Real Assets ($139B)", "Private Equity ($25B)", "Secondaries ($42B)"],
+      "geography": "Global (United States primary, Europe, Asia)",
+      "classification": "scale",
+      "selection_rationale": "Included as the leading publicly listed credit-focused alternatives manager, providing the most relevant benchmark for PAX's rapidly growing credit strategy. ARES's credit-heavy AUM mix (~65% credit) offers a reference point for PAX's credit segment trajectory. NOTE: At 11.8x PAX's AUM, ARES slightly exceeds the 10x AUM filter per methodology. Included because (a) ARES's private equity segment ($25B) is actually close to PAX's PE scale, and (b) no other publicly listed credit-focused alts manager of comparable size exists within the strict 10x filter.",
+      "data_availability": "high",
+      "key_differences": "ARES is 11.8x PAX's total AUM (slightly exceeds 10x filter). ARES is overwhelmingly credit-focused (65% of AUM) vs. PAX's more balanced mix. ARES is U.S./global with no specific LatAm focus. ARES has massive perpetual capital base ($200B) dwarfing PAX. However, ARES PE segment alone ($25B) is comparable to PAX PE."
+    }
+  ],
+  "excluded_candidates": [
+    {
+      "name": "Brookfield Asset Management",
+      "ticker": "BAM",
+      "reason": "AUM of $1.15 trillion is 21.9x PAX's AUM, exceeding the 10x filter. While BAM has significant LatAm presence (particularly in infrastructure and renewables) and would be a relevant strategy peer, the scale differential is too large for meaningful financial metric comparison."
+    },
+    {
+      "name": "Apollo Global Management",
+      "ticker": "APO",
+      "reason": "AUM exceeds $700B (>13x PAX). Scale differential too large for meaningful comparison despite being a leading alts platform."
+    },
+    {
+      "name": "Blackstone Inc.",
+      "ticker": "BX",
+      "reason": "AUM exceeds $1 trillion (>19x PAX). Largest alternative asset manager globally; scale differential makes financial comparisons uninformative."
+    },
+    {
+      "name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "reason": "AUM exceeds $600B (>11x PAX). Scale differential exceeds 10x filter."
+    },
+    {
+      "name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "reason": "AUM exceeds $400B (>7.6x PAX). Within 10x filter but excluded in favor of peers with stronger strategy or geographic overlap with PAX. Could be considered as an alternative to ARES."
+    },
+    {
+      "name": "TPG Inc.",
+      "ticker": "TPG",
+      "reason": "AUM of $303B (~5.8x PAX). Within 10x filter and a valid candidate, but excluded in favor of EQT (similar scale, stronger PE/infra overlap) and OWL (credit/GP solutions overlap). Could substitute for either."
+    }
+  ],
+  "peer_group_summary": {
+    "total_peers": 7,
+    "scale_peers": 2,
+    "strategy_peers": 4,
+    "both": 1,
+    "geographic_distribution": {
+      "United_States": 4,
+      "Brazil_LatAm": 1,
+      "Europe_Sweden": 1,
+      "Global_diversified": 1
+    },
+    "aum_range": {
+      "minimum_usd_billions": 40,
+      "maximum_usd_billions": 622.5,
+      "median_usd_billions": 189,
+      "target_company_usd_billions": 52.6,
+      "ratio_range": "0.76x to 11.8x (6 of 7 within strict 10x filter)"
+    },
+    "validation_checklist": {
+      "peers_5_to_7": true,
+      "at_least_2_scale_peers": true,
+      "at_least_2_strategy_peers": true,
+      "no_single_geography_over_60_pct": true,
+      "all_have_english_disclosures": true,
+      "notes": "4 of 7 peers (57%) are U.S.-primary, which is below the 60% threshold. LatAm is represented by VINP. Europe represented by EQT. All 7 peers file with SEC or produce English-language annual reports and investor presentations."
+    },
+    "peer_group_rationale": "The peer group balances scale comparability (VINP and PX are closest to PAX's $52.6B AUM) with strategy comparability (HLNE and STEP mirror GPMS; OWL and ARES benchmark the credit platform; EQT benchmarks PE/infrastructure). VINP is the only direct LatAm competitor and qualifies on both dimensions. The group spans the alternative asset management spectrum from mid-scale specialists (PX at $40B) to large diversified platforms (ARES at $622B), enabling PAX to benchmark against both current-scale and aspirational peers."
+  }
+}

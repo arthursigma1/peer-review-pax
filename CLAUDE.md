@@ -4,13 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Strategy Drift Detector + Peer Comparison — an AI agent system that (1) evaluates whether a public company's actions align with its stated strategic priorities and (2) benchmarks the company's competitive positioning against industry peers. Currently applied to **Block, Inc.** (drift) and **Patria Investments Limited (PAX)** (drift + peer comparison). The system is prompt-driven with no custom application code; the `src/` and `tests/` directories are scaffolded but empty (only `__init__.py` files and `llm_client.py`).
+Strategy Drift Detector + Peer Comparison + Valuation Driver Analysis — an AI agent system that (1) evaluates whether a public company's actions align with its stated strategic priorities, (2) benchmarks the company's competitive positioning against industry peers, and (3) identifies what drives valuation multiples across a peer universe and produces a strategic playbook. Currently applied to **Block, Inc.** (drift) and **Patria Investments Limited (PAX)** (drift + peer comparison + VDA). The system is prompt-driven; analysis executes through Claude Code agent teams. A **Tauri desktop dashboard** provides a GUI for the VDA pipeline.
 
 ## Architecture
 
 This is a **prompt-driven analytical pipeline**, not a traditional software project. Analysis is executed entirely through Claude Code agent teams coordinated via `TeamCreate`/`Agent`/`SendMessage` tools.
 
-### Pipeline (6 Stages)
+### Strategy Drift Pipeline (6 Stages)
 
 ```
 Stage 0 → Stage 1A/1B/1C → Stage 2 → Stage 3 → Stage 4 → Stage 5
@@ -24,15 +24,6 @@ Sources    Gather Info       Pillars   Map Actions  Score     Report
 - **Stage 4** — Coherence analysis: 5-dimension weighted scoring (Resource 30%, Action 25%, Commitment 20%, Temporal 15%, Contradiction 10%)
 - **Stage 5** — Final report generation
 
-### Agent Team (5 agents + lead)
-
-Executed in 4 waves with quality gates between each:
-- `prompt-engineer` — writes prompts, QA reviews final output
-- `source-scout` — maps and validates public sources
-- `strategy-intel` — gathers strategy docs, maps pillars
-- `execution-intel` — gathers actions & commitments, maps to pillars
-- `drift-analyst` — coherence scoring, final report
-
 ### Peer Comparison Pipeline (8 Stages)
 
 ```
@@ -42,43 +33,51 @@ Define Metrics     Data                     Rankings   Context
 Map Sources
 ```
 
-- **Stage P0** — Peer identification: select 5-7 peers by sector, scale, strategy
-- **Stage P0b** — Metric definition: 15-20 industry-specific metrics across 8 categories
-- **Stage P0c** — Source mapping: catalog sources for target + all peers
-- **Stage P1** — Data gathering: extract quantitative data per company per metric
-- **Stage P2** — Standardization: normalize currency, fiscal year, accounting standards
-- **Stage P3** — Comparative analysis: rankings, percentiles, trends, positioning
-- **Stage P4** — Strategic contextualization: integrate with drift pipeline PIL-* pillars
-- **Stage P5** — Peer report generation
-
 **Dependency:** Peer pipeline requires `stage_2_pillars.json` from drift pipeline (run drift first).
+
+### Valuation Driver Analysis Pipeline (5 Steps)
+
+```
+Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers → Build the Playbook
+```
+
+- **Map the Industry** — Identify peers, catalog sources, define metrics (3 parallel agents: Industry Scanner, Source Cataloger, Metrics Designer)
+- **Gather Data** — Collect quantitative data and extract strategies (Data Collector splits into 3 tiers of ~9 firms; Strategy Researcher runs in parallel)
+- **Find What Drives Value** — Standardize, correlate (Spearman), rank drivers (Statistical Analyst, sequential)
+- **Deep-Dive Peers** — Platform profiles and asset class analysis (Platform Profiler + Sector Specialist, parallel)
+- **Build the Playbook** — Synthesize insights and generate HTML report (Insight Synthesizer + Report Composer, sequential)
+
+**Independence:** VDA pipeline operates independently of the drift pipeline. No PIL-* pillar IDs are referenced.
+
+**Methodology:** `docs/valuation-driver-methodology.md` — Reusable, company-agnostic VDA methodology reference.
 
 ### Key Directories
 
-- `prompts/` — Drift pipeline prompt templates (`0X_*.md`), version-controlled. Never hardcode prompts in Python.
+- `prompts/` — Drift pipeline prompt templates (`0X_*.md`), version-controlled
 - `prompts/peer/` — Peer comparison pipeline prompt templates (`p0X_*.md`)
-- `data/raw/` — Raw source documents for Block, Inc. (`block_{type}_{source_id}.txt`)
-- `data/raw/pax/` — Raw source documents for PAX (`pax_*.txt`, `peer_{ticker}_*.txt`)
-- `data/processed/` — Block, Inc. pipeline outputs: `stage_*.json`, `final_report.md`, `qa_review.md`
-- `data/processed/pax/` — PAX pipeline outputs: drift (`stage_*.json`) + peer (`peer_*.json`, `peer_report.md`)
+- `data/raw/{ticker}/` — Raw source documents per company
+- `data/processed/{ticker}/` — Pipeline outputs per company (drift, peer, VDA)
 - `docs/plans/` — Execution plans with agent team architecture
-- `docs/strategy-drift-methodology.md` — Reusable drift methodology (apply to any company)
+- `docs/strategy-drift-methodology.md` — Reusable drift methodology
 - `docs/peer-comparison-methodology.md` — Reusable peer comparison methodology
+- `docs/valuation-driver-methodology.md` — Reusable VDA methodology
+- `src/tauri/` — Tauri desktop dashboard (React + TypeScript + Tailwind + Rust)
+- `src/document_converter.py` — PDF/DOCX/PPTX to text converter using marker-pdf
 
 ## Commands
 
 ```bash
-# Install dependencies
+# Install Python dependencies
 pip install -r requirements.txt
 
-# Run the analysis pipeline (scaffolded, not yet implemented)
-python -m src.api.pipeline
+# Run the Tauri desktop dashboard (development mode)
+cd src/tauri && npm run tauri dev
 
-# Start the API (scaffolded)
-uvicorn src.api.main:app --reload
+# Build the Tauri app for production
+cd src/tauri && npm run tauri build
 
-# Launch the UI (scaffolded)
-streamlit run src/ui/app.py
+# Convert supplemental documents (PDF, DOCX, PPTX)
+python -c "from src.document_converter import convert_directory; print(convert_directory('/path/to/dir'))"
 ```
 
 ## Skills (Slash Commands)
@@ -93,20 +92,55 @@ Run the full Strategy Drift Detection pipeline for any public company.
 
 Output: `data/processed/{TICKER}/{YYYY-MM-DD}/final_report.md` + `final_report.html`
 
+### `/valuation-driver TICKER [--auto] [--sources /path/to/dir]`
+
+Run the full Valuation Driver Analysis pipeline for any public company.
+
+- `TICKER` — stock ticker symbol (e.g., `PAX`, `BX`, `KKR`)
+- `--auto` — optional flag for fire-and-forget mode
+- `--sources /path/to/dir` — optional path to supplemental data files (PDFs, DOCX, PPTX converted via marker-pdf)
+
+Output: `data/processed/{TICKER}/{YYYY-MM-DD}/peer_vd_final_report.html` + supporting JSON files
+
+### `/review-analysis TICKER [--report path]`
+
+Deploy review agents on any completed VDA analysis to identify improvement opportunities.
+
+- `TICKER` — stock ticker of the analysis to review
+- `--report path` — optional override for report location
+
+Output: `data/processed/{TICKER}/peer_vd_review_methodology.md` + `peer_vd_review_results.md`
+
+## VDA Friendly Naming
+
+| Internal Agent | User-Facing Name | Pipeline Step |
+|---|---|---|
+| universe-scout | Industry Scanner | Map the Industry |
+| source-mapper | Source Cataloger | Map the Industry |
+| metric-architect | Metrics Designer / Statistical Analyst | Map the Industry / Find What Drives Value |
+| data-collector | Data Collector | Gather Data |
+| strategy-extractor | Strategy Researcher | Gather Data |
+| platform-analyst | Platform Profiler | Deep-Dive Peers |
+| vertical-analyst | Sector Specialist | Deep-Dive Peers |
+| playbook-synthesizer | Insight Synthesizer | Build the Playbook |
+| report-builder | Report Composer | Build the Playbook |
+
 ## Conventions
 
 - **Python 3.11+** with type hints
 - **Anthropic SDK** via shared wrapper at `src/llm_client.py` — all LLM calls go through `llm_client.ask()`
 - Default model: `claude-sonnet-4-20250514`
 - API key via `ANTHROPIC_API_KEY` env var (`.env` file, never committed)
-- Prompts use `{COMPANY}` placeholder for reuse across companies
+- Prompts use `{COMPANY}`, `{TICKER}`, `{SECTOR}` placeholders for reuse across companies
 - Every source gets a bias tag: `company-produced`, `regulatory-filing`, `third-party-analyst`, `journalist`, `industry-report`, `c-level-social`, `peer-disclosure`
 - Academic language throughout — no marketing speak
 - Every claim in drift reports must cite source IDs (S-*, STR-*, ACT-*, CMT-*, PIL-*)
 - Every claim in peer reports must cite source IDs (PS-*, PEER-*, MET-*, BENCH-*, RANK-*, PIL-*)
+- Every claim in VDA reports must cite source IDs (PS-VD-*, FIRM-*, MET-VD-*, COR-*, DVR-*, ACT-VD-*, PLAY-*)
 - Per-company directory convention: `data/processed/{ticker}/`, `data/raw/{ticker}/`
+- VDA data collection always splits into 3 parallel tiers (~9 firms each)
 
-## Scoring Framework
+## Scoring Framework (Drift)
 
 | Classification | Score Range |
 |---|---|
@@ -115,6 +149,15 @@ Output: `data/processed/{TICKER}/{YYYY-MM-DD}/final_report.md` + `final_report.h
 | Significant Drift | 2.0–2.9 |
 | Strategic Disconnect | < 2.0 |
 
+## VDA Correlation Classification
+
+| Classification | Criterion |
+|---|---|
+| Stable value driver | rho > 0.5 across all three multiples |
+| Multiple-specific driver | rho > 0.5 for exactly one multiple |
+| Moderate signal | 0.3 <= rho <= 0.5 for at least one multiple |
+| Not a driver | rho < 0.3 for all three multiples |
+
 ## Reuse for Another Company
 
-Replace "Block, Inc." in prompts, update source-scout search targets, and re-run the pipeline. All prompts are designed with `{COMPANY}` and `{TICKER}` placeholders. For peer comparison, also identify industry-specific peers and metrics appropriate to the target company's sector.
+Replace "Block, Inc." in prompts, update source-scout search targets, and re-run the pipeline. All prompts are designed with `{COMPANY}`, `{TICKER}`, and `{SECTOR}` placeholders. For peer comparison, also identify industry-specific peers and metrics appropriate to the target company's sector. For VDA, run `/valuation-driver TICKER` — the pipeline auto-detects sector and identifies peers.

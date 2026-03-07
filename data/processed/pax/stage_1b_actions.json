@@ -1,0 +1,279 @@
+{
+  "metadata": {
+    "stage": "1B",
+    "company": "Patria Investments Limited",
+    "ticker": "PAX",
+    "extraction_date": "2026-03-06",
+    "sources_analyzed": ["S-011", "S-012", "S-013", "S-014", "S-015", "S-016", "S-017", "S-018", "S-019", "S-020", "S-021", "S-022", "S-023", "S-028", "S-030", "S-031", "S-032", "S-033", "S-035"],
+    "methodology": "Manual extraction from action-type sources per prompts/01_gather_actions.md. Web search and fetch of press releases, earnings results, acquisition announcements, and third-party reporting.",
+    "source_hierarchy": "Regulatory filings > Earnings transcripts > Press releases > Third-party",
+    "limitations": "FY2025 20-F not yet available (expected April-May 2026). Private Equity Fund VII deployment details limited. CVM (Brazil) filings not accessed. Tria/Trya energy platform financials only partially disclosed. Some Bloomberg articles behind paywall — summaries used where full text unavailable."
+  },
+  "actions": [
+    {
+      "id": "ACT-001",
+      "type": "capital_allocation",
+      "description": "Acquisition of 51% stake in Solis Investimentos, a Brazilian CLO/ABS-focused credit manager with ~$3.5B FEAUM. Closed January 2, 2026. Solis manages 120+ funds serving 30,000+ investors. Pro-forma Credit FEAUM increases to >$11.7B, making credit >25% of total FEAUM. Expected to be accretive to FRE and DE in year one.",
+      "magnitude": "high",
+      "date": "2025-11-26",
+      "source_id": "S-018",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Credit platform expansion and diversification",
+      "confidence": 0.95,
+      "notes": "Announcement date Nov 26, 2025; closed Jan 2, 2026. Corroborated by SEC 6-K filing (S-026). Founders Macedo and Binelli continue leading. Brazil CLO market growing at 35% CAGR. Solis achieved 45% CAGR since 2021."
+    },
+    {
+      "id": "ACT-002",
+      "type": "capital_allocation",
+      "description": "Acquisition of RBR Gestao de Recursos, Brazil's leading REIT manager with ~$1.5B AUM across 12 funds (11 listed REITs). Adds ~$1.3B FEAUM. Pro-forma Real Estate FEAUM reaches $8.5B. Makes Patria the largest independent listed REIT manager in Brazil. ~90% of real estate strategies in permanent capital vehicles. Closed February 2026.",
+      "magnitude": "high",
+      "date": "2025-12-11",
+      "source_id": "S-019",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Real estate platform expansion and permanent capital growth",
+      "confidence": 0.95,
+      "notes": "No shareholder or antitrust approvals required. Accretive to FRE and DE in year one. Permanent capital vehicles ~22% of total FEAUM post-deal. Pro-forma REIT FEAUM: $5.7B."
+    },
+    {
+      "id": "ACT-003",
+      "type": "capital_allocation",
+      "description": "Acquisition of WP Global Partners, a U.S.-based lower-middle-market PE solutions manager with $1.8B FEAUM. First U.S. acquisition. All-cash deal at 1.7% of FEAUM plus performance-based earnout payable 2029. Pro-forma GPMS FEAUM exceeds $13.3B with ~40% in U.S. assets. Founded 2005, offices in New York and Chicago, 30 employees, deployed >$6B historically.",
+      "magnitude": "high",
+      "date": "2026-02-02",
+      "source_id": "S-020",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "U.S. market entry and GPMS platform expansion",
+      "confidence": 0.95,
+      "notes": "Corroborated by SEC 6-K (S-027) and Pensions & Investments (S-037). Accretive to FRE and DE in year one. Advisors: Latham & Watkins (legal), Raymond James (financial)."
+    },
+    {
+      "id": "ACT-004",
+      "type": "product_launch",
+      "description": "Infrastructure Fund V final close at $2.9B, the largest dedicated infrastructure fund ever raised in Latin America. Oversubscribed. Targets highways, renewables, electric mobility, sanitation, and waste management. AIIB (multilateral development bank) approved as LP. Addresses $90B+ LatAm infrastructure opportunity over 5-7 years.",
+      "magnitude": "high",
+      "date": "2025-10-17",
+      "source_id": "S-016",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Infrastructure platform leadership and fundraising scale",
+      "confidence": 0.95,
+      "notes": "Corroborated by Bloomberg (S-030), Infrastructure Investor (S-035), BNamericas (S-036), and AIIB project approval (S-040). Patria described as 'thermometer for Latin America' in infrastructure investing."
+    },
+    {
+      "id": "ACT-005",
+      "type": "product_launch",
+      "description": "First dedicated Latin America private credit fund closed at $314M in commitments (May 2025). As of December 31, 2025: >70% deployed into 14 transactions with gross unlevered IRR of 15.6% and average duration of 2.5 years. Strategy: senior secured, USD-denominated loans targeting mid-market and family-owned borrowers.",
+      "magnitude": "medium",
+      "date": "2025-05-28",
+      "source_id": "S-017",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Credit platform buildout — dedicated private credit",
+      "confidence": 0.90,
+      "notes": "Corroborated by Bloomberg (S-031). Part of broader $12.3B credit platform with 26-year history. Market context: private credit <1% of LatAm's $2.3T corporate credit system."
+    },
+    {
+      "id": "ACT-006",
+      "type": "product_launch",
+      "description": "Announced preparation of second vintage Latin America private credit fund, expected to raise >$500M. Builds on first fund's strong 15.6% IRR and rapid deployment. Broader platform track record: 210+ transactions, $3.1B deployed, 14.3% historical unlevered IRR across 24 industries and 7 countries.",
+      "magnitude": "medium",
+      "date": "2026-02-11",
+      "source_id": "S-021",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Credit platform scaling — second vintage fundraise",
+      "confidence": 0.85,
+      "notes": "Target size >$500M per Bloomberg (S-032). LatAm spreads 100-150bps wider than US HY despite stronger fundamentals (leverage 2.8x vs 5.5x)."
+    },
+    {
+      "id": "ACT-007",
+      "type": "organizational",
+      "description": "Peru office opening announced. Will be sixth Latin American office in Lima's commercial district. Led by Alfonso Duval (commercial director, Andean region) and Felipe Claro (portfolio manager). Expects to obtain operational license from local regulators in 2026.",
+      "magnitude": "medium",
+      "date": "2026-01-29",
+      "source_id": "S-022",
+      "source_bias": "journalist",
+      "implied_strategic_area": "LatAm geographic diversification and distribution expansion",
+      "confidence": 0.85,
+      "notes": "Reported by Bloomberg (S-033). Signals continued regional expansion beyond Brazil, Chile, Colombia. AUM at $51.2B at announcement."
+    },
+    {
+      "id": "ACT-008",
+      "type": "organizational",
+      "description": "Moneda Asset Management completed final integration with Patria, rebranding to 'Moneda Patria Investments' in May 2024. This represented the final branding consolidation of the December 2021 combination that created a combined $25B+ AUM platform and brought the largest credit investment platform in Latin America.",
+      "magnitude": "medium",
+      "date": "2024-05-01",
+      "source_id": "S-023",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Post-acquisition integration and brand consolidation",
+      "confidence": 0.85,
+      "notes": "Multi-year integration process from Dec 2021 combination to May 2024 rebrand. Moneda products continue under respected brand. Source: RankiaPro (Spanish language)."
+    },
+    {
+      "id": "ACT-009",
+      "type": "capital_allocation",
+      "description": "Share buyback program initiated: Board authorized repurchase of up to 3M Class A common shares in August 2025. Subsequently expanded: entered total return swap (TRS) for 1.5M shares in Q3 2025 (settlement by Q3 2026). In Q4 2025, approved additional 3M share repurchase, and Patria Partners committed to purchase up to 2.5M shares. Total authorization: 7M shares.",
+      "magnitude": "medium",
+      "date": "2025-08-06",
+      "source_id": "S-013",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Capital return and share count management",
+      "confidence": 0.90,
+      "notes": "Progressive expansion: 3M shares (Aug 2025) -> 1.5M TRS (Q3 2025) -> additional 3M + 2.5M Patria Partners = 7M total. Share count expected 158M-160M average through 2027."
+    },
+    {
+      "id": "ACT-010",
+      "type": "capital_allocation",
+      "description": "Dividend increased from $0.60/share annually ($0.15/quarter) in 2025 to $0.65/share annually for 2026, representing an 8% increase. Expected total payout of ~$100M in 2026. Consistent quarterly dividend history since IPO.",
+      "magnitude": "medium",
+      "date": "2026-02-03",
+      "source_id": "S-015",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Capital return to shareholders",
+      "confidence": 0.95,
+      "notes": "Quarterly dividend of $0.15/share maintained throughout 2024-2025. Increase announced with Q4 2025 earnings. Record date Feb 20, 2026; payment Mar 12, 2026."
+    },
+    {
+      "id": "ACT-011",
+      "type": "segment_financial_result",
+      "description": "FY2025 record organic fundraising of $7.7B, exceeding the upwardly revised target of $6.6B by 17%. This compares to $5.5B in FY2024 (which exceeded $5B target). Quarterly progression: Q1 $3.2B (record), Q2 $1.3B, Q3 $1.5B, Q4 $1.7B. 12-month trailing at year-end: $7.7B all organic.",
+      "magnitude": "high",
+      "date": "2025-Q4",
+      "source_id": "S-015",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Platform diversification driving fundraising momentum",
+      "confidence": 0.95,
+      "notes": "Corroborated by quarterly press releases S-012 through S-015. Investor Day target was $6B; raised to $6.3-6.6B at Q2; actual was $7.7B. Q1 included ~$1B from Asian sovereign wealth fund investors."
+    },
+    {
+      "id": "ACT-012",
+      "type": "segment_financial_result",
+      "description": "FY2025 FRE of $202.5M (+19% YoY from $170.1M), within the $200-225M guidance range. FRE margin expanded to 58.9% (from 57% in 2024). Quarterly FRE progression: Q1 $42.6M (55.1% margin), Q2 $46.1M (56.8%), Q3 $49.5M (58.5%), Q4 $64.3M (63.6%). Strong Q4 sequential step-up.",
+      "magnitude": "high",
+      "date": "2025-Q4",
+      "source_id": "S-015",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Operating leverage and margin expansion",
+      "confidence": 0.95,
+      "notes": "FRE growth trajectory: $147.7M (2023) -> $170.1M (2024, +15%) -> $202.5M (2025, +19%). Margin expanded from 53% in Q3 2024 to 63.6% in Q4 2025. Corroborated by S-011 through S-015."
+    },
+    {
+      "id": "ACT-013",
+      "type": "segment_financial_result",
+      "description": "FEAUM reached $40.8B at year-end 2025 (+24% YoY from $33B). Total AUM $52.6B (+26% YoY). AUM crossed $50B milestone in Q3 2025, representing 3.5x growth from IPO level ($15B in Jan 2021).",
+      "magnitude": "high",
+      "date": "2025-Q4",
+      "source_id": "S-015",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Platform scale and AUM growth",
+      "confidence": 0.95,
+      "notes": "FEAUM progression: $21.4B (IPO) -> $33B (2024) -> $40.8B (2025). Total AUM: $15B (IPO) -> $41.9B (2024) -> $52.6B (2025). $50B milestone achieved Q3 2025."
+    },
+    {
+      "id": "ACT-014",
+      "type": "segment_financial_result",
+      "description": "FY2025 distributable earnings of $200.9M ($1.27/share). Q4 2025 DE of $78.5M ($0.50/share), up significantly from Q4 2024 ($89.1M at $0.58/share included one-time performance fees). FY2025 IFRS net income: $85.6M (up from $73.4M in 2024). Revenue: $405.8M.",
+      "magnitude": "high",
+      "date": "2025-Q4",
+      "source_id": "S-015",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Earnings growth and value creation",
+      "confidence": 0.90,
+      "notes": "DE progression: $189.2M (2024) -> $200.9M (2025, +6%). Revenue not broken out by segment in press releases. EBITDA: $207.2M."
+    },
+    {
+      "id": "ACT-015",
+      "type": "product_launch",
+      "description": "Tria (Trya) energy trading platform expansion: signed definitive agreement to acquire Raizen Power (Raizen's energy trading arm in Brazil's free market). Upon completion, Tria expected to become one of Brazil's largest independent energy traders. Tria has annual revenue >R$1.5B, equity ~R$200M, and >1 GWm traded. Contributed $4M to Patria's 2025 distributable earnings.",
+      "magnitude": "medium",
+      "date": "2025-12-19",
+      "source_id": "S-015",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Infrastructure adjacency — energy trading platform",
+      "confidence": 0.80,
+      "notes": "Raizen Power acquisition subject to CADE (Brazil antitrust) approval. Tria launched in 2024 and experienced strong growth. Mentioned in Q4 2025 earnings call as 'exciting' long-term opportunity."
+    },
+    {
+      "id": "ACT-016",
+      "type": "segment_financial_result",
+      "description": "FY2024 performance: FRE $170.1M (+15% YoY), FRE margin 57%, FEAUM $33B (+38% YoY), total AUM $41.9B. Fundraising $5.5B (exceeded $5B target). Distributable earnings $189.2M ($1.24/share). Performance-related earnings of $41M from Aguas Pacifico infrastructure asset sale.",
+      "magnitude": "high",
+      "date": "2024-Q4",
+      "source_id": "S-011",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Organic growth and platform diversification delivering results",
+      "confidence": 0.95,
+      "notes": "Baseline year for Investor Day 3-year targets. Q4 2024 FRE: $54.8M (+18% YoY). IFRS net income: $73.4M. Corroborated by 6-K filing (S-024)."
+    },
+    {
+      "id": "ACT-017",
+      "type": "segment_financial_result",
+      "description": "Q3 2024 baseline quarter: FRE $40.6M (+13% YoY), FRE margin 53%, FEAUM $34B (+58% YoY), total AUM $44.7B. Quarterly fundraising >$2B, YTD $4.2B. 12-month trailing fundraising $5.6B (all organic). 2024 FRE target of $170M on track.",
+      "magnitude": "medium",
+      "date": "2024-Q3",
+      "source_id": "S-028",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Fundraising momentum from new platforms since IPO",
+      "confidence": 0.95,
+      "notes": "CEO highlighted fundraising from 'investment platforms that did not exist at the time of our IPO.' Serves as YoY comparison baseline for 2025 quarterly results."
+    },
+    {
+      "id": "ACT-018",
+      "type": "capital_allocation",
+      "description": "Q1 2025 Asian sovereign wealth fund commitments of approximately $1B, representing significant geographic diversification of the LP base beyond traditional LatAm and North American institutional investors. Part of record $3.2B quarterly fundraise including customized investment accounts, SMAs, drawdown funds, permanent capital vehicles, and interval funds.",
+      "magnitude": "high",
+      "date": "2025-05-02",
+      "source_id": "S-012",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Global distribution and LP base diversification",
+      "confidence": 0.85,
+      "notes": "Specific sovereign wealth fund names not disclosed. Mix of fund structures across multiple asset classes demonstrates platform breadth."
+    },
+    {
+      "id": "ACT-019",
+      "type": "segment_financial_result",
+      "description": "Infrastructure Fund III projected to generate $20M in performance fee realization in 2026, with ~$19M net accrued carry remaining. This represents the beginning of significant performance-related earnings from mature vintage funds.",
+      "magnitude": "medium",
+      "date": "2026-02-03",
+      "source_id": "S-015",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Performance fee crystallization from mature infrastructure assets",
+      "confidence": 0.80,
+      "notes": "PRE target for 2024-2027: $120M-$140M total. Aguas Pacifico sale contributed $41M in 2024. Infrastructure Fund III carry adds incremental PRE in 2026."
+    },
+    {
+      "id": "ACT-020",
+      "type": "organizational",
+      "description": "Operating expense discipline maintained: Q4 2025 operating expenses at $36.1M quarterly level established as 2026 baseline (excluding acquisition impacts). Tax rate optimized to ~10% annually via UK entity credits (improved from prior higher rates).",
+      "magnitude": "low",
+      "date": "2026-02-03",
+      "source_id": "S-015",
+      "source_bias": "company-produced",
+      "implied_strategic_area": "Operating efficiency and cost discipline",
+      "confidence": 0.85,
+      "notes": "Tax optimization through UK entity structure. Management fee rate expected to trend toward ~90bps from 92bps average. M&A deferred payments through 2028 total ~$110M."
+    }
+  ],
+  "summary": {
+    "total_actions": 20,
+    "by_type": {
+      "capital_allocation": 6,
+      "product_launch": 4,
+      "organizational": 3,
+      "segment_financial_result": 7,
+      "discontinued_initiative": 0
+    },
+    "by_magnitude": {
+      "high": 12,
+      "medium": 7,
+      "low": 1
+    },
+    "key_themes": [
+      "Aggressive M&A: Three acquisitions in Q4 2025/Q1 2026 (Solis $3.5B, RBR $1.5B, WP Global $1.8B) adding ~$6.6B in FEAUM",
+      "Credit platform buildout: From zero dedicated private credit to $12.1B pro-forma Credit FEAUM via organic fund (first vintage $314M) and Solis acquisition",
+      "Record fundraising: $7.7B organic in FY2025, exceeding upwardly revised $6.6B target by 17%",
+      "FRE and margin expansion: $202.5M FRE (+19% YoY), margin expanded from 53% to 63.6% peak",
+      "U.S. market entry: WP Global Partners as first direct U.S. acquisition, ~40% of GPMS assets now U.S.",
+      "Capital return expansion: dividend +8%, buyback expanded to 7M shares, TRS for 1.5M shares",
+      "Geographic diversification: Peru office opening (6th LatAm office), Asian SWF LP commitments",
+      "No identified discontinuations or strategic retreats — consistent expansion across all segments"
+    ]
+  }
+}

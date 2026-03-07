@@ -1,0 +1,371 @@
+{
+  "metadata": {
+    "stage": "1A",
+    "company": "Patria Investments Limited",
+    "ticker": "PAX",
+    "analysis_date": "2026-03-06",
+    "inputs": ["stage_0_sources.md"],
+    "sources_analyzed": ["S-001", "S-002", "S-003", "S-004", "S-005", "S-006", "S-007", "S-008", "S-009", "S-010", "S-016", "S-017", "S-018", "S-019", "S-020", "S-021", "S-035"],
+    "methodology": "Strategy element extraction per prompts/01_gather_strategy.md. Web search and fetch of public documents including earnings press releases, earnings call transcripts (via public summaries), acquisition announcements, corporate website, and third-party reporting. Full earnings transcripts on SeekingAlpha are paywalled; extraction relied on publicly available summaries, GlobeNewswire press releases, and financial data aggregators.",
+    "limitations": "Full 20-F text not directly accessible via web fetch (SEC EDGAR rendering limitations). Earnings call transcripts accessed via public summaries rather than full verbatim transcripts. Shareholder presentations (S-008, S-009, S-010) are PDF/slide format not directly parseable; strategy elements inferred from earnings calls and press releases that reference the same metrics. Investor Day presentation (S-002) accessed via secondary reporting, not the original 6-K filing slides."
+  },
+  "strategy_elements": [
+    {
+      "id": "STR-001",
+      "element_type": "mission_vision",
+      "content": "Patria seeks to 'transform industries and untangle bottlenecks, generating attractive returns for its investors, while creating sustainable value for society.' The firm describes its purpose as 'crafting unique investment opportunities for our clients' and 'building a legacy in the regions where we operate.'",
+      "language_register": "aspirational",
+      "source_id": "S-001",
+      "source_bias": "regulatory-filing",
+      "date": "2025-05-14",
+      "confidence": 0.85,
+      "context": "Corporate description from 20-F annual report and corporate website. Legally mandated disclosure, though mission language is inherently aspirational."
+    },
+    {
+      "id": "STR-002",
+      "element_type": "mission_vision",
+      "content": "Patria positions itself as 'winning with purpose' -- success means doing business the right way, with each investment serving a greater purpose, making a sustainable and positive mark on the sectors in which they operate by developing quality assets, bringing in innovations and increasing the competitiveness of the market.",
+      "language_register": "aspirational",
+      "source_id": "S-001",
+      "source_bias": "regulatory-filing",
+      "date": "2025-05-14",
+      "confidence": 0.80,
+      "context": "Core values framework from corporate filings and website. Purpose-driven narrative consistent across multiple public materials."
+    },
+    {
+      "id": "STR-003",
+      "element_type": "strategic_pillar",
+      "content": "Platform diversification: Patria has evolved from a PE/Infrastructure-focused firm to a multi-asset platform with 'over 35 investment strategies with more than 100 products with no single product representing more than 8%' of FEAUM. FEAUM breakdown as of Q4 2025: GPMS 29%, Credit 26%, Real Estate 19%, Private Equity 12%, Infrastructure 9%, Public Equities 6%.",
+      "language_register": "operational",
+      "source_id": "S-007",
+      "source_bias": "company-produced",
+      "date": "2026-02-03",
+      "confidence": 0.95,
+      "context": "Q4 2025 earnings call. Platform diversification is the dominant strategic narrative, mentioned first and most extensively in every earnings call since Q4 2024. Supported by specific FEAUM breakdown data."
+    },
+    {
+      "id": "STR-004",
+      "element_type": "strategic_pillar",
+      "content": "Credit platform buildout: Patria is aggressively building its credit vertical through organic fundraising (record $1.8B raised in 2025) and the Solis acquisition ($3.5B FEAUM). Pro forma credit FEAUM is approximately $12.1 billion, representing 26% of total FEAUM. The strategy targets 'structural scarcity in corporate lending' in Latin America, where the region represents less than 1% of global private credit.",
+      "language_register": "operational",
+      "source_id": "S-007",
+      "source_bias": "company-produced",
+      "date": "2026-02-03",
+      "confidence": 0.95,
+      "context": "Q4 2025 earnings call and Solis acquisition announcement. Credit has grown from a minor asset class to 26% of FEAUM. Supported by Bloomberg reporting (S-031, S-032) and Solis press release (S-018)."
+    },
+    {
+      "id": "STR-005",
+      "element_type": "strategic_pillar",
+      "content": "Inorganic growth via targeted M&A: Patria targets $18 billion of fee-paying AUM through acquisitions over the 2025-2027 period. Three acquisitions announced in Q4 2025 alone: Solis (credit, $3.5B FEAUM), RBR (real estate, $1.3B FEAUM), and WP Global Partners (GPMS/PE, $1.8B FEAUM). Prior acquisitions include Moneda (2021) and others.",
+      "language_register": "operational",
+      "source_id": "S-007",
+      "source_bias": "company-produced",
+      "date": "2026-02-03",
+      "confidence": 0.90,
+      "context": "Q4 2025 earnings call. The $18B M&A target is a formal Investor Day commitment. However, management also emphasizes that only ~10% of 2027 FRE target comes from acquisitions, positioning M&A as complementary to organic growth."
+    },
+    {
+      "id": "STR-006",
+      "element_type": "strategic_pillar",
+      "content": "U.S. market entry and global expansion: The WP Global Partners acquisition ($1.8B FEAUM) represents Patria's first U.S. deal. Post-acquisition, nearly 40% of GPMS investments will be in U.S. assets. Pro forma GPMS FEAUM exceeds $13.3 billion. The firm describes itself as 'a global alternative asset management firm focused on the mid-market segment, specializing in resilient sectors across select regions.'",
+      "language_register": "transitional",
+      "source_id": "S-020",
+      "source_bias": "company-produced",
+      "date": "2026-02-02",
+      "confidence": 0.85,
+      "context": "WP Global Partners acquisition announcement. First concrete U.S. entry after years as LatAm-focused. CEO quote: transaction 'immediately broadens the universe of GPs in our ecosystem and strengthens our product offering across private equity primaries, secondaries and co-investments in the U.S. lower middle market.'"
+    },
+    {
+      "id": "STR-007",
+      "element_type": "strategic_pillar",
+      "content": "Infrastructure dominance in Latin America: Infrastructure Fund V raised $2.9 billion, the largest dedicated infrastructure fund ever raised in Latin America. The fund targets highways, renewables, electric mobility, sanitation, data centers, and desalination across Brazil, Colombia, and Chile. Patria identified over $90 billion in infrastructure investment opportunities over the next 5-7 years.",
+      "language_register": "operational",
+      "source_id": "S-016",
+      "source_bias": "company-produced",
+      "date": "2025-10-17",
+      "confidence": 0.95,
+      "context": "Infrastructure Fund V final close announcement, validated by Bloomberg (S-030), Infrastructure Investor (S-035), and AIIB investment approval (S-040). Felipe Pinto: 'Patria's deep expertise in the region's sectors strongly positions us as a local gateway for investors.'"
+    },
+    {
+      "id": "STR-008",
+      "element_type": "strategic_pillar",
+      "content": "Organic fundraising excellence: Patria achieved record $7.7 billion in organic fundraising for 2025, exceeding the revised $6.6 billion target by over $1 billion and the initial $6 billion target by 28%. This was 'an important step to deliver the cumulative three-year plan of $21 billion of total fundraising.' Fundraising driven by all platforms: infrastructure ($2.3B, 5x YoY), credit ($1.8B record), GPMS (~$2B), real estate ($520M+ in Q4 alone).",
+      "language_register": "operational",
+      "source_id": "S-007",
+      "source_bias": "company-produced",
+      "date": "2026-02-03",
+      "confidence": 0.95,
+      "context": "Q4 2025 earnings call. Verified against quarterly press releases (S-011 through S-015). The $7.7B figure is organic only, excluding all acquisition-related AUM."
+    },
+    {
+      "id": "STR-009",
+      "element_type": "quantitative_target",
+      "content": "Three-year FRE targets from December 2024 Investor Day: 2025 target $200M-$225M (achieved: $202.5M); 2026 target $225M-$245M ($1.42-$1.54/share); 2027 target $260M-$290M ($1.60-$1.80/share). FRE margin objective: 58%-60%. Management states only ~10% of 2027 FRE to come from acquisitions.",
+      "language_register": "operational",
+      "source_id": "S-002",
+      "source_bias": "company-produced",
+      "date": "2024-12-09",
+      "confidence": 0.95,
+      "context": "Investor Day presentation, reiterated in Q4 2024 and Q4 2025 earnings calls. The 2025 target was met ($202.5M actual vs $200-225M target). Filed with SEC as Form 6-K. Consistent across all subsequent quarterly calls."
+    },
+    {
+      "id": "STR-010",
+      "element_type": "quantitative_target",
+      "content": "Three-year fundraising targets: 2025 target $6B (initial), raised to $6.3-6.6B (exceeded: $7.7B actual); 2026 target $7B; 2027 target $8B. Cumulative three-year target: $21 billion. $7.7B achieved in year 1 represents 37% of the cumulative target.",
+      "language_register": "operational",
+      "source_id": "S-002",
+      "source_bias": "company-produced",
+      "date": "2024-12-09",
+      "confidence": 0.95,
+      "context": "Investor Day presentation, reiterated in every subsequent earnings call. 2025 target exceeded significantly. Filed with SEC as Form 6-K."
+    },
+    {
+      "id": "STR-011",
+      "element_type": "quantitative_target",
+      "content": "AUM scaling targets: Total AUM target of $60 billion by end of 2027. FEAUM target of $70 billion by end of 2027 (pro forma including acquisitions). As of Q4 2025: total AUM $52.6B (+26% YoY), FEAUM $40.8B (+24% YoY). AUM is 3.5x the IPO level in January 2021.",
+      "language_register": "operational",
+      "source_id": "S-002",
+      "source_bias": "company-produced",
+      "date": "2024-12-09",
+      "confidence": 0.90,
+      "context": "Investor Day presentation and Q4 2025 earnings. The $60B AUM target appears organic; the $70B FEAUM target includes pro forma acquisitions. Both confirmed across multiple earnings calls."
+    },
+    {
+      "id": "STR-012",
+      "element_type": "quantitative_target",
+      "content": "Performance-related earnings target: $120M-$140M cumulative from Q4 2024 through end of 2027. As of Q4 2025, $62 million already realized (44-52% of target). Sources include exits from Infrastructure Fund III, Private Equity Funds IV and V, growth equity and venture funds, real estate and private debt strategies.",
+      "language_register": "operational",
+      "source_id": "S-002",
+      "source_bias": "company-produced",
+      "date": "2024-12-09",
+      "confidence": 0.85,
+      "context": "Investor Day presentation, updated in Q4 2025 earnings call. Performance earnings are inherently less predictable than FRE, hence slightly lower confidence. Dependent on market conditions and exit timing."
+    },
+    {
+      "id": "STR-013",
+      "element_type": "quantitative_target",
+      "content": "M&A target: $18 billion of fee-paying AUM through acquisitions over the 2025-2027 period. Three acquisitions in Q4 2025 alone added ~$6.6B FEAUM (Solis $3.5B + RBR $1.3B + WP $1.8B), representing approximately 37% of the three-year M&A target in just one quarter.",
+      "language_register": "operational",
+      "source_id": "S-007",
+      "source_bias": "company-produced",
+      "date": "2026-02-03",
+      "confidence": 0.85,
+      "context": "Q4 2025 earnings call. The $18B target is a formal Investor Day commitment. Rapid execution in Q4 2025 suggests front-loading of M&A activity."
+    },
+    {
+      "id": "STR-014",
+      "element_type": "resource_signal",
+      "content": "Capital allocation towards share buybacks: Approved additional 3 million share buyback program. PHL (Patria Partners holding company) announced intention to purchase up to 2.5 million PAX shares. Combined capacity: up to 7 million shares for capital return to shareholders.",
+      "language_register": "operational",
+      "source_id": "S-007",
+      "source_bias": "company-produced",
+      "date": "2026-02-03",
+      "confidence": 0.90,
+      "context": "Q4 2025 earnings call. Share buyback programs first announced in Q2 2025 (S-005) and expanded in Q4. Signals management belief stock is undervalued and commitment to capital returns alongside growth investment."
+    },
+    {
+      "id": "STR-015",
+      "element_type": "resource_signal",
+      "content": "Credit platform investment: Solis acquisition (51% stake, $3.5B FEAUM) for CLO/ABS capabilities; first dedicated private credit fund ($314M) closed May 2025 with >70% deployed into 14 transactions at 15.6% gross unlevered IRR; second vintage targeting >$500M in preparation. Platform built on 26-year, $12.3B credit history in Latin America.",
+      "language_register": "operational",
+      "source_id": "S-021",
+      "source_bias": "company-produced",
+      "date": "2026-02-11",
+      "confidence": 0.90,
+      "context": "Next vintage credit fund announcement and Solis acquisition press release. The first fund's 15.6% IRR provides track record validation. Bloomberg reporting (S-031, S-032) provides independent confirmation."
+    },
+    {
+      "id": "STR-016",
+      "element_type": "resource_signal",
+      "content": "Infrastructure resource commitment: Raised approximately $2.3 billion for infrastructure strategies in 2025, roughly 5x what was raised for infrastructure in 2024. Fund V ($2.9B) already two-thirds deployed across solar, toll roads, electric mobility, and desalination. Over $3 billion of pending FEAUM to deploy over 12-18 months.",
+      "language_register": "operational",
+      "source_id": "S-007",
+      "source_bias": "company-produced",
+      "date": "2026-02-03",
+      "confidence": 0.95,
+      "context": "Q4 2025 earnings call. Infrastructure Fund V close validated by Bloomberg (S-030), Infrastructure Investor (S-035), AIIB (S-040). The 5x year-over-year increase in infrastructure fundraising is a significant resource allocation signal."
+    },
+    {
+      "id": "STR-017",
+      "element_type": "resource_signal",
+      "content": "Real estate platform investment: RBR Gestao acquisition adds ~$1.3 billion FEAUM in listed Brazilian REITs, bringing total Real Estate FEAUM to $8.5 billion (pro forma). Real Estate FEAUM has grown at 65%+ CAGR since IPO. Positions Patria as largest independent listed REIT manager in Brazil. 90% of Real Estate FEAUM in permanent capital vehicles.",
+      "language_register": "operational",
+      "source_id": "S-019",
+      "source_bias": "company-produced",
+      "date": "2025-12-11",
+      "confidence": 0.90,
+      "context": "RBR acquisition announcement. Rodrigo Abbud: 'Patria becomes the leading REIT manager in Brazil, positioning us for continued growth in a market where, in addition to investment performance, scale is key.'"
+    },
+    {
+      "id": "STR-018",
+      "element_type": "c_level_framing",
+      "content": "CEO Alex Saigh frames Patria's trajectory as platform-driven transformation: 'Over a brief four-year period since IPO, Patria greatly expanded its regional and global investor base and distribution capabilities, and significantly diversified its investment and product platforms. A wide variety of strategies and products contributed to fundraising, most of which did not exist at their IPO.'",
+      "language_register": "operational",
+      "source_id": "S-003",
+      "source_bias": "company-produced",
+      "date": "2025-02-12",
+      "confidence": 0.90,
+      "context": "Q4 2024 earnings call prepared remarks. This framing -- IPO as inflection point, diversification as key narrative -- is the dominant CEO message across all earnings calls in the analysis period."
+    },
+    {
+      "id": "STR-019",
+      "element_type": "c_level_framing",
+      "content": "CEO Alex Saigh frames the $50B AUM milestone as validation: 'Our Assets under Management exceeded US$50 billion, over 3.5x higher than AUM at the time of the IPO in 2021. This milestone could not have been achieved without the hard work of the team and the trust clients have placed in the company.'",
+      "language_register": "operational",
+      "source_id": "S-006",
+      "source_bias": "company-produced",
+      "date": "2025-11-05",
+      "confidence": 0.90,
+      "context": "Q3 2025 earnings call prepared remarks. AUM scaling relative to IPO level is a recurring metric used to demonstrate growth trajectory. The 3.5x framing appears in multiple sources."
+    },
+    {
+      "id": "STR-020",
+      "element_type": "c_level_framing",
+      "content": "CEO Alex Saigh positions 2025 as 'capstone' year and expresses confidence in exceeding Investor Day targets: 'Very excited to report our 4th quarter results, a capstone to a very successful 2025.' Patria is positioned to 'achieve, and hopefully exceed, the three-year fundraising and FRE objectives' established at the December 2024 Investor Day.",
+      "language_register": "transitional",
+      "source_id": "S-007",
+      "source_bias": "company-produced",
+      "date": "2026-02-03",
+      "confidence": 0.90,
+      "context": "Q4 2025 earnings call opening remarks. 'Achieve and hopefully exceed' represents an upgrade from prior guidance language. The year-1 outperformance ($7.7B vs $6B target) supports this confidence."
+    },
+    {
+      "id": "STR-021",
+      "element_type": "c_level_framing",
+      "content": "CEO Alex Saigh frames multi-platform approach as competitive moat: 'Our multi-asset, multi-regional platform allows us to balance exposures and capitalize on opportunities where others retreat.' The diversification narrative positions Patria as resilient to sector-specific and regional downturns.",
+      "language_register": "transitional",
+      "source_id": "S-004",
+      "source_bias": "company-produced",
+      "date": "2025-05-02",
+      "confidence": 0.85,
+      "context": "Q1 2025 earnings call. This framing positions diversification not just as a growth strategy but as a risk management advantage. Particularly relevant given trade war concerns and LatAm macro volatility."
+    },
+    {
+      "id": "STR-022",
+      "element_type": "strategic_pillar",
+      "content": "FRE growth and operating leverage: Patria's FRE margin expanded from ~55% in Q1 2025 to 63.6% in Q4 2025, with full-year FRE margin of 58.9%. FRE grew 19% YoY to $202.5M. The firm targets 58-60% FRE margin through the 2027 planning period. Asset stickiness supports margin: ~90% of FEAUM in vehicles with no or limited redemptions, 22% in permanent capital vehicles, and redemptions decreased ~25% in 2025 vs 2024.",
+      "language_register": "operational",
+      "source_id": "S-007",
+      "source_bias": "company-produced",
+      "date": "2026-02-03",
+      "confidence": 0.95,
+      "context": "Q4 2025 earnings call with full-year data. FRE margin trajectory verified across quarterly press releases. Permanent capital and low-redemption asset base provides fee stability."
+    },
+    {
+      "id": "STR-023",
+      "element_type": "strategic_pillar",
+      "content": "GPMS (Global Private Market Solutions) as growth engine: GPMS raised almost $2 billion in 2025 and represents 29% of FEAUM (the largest single segment). WP Global Partners acquisition adds $1.8B FEAUM, bringing pro forma GPMS FEAUM to ~$13.6 billion. Nearly 40% of GPMS investments now in U.S. assets. GPMS encompasses primaries, secondaries, and co-investments across PE strategies.",
+      "language_register": "operational",
+      "source_id": "S-007",
+      "source_bias": "company-produced",
+      "date": "2026-02-03",
+      "confidence": 0.90,
+      "context": "Q4 2025 earnings call and WP Global acquisition announcement. GPMS overtaking all other segments by FEAUM share (29%) is a notable structural shift from Patria's PE/Infra origins."
+    },
+    {
+      "id": "STR-024",
+      "element_type": "resource_signal",
+      "content": "Geographic expansion into new markets: Patria opened a Peru office in January 2026, expanding its Latin American footprint. The WP Global Partners acquisition establishes a U.S. presence (New York, Chicago). The firm now operates from 10+ cities across 4 continents, with investment activities spanning Latin America, Europe, and the U.S.",
+      "language_register": "operational",
+      "source_id": "S-022",
+      "source_bias": "journalist",
+      "date": "2026-01-29",
+      "confidence": 0.85,
+      "context": "Bloomberg reporting on Peru office opening (S-022/S-033) and WP acquisition press release (S-020). Geographic expansion is a concrete resource allocation signal supporting the multi-regional strategy."
+    },
+    {
+      "id": "STR-025",
+      "element_type": "c_level_framing",
+      "content": "Infrastructure leadership as regional gateway: Felipe Pinto (Managing Partner, Head of Infrastructure Development): 'Patria's deep expertise in the region's sectors strongly positions us as a local gateway for investors.' Andre Sales (Managing Partner, CEO of Patria Infrastructure): 'We anticipate continued growth, both in terms of client demand and investment opportunities, in the Latin American infrastructure market.' Patria identified over $90 billion in LatAm infrastructure opportunities over 5-7 years.",
+      "language_register": "transitional",
+      "source_id": "S-035",
+      "source_bias": "journalist",
+      "date": "2025-10-18",
+      "confidence": 0.85,
+      "context": "Infrastructure Investor article and Funds Society reporting on Fund V close. The $90B opportunity sizing is company-sourced but reported through independent channels. AIIB investment (S-040) provides institutional validation."
+    }
+  ],
+  "summary": {
+    "total_elements": 25,
+    "by_type": {
+      "mission_vision": 2,
+      "strategic_pillar": 6,
+      "quantitative_target": 5,
+      "resource_signal": 5,
+      "c_level_framing": 5
+    },
+    "by_language_register": {
+      "aspirational": 2,
+      "operational": 19,
+      "transitional": 4
+    },
+    "by_source_bias": {
+      "regulatory-filing": 2,
+      "company-produced": 19,
+      "journalist": 4
+    },
+    "by_source": {
+      "S-001": 2,
+      "S-002": 4,
+      "S-003": 1,
+      "S-004": 2,
+      "S-005": 0,
+      "S-006": 1,
+      "S-007": 10,
+      "S-016": 1,
+      "S-019": 1,
+      "S-020": 1,
+      "S-021": 1,
+      "S-022": 1,
+      "S-035": 1
+    },
+    "key_themes": [
+      {
+        "theme": "Platform Diversification",
+        "description": "Transformation from PE/Infra specialist to multi-asset platform with 6 asset classes, 35+ strategies, 100+ products. No single product exceeds 8% of FEAUM. This is the dominant strategic narrative across all sources.",
+        "elements": ["STR-003", "STR-018", "STR-021"]
+      },
+      {
+        "theme": "Credit Platform Buildout",
+        "description": "Aggressive expansion of credit vertical through organic fundraising ($1.8B in 2025), Solis acquisition ($3.5B FEAUM), first dedicated private credit fund ($314M), and second vintage (>$500M target). Credit now 26% of FEAUM. Thesis: structural scarcity in LatAm corporate lending.",
+        "elements": ["STR-004", "STR-015"]
+      },
+      {
+        "theme": "Inorganic Growth via M&A",
+        "description": "Three acquisitions in Q4 2025 (Solis, RBR, WP Global) adding $6.6B FEAUM. $18B cumulative M&A target through 2027. Acquisitions are 'strategically placed' to fill platform gaps. Prior acquisitions include Moneda (2021).",
+        "elements": ["STR-005", "STR-013"]
+      },
+      {
+        "theme": "U.S. Market Entry",
+        "description": "WP Global Partners as first U.S. acquisition. GPMS FEAUM reaches $13.6B pro forma with ~40% in U.S. assets. Positions Patria as global mid-market alternative asset manager, not just LatAm player.",
+        "elements": ["STR-006", "STR-024"]
+      },
+      {
+        "theme": "Organic Fundraising Excellence",
+        "description": "Record $7.7B organic fundraising in 2025, exceeding $6.6B revised target. Driven by all platforms. Strong demand from Asian sovereign wealth funds, pensions, insurance. $21B cumulative three-year target.",
+        "elements": ["STR-008", "STR-010"]
+      },
+      {
+        "theme": "Investor Day 3-Year Targets (2025-2027)",
+        "description": "Comprehensive quantitative framework: $21B fundraising, $260-290M FRE by 2027, $60B AUM, $70B FEAUM (pro forma), $120-140M performance earnings. Year 1 execution exceeded targets on fundraising and met FRE.",
+        "elements": ["STR-009", "STR-010", "STR-011", "STR-012", "STR-013"]
+      },
+      {
+        "theme": "Infrastructure Dominance",
+        "description": "Fund V ($2.9B) is largest infrastructure fund in LatAm history. $90B+ investment opportunity identified over 5-7 years. AIIB institutional validation. Focus on energy transition, toll roads, sanitation, digital infrastructure.",
+        "elements": ["STR-007", "STR-016", "STR-025"]
+      },
+      {
+        "theme": "FRE Growth and Operating Leverage",
+        "description": "FRE $202.5M (+19% YoY), margin 58.9%. Margin expanded from 55% to 63.6% through year. ~90% of FEAUM in sticky vehicles (no/limited redemptions), 22% in permanent capital. Redemptions down 25% YoY.",
+        "elements": ["STR-022", "STR-009"]
+      },
+      {
+        "theme": "AUM Scaling",
+        "description": "Total AUM $52.6B (3.5x IPO level). FEAUM $40.8B (+24% YoY). CEO frames $50B milestone as validation of strategy. Targeting $60B AUM by 2027.",
+        "elements": ["STR-011", "STR-019"]
+      }
+    ]
+  }
+}
