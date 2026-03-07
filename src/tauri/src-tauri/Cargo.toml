@@ -23,3 +23,5 @@ notify = { version = "7", default-features = false, features = ["macos_fsevent"]
 tokio = { version = "1", features = ["full"] }
 percent-encoding = "2"
 chrono = "0.4"
+portable-pty = "0.9"
+base64 = "0.22"

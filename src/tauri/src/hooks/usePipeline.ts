@@ -1,16 +1,13 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { invoke } from "@tauri-apps/api/core";
-import { Command } from "@tauri-apps/plugin-shell";
 import type {
   PipelineStep,
   PipelineConfig,
-  PipelineAgent,
   QualityGate,
   StepStatus,
   Checkpoint,
 } from "../types/pipeline";
-import { PIPELINE_STEPS, AGENT_NAMES, DEFAULT_TONE_PROFILE, INITIAL_CHECKPOINTS } from "../types/pipeline";
-import { parseCLILine } from "../lib/cli";
+import { PIPELINE_STEPS, DEFAULT_TONE_PROFILE, INITIAL_CHECKPOINTS } from "../types/pipeline";
 
 interface PipelineSnapshot {
   steps: PipelineStep[];
@@ -107,11 +104,68 @@ export function usePipeline() {
     );
   }, []);
 
+  // Map output folders to step indices
+  const FOLDER_TO_STEP: Record<string, number> = {
+    "1-universe": 0,
+    "2-data": 1,
+    "3-analysis": 2,
+    "4-deep-dives": 3,
+    "5-playbook": 4,
+    "6-review": 5,
+  };
+
+  // Key output files that indicate a step is complete
+  const STEP_COMPLETE_FILES: Record<number, string[]> = {
+    0: ["peer_universe.json", "metric_taxonomy.json", "source_catalog.json"],
+    1: ["quantitative_data.json", "strategy_profiles.json"],
+    2: ["correlations.json", "driver_ranking.json", "final_peer_set.json"],
+    3: ["platform_profiles.json", "asset_class_analysis.json"],
+    4: ["final_report.html"],
+    5: ["methodology_review.md", "results_review.md"],
+  };
+
+  // Sync pipeline step status from detected output files
+  const syncFromFiles = useCallback((files: { filename: string; folder: string }[]) => {
+    if (!isRunning) return;
+
+    // Group files by folder → step
+    const filesByStep: Record<number, string[]> = {};
+    for (const f of files) {
+      const stepIdx = FOLDER_TO_STEP[f.folder];
+      if (stepIdx !== undefined) {
+        if (!filesByStep[stepIdx]) filesByStep[stepIdx] = [];
+        filesByStep[stepIdx].push(f.filename);
+      }
+    }
+
+    setSteps((prev) => prev.map((step) => {
+      const detected = filesByStep[step.index];
+      if (!detected || detected.length === 0) return step;
+
+      // Has files → at least running
+      const completionFiles = STEP_COMPLETE_FILES[step.index] || [];
+      const allComplete = completionFiles.length > 0 && completionFiles.every((f) => detected.includes(f));
+
+      if (allComplete && step.status !== "complete") {
+        return { ...step, status: "complete" as StepStatus, completedAt: Date.now() };
+      }
+      if (step.status === "pending") {
+        return { ...step, status: "running" as StepStatus, startedAt: Date.now() };
+      }
+      return step;
+    }));
+
+    // Update currentStep to highest running/complete step
+    const highestActive = Object.keys(filesByStep).map(Number).sort((a, b) => b - a)[0];
+    if (highestActive !== undefined && highestActive > currentStep) {
+      setCurrentStep(highestActive);
+    }
+  }, [isRunning, currentStep]);
+
   const start = useCallback(
-    async (pipelineConfig: PipelineConfig, fromStep?: number) => {
+    (pipelineConfig: PipelineConfig, fromStep?: number) => {
       setConfig(pipelineConfig);
       if (fromStep !== undefined && fromStep > 0) {
-        // Keep completed steps, reset from fromStep onward
         setSteps((prev) =>
           prev.map((s) =>
             s.index < fromStep
@@ -129,210 +183,10 @@ export function usePipeline() {
       setLogs([]);
       setPendingGate(null);
       setCheckpoints(createInitialCheckpoints());
-
-      const args = [
-        "--print",
-        `/valuation-driver ${pipelineConfig.ticker}`,
-      ];
-
-      if (pipelineConfig.autoMode) {
-        args[1] += " --auto";
-      }
-      if (fromStep !== undefined && fromStep > 0) {
-        args[1] += ` --from-step ${fromStep + 1}`;
-      }
-      const sourcesDirs = [pipelineConfig.sellSideDir, pipelineConfig.consultingDir].filter(Boolean);
-      if (sourcesDirs.length > 0) {
-        args[1] += ` --sources ${sourcesDirs.join(",")}`;
-      }
-
-      try {
-        const command = Command.create("claude", args);
-
-        command.stdout.on("data", (line: string) => {
-          addLog(line);
-          const parsed = parseCLILine(line);
-
-          switch (parsed.type) {
-            case "step_start":
-              if (parsed.stepIndex !== undefined) {
-                setCurrentStep(parsed.stepIndex);
-                updateStep(parsed.stepIndex, {
-                  status: "running",
-                  startedAt: Date.now(),
-                });
-              }
-              break;
-            case "step_complete":
-              if (parsed.stepIndex !== undefined) {
-                updateStep(parsed.stepIndex, {
-                  status: "complete",
-                  completedAt: Date.now(),
-                });
-              }
-              break;
-            case "agent_start":
-              if (parsed.agentId) {
-                const stepIdx = currentStep >= 0 ? currentStep : 0;
-                addAgent(stepIdx, {
-                  id: parsed.agentId,
-                  name: parsed.agentId,
-                  friendlyName:
-                    AGENT_NAMES[parsed.agentId] || parsed.agentId,
-                  status: "running",
-                  outputFile: null,
-                  logs: [line],
-                });
-              }
-              break;
-            case "agent_complete":
-              if (parsed.agentId) {
-                const stepIdx = currentStep >= 0 ? currentStep : 0;
-                appendAgentLog(stepIdx, parsed.agentId, line);
-                setSteps((prev) =>
-                  prev.map((s, i) =>
-                    i === stepIdx
-                      ? {
-                          ...s,
-                          agents: s.agents.map((a) =>
-                            a.id === parsed.agentId
-                              ? { ...a, status: "complete" as const }
-                              : a
-                          ),
-                        }
-                      : s
-                  )
-                );
-              }
-              break;
-            case "gate":
-              if (parsed.stepIndex !== undefined && !pipelineConfig.autoMode) {
-                setPendingGate({
-                  stepIndex: parsed.stepIndex,
-                  status: "awaiting_review",
-                  criteria: [],
-                  results: [],
-                  notes: "",
-                });
-              }
-              break;
-            case "checkpoint":
-              if (parsed.checkpointId && parsed.checkpointStatus) {
-                const updates: Partial<Checkpoint> = { status: parsed.checkpointStatus };
-                if (parsed.retryAttempt !== undefined) {
-                  updates.retryCount = parsed.retryAttempt;
-                }
-                if (parsed.checkpointStatus === "passed" && parsed.claimsTotal) {
-                  updates.summary = {
-                    total: parsed.claimsTotal,
-                    grounded: parsed.claimsPassed ?? 0,
-                    inferred: 0,
-                    weakEvidence: 0,
-                    ungrounded: 0,
-                    fabricated: 0,
-                  };
-                }
-                if (parsed.checkpointStatus === "blocked") {
-                  updates.summary = {
-                    total: 0,
-                    grounded: 0,
-                    inferred: 0,
-                    weakEvidence: 0,
-                    ungrounded: parsed.claimsUngrounded ?? 0,
-                    fabricated: parsed.claimsFabricated ?? 0,
-                  };
-                }
-                updateCheckpoint(parsed.checkpointId, updates);
-              }
-              break;
-            case "error":
-              addLog(`[ERROR] ${line}`);
-              break;
-            case "log": {
-              // Route log lines to active (running) agents in the current step
-              const stepIdx = currentStep >= 0 ? currentStep : 0;
-              setSteps((prev) => {
-                const step = prev[stepIdx];
-                if (!step) return prev;
-                const runningAgents = step.agents.filter((a) => a.status === "running");
-                if (runningAgents.length === 1) {
-                  // Only one running agent — attribute the line to it
-                  return prev.map((s, i) =>
-                    i === stepIdx
-                      ? {
-                          ...s,
-                          agents: s.agents.map((a) =>
-                            a.id === runningAgents[0].id
-                              ? { ...a, logs: [...a.logs, line] }
-                              : a
-                          ),
-                        }
-                      : s
-                  );
-                }
-                // Multiple running agents — check if line mentions one by name
-                for (const agent of runningAgents) {
-                  if (line.includes(agent.id) || line.includes(agent.name)) {
-                    return prev.map((s, i) =>
-                      i === stepIdx
-                        ? {
-                            ...s,
-                            agents: s.agents.map((a) =>
-                              a.id === agent.id
-                                ? { ...a, logs: [...a.logs, line] }
-                                : a
-                            ),
-                          }
-                        : s
-                    );
-                  }
-                }
-                // Can't attribute — add to all running agents
-                return prev.map((s, i) =>
-                  i === stepIdx
-                    ? {
-                        ...s,
-                        agents: s.agents.map((a) =>
-                          a.status === "running"
-                            ? { ...a, logs: [...a.logs, line] }
-                            : a
-                        ),
-                      }
-                    : s
-                );
-              });
-              break;
-            }
-          }
-        });
-
-        command.stderr.on("data", (line: string) => {
-          addLog(`[stderr] ${line}`);
-        });
-
-        command.on("close", (data) => {
-          setIsRunning(false);
-          if (data.code === 0) {
-            setSteps((prev) =>
-              prev.map((s) =>
-                s.status === "running"
-                  ? { ...s, status: "complete", completedAt: Date.now() }
-                  : s
-              )
-            );
-          } else {
-            addLog(`[EXIT] Process exited with code ${data.code}`);
-          }
-        });
-
-        const child = await command.spawn();
-        childRef.current = child;
-      } catch (err) {
-        addLog(`[ERROR] Failed to start pipeline: ${err}`);
-        setIsRunning(false);
-      }
+      // NOTE: The actual CLI process is spawned by the PTY Terminal component,
+      // not here. This function only initializes UI state.
     },
-    [addLog, updateStep, addAgent, updateCheckpoint, currentStep]
+    []
   );
 
   const approveGate = useCallback(
@@ -504,5 +358,6 @@ export function usePipeline() {
     restore,
     loadExistingSession,
     addLog,
+    syncFromFiles,
   };
 }

@@ -4,8 +4,18 @@
   "windows": ["main"],
   "permissions": [
     "core:default",
+    {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        {
+          "name": "claude",
+          "cmd": "claude",
+          "args": true,
+          "sidecar": false
+        }
+      ]
+    },
     "shell:allow-open",
-    "shell:allow-spawn",
     "shell:allow-stdin-write",
     "shell:allow-kill",
     "shell:default",

@@ -44,6 +44,8 @@ function App() {
   const [toneFiles, setToneFiles] = useState<string[]>([]);
   const [toneProfile, setToneProfile] = useState<ToneProfile>(DEFAULT_TONE_PROFILE);
   const [toneStatus, setToneStatus] = useState<"idle" | "extracting" | "done" | "error">("idle");
+  const [ptyCommand, setPtyCommand] = useState<string | null>(null);
+  const [ptyArgs, setPtyArgs] = useState<string[]>([]);
 
   const pipeline = usePipeline();
   const { files, runs, selectedRun, setSelectedRun } = useFileWatcher(pipeline.config?.ticker || ticker || null);
@@ -52,6 +54,13 @@ function App() {
   const [isReviewRunning, setIsReviewRunning] = useState(false);
   const [restored, setRestored] = useState(false);
   const [existingSession, setExistingSession] = useState<ExistingSession | null>(null);
+
+  // Sync pipeline step status from detected files
+  useEffect(() => {
+    if (files.length > 0) {
+      pipeline.syncFromFiles(files);
+    }
+  }, [files]);
 
   // Notify on quality gate awaiting review
   useEffect(() => {
@@ -75,27 +84,45 @@ function App() {
     }
   }, [pipeline.isRunning]);
 
-  // Restore last ticker from localStorage on startup so Results works immediately
+  // Read launch config (env vars) and pre-fill form, then check for existing session
   useEffect(() => {
-    const lastTicker = localStorage.getItem("vda-last-ticker");
-    if (lastTicker && !ticker) {
-      setTicker(lastTicker);
-      // Check for existing session
-      invoke<Array<{ step_index: number; files_found: string[]; complete: boolean }>>(
-        "detect_existing_session", { ticker: lastTicker }
-      ).then((steps) => {
-        const completed = steps.filter((s) => s.complete).length;
-        const hasFiles = steps.some((s) => s.files_found.length > 0);
-        if (hasFiles) {
-          setExistingSession({
-            ticker: lastTicker,
-            completedSteps: completed,
-            totalSteps: 6,
-            hasReport: steps.some((s) => s.files_found.some((f) => f.includes("final_report"))),
-          });
+    const init = async () => {
+      // Check for CLI launch config (env vars: VDA_TICKER, VDA_AUTO, VDA_SECTOR)
+      try {
+        const launch = await invoke<{ ticker: string | null; auto_mode: boolean; sector: string | null }>("get_launch_config");
+        if (launch.ticker) {
+          setTicker(launch.ticker);
+          setAutoMode(launch.auto_mode);
+          if (launch.sector) {
+            const match = SECTORS.find(s => s.toLowerCase().includes(launch.sector!.toLowerCase()));
+            if (match) setSector(match);
+          }
+          return; // Don't also load from localStorage if env vars are set
         }
-      }).catch(() => {});
-    }
+      } catch { /* ignore */ }
+
+      // Fall back to localStorage for existing session detection
+      const lastTicker = localStorage.getItem("vda-last-ticker");
+      if (lastTicker && !ticker) {
+        setTicker(lastTicker);
+        try {
+          const steps = await invoke<Array<{ step_index: number; files_found: string[]; complete: boolean }>>(
+            "detect_existing_session", { ticker: lastTicker }
+          );
+          const completed = steps.filter((s) => s.complete).length;
+          const hasFiles = steps.some((s) => s.files_found.length > 0);
+          if (hasFiles) {
+            setExistingSession({
+              ticker: lastTicker,
+              completedSteps: completed,
+              totalSteps: 6,
+              hasReport: steps.some((s) => s.files_found.some((f) => f.includes("final_report"))),
+            });
+          }
+        } catch { /* ignore */ }
+      }
+    };
+    init();
   }, []);
 
   const handleStartReview = async () => {
@@ -209,8 +236,9 @@ Output ONLY valid JSON matching this schema:
 
   const handleStart = () => {
     if (!ticker.trim()) return;
+    const t = ticker.trim().toUpperCase();
     const config: PipelineConfig = {
-      ticker: ticker.trim().toUpperCase(),
+      ticker: t,
       sector,
       autoMode,
       sellSideDir: sources.sellSide,
@@ -219,6 +247,16 @@ Output ONLY valid JSON matching this schema:
       toneProfile,
     };
     localStorage.setItem("vda-last-ticker", config.ticker);
+
+    // Build claude CLI command for interactive PTY session
+    let skillCmd = `/valuation-driver ${t}`;
+    if (autoMode) skillCmd += " --auto";
+    const sourcesDirs = [sources.sellSide, sources.consulting].filter(Boolean);
+    if (sourcesDirs.length > 0) skillCmd += ` --sources ${sourcesDirs.join(",")}`;
+    setPtyCommand("claude");
+    setPtyArgs([skillCmd]);
+
+    // Also set pipeline config for UI state tracking
     pipeline.start(config);
     setScreen("monitor");
   };
@@ -432,6 +470,13 @@ Output ONLY valid JSON matching this schema:
             onRerunFromStep={pipeline.config ? (stepIndex) => {
               pipeline.start(pipeline.config!, stepIndex);
             } : undefined}
+            ptyCommand={ptyCommand}
+            ptyArgs={ptyArgs}
+            onPtyExit={() => {
+              pipeline.stop();
+              setPtyCommand(null);
+              setPtyArgs([]);
+            }}
           />
         )}
 

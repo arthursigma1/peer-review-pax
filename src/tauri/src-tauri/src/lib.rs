@@ -1,6 +1,8 @@
 use notify::{recommended_watcher, Event, RecursiveMode, Watcher};
 use percent_encoding::percent_decode_str;
+use portable_pty::{native_pty_system, CommandBuilder, PtySize};
 use serde::{Deserialize, Serialize};
+use std::io::{Read as IoRead, Write as IoWrite};
 use std::path::PathBuf;
 use std::sync::{Arc, Mutex};
 use tauri::{AppHandle, Emitter, Manager};
@@ -540,9 +542,149 @@ fn html_escape(s: &str) -> String {
         .replace('"', "&quot;")
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct LaunchConfig {
+    pub ticker: Option<String>,
+    pub auto_mode: bool,
+    pub sector: Option<String>,
+}
+
+#[tauri::command]
+fn get_launch_config() -> LaunchConfig {
+    LaunchConfig {
+        ticker: std::env::var("VDA_TICKER").ok().filter(|s| !s.is_empty()),
+        auto_mode: std::env::var("VDA_AUTO").ok().map(|v| v == "true" || v == "1").unwrap_or(false),
+        sector: std::env::var("VDA_SECTOR").ok().filter(|s| !s.is_empty()),
+    }
+}
+
+// --- PTY terminal emulator ---
+
+struct PtyState {
+    writer: Option<Box<dyn IoWrite + Send>>,
+    child: Option<Box<dyn portable_pty::Child + Send>>,
+}
+
+struct PtyHolder(Mutex<PtyState>);
+
+#[tauri::command]
+async fn pty_spawn(app: AppHandle, command: String, args: Vec<String>, cols: u16, rows: u16) -> Result<(), String> {
+    let pty_system = native_pty_system();
+    let pair = pty_system
+        .openpty(PtySize {
+            rows,
+            cols,
+            pixel_width: 0,
+            pixel_height: 0,
+        })
+        .map_err(|e| format!("Failed to open PTY: {}", e))?;
+
+    let mut cmd = CommandBuilder::new(&command);
+    cmd.args(&args);
+
+    // Set working directory to project root
+    let root = get_project_root();
+    cmd.cwd(&root);
+
+    // Remove CLAUDECODE env var so claude CLI doesn't refuse to run
+    cmd.env_remove("CLAUDECODE");
+
+    // Ensure PATH includes common binary locations
+    if let Ok(path) = std::env::var("PATH") {
+        let home = std::env::var("HOME").unwrap_or_default();
+        let extra = format!("{}/.cargo/bin:{}/.local/bin:/usr/local/bin:{}", home, home, path);
+        cmd.env("PATH", extra);
+    }
+
+    let child = pair
+        .slave
+        .spawn_command(cmd)
+        .map_err(|e| format!("Failed to spawn command: {}", e))?;
+
+    let writer = pair
+        .master
+        .take_writer()
+        .map_err(|e| format!("Failed to get PTY writer: {}", e))?;
+
+    // Store PTY state — replace any existing session
+    let holder = app.state::<PtyHolder>();
+    let mut state = holder.0.lock().map_err(|e| format!("{}", e))?;
+    // Kill any previous child
+    if let Some(ref mut old_child) = state.child {
+        let _ = old_child.kill();
+    }
+    state.writer = Some(writer);
+    state.child = Some(child);
+    drop(state);
+
+    // Read PTY output in a background thread and emit events
+    let mut reader = pair
+        .master
+        .try_clone_reader()
+        .map_err(|e| format!("Failed to get PTY reader: {}", e))?;
+
+    let app_clone = app.clone();
+    std::thread::spawn(move || {
+        let mut buf = [0u8; 4096];
+        eprintln!("[PTY] Reader thread started");
+        loop {
+            match reader.read(&mut buf) {
+                Ok(0) => {
+                    eprintln!("[PTY] EOF");
+                    break;
+                }
+                Ok(n) => {
+                    eprintln!("[PTY] Read {} bytes", n);
+                    use base64::Engine;
+                    let encoded = base64::engine::general_purpose::STANDARD.encode(&buf[..n]);
+                    let _ = app_clone.emit("pty-output", &encoded);
+                }
+                Err(e) => {
+                    eprintln!("[PTY] Read error: {}", e);
+                    break;
+                }
+            }
+        }
+        let _ = app_clone.emit("pty-exit", ());
+    });
+
+    Ok(())
+}
+
+#[tauri::command]
+fn pty_write(app: AppHandle, data: String) -> Result<(), String> {
+    let holder = app.state::<PtyHolder>();
+    let mut state = holder.0.lock().map_err(|e| format!("{}", e))?;
+    if let Some(ref mut writer) = state.writer {
+        writer.write_all(data.as_bytes()).map_err(|e| format!("{}", e))?;
+    }
+    Ok(())
+}
+
+#[tauri::command]
+fn pty_resize(app: AppHandle, cols: u16, rows: u16) -> Result<(), String> {
+    // portable-pty resize is on the master, but we stored writer/child.
+    // For now, resize is a no-op — xterm handles display sizing.
+    let _ = (app, cols, rows);
+    Ok(())
+}
+
+#[tauri::command]
+fn pty_kill(app: AppHandle) -> Result<(), String> {
+    let holder = app.state::<PtyHolder>();
+    let mut state = holder.0.lock().map_err(|e| format!("{}", e))?;
+    if let Some(ref mut child) = state.child {
+        child.kill().map_err(|e| format!("{}", e))?;
+    }
+    state.writer = None;
+    state.child = None;
+    Ok(())
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .manage(PtyHolder(Mutex::new(PtyState { writer: None, child: None })))
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_notification::init())
@@ -598,6 +740,11 @@ pub fn run() {
             read_json_as_table,
             copy_tone_files,
             resolve_next_run_dir,
+            get_launch_config,
+            pty_spawn,
+            pty_write,
+            pty_resize,
+            pty_kill,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
