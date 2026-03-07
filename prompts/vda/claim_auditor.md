@@ -128,13 +128,18 @@ When any claim receives `UNGROUNDED` or `FABRICATED`, the overall audit verdict 
 
 **Primary dimensions:** ALL FOUR DIMENSIONS ACTIVE. No triage permitted at this gate.
 
-**Evidence files:** `correlations.json`, `driver_ranking.json`, `strategic_actions.json`, `strategy_profiles.json`.
+**Evidence files:** `correlations.json`, `driver_ranking.json`, `strategic_actions.json` (including `operational_prerequisites` subfields), `strategy_profiles.json`.
 
 **Focus questions:**
 - Do causal narratives in platform profiles trace to specific COR-* or DVR-* entries with rho > 0.5?
 - Are strategic attributions for named peer firms traceable to collected ACT-VD-* entries?
 - Are transferable insights grounded in the collected peer data, or do they draw on general sector knowledge not present in the evidence files?
 - Is the linguistic register of each claim consistent with the correlation classification of its supporting evidence?
+- **Operational prerequisite verification:** For every claimed `operational_prerequisite` in deep-dive outputs, verify:
+  - Does the prerequisite have a `source_bias_tag` and `evidence_class` tag?
+  - If `evidence_class` is `directly_documented` or `corroborated`, does at least one cited source come from a filing, annual report, investor day, or independent analyst report?
+  - If the sole sources are job postings, vendor press releases, or management commentary without corroboration, the prerequisite MUST be reclassified as `INFERRED` at minimum. If stated as objective fact, verdict is `UNGROUNDED`.
+  - No operational prerequisite may receive a `GROUNDED` verdict if it relies only on low-trust evidence (job postings, vendor PRs, or uncorroborated management commentary).
 
 **Elevated risk note:** CP-2 is the critical gate. Over-compliance failures that pass CP-2 will propagate into the playbook and target company lens, compounding error through the remaining pipeline. Apply maximum rigor at this checkpoint.
 
@@ -155,6 +160,17 @@ When any claim receives `UNGROUNDED` or `FABRICATED`, the overall audit verdict 
 - Is every ANTI-NNN anti-pattern derived from an observed failure mode in the deep-dive evidence, not generated as a structural complement to the plays?
 - Are recommendations about {COMPANY} ({TICKER}) grounded in the firm's collected data, or are they generic sector prescriptions?
 - Does the language in each recommendation match the evidence strength of its supporting driver?
+- **Mandatory field completeness:** For every PLAY-NNN and ANTI-NNN entry, verify the presence of ALL mandatory fields:
+  - `What_Was_Done`
+  - `Observed_Metric_Impact`
+  - `Prerequisites`
+  - `Operational_And_Tech_Prerequisites`
+  - `Execution_Burden`
+  - `Failure_Modes_And_Margin_Destroyers`
+  - `Transferability_Constraints`
+  - `Evidence_Strength`
+  - If ANY mandatory field is missing or empty, the entry receives an `UNGROUNDED` verdict. The pipeline may not proceed until the playbook-synthesizer fills the missing fields.
+- **Anti-pattern mechanism check:** Every ANTI-NNN entry must identify the specific **operational mechanism** of value destruction (not just "margin compressed"). Valid mechanisms include: duplicated overhead, fragmented platforms, reporting/control failures, insufficient systems integration, headcount outrunning revenue/AUM, fee-rate dilution. Generic anti-patterns without mechanism identification receive `WEAK-EVIDENCE` at minimum.
 
 ---
 

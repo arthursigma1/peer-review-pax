@@ -110,7 +110,24 @@ Define all metrics organized by category. Metrics divide into two roles:
 
 A third category — **market structure metrics** — is collected as contextual data only and is explicitly excluded from the correlation analysis. Market structure metrics (e.g., trading volume, passive ownership percentage, free float) are consequences of investor behavior, not actions management can take. Including them would identify correlations with no actionable implications.
 
-**Driver candidate categories:** Earnings, Scale, Organic Growth, Mix and Diversification, Efficiency, Fee Quality (adapt categories to `{SECTOR}`)
+**Driver candidate categories:** Earnings, Scale, Organic Growth, Mix and Diversification, Efficiency, Fee Quality, Operational Feasibility & Scalable Infrastructure (adapt categories to `{SECTOR}`)
+
+**Sector overlay — Operational Feasibility & Scalable Infrastructure:**
+
+This category captures whether a firm's operating model can absorb growth without proportional cost escalation. The specific metrics depend on the sector:
+
+- **Alternative asset managers:** preferred metrics (when disclosed):
+  - `Headcount_to_FEAUM` — total headcount divided by fee-earning AUM
+  - `FEAUM_per_Employee` — fee-earning AUM per full-time employee
+  - `Compensation_and_Benefits_to_FEAUM` — total compensation and benefits expense as a percentage of FEAUM (or nearest disclosed proxy such as comp-to-management-fee-revenue)
+  - `G&A_to_FEAUM` — general and administrative expense as a percentage of FEAUM
+  - `OpEx_Growth_minus_Fee_Revenue_Growth` — trailing difference between operating expense growth rate and fee revenue growth rate; positive values indicate cost outpacing revenue
+  - `Constant_Currency_Revenue_Growth` — revenue growth rate after removing FX translation effects (see VD-A3 FX methodology)
+  - `Integration_Costs_to_Revenue` — integration and restructuring charges as a percentage of total revenue (only when separately disclosed in filings)
+  - `CapEx_to_FEAUM` — capital expenditure as a percentage of FEAUM (only when technology or software capex is separately identifiable in filings)
+- **Other sectors:** map this category to the closest sector-specific "cost-to-scale" metrics (e.g., revenue per employee, SG&A-to-revenue, integration cost ratios). Do not force FEAUM-based metrics into non-alt-manager sectors.
+
+**Coverage rule:** any metric in this category with fewer than 60% of universe firms reporting is classified as `contextual-only` and excluded from the formal driver-ranking correlation engine (VD-A4). It may still appear in context tables and deep-dive narratives.
 
 **Valuation multiples:** Select three multiples that capture different facets of how the market prices businesses in `{SECTOR}`. Using three rather than one is deliberate — a metric that correlates with all three is classified as a **stable driver**; a metric correlating with only one is a **multiple-specific driver**.
 
@@ -138,10 +155,22 @@ Missing data is recorded as `null` with an explicit `missing_reason`. Estimation
 
 Normalize VD-A2 data for cross-sectional comparability:
 
-1. **Currency conversion:** convert all values to USD using period-end exchange rates. Document rate, date, and source for each conversion.
-2. **Fiscal year alignment:** align to trailing twelve months (TTM) or calendar year basis. Flag firms with non-calendar fiscal years.
+1. **Currency conversion and FX handling:**
+   - **Point-in-time metrics** (stock prices, balance-sheet items, AUM snapshots): convert to USD using **period-end exchange rates**.
+   - **Flow metrics** (revenue, expenses, earnings, cash flows): convert using **period-average exchange rates** unless the firm reports a fixed-base constant-currency figure.
+   - **Growth metrics**: calculate growth in the firm's **local reporting currency first**, then compute:
+     - `reported_USD_growth` — growth rate computed from USD-translated figures
+     - `local_currency_growth` — growth rate computed in the firm's reporting currency before translation
+     - `constant_currency_growth` — growth rate excluding FX translation effects (use firm-disclosed constant-currency figures when available; otherwise approximate using prior-period average rates applied to current-period local-currency figures)
+     - `fx_delta = reported_USD_growth − local_currency_growth`
+   - **FX materiality flag (`FX_MATERIAL`):** flag a metric when `abs(fx_delta)` exceeds the greater of:
+     - 500 basis points, **or**
+     - 30% of the absolute reported growth magnitude (i.e., `abs(fx_delta) > 0.30 × abs(reported_USD_growth)`)
+   - **Documentation:** for every currency conversion, record: FX rate used, rate type (period-end or period-average), rate date, rate source, and whether average-rate or fixed-base translation was applied.
+   - **Cross-border per-share comparability note:** when currency mismatch, share-count changes, and accounting-basis differences coexist for a per-share metric, append a comparability caveat to that data point.
+2. **Fiscal year alignment:** align to trailing twelve months (TTM) or calendar year basis. Flag firms with non-calendar fiscal years and specify the exact period covered.
 3. **Accounting definition reconciliation:** non-GAAP and non-IFRS metrics vary materially in definition across firms. Document each firm's disclosed definition and flag metrics where definitional heterogeneity is material enough to affect cross-firm comparisons.
-4. **Coverage flagging:** mark any metric for which fewer than 60% of universe firms report as "low coverage." Low-coverage metrics may still be analyzed but findings are qualified accordingly.
+4. **Coverage flagging:** mark any metric for which fewer than 60% of universe firms report as "low coverage." Low-coverage metrics may still appear in context tables and deep-dive narratives but are excluded from the formal driver-ranking engine (VD-A4) unless explicitly approved for statistical testing.
 5. **Outlier flagging:** values exceeding two standard deviations from the cross-sectional mean are flagged for manual review before inclusion in correlation analysis.
 
 **Output:** `3-analysis/standardized_data.json`
@@ -280,6 +309,31 @@ For each firm in the qualitative peer set, catalog concrete strategic actions ta
 - Timeline: announced, closed, operational
 - Source citation (PS-VD-NNN)
 
+**Operational Prerequisites Extraction:**
+
+For every strategic action identified (M&A, fund launch, product launch, distribution expansion, technology initiative, operating platform acquisition), extract concurrent `Operational_Prerequisites` — the hidden infrastructure, systems, and organizational changes required to execute the action. Required subfields:
+
+| Subfield | Description |
+|---|---|
+| `systems_integration` | ERP, portfolio management, or front-office system consolidation |
+| `data_reporting_stack` | Data warehouse, LP reporting, regulatory reporting upgrades |
+| `qa_controls_reconciliation` | Quality assurance, NAV reconciliation, operational control changes |
+| `fund_admin_servicing` | Fund administration, transfer agency, or investor servicing changes |
+| `compliance_risk_treasury` | Compliance infrastructure, risk management frameworks, treasury operations |
+| `hiring_org_redesign` | Hiring waves, organizational restructuring, team integration |
+| `geographic_integration` | Cross-border operational complexity, local entity setup, regulatory licensing |
+
+**Search priority for prerequisites (in order):**
+1. Filings, annual reports, investor day materials — highest trust
+2. Earnings transcripts and prepared remarks — moderate trust
+3. Reputable media and analyst coverage — moderate trust
+4. Job postings and vendor press releases — supporting evidence only; **never** sufficient as the sole basis for a `GROUNDED` verdict
+
+**Evidence standards:**
+- Record `source_bias_tag` and `evidence_class` (directly documented / corroborated / inferred) for every prerequisite.
+- If a prerequisite is inferred from circumstantial evidence rather than directly documented, mark it `INFERRED` and require hedged language in all downstream outputs ("the acquisition likely required…", "this expansion appears to have involved…").
+- No operational prerequisite may be labeled `GROUNDED` if it relies only on job postings, vendor press releases, or management commentary without corroboration from at least one filing or independent source.
+
 **Output:** `2-data/strategic_actions.json`
 
 ---
@@ -329,11 +383,37 @@ For each of the 9–12 firms in the final set, produce a structured platform-lev
 
 Parallel to platform-level deep-dives, conduct vertical-specific deep-dives for the product verticals or business lines relevant to `{COMPANY}`'s business. Each vertical deep-dive identifies the best-in-class practitioners within that vertical, analyzes their winning strategies, and documents vertical-specific metric drivers and emerging trends.
 
+**Strategy Sub-Type Segmentation:**
+
+Do not stop at broad verticals such as "Private Equity" or "Credit." Within each vertical, segment by:
+- **Strategy Sub-Type** — the specific investment approach or product variant
+- **Thematic Focus** — the sector or structural theme the strategy targets
+- **Economic Model** — the fee structure, margin profile, and capital intensity
+
+For alternative asset managers, illustrative sub-types include (adapt to `{SECTOR}` for non-alt-manager universes):
+
+| Vertical | Sub-Types |
+|---|---|
+| Private Equity | Mid-market operational turnaround, large-cap buyout, sector-specialist growth equity, secondaries-led PE, GP-led continuation vehicles |
+| Credit | Direct lending, asset-backed finance, infrastructure debt, opportunistic credit, insurance-oriented credit, CLO management |
+| Real Estate | Logistics platforms, residential niches, data centers, real estate credit, core/core-plus perpetual vehicles |
+| Infrastructure | Core/super-core, value-added, energy transition, digital infrastructure, transport/logistics |
+| Solutions | Secondaries, GP-leds, bespoke mandates, advisory-heavy allocation solutions, co-investment programs |
+
+For each sub-type, document:
+- **Operational value-creation levers** — what the GP does to generate returns beyond capital allocation (e.g., procurement optimization, add-on acquisition playbooks, operational improvement teams)
+- **Fee model and margin structure** — management fee rates, performance fee mechanics, catch-up provisions, and how they differ from the vertical's flagship structure
+- **Talent model** — team composition, key-person dependencies, compensation structure, recruiting pipeline
+- **Data, reporting, and technology requirements** — portfolio monitoring, LP reporting, regulatory compliance, valuation methodology
+- **Scaling constraints** — deployment capacity, fundraising cycle, market depth, deal-flow limitations
+- **Transferability barriers** — what prevents a firm from entering this sub-type (regulatory, capability, brand, track-record requirements)
+
 For each vertical, the deep-dive produces:
 - Profiles of the best-in-class practitioners and the basis for that classification
-- Documentation of winning strategies and evidence for their effectiveness
+- Documentation of winning strategies and evidence for their effectiveness, segmented by strategy sub-type
 - Vertical-specific metric drivers (which of the stable drivers from VD-A5 are most salient within this vertical)
 - Emerging trends and structural changes affecting the vertical
+- Sub-type-level transferability analysis (which sub-types are accessible to new entrants vs. requiring established track records)
 
 **Output:** `4-deep-dives/asset_class_analysis.json`
 
@@ -361,9 +441,34 @@ This section functions as the evidentiary foundation for the strategic menus tha
 Organize the findings from Phase 2 into a strategic menu at the platform level. The organization is **by value driver, not by peer firm**. For each stable value driver:
 
 - Enumerate the proven strategic plays that peers have executed to improve performance on that driver
-- For each play: which firms executed it, what specifically was done, what metric impact was observed, what prerequisites or enabling conditions were present, what risks or limitations are documented
+- For each play, include all mandatory fields (see below)
 
-The structure ensures that a reader who identifies a target value driver can immediately find the full menu of proven approaches. The structure explicitly does not prioritize or recommend specific plays; it presents evidence and leaves strategic choice to the reader.
+**Mandatory fields for every PLAY-NNN:**
+
+| Field | Description |
+|---|---|
+| `What_Was_Done` | Concrete description of the action: who, what, when, at what scale |
+| `Observed_Metric_Impact` | Quantitative or directional metric movement with time horizon and source citation |
+| `Prerequisites` | Strategic and market prerequisites that were in place before execution |
+| `Operational_And_Tech_Prerequisites` | Systems integration, data/reporting stack, compliance infrastructure, fund admin changes, and hiring that were required (sourced from VD-B2 operational prerequisites) |
+| `Execution_Burden` | Estimated resource intensity: time horizon, capital required, organizational disruption, opportunity cost |
+| `Failure_Modes_And_Margin_Destroyers` | What could go wrong; specific mechanisms by which this play could destroy rather than create value |
+| `Transferability_Constraints` | Scale, geography, regulatory, capability, or track-record barriers that limit which firms can execute this play |
+| `Evidence_Strength` | Confidence classification: `high` (multi-source, independent corroboration), `moderate` (single independent source or corroborated company disclosure), `low` (company-produced only or inferred) |
+
+**Anti-patterns (ANTI-NNN):**
+
+For each stable value driver, include an "Anti-patterns" section enumerating strategic actions that peers executed which did NOT improve performance or actively destroyed value. For every anti-pattern, identify not just that margin compression or value destruction occurred, but the **likely operational mechanism**:
+- Duplicated overhead from unintegrated acquisitions
+- Fragmented country or entity platforms requiring parallel back-office infrastructure
+- Reporting, control, or reconciliation failures post-integration
+- Insufficient systems integration leading to manual workarounds and error propagation
+- Headcount growth outrunning revenue or AUM growth
+- Fee-rate dilution from channel or product mix shift
+
+**Neutral playbook / Target lens separation:**
+
+The core playbook output is neutral — it presents evidence and does not prioritize or recommend specific plays. Strategic prioritization is left to the reader. If `{TARGET_LENS}` is enabled, a separate target-company overlay is generated (see VD-P5) that evaluates which plays are more or less feasible for `{COMPANY}` and why. The overlay is a distinct output file; it does not modify the neutral playbook.
 
 **Output:** `5-playbook/platform_playbook.json`
 
@@ -372,6 +477,10 @@ The structure ensures that a reader who identifies a target value driver can imm
 **Agent:** Report Composer
 
 Produce a parallel strategic menu at the vertical level, drawing on VD-D2 findings. Same structure as VD-P2 — organized by value driver within each vertical, with evidence citations to specific peer actions.
+
+Every PLAY-NNN and ANTI-NNN entry must include the same mandatory fields defined in VD-P2 (`What_Was_Done`, `Observed_Metric_Impact`, `Prerequisites`, `Operational_And_Tech_Prerequisites`, `Execution_Burden`, `Failure_Modes_And_Margin_Destroyers`, `Transferability_Constraints`, `Evidence_Strength`). Entries that omit any mandatory field will be blocked at CP-3.
+
+Within each vertical, organize plays by strategy sub-type (from VD-D2) where applicable, so that readers can identify plays relevant to their specific sub-type rather than only at the broad vertical level.
 
 **Output:** `5-playbook/asset_class_playbooks.json`
 
@@ -454,10 +563,11 @@ Quality gates occur between each wave. The team lead reviews outputs against exp
 
 | Gate | After | Criteria |
 |---|---|---|
-| Gate 1 | Wave 1 | Universe is comprehensive (>= 20 firms identified); metric taxonomy is internally consistent; source catalog meets minimum coverage (>= 3 sources per qualitative peer) |
-| Gate 2 | Wave 2 data collection | Coverage >= 60% of metrics for >= 80% of universe firms; all valuation multiples are populated for all firms; VD-B1/B2 profiles are substantive (>= 2 concrete actions per firm) |
+| Gate 1 | Wave 1 | Universe is comprehensive (>= 20 firms identified); metric taxonomy is internally consistent and includes the Operational Feasibility & Scalable Infrastructure category; source catalog meets minimum coverage (>= 3 sources per qualitative peer) |
+| Gate 2 | Wave 2 data collection | Coverage >= 60% of metrics for >= 80% of universe firms; all valuation multiples are populated for all firms; VD-B1/B2 profiles are substantive (>= 2 concrete actions per firm); **operational metrics coverage:** verify disclosure quality for Operational Feasibility metrics — metrics with < 60% coverage are reclassified as `contextual-only`; FX methodology applied correctly (FX_MATERIAL flags populated where applicable) |
 | Gate 3 | Wave 3 convergence | Final peer set is 9–12 firms with documented rationale; non-obvious peers flagged by Track A are resolved; all stable drivers pass statistical documentation review in VD-A4b |
-| Gate 4 | Wave 4 deep-dives | Platform and vertical deep-dives are internally consistent; transferable insights are grounded in documented evidence, not inference |
+| Gate 4 | Wave 4 deep-dives | Platform and vertical deep-dives are internally consistent; transferable insights are grounded in documented evidence, not inference; **operational prerequisite verification:** block any claimed operational prerequisite that lacks source support or is based only on low-trust evidence (job postings or vendor PRs as sole source); all operational prerequisites carry `evidence_class` tags |
+| Gate 5 | Wave 5 playbook | **Playbook field completeness:** block any PLAY-NNN or ANTI-NNN entry that lacks `Operational_And_Tech_Prerequisites`, `Failure_Modes_And_Margin_Destroyers`, or `Evidence_Strength`; all anti-pattern entries identify the specific operational mechanism of value destruction |
 
 ## Claim Verification
 
@@ -487,8 +597,8 @@ Three verification checkpoints are embedded within the pipeline:
 | Checkpoint | After Stage | Verifies | Evidence Files | Primary Dimensions |
 |---|---|---|---|---|
 | CP-1 | VD-A2 merge (Gate 2) | Metric values, source_ids, confidence levels | `source_catalog.json`, tier files | Invalid premises, misleading context |
-| CP-2 | VD-D1/D2 (Gate 4) | Causal narratives, transferable insights, value creation stories | `correlations.json`, `driver_ranking.json`, `strategic_actions.json` | All 4 (critical gate) |
-| CP-3 | VD-P2/P3 (pre-Gate 5) | PLAY-* recommendations, anti-patterns, target company lens | `platform_profiles.json`, `asset_class_analysis.json`, `driver_ranking.json` | Sycophantic fabrication, confidence miscalibration |
+| CP-2 | VD-D1/D2 (Gate 4) | Causal narratives, transferable insights, value creation stories, operational prerequisite claims | `correlations.json`, `driver_ranking.json`, `strategic_actions.json` | All 4 (critical gate) — additionally: block any claimed operational prerequisite that lacks source support or is based only on job postings / vendor PRs without corroboration |
+| CP-3 | VD-P2/P3 (pre-Gate 5) | PLAY-* recommendations, anti-patterns, target company lens, mandatory field completeness | `platform_profiles.json`, `asset_class_analysis.json`, `driver_ranking.json` | Sycophantic fabrication, confidence miscalibration — additionally: block any PLAY-NNN or ANTI-NNN entry that lacks `Operational_And_Tech_Prerequisites`, `Failure_Modes_And_Margin_Destroyers`, or `Evidence_Strength` |
 
 ### Verdict Taxonomy
 
@@ -537,6 +647,7 @@ Adapt these categories to `{SECTOR}`. The categories below reflect an asset mana
 | Mix and Diversification | Concentration across product lines or asset classes |
 | Efficiency | Margin and cost structure metrics |
 | Fee or Revenue Quality | Revenue durability and predictability |
+| Operational Feasibility & Scalable Infrastructure | Operating model scalability — whether growth can be absorbed without proportional cost escalation. Sector-specific metrics (see VD-A1 sector overlay). Metrics with < 60% coverage are `contextual-only` |
 
 ### Stable Driver vs. Multiple-Specific Driver
 
@@ -655,6 +766,7 @@ Default location: `data/processed/{ticker}/{date}/{step-folder}/`
 | `PS-VD-NNN` | Source in VD-B0 | PS-VD-015 |
 | `ACT-VD-NNN` | Peer action in VD-B2 | ACT-VD-033 |
 | `PLAY-NNN` | Strategic play in VD-P2/P3 | PLAY-007 |
+| `ANTI-NNN` | Anti-pattern in VD-P2/P3 | ANTI-003 |
 
 ## Limitations and Scope Boundaries
 
@@ -668,9 +780,22 @@ The following limitations are acknowledged at design stage and must be disclosed
 
 4. **Causal inference.** The quantitative layer identifies statistical associations; it cannot establish causation. The qualitative layer provides the causal narrative, but that narrative is interpretive and cannot be independently verified without controlled experiments.
 
-5. **Geographic and accounting heterogeneity.** A globally diverse universe may span US GAAP, IFRS, and other accounting standards. Currency conversion and accounting reconciliation reduce but do not eliminate comparability constraints.
+5. **Geographic, FX, and accounting heterogeneity.** A globally diverse universe may span US GAAP, IFRS, and other accounting standards. Currency conversion (using period-end rates for stock metrics and period-average rates for flow metrics) and accounting reconciliation reduce but do not eliminate comparability constraints. Growth metrics are computed in local currency first to isolate FX effects; metrics flagged as `FX_MATERIAL` require interpretive caution.
 
 6. **Playbook transferability.** Strategic plays documented for large listed firms may face structural barriers to transfer to a firm with different scale, capital structure, client base, or regulatory environment. The playbook presents evidence; it does not assess transferability to any specific firm.
+
+## Statistical Governance Consistency
+
+The methodology document, the statistical documentation (VD-A4b), and the final report must use the **same** statistical rulebook throughout. No downstream output may silently switch methods. Specifically:
+
+| Element | Governing Definition | Must Be Consistent Across |
+|---|---|---|
+| Multiple-testing correction method | Bonferroni correction (or effective-independent-tests variant) as defined in VD-A4b | VD-A4b, VD-P1, final report statistical appendix |
+| Confidence taxonomy | High / Moderate / Suggestive / Not significant with thresholds defined in VD-A4b | VD-A4b, VD-A5, VD-P1, final report |
+| Driver classification rules | Stable / Multiple-specific / Moderate signal / Not a driver with thresholds defined in VD-A4 | VD-A4, VD-A5, VD-D1, VD-P2, final report |
+| Sensitivity-check definitions | Leave-one-out and temporal stability as defined in VD-A4b | VD-A4b, VD-P1, final report |
+
+**Low-coverage operational metrics:** new metrics from the Operational Feasibility & Scalable Infrastructure category that have < 60% coverage may appear in context tables and deep-dive narratives even when excluded from the formal driver-ranking engine. They must be explicitly labeled as `contextual-only` in every appearance and must not be cited as evidence of driver status.
 
 ## Cross-Cutting Principles
 
@@ -679,7 +804,8 @@ The following limitations are acknowledged at design stage and must be disclosed
 - **C) Academic language.** Formal prose throughout; no marketing speak, no hyperbole.
 - **D) Source sufficiency.** Minimum thresholds are enforced before each phase advances: >= 3 sources per qualitative peer before Phase 1 concludes; >= 2 sources per firm before Phase 2 deep-dives begin.
 - **E) Peer-centricity.** `{COMPANY}`'s strategy is withheld as a reference point throughout Phase 1 and Phase 2. The playbook is constructed from peer evidence alone.
-- **F) Playbook neutrality.** The final playbook presents evidence and options; it does not rank or recommend specific plays. Strategic prioritization is left to the reader.
+- **F) Playbook neutrality.** The core playbook presents evidence and options; it does not rank or recommend specific plays. Strategic prioritization is left to the reader. If a `{TARGET_LENS}` overlay is enabled, feasibility assessment and prioritization are produced in a separate output file (VD-P5) that does not modify the neutral playbook.
+- **G) Statistical governance.** A single statistical rulebook governs the entire pipeline. The same multiple-testing correction, confidence taxonomy, driver classification rules, and sensitivity-check definitions apply in every stage and in the final report. No downstream output may silently switch methods.
 
 ## Key Files
 
