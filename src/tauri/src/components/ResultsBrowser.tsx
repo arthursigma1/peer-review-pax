@@ -109,7 +109,7 @@ function markdownToHtml(md: string): string {
   return html;
 }
 
-export function ResultsBrowser({ files, ticker, onStartReview, isReviewRunning, runs, selectedRun, onSelectRun }: ResultsBrowserProps) {
+export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReviewRunning, runs, selectedRun, onSelectRun }: ResultsBrowserProps) {
   const [selectedFile, setSelectedFile] = useState<OutputFile | null>(null);
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState(false);

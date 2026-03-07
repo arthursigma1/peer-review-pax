@@ -8,6 +8,7 @@ import { SourceUpload } from "./components/SourceUpload";
 import type { SourcePaths } from "./components/SourceUpload";
 import { usePipeline } from "./hooks/usePipeline";
 import { useFileWatcher } from "./hooks/useFileWatcher";
+import { useNotifications } from "./hooks/useNotifications";
 import type { PipelineConfig } from "./types/pipeline";
 
 interface ExistingSession {
@@ -42,10 +43,33 @@ function App() {
 
   const pipeline = usePipeline();
   const { files, runs, selectedRun, setSelectedRun } = useFileWatcher(pipeline.config?.ticker || ticker || null);
+  const { notify } = useNotifications();
 
   const [isReviewRunning, setIsReviewRunning] = useState(false);
   const [restored, setRestored] = useState(false);
   const [existingSession, setExistingSession] = useState<ExistingSession | null>(null);
+
+  // Notify on quality gate awaiting review
+  useEffect(() => {
+    if (pipeline.pendingGate) {
+      const stepName = pipeline.steps[pipeline.pendingGate.stepIndex]?.name ?? `Step ${pipeline.pendingGate.stepIndex + 1}`;
+      notify("Quality Gate — Action Required", `"${stepName}" needs your review before the pipeline can continue.`);
+    }
+  }, [pipeline.pendingGate]);
+
+  // Notify on pipeline completion or failure
+  useEffect(() => {
+    if (!pipeline.isRunning && pipeline.steps.length > 0) {
+      const allDone = pipeline.steps.every((s) => s.status === "complete");
+      const anyFailed = pipeline.steps.some((s) => s.status === "failed");
+      if (allDone) {
+        notify("Pipeline Complete", `Analysis for ${pipeline.config?.ticker ?? "ticker"} finished successfully.`);
+      } else if (anyFailed) {
+        const failed = pipeline.steps.filter((s) => s.status === "failed").map((s) => s.name);
+        notify("Pipeline Error", `Failed steps: ${failed.join(", ")}`);
+      }
+    }
+  }, [pipeline.isRunning]);
 
   // Restore last ticker from localStorage on startup so Results works immediately
   useEffect(() => {
@@ -89,6 +113,7 @@ function App() {
       });
       command.on("close", () => {
         setIsReviewRunning(false);
+        notify("Review Complete", `Review analysis for ${reviewTicker} has finished.`);
       });
       await command.spawn();
     } catch {
@@ -111,7 +136,7 @@ function App() {
 
   // Keyboard shortcuts: ⌘1 / ⌘2 / ⌘3 for navigation
   useEffect(() => {
-    const screens: Screen[] = ["home", "monitor", "results"];
+    const screens: Screen[] = ["home", "monitor", "results", "agents"];
     const handler = (e: KeyboardEvent) => {
       if (!e.metaKey && !e.ctrlKey) return;
       const idx = parseInt(e.key) - 1;

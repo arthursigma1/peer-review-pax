@@ -40,7 +40,7 @@ export function usePipeline() {
   const [logs, setLogs] = useState<string[]>([]);
   const [pendingGate, setPendingGate] = useState<QualityGate | null>(null);
   const [config, setConfig] = useState<PipelineConfig | null>(null);
-  const childRef = useRef<Awaited<ReturnType<Command["spawn"]>> | null>(null);
+  const childRef = useRef<any | null>(null);
 
   const addLog = useCallback((line: string) => {
     setLogs((prev) => [...prev, line]);

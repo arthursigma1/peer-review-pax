@@ -15,6 +15,8 @@ Identify which operational and financial metrics drive valuation multiples acros
 /valuation-driver TICKER --ui                     # launch Tauri desktop dashboard
 /valuation-driver TICKER --sources /path/to/dir   # with supplemental proprietary data
 /valuation-driver TICKER --auto --sources /path   # automatic + supplemental data
+/valuation-driver TICKER --base-run 2026-03-06      # iterative: improve upon previous run
+/valuation-driver TICKER --style-ref /path/to/doc   # match writing style of reference doc
 ```
 
 ## Step 0: Parse Arguments
@@ -24,6 +26,8 @@ Extract from the user's input:
 - `--ui` flag (optional) — if present, launch the Tauri desktop dashboard instead of running in CLI mode
 - `--auto` flag (optional) — if present, quality gates are validated automatically; otherwise interactive
 - `--sources /path/to/dir` (optional) — path to a directory containing supplemental data files (PDFs, DOCX, PPTX)
+- `--base-run YYYY-MM-DD` (optional) — date of a previous run to use as baseline. Agents receive previous outputs as context and are instructed to improve upon them.
+- `--style-ref /path/to/doc` (optional) — path to a reference document whose writing style the report should match.
 
 If no TICKER is provided, ask the user for one.
 
@@ -93,6 +97,18 @@ Save as JSON:
 
 If `--sources` was provided, set `supplemental_sources_dir` to that path.
 
+If `--base-run` was provided:
+- Set `base_run_date` to the provided date
+- Verify `data/processed/{TICKER}/{base_run_date}/` exists and contains outputs
+- Add `"base_run": "YYYY-MM-DD"` to company_context.json
+- All subsequent agents receive additional instruction: "Previous analysis outputs are available at `data/processed/{TICKER}/{base_run_date}/`. Review them as context. Your goal is to IMPROVE upon these findings — fill data gaps, strengthen weak conclusions, incorporate new sources. Do not simply repeat previous findings."
+
+If `--style-ref` was provided:
+- Read the reference document
+- Extract key style characteristics (tone, structure, terminology, level of detail)
+- Store as `data/processed/{TICKER}/{DATE}/style_guide.json` with fields: `tone`, `formality`, `terminology_examples`, `structure_notes`
+- The report-builder agent receives this as additional context
+
 Display the discovered context to the user and confirm before proceeding.
 
 ## Step 3: Peer Validation (if reference list provided)
@@ -122,6 +138,13 @@ Tag each converted file with the appropriate bias type based on filename and con
 - Internal databases / Preqin exports → `third-party-analyst`
 
 Store a manifest at `data/raw/{TICKER}/{DATE}/supplemental/manifest.json` listing each file, its bias tag, and the firm(s) it covers.
+
+Each source in `manifest.json` also gets a `track_affinity` field:
+- `"quantitative"` — sell-side research, analyst models, financial databases → prioritized by data-collector agents
+- `"qualitative"` — consulting reports (McKinsey, BCG, Bain), strategy presentations, Investor Day decks → prioritized by strategy-extractor agent
+- `"both"` — earnings call transcripts, annual reports (contain both quant data and strategic commentary)
+
+Agents should check `track_affinity` and prioritize sources matching their track.
 
 Make the supplemental manifest path available to all agents in subsequent steps.
 
@@ -630,7 +653,12 @@ Instructions:
 > 3. **Key actions (2–3 year horizon)** — full catalog from VD-B2, organized by action type, with source citations (ACT-VD-NNN)
 > 4. **Performance on stable value drivers** — scores on top 5–6 drivers from VD-A5 with cross-sectional quartile position and brief context
 > 5. **Value creation narrative** — analytical account of what makes this firm trade at its current premium or discount relative to peer group; articulate the causal theory connecting strategy to valuation
-> 6. **Transferable insights** — 3–5 specific lessons that a different alternative asset manager could consider, stated independently (do not reference {COMPANY})
+> 6. **Transferable insights with implementation pathways** — For each of the 3–5 insights:
+>    - The insight itself (grounded in documented evidence)
+>    - **How they did it**: specific implementation sequence — what came first, what enabled what, what prerequisites were needed
+>    - **Timeline**: how long the transformation took from announcement to measurable impact
+>    - **Enabling conditions**: what organizational, capital, or market conditions made this possible
+>    - Do NOT reference {COMPANY}; keep insights self-contained but operationally detailed
 >
 > All profiles must be internally consistent. Transferable insights must be grounded in documented evidence from VD-B2, not inference.
 >
@@ -718,6 +746,12 @@ Instructions:
 >
 > The menu presents evidence and does not prioritize or recommend specific plays. Cite ACT-VD-NNN and PS-VD-NNN identifiers throughout.
 >
+> **Additionally, for each stable value driver, include an "Anti-patterns" section:**
+> - Enumerate strategic actions that peers executed which did NOT improve performance on this driver, or actively destroyed value
+> - For each anti-pattern (ANTI-NNN): which firms attempted it, what was done, what negative outcome was observed, why it failed
+> - Frame as "Don'ts" — lessons from what did not work, not just what did
+> - Cite ACT-VD-NNN and PS-VD-NNN identifiers throughout
+>
 > **Output B:** `data/processed/{TICKER}/{DATE}/peer_vd_p2_platform_playbook.json`
 >
 > **Task C — Stage VD-P3: Asset Class Playbooks**
@@ -762,6 +796,14 @@ Instructions:
 > - Vertical-specific metric drivers
 > - Vertical strategic menu
 >
+> **Governance-ready framing:**
+> - If `data/processed/{TICKER}/{DATE}/5-playbook/target_company_lens.json` exists, incorporate the Strategic Guidance section as a dedicated chapter after the Executive Summary
+> - Structure: "Strategic Implications for {COMPANY}" → PHL/Board Guidance → Management Priorities → Per-BU Recommendations
+> - Include an "Anti-patterns & Cautionary Lessons" section after the Platform Strategic Menu
+>
+> **Style matching:**
+> - If `data/processed/{TICKER}/{DATE}/style_guide.json` exists, adapt the report's tone, terminology, and structure to match the style guide while preserving all analytical rigor and mandatory disclaimers
+>
 > **Technical requirements:**
 > - Sidebar navigation linking to all major sections
 > - Collapsible sections for supporting evidence and data tables
@@ -769,6 +811,9 @@ Instructions:
 > - Statistical appendix with correlation coefficients, confidence intervals, and corrected p-values
 > - Mandatory disclaimers section (verbatim from VD-A4b)
 > - Clean professional styling: serif body font (Georgia), teal/navy color scheme, company name + date in header
+> - "Anti-patterns & Cautionary Lessons" section with evidence citations
+> - "Strategic Implications for {COMPANY}" chapter (if target lens available)
+> - Style adaptation from style_guide.json (if available)
 >
 > **Consumer entry points:**
 > - C-suite / IR / Corporate Strategy: Executive summary → Platform strategic menu
@@ -779,6 +824,62 @@ Instructions:
 > - GP-Led Solutions BU: Solutions/Secondaries vertical section
 >
 > **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_final_report.html`
+
+Wait for report-builder to complete, then spawn the target lens agent:
+
+### Agent: target-lens
+
+Spawn with Agent tool (subagent_type: general-purpose, name: "target-lens", team_name: "vda-{TICKER_LOWER}"):
+
+Instructions:
+> You are the target-lens agent for the Valuation Driver Analysis pipeline.
+>
+> **Company:** {COMPANY} ({EXCHANGE}: {TICKER})
+> **Sector:** {SECTOR}
+> **Business Segments:** {SEGMENTS}
+>
+> **Your task:** Execute Stage VD-P5 — Target Company Strategic Lens.
+>
+> Read:
+> - `data/processed/{TICKER}/{DATE}/company_context.json`
+> - `data/processed/{TICKER}/{DATE}/5-playbook/platform_playbook.json`
+> - `data/processed/{TICKER}/{DATE}/5-playbook/asset_class_playbooks.json`
+> - `data/processed/{TICKER}/{DATE}/4-deep-dives/platform_profiles.json`
+> - `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json`
+>
+> For each PLAY-NNN in the platform and asset class playbooks, assess applicability to {COMPANY}:
+>
+> **Classification:**
+> - `directly_applicable` — {COMPANY} operates in the same geography/asset class AND has the prerequisites
+> - `requires_adaptation` — relevant principle but execution path differs due to {COMPANY}'s scale, geography, or asset mix
+> - `not_applicable` — geographic, regulatory, or structural mismatch makes this play irrelevant
+>
+> For each play, produce:
+> - `play_id`: PLAY-NNN
+> - `applicability`: directly_applicable | requires_adaptation | not_applicable
+> - `rationale`: why this classification
+> - `adaptation_notes`: if requires_adaptation, what would need to change
+> - `priority`: high | medium | low (based on potential valuation impact for {COMPANY})
+> - `implementation_pathway`: concrete steps {COMPANY} could take, in what sequence, with what prerequisites
+>
+> **Additionally, produce a "Strategic Guidance" section structured for governance cascading:**
+>
+> **For PHL/Board level** (top-down strategic guidelines):
+> - Top 5 value-creating principles relevant to {COMPANY}
+> - Portfolio-level strategic priorities (which asset classes to grow, which capabilities to build)
+> - 3-year directional targets linked to stable value drivers
+>
+> **For CEO/Management Committee** (operational translation):
+> - Priority initiatives mapped to value drivers
+> - Resource allocation implications
+> - Quick wins vs. structural investments
+>
+> **Per Business Unit** (asset class specific):
+> - For each of {COMPANY}'s business segments: top 3 applicable plays with implementation pathway
+> - Competitive positioning vs. peers in that asset class
+> - Do's and Don'ts grounded in peer evidence
+>
+> **Output:** `data/processed/{TICKER}/{DATE}/5-playbook/target_company_lens.json`
 
 ### Quality Gate 5 (always shown, regardless of mode)
 
@@ -830,6 +931,14 @@ The Data Collector agents must:
 1. **Record market cap reference date** per firm (not just the value).
 2. **Document source and methodology** for computed metrics (organic growth, asset class HHI).
 3. **Flag firms with non-calendar fiscal years** and specify the exact period covered.
+
+### Iterative Run Support
+When `--base-run` is provided:
+1. All agents receive the path to the previous run's outputs as additional context
+2. Agents are instructed to: review previous findings, identify gaps or weak points, incorporate any new supplemental sources, and produce improved outputs
+3. The convergence analyst explicitly compares the new peer set against the previous run's peer set and documents changes
+4. The report-builder includes a "Changes from Previous Analysis" appendix if base_run outputs exist
+5. Quality gates compare coverage metrics against the base run — new run should not regress on coverage
 
 ## Step 12: Cleanup and Report
 

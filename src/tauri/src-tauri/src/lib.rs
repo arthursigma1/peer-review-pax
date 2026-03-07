@@ -485,6 +485,7 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_notification::init())
         .register_uri_scheme_protocol("vdafile", |_ctx, request| {
             let uri = request.uri();
             // URI format: vdafile://localhost/absolute/path/to/file.html

@@ -114,6 +114,7 @@ export const AGENT_NAMES: Record<string, string> = {
   "vertical-analyst": "Sector Specialist",
   "playbook-synthesizer": "Insight Synthesizer",
   "report-builder": "Report Composer",
+  "target-lens": "Target Company Lens",
   "methodology-reviewer": "Methodology Reviewer",
   "results-reviewer": "Results Reviewer",
 };
