@@ -13,6 +13,7 @@ pub struct OutputFile {
     pub size: u64,
     pub modified: u64,
     pub file_type: String,
+    pub folder: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -53,45 +54,101 @@ fn get_project_root() -> String {
         .to_string()
 }
 
+/// List all date-stamped analysis runs for a ticker
 #[tauri::command]
-fn list_outputs(ticker: String) -> Vec<OutputFile> {
+fn list_analysis_runs(ticker: String) -> Vec<String> {
     let root = get_project_root();
     let dir = PathBuf::from(&root)
         .join("data")
         .join("processed")
         .join(ticker.to_lowercase());
+    let mut runs: Vec<String> = std::fs::read_dir(&dir)
+        .map(|entries| {
+            entries
+                .flatten()
+                .filter(|e| e.file_type().map(|t| t.is_dir()).unwrap_or(false))
+                .filter_map(|e| {
+                    let name = e.file_name().to_string_lossy().to_string();
+                    // Match YYYY-MM-DD pattern
+                    if name.len() == 10 && name.chars().nth(4) == Some('-') {
+                        Some(name)
+                    } else {
+                        None
+                    }
+                })
+                .collect()
+        })
+        .unwrap_or_default();
+    runs.sort();
+    runs.reverse(); // newest first
+    runs
+}
+
+#[tauri::command]
+fn list_outputs(ticker: String, run_date: Option<String>) -> Vec<OutputFile> {
+    let root = get_project_root();
+    let base = PathBuf::from(&root)
+        .join("data")
+        .join("processed")
+        .join(ticker.to_lowercase());
+
+    // Find the run directory — use provided date or latest
+    let run_dir = if let Some(date) = run_date {
+        base.join(date)
+    } else {
+        // Find latest date folder
+        let runs = list_analysis_runs(ticker);
+        if let Some(latest) = runs.first() {
+            base.join(latest)
+        } else {
+            return Vec::new();
+        }
+    };
 
     let mut files = Vec::new();
-    if let Ok(entries) = std::fs::read_dir(&dir) {
+    scan_dir_recursive(&run_dir, &run_dir, &mut files);
+    // Sort by folder then filename
+    files.sort_by(|a, b| (&a.folder, &a.filename).cmp(&(&b.folder, &b.filename)));
+    files
+}
+
+fn scan_dir_recursive(base: &PathBuf, dir: &PathBuf, files: &mut Vec<OutputFile>) {
+    if let Ok(entries) = std::fs::read_dir(dir) {
         for entry in entries.flatten() {
-            if let Ok(meta) = entry.metadata() {
-                if meta.is_file() {
-                    let name = entry.file_name().to_string_lossy().to_string();
-                    if name.starts_with("peer_vd_") {
-                        let ext = entry
-                            .path()
-                            .extension()
-                            .map(|e| e.to_string_lossy().to_string())
-                            .unwrap_or_default();
-                        files.push(OutputFile {
-                            filename: name,
-                            path: entry.path().to_string_lossy().to_string(),
-                            size: meta.len(),
-                            modified: meta
-                                .modified()
-                                .ok()
-                                .and_then(|t| t.duration_since(std::time::UNIX_EPOCH).ok())
-                                .map(|d| d.as_secs())
-                                .unwrap_or(0),
-                            file_type: ext,
-                        });
-                    }
+            let path = entry.path();
+            if path.is_dir() {
+                scan_dir_recursive(base, &path, files);
+            } else if path.is_file() {
+                let name = entry.file_name().to_string_lossy().to_string();
+                if name.starts_with('.') || name == "pipeline_state.json" {
+                    continue;
                 }
+                let ext = path
+                    .extension()
+                    .map(|e| e.to_string_lossy().to_string())
+                    .unwrap_or_default();
+                let folder = path
+                    .parent()
+                    .and_then(|p| p.strip_prefix(base).ok())
+                    .map(|p| p.to_string_lossy().to_string())
+                    .unwrap_or_default();
+                let meta = entry.metadata().ok();
+                files.push(OutputFile {
+                    filename: name,
+                    path: path.to_string_lossy().to_string(),
+                    size: meta.as_ref().map(|m| m.len()).unwrap_or(0),
+                    modified: meta
+                        .as_ref()
+                        .and_then(|m| m.modified().ok())
+                        .and_then(|t| t.duration_since(std::time::UNIX_EPOCH).ok())
+                        .map(|d| d.as_secs())
+                        .unwrap_or(0),
+                    file_type: ext,
+                    folder,
+                });
             }
         }
     }
-    files.sort_by(|a, b| a.filename.cmp(&b.filename));
-    files
 }
 
 #[tauri::command]
@@ -122,7 +179,7 @@ async fn start_file_watcher(app: AppHandle, ticker: String) -> Result<(), String
     .map_err(|e| format!("Failed to create watcher: {}", e))?;
 
     watcher
-        .watch(&watch_dir, RecursiveMode::NonRecursive)
+        .watch(&watch_dir, RecursiveMode::Recursive)
         .map_err(|e| format!("Failed to watch directory: {}", e))?;
 
     // Store watcher to keep it alive
@@ -134,7 +191,7 @@ async fn start_file_watcher(app: AppHandle, ticker: String) -> Result<(), String
     let ticker_clone = ticker.clone();
     tokio::spawn(async move {
         while let Some(_event) = rx.recv().await {
-            let files = list_outputs(ticker_clone.clone());
+            let files = list_outputs(ticker_clone.clone(), None);
             let _ = app_clone.emit("output-files-changed", &files);
         }
     });
@@ -252,50 +309,175 @@ pub struct StepCompletionInfo {
 #[tauri::command]
 fn detect_existing_session(ticker: String) -> Vec<StepCompletionInfo> {
     let root = get_project_root();
-    let dir = PathBuf::from(&root)
+    let base = PathBuf::from(&root)
         .join("data")
         .join("processed")
         .join(ticker.to_lowercase());
 
-    // Map pipeline steps to their expected output file prefixes
-    let step_files: Vec<(usize, &str, Vec<&str>)> = vec![
-        (0, "Map the Industry", vec!["peer_vd_a0_", "peer_vd_a1_", "peer_vd_b0_"]),
-        (1, "Gather Data", vec!["peer_vd_a2_", "peer_vd_b1_", "peer_vd_b2_"]),
-        (2, "Find What Drives Value", vec!["peer_vd_a3_", "peer_vd_a4", "peer_vd_a5_", "peer_vd_c1_"]),
-        (3, "Deep-Dive Peers", vec!["peer_vd_d1_", "peer_vd_d2_"]),
-        (4, "Build the Playbook", vec!["peer_vd_p1_", "peer_vd_p2_", "peer_vd_p3_", "peer_vd_final_report"]),
-        (5, "Review Analysis", vec!["peer_vd_review_"]),
+    // Find latest run
+    let runs = list_analysis_runs(ticker);
+    let run_dir = if let Some(latest) = runs.first() {
+        base.join(latest)
+    } else {
+        return Vec::new();
+    };
+
+    // Map pipeline steps to their expected subfolders and filenames
+    let step_checks: Vec<(usize, &str, &str, Vec<&str>)> = vec![
+        (0, "Map the Industry", "1-universe", vec!["peer_universe.json", "metric_taxonomy.json", "source_catalog.json"]),
+        (1, "Gather Data", "2-data", vec!["quantitative_data.json", "strategy_profiles.json", "strategic_actions.json"]),
+        (2, "Find What Drives Value", "3-analysis", vec!["standardized_data.json", "correlations.json", "driver_ranking.json", "final_peer_set.json"]),
+        (3, "Deep-Dive Peers", "4-deep-dives", vec!["platform_profiles.json", "asset_class_analysis.json"]),
+        (4, "Build the Playbook", "5-playbook", vec!["value_principles.md", "platform_playbook.json", "final_report.html"]),
+        (5, "Review Analysis", "6-review", vec!["methodology_review.md", "results_review.md"]),
     ];
 
-    let existing_files: Vec<String> = std::fs::read_dir(&dir)
-        .map(|entries| {
-            entries
-                .flatten()
-                .filter_map(|e| {
-                    let name = e.file_name().to_string_lossy().to_string();
-                    if name.starts_with("peer_vd_") { Some(name) } else { None }
-                })
-                .collect()
-        })
-        .unwrap_or_default();
-
-    step_files
+    step_checks
         .into_iter()
-        .map(|(index, name, prefixes)| {
-            let files_found: Vec<String> = existing_files
-                .iter()
-                .filter(|f| prefixes.iter().any(|p| f.starts_with(p)))
-                .cloned()
-                .collect();
-            let complete = prefixes.iter().all(|p| existing_files.iter().any(|f| f.starts_with(p)));
+        .map(|(index, name, folder, expected_files)| {
+            let folder_path = run_dir.join(folder);
+            let found: Vec<String> = std::fs::read_dir(&folder_path)
+                .map(|entries| {
+                    entries
+                        .flatten()
+                        .map(|e| e.file_name().to_string_lossy().to_string())
+                        .collect()
+                })
+                .unwrap_or_default();
+            let complete = expected_files.iter().all(|f| found.iter().any(|e| e == f));
             StepCompletionInfo {
                 step_index: index,
                 step_name: name.to_string(),
-                files_found,
+                files_found: found,
                 complete,
             }
         })
         .collect()
+}
+
+#[tauri::command]
+fn write_output_file(path: String, content: String) -> Result<(), String> {
+    std::fs::write(&path, content).map_err(|e| format!("Failed to write file: {}", e))
+}
+
+#[tauri::command]
+fn read_json_as_table(path: String) -> Result<String, String> {
+    let content = std::fs::read_to_string(&path)
+        .map_err(|e| format!("Failed to read file: {}", e))?;
+    let value: serde_json::Value = serde_json::from_str(&content)
+        .map_err(|e| format!("Invalid JSON: {}", e))?;
+    Ok(json_value_to_html(&value, 0))
+}
+
+const MAX_DEPTH: usize = 3;
+const MAX_ROWS: usize = 100;
+
+fn json_value_to_html(value: &serde_json::Value, depth: usize) -> String {
+    if depth >= MAX_DEPTH {
+        return format!(
+            "<pre class=\"nested-json\">{}</pre>",
+            html_escape(&serde_json::to_string_pretty(value).unwrap_or_default())
+        );
+    }
+    match value {
+        serde_json::Value::Array(arr) if !arr.is_empty() && arr.iter().all(|v| v.is_object()) => {
+            let mut keys: Vec<String> = Vec::new();
+            for item in arr {
+                if let serde_json::Value::Object(map) = item {
+                    for k in map.keys() {
+                        if !keys.contains(k) {
+                            keys.push(k.clone());
+                        }
+                    }
+                }
+            }
+            let mut html = String::from("<table><thead><tr>");
+            for k in &keys {
+                html.push_str(&format!("<th>{}</th>", html_escape(k)));
+            }
+            html.push_str("</tr></thead><tbody>");
+            let display_count = arr.len().min(MAX_ROWS);
+            for item in arr.iter().take(display_count) {
+                html.push_str("<tr>");
+                if let serde_json::Value::Object(map) = item {
+                    for k in &keys {
+                        html.push_str("<td>");
+                        match map.get(k) {
+                            Some(v) if v.is_object() || v.is_array() => {
+                                html.push_str(&json_value_to_html(v, depth + 1));
+                            }
+                            Some(v) => html.push_str(&html_escape(&json_display(v))),
+                            None => html.push_str("<span class=\"null\">—</span>"),
+                        }
+                        html.push_str("</td>");
+                    }
+                }
+                html.push_str("</tr>");
+            }
+            if arr.len() > MAX_ROWS {
+                html.push_str(&format!(
+                    "<tr><td colspan=\"{}\" class=\"truncated\">… {} more rows</td></tr>",
+                    keys.len(),
+                    arr.len() - MAX_ROWS
+                ));
+            }
+            html.push_str("</tbody></table>");
+            html
+        }
+        serde_json::Value::Array(arr) => {
+            let mut html = String::from("<table><tbody>");
+            let display_count = arr.len().min(MAX_ROWS);
+            for (i, item) in arr.iter().enumerate().take(display_count) {
+                html.push_str(&format!("<tr><th>{}</th><td>", i));
+                if item.is_object() || item.is_array() {
+                    html.push_str(&json_value_to_html(item, depth + 1));
+                } else {
+                    html.push_str(&html_escape(&json_display(item)));
+                }
+                html.push_str("</td></tr>");
+            }
+            if arr.len() > MAX_ROWS {
+                html.push_str(&format!(
+                    "<tr><td colspan=\"2\" class=\"truncated\">… {} more items</td></tr>",
+                    arr.len() - MAX_ROWS
+                ));
+            }
+            html.push_str("</tbody></table>");
+            html
+        }
+        serde_json::Value::Object(map) => {
+            let mut html = String::from("<table><tbody>");
+            for (k, v) in map {
+                html.push_str(&format!("<tr><th>{}</th><td>", html_escape(k)));
+                if v.is_object() || v.is_array() {
+                    html.push_str(&json_value_to_html(v, depth + 1));
+                } else {
+                    html.push_str(&html_escape(&json_display(v)));
+                }
+                html.push_str("</td></tr>");
+            }
+            html.push_str("</tbody></table>");
+            html
+        }
+        other => html_escape(&json_display(other)),
+    }
+}
+
+fn json_display(v: &serde_json::Value) -> String {
+    match v {
+        serde_json::Value::String(s) => s.clone(),
+        serde_json::Value::Null => "null".to_string(),
+        serde_json::Value::Bool(b) => b.to_string(),
+        serde_json::Value::Number(n) => n.to_string(),
+        other => other.to_string(),
+    }
+}
+
+fn html_escape(s: &str) -> String {
+    s.replace('&', "&amp;")
+        .replace('<', "&lt;")
+        .replace('>', "&gt;")
+        .replace('"', "&quot;")
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -341,8 +523,10 @@ pub fn run() {
         })
         .invoke_handler(tauri::generate_handler![
             get_project_root,
+            list_analysis_runs,
             list_outputs,
             read_output_file,
+            write_output_file,
             start_file_watcher,
             save_pipeline_state,
             load_pipeline_state,
@@ -350,6 +534,7 @@ pub fn run() {
             open_in_browser,
             read_html_summary,
             detect_existing_session,
+            read_json_as_table,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

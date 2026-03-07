@@ -40,7 +40,7 @@ function App() {
   const [referencePeers, setReferencePeers] = useState("");
 
   const pipeline = usePipeline();
-  const { files } = useFileWatcher(pipeline.config?.ticker || ticker || null);
+  const { files, runs, selectedRun, setSelectedRun } = useFileWatcher(pipeline.config?.ticker || ticker || null);
 
   const [isReviewRunning, setIsReviewRunning] = useState(false);
   const [restored, setRestored] = useState(false);
@@ -108,6 +108,21 @@ function App() {
     }
   }, []);
 
+  // Keyboard shortcuts: ⌘1 / ⌘2 / ⌘3 for navigation
+  useEffect(() => {
+    const screens: Screen[] = ["home", "monitor", "results"];
+    const handler = (e: KeyboardEvent) => {
+      if (!e.metaKey && !e.ctrlKey) return;
+      const idx = parseInt(e.key) - 1;
+      if (idx >= 0 && idx < screens.length) {
+        e.preventDefault();
+        setScreen(screens[idx]);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
   const handleStart = () => {
     if (!ticker.trim()) return;
     const config: PipelineConfig = {
@@ -139,12 +154,12 @@ function App() {
           )}
         </div>
         <nav className="flex items-center gap-1">
-          {(["home", "monitor", "results"] as Screen[]).map((s) => (
+          {(["home", "monitor", "results"] as Screen[]).map((s, i) => (
             <button
               key={s}
               onClick={() => setScreen(s)}
               className={`
-                px-3 py-1.5 rounded-md text-xs font-medium transition-colors
+                px-3 py-1.5 rounded-md text-xs font-medium transition-colors flex items-center gap-1.5
                 ${
                   screen === s
                     ? "bg-zinc-800 text-zinc-100"
@@ -157,6 +172,9 @@ function App() {
                 : s === "monitor"
                 ? "Pipeline"
                 : "Results"}
+              <kbd className={`text-[9px] px-1 py-0.5 rounded ${
+                screen === s ? "bg-zinc-700 text-zinc-400" : "bg-zinc-800/60 text-zinc-600"
+              }`}>⌘{i + 1}</kbd>
             </button>
           ))}
         </nav>
@@ -331,6 +349,9 @@ function App() {
             ticker={pipeline.config?.ticker || ticker || ""}
             onStartReview={ticker ? handleStartReview : undefined}
             isReviewRunning={isReviewRunning}
+            runs={runs}
+            selectedRun={selectedRun}
+            onSelectRun={setSelectedRun}
           />
         )}
       </main>

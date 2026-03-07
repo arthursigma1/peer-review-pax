@@ -6,16 +6,22 @@ import type { OutputFile } from "../types/pipeline";
 export function useFileWatcher(ticker: string | null) {
   const [files, setFiles] = useState<OutputFile[]>([]);
   const [watching, setWatching] = useState(false);
+  const [runs, setRuns] = useState<string[]>([]);
+  const [selectedRun, setSelectedRun] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
     if (!ticker) return;
     try {
-      const result = await invoke<OutputFile[]>("list_outputs", { ticker });
+      const availableRuns = await invoke<string[]>("list_analysis_runs", { ticker });
+      setRuns(availableRuns);
+      const runDate = selectedRun || availableRuns[0] || null;
+      if (runDate && !selectedRun) setSelectedRun(runDate);
+      const result = await invoke<OutputFile[]>("list_outputs", { ticker, runDate });
       setFiles(result);
     } catch (err) {
       console.error("Failed to list outputs:", err);
     }
-  }, [ticker]);
+  }, [ticker, selectedRun]);
 
   useEffect(() => {
     if (!ticker) return;
@@ -44,5 +50,5 @@ export function useFileWatcher(ticker: string | null) {
     };
   }, [ticker, refresh]);
 
-  return { files, watching, refresh };
+  return { files, watching, refresh, runs, selectedRun, setSelectedRun };
 }

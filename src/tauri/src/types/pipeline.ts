@@ -43,7 +43,17 @@ export interface OutputFile {
   size: number;
   modified: number;
   file_type: string;
+  folder: string;
 }
+
+export const FOLDER_LABELS: Record<string, string> = {
+  "1-universe": "Universe & Sources",
+  "2-data": "Data Collection",
+  "3-analysis": "Statistical Analysis",
+  "4-deep-dives": "Deep-Dive Profiles",
+  "5-playbook": "Playbook & Report",
+  "6-review": "Review",
+};
 
 export interface PipelineConfig {
   ticker: string;
