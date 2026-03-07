@@ -4,6 +4,7 @@ import { FitAddon } from "@xterm/addon-fit";
 import { WebLinksAddon } from "@xterm/addon-web-links";
 import "@xterm/xterm/css/xterm.css";
 import { usePty } from "../hooks/usePty";
+import { terminalTheme } from "../lib/theme";
 
 interface TerminalProps {
   command: string;
@@ -29,28 +30,7 @@ export function Terminal({ command, args, autoStart = false, onExit, onData }: T
       fontFamily: "'SF Mono', 'Cascadia Code', 'Fira Code', Menlo, monospace",
       fontSize: 12,
       lineHeight: 1.3,
-      theme: {
-        background: "#0c0c0c",
-        foreground: "#d4d4d4",
-        cursor: "#2dd4bf",
-        selectionBackground: "#2dd4bf33",
-        black: "#18181b",
-        red: "#f87171",
-        green: "#4ade80",
-        yellow: "#facc15",
-        blue: "#60a5fa",
-        magenta: "#c084fc",
-        cyan: "#2dd4bf",
-        white: "#d4d4d4",
-        brightBlack: "#52525b",
-        brightRed: "#fca5a5",
-        brightGreen: "#86efac",
-        brightYellow: "#fde68a",
-        brightBlue: "#93c5fd",
-        brightMagenta: "#d8b4fe",
-        brightCyan: "#5eead4",
-        brightWhite: "#fafafa",
-      },
+      theme: terminalTheme,
       scrollback: 10000,
       convertEol: true,
     });
@@ -126,7 +106,7 @@ export function Terminal({ command, args, autoStart = false, onExit, onData }: T
         {isRunning && (
           <button
             onClick={kill}
-            className="text-[10px] px-2 py-0.5 rounded bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors"
+            className="text-[10px] px-3 py-2 rounded bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors"
           >
             Kill
           </button>

@@ -8,6 +8,7 @@ export function useFileWatcher(ticker: string | null) {
   const [watching, setWatching] = useState(false);
   const [runs, setRuns] = useState<string[]>([]);
   const [selectedRun, setSelectedRun] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const refresh = useCallback(async () => {
     if (!ticker) return;
@@ -18,8 +19,10 @@ export function useFileWatcher(ticker: string | null) {
       if (runDate && !selectedRun) setSelectedRun(runDate);
       const result = await invoke<OutputFile[]>("list_outputs", { ticker, runDate });
       setFiles(result);
+      setError(null);
     } catch (err) {
       console.error("Failed to list outputs:", err);
+      setError(`Failed to list outputs: ${err}`);
     }
   }, [ticker, selectedRun]);
 
@@ -34,11 +37,13 @@ export function useFileWatcher(ticker: string | null) {
       try {
         await invoke("start_file_watcher", { ticker });
         setWatching(true);
+        setError(null);
         unlisten = await listen<OutputFile[]>("output-files-changed", (event) => {
           setFiles(event.payload);
         });
       } catch (err) {
         console.error("Failed to start watcher:", err);
+        setError(`File watcher failed: ${err}`);
       }
     };
 
@@ -50,5 +55,5 @@ export function useFileWatcher(ticker: string | null) {
     };
   }, [ticker, refresh]);
 
-  return { files, watching, refresh, runs, selectedRun, setSelectedRun };
+  return { files, watching, refresh, runs, selectedRun, setSelectedRun, error };
 }

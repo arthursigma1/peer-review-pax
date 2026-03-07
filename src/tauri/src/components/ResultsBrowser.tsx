@@ -3,6 +3,8 @@ import { invoke } from "@tauri-apps/api/core";
 import type { OutputFile } from "../types/pipeline";
 import { FOLDER_LABELS } from "../types/pipeline";
 import { formatFileSize } from "../lib/cli";
+import { viewerBaseCSS, markdownViewerCSS } from "../lib/theme";
+
 
 interface ResultsBrowserProps {
   files: OutputFile[];
@@ -12,6 +14,7 @@ interface ResultsBrowserProps {
   runs?: string[];
   selectedRun?: string | null;
   onSelectRun?: (run: string) => void;
+  watcherError?: string | null;
 }
 
 const FILE_ICONS: Record<string, string> = {
@@ -20,68 +23,42 @@ const FILE_ICONS: Record<string, string> = {
   html: "</>",
 };
 
-const JSON_TABLE_CSS = `
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #0c0c0f; color: #d4d4d8; padding: 16px;
-  font-size: 13px; line-height: 1.5;
-}
-table { border-collapse: collapse; width: 100%; margin-bottom: 12px; }
-thead th {
-  background: #1a1a2e; color: #5eead4; font-weight: 600;
-  text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;
-  padding: 10px 12px; text-align: left;
-  border-bottom: 2px solid #2dd4bf33;
-  position: sticky; top: 0; z-index: 1;
-}
-tbody tr { border-bottom: 1px solid #27272a; }
-tbody tr:hover { background: #18181b; }
-tbody tr:nth-child(even) { background: #111114; }
-tbody tr:nth-child(even):hover { background: #18181b; }
-th {
-  color: #a1a1aa; font-weight: 500; padding: 8px 12px;
-  text-align: left; white-space: nowrap; vertical-align: top;
-  background: #141418; min-width: 120px;
-}
-td { padding: 8px 12px; vertical-align: top; max-width: 600px; word-wrap: break-word; }
-td table { margin: 4px 0; font-size: 12px; }
-td table th { font-size: 11px; padding: 4px 8px; min-width: 80px; }
-td table td { padding: 4px 8px; }
-.null { color: #52525b; font-style: italic; }
-.truncated { color: #5eead4; font-style: italic; text-align: center; padding: 12px; }
-.nested-json {
-  background: #18181b; color: #a1a1aa; padding: 8px; border-radius: 4px;
-  font-size: 11px; max-height: 200px; overflow: auto; white-space: pre-wrap; word-break: break-word;
-}`;
-
-const MD_VIEWER_CSS = `
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: Georgia, "Times New Roman", serif;
-  background: #0c0c0f; color: #d4d4d8; padding: 24px 32px;
-  font-size: 14px; line-height: 1.7; max-width: 800px;
-}
-h1, h2, h3, h4 { font-family: -apple-system, BlinkMacSystemFont, sans-serif; color: #f4f4f5; margin: 1.5em 0 0.5em; }
-h1 { font-size: 1.6em; border-bottom: 1px solid #27272a; padding-bottom: 0.3em; }
-h2 { font-size: 1.3em; color: #5eead4; }
-h3 { font-size: 1.1em; color: #a1a1aa; }
-p { margin: 0.6em 0; }
-ul, ol { margin: 0.5em 0 0.5em 1.5em; }
-li { margin: 0.3em 0; }
-code { background: #1a1a2e; color: #5eead4; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
-pre { background: #1a1a2e; padding: 12px 16px; border-radius: 6px; overflow-x: auto; margin: 1em 0; }
-pre code { background: none; padding: 0; }
-blockquote { border-left: 3px solid #5eead4; padding-left: 16px; color: #a1a1aa; margin: 1em 0; }
-strong { color: #f4f4f5; }
-table { border-collapse: collapse; margin: 1em 0; width: 100%; }
-table th, table td { border: 1px solid #27272a; padding: 8px 12px; text-align: left; }
-table th { background: #1a1a2e; color: #5eead4; }
-hr { border: none; border-top: 1px solid #27272a; margin: 2em 0; }`;
 
 function markdownToHtml(md: string): string {
-  let html = md
-    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+  // Process code blocks first (before escaping)
+  const codeBlocks: string[] = [];
+  let processed = md.replace(/```[\w]*\n([\s\S]*?)```/g, (_match, code) => {
+    codeBlocks.push(code);
+    return `%%CODEBLOCK_${codeBlocks.length - 1}%%`;
+  });
+
+  // Escape HTML
+  processed = processed
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  // Restore code blocks (already escaped inside)
+  processed = processed.replace(/%%CODEBLOCK_(\d+)%%/g, (_m, idx) => {
+    const code = codeBlocks[parseInt(idx)]
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    return `<pre><code>${code}</code></pre>`;
+  });
+
+  // Markdown tables
+  processed = processed.replace(
+    /^(\|.+\|)\n(\|[\s:|-]+\|)\n((?:\|.+\|\n?)+)/gm,
+    (_match, headerRow: string, _separator: string, bodyRows: string) => {
+      const headers = headerRow.split("|").filter((c: string) => c.trim()).map((c: string) => `<th>${c.trim()}</th>`).join("");
+      const rows = bodyRows.trim().split("\n").map((row: string) => {
+        const cells = row.split("|").filter((c: string) => c.trim()).map((c: string) => `<td>${c.trim()}</td>`).join("");
+        return `<tr>${cells}</tr>`;
+      }).join("");
+      return `<table><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table>`;
+    }
+  );
+
+  let html = processed
     // Headers
     .replace(/^#### (.+)$/gm, "<h4>$1</h4>")
     .replace(/^### (.+)$/gm, "<h3>$1</h3>")
@@ -91,25 +68,31 @@ function markdownToHtml(md: string): string {
     .replace(/\*\*\*(.+?)\*\*\*/g, "<strong><em>$1</em></strong>")
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
-    // Code blocks
-    .replace(/```[\w]*\n([\s\S]*?)```/g, "<pre><code>$1</code></pre>")
     // Inline code
     .replace(/`([^`]+)`/g, "<code>$1</code>")
     // Blockquotes
     .replace(/^&gt; (.+)$/gm, "<blockquote>$1</blockquote>")
     // Horizontal rules
     .replace(/^---$/gm, "<hr>")
+    // Ordered lists
+    .replace(/^\d+\.\s+(.+)$/gm, "<oli>$1</oli>")
     // Unordered lists
-    .replace(/^- (.+)$/gm, "<li>$1</li>")
-    // Paragraphs (lines not already wrapped)
-    .replace(/^(?!<[hluopb]|<li|<hr|<pre|<block)(.+)$/gm, "<p>$1</p>");
-  // Wrap consecutive <li> in <ul>
-  html = html.replace(/(<li>[\s\S]*?<\/li>)(?:\s*(?=<li>))?/g, "$1");
-  html = html.replace(/(?:<li>[\s\S]*?<\/li>\s*)+/g, (match) => `<ul>${match}</ul>`);
+    .replace(/^[-*]\s+(.+)$/gm, "<uli>$1</uli>")
+    // Paragraphs (lines not already wrapped in a tag)
+    .replace(/^(?!<[hluopbt]|<oli|<uli|<hr|<pre|<block|<table)(.+)$/gm, "<p>$1</p>");
+
+  // Wrap consecutive <uli> in <ul> and <oli> in <ol>
+  html = html.replace(/(?:<uli>[\s\S]*?<\/uli>\s*)+/g, (match) =>
+    `<ul>${match.replace(/<\/?uli>/g, (t) => t.replace("uli", "li"))}</ul>`
+  );
+  html = html.replace(/(?:<oli>[\s\S]*?<\/oli>\s*)+/g, (match) =>
+    `<ol>${match.replace(/<\/?oli>/g, (t) => t.replace("oli", "li"))}</ol>`
+  );
+
   return html;
 }
 
-export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReviewRunning, runs, selectedRun, onSelectRun }: ResultsBrowserProps) {
+export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReviewRunning, runs, selectedRun, onSelectRun, watcherError }: ResultsBrowserProps) {
   const [selectedFile, setSelectedFile] = useState<OutputFile | null>(null);
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState(false);
@@ -200,6 +183,8 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
       <div className={`border-r border-zinc-800/80 flex flex-col transition-all duration-200 ${sidebarOpen ? "w-72" : "w-10"}`}>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
+          aria-expanded={sidebarOpen}
+          aria-label={sidebarOpen ? "Collapse file list" : "Expand file list"}
           className="px-3 py-3 border-b border-zinc-800/80 text-zinc-500 hover:text-zinc-300 transition-colors flex items-center gap-2"
         >
           <span className="text-xs">{sidebarOpen ? "◂" : "▸"}</span>
@@ -229,7 +214,7 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
 
             <div className="flex-1 overflow-y-auto px-2 py-2 space-y-0.5">
               {files.length === 0 ? (
-                <div className="text-center text-zinc-600 text-sm py-8">
+                <div className="text-center text-zinc-500 text-sm py-8">
                   No output files yet
                 </div>
               ) : (
@@ -237,7 +222,8 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                   <div key={folder}>
                     <button
                       onClick={() => toggleFolder(folder)}
-                      className="w-full text-left px-2 py-1.5 text-[10px] uppercase tracking-wider text-zinc-500 hover:text-zinc-300 flex items-center gap-1.5 mt-2 first:mt-0"
+                      aria-expanded={!collapsedFolders.has(folder)}
+                      className="w-full text-left px-2 py-1.5 text-[10px] uppercase tracking-wider text-zinc-400 hover:text-zinc-300 flex items-center gap-1.5 mt-2 first:mt-0"
                     >
                       <span>{collapsedFolders.has(folder) ? "▸" : "▾"}</span>
                       <span>{FOLDER_LABELS[folder] || folder}</span>
@@ -260,7 +246,7 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                             {FILE_ICONS[file.file_type] || "?"}
                           </span>
                           <span className="truncate flex-1 font-mono text-xs">{file.filename}</span>
-                          <span className="text-[10px] text-zinc-600 shrink-0">{formatFileSize(file.size)}</span>
+                          <span className="text-[10px] text-zinc-400 shrink-0">{formatFileSize(file.size)}</span>
                         </div>
                       </button>
                     ))}
@@ -285,7 +271,7 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                   disabled={isReviewRunning}
                   className={`w-full px-4 py-2 rounded-md text-sm font-medium ring-1 transition-colors ${
                     isReviewRunning
-                      ? "ring-zinc-700 text-zinc-600 cursor-not-allowed"
+                      ? "ring-zinc-700 text-zinc-500 cursor-not-allowed"
                       : "ring-teal-500/30 text-teal-400 hover:bg-teal-500/10"
                   }`}
                 >
@@ -299,6 +285,13 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
 
       {/* Right: content area */}
       <div className="flex-1 flex flex-col min-w-0">
+        {/* Watcher error banner */}
+        {watcherError && (
+          <div role="alert" className="px-4 py-2 bg-red-500/10 border-b border-red-500/20 flex items-center gap-2 text-sm text-red-400">
+            <span className="shrink-0">File watcher error:</span>
+            <span className="truncate text-red-400/70">{watcherError}</span>
+          </div>
+        )}
         {/* Executive summary banner */}
         {htmlReport && !selectedFile && summary && (
           <div className="px-6 py-5 border-b border-zinc-800/80">
@@ -319,7 +312,7 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
 
         {/* No report yet */}
         {!htmlReport && !selectedFile && (
-          <div className="flex-1 flex items-center justify-center text-zinc-600 text-sm">
+          <div className="flex-1 flex items-center justify-center text-zinc-500 text-sm">
             {files.length === 0
               ? "Start an analysis to see results here"
               : "Pipeline in progress — final report not yet generated"}
@@ -331,13 +324,13 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
           <div className="flex-1 flex flex-col min-h-0">
             <div className="px-4 py-2 flex items-center justify-between bg-zinc-900/50 border-b border-zinc-800/80">
               <div className="flex items-center gap-2 min-w-0">
-                <span className="text-[10px] text-zinc-600 shrink-0">{FOLDER_LABELS[selectedFile.folder] || selectedFile.folder}</span>
+                <span className="text-[10px] text-zinc-400 shrink-0">{FOLDER_LABELS[selectedFile.folder] || selectedFile.folder}</span>
                 <span className="text-zinc-700">/</span>
                 <span className="text-xs font-mono text-zinc-400 truncate">{selectedFile.filename}</span>
               </div>
               <div className="flex items-center gap-2 shrink-0">
                 {selectedFile.file_type === "md" && !editMode && (
-                  <button onClick={handleEdit} className="text-xs text-teal-400 hover:text-teal-300 px-2 py-1 rounded hover:bg-teal-500/10">
+                  <button onClick={handleEdit} className="text-xs text-teal-400 hover:text-teal-300 px-3 py-2 rounded hover:bg-teal-500/10">
                     Edit
                   </button>
                 )}
@@ -346,26 +339,26 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                     <button
                       onClick={handleSave}
                       disabled={saving}
-                      className="text-xs text-teal-400 hover:text-teal-300 px-2 py-1 rounded hover:bg-teal-500/10"
+                      className="text-xs text-teal-400 hover:text-teal-300 px-3 py-2 rounded hover:bg-teal-500/10"
                     >
                       {saving ? "Saving..." : "Save"}
                     </button>
                     <button
                       onClick={() => setEditMode(false)}
-                      className="text-xs text-zinc-500 hover:text-zinc-300 px-2 py-1"
+                      className="text-xs text-zinc-500 hover:text-zinc-300 px-3 py-2"
                     >
                       Cancel
                     </button>
                   </>
                 )}
-                <button onClick={() => setSelectedFile(null)} className="text-xs text-zinc-600 hover:text-zinc-300">
+                <button onClick={() => setSelectedFile(null)} className="text-xs text-zinc-500 hover:text-zinc-300 px-3 py-2">
                   Close
                 </button>
               </div>
             </div>
             <div className="flex-1 overflow-auto">
               {loading ? (
-                <div className="text-zinc-600 text-sm p-4">Loading...</div>
+                <div className="text-zinc-500 text-sm p-4">Loading...</div>
               ) : selectedFile.file_type === "html" ? (
                 <iframe
                   src={`vdafile://localhost${selectedFile.path}`}
@@ -374,7 +367,7 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                 />
               ) : selectedFile.file_type === "json" ? (
                 <iframe
-                  srcDoc={`<!DOCTYPE html><html><head><style>${JSON_TABLE_CSS}</style></head><body>${content}</body></html>`}
+                  srcDoc={`<!DOCTYPE html><html><head><style>${viewerBaseCSS}</style></head><body>${content}</body></html>`}
                   className="w-full h-full border-0 rounded"
                   title={selectedFile.filename}
                 />
@@ -387,14 +380,14 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                     spellCheck={false}
                   />
                   <iframe
-                    srcDoc={`<!DOCTYPE html><html><head><style>${MD_VIEWER_CSS}</style></head><body>${markdownToHtml(editContent)}</body></html>`}
+                    srcDoc={`<!DOCTYPE html><html><head><style>${markdownViewerCSS}</style></head><body>${markdownToHtml(editContent)}</body></html>`}
                     className="w-1/2 h-full border-0"
                     title="Preview"
                   />
                 </div>
               ) : selectedFile.file_type === "md" ? (
                 <iframe
-                  srcDoc={`<!DOCTYPE html><html><head><style>${MD_VIEWER_CSS}</style></head><body>${markdownToHtml(content)}</body></html>`}
+                  srcDoc={`<!DOCTYPE html><html><head><style>${markdownViewerCSS}</style></head><body>${markdownToHtml(content)}</body></html>`}
                   className="w-full h-full border-0 rounded"
                   title={selectedFile.filename}
                 />
@@ -409,7 +402,7 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
         )}
 
         {htmlReport && !selectedFile && !summary && (
-          <div className="flex-1 flex items-center justify-center text-zinc-600 text-sm">
+          <div className="flex-1 flex items-center justify-center text-zinc-500 text-sm">
             Select a file to preview, or open the full report in your browser
           </div>
         )}

@@ -49,7 +49,7 @@ function App() {
   const [ptyArgs, setPtyArgs] = useState<string[]>([]);
 
   const pipeline = usePipeline();
-  const { files, runs, selectedRun, setSelectedRun } = useFileWatcher(pipeline.config?.ticker || ticker || null);
+  const { files, runs, selectedRun, setSelectedRun, error: watcherError } = useFileWatcher(pipeline.config?.ticker || ticker || null);
   const { notify } = useNotifications();
 
   const [isReviewRunning, setIsReviewRunning] = useState(false);
@@ -120,7 +120,7 @@ function App() {
     if (files.length > 0) {
       pipeline.syncFromFiles(files);
     }
-  }, [files]);
+  }, [files, pipeline.syncFromFiles]);
 
   // Watch for step status changes and mark agents complete
   useEffect(() => {
@@ -140,7 +140,8 @@ function App() {
       const stepName = pipeline.steps[pipeline.pendingGate.stepIndex]?.name ?? `Step ${pipeline.pendingGate.stepIndex + 1}`;
       notify("Quality Gate — Action Required", `"${stepName}" needs your review before the pipeline can continue.`);
     }
-  }, [pipeline.pendingGate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- steps accessed for display only, trigger is pendingGate
+  }, [pipeline.pendingGate, notify]);
 
   // Notify on pipeline completion or failure
   useEffect(() => {
@@ -154,7 +155,8 @@ function App() {
         notify("Pipeline Error", `Failed steps: ${failed.join(", ")}`);
       }
     }
-  }, [pipeline.isRunning]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- steps/config read at trigger time; adding them would cause spurious notifications
+  }, [pipeline.isRunning, notify]);
 
   // Read launch config (env vars) and pre-fill form, then check for existing session
   useEffect(() => {
@@ -350,7 +352,7 @@ Output ONLY valid JSON matching this schema:
                 : s === "results" ? "Results"
                 : "Agents"}
               <kbd className={`text-[9px] px-1 py-0.5 rounded ${
-                screen === s ? "bg-zinc-700 text-zinc-400" : "bg-zinc-800/60 text-zinc-600"
+                screen === s ? "bg-zinc-700 text-zinc-400" : "bg-zinc-800/60 text-zinc-500"
               }`}>⌘{i + 1}</kbd>
             </button>
           ))}
@@ -374,25 +376,27 @@ Output ONLY valid JSON matching this schema:
 
               {/* Ticker input */}
               <div>
-                <label className="block text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                <label htmlFor="ticker" className="block text-xs uppercase tracking-wider text-zinc-400 mb-2">
                   Company Ticker
                 </label>
                 <input
+                  id="ticker"
                   type="text"
                   value={ticker}
                   onChange={(e) => setTicker(e.target.value.toUpperCase())}
                   placeholder="PAX"
-                  className="w-full px-4 py-3 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-lg font-mono text-zinc-100 placeholder:text-zinc-600 focus:ring-teal-500/60 focus:outline-none"
+                  className="w-full px-4 py-3 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-lg font-mono text-zinc-100 placeholder:text-zinc-500 focus:ring-teal-500/60 focus:outline-none"
                   autoFocus
                 />
               </div>
 
               {/* Sector */}
               <div>
-                <label className="block text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                <label htmlFor="sector" className="block text-xs uppercase tracking-wider text-zinc-400 mb-2">
                   Sector
                 </label>
                 <select
+                  id="sector"
                   value={sector}
                   onChange={(e) => setSector(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
@@ -407,15 +411,16 @@ Output ONLY valid JSON matching this schema:
 
               {/* Reference peers */}
               <div>
-                <label className="block text-xs uppercase tracking-wider text-zinc-500 mb-2">
+                <label htmlFor="reference-peers" className="block text-xs uppercase tracking-wider text-zinc-400 mb-2">
                   Reference Peer List (optional)
                 </label>
                 <input
+                  id="reference-peers"
                   type="text"
                   value={referencePeers}
                   onChange={(e) => setReferencePeers(e.target.value)}
                   placeholder="BX, KKR, APO, ARES, BAM..."
-                  className="w-full px-4 py-2.5 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 placeholder:text-zinc-600 focus:ring-teal-500/60 focus:outline-none font-mono"
+                  className="w-full px-4 py-2.5 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 placeholder:text-zinc-500 focus:ring-teal-500/60 focus:outline-none font-mono"
                 />
               </div>
 
@@ -435,24 +440,26 @@ Output ONLY valid JSON matching this schema:
               {/* Auto mode toggle */}
               <div className="flex items-center justify-between py-2">
                 <div>
-                  <span className="text-sm text-zinc-300">Auto Mode</span>
-                  <p className="text-xs text-zinc-600">
+                  <span id="auto-mode-label" className="text-sm text-zinc-300">Auto Mode</span>
+                  <p className="text-xs text-zinc-500">
                     Quality gates validated automatically
                   </p>
                 </div>
                 <button
+                  role="switch"
+                  aria-checked={autoMode}
+                  aria-labelledby="auto-mode-label"
                   onClick={() => setAutoMode(!autoMode)}
-                  className={`
-                    w-10 h-5 rounded-full transition-colors relative
-                    ${autoMode ? "bg-teal-500" : "bg-zinc-700"}
-                  `}
+                  className="p-3 -m-3 cursor-pointer"
                 >
-                  <div
-                    className={`
-                      absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform
-                      ${autoMode ? "translate-x-5" : "translate-x-0.5"}
-                    `}
-                  />
+                  <div className={`w-10 h-5 rounded-full transition-colors relative ${autoMode ? "bg-teal-500" : "bg-zinc-700"}`}>
+                    <div
+                      className={`
+                        absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform
+                        ${autoMode ? "translate-x-5" : "translate-x-0.5"}
+                      `}
+                    />
+                  </div>
                 </button>
               </div>
 
@@ -465,7 +472,7 @@ Output ONLY valid JSON matching this schema:
                   ${
                     ticker.trim() && !pipeline.isRunning
                       ? "bg-teal-500 text-zinc-950 hover:bg-teal-400 shadow-lg shadow-teal-500/20"
-                      : "bg-zinc-800 text-zinc-600 cursor-not-allowed"
+                      : "bg-zinc-800 text-zinc-500 cursor-not-allowed"
                   }
                 `}
               >
@@ -480,7 +487,7 @@ Output ONLY valid JSON matching this schema:
                       <p className="text-sm text-zinc-200">
                         Existing analysis for <span className="font-mono text-teal-400">{existingSession.ticker}</span>
                       </p>
-                      <p className="text-xs text-zinc-500 mt-0.5">
+                      <p className="text-xs text-zinc-400 mt-0.5">
                         {existingSession.completedSteps}/{existingSession.totalSteps} steps completed
                         {existingSession.hasReport && " — report ready"}
                       </p>
@@ -514,7 +521,8 @@ Output ONLY valid JSON matching this schema:
           </div>
         )}
 
-        {screen === "monitor" && (
+        {/* Keep PipelineMonitor mounted (hidden) so the PTY terminal survives screen switches */}
+        <div className={screen === "monitor" ? "flex-1 min-h-0" : "hidden"}>
           <PipelineMonitor
             steps={pipeline.steps}
             currentStep={pipeline.currentStep}
@@ -546,7 +554,7 @@ Output ONLY valid JSON matching this schema:
               knownAgentsRef.current.clear();
             }}
           />
-        )}
+        </div>
 
         {screen === "results" && (
           <ResultsBrowser
@@ -557,6 +565,7 @@ Output ONLY valid JSON matching this schema:
             runs={runs}
             selectedRun={selectedRun}
             onSelectRun={setSelectedRun}
+            watcherError={watcherError}
           />
         )}
 

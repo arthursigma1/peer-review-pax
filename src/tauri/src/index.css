@@ -8,3 +8,21 @@ html, body, #root {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* H7: Global focus indicator for interactive elements without explicit Tailwind focus styles */
+button:focus-visible,
+[role="switch"]:focus-visible,
+a:focus-visible {
+  outline: 2px solid rgb(45 212 191 / 0.6);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

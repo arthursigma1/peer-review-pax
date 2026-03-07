@@ -102,12 +102,12 @@ export function PipelineMonitor({
           )}
 
           {/* Agents bar (compact, below terminal) */}
-          <div className="border-t border-zinc-800/80 flex flex-col" style={{ height: activeStep.agents.length > 0 || !ptyCommand ? "35%" : "auto" }}>
+          <div className={`border-t border-zinc-800/80 flex flex-col ${activeStep.agents.length > 0 || !ptyCommand ? "h-[35%]" : "h-auto"}`}>
             <div className="flex items-center justify-between px-4 py-2 bg-zinc-900/50 border-b border-zinc-800/40">
               <div className="flex items-center gap-3">
                 <h2 className="text-sm font-medium text-zinc-300">{activeStep.name}</h2>
                 {activeStep.agents.length > 0 && (
-                  <span className="text-[10px] text-zinc-500">{activeStep.agents.length} agent{activeStep.agents.length !== 1 ? "s" : ""}</span>
+                  <span className="text-[10px] text-zinc-400">{activeStep.agents.length} agent{activeStep.agents.length !== 1 ? "s" : ""}</span>
                 )}
               </div>
               {!isRunning && onRerunFromStep && (activeStep.status === "complete" || activeStep.status === "failed") && (
@@ -134,7 +134,7 @@ export function PipelineMonitor({
                   ))}
                 </div>
               ) : !ptyCommand ? (
-                <div className="flex items-center justify-center h-full text-zinc-600 text-sm">
+                <div className="flex items-center justify-center h-full text-zinc-500 text-sm">
                   {activeStep.status === "pending"
                     ? "Waiting to start..."
                     : "No agents dispatched yet"}

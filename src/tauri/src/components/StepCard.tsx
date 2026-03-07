@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { PipelineStep } from "../types/pipeline";
 
 const STATUS_STYLES: Record<string, { bg: string; ring: string; icon: string }> = {
@@ -13,7 +14,7 @@ interface StepCardProps {
   onClick: () => void;
 }
 
-export function StepCard({ step, isActive, onClick }: StepCardProps) {
+export const StepCard = memo(function StepCard({ step, isActive, onClick }: StepCardProps) {
   const style = STATUS_STYLES[step.status];
   const activeAgents = step.agents.filter((a) => a.status === "running").length;
   const doneAgents = step.agents.filter((a) => a.status === "complete").length;
@@ -43,11 +44,11 @@ export function StepCard({ step, isActive, onClick }: StepCardProps) {
             <span className="text-sm font-semibold text-zinc-100 truncate">
               {step.name}
             </span>
-            <span className="text-[10px] uppercase tracking-wider text-zinc-500 ml-2 shrink-0">
+            <span className="text-[10px] uppercase tracking-wider text-zinc-400 ml-2 shrink-0">
               {step.status}
             </span>
           </div>
-          <p className="text-xs text-zinc-500 mt-0.5 truncate">
+          <p className="text-xs text-zinc-400 mt-0.5 truncate">
             {step.description}
           </p>
           {step.agents.length > 0 && (
@@ -68,4 +69,4 @@ export function StepCard({ step, isActive, onClick }: StepCardProps) {
       </div>
     </button>
   );
-}
+});

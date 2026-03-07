@@ -27,7 +27,7 @@ export function ToneUpload({ files, onFilesChanged, extractionStatus }: ToneUplo
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2">
-        <label className="block text-xs uppercase tracking-wider text-zinc-500">
+        <label className="block text-xs uppercase tracking-wider text-zinc-400">
           Tone Reference (optional)
         </label>
         {extractionStatus === "extracting" && (
@@ -80,7 +80,7 @@ export function ToneUpload({ files, onFilesChanged, extractionStatus }: ToneUplo
                 </div>
                 <button
                   onClick={() => handleRemoveFile(i)}
-                  className="ml-2 text-xs text-zinc-500 hover:text-red-400 transition-colors shrink-0"
+                  className="ml-2 text-xs text-zinc-500 hover:text-red-400 transition-colors shrink-0 px-2 py-2"
                 >
                   Clear
                 </button>
@@ -139,7 +139,7 @@ export function SourceUpload({ sources, onSourcesChanged }: SourceUploadProps) {
 
   return (
     <div className="space-y-3">
-      <label className="block text-xs uppercase tracking-wider text-zinc-500">
+      <label className="block text-xs uppercase tracking-wider text-zinc-400">
         Supplemental Sources (optional)
       </label>
 
@@ -202,7 +202,7 @@ function DropZone({
             <p className="text-sm text-emerald-400">{label}</p>
             <p className="text-xs text-zinc-500 font-mono mt-0.5 truncate">{selectedPath}</p>
           </div>
-          <button onClick={onClear} className="ml-2 text-xs text-zinc-500 hover:text-red-400 transition-colors shrink-0">
+          <button onClick={onClear} className="ml-2 text-xs text-zinc-500 hover:text-red-400 transition-colors shrink-0 px-2 py-2">
             Clear
           </button>
         </div>
@@ -210,7 +210,7 @@ function DropZone({
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-zinc-300">{label}</p>
-            <p className="text-xs text-zinc-600 mt-0.5">{sublabel}</p>
+            <p className="text-xs text-zinc-500 mt-0.5">{sublabel}</p>
           </div>
           <button
             onClick={onBrowse}
