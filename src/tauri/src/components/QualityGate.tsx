@@ -63,24 +63,24 @@ export function QualityGate({ gate, onApprove, onReject }: QualityGateProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="quality-gate-title"
-        className="w-full max-w-lg mx-4 rounded-xl ring-1 ring-teal-500/40 bg-zinc-900 shadow-2xl shadow-teal-500/10"
+        className="w-full max-w-lg mx-4 rounded-xl border border-blue-200 bg-white shadow-2xl"
       >
-        <div className="px-6 py-4 border-b border-zinc-800">
+        <div className="px-6 py-4 border-b border-gray-200">
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-            <h2 id="quality-gate-title" className="text-lg font-semibold text-zinc-100">
+            <h2 id="quality-gate-title" className="text-lg font-semibold text-gray-900">
               Quality Gate Review
             </h2>
           </div>
-          <p className="mt-1 text-sm text-zinc-400">
-            <span className="text-teal-400">{stepName}</span> has completed.
+          <p className="mt-1 text-sm text-gray-500">
+            <span className="text-[#0068ff]">{stepName}</span> has completed.
             Review the results before proceeding.
           </p>
         </div>
 
         {gate.results.length > 0 && (
-          <div className="px-6 py-4 border-b border-zinc-800">
-            <h3 className="text-xs uppercase tracking-wider text-zinc-400 mb-3">
+          <div className="px-6 py-4 border-b border-gray-200">
+            <h3 className="text-xs text-gray-500 mb-3">
               Gate Criteria
             </h3>
             <div className="space-y-2">
@@ -89,13 +89,13 @@ export function QualityGate({ gate, onApprove, onReject }: QualityGateProps) {
                   key={i}
                   className="flex items-start gap-2 text-sm"
                 >
-                  <span className={result.passed ? "text-emerald-400" : "text-red-400"}>
+                  <span className={result.passed ? "text-emerald-600" : "text-red-600"}>
                     {result.passed ? "+" : "-"}
                   </span>
                   <div>
-                    <span className="text-zinc-300">{result.criterion}</span>
+                    <span className="text-gray-700">{result.criterion}</span>
                     {result.detail && (
-                      <p className="text-xs text-zinc-500 mt-0.5">
+                      <p className="text-xs text-gray-400 mt-0.5">
                         {result.detail}
                       </p>
                     )}
@@ -106,8 +106,8 @@ export function QualityGate({ gate, onApprove, onReject }: QualityGateProps) {
           </div>
         )}
 
-        <div className="px-6 py-4 border-b border-zinc-800">
-          <label htmlFor="gate-notes" className="block text-xs uppercase tracking-wider text-zinc-400 mb-2">
+        <div className="px-6 py-4 border-b border-gray-200">
+          <label htmlFor="gate-notes" className="block text-xs text-gray-500 mb-2">
             Notes (optional)
           </label>
           <textarea
@@ -115,7 +115,7 @@ export function QualityGate({ gate, onApprove, onReject }: QualityGateProps) {
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Add feedback or instructions for the next step..."
-            className="w-full px-3 py-2 rounded-md bg-zinc-800 ring-1 ring-zinc-700 text-sm text-zinc-200 placeholder:text-zinc-500 focus:ring-teal-500/60 focus:outline-none resize-none"
+            className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none resize-none"
             rows={3}
           />
         </div>
@@ -123,13 +123,13 @@ export function QualityGate({ gate, onApprove, onReject }: QualityGateProps) {
         <div className="px-6 py-4 flex items-center justify-end gap-3">
           <button
             onClick={() => onReject(notes)}
-            className="px-4 py-2 rounded-md text-sm font-medium text-red-400 ring-1 ring-red-500/30 hover:bg-red-500/10 transition-colors"
+            className="px-4 py-2 rounded-md text-sm font-medium text-red-600 border border-red-200 hover:bg-red-50 transition-colors"
           >
             Reject & Re-run
           </button>
           <button
             onClick={() => onApprove(notes)}
-            className="px-4 py-2 rounded-md text-sm font-medium text-zinc-900 bg-teal-400 hover:bg-teal-300 transition-colors"
+            className="px-4 py-2 rounded-md text-sm font-medium text-white bg-[#0068ff] hover:bg-[#0055d4] transition-colors"
           >
             Approve & Continue
           </button>

@@ -18,9 +18,9 @@ interface ResultsBrowserProps {
 }
 
 const FILE_ICONS: Record<string, { icon: string; color: string }> = {
-  json: { icon: "{ }", color: "text-teal-500" },
-  md: { icon: "M", color: "text-blue-400" },
-  html: { icon: "</>", color: "text-amber-400" },
+  json: { icon: "{ }", color: "text-blue-500" },
+  md: { icon: "M", color: "text-blue-600" },
+  html: { icon: "</>", color: "text-amber-500" },
 };
 
 
@@ -180,16 +180,16 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
   return (
     <div className="flex h-full">
       {/* Left: collapsible file list */}
-      <div className={`border-r border-zinc-800/80 flex flex-col transition-all duration-200 ${sidebarOpen ? "w-72" : "w-10"}`}>
+      <div className={`border-r border-gray-200 flex flex-col transition-all duration-200 ${sidebarOpen ? "w-72" : "w-10"}`}>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
           aria-expanded={sidebarOpen}
           aria-label={sidebarOpen ? "Collapse file list" : "Expand file list"}
-          className="px-3 py-3 border-b border-zinc-800/80 text-zinc-500 hover:text-zinc-300 transition-colors flex items-center gap-2"
+          className="px-3 py-3 border-b border-gray-200 text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-2"
         >
           <span className="text-xs">{sidebarOpen ? "◂" : "▸"}</span>
           {sidebarOpen && (
-            <span className="text-xs uppercase tracking-wider">
+            <span className="text-xs">
               Files ({files.length})
             </span>
           )}
@@ -199,11 +199,11 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
           <>
             {/* Run selector */}
             {runs && runs.length > 0 && (
-              <div className="px-3 py-2 border-b border-zinc-800/80">
+              <div className="px-3 py-2 border-b border-gray-200">
                 <select
                   value={selectedRun || ""}
                   onChange={(e) => onSelectRun?.(e.target.value)}
-                  className="w-full px-2 py-1.5 rounded bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-300 font-mono focus:ring-teal-500/60 focus:outline-none appearance-none"
+                  className="w-full px-2 py-1.5 rounded bg-gray-50 border border-gray-200 text-xs text-gray-700 font-mono focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
                 >
                   {runs.map((r) => (
                     <option key={r} value={r}>{r}</option>
@@ -214,7 +214,7 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
 
             <div className="flex-1 overflow-y-auto px-2 py-2 space-y-0.5">
               {files.length === 0 ? (
-                <div className="text-center text-zinc-500 text-sm py-8">
+                <div className="text-center text-gray-400 text-sm py-8">
                   No output files yet
                 </div>
               ) : (
@@ -223,11 +223,11 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                     <button
                       onClick={() => toggleFolder(folder)}
                       aria-expanded={!collapsedFolders.has(folder)}
-                      className="w-full text-left px-2 py-1.5 text-[10px] uppercase tracking-wider text-zinc-400 hover:text-zinc-300 flex items-center gap-1.5 mt-2 first:mt-0"
+                      className="w-full text-left px-2 py-1.5 text-[10px] text-gray-500 hover:text-gray-700 flex items-center gap-1.5 mt-2 first:mt-0"
                     >
                       <span>{collapsedFolders.has(folder) ? "▸" : "▾"}</span>
                       <span>{FOLDER_LABELS[folder] || folder}</span>
-                      <span className="text-zinc-700 ml-auto">{grouped[folder].length}</span>
+                      <span className="text-gray-300 ml-auto">{grouped[folder].length}</span>
                     </button>
                     {!collapsedFolders.has(folder) && grouped[folder].map((file) => (
                       <button
@@ -236,17 +236,17 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                         className={`
                           w-full text-left px-3 py-1.5 rounded-md text-sm transition-colors ml-1
                           ${selectedFile?.path === file.path
-                            ? "bg-teal-500/15 ring-1 ring-teal-500/30 text-zinc-100"
-                            : "hover:bg-zinc-800/60 text-zinc-400"
+                            ? "bg-blue-50 border border-blue-200 text-gray-900"
+                            : "hover:bg-gray-50 text-gray-600"
                           }
                         `}
                       >
                         <div className="flex items-center gap-2">
-                          <span className={`text-[10px] font-mono w-5 text-center shrink-0 ${FILE_ICONS[file.file_type]?.color ?? "text-zinc-500"}`}>
+                          <span className={`text-[10px] font-mono w-5 text-center shrink-0 ${FILE_ICONS[file.file_type]?.color ?? "text-gray-400"}`}>
                             {FILE_ICONS[file.file_type]?.icon ?? "?"}
                           </span>
                           <span className="truncate flex-1 font-mono text-xs">{file.filename}</span>
-                          <span className="text-[10px] text-zinc-400 shrink-0">{formatFileSize(file.size)}</span>
+                          <span className="text-[10px] text-gray-400 shrink-0">{formatFileSize(file.size)}</span>
                         </div>
                       </button>
                     ))}
@@ -256,11 +256,11 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
             </div>
 
             {/* Actions */}
-            <div className="px-3 py-3 border-t border-zinc-800/80 space-y-2">
+            <div className="px-3 py-3 border-t border-gray-200 space-y-2">
               {htmlReport && (
                 <button
                   onClick={handleOpenInBrowser}
-                  className="w-full px-4 py-2 rounded-md text-sm font-medium bg-teal-500/15 text-teal-400 hover:bg-teal-500/25 transition-colors"
+                  className="w-full px-4 py-2 rounded-md text-sm font-medium bg-[#0068ff] text-white hover:bg-[#0055d4] transition-colors"
                 >
                   Open Report in Browser
                 </button>
@@ -269,10 +269,10 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                 <button
                   onClick={onStartReview}
                   disabled={isReviewRunning}
-                  className={`w-full px-4 py-2 rounded-md text-sm font-medium ring-1 transition-colors ${
+                  className={`w-full px-4 py-2 rounded-md text-sm font-medium border transition-colors ${
                     isReviewRunning
-                      ? "ring-zinc-700 text-zinc-500 cursor-not-allowed"
-                      : "ring-teal-500/30 text-teal-400 hover:bg-teal-500/10"
+                      ? "border-gray-300 text-gray-400 cursor-not-allowed"
+                      : "border-[#0068ff]/30 text-[#0068ff] hover:bg-blue-50"
                   }`}
                 >
                   {isReviewRunning ? "Review Running..." : "Run Review Analysis"}
@@ -287,24 +287,24 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
       <div className="flex-1 flex flex-col min-w-0">
         {/* Watcher error banner */}
         {watcherError && (
-          <div role="alert" className="px-4 py-2 bg-red-500/10 border-b border-red-500/20 flex items-center gap-2 text-sm text-red-400">
+          <div role="alert" className="px-4 py-2 bg-red-50 border-b border-red-200 flex items-center gap-2 text-sm text-red-600">
             <span className="shrink-0">File watcher error:</span>
-            <span className="truncate text-red-400/70">{watcherError}</span>
+            <span className="truncate text-red-500/70">{watcherError}</span>
           </div>
         )}
         {/* Executive summary banner */}
         {htmlReport && !selectedFile && summary && (
-          <div className="px-6 py-5 border-b border-zinc-800/80">
+          <div className="px-6 py-5 border-b border-gray-200">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-lg font-semibold text-zinc-100">Executive Summary</h2>
+              <h2 className="text-lg font-semibold text-gray-900">Executive Summary</h2>
               <button
                 onClick={handleOpenInBrowser}
-                className="px-3 py-1.5 rounded-md text-xs font-medium text-teal-400 ring-1 ring-teal-500/30 hover:bg-teal-500/10 transition-colors"
+                className="px-3 py-1.5 rounded-md text-xs font-medium text-[#0068ff] border border-blue-200 hover:bg-blue-50 transition-colors"
               >
                 Open Full Report
               </button>
             </div>
-            <div className="text-sm text-zinc-400 leading-relaxed whitespace-pre-line max-h-96 overflow-y-auto">
+            <div className="text-sm text-gray-600 leading-relaxed whitespace-pre-line max-h-96 overflow-y-auto">
               {summary}
             </div>
           </div>
@@ -312,7 +312,7 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
 
         {/* No report yet */}
         {!htmlReport && !selectedFile && (
-          <div className="flex-1 flex items-center justify-center text-zinc-500 text-sm">
+          <div className="flex-1 flex items-center justify-center text-gray-400 text-sm">
             {files.length === 0
               ? "Start an analysis to see results here"
               : "Pipeline in progress — final report not yet generated"}
@@ -322,15 +322,15 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
         {/* File preview */}
         {selectedFile && (
           <div className="flex-1 flex flex-col min-h-0">
-            <div className="px-4 py-2 flex items-center justify-between bg-zinc-900/50 border-b border-zinc-800/80">
+            <div className="px-4 py-2 flex items-center justify-between bg-gray-50 border-b border-gray-200">
               <div className="flex items-center gap-2 min-w-0">
-                <span className="text-[10px] text-zinc-400 shrink-0">{FOLDER_LABELS[selectedFile.folder] || selectedFile.folder}</span>
-                <span className="text-zinc-700">/</span>
-                <span className="text-xs font-mono text-zinc-400 truncate">{selectedFile.filename}</span>
+                <span className="text-[10px] text-gray-500 shrink-0">{FOLDER_LABELS[selectedFile.folder] || selectedFile.folder}</span>
+                <span className="text-gray-300">/</span>
+                <span className="text-xs font-mono text-gray-500 truncate">{selectedFile.filename}</span>
               </div>
               <div className="flex items-center gap-2 shrink-0">
                 {selectedFile.file_type === "md" && !editMode && (
-                  <button onClick={handleEdit} className="text-xs text-teal-400 hover:text-teal-300 px-3 py-2 rounded hover:bg-teal-500/10">
+                  <button onClick={handleEdit} className="text-xs text-[#0068ff] hover:text-[#0055d4] px-3 py-2 rounded hover:bg-blue-50">
                     Edit
                   </button>
                 )}
@@ -339,26 +339,26 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                     <button
                       onClick={handleSave}
                       disabled={saving}
-                      className="text-xs text-teal-400 hover:text-teal-300 px-3 py-2 rounded hover:bg-teal-500/10"
+                      className="text-xs text-[#0068ff] hover:text-[#0055d4] px-3 py-2 rounded hover:bg-blue-50"
                     >
                       {saving ? "Saving..." : "Save"}
                     </button>
                     <button
                       onClick={() => setEditMode(false)}
-                      className="text-xs text-zinc-500 hover:text-zinc-300 px-3 py-2"
+                      className="text-xs text-gray-400 hover:text-gray-700 px-3 py-2"
                     >
                       Cancel
                     </button>
                   </>
                 )}
-                <button onClick={() => setSelectedFile(null)} className="text-xs text-zinc-500 hover:text-zinc-300 px-3 py-2">
+                <button onClick={() => setSelectedFile(null)} className="text-xs text-gray-400 hover:text-gray-700 px-3 py-2">
                   Close
                 </button>
               </div>
             </div>
             <div className="flex-1 overflow-auto">
               {loading ? (
-                <div className="text-zinc-500 text-sm p-4">Loading...</div>
+                <div className="text-gray-400 text-sm p-4">Loading...</div>
               ) : selectedFile.file_type === "html" ? (
                 <iframe
                   src={`vdafile://localhost${selectedFile.path}`}
@@ -376,7 +376,7 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                   <textarea
                     value={editContent}
                     onChange={(e) => setEditContent(e.target.value)}
-                    className="w-1/2 h-full bg-zinc-900 text-zinc-300 font-mono text-xs p-4 resize-none border-r border-zinc-800 focus:outline-none"
+                    className="w-1/2 h-full bg-gray-50 text-gray-700 font-mono text-xs p-4 resize-none border-r border-gray-200 focus:outline-none"
                     spellCheck={false}
                   />
                   <iframe
@@ -392,7 +392,7 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                   title={selectedFile.filename}
                 />
               ) : (
-                <pre className="text-xs text-zinc-400 font-mono whitespace-pre-wrap break-words p-4">
+                <pre className="text-xs text-gray-600 font-mono whitespace-pre-wrap break-words p-4">
                   {content.slice(0, 50000)}
                   {content.length > 50000 && "\n\n[Truncated...]"}
                 </pre>
@@ -402,7 +402,7 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
         )}
 
         {htmlReport && !selectedFile && !summary && (
-          <div className="flex-1 flex items-center justify-center text-zinc-500 text-sm">
+          <div className="flex-1 flex items-center justify-center text-gray-400 text-sm">
             Select a file to preview, or open the full report in your browser
           </div>
         )}

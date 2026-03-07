@@ -23,17 +23,17 @@ export class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="h-screen flex items-center justify-center bg-zinc-950 text-zinc-100 p-8">
+        <div className="h-screen flex items-center justify-center bg-white text-gray-900 p-8">
           <div className="max-w-lg space-y-4">
-            <h1 className="text-xl font-semibold text-red-400">UI Error</h1>
-            <pre className="text-xs text-zinc-400 bg-zinc-900 p-4 rounded overflow-auto max-h-60">
+            <h1 className="text-xl font-semibold text-red-600">UI Error</h1>
+            <pre className="text-xs text-gray-600 bg-gray-50 p-4 rounded overflow-auto max-h-60">
               {this.state.error?.message}
               {"\n"}
               {this.state.error?.stack}
             </pre>
             <button
               onClick={() => this.setState({ hasError: false, error: null })}
-              className="px-4 py-2 rounded bg-teal-600 hover:bg-teal-500 text-sm font-medium"
+              className="px-4 py-2 rounded bg-[#0068ff] hover:bg-[#0055d4] text-white text-sm font-medium"
             >
               Try to Recover
             </button>

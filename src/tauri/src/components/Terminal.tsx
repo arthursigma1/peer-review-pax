@@ -96,17 +96,17 @@ export function Terminal({ command, args, autoStart = false, onExit, onData }: T
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between px-3 py-1.5 bg-zinc-900/80 border-b border-zinc-800/60">
+      <div className="flex items-center justify-between px-3 py-1.5 bg-gray-100 border-b border-gray-200">
         <div className="flex items-center gap-2">
-          <div className={`w-2 h-2 rounded-full ${isRunning ? "bg-teal-400 animate-pulse" : "bg-zinc-600"}`} />
-          <span className="text-[11px] font-mono text-zinc-500">
+          <div className={`w-2 h-2 rounded-full ${isRunning ? "bg-blue-500 animate-pulse" : "bg-gray-400"}`} />
+          <span className="text-[11px] font-mono text-gray-500">
             {isRunning ? `${command} ${args.join(" ")}` : startedRef.current ? "Session ended" : "Ready"}
           </span>
         </div>
         {isRunning && (
           <button
             onClick={kill}
-            className="text-[10px] px-3 py-2 rounded bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors"
+            className="text-[10px] px-3 py-2 rounded bg-red-50 text-red-600 hover:bg-red-100 transition-colors"
           >
             Kill
           </button>

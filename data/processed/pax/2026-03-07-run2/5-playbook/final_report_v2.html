@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valuation Driver Analysis — Patria Investments Limited (PAX) | March 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #0068ff;
+  --primary-hover: #0055d4;
+  --bg: #ffffff;
+  --surface: #f8f9fa;
+  --surface-alt: #f3f4f6;
+  --text: #1a1a1a;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border: #e0e0e0;
+  --success: #10b981;
+  --error: #dc2626;
+  --warning: #d97706;
+  --sidebar-width: 260px;
+  --header-height: 56px;
+  --accent-red: #dc2626;
+  --accent-green: #10b981;
+  --accent-amber: #d97706;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+}
+/* HEADER */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-height);
+  background: #ffffff;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border);
+}
+.site-header h1 {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 18px; font-weight: 600; letter-spacing: 0; color: var(--text);
+}
+.site-header .date {
+  margin-left: auto; font-size: 12px; color: var(--text-muted);
+  font-family: 'IBM Plex Mono', monospace;
+}
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: var(--header-height);
+  left: 0; bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 16px 0;
+  z-index: 900;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 13px;
+  transition: transform 0.3s ease;
+}
+.sidebar.collapsed { transform: translateX(calc(-1 * var(--sidebar-width))); }
+.sidebar-toggle {
+  position: fixed;
+  top: calc(var(--header-height) + 10px);
+  left: 10px; z-index: 950;
+  background: var(--primary); color: #fff;
+  border: none; border-radius: 4px;
+  width: 32px; height: 32px;
+  cursor: pointer; font-size: 16px; display: none;
+}
+.sidebar .nav-section {
+  padding: 8px 16px 4px; font-weight: 600; color: var(--text-muted);
+  font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase;
+}
+.sidebar a {
+  display: block;
+  padding: 5px 16px 5px 24px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+}
+.sidebar a:hover, .sidebar a.active {
+  color: var(--primary); background: rgba(0,104,255,0.04); border-left-color: var(--primary);
+}
+.sidebar .nav-sub { padding-left: 36px; font-size: 12px; }
+.sidebar .nav-divider { height: 1px; background: var(--border); margin: 8px 16px; }
+.sidebar .nav-layer {
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 16px 6px; font-weight: 600; color: var(--primary);
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+  cursor: pointer;
+}
+.sidebar .nav-layer::before { content: '\25BC'; font-size: 8px; transition: transform 0.2s; }
+.sidebar .nav-layer.collapsed::before { transform: rotate(-90deg); }
+.sidebar .nav-group { overflow: hidden; transition: max-height 0.3s ease; }
+.sidebar .nav-group.collapsed { max-height: 0 !important; }
+/* MAIN */
+.main {
+  margin-left: var(--sidebar-width);
+  margin-top: var(--header-height);
+  padding: 32px 48px 80px;
+  max-width: 960px;
+}
+h2 {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 26px; color: var(--text); font-weight: 700;
+  margin: 40px 0 16px;
+  border-bottom: 1px solid var(--border); padding-bottom: 8px;
+}
+h3 {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 20px; color: var(--text); font-weight: 600;
+  margin: 28px 0 12px;
+}
+h4 {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 15px; color: var(--primary); font-weight: 600;
+  margin: 20px 0 8px;
+}
+p { margin-bottom: 12px; }
+/* TABLES */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px;
+  font-size: 13px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+th {
+  background: var(--surface);
+  color: var(--text);
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  border-bottom: 2px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+th:hover { background: var(--surface-alt); }
+th .sort-arrow { font-size: 10px; margin-left: 4px; opacity: 0.4; }
+td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+tr:hover td { background: rgba(0,104,255,0.03); }
+.q1 { background: #ecfdf5; color: #065f46; font-weight: 600; }
+.q2 { background: #fefce8; color: #713f12; }
+.q3 { background: #fff7ed; color: #9a3412; }
+.q4 { background: #fef2f2; color: #991b1b; font-weight: 600; }
+/* CARDS */
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+.card.highlight { border-left: 3px solid var(--primary); }
+.card.warning { border-left: 3px solid var(--error); }
+.card.success { border-left: 3px solid var(--success); }
+/* COLLAPSIBLE */
+.collapsible-header {
+  cursor: pointer; display: flex; align-items: center; gap: 8px;
+  padding: 8px 0;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 600; color: var(--primary); font-size: 14px;
+}
+.collapsible-header::before { content: '\25BC'; font-size: 10px; transition: transform 0.2s; }
+.collapsible-header.collapsed::before { transform: rotate(-90deg); }
+.collapsible-body { overflow: hidden; transition: max-height 0.35s ease; }
+.collapsible-body.collapsed { max-height: 0 !important; }
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  margin-right: 4px;
+}
+.tag-stable { background: #ecfdf5; color: #065f46; }
+.tag-moderate { background: #fefce8; color: #713f12; }
+.tag-specific { background: #eff6ff; color: #1e40af; }
+.tag-play { background: #ecfdf5; color: #065f46; }
+.tag-anti { background: #fef2f2; color: #991b1b; }
+.tag-applicable { background: #ecfdf5; color: #065f46; }
+.tag-adapt { background: #fefce8; color: #713f12; }
+.tag-na { background: #f3f4f6; color: #6b7280; }
+/* KPI GRID */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 20px 0; }
+.kpi-box {
+  background: #fff; border: 1px solid var(--border); border-radius: 6px;
+  padding: 16px; text-align: center;
+}
+.kpi-box .label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; letter-spacing: 0.3px; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase;
+}
+.kpi-box .value {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 28px; font-weight: 700; color: var(--text);
+}
+.kpi-box .context { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+/* PLAY CARD */
+.play-card {
+  background: #fff; border: 1px solid var(--border); border-radius: 6px;
+  padding: 16px 20px; margin: 12px 0;
+}
+.play-card .play-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.play-card .play-id { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--primary); font-weight: 600; }
+.play-card .play-title { font-weight: 600; color: var(--text); }
+.play-card .play-firms { font-size: 12px; color: var(--text-secondary); font-family: 'DM Sans', system-ui, sans-serif; }
+/* EXECUTIVE SUMMARY BOXES */
+.exec-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 20px 0; }
+.exec-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px;
+  border-top: 3px solid var(--primary);
+}
+.exec-box .exec-label {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 11px; color: var(--text-muted);
+  letter-spacing: 0.3px; text-transform: uppercase;
+}
+.exec-box .exec-value {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 22px; font-weight: 700; color: var(--text); margin: 4px 0;
+}
+.exec-box .exec-detail {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; color: var(--text-secondary);
+}
+/* INITIATIVE TABLE */
+.initiative { display: grid; grid-template-columns: 1fr 2fr; gap: 8px; margin: 8px 0; font-size: 14px; }
+.initiative .label {
+  font-weight: 600; color: var(--primary);
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px;
+}
+/* VERTICAL TAB */
+.vertical-section { border-top: 2px solid var(--primary); margin-top: 40px; padding-top: 16px; }
+/* FOOTNOTES */
+.footnote { font-size: 12px; color: var(--text-secondary); border-top: 1px solid var(--border); padding-top: 12px; margin-top: 24px; }
+.footnote sup { color: var(--primary); }
+/* DISCLAIMER */
+.disclaimer {
+  background: #fefce8; border: 1px solid #fde68a; border-radius: 6px;
+  padding: 16px 20px; margin: 24px 0; font-size: 13px; color: #713f12;
+}
+.disclaimer strong { color: #9a3412; }
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(calc(-1 * var(--sidebar-width))); }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-toggle { display: block; }
+  .main { margin-left: 0; padding: 24px 20px 60px; }
+  .exec-grid { grid-template-columns: 1fr; }
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+}
+@media print {
+  .sidebar, .sidebar-toggle, .site-header { display: none; }
+  .main { margin: 0; padding: 20px; max-width: 100%; }
+  .collapsible-body.collapsed { max-height: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Patria Investments Limited (PAX) &mdash; Valuation Driver Analysis</h1>
+  <span class="date">March 7, 2026 | Run: 2026-03-07-run2</span>
+</header>
+
+<button class="sidebar-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">&equiv;</button>
+
+<nav class="sidebar" id="sidebar">
+  <div class="nav-layer" onclick="toggleNavGroup(this)">Layer 1: Platform</div>
+  <div class="nav-group" style="max-height:2000px">
+    <a href="#executive-summary">Executive Summary</a>
+    <a href="#strategic-implications">Strategic Implications for PAX</a>
+    <a href="#board-guidance" class="nav-sub">PHL / Board Guidance</a>
+    <a href="#management-priorities" class="nav-sub">Management Priorities</a>
+    <a href="#per-bu" class="nav-sub">Per-BU Recommendations</a>
+    <div class="nav-divider"></div>
+    <a href="#methodology">Methodology &amp; Statistical Framework</a>
+    <a href="#value-drivers">Industry Value Driver Findings</a>
+    <a href="#dvr001" class="nav-sub">DVR-001: FEAUM (Scale)</a>
+    <a href="#dvr002" class="nav-sub">DVR-002: EPS</a>
+    <a href="#dvr003" class="nav-sub">DVR-003: FRE Margin</a>
+    <a href="#moderate-drivers" class="nav-sub">Moderate Signals</a>
+    <div class="nav-divider"></div>
+    <a href="#firm-profiles">Firm-Level Strategies</a>
+    <a href="#firm-bx" class="nav-sub">Blackstone (BX)</a>
+    <a href="#firm-kkr" class="nav-sub">KKR</a>
+    <a href="#firm-apo" class="nav-sub">Apollo (APO)</a>
+    <a href="#firm-bam" class="nav-sub">Brookfield (BAM)</a>
+    <a href="#firm-pghn" class="nav-sub">Partners Group (PGHN)</a>
+    <a href="#firm-ares" class="nav-sub">Ares (ARES)</a>
+    <a href="#firm-owl" class="nav-sub">Blue Owl (OWL)</a>
+    <a href="#firm-eqt" class="nav-sub">EQT</a>
+    <a href="#firm-cg" class="nav-sub">Carlyle (CG)</a>
+    <a href="#firm-hlne" class="nav-sub">Hamilton Lane (HLNE)</a>
+    <a href="#firm-step" class="nav-sub">StepStone (STEP)*</a>
+    <a href="#firm-vinp" class="nav-sub">Vinci Compass (VINP)*</a>
+    <div class="nav-divider"></div>
+    <a href="#platform-playbook">Platform Strategic Menu</a>
+    <a href="#anti-patterns">Anti-Patterns</a>
+  </div>
+
+  <div class="nav-layer" onclick="toggleNavGroup(this)">Layer 2: Asset Classes</div>
+  <div class="nav-group" style="max-height:1200px">
+    <a href="#vert-credit">Credit</a>
+    <a href="#vert-pe">Private Equity</a>
+    <a href="#vert-infra">Infrastructure</a>
+    <a href="#vert-re">Real Estate</a>
+    <a href="#vert-solutions">GP-Led Solutions / Secondaries</a>
+  </div>
+
+  <div class="nav-divider"></div>
+  <a href="#statistical-appendix">Statistical Appendix</a>
+  <a href="#disclaimers">Disclaimers</a>
+</nav>
+
+<main class="main">
+
+<!-- ================================================================== -->
+<!-- EXECUTIVE SUMMARY -->
+<!-- ================================================================== -->
+<section id="executive-summary">
+<h2>Executive Summary</h2>
+
+<p>This analysis identifies the quantitative drivers of valuation multiples across 24 publicly listed alternative asset managers and translates the findings into an actionable strategic playbook for Patria Investments Limited (NASDAQ: PAX). The study employs Spearman rank correlations, bootstrap confidence intervals, Benjamini-Hochberg multiple testing correction, leave-one-out robustness tests, and partial correlations controlling for scale.</p>
+
+<div class="exec-grid">
+  <div class="exec-box">
+    <div class="exec-label">Top Driver</div>
+    <div class="exec-value">Scale (FEAUM)</div>
+    <div class="exec-detail">avg |&rho;| = 0.695, BH-significant</div>
+  </div>
+  <div class="exec-box">
+    <div class="exec-label">Most Robust Driver</div>
+    <div class="exec-value">EPS (GAAP)</div>
+    <div class="exec-detail">avg |&rho;| = 0.729, independent of scale</div>
+  </div>
+  <div class="exec-box">
+    <div class="exec-label">PAX Strength</div>
+    <div class="exec-value">FRE Margin Q1</div>
+    <div class="exec-detail">58.9%, rank 5/23</div>
+  </div>
+</div>
+
+<h3>Key Findings</h3>
+<div class="card highlight">
+  <p><strong>Three stable value drivers</strong> form a coherent framework: <strong>Scale</strong> (Fee-Earning AUM, &rho; = +0.765 vs. P/FRE, p<sub>adj</sub> = 0.026) establishes the fee base; <strong>Efficiency</strong> (FRE Margin, &rho; = +0.708 vs. EV/FEAUM, p<sub>adj</sub> = 0.038) determines earnings conversion; and <strong>Per-share economics</strong> (EPS, &rho; = +0.750 vs. EV/FEAUM, p<sub>adj</sub> = 0.041) integrates all earnings sources into the metric that determines equity value. EPS retains its signal after controlling for scale (partial &rho; drops only 0.04&ndash;0.07), confirming that profitability matters independent of firm size.</p>
+</div>
+
+<h3>PAX Positioning</h3>
+<div class="kpi-grid">
+  <div class="kpi-box">
+    <div class="label">FEAUM</div>
+    <div class="value">$40.8B</div>
+    <div class="context"><span class="tag q4">Q4</span> Rank 19/23</div>
+  </div>
+  <div class="kpi-box">
+    <div class="label">FRE Margin</div>
+    <div class="value">58.9%</div>
+    <div class="context"><span class="tag q1">Q1</span> Rank 5/23</div>
+  </div>
+  <div class="kpi-box">
+    <div class="label">EPS (GAAP)</div>
+    <div class="value">$0.54</div>
+    <div class="context"><span class="tag q3">Q3</span> Rank 12/16</div>
+  </div>
+  <div class="kpi-box">
+    <div class="label">DE/Share</div>
+    <div class="value">$1.27</div>
+    <div class="context"><span class="tag q2">Q2</span> Rank 7/14</div>
+  </div>
+  <div class="kpi-box">
+    <div class="label">FRE Growth YoY</div>
+    <div class="value">19%</div>
+    <div class="context"><span class="tag q2">Q2</span> Rank 9/22</div>
+  </div>
+</div>
+
+<p>PAX's Q4 FEAUM positioning is the primary explanation for its valuation discount (P/FRE ~10.5x vs. peer median ~20x). The Q1 FRE margin is a genuine competitive advantage, but it cannot fully compensate for the scale deficit because FEAUM is the statistically stronger driver. The path to multiple expansion requires growing FEAUM while defending FRE margin.</p>
+</section>
+
+<!-- ================================================================== -->
+<!-- STRATEGIC IMPLICATIONS FOR PAX -->
+<!-- ================================================================== -->
+<section id="strategic-implications">
+<h2>Strategic Implications for Patria Investments</h2>
+
+<section id="board-guidance">
+<h3>PHL / Board Guidance</h3>
+
+<h4>Top 5 Value-Creating Principles</h4>
+
+<div class="card highlight">
+<p><strong>1. Protect Q1 FRE Margin as PAX's Primary Competitive Advantage</strong></p>
+<p>PAX's 58.9% FRE margin (rank 5/23) is its only top-quartile position on a stable value driver. Every strategic initiative must be evaluated against its margin impact. The Vinci Compass anti-pattern (ANTI-001, ANTI-004) demonstrates that LatAm managers growing without margin discipline destroy value. <em>Linked driver:</em> DVR-003 (avg |&rho;| = 0.54, independent efficiency signal).</p>
+</div>
+
+<div class="card highlight">
+<p><strong>2. Grow FEAUM through Credit Expansion and Infrastructure Scaling</strong></p>
+<p>FEAUM (Q4, rank 19/23) is the strongest overall valuation driver (avg |&rho;| = 0.695). Credit expansion (Solis integration plus new products) and infrastructure fund scaling ($2.9B to $4&ndash;5B) are the two most viable paths to FEAUM growth without sacrificing FRE margin quality. <em>Linked plays:</em> PLAY-003, PLAY-PE06, PLAY-I03, PLAY-C02.</p>
+</div>
+
+<div class="card highlight">
+<p><strong>3. Improve EPS Trajectory through Per-Share Economics Discipline</strong></p>
+<p>EPS (Q3, rank 12/16) is the second-strongest value driver (avg |&rho;| = 0.729, independent signal). PAX's $0.54 EPS is well below Q1 peers (PGHN CHF 48.83, APO $5.54, HLNE $4.35). Every growth investment must demonstrably contribute to EPS improvement within 24 months. <em>Linked anti-pattern:</em> ANTI-003 (StepStone's negative EPS at scale).</p>
+</div>
+
+<div class="card highlight">
+<p><strong>4. Build Permanent Capital to Reduce Fundraising Cyclicality</strong></p>
+<p>Permanent capital reduces earnings volatility, extends fee duration, and provides a higher-quality earnings stream that warrants premium multiples. Target 30&ndash;40% permanent/long-dated capital within 3 years through open-ended infrastructure and credit vehicles plus Solis CLO book. <em>Linked plays:</em> PLAY-001, PLAY-013, PLAY-C05.</p>
+</div>
+
+<div class="card highlight">
+<p><strong>5. Leverage LatAm Scarcity Premium as Geographic Competitive Moat</strong></p>
+<p>PAX is one of very few NASDAQ-listed pure-play LatAm alternative managers. Rather than competing with BX/BAM/KKR on global scale, PAX should deepen its positioning as the "first call" for institutional LatAm alternatives allocation. <em>Linked plays:</em> PLAY-007, PLAY-011, PLAY-I04.</p>
+</div>
+
+<h4>Three-Year Directional Targets</h4>
+<table>
+  <thead>
+    <tr><th>Metric</th><th>Current</th><th>2029 Target</th><th>Pathway</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>FEAUM</td><td>$40.8B (Q4)</td><td>$65&ndash;75B (Q3)</td><td>Solis, organic credit, infra fund scaling, new products, 1&ndash;2 bolt-on acquisitions</td></tr>
+    <tr><td>FRE Margin</td><td>58.9% (Q1)</td><td>55&ndash;60% (Q1)</td><td>AI efficiency gains offsetting credit mix headwind; <strong>non-negotiable floor of 55%</strong></td></tr>
+    <tr><td>EPS (GAAP)</td><td>$0.54 (Q3)</td><td>$0.90&ndash;$1.10 (Q2)</td><td>FRE growth, per-share discipline, co-investment income, proactive exits</td></tr>
+    <tr><td>Perm. Capital</td><td>&lt;15% est.</td><td>30&ndash;40%</td><td>Solis CLO, open-ended infra vehicle, open-ended credit vehicle</td></tr>
+  </tbody>
+</table>
+
+<div class="disclaimer">
+<strong>Key Risk:</strong> Protecting Q1 FRE Margin while scaling FEAUM. Credit expansion introduces lower fee rates (~80&ndash;100 bps vs. PE/infra ~100&ndash;150 bps) that naturally compress blended margins. The Vinci Compass precedent demonstrates that LatAm managers pursuing scale through M&A frequently sacrifice margins faster than scale economies compensate. PAX must enforce a 55% FRE margin floor as a non-negotiable strategic constraint.
+</div>
+</section>
+
+<section id="management-priorities">
+<h3>Management Priorities: Five Initiatives</h3>
+
+<div class="card success">
+<h4>1. Solis Integration Excellence</h4>
+<div class="initiative">
+  <div><span class="label">Driver Impact</span></div><div>DVR-001 (FEAUM +$3.5B), DVR-006 (Credit % to ~30%)</div>
+  <div><span class="label">Timeline</span></div><div>2026 H1&ndash;H2</div>
+  <div><span class="label">Success Metrics</span></div><div>Full operational integration by Q4 2026; zero LP attrition; credit FEAUM $14B+ by year-end</div>
+  <div><span class="label">Risk</span></div><div>Integration distraction; margin dilution if Solis fee rates below PAX average</div>
+</div>
+</div>
+
+<div class="card success">
+<h4>2. Inaugural Investor Day</h4>
+<div class="initiative">
+  <div><span class="label">Driver Impact</span></div><div>DVR-002 (EPS trajectory communication), DVR-001 (FEAUM growth narrative)</div>
+  <div><span class="label">Timeline</span></div><div>2026 Q3&ndash;Q4</div>
+  <div><span class="label">Success Metrics</span></div><div>Credible 3-year targets for FEAUM ($65&ndash;75B), FRE margin (55&ndash;60%), EPS ($0.90&ndash;$1.10); analyst coverage expansion</div>
+  <div><span class="label">Risk</span></div><div>Setting targets too aggressively ('show me' discount per ANTI-PE01); or too conservatively</div>
+</div>
+</div>
+
+<div class="card success">
+<h4>3. Infrastructure Debt Product Launch</h4>
+<div class="initiative">
+  <div><span class="label">Driver Impact</span></div><div>DVR-001 (FEAUM growth), DVR-003 (margin-accretive cross-vertical product)</div>
+  <div><span class="label">Timeline</span></div><div>2026 H2&ndash;2027 H1</div>
+  <div><span class="label">Success Metrics</span></div><div>First close $200M+ by mid-2027; target $500M by end-2027</div>
+</div>
+</div>
+
+<div class="card success">
+<h4>4. LatAm Wealth Distribution Build</h4>
+<div class="initiative">
+  <div><span class="label">Driver Impact</span></div><div>DVR-001 (FEAUM new channel), DVR-003 (recurring fee stream)</div>
+  <div><span class="label">Timeline</span></div><div>2026 H2&ndash;2028</div>
+  <div><span class="label">Success Metrics</span></div><div>$500M wealth channel AUM by end-2027; 3+ private bank partnerships</div>
+</div>
+</div>
+
+<div class="card success">
+<h4>5. Active Ownership Industrial Advisor Network</h4>
+<div class="initiative">
+  <div><span class="label">Driver Impact</span></div><div>DVR-002 (EPS via portfolio company value creation and stronger exits)</div>
+  <div><span class="label">Timeline</span></div><div>2026&ndash;2027</div>
+  <div><span class="label">Success Metrics</span></div><div>30+ advisors engaged; measurable EBITDA improvement in 5+ portfolio companies</div>
+</div>
+</div>
+
+<h4>Resource Allocation</h4>
+<p><strong>Incremental hires:</strong> 15&ndash;25 over 3 years (wealth distribution, infra debt, secondaries, AI/technology, Solis integration, IR). Estimated $5&ndash;8M annually. <strong>Technology:</strong> AI credit underwriting, LP reporting, data centralization. Estimated $2&ndash;4M over 3 years. <strong>Capital:</strong> $50&ndash;150M co-investment program; $500M&ndash;$2B for bolt-on acquisitions.</p>
+</section>
+
+<section id="per-bu">
+<h3>Per-Business Unit Recommendations</h3>
+
+<!-- PE BU -->
+<div class="card">
+<h4>Private Equity</h4>
+<p><strong>Top plays:</strong> <span class="tag tag-play">PLAY-PE04</span> Active Ownership &bull; <span class="tag tag-play">PLAY-PE05</span> Record Realization Year &bull; <span class="tag tag-play">PLAY-008</span> Direct Investing Model</p>
+<p><strong>Competitive position:</strong> LatAm mid-market PE ($100M&ndash;$500M EV) where local knowledge, regulatory navigation, and operational improvement drive returns. Global mega-funds have limited LatAm presence at this scale.</p>
+<div class="collapsible-header collapsed" onclick="toggleCollapsible(this)">DOs and DON'Ts</div>
+<div class="collapsible-body collapsed" style="max-height:400px">
+<p><strong>DO:</strong> Formalize active ownership with 30&ndash;50 LatAm industrial advisors. Proactively manage exits. Maintain direct investing discipline. Build LatAm sector specialization.</p>
+<p><strong>DON'T:</strong> Pursue mega-fund scale ($10B+). Attempt PE evergreen until infra/credit prove distribution. Add fund-of-funds layers. Expand headcount without proportional AUM growth.</p>
+</div>
+</div>
+
+<!-- PE Solutions BU -->
+<div class="card">
+<h4>Private Equity Solutions</h4>
+<p><strong>Top plays:</strong> <span class="tag tag-play">PLAY-011</span> Bespoke Mandates &bull; <span class="tag tag-play">PLAY-S05</span> Re-Up Compounding &bull; <span class="tag tag-play">PLAY-017</span> Data Platform</p>
+<p><strong>Competitive position:</strong> Unique ability to offer both direct investing and solutions from a single LatAm platform. Position as "Partners Group of Latin America" for bespoke allocation.</p>
+<div class="collapsible-header collapsed" onclick="toggleCollapsible(this)">DOs and DON'Ts</div>
+<div class="collapsible-body collapsed" style="max-height:400px">
+<p><strong>DO:</strong> Develop bespoke LatAm allocation mandates. Track re-up rates as primary metric. Build LatAm data platform.</p>
+<p><strong>DON'T:</strong> Grow Solutions headcount faster than AUM (avoid StepStone trap). Accept advisory-rate fees (&lt;75 bps). Let Solutions become a below-average margin segment.</p>
+</div>
+</div>
+
+<!-- Credit BU -->
+<div class="card">
+<h4>Credit</h4>
+<p><strong>Top plays:</strong> <span class="tag tag-play">PLAY-PE06</span> Credit Platform Pivot &bull; <span class="tag tag-play">PLAY-C02</span> LatAm FIDC Securitization &bull; <span class="tag tag-play">PLAY-C06</span> AI Underwriting</p>
+<p><strong>Competitive position:</strong> Small ($14.1B post-Solis) vs. global platforms but with LatAm scarcity advantage. First private credit fund 15.6% gross unlevered IRR validates underwriting quality.</p>
+<div class="collapsible-header collapsed" onclick="toggleCollapsible(this)">DOs and DON'Ts</div>
+<div class="collapsible-body collapsed" style="max-height:400px">
+<p><strong>DO:</strong> Complete Solis integration as top priority. Launch LatAm FIDC structures. Deploy AI in credit underwriting. Develop infrastructure debt product.</p>
+<p><strong>DON'T:</strong> Attempt parallel bank model (requires $400B+). Pursue insurance platform. Sacrifice fee rates for AUM growth. Over-extend into global credit markets.</p>
+</div>
+</div>
+
+<!-- Infra BU -->
+<div class="card">
+<h4>Infrastructure</h4>
+<p><strong>Top plays:</strong> <span class="tag tag-play">PLAY-I05</span> Infrastructure Debt &bull; <span class="tag tag-play">PLAY-I04</span> Complexity Premium &bull; <span class="tag tag-play">PLAY-I03</span> Fund Scaling</p>
+<p><strong>Competitive position:</strong> PAX's strongest vertical. $2.9B fund validates LP demand. LatAm infrastructure offers higher yields than DM, with limited global competition at PAX's scale.</p>
+<div class="collapsible-header collapsed" onclick="toggleCollapsible(this)">DOs and DON'Ts</div>
+<div class="collapsible-body collapsed" style="max-height:400px">
+<p><strong>DO:</strong> Launch infrastructure debt as highest-conviction cross-vertical product. Defend operational complexity premium in fee discussions. Scale next fund to $4&ndash;5B. Develop energy transition thesis. Position infra as anchor for first open-ended vehicle.</p>
+<p><strong>DON'T:</strong> Attempt global AI infrastructure. Dilute LatAm focus with global diversification. Accept fee rate compression.</p>
+</div>
+</div>
+
+<!-- RE BU -->
+<div class="card">
+<h4>Real Estate</h4>
+<p><strong>Top plays:</strong> <span class="tag tag-adapt">PLAY-RE03</span> Operating Platforms &bull; <span class="tag tag-adapt">PLAY-RE01</span> Open-Ended Vehicle &bull; <span class="tag tag-adapt">PLAY-018</span> LatAm Niches</p>
+<p><strong>Competitive position:</strong> Most challenged vertical (ANTI-RE01). Cannot compete with BX/BAM on scale, perpetual vehicles, or data centers. Focus on LatAm logistics, residential, and student housing niches.</p>
+<div class="collapsible-header collapsed" onclick="toggleCollapsible(this)">DOs and DON'Ts</div>
+<div class="collapsible-body collapsed" style="max-height:400px">
+<p><strong>DO:</strong> Focus on LatAm-specific sub-sectors. Consider small operating platform acquisitions ($50&ndash;200M). Explore real estate credit as bridge to credit vertical.</p>
+<p><strong>DON'T:</strong> Allocate disproportionate growth resources. Attempt data centers. Launch perpetual RE vehicles before infra/credit prove model. Compete with global managers on scale.</p>
+</div>
+</div>
+
+<!-- Public Equities BU -->
+<div class="card">
+<h4>Public Equities</h4>
+<p><strong>Top plays:</strong> <span class="tag tag-adapt">PLAY-017</span> Data Platform &bull; <span class="tag tag-adapt">PLAY-011</span> Bespoke Mandates &bull; <span class="tag tag-applicable">PLAY-016</span> AI Integration</p>
+<p><strong>Competitive position:</strong> Complementary capability; primary value is LatAm market intelligence for private markets deal sourcing and complete platform for LP allocation.</p>
+<div class="collapsible-header collapsed" onclick="toggleCollapsible(this)">DOs and DON'Ts</div>
+<div class="collapsible-body collapsed" style="max-height:400px">
+<p><strong>DO:</strong> Leverage public equities intelligence for private markets. Include in bespoke mandates. Maintain lean operations.</p>
+<p><strong>DON'T:</strong> Allocate significant incremental resources. Let it become a margin drag. Expand beyond LatAm.</p>
+</div>
+</div>
+
+</section>
+</section>
+
+<!-- ================================================================== -->
+<!-- METHODOLOGY -->
+<!-- ================================================================== -->
+<section id="methodology">
+<h2>Methodology and Statistical Framework</h2>
+
+<h3>Approach</h3>
+<p>This analysis employs <strong>Spearman rank correlation</strong> (&rho;) as the primary measure of association between driver metrics and valuation multiples across a universe of 24 publicly listed alternative asset managers (25 listed, BN excluded due to AUM overlap with BAM). Spearman was selected over Pearson for robustness to non-normality, outlier resistance, and appropriateness for small samples (N = 10&ndash;19 per correlation).</p>
+
+<p><strong>Multiple regression was explicitly not used</strong> due to: insufficient degrees of freedom (14 candidate predictors for ~19 observations), severe multicollinearity (26 driver pairs with |&rho;| &gt; 0.7), overfitting risk, and endogeneity concerns.</p>
+
+<h3>Statistical Controls</h3>
+<table>
+<thead><tr><th>Method</th><th>Application</th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>Bootstrap CIs</td><td>1,000 iterations, 95% non-parametric CIs</td><td>All 4 BH-significant CIs exclude zero</td></tr>
+<tr><td>Benjamini-Hochberg FDR</td><td>q = 0.10 across 51 full-sample tests</td><td>4 of 51 survive correction</td></tr>
+<tr><td>Leave-one-out</td><td>Exhaustive recomputation excluding each firm</td><td>All 4 findings robust (max LOO range: 0.148)</td></tr>
+<tr><td>Partial correlations</td><td>Controlling for FEAUM to test scale independence</td><td>EPS independent; Total AUM and Credit % confounded</td></tr>
+<tr><td>Effective tests</td><td>~36 effective tests (from 51) after clustering</td><td>Only COR-061 survives Bonferroni (p = 0.0003)</td></tr>
+</tbody>
+</table>
+
+<h3>Confidence Classification</h3>
+<table>
+<thead><tr><th>Classification</th><th>Criterion</th><th>Findings</th></tr></thead>
+<tbody>
+<tr><td>High confidence</td><td>Adjusted p &lt; 0.01</td><td>None</td></tr>
+<tr><td>Moderate confidence</td><td>Adjusted p &lt; 0.05</td><td>FEAUM vs P/FRE (0.026), Total AUM vs P/FRE (0.037), FRE Margin vs EV/FEAUM (0.038), EPS vs EV/FEAUM (0.041)</td></tr>
+<tr><td>Not significant</td><td>Adjusted p &ge; 0.10</td><td>Remaining 47 correlations</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- ================================================================== -->
+<!-- VALUE DRIVERS -->
+<!-- ================================================================== -->
+<section id="value-drivers">
+<h2>Industry Value Driver Findings</h2>
+
+<section id="dvr001">
+<h3>DVR-001: Fee-Earning AUM (Scale) <span class="tag tag-stable">Stable Driver</span></h3>
+<p>Fee-Earning AUM exhibits the strongest and most consistent positive association with valuation multiples. Spearman &rho; ranges from +0.63 to +0.76 across three multiples, with average |&rho;| = 0.695. The P/FRE correlation (&rho; = +0.765, 95% CI [+0.333, +0.942], BH-adjusted p = 0.026) is the only correlation surviving the strictest Bonferroni correction (raw p = 0.0003). Leave-one-out analysis confirms robustness &mdash; no single firm drives the result (LOO range 0.112).</p>
+
+<div class="collapsible-header collapsed" onclick="toggleCollapsible(this)">Cross-Firm Comparison: FEAUM Rankings</div>
+<div class="collapsible-body collapsed" style="max-height:600px">
+<table class="sortable" id="table-feaum">
+<thead><tr><th onclick="sortTable('table-feaum',0)">Ticker <span class="sort-arrow">&uarr;&darr;</span></th><th onclick="sortTable('table-feaum',1)">FEAUM ($B) <span class="sort-arrow">&uarr;&darr;</span></th><th onclick="sortTable('table-feaum',2)">Quartile <span class="sort-arrow">&uarr;&darr;</span></th></tr></thead>
+<tbody>
+<tr><td>BX</td><td>921.7</td><td class="q1">Q1</td></tr>
+<tr><td>APO</td><td>709.0</td><td class="q1">Q1</td></tr>
+<tr><td>KKR</td><td>604.0</td><td class="q1">Q1</td></tr>
+<tr><td>BAM</td><td>603.0</td><td class="q1">Q1</td></tr>
+<tr><td>ARES</td><td>384.9</td><td class="q1">Q1</td></tr>
+<tr><td>CG</td><td>337.0</td><td class="q2">Q2</td></tr>
+<tr><td>OWL</td><td>187.7</td><td class="q2">Q2</td></tr>
+<tr><td>TPG</td><td>170.1</td><td class="q2">Q2</td></tr>
+<tr><td>CVC</td><td>159.8</td><td class="q2">Q2</td></tr>
+<tr><td>EQT</td><td>152.3</td><td class="q2">Q2</td></tr>
+<tr><td>HLNE</td><td>146.1</td><td class="q2">Q2</td></tr>
+<tr><td>STEP</td><td>138.6</td><td class="q3">Q3</td></tr>
+<tr><td>VINP</td><td>45.3</td><td class="q3">Q3</td></tr>
+<tr><td><strong>PAX</strong></td><td><strong>40.8</strong></td><td class="q4"><strong>Q4</strong></td></tr>
+<tr><td>ANTIN</td><td>24.6</td><td class="q4">Q4</td></tr>
+<tr><td>III</td><td>8.8</td><td class="q4">Q4</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Limitations:</strong> Total AUM (DVR-004) appears as a separate stable driver (avg |&rho;| = 0.59) but is <strong>confounded</strong> by FEAUM &mdash; partial correlation collapses from ~0.69 to ~0.12. Scale-valuation relationship may be concave. Survivorship bias present. Reverse causality likely.</p>
+</section>
+
+<section id="dvr002">
+<h3>DVR-002: Earnings per Share (GAAP) <span class="tag tag-stable">Stable Driver</span></h3>
+<p>EPS exhibits the highest average |&rho;| (0.729) of any driver &mdash; the strongest single predictor. The EV/FEAUM correlation (&rho; = +0.750, BH-adjusted p = 0.041) survives BH correction. Critically, EPS <strong>retains its signal after controlling for scale</strong>: partial &rho; drops by only 0.04&ndash;0.07, confirming that EPS captures information about valuation independent of firm size.</p>
+
+<div class="collapsible-header collapsed" onclick="toggleCollapsible(this)">Cross-Firm Comparison: EPS Rankings</div>
+<div class="collapsible-body collapsed" style="max-height:600px">
+<table class="sortable" id="table-eps">
+<thead><tr><th onclick="sortTable('table-eps',0)">Ticker <span class="sort-arrow">&uarr;&darr;</span></th><th onclick="sortTable('table-eps',1)">EPS <span class="sort-arrow">&uarr;&darr;</span></th><th onclick="sortTable('table-eps',2)">Quartile <span class="sort-arrow">&uarr;&darr;</span></th></tr></thead>
+<tbody>
+<tr><td>PGHN</td><td>CHF 48.83</td><td class="q1">Q1</td></tr>
+<tr><td>III</td><td>GBP 8.14</td><td class="q1">Q1</td></tr>
+<tr><td>APO</td><td>$5.54</td><td class="q1">Q1</td></tr>
+<tr><td>HLNE</td><td>$4.35</td><td class="q1">Q1</td></tr>
+<tr><td>BX</td><td>$3.87</td><td class="q2">Q2</td></tr>
+<tr><td>KKR</td><td>$2.38</td><td class="q2">Q2</td></tr>
+<tr><td>EQT</td><td>EUR 0.67</td><td class="q3">Q3</td></tr>
+<tr><td><strong>PAX</strong></td><td><strong>$0.54</strong></td><td class="q3"><strong>Q3</strong></td></tr>
+<tr><td>VINP</td><td>$0.45</td><td class="q4">Q4</td></tr>
+<tr><td>STEP</td><td>-$1.55</td><td class="q4">Q4</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Limitations:</strong> GAAP EPS subject to non-cash distortions. Currency effects distort cross-border comparisons. Smaller sample size (n = 6&ndash;14). Potential tautology with price-based multiples.</p>
+</section>
+
+<section id="dvr003">
+<h3>DVR-003: FRE Margin <span class="tag tag-specific">Multiple-Specific (EV/FEAUM)</span></h3>
+<p>FRE Margin exceeds the &rho; &gt; 0.5 threshold for exactly one multiple (EV/FEAUM: &rho; = +0.708, BH-adjusted p = 0.038), but not for P/FRE (&rho; = +0.404) or P/DE (&rho; = +0.515, not significant). FRE Margin retains an independent signal after controlling for scale, though partially attenuated: partial &rho; drops from +0.61 to +0.41, indicating ~one-third of the signal is attributable to operating leverage from scale. The remaining +0.41 represents a genuine, independent efficiency signal.</p>
+
+<p><strong>PAX's strongest competitive positioning.</strong> FRE margin of 58.9% (rank 5/23, Q1) is comparable to mega-cap platforms despite Q4 scale. This is the single strongest data point supporting PAX's valuation case.</p>
+
+<div class="collapsible-header collapsed" onclick="toggleCollapsible(this)">Cross-Firm Comparison: FRE Margin Rankings</div>
+<div class="collapsible-body collapsed" style="max-height:700px">
+<table class="sortable" id="table-fre">
+<thead><tr><th onclick="sortTable('table-fre',0)">Ticker <span class="sort-arrow">&uarr;&darr;</span></th><th onclick="sortTable('table-fre',1)">FRE Margin (%) <span class="sort-arrow">&uarr;&darr;</span></th><th onclick="sortTable('table-fre',2)">Quartile <span class="sort-arrow">&uarr;&darr;</span></th></tr></thead>
+<tbody>
+<tr><td>BX</td><td>71.3</td><td class="q1">Q1</td></tr>
+<tr><td>KKR</td><td>69.0</td><td class="q1">Q1</td></tr>
+<tr><td>OWL</td><td>62.0</td><td class="q1">Q1</td></tr>
+<tr><td>PGHN</td><td>62.0</td><td class="q1">Q1</td></tr>
+<tr><td><strong>PAX</strong></td><td><strong>58.9</strong></td><td class="q1"><strong>Q1</strong></td></tr>
+<tr><td>BAM</td><td>58.0</td><td class="q1">Q1</td></tr>
+<tr><td>APO</td><td>57.0</td><td class="q2">Q2</td></tr>
+<tr><td>EQT</td><td>52.0</td><td class="q2">Q2</td></tr>
+<tr><td>HLNE</td><td>50.0</td><td class="q2">Q2</td></tr>
+<tr><td>CG</td><td>47.0</td><td class="q3">Q3</td></tr>
+<tr><td>ARES</td><td>41.7</td><td class="q3">Q3</td></tr>
+<tr><td>STEP</td><td>37.0</td><td class="q4">Q4</td></tr>
+<tr><td>VINP</td><td>30.4</td><td class="q4">Q4</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="moderate-drivers">
+<h3>Moderate Signals</h3>
+<table>
+<thead><tr><th>Driver</th><th>DVR ID</th><th>Avg |&rho;|</th><th>Classification</th><th>Independent?</th><th>PAX</th></tr></thead>
+<tbody>
+<tr><td>DE/share</td><td>DVR-005</td><td>0.551</td><td>Moderate signal</td><td>Mixed</td><td class="q2">Q2</td></tr>
+<tr><td>Credit % of AUM</td><td>DVR-006</td><td>0.395</td><td>Moderate signal</td><td>No (confounded)</td><td class="q2">Q2</td></tr>
+<tr><td>FRE Growth YoY</td><td>DVR-007</td><td>0.260</td><td>Moderate signal</td><td>N/A</td><td class="q2">Q2</td></tr>
+<tr><td>Mgmt Fee Rate</td><td>DVR-008</td><td>0.183</td><td>Moderate signal</td><td>N/A</td><td class="q3">Q3</td></tr>
+</tbody>
+</table>
+<p>Credit % is <strong>confounded by FEAUM</strong> &mdash; raw positive associations disappear after controlling for scale, suggesting credit-heavy firms tend to be larger rather than that credit exposure per se drives valuation. FRE Growth exhibits a surprisingly weak signal &mdash; the Vinci Compass case (63% FRE growth, Q1 ranking, but Q4 FRE margin) demonstrates that growth without margin quality does not drive premium valuations.</p>
+</section>
+</section>
+
+<!-- ================================================================== -->
+<!-- FIRM PROFILES -->
+<!-- ================================================================== -->
+<section id="firm-profiles">
+<h2>Firm-Level Strategies and Actions</h2>
+
+<p>Platform deep-dives for 12 firms, organized by strategic model. Cautionary cases marked with asterisk (*).</p>
+
+<div id="firm-bx" class="card">
+<h4>Blackstone (BX) &mdash; Scale + Distribution Leader</h4>
+<p><strong>AUM:</strong> $1,274.9B | <strong>FEAUM:</strong> $921.7B (Q1, rank 1/23) | <strong>FRE Margin:</strong> 71.3% (Q1, rank 1/23) | <strong>EPS:</strong> $3.87 (Q2)</p>
+<p>Blackstone commands the highest valuation premium because it achieves a rare combination of scale dominance and margin leadership simultaneously. Perpetual capital (48% of FEAUM) eliminates fundraising cyclicality. Private wealth distribution ($43B raised, ~53% YoY growth) opens the largest untapped capital pool. BX appears to represent approximately 50% of private wealth alternative revenue (company IR estimate, not independently verified). <em>(PS-VD-001, PS-VD-002)</em></p>
+<div class="collapsible-header collapsed" onclick="toggleCollapsible(this)">Transferable Insights</div>
+<div class="collapsible-body collapsed" style="max-height:300px">
+<p><strong>Perpetual Capital Sequencing:</strong> BREIT (RE, 2017) &rarr; BCRED (credit, 2021) &rarr; BXPE (PE, 2024). Each vehicle leveraged distribution infrastructure built by predecessors. BREIT took 4+ years to reach scale; BXPE surpassed $2B in its first year.</p>
+<p><strong>Thematic Platform Investing:</strong> QTS ($10B take-private, 2021) + AirTrunk ($16B, 2024) = $70B+ data center portfolio. Acquired operating platforms, not just assets.</p>
+</div>
+</div>
+
+<div id="firm-kkr" class="card">
+<h4>KKR &mdash; Triple-Engine Model</h4>
+<p><strong>AUM:</strong> $744.0B | <strong>FEAUM:</strong> $604.0B (Q1, rank 3/23) | <strong>FRE Margin:</strong> 69.0% (Q1, rank 2/23) | <strong>EPS:</strong> $2.38 (Q2)</p>
+<p>KKR's triple-engine model (FRE + insurance economics $1.9B + balance sheet co-investment $25B+) provides earnings diversification unavailable to pure-play asset managers. Global Atlantic full consolidation (2024) is the key catalyst. ABF platform grew 20% YoY to $75B. <em>(PS-VD-005, PS-VD-006)</em></p>
+</div>
+
+<div id="firm-apo" class="card">
+<h4>Apollo (APO) &mdash; Origination-Led Credit</h4>
+<p><strong>AUM:</strong> $938.4B | <strong>FEAUM:</strong> $709.0B (Q1, rank 2/23) | <strong>FRE Margin:</strong> 57.0% (Q2) | <strong>EPS:</strong> $5.54 (Q1, rank 3/16)</p>
+<p>Apollo's dual-engine model (FRE + Athene SRE $865M quarterly) is unique. The firm characterizes its origination platform as a "parallel bank" (company IR narrative, not independently verified); the verified data point is $228B origination volume. On pace for $1T AUM by 2026. Investor Day targets: $15+/share ANI, $12+/share FRE, $10+/share SRE by 2029. <em>(PS-VD-009, PS-VD-010, PS-VD-056)</em></p>
+</div>
+
+<div id="firm-bam" class="card">
+<h4>Brookfield (BAM) &mdash; Real Assets Operator</h4>
+<p><strong>AUM:</strong> $1,100.0B | <strong>FEAUM:</strong> $603.0B (Q1, rank 4/23) | <strong>FRE Margin:</strong> 58.0% (Q1, rank 6/23)</p>
+<p>Positioned at the intersection of energy transition and AI infrastructure buildout. 87% permanent/long-dated capital &mdash; industry highest. BAIIF ($100B deployment capacity with NVIDIA/QIA). Full Oaktree acquisition adds $200B+ credit platform. FRE grew 22% to $3.0B in 2025. <em>(PS-VD-015, PS-VD-016)</em></p>
+</div>
+
+<div id="firm-pghn" class="card">
+<h4>Partners Group (PGHN) &mdash; Direct Investing Purity</h4>
+<p><strong>AUM:</strong> $185.0B | <strong>FEAUM:</strong> $152.3B (Q2) | <strong>FRE Margin:</strong> 62.0% (Q1, rank 4/23) | <strong>EPS:</strong> CHF 48.83 (Q1, rank 1/16)</p>
+<p>The only pure-play direct investing firm at institutional scale. Q1 EPS (highest in peer group by wide margin) demonstrates that per-share economics can drive valuation independent of scale. 72% of capital raised from bespoke solutions. Private markets royalties launched as fifth asset class. $450B AUM target by 2033. <em>(PS-VD-030, PS-VD-031)</em></p>
+</div>
+
+<div id="firm-ares" class="card">
+<h4>Ares (ARES) &mdash; Credit-Led Growth Champion</h4>
+<p><strong>AUM:</strong> $622.5B | <strong>FEAUM:</strong> $384.9B (Q1, rank 6/23) | <strong>FRE Margin:</strong> 41.7% (Q3, rank 18/23)</p>
+<p>Fastest-growing mega-cap (5-year AUM CAGR 26%). GCP International ($5.6B, $44B AUM) transformed real assets capability. FRE grew 33% in Q4 2025. Q3 FRE margin reflects credit mix and M&A integration costs. AI integration contributing to margin expansion. <em>(PS-VD-012, PS-VD-013)</em></p>
+</div>
+
+<div id="firm-owl" class="card">
+<h4>Blue Owl (OWL) &mdash; 100% Permanent Capital</h4>
+<p><strong>AUM:</strong> $307.4B | <strong>FEAUM:</strong> $187.7B (Q2) | <strong>FRE Margin:</strong> 62.0% (Q1, rank 3/23)</p>
+<p>Every dollar of AUM is in permanent or long-dated vehicles. Nearly 6x AUM growth since 2021 listing through four acquisitions in 2024 (IPI, Kuvare, Atalaya, Prima Capital). 85% of management fees from permanent capital. GP Strategic Capital franchise earns fees on the growth of other managers. <em>(PS-VD-018, PS-VD-019)</em></p>
+</div>
+
+<div id="firm-eqt" class="card">
+<h4>EQT &mdash; Active Ownership</h4>
+<p><strong>AUM:</strong> EUR 291.6B | <strong>FEAUM:</strong> $152.3B (Q2) | <strong>FRE Margin:</strong> 52.0% (Q2) | <strong>EPS:</strong> EUR 0.67 (Q3)</p>
+<p>Europe's premier alternative manager. ~500 industrial advisors for operational value creation. Coller Capital acquisition ($3.7B, ~$50B secondaries AUM) pending. Record realization year 2025: EUR 16B gross + EUR 14B co-investments. EUR 26B gross inflows (&gt;2x prior year). <em>(PS-VD-027, PS-VD-029)</em></p>
+</div>
+
+<div id="firm-cg" class="card">
+<h4>Carlyle (CG) &mdash; CEO-Led Transformation</h4>
+<p><strong>AUM:</strong> $477.0B | <strong>FEAUM:</strong> $337.0B (Q2) | <strong>FRE Margin:</strong> 47.0% (Q3, rank 15/23)</p>
+<p>Harvey Schwartz transformation (since Feb 2023): eliminated underperforming businesses, credit grew to largest segment ($211.3B, 44% of AUM), wealth products tripled (3 to 9), FRE up 12% in FY2025. Targets: $200B capital raising, $1.9B FRE, $6+ distributable EPS by 2028. $2B share buyback announced. <em>(PS-VD-024, PS-VD-025)</em></p>
+</div>
+
+<div id="firm-hlne" class="card">
+<h4>Hamilton Lane (HLNE) &mdash; Data Moat + Democratization</h4>
+<p><strong>Total AUS:</strong> $1,017.6B | <strong>FEAUM:</strong> $146.1B (Q2) | <strong>FRE Margin:</strong> 50.0% (Q2) | <strong>EPS:</strong> $4.35 (Q1, rank 4/16)</p>
+<p>Proprietary database: 58,000+ funds, 57 vintage years. Evergreen platform $16B+ (70%+ YoY growth). 90%+ managed account re-up rate with 30%+ growth on re-ups. Republic partnership: $500-minimum blockchain-based retail access. <em>(PS-VD-036, PS-VD-037)</em></p>
+</div>
+
+<div id="firm-step" class="card warning">
+<h4>StepStone (STEP) &mdash; Cautionary Case*</h4>
+<p><strong>AUM:</strong> $219.8B | <strong>FEAUM:</strong> $138.6B (Q3) | <strong>FRE Margin:</strong> 37.0% (Q4, rank 20/23) | <strong>EPS:</strong> -$1.55 (Q4)</p>
+<p><strong>The primary cautionary signal in the peer universe.</strong> Record AUM growth (29% organic, $31B raised) produced bottom-quartile FRE margin (37%) and negative GAAP EPS. Adjusted ANI was positive (+$0.65/share), indicating non-cash charges drive the GAAP figure, but the Q4 FRE margin is the more reliable structural indicator. The solutions model's labor-intensive cost structure (108 partners, 780 employees) scales linearly with AUM rather than providing operating leverage. <em>(PS-VD-041, PS-VD-042)</em></p>
+</div>
+
+<div id="firm-vinp" class="card warning">
+<h4>Vinci Compass (VINP) &mdash; Cautionary Case*</h4>
+<p><strong>AUM:</strong> R$354B (~$59B) | <strong>FEAUM:</strong> $45.3B (Q3) | <strong>FRE Margin:</strong> 30.4% (Q4, rank 22/23) | <strong>EPS:</strong> $0.45 (Q4)</p>
+<p><strong>Most directly relevant anti-pattern for PAX.</strong> Executed four acquisitions in 18 months (Compass, MAV, Lacan, Verde). Despite 63% FRE growth (Q1), FRE margin of 30.4% (Q4) reflects integration costs, structurally lower LatAm fee rates, and higher per-AUM operating costs across seven countries. Growth from a low-margin base does not generate premium multiples. <em>(ACT-VD-VINP-001, ACT-VD-VINP-002)</em></p>
+</div>
+</section>
+
+<!-- ================================================================== -->
+<!-- PLATFORM PLAYBOOK -->
+<!-- ================================================================== -->
+<section id="platform-playbook">
+<h2>Platform Strategic Menu</h2>
+
+<p>18 plays organized by value driver, plus 4 anti-patterns. Each play documents the firms that executed it, what was done, metric impact, prerequisites, and risks.</p>
+
+<h3>DVR-001: Scale (FEAUM) &mdash; 7 Plays</h3>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-001</span><span class="play-title">Perpetual Capital Vehicle Sequencing</span></div>
+<div class="play-firms">Firms: BX | Impact: BREIT $60B+, BCRED $14B+ gross sales, BXPE $2B+ in year 1. Perpetual capital 48% of FEAUM.</div>
+<div class="collapsible-header collapsed" onclick="toggleCollapsible(this)">Details</div>
+<div class="collapsible-body collapsed" style="max-height:300px">
+<p>Launch evergreen products across asset classes in deliberate sequence &mdash; starting with the most natural fit (real estate for BX), then extending distribution infrastructure to credit and PE. Each launch leverages relationships built by predecessors. Prerequisites: brand recognition, track record, regulatory framework, daily NAV technology, dedicated wealth team. Risk: first vehicle takes 4+ years to reach scale; redemption management during stress.</p>
+</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-002</span><span class="play-title">Insurance Platform Integration</span></div>
+<div class="play-firms">Firms: KKR, APO, ARES, OWL, BAM | Impact: Combined insurance AUM $750B+. KKR insurance economics $1.9B. APO SRE $865M/quarter.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-003</span><span class="play-title">Transformative M&A for Scale</span></div>
+<div class="play-firms">Firms: ARES, OWL, EQT, BAM | Impact: ARES Real Assets doubled to $139.1B. OWL 6x since 2021. EQT Coller adds ~$50B.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-004</span><span class="play-title">Private Wealth Distribution Build</span></div>
+<div class="play-firms">Firms: BX, CG, BAM, HLNE | Impact: BX $43B wealth fundraising (+53% YoY). CG $40B target 2026-2028 (3x prior).</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-005</span><span class="play-title">Origination-Led Credit Platform</span></div>
+<div class="play-firms">Firms: APO | Impact: $228B origination volume. FEAUM $709B. Apollo characterizes this as a "parallel bank" (company IR narrative, not independently verified).</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-006</span><span class="play-title">Thematic Platform Investing in Real Assets</span></div>
+<div class="play-firms">Firms: BX, BAM | Impact: BX $70B+ data center portfolio. BAM $100B BAIIF with NVIDIA/QIA.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-007</span><span class="play-title">Sovereign Wealth Fund Partnerships</span></div>
+<div class="play-firms">Firms: BAM, KKR | Impact: BAM BAIIF $5B initial close, $100B deployment capacity. KKR $95B deployed globally.</div>
+</div>
+
+<h3>DVR-002: EPS &mdash; 5 Plays</h3>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-008</span><span class="play-title">Direct Investing Model for Per-Share Economics</span></div>
+<div class="play-firms">Firms: PGHN | Impact: Q1 EPS (CHF 48.83, rank 1/16). Q1 FRE margin 62%. Eliminates intermediation costs.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-009</span><span class="play-title">Dual-Engine Earnings (FRE + Insurance SRE)</span></div>
+<div class="play-firms">Firms: APO, KKR | Impact: APO targets $15+/share by 2029. KKR insurance economics $1.9B.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-010</span><span class="play-title">Balance Sheet Co-Investment</span></div>
+<div class="play-firms">Firms: KKR | Impact: $25B+ firm capital co-invested. Creates third earnings stream.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-011</span><span class="play-title">Bespoke Mandate Model for Client Retention</span></div>
+<div class="play-firms">Firms: PGHN, HLNE | Impact: PGHN 72% from bespoke solutions. HLNE 90%+ re-up rate, 30%+ growth on re-ups.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-012</span><span class="play-title">Investor Day Financial Target Articulation</span></div>
+<div class="play-firms">Firms: APO, CG | Impact: APO stock re-rated after Oct 2024 Investor Day. CG $2B buyback alongside targets.</div>
+</div>
+
+<h3>DVR-003: FRE Margin &mdash; 6 Plays</h3>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-013</span><span class="play-title">100% Permanent Capital Architecture</span></div>
+<div class="play-firms">Firms: OWL | Impact: Q1 FRE margin 62% despite rapid M&A. Most annuity-like earnings in industry.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-014</span><span class="play-title">Listed Partnership Permanent Capital</span></div>
+<div class="play-firms">Firms: BAM | Impact: 87% permanent capital ratio (industry highest). FRE grew 22% to $3.0B.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-015</span><span class="play-title">CEO-Led Operational Transformation</span></div>
+<div class="play-firms">Firms: CG | Impact: FRE up 12%. $54B inflows (+32%). Target: margin above 50% by 2028.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-016</span><span class="play-title">AI Integration for Operational Efficiency</span></div>
+<div class="play-firms">Firms: ARES | Impact: Contributed to 33% Q4 FRE growth. Revenue growth exceeding headcount growth.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-017</span><span class="play-title">Proprietary Data Platform as Competitive Moat</span></div>
+<div class="play-firms">Firms: HLNE | Impact: 58,000+ funds, 57 vintage years. $1T+ assets under management/supervision.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-018</span><span class="play-title">Asset Class Innovation</span></div>
+<div class="play-firms">Firms: PGHN | Impact: Private markets royalties as fifth asset class. $30B+ AUM target. Category-creating.</div>
+</div>
+</section>
+
+<section id="anti-patterns">
+<h3>Anti-Patterns</h3>
+
+<div class="play-card" style="border-left: 4px solid var(--accent-red);">
+<div class="play-header"><span class="tag tag-anti">ANTI-001</span><span class="play-title">Rapid Sequential M&A with Margin Compression (LatAm)</span></div>
+<div class="play-firms">Firms: VINP | Four acquisitions in 18 months. 63% FRE growth but 30.4% FRE margin (Q4). Growth from low-margin base does not generate premium multiples.</div>
+<p style="margin-top:8px"><strong>PAX relevance: CRITICAL.</strong> Most directly applicable. PAX must limit M&A cadence to 1 per 12&ndash;18 months and enforce 55% FRE margin floor.</p>
+</div>
+
+<div class="play-card" style="border-left: 4px solid var(--accent-red);">
+<div class="play-header"><span class="tag tag-anti">ANTI-002</span><span class="play-title">Scale Aggregation without Cost Scalability</span></div>
+<div class="play-firms">Firms: STEP | FRE margin 37% (Q4) despite $219.8B AUM and record fundraising. Labor-intensive model (108 partners, 780 employees) scales costs linearly.</div>
+<p style="margin-top:8px"><strong>PAX relevance: HIGH.</strong> Cautionary for PE Solutions segment. Monitor Solutions headcount vs. AUM ratio.</p>
+</div>
+
+<div class="play-card" style="border-left: 4px solid var(--accent-red);">
+<div class="play-header"><span class="tag tag-anti">ANTI-003</span><span class="play-title">Bottom-Quartile FRE Margin at Scale</span></div>
+<div class="play-firms">Firms: STEP | GAAP EPS -$1.55 (adjusted ANI +$0.65/share). The Q4 FRE margin is the structural signal: cost structure does not scale with AUM.</div>
+<p style="margin-top:8px"><strong>PAX relevance: MODERATE.</strong> Growth investments must maintain positive, growing EPS.</p>
+</div>
+
+<div class="play-card" style="border-left: 4px solid var(--accent-red);">
+<div class="play-header"><span class="tag tag-anti">ANTI-004</span><span class="play-title">High FRE Growth from Low-Margin Base</span></div>
+<div class="play-firms">Firms: VINP | 63% FRE growth (Q1) + 30.4% FRE margin (Q4). Three structural factors: BRL/USD translation, lower LatAm fee rates, multi-country operating costs.</div>
+<p style="margin-top:8px"><strong>PAX relevance: LOW</strong> (PAX has Q1 margin). Risk only if aggressive credit expansion compresses below 50%.</p>
+</div>
+</section>
+
+<!-- ================================================================== -->
+<!-- LAYER 2: ASSET CLASS VERTICALS -->
+<!-- ================================================================== -->
+
+<section id="vert-credit" class="vertical-section">
+<h2>Layer 2: Credit</h2>
+
+<p><strong>Market context:</strong> Private credit AUM forecast $2.64T by 2029 (Preqin). Direct lending 61.5% of capital raised Q1&ndash;Q3 2025. Insurance channel is the defining structural trend. ABF market $6T growing to $9T.</p>
+
+<h3>Vertical-Specific Plays</h3>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-C01</span><span class="play-title">Large-Scale Credit Origination Platform</span></div>
+<div class="play-firms">Firms: APO | $228B origination, $709B FEAUM. Apollo characterizes this as a "parallel bank" (company IR narrative, not independently verified).</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-C02</span><span class="play-title">European Direct Lending CLO Securitization</span></div>
+<div class="play-firms">Firms: ARES | EUR 600M+ in two CLOs. Credit FEAUM $384.9B. 5-year AUM CAGR 26%.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-C03</span><span class="play-title">Serial M&A for Multi-Vertical Credit</span></div>
+<div class="play-firms">Firms: OWL | Five acquisitions built comprehensive credit platform. AUM from ~$52B to $307.4B.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-C04</span><span class="play-title">Insurance Channel Entry</span></div>
+<div class="play-firms">Firms: APO, KKR, ARES, OWL | Combined insurance AUM $700B+.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-C05</span><span class="play-title">Permanent Capital Model for Credit</span></div>
+<div class="play-firms">Firms: OWL | 100% permanent capital eliminates fundraising costs. Q1 FRE margin 62%.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-C06</span><span class="play-title">AI-Driven Credit Underwriting</span></div>
+<div class="play-firms">Firms: ARES | Contributed to 33% Q4 FRE growth. Three AI application areas: risk scoring, covenant surveillance, reporting.</div>
+</div>
+
+<h3>PAX Credit Positioning</h3>
+<div class="card">
+<p><strong>Strengths:</strong> FRE Margin Q1 (58.9%). First private credit fund 15.6% gross IRR. Solis CLO adds $3.5B FEAUM. LatAm scarcity premium.</p>
+<p><strong>Gaps:</strong> FEAUM Q4. No insurance platform. Credit only 26% of AUM. Limited geographic diversification.</p>
+<p><strong>Next steps:</strong> Grow credit FEAUM via Solis integration and LatAm ABF/infrastructure debt products. Explore LatAm FIDC structures. Consider insurance channel partnership.</p>
+</div>
+</section>
+
+<section id="vert-pe" class="vertical-section">
+<h2>Layer 2: Private Equity</h2>
+
+<p><strong>Market context:</strong> $904B global buyout deal value in 2025. 13 megadeals ($10B+) = 30% of volume. GP-led secondaries $115B (+53% YoY). 40% of GPs exploring continuation vehicles.</p>
+
+<h3>Vertical-Specific Plays</h3>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-PE01</span><span class="play-title">Insurance Integration as PE Capital Engine</span></div>
+<div class="play-firms">Firms: KKR, APO, CG | KKR 43% perpetual capital. APO on pace for $1T AUM.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-PE02</span><span class="play-title">Secondaries Internalization via M&A</span></div>
+<div class="play-firms">Firms: EQT, KKR, OWL | EQT/Coller adds $350-375M fee revenue. Global secondary volume $240B (+48%).</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-PE03</span><span class="play-title">K-Series Evergreen Products for Wealth</span></div>
+<div class="play-firms">Firms: KKR, BX, CG | KKR perpetual capital 43% of AUM. BX BXPE $2B+ in first year.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-PE04</span><span class="play-title">Active Ownership Value Creation</span></div>
+<div class="play-firms">Firms: EQT | ~500 industrial advisors. Record EUR 16B gross realizations. 60% adjusted EBITDA margin.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-PE05</span><span class="play-title">Record Realization Year as Fundraising Catalyst</span></div>
+<div class="play-firms">Firms: EQT, CG | EQT EUR 26B gross inflows (>2x prior year). CG #1 PE sponsor by IPO proceeds.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-PE06</span><span class="play-title">Credit Platform Pivot for FRE Stability</span></div>
+<div class="play-firms">Firms: CG | Credit now 44% of AUM (was secondary). Nearly half of credit capital perpetual.</div>
+</div>
+
+<h3>PAX PE Positioning</h3>
+<div class="card">
+<p><strong>Strengths:</strong> FRE Margin Q1. LatAm PE expertise. FRE Growth 19% (Q2). Infrastructure-adjacent opportunities.</p>
+<p><strong>Gaps:</strong> FEAUM Q4. No insurance platform. No secondaries capability. Limited co-investment scale.</p>
+<p><strong>Next steps:</strong> Formalize active ownership (EQT model for LatAm). Co-investment programs with global LPs. Explore LatAm secondaries leveraging GP relationships.</p>
+</div>
+</section>
+
+<section id="vert-infra" class="vertical-section">
+<h2>Layer 2: Infrastructure</h2>
+
+<p><strong>Market context:</strong> Global infrastructure investment needs $100T+ by 2040. $3.3T power investment in 2025 (60%+ to renewables/storage/grid). AI driving explosive data center demand. Once-in-a-generation supercycle: digitalization + decarbonization + deglobalization.</p>
+
+<h3>Vertical-Specific Plays</h3>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-I01</span><span class="play-title">AI Infrastructure Supercycle Positioning</span></div>
+<div class="play-firms">Firms: BAM, BX | BAM BAIIF $100B deployment. BX $70B+ data center portfolio.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-I02</span><span class="play-title">Vertically Integrated Renewable Power</span></div>
+<div class="play-firms">Firms: BAM | Neoen acquisition ($3.2B). BEP provides permanent capital. Development-to-operation model.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-I03</span><span class="play-title">Mega-Fund Positioning</span></div>
+<div class="play-firms">Firms: EQT | Infrastructure VI EUR 21.5B. Digitalization + decarbonization thesis.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-I04</span><span class="play-title">Operational Complexity Premium</span></div>
+<div class="play-firms">Firms: BAM | 30+ years operating heritage. Premium fee rates from operational expertise. FRE grew 22% to $3.0B.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-I05</span><span class="play-title">Infrastructure Debt as Cross-Vertical Bridge</span></div>
+<div class="play-firms">Firms: BAM (Oaktree), ARES | Bridges credit and infrastructure. Long-duration, inflation-linked returns matching insurance/pension profiles.</div>
+</div>
+
+<h3>PAX Infrastructure Positioning</h3>
+<div class="card">
+<p><strong>Strengths:</strong> Largest PAX vertical. $2.9B fund validates LP demand. Deep LatAm regulatory expertise. Higher-yield risk profile.</p>
+<p><strong>Gaps:</strong> Scale gap vs. BAM ($603B) and EQT ($152B). No digital/AI infrastructure. LatAm only. No infra debt product.</p>
+<p><strong>Next steps:</strong> Develop LatAm infrastructure debt product. Partner with global AI infrastructure players for LatAm deployment. Expand energy transition focus.</p>
+</div>
+</section>
+
+<section id="vert-re" class="vertical-section">
+<h2>Layer 2: Real Estate</h2>
+
+<p><strong>Market context:</strong> Data centers are the dominant sub-sector. PERE recovering from 2022&ndash;2023 rate shock. Perpetual vehicles proliferating. Vertically integrated operating platforms emerging.</p>
+
+<h3>Vertical-Specific Plays</h3>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-RE01</span><span class="play-title">BREIT-Style Perpetual Vehicles</span></div>
+<div class="play-firms">Firms: BX | BREIT $60B+ AUM. BX appears to represent approximately 50% of private wealth alternative revenue (company IR estimate, not independently verified). Perpetual capital 48% of FEAUM.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-RE02</span><span class="play-title">Data Center Thematic Conviction</span></div>
+<div class="play-firms">Firms: BX, OWL | BX $70B+ combined data center portfolio. QTS = 20.4% of BREIT. OWL IPI Partners acquisition.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-RE03</span><span class="play-title">Vertically Integrated Operating Platforms</span></div>
+<div class="play-firms">Firms: PGHN, ARES | PGHN acquired Empira (EUR 14B GDV). ARES Real Assets doubled to $139.1B via GCP.</div>
+</div>
+
+<h3>PAX Real Estate Positioning</h3>
+<div class="card warning">
+<p><strong>Assessment:</strong> PAX's most challenged vertical. Cannot compete with global managers on scale, perpetual vehicles, or data centers. Focus on LatAm niches (logistics, residential, student housing) where local knowledge creates competitive advantage. Do not allocate disproportionate growth resources.</p>
+</div>
+</section>
+
+<section id="vert-solutions" class="vertical-section">
+<h2>Layer 2: GP-Led Solutions / Secondaries</h2>
+
+<p><strong>Market context:</strong> $240B global secondary volume in 2025 (+48% YoY). GP-led $115B (53% growth), 48% of total. Evergreen products replacing traditional structures. Jefferies projects $300B+ within 12&ndash;24 months.</p>
+
+<h3>Vertical-Specific Plays</h3>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-S01</span><span class="play-title">Evergreen Platform Scaling for Wealth</span></div>
+<div class="play-firms">Firms: PGHN, HLNE | PGHN $52B evergreen AUM, 7 new funds in 2025. HLNE $16B+, 70%+ YoY growth.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-S02</span><span class="play-title">Blockchain-Based Retail Access</span></div>
+<div class="play-firms">Firms: HLNE | Republic partnership. $500-minimum infrastructure fund via blockchain. Lowest-minimum private infra offering for US retail.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-S03</span><span class="play-title">Direct Investing vs. Advisory Model</span></div>
+<div class="play-firms">Firms: PGHN | Q1 EPS rank 1/16. Captures full value chain. Contrast with STEP advisory model (Q4 FRE margin).</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-S04</span><span class="play-title">Proprietary Data Moat for GP Selection</span></div>
+<div class="play-firms">Firms: HLNE | 58,000+ funds, 57 vintage years. 90%+ re-up rate. Self-reinforcing data advantage.</div>
+</div>
+
+<div class="play-card">
+<div class="play-header"><span class="play-id">PLAY-S05</span><span class="play-title">Managed Account Re-Up Compounding</span></div>
+<div class="play-firms">Firms: HLNE | 90%+ re-up rate, 30%+ growth on re-ups. Compounding revenue without new client acquisition costs.</div>
+</div>
+
+<h3>PAX Solutions Positioning</h3>
+<div class="card">
+<p><strong>Strengths:</strong> FRE Margin Q1 (58.9%). Existing Solutions business. LatAm GP relationships. Growing credit platform provides secondaries content.</p>
+<p><strong>Gaps:</strong> No dedicated secondaries strategy. No proprietary data platform. Limited evergreen suite. No retail distribution.</p>
+<p><strong>Next steps:</strong> LatAm-focused LP secondaries leveraging GP relationships. Evergreen products for LatAm wealth channel. Technology investment for data-driven GP selection. Maintain margin discipline per StepStone cautionary case.</p>
+</div>
+</section>
+
+<!-- ================================================================== -->
+<!-- STATISTICAL APPENDIX -->
+<!-- ================================================================== -->
+<section id="statistical-appendix">
+<h2>Statistical Appendix</h2>
+
+<h3>BH-Significant Correlations with Bootstrap Confidence Intervals</h3>
+<table>
+<thead><tr><th>COR ID</th><th>Driver</th><th>Multiple</th><th>&rho;</th><th>95% CI</th><th>Raw p</th><th>BH p</th><th>N</th><th>LOO Robust?</th></tr></thead>
+<tbody>
+<tr><td>COR-061</td><td>FEAUM</td><td>P/FRE</td><td>+0.765</td><td>[+0.333, +0.942]</td><td>0.0003</td><td>0.026</td><td>17</td><td>Yes (range 0.112)</td></tr>
+<tr><td>COR-064</td><td>Total AUM</td><td>P/FRE</td><td>+0.690</td><td>[+0.282, +0.897]</td><td>0.0011</td><td>0.037</td><td>19</td><td>Yes (range 0.116)</td></tr>
+<tr><td>COR-090</td><td>FRE Margin</td><td>EV/FEAUM</td><td>+0.708</td><td>[+0.277, +0.955]</td><td>0.0015</td><td>0.038</td><td>17</td><td>Yes (range 0.132)</td></tr>
+<tr><td>COR-057</td><td>EPS</td><td>EV/FEAUM</td><td>+0.750</td><td>[+0.283, +0.911]</td><td>0.0020</td><td>0.041</td><td>14</td><td>Yes (range 0.148)</td></tr>
+</tbody>
+</table>
+
+<h3>Partial Correlations Controlling for FEAUM</h3>
+<table>
+<thead><tr><th>Driver</th><th>Multiple</th><th>N</th><th>Raw &rho;</th><th>Partial &rho;</th><th>Attenuation</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>EPS</td><td>P/FRE</td><td>12</td><td>+0.706</td><td>+0.665</td><td>0.041</td><td>Independent signal</td></tr>
+<tr><td>EPS</td><td>EV/FEAUM</td><td>13</td><td>+0.758</td><td>+0.688</td><td>0.070</td><td>Independent signal</td></tr>
+<tr><td>Total AUM</td><td>P/FRE</td><td>17</td><td>+0.765</td><td>+0.118</td><td>0.646</td><td>Confounded by FEAUM</td></tr>
+<tr><td>Total AUM</td><td>EV/FEAUM</td><td>16</td><td>+0.638</td><td>+0.149</td><td>0.489</td><td>Confounded by FEAUM</td></tr>
+<tr><td>FRE Margin</td><td>EV/FEAUM</td><td>15</td><td>+0.611</td><td>+0.414</td><td>0.197</td><td>Partially attenuated</td></tr>
+<tr><td>FRE Margin</td><td>P/FRE</td><td>17</td><td>+0.284</td><td>-0.309</td><td>N/A</td><td>Sign reversal (scale confound)</td></tr>
+<tr><td>Credit %</td><td>P/FRE</td><td>16</td><td>+0.453</td><td>-0.111</td><td>0.342</td><td>Confounded by FEAUM</td></tr>
+<tr><td>Credit %</td><td>EV/FEAUM</td><td>15</td><td>+0.356</td><td>+0.077</td><td>0.279</td><td>Confounded by FEAUM</td></tr>
+</tbody>
+</table>
+
+<h3>Driver Ranking Summary</h3>
+<table>
+<thead><tr><th>Rank</th><th>Driver</th><th>DVR ID</th><th>Avg |&rho;|</th><th>Classification</th><th>BH Sig?</th><th>LOO Robust?</th><th>Scale-Independent?</th><th>PAX Q</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>EPS (GAAP)</td><td>DVR-002</td><td>0.729</td><td>Stable driver</td><td>Yes (EV/FEAUM)</td><td>Yes</td><td>Yes</td><td class="q3">Q3</td></tr>
+<tr><td>2</td><td>FEAUM</td><td>DVR-001</td><td>0.695</td><td>Stable driver</td><td>Yes (P/FRE)</td><td>Yes</td><td>N/A (is scale)</td><td class="q4">Q4</td></tr>
+<tr><td>3</td><td>Total AUM</td><td>DVR-004</td><td>0.590</td><td>Stable (confounded)</td><td>Yes (P/FRE)</td><td>Yes</td><td>No</td><td class="q4">Q4</td></tr>
+<tr><td>4</td><td>DE/share</td><td>DVR-005</td><td>0.551</td><td>Moderate signal</td><td>No</td><td>N/A</td><td>Mixed</td><td class="q2">Q2</td></tr>
+<tr><td>5</td><td>FRE Margin</td><td>DVR-003</td><td>0.542</td><td>Multiple-specific</td><td>Yes (EV/FEAUM)</td><td>Yes</td><td>Partially</td><td class="q1">Q1</td></tr>
+<tr><td>6</td><td>Credit %</td><td>DVR-006</td><td>0.395</td><td>Moderate signal</td><td>No</td><td>N/A</td><td>No</td><td class="q2">Q2</td></tr>
+<tr><td>7</td><td>FRE Growth</td><td>DVR-007</td><td>0.260</td><td>Moderate signal</td><td>No</td><td>N/A</td><td>N/A</td><td class="q2">Q2</td></tr>
+<tr><td>8</td><td>Mgmt Fee Rate</td><td>DVR-008</td><td>0.183</td><td>Moderate signal</td><td>No</td><td>N/A</td><td>N/A</td><td class="q3">Q3</td></tr>
+</tbody>
+</table>
+
+<h3>Software and Reproducibility</h3>
+<p>Spearman rank correlation with tie-handling (average ranks). P-values via t-distribution approximation: t = &rho; &times; &radic;((N-2) / (1-&rho;&sup2;)), df = N-2. Bootstrap: 1,000 iterations, seed = 42. BH FDR: standard step-up procedure at q = 0.10 across 51 tests. Partial correlations: partial_&rho;(X,Y|Z) = (&rho;<sub>XY</sub> - &rho;<sub>XZ</sub> &times; &rho;<sub>YZ</sub>) / &radic;((1 - &rho;<sub>XZ</sub>&sup2;) &times; (1 - &rho;<sub>YZ</sub>&sup2;)). Leave-one-out: exhaustive recomputation excluding each firm.</p>
+</section>
+
+<!-- ================================================================== -->
+<!-- DISCLAIMERS -->
+<!-- ================================================================== -->
+<section id="disclaimers">
+<h2>Mandatory Disclaimers</h2>
+
+<div class="disclaimer">
+<p><strong>Correlation does not imply causation.</strong> The Spearman rank correlations reported in this analysis measure the strength and direction of monotonic association between driver metrics and valuation multiples. They do not establish causal relationships. A positive correlation between FEAUM and P/FRE, for example, could reflect that (a) larger AUM causes higher multiples, (b) higher multiples enable cheaper capital and faster AUM growth, (c) both are driven by an unobserved third factor (e.g., brand quality, founder reputation), or (d) some combination of these mechanisms.</p>
+</div>
+
+<div class="disclaimer">
+<p><strong>Survivorship bias: universe consists of currently listed firms only.</strong> The universe of 25 firms includes only alternative asset managers that are publicly listed as of FY2025. Firms that were acquired (e.g., Sculptor/Rithm), delisted (e.g., Petershill Partners), or remained private are excluded. This creates survivorship bias: the observed correlations reflect the characteristics of firms that have survived as public entities, which may systematically differ from the full population of alt-asset managers.</p>
+</div>
+
+<div class="disclaimer">
+<p><strong>Point-in-time limitation: conditions as of most recent data collection period.</strong> All data reflects conditions as of FY2025 (calendar year ended December 31, 2025, or nearest fiscal year equivalent). Valuation multiples are computed using market capitalizations from December 2025 through March 2026 (varying by tier). Market conditions, interest rates, and investor sentiment at this specific point in time influence both driver metrics and valuation multiples. Results may not generalize to different market regimes.</p>
+</div>
+
+<div class="disclaimer">
+<p><strong>Small-N limitation: N &asymp; 25 limits statistical power; findings generate hypotheses, not definitive causal claims.</strong> The largest full-sample correlation (P/FRE) includes N = 19 firms. The consistent sub-sample includes only N = 9 firms. At these sample sizes, statistical power is limited: even true correlations of moderate strength (&rho; = 0.4) may not achieve statistical significance, and apparent significant correlations may reflect sampling noise. The four BH-significant findings should be treated as well-supported hypotheses warranting further investigation, not as established facts.</p>
+</div>
+
+<div class="disclaimer">
+<p><strong>Endogeneity: several drivers may be simultaneously caused by and causally related to valuation multiples.</strong> AUM growth, fundraising intensity, and fee-related earnings are all influenced by a firm's market valuation. High-multiple firms attract more investor capital (cheaper equity issuance, greater LP confidence), which mechanically increases AUM and earnings. This bidirectional causality means that observed correlations likely overstate the unidirectional effect of drivers on multiples. Instrumental variable or natural experiment approaches would be needed to estimate causal effects, but are infeasible at this sample size.</p>
+</div>
+
+<div class="disclaimer">
+<p><strong>FRE definition heterogeneity: FRE is non-GAAP; firm-specific definitions vary; measurement error is present.</strong> Fee-Related Earnings is a non-GAAP metric with material definitional differences across firms. Key variations include: pre-tax vs. after-tax treatment; inclusion or exclusion of equity-based compensation; treatment of transaction, advisory, and monitoring fees; and European equivalents that use IFRS-based operating profit proxies (e.g., EQT's "Fee-related EBITDA," CVC's "Management Fee Earnings," Bridgepoint's "Underlying EBITDA"). These definitional differences introduce measurement error that attenuates correlations and may bias comparisons.</p>
+</div>
+
+<div class="footnote">
+<p><strong>INFERRED claims policy:</strong> Claims marked as INFERRED require hedged language. In this report: (1) BX ~50% private wealth market share &mdash; "appears to represent approximately 50%" (company IR estimate, not independently verified); (2) APO "parallel bank" framing &mdash; "company IR narrative, not independently verified"; the verified data point is $228B origination volume.</p>
+</div>
+
+<div class="footnote" style="margin-top:24px; padding-top:16px; border-top: 2px solid var(--border);">
+<p><strong>Pipeline:</strong> Valuation Driver Analysis (VDA) | <strong>Company:</strong> Patria Investments Limited (NASDAQ: PAX) | <strong>Sector:</strong> Alternative Asset Management | <strong>Run:</strong> 2026-03-07-run2 | <strong>Universe:</strong> 25 firms (24 used after BN exclusion) | <strong>Methodology:</strong> Spearman rank correlation, 1,000-iteration bootstrap, BH FDR q=0.10, leave-one-out robustness, partial correlations | <strong>Style:</strong> Academic, evidence-first, explicit hedging, Oxford commas</p>
+</div>
+</section>
+
+</main>
+
+<script>
+// Collapsible sections
+function toggleCollapsible(el) {
+  el.classList.toggle('collapsed');
+  const body = el.nextElementSibling;
+  body.classList.toggle('collapsed');
+}
+
+// Sidebar nav group toggle
+function toggleNavGroup(el) {
+  el.classList.toggle('collapsed');
+  const group = el.nextElementSibling;
+  group.classList.toggle('collapsed');
+}
+
+// Table sorting
+function sortTable(tableId, colIdx) {
+  const table = document.getElementById(tableId);
+  const tbody = table.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const currentDir = table.dataset.sortDir === 'asc' ? 'desc' : 'asc';
+  table.dataset.sortDir = currentDir;
+
+  rows.sort((a, b) => {
+    let aVal = a.cells[colIdx].textContent.trim();
+    let bVal = b.cells[colIdx].textContent.trim();
+    // Try numeric sort
+    const aNum = parseFloat(aVal.replace(/[^0-9.\-]/g, ''));
+    const bNum = parseFloat(bVal.replace(/[^0-9.\-]/g, ''));
+    if (!isNaN(aNum) && !isNaN(bNum)) {
+      return currentDir === 'asc' ? aNum - bNum : bNum - aNum;
+    }
+    // Fall back to string sort
+    return currentDir === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+  });
+
+  rows.forEach(row => tbody.appendChild(row));
+}
+
+// Smooth scroll for sidebar links
+document.querySelectorAll('.sidebar a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Close mobile sidebar
+      document.querySelector('.sidebar').classList.remove('open');
+    }
+  });
+});
+
+// Highlight active sidebar link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

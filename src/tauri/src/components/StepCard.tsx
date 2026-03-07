@@ -1,11 +1,11 @@
 import { memo } from "react";
 import type { PipelineStep } from "../types/pipeline";
 
-const STATUS_STYLES: Record<string, { bg: string; ring: string; icon: string }> = {
-  pending: { bg: "bg-zinc-800/50", ring: "ring-zinc-700", icon: "○" },
-  running: { bg: "bg-teal-900/30", ring: "ring-teal-500/60", icon: "◉" },
-  complete: { bg: "bg-emerald-900/20", ring: "ring-emerald-500/50", icon: "●" },
-  failed: { bg: "bg-red-900/20", ring: "ring-red-500/50", icon: "✕" },
+const STATUS_STYLES: Record<string, { bg: string; border: string; icon: string }> = {
+  pending: { bg: "bg-gray-50", border: "border-gray-200", icon: "○" },
+  running: { bg: "bg-blue-50", border: "border-blue-200", icon: "◉" },
+  complete: { bg: "bg-emerald-50", border: "border-emerald-200", icon: "●" },
+  failed: { bg: "bg-red-50", border: "border-red-200", icon: "✕" },
 };
 
 interface StepCardProps {
@@ -23,43 +23,43 @@ export const StepCard = memo(function StepCard({ step, isActive, onClick }: Step
     <button
       onClick={onClick}
       className={`
-        w-full text-left px-4 py-3 rounded-lg ring-1 transition-all duration-200
-        ${style.bg} ${style.ring}
-        ${isActive ? "ring-2 ring-teal-400 shadow-lg shadow-teal-500/10" : ""}
-        hover:brightness-110 cursor-pointer
+        w-full text-left px-4 py-3 rounded-lg border transition-all duration-200
+        ${style.bg} ${style.border}
+        ${isActive ? "border-2 border-[#0068ff] shadow-sm" : ""}
+        hover:bg-gray-100/50 cursor-pointer
       `}
     >
       <div className="flex items-center gap-3">
         <span
           className={`text-lg ${
-            step.status === "running" ? "text-teal-400" :
-            step.status === "complete" ? "text-emerald-400" :
-            step.status === "failed" ? "text-red-400" : "text-zinc-500"
+            step.status === "running" ? "text-blue-600" :
+            step.status === "complete" ? "text-emerald-600" :
+            step.status === "failed" ? "text-red-600" : "text-gray-400"
           }`}
         >
           {style.icon}
         </span>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold text-zinc-100 truncate">
+            <span className="text-sm font-semibold text-gray-900 truncate">
               {step.name}
             </span>
-            <span className="text-[10px] uppercase tracking-wider text-zinc-400 ml-2 shrink-0">
+            <span className="text-[10px] text-gray-500 ml-2 shrink-0">
               {step.status}
             </span>
           </div>
-          <p className="text-xs text-zinc-400 mt-0.5 truncate">
+          <p className="text-xs text-gray-500 mt-0.5 truncate">
             {step.description}
           </p>
           {step.agents.length > 0 && (
             <div className="flex items-center gap-2 mt-1.5">
               {activeAgents > 0 && (
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-teal-500/20 text-teal-300">
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">
                   {activeAgents} active
                 </span>
               )}
               {doneAgents > 0 && (
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">
                   {doneAgents} done
                 </span>
               )}

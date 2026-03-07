@@ -173,3 +173,27 @@ Output: `data/processed/{TICKER}/{YYYY-MM-DD}/6-review/methodology_review.md` + 
 ## Reuse for Another Company
 
 Replace "Block, Inc." in prompts, update source-scout search targets, and re-run the pipeline. All prompts are designed with `{COMPANY}`, `{TICKER}`, and `{SECTOR}` placeholders. For peer comparison, also identify industry-specific peers and metrics appropriate to the target company's sector. For VDA, run `/valuation-driver TICKER` — the pipeline auto-detects sector and identifies peers.
+
+## Design Context
+
+### Users
+Board-level and C-suite executives reviewing completed valuation driver analysis for governance decisions. They open this tool expecting clarity, authority, and confidence — not to tinker, but to understand and act. Every element must earn the trust of someone making high-stakes decisions.
+
+### Brand Personality
+**Authoritative, elegant, restrained.** The tool projects institutional weight. The interface is quiet — it never competes with the data for attention. Think McKinsey deliverable meets Bloomberg density.
+
+### Aesthetic Direction
+- **Reference**: Bloomberg Terminal — dense, functional, information hierarchy achieved through typography alone, every pixel justified
+- **Theme**: Light mode only. White base, blue (#0068ff) accent, gray hierarchy
+- **Typography**: DM Sans at varied weights (headings and body), IBM Plex Mono (tickers, data, logs). Self-hosted woff2 at `public/fonts/`
+- **Shape language**: `rounded-md` containers, `rounded` inputs. Institutional, not playful
+- **Color restraint**: Blue accent used sparingly for actions and focus. Status colors (emerald, red, amber) for pipeline state only. No decorative color
+- **Terminal**: Dark island (`bg-gray-900`) inside light shell, `bg-gray-100` chrome as transition bridge
+- **Anti-references**: Generic SaaS dashboards (Intercom/HubSpot), AI/ML demo apps (purple gradients, glow), hacker aesthetic (neon-on-dark), overdesigned Dribbble concepts (form over function)
+
+### Design Principles
+1. **Data speaks, UI recedes** — The interface is invisible infrastructure. No decoration, no personality injection. Typography and whitespace create hierarchy, not color or ornament.
+2. **Earn every element** — If it doesn't inform a decision, remove it. No placeholder illustrations, no "Get Started!" energy, no marketing copy in a tool built for analysis.
+3. **Density over simplicity** — Executives scan, they don't browse. Prefer information-rich layouts (tables, inline stats, compact cards) over spacious hero sections. Respect the user's time and screen real estate.
+4. **Trust through craft** — Consistent spacing, aligned baselines, proper contrast ratios (WCAG AA minimum). Sloppy details erode confidence in the analysis itself.
+5. **Convention over invention** — Terminals are dark. Buttons look like buttons. Navigation is where you expect it. Don't innovate on established patterns — execute them flawlessly.

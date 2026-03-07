@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', monospace;
+  --color-surface-base: #ffffff;
+  --color-surface-raised: #f8f9fa;
+  --color-surface-alt: #f3f4f6;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #9ca3af;
+  --color-border: #e0e0e0;
+  --color-primary: #0068ff;
+  --color-primary-hover: #0055d4;
+  --color-success: #10b981;
+  --color-error: #dc2626;
+  --color-warning: #d97706;
+}
+
 html, body, #root {
   margin: 0;
   padding: 0;
@@ -7,13 +25,14 @@ html, body, #root {
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans);
 }
 
 /* H7: Global focus indicator for interactive elements without explicit Tailwind focus styles */
 button:focus-visible,
 [role="switch"]:focus-visible,
 a:focus-visible {
-  outline: 2px solid rgb(45 212 191 / 0.6);
+  outline: 2px solid rgb(0 104 255 / 0.4);
   outline-offset: 2px;
   border-radius: 4px;
 }

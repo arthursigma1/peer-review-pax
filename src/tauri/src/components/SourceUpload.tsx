@@ -27,24 +27,24 @@ export function ToneUpload({ files, onFilesChanged, extractionStatus }: ToneUplo
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2">
-        <label className="block text-xs uppercase tracking-wider text-zinc-400">
+        <label className="block text-xs text-gray-500">
           Tone Reference (optional)
         </label>
         {extractionStatus === "extracting" && (
-          <span className="flex items-center gap-1.5 text-[10px] text-zinc-400">
-            <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 animate-pulse" />
+          <span className="flex items-center gap-1.5 text-[10px] text-gray-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-pulse" />
             Extracting...
           </span>
         )}
         {extractionStatus === "done" && (
-          <span className="flex items-center gap-1.5 text-[10px] text-emerald-400">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          <span className="flex items-center gap-1.5 text-[10px] text-emerald-600">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
             Custom tone captured
           </span>
         )}
         {extractionStatus === "error" && (
-          <span className="flex items-center gap-1.5 text-[10px] text-red-400">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+          <span className="flex items-center gap-1.5 text-[10px] text-red-600">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
             Extraction failed
           </span>
         )}
@@ -70,17 +70,17 @@ export function ToneUpload({ files, onFilesChanged, extractionStatus }: ToneUplo
           onClear={() => {}}
         />
       ) : (
-        <div className="rounded-lg border border-zinc-700 bg-zinc-800/30 px-4 py-3 space-y-2">
+        <div className="rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 space-y-2">
           {files.map((filePath, i) => {
             const filename = filePath.split("/").pop() ?? filePath;
             return (
               <div key={i} className="flex items-center justify-between">
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs font-mono text-zinc-300 truncate">{filename}</p>
+                  <p className="text-xs font-mono text-gray-700 truncate">{filename}</p>
                 </div>
                 <button
                   onClick={() => handleRemoveFile(i)}
-                  className="ml-2 text-xs text-zinc-500 hover:text-red-400 transition-colors shrink-0 px-2 py-2"
+                  className="ml-2 text-xs text-gray-400 hover:text-red-500 transition-colors shrink-0 px-2 py-2"
                 >
                   Clear
                 </button>
@@ -90,7 +90,7 @@ export function ToneUpload({ files, onFilesChanged, extractionStatus }: ToneUplo
           {files.length < 3 && (
             <button
               onClick={handleAddFiles}
-              className="w-full mt-1 px-3 py-1.5 rounded-md text-xs font-medium text-teal-400 ring-1 ring-teal-500/30 hover:bg-teal-500/10 transition-colors"
+              className="w-full mt-1 px-3 py-1.5 rounded-md text-xs font-medium text-[#0068ff] border border-blue-200 hover:bg-blue-50 transition-colors"
             >
               Add File ({files.length}/3)
             </button>
@@ -139,7 +139,7 @@ export function SourceUpload({ sources, onSourcesChanged }: SourceUploadProps) {
 
   return (
     <div className="space-y-3">
-      <label className="block text-xs uppercase tracking-wider text-zinc-400">
+      <label className="block text-xs text-gray-500">
         Supplemental Sources (optional)
       </label>
 
@@ -189,32 +189,32 @@ function DropZone({
       className={`
         relative px-4 py-4 rounded-lg border-2 border-dashed transition-all
         ${dragOver
-          ? "border-teal-400 bg-teal-500/5"
+          ? "border-[#0068ff] bg-blue-50"
           : selectedPath
-          ? "border-emerald-500/40 bg-emerald-500/5"
-          : "border-zinc-700 bg-zinc-800/30"
+          ? "border-emerald-400 bg-emerald-50"
+          : "border-gray-300 bg-gray-50"
         }
       `}
     >
       {selectedPath ? (
         <div className="flex items-center justify-between">
           <div className="min-w-0 flex-1">
-            <p className="text-sm text-emerald-400">{label}</p>
-            <p className="text-xs text-zinc-500 font-mono mt-0.5 truncate">{selectedPath}</p>
+            <p className="text-sm text-emerald-600">{label}</p>
+            <p className="text-xs text-gray-500 font-mono mt-0.5 truncate">{selectedPath}</p>
           </div>
-          <button onClick={onClear} className="ml-2 text-xs text-zinc-500 hover:text-red-400 transition-colors shrink-0 px-2 py-2">
+          <button onClick={onClear} className="ml-2 text-xs text-gray-400 hover:text-red-500 transition-colors shrink-0 px-2 py-2">
             Clear
           </button>
         </div>
       ) : (
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-zinc-300">{label}</p>
-            <p className="text-xs text-zinc-500 mt-0.5">{sublabel}</p>
+            <p className="text-sm text-gray-700">{label}</p>
+            <p className="text-xs text-gray-400 mt-0.5">{sublabel}</p>
           </div>
           <button
             onClick={onBrowse}
-            className="ml-3 px-3 py-1.5 rounded-md text-xs font-medium text-teal-400 ring-1 ring-teal-500/30 hover:bg-teal-500/10 transition-colors shrink-0"
+            className="ml-3 px-3 py-1.5 rounded-md text-xs font-medium text-[#0068ff] border border-blue-200 hover:bg-blue-50 transition-colors shrink-0"
           >
             Browse
           </button>

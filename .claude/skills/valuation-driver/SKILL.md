@@ -930,7 +930,7 @@ Instructions:
 > - Sortable data tables for cross-firm comparisons
 > - Statistical appendix with correlation coefficients, confidence intervals, and corrected p-values
 > - Mandatory disclaimers section (verbatim from VD-A4b)
-> - Clean professional styling: serif body font (Georgia), teal/navy color scheme, company name + date in header
+> - Clean professional styling: DM Sans body font, IBM Plex Mono for data, light theme with #0068ff blue accent and white/gray surfaces, company name + date in header
 > - "Anti-patterns & Cautionary Lessons" section with evidence citations
 > - "Strategic Implications for {COMPANY}" chapter (if target lens available)
 > - Style adaptation from style_guide.json (if available)

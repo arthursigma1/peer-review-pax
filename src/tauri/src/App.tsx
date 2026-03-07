@@ -319,16 +319,16 @@ Output ONLY valid JSON matching this schema:
   };
 
   return (
-    <div className="h-screen flex flex-col bg-zinc-950 text-zinc-100 overflow-hidden">
+    <div className="h-screen flex flex-col bg-white text-gray-900 overflow-hidden">
       {/* Top nav */}
-      <header className="h-12 flex items-center justify-between px-5 border-b border-zinc-800/80 bg-zinc-950/90 backdrop-blur shrink-0">
+      <header className="h-12 flex items-center justify-between px-5 border-b border-gray-200 bg-white shrink-0">
         <div className="flex items-center gap-4">
           <h1 className="text-sm font-semibold tracking-tight">
-            <span className="text-teal-400">VDA</span>{" "}
-            <span className="text-zinc-400 font-normal">Pipeline Dashboard</span>
+            <span className="text-[#0068ff] font-semibold text-base">VDA</span>{" "}
+            <span className="text-gray-500 font-normal">Pipeline Dashboard</span>
           </h1>
           {pipeline.config && (
-            <span className="text-xs px-2 py-0.5 rounded bg-zinc-800 text-zinc-400 font-mono">
+            <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-500 font-mono">
               {pipeline.config.ticker}
             </span>
           )}
@@ -342,8 +342,8 @@ Output ONLY valid JSON matching this schema:
                 px-3 py-1.5 rounded-md text-xs font-medium transition-colors flex items-center gap-1.5
                 ${
                   screen === s
-                    ? "bg-zinc-800 text-zinc-100"
-                    : "text-zinc-500 hover:text-zinc-300"
+                    ? "bg-gray-100 text-gray-900"
+                    : "text-gray-400 hover:text-gray-700"
                 }
               `}
             >
@@ -352,7 +352,7 @@ Output ONLY valid JSON matching this schema:
                 : s === "results" ? "Results"
                 : "Agents"}
               <kbd className={`text-[9px] px-1 py-0.5 rounded hidden lg:inline ${
-                screen === s ? "bg-zinc-700 text-zinc-400" : "bg-zinc-800/60 text-zinc-500"
+                screen === s ? "bg-gray-200 text-gray-500" : "bg-gray-100 text-gray-400"
               }`}>⌘{i + 1}</kbd>
             </button>
           ))}
@@ -362,139 +362,34 @@ Output ONLY valid JSON matching this schema:
       {/* Main content */}
       <main className="flex-1 min-h-0">
         {screen === "home" && (
-          <div className="h-full overflow-y-auto flex items-start justify-center py-8">
-            <div className="w-full max-w-md space-y-6 px-6">
-              <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-zinc-100 tracking-tight">
-                  Valuation Driver Analysis
-                </h2>
-                <p className="text-sm text-zinc-500 mt-2">
-                  Identify what drives valuation multiples and build a strategic playbook.
-                  Enter a ticker to begin — the pipeline will scan peers, collect data,
-                  and generate an actionable report.
-                </p>
-              </div>
-
-              {/* Ticker input */}
-              <div>
-                <label htmlFor="ticker" className="block text-xs uppercase tracking-wider text-zinc-400 mb-2">
-                  Company Ticker
-                </label>
-                <input
-                  id="ticker"
-                  type="text"
-                  value={ticker}
-                  onChange={(e) => setTicker(e.target.value.toUpperCase())}
-                  placeholder="PAX"
-                  className="w-full px-4 py-3 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-lg font-mono text-zinc-100 placeholder:text-zinc-500 focus:ring-teal-500/60 focus:outline-none"
-                  autoFocus
-                />
-              </div>
-
-              {/* Sector */}
-              <div>
-                <label htmlFor="sector" className="block text-xs uppercase tracking-wider text-zinc-400 mb-2">
-                  Sector
-                </label>
-                <select
-                  id="sector"
-                  value={sector}
-                  onChange={(e) => setSector(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
-                >
-                  {SECTORS.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Reference peers */}
-              <div>
-                <label htmlFor="reference-peers" className="block text-xs uppercase tracking-wider text-zinc-400 mb-2">
-                  Reference Peer List (optional)
-                </label>
-                <input
-                  id="reference-peers"
-                  type="text"
-                  value={referencePeers}
-                  onChange={(e) => setReferencePeers(e.target.value)}
-                  placeholder="BX, KKR, APO, ARES, BAM..."
-                  className="w-full px-4 py-2.5 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 placeholder:text-zinc-500 focus:ring-teal-500/60 focus:outline-none font-mono"
-                />
-              </div>
-
-              {/* Source upload */}
-              <SourceUpload
-                sources={sources}
-                onSourcesChanged={setSources}
-              />
-
-              {/* Tone upload */}
-              <ToneUpload
-                files={toneFiles}
-                onFilesChanged={setToneFiles}
-                extractionStatus={toneStatus}
-              />
-
-              {/* Auto mode toggle */}
-              <div className="flex items-center justify-between py-2">
-                <div>
-                  <span id="auto-mode-label" className="text-sm text-zinc-300">Auto Mode</span>
-                  <p className="text-xs text-zinc-500">
-                    Quality gates validated automatically
+          <div className="h-full overflow-y-auto">
+            {/* Existing session hero */}
+            {existingSession && (
+              <div className="border-b border-gray-200 bg-gray-50/50 px-8 py-8">
+                <div className="max-w-3xl mx-auto">
+                  <p className="text-sm text-gray-500 mb-1">Last analysis</p>
+                  <h2 className="text-4xl font-semibold text-gray-900 tracking-tight">
+                    {existingSession.ticker}
+                  </h2>
+                  <p className="text-sm text-gray-500 mt-2">
+                    {existingSession.completedSteps}/{existingSession.totalSteps} steps completed
+                    {existingSession.hasReport && " — report ready"}
                   </p>
-                </div>
-                <button
-                  role="switch"
-                  aria-checked={autoMode}
-                  aria-labelledby="auto-mode-label"
-                  onClick={() => setAutoMode(!autoMode)}
-                  className="p-3 -m-3 cursor-pointer"
-                >
-                  <div className={`w-10 h-5 rounded-full transition-colors relative ${autoMode ? "bg-teal-500" : "bg-zinc-700"}`}>
+                  <div className="mt-1 h-1 rounded-full bg-gray-200 overflow-hidden max-w-xs">
                     <div
-                      className={`
-                        absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform
-                        ${autoMode ? "translate-x-5" : "translate-x-0.5"}
-                      `}
+                      className="h-full rounded-full bg-[#0068ff]"
+                      style={{ width: `${(existingSession.completedSteps / existingSession.totalSteps) * 100}%` }}
                     />
                   </div>
-                </button>
-              </div>
-
-              {/* Start button */}
-              <button
-                onClick={handleStart}
-                disabled={!ticker.trim() || pipeline.isRunning}
-                className={`
-                  w-full py-3 rounded-lg text-sm font-semibold transition-all
-                  ${
-                    ticker.trim() && !pipeline.isRunning
-                      ? "bg-teal-500 text-zinc-950 hover:bg-teal-400 shadow-lg shadow-teal-500/20"
-                      : "bg-zinc-800 text-zinc-500 cursor-not-allowed"
-                  }
-                `}
-              >
-                {pipeline.isRunning ? "Pipeline Running..." : "Start New Analysis"}
-              </button>
-
-              {/* Existing session banner */}
-              {existingSession && (
-                <div className="rounded-lg ring-1 ring-zinc-700 bg-zinc-800/40 p-4 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-zinc-200">
-                        Existing analysis for <span className="font-mono text-teal-400">{existingSession.ticker}</span>
-                      </p>
-                      <p className="text-xs text-zinc-400 mt-0.5">
-                        {existingSession.completedSteps}/{existingSession.totalSteps} steps completed
-                        {existingSession.hasReport && " — report ready"}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-3 mt-5">
+                    {existingSession.hasReport && (
+                      <button
+                        onClick={() => setScreen("results")}
+                        className="px-5 py-2 rounded-md text-sm font-medium bg-[#0068ff] text-white hover:bg-[#0055d4] transition-colors"
+                      >
+                        View Results
+                      </button>
+                    )}
                     <button
                       onClick={async () => {
                         const loaded = await pipeline.loadExistingSession(existingSession.ticker);
@@ -503,21 +398,154 @@ Output ONLY valid JSON matching this schema:
                           setScreen("monitor");
                         }
                       }}
-                      className="flex-1 px-3 py-2 rounded-md text-xs font-medium text-zinc-200 ring-1 ring-zinc-600 hover:bg-zinc-700/50 transition-colors"
+                      className="px-5 py-2 rounded-md text-sm font-medium text-gray-700 border border-gray-300 hover:bg-gray-50 transition-colors"
                     >
-                      Load Pipeline View
+                      Pipeline View
                     </button>
-                    {existingSession.hasReport && (
-                      <button
-                        onClick={() => setScreen("results")}
-                        className="flex-1 px-3 py-2 rounded-md text-xs font-medium text-teal-400 ring-1 ring-teal-500/30 hover:bg-teal-500/10 transition-colors"
-                      >
-                        View Results
-                      </button>
-                    )}
                   </div>
                 </div>
-              )}
+              </div>
+            )}
+
+            {/* New analysis section */}
+            <div className="px-8 py-8">
+              <div className="max-w-3xl mx-auto">
+                {existingSession && (
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="h-px flex-1 bg-gray-200" />
+                    <span className="text-xs text-gray-400">or start a new analysis</span>
+                    <div className="h-px flex-1 bg-gray-200" />
+                  </div>
+                )}
+
+                {!existingSession && (
+                  <div className="mb-8">
+                    <h2 className="text-3xl font-semibold text-gray-900 tracking-tight">
+                      Valuation Driver Analysis
+                    </h2>
+                    <p className="text-sm text-gray-500 mt-2 max-w-lg">
+                      Identify what drives valuation multiples and build a strategic playbook.
+                    </p>
+                  </div>
+                )}
+
+                {/* Ticker + Sector + Start in a single row */}
+                <div className="flex items-end gap-3">
+                  <div className="flex-1 max-w-[200px]">
+                    <label htmlFor="ticker" className="block text-xs text-gray-500 mb-1.5">
+                      Ticker
+                    </label>
+                    <input
+                      id="ticker"
+                      type="text"
+                      value={ticker}
+                      onChange={(e) => setTicker(e.target.value.toUpperCase())}
+                      placeholder="PAX"
+                      className="w-full px-4 py-2.5 rounded-md bg-gray-50 border border-gray-200 text-lg font-mono text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none"
+                      autoFocus
+                    />
+                  </div>
+                  <div className="flex-1 max-w-[260px]">
+                    <label htmlFor="sector" className="block text-xs text-gray-500 mb-1.5">
+                      Sector
+                    </label>
+                    <select
+                      id="sector"
+                      value={sector}
+                      onChange={(e) => setSector(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-700 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
+                    >
+                      {SECTORS.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <button
+                    onClick={handleStart}
+                    disabled={!ticker.trim() || pipeline.isRunning}
+                    className={`
+                      px-6 py-2.5 rounded-md text-sm font-semibold transition-all whitespace-nowrap
+                      ${
+                        ticker.trim() && !pipeline.isRunning
+                          ? "bg-[#0068ff] text-white hover:bg-[#0055d4]"
+                          : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                      }
+                    `}
+                  >
+                    {pipeline.isRunning ? "Running..." : "Run VDA →"}
+                  </button>
+                </div>
+
+                {/* Expectation setter */}
+                <p className="text-xs text-gray-400 mt-3">
+                  ~45 min · 13 agents · HTML report
+                </p>
+
+                {/* Advanced options (collapsed) */}
+                <details className="mt-6 group">
+                  <summary className="text-xs text-gray-500 cursor-pointer hover:text-gray-700 select-none list-none flex items-center gap-1.5">
+                    <span className="text-[10px] group-open:rotate-90 transition-transform">▸</span>
+                    Advanced options
+                  </summary>
+                  <div className="mt-4 space-y-5 pl-0">
+                    {/* Reference peers */}
+                    <div>
+                      <label htmlFor="reference-peers" className="block text-xs text-gray-500 mb-1.5">
+                        Reference peer list
+                      </label>
+                      <input
+                        id="reference-peers"
+                        type="text"
+                        value={referencePeers}
+                        onChange={(e) => setReferencePeers(e.target.value)}
+                        placeholder="BX, KKR, APO, ARES, BAM..."
+                        className="w-full px-4 py-2.5 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none font-mono"
+                      />
+                    </div>
+
+                    {/* Source upload */}
+                    <SourceUpload
+                      sources={sources}
+                      onSourcesChanged={setSources}
+                    />
+
+                    {/* Tone upload */}
+                    <ToneUpload
+                      files={toneFiles}
+                      onFilesChanged={setToneFiles}
+                      extractionStatus={toneStatus}
+                    />
+
+                    {/* Auto mode toggle */}
+                    <div className="flex items-center justify-between py-2">
+                      <div>
+                        <span id="auto-mode-label" className="text-sm text-gray-700">Auto mode</span>
+                        <p className="text-xs text-gray-400">
+                          Quality gates validated automatically
+                        </p>
+                      </div>
+                      <button
+                        role="switch"
+                        aria-checked={autoMode}
+                        aria-labelledby="auto-mode-label"
+                        onClick={() => setAutoMode(!autoMode)}
+                        className="p-3 -m-3 cursor-pointer"
+                      >
+                        <div className={`w-10 h-5 rounded-full transition-colors relative ${autoMode ? "bg-[#0068ff]" : "bg-gray-300"}`}>
+                          <div
+                            className={`
+                              absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform
+                              ${autoMode ? "translate-x-5" : "translate-x-0.5"}
+                            `}
+                          />
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </details>
+              </div>
             </div>
           </div>
         )}

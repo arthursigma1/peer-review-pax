@@ -170,7 +170,7 @@ const DEFAULT_CONFIG: AgentConfig = {
     {
       id: "report-builder", name: "Report Composer",
       role: "Generates the final navigable HTML report with sidebar nav, collapsible sections, sortable tables",
-      instructions: "Produce a single self-contained HTML file with two layers: Platform (exec summary, methodology, drivers, firm strategies, strategic menu) and Asset Class (5 vertical sections). Requirements: sidebar navigation, collapsible sections, sortable data tables, statistical appendix with rho/CI/p-values, mandatory disclaimers verbatim from methodology. Styling: Georgia serif, teal/navy scheme, company name in header. If target_company_lens.json exists, add a 'Strategic Implications for {COMPANY}' chapter after Executive Summary with PHL/Board Guidance, Management Priorities, and Per-BU Recommendations. Include Anti-patterns & Cautionary Lessons section after Platform Strategic Menu. If style_guide.json exists, adapt tone and terminology to match while preserving analytical rigor.",
+      instructions: "Produce a single self-contained HTML file with two layers: Platform (exec summary, methodology, drivers, firm strategies, strategic menu) and Asset Class (5 vertical sections). Requirements: sidebar navigation, collapsible sections, sortable data tables, statistical appendix with rho/CI/p-values, mandatory disclaimers verbatim from methodology. Styling: DM Sans for body text, IBM Plex Mono for data tables, light theme with #0068ff blue accent and white/gray surfaces, company name in header. If target_company_lens.json exists, add a 'Strategic Implications for {COMPANY}' chapter after Executive Summary with PHL/Board Guidance, Management Priorities, and Per-BU Recommendations. Include Anti-patterns & Cautionary Lessons section after Platform Strategic Menu. If style_guide.json exists, adapt tone and terminology to match while preserving analytical rigor.",
       step: 4, parallel: false, model: "claude-opus-4-6", temperature: 0.2, max_output_tokens: 32000, timeout_minutes: 15,
       tools: ["Read", "Write"],
       input_files: ["5-playbook/value_principles.md", "5-playbook/platform_playbook.json", "5-playbook/asset_class_playbooks.json", "4-deep-dives/platform_profiles.json", "3-analysis/statistical_methodology.md", "3-analysis/driver_ranking.json", "5-playbook/target_company_lens.json"],
@@ -237,12 +237,12 @@ const DEFAULT_CONFIG: AgentConfig = {
 };
 
 const STEP_COLORS = [
-  "text-cyan-400 bg-cyan-500/10 ring-cyan-500/30",
-  "text-blue-400 bg-blue-500/10 ring-blue-500/30",
-  "text-violet-400 bg-violet-500/10 ring-violet-500/30",
-  "text-amber-400 bg-amber-500/10 ring-amber-500/30",
-  "text-teal-400 bg-teal-500/10 ring-teal-500/30",
-  "text-rose-400 bg-rose-500/10 ring-rose-500/30",
+  "text-cyan-700 bg-cyan-50 border border-cyan-200",
+  "text-blue-700 bg-blue-50 border border-blue-200",
+  "text-violet-700 bg-violet-50 border border-violet-200",
+  "text-amber-700 bg-amber-50 border border-amber-200",
+  "text-emerald-700 bg-emerald-50 border border-emerald-200",
+  "text-rose-700 bg-rose-50 border border-rose-200",
 ];
 
 const MODELS = [
@@ -310,11 +310,11 @@ export function AgentsOrg() {
   return (
     <div className="h-full flex flex-col">
       {/* Tab bar */}
-      <div className="flex items-center justify-between px-5 py-2 border-b border-zinc-800/80 shrink-0">
+      <div className="flex items-center justify-between px-5 py-2 border-b border-gray-200 shrink-0">
         <div className="flex items-center gap-1">
           {(["pipeline", "command"] as const).map((t) => (
             <button key={t} onClick={() => setTab(t)}
-              className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${tab === t ? "bg-zinc-800 text-zinc-100" : "text-zinc-500 hover:text-zinc-300"}`}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${tab === t ? "bg-gray-100 text-gray-900" : "text-gray-400 hover:text-gray-700"}`}
             >
               {t === "pipeline" ? "Pipeline & Agents" : "Command Config"}
             </button>
@@ -322,11 +322,11 @@ export function AgentsOrg() {
         </div>
         <div className="flex items-center gap-2">
           <button onClick={() => { setConfig(DEFAULT_CONFIG); setDirty(true); }}
-            className="px-3 py-1.5 rounded-md text-xs text-zinc-500 hover:text-zinc-300 transition-colors">
+            className="px-3 py-1.5 rounded-md text-xs text-gray-400 hover:text-gray-700 transition-colors">
             Reset
           </button>
           <button onClick={handleSave} disabled={!dirty}
-            className={`px-4 py-1.5 rounded-md text-xs font-medium transition-colors ${dirty ? "bg-teal-500/15 text-teal-400 ring-1 ring-teal-500/30 hover:bg-teal-500/25" : "text-zinc-500 cursor-default"}`}>
+            className={`px-4 py-1.5 rounded-md text-xs font-medium transition-colors ${dirty ? "bg-blue-50 text-[#0068ff] border border-blue-200 hover:bg-blue-100" : "text-gray-400 cursor-default"}`}>
             {dirty ? "Save Config" : "Saved"}
           </button>
         </div>
@@ -335,19 +335,19 @@ export function AgentsOrg() {
       {tab === "pipeline" && (
         <div className="flex-1 flex min-h-0">
           {/* Left: Pipeline flow */}
-          <div className="w-80 border-r border-zinc-800/80 overflow-y-auto p-4 space-y-3 shrink-0">
-            <h3 className="text-xs uppercase tracking-wider text-zinc-500 mb-3">Pipeline Steps</h3>
+          <div className="w-80 border-r border-gray-200 overflow-y-auto p-4 space-y-3 shrink-0">
+            <h3 className="text-xs text-gray-400 mb-3">Pipeline Steps</h3>
             {config.steps.map((step) => {
               const stepAgents = config.agents.filter((a) => a.step === step.index);
               const color = STEP_COLORS[step.index];
               return (
                 <div key={step.index} className="space-y-1">
-                  <div className={`px-3 py-2 rounded-md ring-1 ${color}`}>
+                  <div className={`px-3 py-2 rounded-md ${color}`}>
                     <div className="flex items-center gap-2">
                       <span className="text-[10px] font-mono opacity-60">S{step.index + 1}</span>
                       <span className="text-xs font-medium">{step.name}</span>
                       {stepAgents.some((a) => a.parallel) && (
-                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400 ml-auto">parallel</span>
+                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-gray-100 text-gray-500 ml-auto">parallel</span>
                       )}
                     </div>
                     <div className="text-[10px] opacity-50 mt-0.5 font-mono">→ {step.folder}/</div>
@@ -355,25 +355,25 @@ export function AgentsOrg() {
                   <div className="pl-4 space-y-0.5">
                     {stepAgents.map((agent) => (
                       <button key={agent.id} onClick={() => setSelectedAgent(agent.id)}
-                        className={`w-full text-left px-3 py-1.5 rounded text-xs transition-colors flex items-center gap-2 ${selectedAgent === agent.id ? "bg-zinc-800 text-zinc-100" : "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-300"}`}
+                        className={`w-full text-left px-3 py-1.5 rounded text-xs transition-colors flex items-center gap-2 ${selectedAgent === agent.id ? "bg-gray-100 text-gray-900" : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"}`}
                       >
                         <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${agent.model.includes("opus") ? "bg-violet-400" : agent.model.includes("haiku") ? "bg-green-400" : "bg-blue-400"}`} />
                         <span className="truncate">{agent.name}</span>
-                        {agent.parallel && <span className="text-[8px] text-zinc-500 ml-auto shrink-0">∥</span>}
+                        {agent.parallel && <span className="text-[8px] text-gray-400 ml-auto shrink-0">∥</span>}
                       </button>
                     ))}
                   </div>
                   {/* Checkpoint indicators */}
                   {INITIAL_CHECKPOINTS.filter((cp) => cp.afterStep === step.index).map((cp) => (
-                    <div key={cp.id} className="ml-4 my-1 flex items-center gap-2 px-3 py-1 rounded border border-dashed border-emerald-500/30 bg-emerald-500/5 text-emerald-400 text-[10px]">
+                    <div key={cp.id} className="ml-4 my-1 flex items-center gap-2 px-3 py-1 rounded border border-dashed border-emerald-200 bg-emerald-50 text-emerald-600 text-[10px]">
                       <span>&#x1F6E1;</span>
                       <span className="font-mono">{cp.id}</span>
-                      <span className="text-zinc-500">{cp.name}</span>
-                      <span className="ml-auto text-zinc-500 text-[9px]">Opus</span>
+                      <span className="text-gray-400">{cp.name}</span>
+                      <span className="ml-auto text-gray-400 text-[9px]">Opus</span>
                     </div>
                   ))}
                   {step.index < config.steps.length - 1 && (
-                    <div className="flex justify-center py-1"><span className="text-zinc-700 text-xs">↓</span></div>
+                    <div className="flex justify-center py-1"><span className="text-gray-300 text-xs">↓</span></div>
                   )}
                 </div>
               );
@@ -383,8 +383,8 @@ export function AgentsOrg() {
               const verificationAgents = config.agents.filter((a) => a.step === -1);
               if (verificationAgents.length === 0) return null;
               return (
-                <div className="space-y-1 pt-2 border-t border-zinc-800/60">
-                  <div className="px-3 py-2 rounded-md ring-1 text-emerald-400 bg-emerald-500/10 ring-emerald-500/30">
+                <div className="space-y-1 pt-2 border-t border-gray-200">
+                  <div className="px-3 py-2 rounded-md border text-emerald-600 bg-emerald-100 border-emerald-200">
                     <div className="flex items-center gap-2">
                       <span className="text-[10px] font-mono opacity-60">&#x1F6E1;</span>
                       <span className="text-xs font-medium">Claim Verification</span>
@@ -394,7 +394,7 @@ export function AgentsOrg() {
                   <div className="pl-4 space-y-0.5">
                     {verificationAgents.map((agent) => (
                       <button key={agent.id} onClick={() => setSelectedAgent(agent.id)}
-                        className={`w-full text-left px-3 py-1.5 rounded text-xs transition-colors flex items-center gap-2 ${selectedAgent === agent.id ? "bg-zinc-800 text-zinc-100" : "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-300"}`}
+                        className={`w-full text-left px-3 py-1.5 rounded text-xs transition-colors flex items-center gap-2 ${selectedAgent === agent.id ? "bg-gray-100 text-gray-900" : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"}`}
                       >
                         <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-violet-400" />
                         <span className="truncate">{agent.name}</span>
@@ -405,13 +405,13 @@ export function AgentsOrg() {
               );
             })()}
             {/* Model legend */}
-            <div className="pt-4 border-t border-zinc-800/60 space-y-1.5">
-              <h4 className="text-[10px] uppercase tracking-wider text-zinc-400">Model Legend</h4>
+            <div className="pt-4 border-t border-gray-200 space-y-1.5">
+              <h4 className="text-[10px] text-gray-500">Model Legend</h4>
               {MODELS.map((m) => (
                 <div key={m.id} className="flex items-center gap-2 text-[10px]">
                   <span className={`w-1.5 h-1.5 rounded-full ${m.id.includes("opus") ? "bg-violet-400" : m.id.includes("haiku") ? "bg-green-400" : "bg-blue-400"}`} />
-                  <span className="text-zinc-400">{m.label}</span>
-                  <span className="text-zinc-500">— {m.desc}</span>
+                  <span className="text-gray-500">{m.label}</span>
+                  <span className="text-gray-400">— {m.desc}</span>
                 </div>
               ))}
             </div>
@@ -424,80 +424,80 @@ export function AgentsOrg() {
                 {/* Header */}
                 <div>
                   <div className="flex items-center gap-3 mb-1">
-                    <h2 className="text-lg font-semibold text-zinc-100">{selected.name}</h2>
-                    <span className={`text-[10px] px-2 py-0.5 rounded ring-1 ${selected.step === -1 ? "text-emerald-400 bg-emerald-500/10 ring-emerald-500/30" : STEP_COLORS[selected.step]}`}>
+                    <h2 className="text-lg font-semibold text-gray-900">{selected.name}</h2>
+                    <span className={`text-[10px] px-2 py-0.5 rounded ${selected.step === -1 ? "text-emerald-600 bg-emerald-100 border border-emerald-200" : STEP_COLORS[selected.step]}`}>
                       {selected.step === -1 ? "Claim Verification" : config.steps[selected.step]?.name}
                     </span>
                   </div>
-                  <p className="text-xs text-zinc-500 font-mono">{selected.id}</p>
+                  <p className="text-xs text-gray-400 font-mono">{selected.id}</p>
                 </div>
 
                 {/* Name + Role */}
                 <div className="grid grid-cols-[1fr_2fr] gap-4">
                   <div>
-                    <label htmlFor="agent-name" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Display Name</label>
+                    <label htmlFor="agent-name" className="block text-[10px] text-gray-500 mb-1.5">Display Name</label>
                     <input id="agent-name" type="text" value={selected.name}
                       onChange={(e) => updateAgent(selected.id, { name: e.target.value })}
-                      className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 focus:ring-teal-500/60 focus:outline-none" />
+                      className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none" />
                   </div>
                   <div>
-                    <label htmlFor="agent-role" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Role Summary</label>
+                    <label htmlFor="agent-role" className="block text-[10px] text-gray-500 mb-1.5">Role Summary</label>
                     <input id="agent-role" type="text" value={selected.role}
                       onChange={(e) => updateAgent(selected.id, { role: e.target.value })}
-                      className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 focus:ring-teal-500/60 focus:outline-none" />
+                      className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none" />
                   </div>
                 </div>
 
                 {/* Instructions */}
                 <div>
-                  <label htmlFor="agent-instructions" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Agent Instructions</label>
+                  <label htmlFor="agent-instructions" className="block text-[10px] text-gray-500 mb-1.5">Agent Instructions</label>
                   <textarea id="agent-instructions" value={selected.instructions}
                     onChange={(e) => updateAgent(selected.id, { instructions: e.target.value })}
                     rows={5}
-                    className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-300 focus:ring-teal-500/60 focus:outline-none resize-y font-mono leading-relaxed" />
+                    className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-700 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none resize-y font-mono leading-relaxed" />
                 </div>
 
                 {/* Model + Temperature + Tokens + Timeout */}
                 <div className="grid grid-cols-4 gap-3">
                   <div>
-                    <label htmlFor="agent-model" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Model</label>
+                    <label htmlFor="agent-model" className="block text-[10px] text-gray-500 mb-1.5">Model</label>
                     <select id="agent-model" value={selected.model}
                       onChange={(e) => updateAgent(selected.id, { model: e.target.value })}
-                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none">
+                      className="w-full px-2 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none">
                       {MODELS.map((m) => (
                         <option key={m.id} value={m.id}>{m.label}</option>
                       ))}
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="agent-temp" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Temperature</label>
+                    <label htmlFor="agent-temp" className="block text-[10px] text-gray-500 mb-1.5">Temperature</label>
                     <input id="agent-temp" type="number" value={selected.temperature} step={0.1} min={0} max={1}
                       onChange={(e) => updateAgent(selected.id, { temperature: parseFloat(e.target.value) || 0 })}
-                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none" />
+                      className="w-full px-2 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none" />
                   </div>
                   <div>
-                    <label htmlFor="agent-tokens" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Max Tokens</label>
+                    <label htmlFor="agent-tokens" className="block text-[10px] text-gray-500 mb-1.5">Max Tokens</label>
                     <input id="agent-tokens" type="number" value={selected.max_output_tokens} step={4000} min={4000} max={64000}
                       onChange={(e) => updateAgent(selected.id, { max_output_tokens: parseInt(e.target.value) || 16000 })}
-                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none" />
+                      className="w-full px-2 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none" />
                   </div>
                   <div>
-                    <label htmlFor="agent-timeout" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Timeout (min)</label>
+                    <label htmlFor="agent-timeout" className="block text-[10px] text-gray-500 mb-1.5">Timeout (min)</label>
                     <input id="agent-timeout" type="number" value={selected.timeout_minutes} min={5} max={60}
                       onChange={(e) => updateAgent(selected.id, { timeout_minutes: parseInt(e.target.value) || 10 })}
-                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none" />
+                      className="w-full px-2 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none" />
                   </div>
                 </div>
 
                 {/* Tools */}
                 <div>
-                  <label className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-2">Available Tools</label>
+                  <label className="block text-[10px] text-gray-500 mb-2">Available Tools</label>
                   <div className="flex flex-wrap gap-1.5">
                     {AVAILABLE_TOOLS.map((tool) => {
                       const active = selected.tools.includes(tool);
                       return (
                         <button key={tool} onClick={() => toggleTool(selected.id, tool)}
-                          className={`px-2.5 py-1 rounded text-xs font-mono transition-colors ${active ? "bg-teal-500/15 text-teal-400 ring-1 ring-teal-500/30" : "bg-zinc-800/40 text-zinc-500 ring-1 ring-zinc-800 hover:text-zinc-400"}`}>
+                          className={`px-2.5 py-1 rounded text-xs font-mono transition-colors ${active ? "bg-blue-50 text-[#0068ff] border border-blue-200" : "bg-gray-50 text-gray-400 border border-gray-200 hover:text-gray-500"}`}>
                           {tool}
                         </button>
                       );
@@ -509,22 +509,22 @@ export function AgentsOrg() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex items-center justify-between py-2">
                     <div>
-                      <span id="parallel-label" className="text-xs text-zinc-300">Parallel</span>
-                      <p className="text-[10px] text-zinc-400">Runs alongside other agents</p>
+                      <span id="parallel-label" className="text-xs text-gray-700">Parallel</span>
+                      <p className="text-[10px] text-gray-500">Runs alongside other agents</p>
                     </div>
                     <button role="switch" aria-checked={selected.parallel} aria-labelledby="parallel-label"
                       onClick={() => updateAgent(selected.id, { parallel: !selected.parallel })}
                       className="p-3 -m-3 cursor-pointer">
-                      <div className={`w-9 h-5 rounded-full transition-colors relative ${selected.parallel ? "bg-teal-500" : "bg-zinc-700"}`}>
+                      <div className={`w-9 h-5 rounded-full transition-colors relative ${selected.parallel ? "bg-[#0068ff]" : "bg-gray-300"}`}>
                         <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${selected.parallel ? "translate-x-4" : "translate-x-0.5"}`} />
                       </div>
                     </button>
                   </div>
                   <div>
-                    <label htmlFor="agent-retry" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">On Timeout</label>
+                    <label htmlFor="agent-retry" className="block text-[10px] text-gray-500 mb-1.5">On Timeout</label>
                     <select id="agent-retry" value={selected.retry_strategy}
                       onChange={(e) => updateAgent(selected.id, { retry_strategy: e.target.value as AgentDef["retry_strategy"] })}
-                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none">
+                      className="w-full px-2 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none">
                       <option value="simplified_prompt">Re-dispatch with simpler prompt</option>
                       <option value="same_prompt">Retry same prompt</option>
                       <option value="skip">Skip agent</option>
@@ -533,25 +533,25 @@ export function AgentsOrg() {
                 </div>
 
                 {/* I/O Files */}
-                <div className="grid grid-cols-2 gap-4 pt-2 border-t border-zinc-800/60">
+                <div className="grid grid-cols-2 gap-4 pt-2 border-t border-gray-200">
                   <div>
-                    <label className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-2">Reads From</label>
+                    <label className="block text-[10px] text-gray-500 mb-2">Reads From</label>
                     <div className="space-y-1">
                       {selected.input_files.map((f, i) => (
                         <div key={i} className="flex items-center gap-2">
-                          <span className="text-[10px] text-zinc-400">←</span>
-                          <span className="text-xs font-mono text-zinc-400">{f}</span>
+                          <span className="text-[10px] text-gray-500">←</span>
+                          <span className="text-xs font-mono text-gray-500">{f}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-2">Writes To</label>
+                    <label className="block text-[10px] text-gray-500 mb-2">Writes To</label>
                     <div className="space-y-1">
                       {selected.output_files.map((f, i) => (
                         <div key={i} className="flex items-center gap-2">
-                          <span className="text-[10px] text-teal-600">→</span>
-                          <span className="text-xs font-mono text-teal-400/70">{f}</span>
+                          <span className="text-[10px] text-[#0055d4]">→</span>
+                          <span className="text-xs font-mono text-[#0068ff]/70">{f}</span>
                         </div>
                       ))}
                     </div>
@@ -560,12 +560,12 @@ export function AgentsOrg() {
 
                 {/* Quality Gate */}
                 {selected.step !== -1 && config.steps[selected.step]?.gate_criteria.length > 0 && (
-                  <div className="pt-2 border-t border-zinc-800/60">
-                    <label className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-2">Quality Gate — {config.steps[selected.step].name}</label>
+                  <div className="pt-2 border-t border-gray-200">
+                    <label className="block text-[10px] text-gray-500 mb-2">Quality Gate — {config.steps[selected.step].name}</label>
                     <div className="space-y-1">
                       {config.steps[selected.step].gate_criteria.map((c, i) => (
-                        <div key={i} className="flex items-center gap-2 text-xs text-zinc-400">
-                          <span className="text-amber-500/60">◆</span>
+                        <div key={i} className="flex items-center gap-2 text-xs text-gray-500">
+                          <span className="text-amber-600/60">◆</span>
                           <span>{c}</span>
                         </div>
                       ))}
@@ -574,7 +574,7 @@ export function AgentsOrg() {
                 )}
               </div>
             ) : (
-              <div className="h-full flex items-center justify-center text-zinc-500 text-sm">
+              <div className="h-full flex items-center justify-center text-gray-400 text-sm">
                 Select an agent to configure
               </div>
             )}
@@ -586,18 +586,18 @@ export function AgentsOrg() {
         <div className="flex-1 overflow-y-auto p-6">
           <div className="max-w-lg mx-auto space-y-8">
             <div>
-              <h2 className="text-lg font-semibold text-zinc-100 mb-1">Slash Command Configuration</h2>
-              <p className="text-sm text-zinc-500">
-                Parameters for <code className="text-teal-400 bg-zinc-800 px-1.5 py-0.5 rounded text-xs">/valuation-driver TICKER</code>
+              <h2 className="text-lg font-semibold text-gray-900 mb-1">Slash Command Configuration</h2>
+              <p className="text-sm text-gray-400">
+                Parameters for <code className="text-[#0068ff] bg-gray-50 px-1.5 py-0.5 rounded text-xs">/valuation-driver TICKER</code>
               </p>
             </div>
 
             <div className="space-y-5">
               <div>
-                <label htmlFor="cmd-sector" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-2">Default Sector</label>
+                <label htmlFor="cmd-sector" className="block text-[10px] text-gray-500 mb-2">Default Sector</label>
                 <select id="cmd-sector" value={config.command.default_sector}
                   onChange={(e) => updateCommand("default_sector", e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none">
+                  className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none">
                   {["Alternative Asset Management", "Banking & Financial Services", "Insurance", "Fintech", "Real Estate", "Technology", "Healthcare", "Energy", "Consumer", "Industrials"].map((s) => (
                     <option key={s} value={s}>{s}</option>
                   ))}
@@ -606,13 +606,13 @@ export function AgentsOrg() {
 
               <div className="flex items-center justify-between py-2">
                 <div>
-                  <span id="cmd-auto-label" className="text-sm text-zinc-300">Auto Mode</span>
-                  <p className="text-xs text-zinc-500">Quality gates validated automatically — no manual approval</p>
+                  <span id="cmd-auto-label" className="text-sm text-gray-700">Auto Mode</span>
+                  <p className="text-xs text-gray-400">Quality gates validated automatically — no manual approval</p>
                 </div>
                 <button role="switch" aria-checked={config.command.auto_mode} aria-labelledby="cmd-auto-label"
                   onClick={() => updateCommand("auto_mode", !config.command.auto_mode)}
                   className="p-3 -m-3 cursor-pointer">
-                  <div className={`w-10 h-5 rounded-full transition-colors relative ${config.command.auto_mode ? "bg-teal-500" : "bg-zinc-700"}`}>
+                  <div className={`w-10 h-5 rounded-full transition-colors relative ${config.command.auto_mode ? "bg-[#0068ff]" : "bg-gray-300"}`}>
                     <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${config.command.auto_mode ? "translate-x-5" : "translate-x-0.5"}`} />
                   </div>
                 </button>
@@ -620,42 +620,42 @@ export function AgentsOrg() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="cmd-retries" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-2">Max Retries per Agent</label>
-                  <p className="text-[10px] text-zinc-400 mb-2">How many times to retry a failed/timed-out agent</p>
+                  <label htmlFor="cmd-retries" className="block text-[10px] text-gray-500 mb-2">Max Retries per Agent</label>
+                  <p className="text-[10px] text-gray-500 mb-2">How many times to retry a failed/timed-out agent</p>
                   <input id="cmd-retries" type="number" value={config.command.max_retries}
                     onChange={(e) => updateCommand("max_retries", parseInt(e.target.value) || 2)}
                     min={0} max={5}
-                    className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 focus:ring-teal-500/60 focus:outline-none" />
+                    className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none" />
                 </div>
                 <div>
-                  <label htmlFor="cmd-tier-size" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-2">Firms per Data Tier</label>
-                  <p className="text-[10px] text-zinc-400 mb-2">Universe splits into ceil(N/{`{tier_size}`}) parallel collectors</p>
+                  <label htmlFor="cmd-tier-size" className="block text-[10px] text-gray-500 mb-2">Firms per Data Tier</label>
+                  <p className="text-[10px] text-gray-500 mb-2">Universe splits into ceil(N/{`{tier_size}`}) parallel collectors</p>
                   <input id="cmd-tier-size" type="number" value={config.command.tier_size}
                     onChange={(e) => updateCommand("tier_size", parseInt(e.target.value) || 9)}
                     min={3} max={15}
-                    className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 focus:ring-teal-500/60 focus:outline-none" />
+                    className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none" />
                 </div>
               </div>
               <div>
-                <label htmlFor="cmd-base-run" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-2">Base Run (Previous Date)</label>
-                <p className="text-[10px] text-zinc-400 mb-2">Previous run date for iterative refinement</p>
+                <label htmlFor="cmd-base-run" className="block text-[10px] text-gray-500 mb-2">Base Run (Previous Date)</label>
+                <p className="text-[10px] text-gray-500 mb-2">Previous run date for iterative refinement</p>
                 <input id="cmd-base-run" type="text" value={config.command.base_run ?? ""}
                   onChange={(e) => updateCommand("base_run", e.target.value || null as unknown as string)}
                   placeholder="YYYY-MM-DD"
-                  className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 placeholder-zinc-600 focus:ring-teal-500/60 focus:outline-none" />
+                  className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-800 placeholder-gray-300 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none" />
               </div>
 
               {/* Tone Configuration */}
-              <div className="space-y-4 pt-2 border-t border-zinc-800/60">
+              <div className="space-y-4 pt-2 border-t border-gray-200">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <label className="text-[10px] uppercase tracking-wider text-zinc-400">Tone Configuration</label>
+                    <label className="text-[10px] text-gray-500">Tone Configuration</label>
                     {config.command.tone_profile.source === "extracted" ? (
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-teal-500/10 text-teal-400 ring-1 ring-teal-500/30">
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-blue-50 text-[#0068ff] border border-blue-200">
                         Extracted from {config.command.tone_profile.reference_files.length} file{config.command.tone_profile.reference_files.length !== 1 ? "s" : ""}
                       </span>
                     ) : (
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-zinc-800 text-zinc-500 ring-1 ring-zinc-700">
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-gray-50 text-gray-400 border border-gray-200">
                         Default
                       </span>
                     )}
@@ -663,7 +663,7 @@ export function AgentsOrg() {
                   {config.command.tone_profile.source !== "default" && (
                     <button
                       onClick={() => updateCommand("tone_profile", DEFAULT_TONE_PROFILE)}
-                      className="text-[10px] text-zinc-400 hover:text-zinc-300 transition-colors"
+                      className="text-[10px] text-gray-500 hover:text-gray-700 transition-colors"
                     >
                       Reset to Default
                     </button>
@@ -672,11 +672,11 @@ export function AgentsOrg() {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label htmlFor="tone-formality" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Formality</label>
+                    <label htmlFor="tone-formality" className="block text-[10px] text-gray-500 mb-1.5">Formality</label>
                     <select id="tone-formality"
                       value={config.command.tone_profile.formality}
                       onChange={(e) => updateToneProfile({ formality: e.target.value as ToneProfile["formality"] })}
-                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
+                      className="w-full px-2 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
                     >
                       <option value="academic">academic</option>
                       <option value="professional">professional</option>
@@ -684,11 +684,11 @@ export function AgentsOrg() {
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="tone-voice" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Voice</label>
+                    <label htmlFor="tone-voice" className="block text-[10px] text-gray-500 mb-1.5">Voice</label>
                     <select id="tone-voice"
                       value={config.command.tone_profile.voice}
                       onChange={(e) => updateToneProfile({ voice: e.target.value as ToneProfile["voice"] })}
-                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
+                      className="w-full px-2 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
                     >
                       <option value="active">active</option>
                       <option value="passive">passive</option>
@@ -696,11 +696,11 @@ export function AgentsOrg() {
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="tone-sentence" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Sentence Style</label>
+                    <label htmlFor="tone-sentence" className="block text-[10px] text-gray-500 mb-1.5">Sentence Style</label>
                     <select id="tone-sentence"
                       value={config.command.tone_profile.sentence_style}
                       onChange={(e) => updateToneProfile({ sentence_style: e.target.value as ToneProfile["sentence_style"] })}
-                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
+                      className="w-full px-2 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
                     >
                       <option value="concise">concise</option>
                       <option value="elaborate">elaborate</option>
@@ -708,11 +708,11 @@ export function AgentsOrg() {
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="tone-hedging" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Hedging</label>
+                    <label htmlFor="tone-hedging" className="block text-[10px] text-gray-500 mb-1.5">Hedging</label>
                     <select id="tone-hedging"
                       value={config.command.tone_profile.hedging}
                       onChange={(e) => updateToneProfile({ hedging: e.target.value as ToneProfile["hedging"] })}
-                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
+                      className="w-full px-2 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
                     >
                       <option value="explicit">explicit</option>
                       <option value="moderate">moderate</option>
@@ -720,11 +720,11 @@ export function AgentsOrg() {
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="tone-data" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Data Presentation</label>
+                    <label htmlFor="tone-data" className="block text-[10px] text-gray-500 mb-1.5">Data Presentation</label>
                     <select id="tone-data"
                       value={config.command.tone_profile.data_presentation}
                       onChange={(e) => updateToneProfile({ data_presentation: e.target.value as ToneProfile["data_presentation"] })}
-                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
+                      className="w-full px-2 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
                     >
                       <option value="tables-first">tables-first</option>
                       <option value="narrative-first">narrative-first</option>
@@ -732,11 +732,11 @@ export function AgentsOrg() {
                     </select>
                   </div>
                   <div>
-                    <label htmlFor="tone-terminology" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Terminology</label>
+                    <label htmlFor="tone-terminology" className="block text-[10px] text-gray-500 mb-1.5">Terminology</label>
                     <select id="tone-terminology"
                       value={config.command.tone_profile.terminology}
                       onChange={(e) => updateToneProfile({ terminology: e.target.value as ToneProfile["terminology"] })}
-                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
+                      className="w-full px-2 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
                     >
                       <option value="technical">technical</option>
                       <option value="accessible">accessible</option>
@@ -746,37 +746,37 @@ export function AgentsOrg() {
                 </div>
 
                 <div>
-                  <label htmlFor="tone-nuances" className="block text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Nuances</label>
+                  <label htmlFor="tone-nuances" className="block text-[10px] text-gray-500 mb-1.5">Nuances</label>
                   <textarea
                     id="tone-nuances"
                     value={config.command.tone_profile.nuances}
                     onChange={(e) => updateToneProfile({ nuances: e.target.value })}
                     rows={4}
-                    className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-300 focus:ring-teal-500/60 focus:outline-none resize-y font-mono leading-relaxed"
+                    className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-700 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none resize-y font-mono leading-relaxed"
                   />
                 </div>
               </div>
             </div>
 
             {/* Pipeline summary */}
-            <div className="pt-6 border-t border-zinc-800/80">
-              <h3 className="text-xs uppercase tracking-wider text-zinc-500 mb-3">Pipeline Summary</h3>
+            <div className="pt-6 border-t border-gray-200">
+              <h3 className="text-xs text-gray-400 mb-3">Pipeline Summary</h3>
               <div className="grid grid-cols-4 gap-3 text-center">
-                <div className="bg-zinc-800/40 rounded-lg px-3 py-4">
-                  <div className="text-2xl font-bold text-zinc-100">{config.agents.length}</div>
-                  <div className="text-[10px] text-zinc-400 mt-1">Agents</div>
+                <div className="bg-gray-50 rounded-md px-3 py-4">
+                  <div className="text-2xl font-bold text-gray-900">{config.agents.length}</div>
+                  <div className="text-[10px] text-gray-500 mt-1">Agents</div>
                 </div>
-                <div className="bg-zinc-800/40 rounded-lg px-3 py-4">
-                  <div className="text-2xl font-bold text-zinc-100">{config.steps.length}</div>
-                  <div className="text-[10px] text-zinc-400 mt-1">Steps</div>
+                <div className="bg-gray-50 rounded-md px-3 py-4">
+                  <div className="text-2xl font-bold text-gray-900">{config.steps.length}</div>
+                  <div className="text-[10px] text-gray-500 mt-1">Steps</div>
                 </div>
-                <div className="bg-zinc-800/40 rounded-lg px-3 py-4">
+                <div className="bg-gray-50 rounded-md px-3 py-4">
                   <div className="text-2xl font-bold text-violet-400">{config.agents.filter((a) => a.model.includes("opus")).length}</div>
-                  <div className="text-[10px] text-zinc-400 mt-1">Opus</div>
+                  <div className="text-[10px] text-gray-500 mt-1">Opus</div>
                 </div>
-                <div className="bg-zinc-800/40 rounded-lg px-3 py-4">
+                <div className="bg-gray-50 rounded-md px-3 py-4">
                   <div className="text-2xl font-bold text-blue-400">{config.agents.filter((a) => a.model.includes("sonnet")).length}</div>
-                  <div className="text-[10px] text-zinc-400 mt-1">Sonnet</div>
+                  <div className="text-[10px] text-gray-500 mt-1">Sonnet</div>
                 </div>
               </div>
             </div>

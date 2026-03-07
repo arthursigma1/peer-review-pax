@@ -79,26 +79,6 @@ export function usePipeline() {
     []
   );
 
-  const appendAgentLog = useCallback(
-    (stepIndex: number, agentId: string, line: string) => {
-      setSteps((prev) =>
-        prev.map((s, i) =>
-          i === stepIndex
-            ? {
-                ...s,
-                agents: s.agents.map((a) =>
-                  a.id === agentId
-                    ? { ...a, logs: [...a.logs, line] }
-                    : a
-                ),
-              }
-            : s
-        )
-      );
-    },
-    []
-  );
-
   const updateCheckpoint = useCallback((id: string, updates: Partial<Checkpoint>) => {
     setCheckpoints((prev) =>
       prev.map((cp) => (cp.id === id ? { ...cp, ...updates } : cp))
