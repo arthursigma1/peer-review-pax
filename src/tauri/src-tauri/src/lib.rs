@@ -285,6 +285,25 @@ fn read_html_summary(path: String) -> Result<String, String> {
 }
 
 #[tauri::command]
+fn copy_tone_files(ticker: String, files: Vec<String>) -> Result<String, String> {
+    let root = get_project_root();
+    let dest_dir = PathBuf::from(&root)
+        .join("data")
+        .join("raw")
+        .join(ticker.to_lowercase())
+        .join("style-references");
+    std::fs::create_dir_all(&dest_dir).map_err(|e| format!("{}", e))?;
+    for file in &files {
+        let src = PathBuf::from(file);
+        if let Some(filename) = src.file_name() {
+            let dest = dest_dir.join(filename);
+            std::fs::copy(&src, &dest).map_err(|e| format!("Failed to copy {}: {}", file, e))?;
+        }
+    }
+    Ok(dest_dir.to_string_lossy().to_string())
+}
+
+#[tauri::command]
 fn ensure_source_dirs(ticker: String) -> Result<[String; 2], String> {
     let root = get_project_root();
     let base = PathBuf::from(&root).join("data").join("raw").join(ticker.to_lowercase());
@@ -536,6 +555,7 @@ pub fn run() {
             read_html_summary,
             detect_existing_session,
             read_json_as_table,
+            copy_tone_files,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

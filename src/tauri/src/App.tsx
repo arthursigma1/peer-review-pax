@@ -4,12 +4,13 @@ import { PipelineMonitor } from "./components/PipelineMonitor";
 import { QualityGate } from "./components/QualityGate";
 import { ResultsBrowser } from "./components/ResultsBrowser";
 import { AgentsOrg } from "./components/AgentsOrg";
-import { SourceUpload } from "./components/SourceUpload";
+import { SourceUpload, ToneUpload } from "./components/SourceUpload";
 import type { SourcePaths } from "./components/SourceUpload";
 import { usePipeline } from "./hooks/usePipeline";
 import { useFileWatcher } from "./hooks/useFileWatcher";
 import { useNotifications } from "./hooks/useNotifications";
-import type { PipelineConfig } from "./types/pipeline";
+import type { PipelineConfig, ToneProfile } from "./types/pipeline";
+import { DEFAULT_TONE_PROFILE } from "./types/pipeline";
 
 interface ExistingSession {
   ticker: string;
@@ -40,6 +41,9 @@ function App() {
   const [autoMode, setAutoMode] = useState(false);
   const [sources, setSources] = useState<SourcePaths>({ sellSide: null, consulting: null });
   const [referencePeers, setReferencePeers] = useState("");
+  const [toneFiles, setToneFiles] = useState<string[]>([]);
+  const [toneProfile, setToneProfile] = useState<ToneProfile>(DEFAULT_TONE_PROFILE);
+  const [toneStatus, setToneStatus] = useState<"idle" | "extracting" | "done" | "error">("idle");
 
   const pipeline = usePipeline();
   const { files, runs, selectedRun, setSelectedRun } = useFileWatcher(pipeline.config?.ticker || ticker || null);
@@ -149,6 +153,60 @@ function App() {
     return () => window.removeEventListener("keydown", handler);
   }, []);
 
+  useEffect(() => {
+    if (toneFiles.length === 0) {
+      setToneProfile(DEFAULT_TONE_PROFILE);
+      setToneStatus("idle");
+      return;
+    }
+    const extractTone = async () => {
+      setToneStatus("extracting");
+      try {
+        await invoke("copy_tone_files", {
+          ticker: ticker || "default",
+          files: toneFiles,
+        });
+        const { Command } = await import("@tauri-apps/plugin-shell");
+        const prompt = `Read the following documents and extract a writing tone profile as JSON. Documents: ${toneFiles.join(" and ")}.
+
+Output ONLY valid JSON matching this schema:
+{
+  "source": "extracted",
+  "reference_files": [${toneFiles.map(f => `"${f.split("/").pop()}"`).join(", ")}],
+  "formality": "academic" | "professional" | "conversational",
+  "voice": "active" | "passive" | "mixed",
+  "sentence_style": "concise" | "elaborate" | "mixed",
+  "hedging": "explicit" | "moderate" | "minimal",
+  "data_presentation": "tables-first" | "narrative-first" | "integrated",
+  "terminology": "technical" | "accessible" | "mixed",
+  "nuances": "A 2-3 sentence description of distinctive writing style patterns, preferred phrasing, structural habits, and any unique stylistic choices observed across the documents."
+}`;
+        const command = Command.create("claude", ["--print", prompt]);
+        let output = "";
+        command.stdout.on("data", (line: string) => { output += line; });
+        await command.spawn();
+        await new Promise<void>((resolve) => {
+          command.on("close", () => resolve());
+        });
+        const jsonStart = output.indexOf("{");
+        const jsonEnd = output.lastIndexOf("}");
+        if (jsonStart >= 0 && jsonEnd > jsonStart) {
+          const parsed = JSON.parse(output.substring(jsonStart, jsonEnd + 1)) as ToneProfile;
+          parsed.source = "extracted";
+          parsed.reference_files = toneFiles.map(f => f.split("/").pop() || f);
+          setToneProfile(parsed);
+          setToneStatus("done");
+        } else {
+          throw new Error("No valid JSON in output");
+        }
+      } catch (err) {
+        console.error("Tone extraction failed:", err);
+        setToneStatus("error");
+      }
+    };
+    extractTone();
+  }, [toneFiles]);
+
   const handleStart = () => {
     if (!ticker.trim()) return;
     const config: PipelineConfig = {
@@ -158,6 +216,7 @@ function App() {
       sellSideDir: sources.sellSide,
       consultingDir: sources.consulting,
       referencePeers: referencePeers.trim() || null,
+      toneProfile,
     };
     localStorage.setItem("vda-last-ticker", config.ticker);
     pipeline.start(config);
@@ -271,6 +330,13 @@ function App() {
               <SourceUpload
                 sources={sources}
                 onSourcesChanged={setSources}
+              />
+
+              {/* Tone upload */}
+              <ToneUpload
+                files={toneFiles}
+                onFilesChanged={setToneFiles}
+                extractionStatus={toneStatus}
               />
 
               {/* Auto mode toggle */}

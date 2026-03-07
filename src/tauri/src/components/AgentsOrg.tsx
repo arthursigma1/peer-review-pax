@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { invoke } from "@tauri-apps/api/core";
+import type { ToneProfile } from "../types/pipeline";
+import { DEFAULT_TONE_PROFILE } from "../types/pipeline";
 
 interface AgentDef {
   id: string;
@@ -32,7 +34,7 @@ interface SlashCommandConfig {
   max_retries: number;
   tier_size: number;
   base_run: string | null;
-  style_reference: string | null;
+  tone_profile: ToneProfile;
 }
 
 interface AgentConfig {
@@ -220,7 +222,7 @@ const DEFAULT_CONFIG: AgentConfig = {
     max_retries: 2,
     tier_size: 9,
     base_run: null,
-    style_reference: null,
+    tone_profile: DEFAULT_TONE_PROFILE,
   },
 };
 
@@ -270,9 +272,14 @@ export function AgentsOrg() {
     updateAgent(agentId, { tools });
   };
 
-  const updateCommand = (field: keyof SlashCommandConfig, value: string | number | boolean) => {
+  const updateCommand = (field: keyof SlashCommandConfig, value: string | number | boolean | ToneProfile) => {
     setConfig((prev) => ({ ...prev, command: { ...prev.command, [field]: value } }));
     setDirty(true);
+  };
+
+  const updateToneProfile = (updates: Partial<ToneProfile>) => {
+    const updated = { ...config.command.tone_profile, ...updates };
+    updateCommand("tone_profile", updated);
   };
 
   const handleSave = async () => {
@@ -578,22 +585,123 @@ export function AgentsOrg() {
                     className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 focus:ring-teal-500/60 focus:outline-none" />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-[10px] uppercase tracking-wider text-zinc-500 mb-2">Base Run (Previous Date)</label>
-                  <p className="text-[10px] text-zinc-600 mb-2">Previous run date for iterative refinement</p>
-                  <input type="text" value={config.command.base_run ?? ""}
-                    onChange={(e) => updateCommand("base_run", e.target.value || null as unknown as string)}
-                    placeholder="YYYY-MM-DD"
-                    className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 placeholder-zinc-600 focus:ring-teal-500/60 focus:outline-none" />
+              <div>
+                <label className="block text-[10px] uppercase tracking-wider text-zinc-500 mb-2">Base Run (Previous Date)</label>
+                <p className="text-[10px] text-zinc-600 mb-2">Previous run date for iterative refinement</p>
+                <input type="text" value={config.command.base_run ?? ""}
+                  onChange={(e) => updateCommand("base_run", e.target.value || null as unknown as string)}
+                  placeholder="YYYY-MM-DD"
+                  className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 placeholder-zinc-600 focus:ring-teal-500/60 focus:outline-none" />
+              </div>
+
+              {/* Tone Configuration */}
+              <div className="space-y-4 pt-2 border-t border-zinc-800/60">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <label className="text-[10px] uppercase tracking-wider text-zinc-500">Tone Configuration</label>
+                    {config.command.tone_profile.source === "extracted" ? (
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-teal-500/10 text-teal-400 ring-1 ring-teal-500/30">
+                        Extracted from {config.command.tone_profile.reference_files.length} file{config.command.tone_profile.reference_files.length !== 1 ? "s" : ""}
+                      </span>
+                    ) : (
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-zinc-800 text-zinc-500 ring-1 ring-zinc-700">
+                        Default
+                      </span>
+                    )}
+                  </div>
+                  {config.command.tone_profile.source !== "default" && (
+                    <button
+                      onClick={() => updateCommand("tone_profile", DEFAULT_TONE_PROFILE)}
+                      className="text-[10px] text-zinc-500 hover:text-zinc-300 transition-colors"
+                    >
+                      Reset to Default
+                    </button>
+                  )}
                 </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-wider text-zinc-500 mb-1.5">Formality</label>
+                    <select
+                      value={config.command.tone_profile.formality}
+                      onChange={(e) => updateToneProfile({ formality: e.target.value as ToneProfile["formality"] })}
+                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
+                    >
+                      <option value="academic">academic</option>
+                      <option value="professional">professional</option>
+                      <option value="conversational">conversational</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-wider text-zinc-500 mb-1.5">Voice</label>
+                    <select
+                      value={config.command.tone_profile.voice}
+                      onChange={(e) => updateToneProfile({ voice: e.target.value as ToneProfile["voice"] })}
+                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
+                    >
+                      <option value="active">active</option>
+                      <option value="passive">passive</option>
+                      <option value="mixed">mixed</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-wider text-zinc-500 mb-1.5">Sentence Style</label>
+                    <select
+                      value={config.command.tone_profile.sentence_style}
+                      onChange={(e) => updateToneProfile({ sentence_style: e.target.value as ToneProfile["sentence_style"] })}
+                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
+                    >
+                      <option value="concise">concise</option>
+                      <option value="elaborate">elaborate</option>
+                      <option value="mixed">mixed</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-wider text-zinc-500 mb-1.5">Hedging</label>
+                    <select
+                      value={config.command.tone_profile.hedging}
+                      onChange={(e) => updateToneProfile({ hedging: e.target.value as ToneProfile["hedging"] })}
+                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
+                    >
+                      <option value="explicit">explicit</option>
+                      <option value="moderate">moderate</option>
+                      <option value="minimal">minimal</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-wider text-zinc-500 mb-1.5">Data Presentation</label>
+                    <select
+                      value={config.command.tone_profile.data_presentation}
+                      onChange={(e) => updateToneProfile({ data_presentation: e.target.value as ToneProfile["data_presentation"] })}
+                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
+                    >
+                      <option value="tables-first">tables-first</option>
+                      <option value="narrative-first">narrative-first</option>
+                      <option value="integrated">integrated</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-wider text-zinc-500 mb-1.5">Terminology</label>
+                    <select
+                      value={config.command.tone_profile.terminology}
+                      onChange={(e) => updateToneProfile({ terminology: e.target.value as ToneProfile["terminology"] })}
+                      className="w-full px-2 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-200 focus:ring-teal-500/60 focus:outline-none appearance-none"
+                    >
+                      <option value="technical">technical</option>
+                      <option value="accessible">accessible</option>
+                      <option value="mixed">mixed</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div>
-                  <label className="block text-[10px] uppercase tracking-wider text-zinc-500 mb-2">Style Reference Doc</label>
-                  <p className="text-[10px] text-zinc-600 mb-2">Path to writing style reference document</p>
-                  <input type="text" value={config.command.style_reference ?? ""}
-                    onChange={(e) => updateCommand("style_reference", e.target.value || null as unknown as string)}
-                    placeholder="/path/to/reference.pdf"
-                    className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-sm text-zinc-200 placeholder-zinc-600 focus:ring-teal-500/60 focus:outline-none" />
+                  <label className="block text-[10px] uppercase tracking-wider text-zinc-500 mb-1.5">Nuances</label>
+                  <textarea
+                    value={config.command.tone_profile.nuances}
+                    onChange={(e) => updateToneProfile({ nuances: e.target.value })}
+                    rows={4}
+                    className="w-full px-3 py-2 rounded-lg bg-zinc-800/60 ring-1 ring-zinc-700 text-xs text-zinc-300 focus:ring-teal-500/60 focus:outline-none resize-y font-mono leading-relaxed"
+                  />
                 </div>
               </div>
             </div>

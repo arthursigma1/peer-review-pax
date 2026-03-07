@@ -1,6 +1,6 @@
 ---
 name: valuation-driver
-description: Run the full Valuation Driver Analysis pipeline for any public company. Orchestrates 13 specialized agents across 5 steps to identify what drives valuation multiples and produce a strategic playbook. Usage: /valuation-driver TICKER [--auto] [--ui] [--sources /path/to/dir] [--base-run YYYY-MM-DD] [--style-ref /path/to/doc]
+description: Run the full Valuation Driver Analysis pipeline for any public company. Orchestrates 14 specialized agents across 5 steps to identify what drives valuation multiples and produce a strategic playbook. Usage: /valuation-driver TICKER [--auto] [--ui] [--sources /path/to/dir] [--base-run YYYY-MM-DD] [--style-ref /path/to/doc]
 ---
 
 # Valuation Driver Analysis
@@ -109,6 +109,28 @@ If `--style-ref` was provided:
 - Store as `data/processed/{TICKER}/{DATE}/style_guide.json` with fields: `tone`, `formality`, `terminology_examples`, `structure_notes`
 - The report-builder agent receives this as additional context
 
+### Tone Profile
+
+If a tone profile was provided (via `--style-ref` or the Tauri UI's tone capture), write it to `data/processed/{TICKER}/{DATE}/style_guide.json`.
+
+If no tone profile was provided, write the default tone profile:
+
+```json
+{
+  "source": "default",
+  "reference_files": [],
+  "formality": "academic",
+  "voice": "active",
+  "sentence_style": "concise",
+  "hedging": "explicit",
+  "data_presentation": "tables-first",
+  "terminology": "technical",
+  "nuances": "Lead with evidence before conclusions. Every claim cites a source ID. Use Oxford commas. Qualify correlation-based findings with statistical confidence. Avoid marketing language — prefer 'the data suggest' over 'clearly demonstrates'. Section headers are descriptive, not clever. Footnotes for methodological caveats."
+}
+```
+
+The report-builder agent already reads `style_guide.json` if it exists.
+
 Display the discovered context to the user and confirm before proceeding.
 
 ## Step 3: Peer Validation (if reference list provided)
@@ -171,6 +193,25 @@ All output file paths use: `data/processed/{TICKER}/{DATE}/` and `data/raw/{TICK
 ```
 TeamCreate → team_name: "vda-{TICKER_LOWER}"
 ```
+
+### Agent Roster
+
+| Agent | User-Facing Name | Pipeline Step |
+|---|---|---|
+| universe-scout | Industry Scanner | Map the Industry |
+| source-mapper | Source Cataloger | Map the Industry |
+| metric-architect | Metrics Designer / Statistical Analyst | Map the Industry / Find What Drives Value |
+| data-collector-t1/t2/t3 | Data Collector (3 tiers) | Gather Data |
+| strategy-extractor | Strategy Researcher | Gather Data |
+| convergence-analyst | Convergence Analyst | Find What Drives Value |
+| platform-analyst | Platform Profiler | Deep-Dive Peers |
+| vertical-analyst | Sector Specialist | Deep-Dive Peers |
+| playbook-synthesizer | Insight Synthesizer | Build the Playbook |
+| report-builder | Report Composer | Build the Playbook |
+| target-lens | Target Company Lens | Build the Playbook |
+| **claim-auditor** | **Fact Checker** | **CP-1 (post Gate 2), CP-2 (post Gate 4), CP-3 (pre report-builder)** |
+
+- **claim-auditor** (Fact Checker): Verifies all claims against upstream evidence using 4-dimension over-compliance audit. Runs at checkpoints CP-1, CP-2, CP-3. Model: claude-opus-4-6. Temperature: 0.0. Max tokens: 32000. Tools: Read, Grep, Glob.
 
 ## Step 7: Step 1 of 5 — "Map the Industry" (Parallel)
 
@@ -464,6 +505,27 @@ After all four agents complete (three data-collector tiers + strategy-extractor)
 
 **Auto mode:** Verify all criteria. If coverage < 60%, identify the lowest-coverage metrics and send targeted message to the relevant data-collector tier to fill the gaps. Proceed once criteria are met.
 
+### Checkpoint CP-1: Fact Checker (Data Verification)
+
+Before proceeding to Step 3, dispatch the claim-auditor agent to verify data collection outputs:
+
+1. Read the merged quantitative data file (`2-data/quantitative_data.json`)
+2. Read evidence files: `1-universe/source_catalog.json`, `2-data/quantitative_tier1.json`, `2-data/quantitative_tier2.json`, `2-data/quantitative_tier3.json`
+3. Send to claim-auditor via SendMessage:
+   - Checkpoint: CP-1
+   - Stage audited: VD-A2
+   - File audited: `2-data/quantitative_data.json`
+   - Audit focus: invalid_premises, misleading_context
+4. Wait for claim-auditor response
+5. Parse the audit JSON:
+   - If verdict is `PASSED` → save `audit_cp1_data.json` to the output directory, proceed to Step 3
+   - If verdict is `BLOCKED`:
+     a. Send the `blocked_claims` back to the relevant data-collector agent with revision instructions
+     b. Wait for revised output
+     c. Re-dispatch claim-auditor (max 2 retries)
+     d. If still blocked after 2 retries → forcibly downgrade blocked claims to INFERRED, save audit file with caveats, proceed
+6. Log: `[CLAIM-AUDIT] CP-1 PASSED (N/N claims)` or `[CLAIM-AUDIT] CP-1 BLOCKED (N ungrounded, N fabricated)`
+
 ## Step 9: Step 3 of 5 — "Find What Drives Value" (Sequential)
 
 Send all subsequent steps in this phase to metric-architect via SendMessage, waiting for each to complete before sending the next.
@@ -710,6 +772,27 @@ After both deep-dive agents complete, check:
 - Ask: "Deep-dives complete. Proceed to playbook synthesis?"
 
 **Auto mode:** Verify criteria. If a deep-dive is missing a firm from the final set, send message to platform-analyst to fill the gap. Proceed once criteria met.
+
+### Checkpoint CP-2: Fact Checker (Deep-Dive Verification)
+
+Before proceeding to Step 5, dispatch the claim-auditor agent to verify deep-dive outputs. This is the CRITICAL checkpoint — all 4 audit dimensions are active.
+
+1. Read deep-dive outputs: `4-deep-dives/platform_profiles.json`, `4-deep-dives/asset_class_analysis.json`
+2. Read evidence files: `3-analysis/correlations.json`, `3-analysis/driver_ranking.json`, `2-data/strategic_actions.json`, `2-data/strategy_profiles.json`
+3. Send to claim-auditor via SendMessage:
+   - Checkpoint: CP-2
+   - Stage audited: VD-D1, VD-D2
+   - Files audited: `4-deep-dives/platform_profiles.json`, `4-deep-dives/asset_class_analysis.json`
+   - Audit focus: ALL (invalid_premises, misleading_context, sycophantic_fabrication, confidence_miscalibration)
+4. Wait for claim-auditor response
+5. Parse the audit JSON:
+   - If verdict is `PASSED` → save `audit_cp2_deep_dives.json`, proceed to Step 5
+   - If verdict is `BLOCKED`:
+     a. Send blocked_claims to platform-analyst or vertical-analyst (whichever produced the flagged claims)
+     b. Wait for revised output
+     c. Re-dispatch claim-auditor (max 2 retries)
+     d. If still blocked → forcibly downgrade, save audit file, proceed
+6. Log: `[CLAIM-AUDIT] CP-2 PASSED (N/N claims)` or `[CLAIM-AUDIT] CP-2 BLOCKED (N ungrounded, N fabricated)`
 
 ## Step 11: Step 5 of 5 — "Build the Playbook" (Sequential)
 

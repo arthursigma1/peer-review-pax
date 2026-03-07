@@ -49,6 +49,8 @@ Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers 
 
 **Independence:** VDA pipeline operates independently of the drift pipeline. No PIL-* pillar IDs are referenced.
 
+**Claim Verification:** A Fact Checker agent runs at three checkpoints (CP-1 after data collection, CP-2 after deep-dives, CP-3 after playbook) to verify claims against upstream evidence using a 4-dimension over-compliance audit. Ungrounded or fabricated claims trigger a hard block requiring revision.
+
 **Methodology:** `docs/valuation-driver-methodology.md` — Reusable, company-agnostic VDA methodology reference.
 
 ### Key Directories
@@ -127,6 +129,7 @@ Output: `data/processed/{TICKER}/{YYYY-MM-DD}/6-review/methodology_review.md` + 
 | playbook-synthesizer | Insight Synthesizer | Build the Playbook |
 | report-builder | Report Composer | Build the Playbook |
 | target-lens | Target Company Lens | Build the Playbook |
+| claim-auditor | Fact Checker | Verify Claims (CP-1, CP-2, CP-3) |
 
 ## Conventions
 
@@ -144,6 +147,9 @@ Output: `data/processed/{TICKER}/{YYYY-MM-DD}/6-review/methodology_review.md` + 
 - VDA data collection always splits into 3 parallel tiers (~9 firms each)
 - VDA output files use folder structure: `{ticker}/{date}/{step-folder}/` where step folders are: `1-universe`, `2-data`, `3-analysis`, `4-deep-dives`, `5-playbook`, `6-review`
 - VDA playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN)
+- VDA Fact Checker produces audit files per checkpoint: `audit_cp1_data.json`, `audit_cp2_deep_dives.json`, `audit_cp3_playbook.json`
+- Claims marked `INFERRED` by Fact Checker require hedged language in final report ("suggests", "appears to", never "demonstrates" or "proves")
+- VDA reports use a structured tone profile (`style_guide.json`) — default is academic/evidence-based; custom tone extracted from user-uploaded reference documents
 
 ## Scoring Framework (Drift)
 

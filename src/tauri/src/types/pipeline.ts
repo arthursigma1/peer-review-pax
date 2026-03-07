@@ -55,6 +55,30 @@ export const FOLDER_LABELS: Record<string, string> = {
   "6-review": "Review",
 };
 
+export interface ToneProfile {
+  source: "default" | "extracted";
+  reference_files: string[];
+  formality: "academic" | "professional" | "conversational";
+  voice: "active" | "passive" | "mixed";
+  sentence_style: "concise" | "elaborate" | "mixed";
+  hedging: "explicit" | "moderate" | "minimal";
+  data_presentation: "tables-first" | "narrative-first" | "integrated";
+  terminology: "technical" | "accessible" | "mixed";
+  nuances: string;
+}
+
+export const DEFAULT_TONE_PROFILE: ToneProfile = {
+  source: "default",
+  reference_files: [],
+  formality: "academic",
+  voice: "active",
+  sentence_style: "concise",
+  hedging: "explicit",
+  data_presentation: "tables-first",
+  terminology: "technical",
+  nuances: "Lead with evidence before conclusions. Every claim cites a source ID. Use Oxford commas. Qualify correlation-based findings with statistical confidence. Avoid marketing language — prefer 'the data suggest' over 'clearly demonstrates'. Section headers are descriptive, not clever. Footnotes for methodological caveats.",
+};
+
 export interface PipelineConfig {
   ticker: string;
   sector: string;
@@ -62,6 +86,7 @@ export interface PipelineConfig {
   sellSideDir: string | null;
   consultingDir: string | null;
   referencePeers: string | null;
+  toneProfile: ToneProfile;
 }
 
 export const PIPELINE_STEPS: Omit<PipelineStep, "status" | "agents" | "gate" | "startedAt" | "completedAt">[] = [
