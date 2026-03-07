@@ -3,6 +3,7 @@ import { invoke } from "@tauri-apps/api/core";
 import { PipelineMonitor } from "./components/PipelineMonitor";
 import { QualityGate } from "./components/QualityGate";
 import { ResultsBrowser } from "./components/ResultsBrowser";
+import { AgentsOrg } from "./components/AgentsOrg";
 import { SourceUpload } from "./components/SourceUpload";
 import type { SourcePaths } from "./components/SourceUpload";
 import { usePipeline } from "./hooks/usePipeline";
@@ -16,7 +17,7 @@ interface ExistingSession {
   hasReport: boolean;
 }
 
-type Screen = "home" | "monitor" | "results";
+type Screen = "home" | "monitor" | "results" | "agents";
 
 const SECTORS = [
   "Alternative Asset Management",
@@ -154,7 +155,7 @@ function App() {
           )}
         </div>
         <nav className="flex items-center gap-1">
-          {(["home", "monitor", "results"] as Screen[]).map((s, i) => (
+          {(["home", "monitor", "results", "agents"] as Screen[]).map((s, i) => (
             <button
               key={s}
               onClick={() => setScreen(s)}
@@ -167,11 +168,10 @@ function App() {
                 }
               `}
             >
-              {s === "home"
-                ? "New Analysis"
-                : s === "monitor"
-                ? "Pipeline"
-                : "Results"}
+              {s === "home" ? "New Analysis"
+                : s === "monitor" ? "Pipeline"
+                : s === "results" ? "Results"
+                : "Agents"}
               <kbd className={`text-[9px] px-1 py-0.5 rounded ${
                 screen === s ? "bg-zinc-700 text-zinc-400" : "bg-zinc-800/60 text-zinc-600"
               }`}>⌘{i + 1}</kbd>
@@ -353,6 +353,10 @@ function App() {
             selectedRun={selectedRun}
             onSelectRun={setSelectedRun}
           />
+        )}
+
+        {screen === "agents" && (
+          <AgentsOrg />
         )}
       </main>
 
