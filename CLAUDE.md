@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Strategy Drift Detector + Peer Comparison + Valuation Driver Analysis — an AI agent system that (1) evaluates whether a public company's actions align with its stated strategic priorities, (2) benchmarks the company's competitive positioning against industry peers, and (3) identifies what drives valuation multiples across a peer universe and produces a strategic playbook. Currently applied to **Block, Inc.** (drift) and **Patria Investments Limited (PAX)** (drift + peer comparison + VDA). The system is prompt-driven; analysis executes through Claude Code agent teams. A **Tauri desktop dashboard** provides a GUI for the VDA pipeline.
+Strategy Drift Detector + Peer Comparison + Valuation Driver Analysis — an AI agent system that (1) evaluates whether a public company's actions align with its stated strategic priorities, (2) benchmarks the company's competitive positioning against industry peers, and (3) identifies what drives valuation multiples across a peer universe and produces a strategic playbook with a Target Company Lens for governance cascade. Currently applied to **Block, Inc.** (drift) and **Patria Investments Limited (PAX)** (drift + peer comparison + VDA). The system is prompt-driven; analysis executes through Claude Code agent teams. Supports iterative refinement via `--base-run`. A **Tauri desktop dashboard** provides a GUI for the VDA pipeline.
 
 ## Architecture
 
@@ -38,14 +38,14 @@ Map Sources
 ### Valuation Driver Analysis Pipeline (5 Steps)
 
 ```
-Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers → Build the Playbook
+Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers → Build the Playbook (+ Target Company Lens)
 ```
 
-- **Map the Industry** — Identify peers, catalog sources, define metrics (3 parallel agents: Industry Scanner, Source Cataloger, Metrics Designer)
+- **Map the Industry** — Identify peers, catalog sources, define metrics (3 parallel agents: Industry Scanner, Source Cataloger, Metrics Designer). Supplemental sources get `track_affinity` tags (`quantitative`, `qualitative`, or `both`) for agent-level source routing.
 - **Gather Data** — Collect quantitative data and extract strategies (Data Collector splits into 3 tiers of ~9 firms; Strategy Researcher runs in parallel)
 - **Find What Drives Value** — Standardize, correlate (Spearman), rank drivers (Statistical Analyst, sequential)
 - **Deep-Dive Peers** — Platform profiles and asset class analysis (Platform Profiler + Sector Specialist, parallel)
-- **Build the Playbook** — Synthesize insights and generate HTML report (Insight Synthesizer + Report Composer, sequential)
+- **Build the Playbook** — Synthesize insights and generate HTML report (Insight Synthesizer + Report Composer, sequential). Playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN). Target Company Lens agent contextualizes playbook for governance cascade (PHL/Board → Management → per-BU). Supports `--base-run YYYY-MM-DD` for iterative refinement and `--style-ref /path/to/doc` for writing style matching.
 
 **Independence:** VDA pipeline operates independently of the drift pipeline. No PIL-* pillar IDs are referenced.
 
@@ -92,15 +92,17 @@ Run the full Strategy Drift Detection pipeline for any public company.
 
 Output: `data/processed/{TICKER}/{YYYY-MM-DD}/final_report.md` + `final_report.html`
 
-### `/valuation-driver TICKER [--auto] [--sources /path/to/dir]`
+### `/valuation-driver TICKER [--auto] [--sources /path/to/dir] [--base-run YYYY-MM-DD] [--style-ref /path/to/doc]`
 
 Run the full Valuation Driver Analysis pipeline for any public company.
 
 - `TICKER` — stock ticker symbol (e.g., `PAX`, `BX`, `KKR`)
 - `--auto` — optional flag for fire-and-forget mode
 - `--sources /path/to/dir` — optional path to supplemental data files (PDFs, DOCX, PPTX converted via marker-pdf)
+- `--base-run YYYY-MM-DD` — optional date of a previous run; agents improve upon prior outputs rather than starting from scratch
+- `--style-ref /path/to/doc` — optional reference document whose writing style the final report should match
 
-Output: `data/processed/{TICKER}/{YYYY-MM-DD}/peer_vd_final_report.html` + supporting JSON files
+Output: `data/processed/{TICKER}/{YYYY-MM-DD}/5-playbook/final_report.html` + supporting JSON files organized in step folders
 
 ### `/review-analysis TICKER [--report path]`
 
@@ -109,7 +111,7 @@ Deploy review agents on any completed VDA analysis to identify improvement oppor
 - `TICKER` — stock ticker of the analysis to review
 - `--report path` — optional override for report location
 
-Output: `data/processed/{TICKER}/peer_vd_review_methodology.md` + `peer_vd_review_results.md`
+Output: `data/processed/{TICKER}/{YYYY-MM-DD}/6-review/methodology_review.md` + `6-review/results_review.md`
 
 ## VDA Friendly Naming
 
@@ -124,6 +126,7 @@ Output: `data/processed/{TICKER}/peer_vd_review_methodology.md` + `peer_vd_revie
 | vertical-analyst | Sector Specialist | Deep-Dive Peers |
 | playbook-synthesizer | Insight Synthesizer | Build the Playbook |
 | report-builder | Report Composer | Build the Playbook |
+| target-lens | Target Company Lens | Build the Playbook |
 
 ## Conventions
 
@@ -136,9 +139,11 @@ Output: `data/processed/{TICKER}/peer_vd_review_methodology.md` + `peer_vd_revie
 - Academic language throughout — no marketing speak
 - Every claim in drift reports must cite source IDs (S-*, STR-*, ACT-*, CMT-*, PIL-*)
 - Every claim in peer reports must cite source IDs (PS-*, PEER-*, MET-*, BENCH-*, RANK-*, PIL-*)
-- Every claim in VDA reports must cite source IDs (PS-VD-*, FIRM-*, MET-VD-*, COR-*, DVR-*, ACT-VD-*, PLAY-*)
+- Every claim in VDA reports must cite source IDs (PS-VD-*, FIRM-*, MET-VD-*, COR-*, DVR-*, ACT-VD-*, PLAY-*, ANTI-*)
 - Per-company directory convention: `data/processed/{ticker}/`, `data/raw/{ticker}/`
 - VDA data collection always splits into 3 parallel tiers (~9 firms each)
+- VDA output files use folder structure: `{ticker}/{date}/{step-folder}/` where step folders are: `1-universe`, `2-data`, `3-analysis`, `4-deep-dives`, `5-playbook`, `6-review`
+- VDA playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN)
 
 ## Scoring Framework (Drift)
 

@@ -32,26 +32,27 @@ Find all VDA output files for this ticker.
 
 If `--report path` was provided, resolve file paths relative to that path's parent directory.
 
-Search for the following files (note: they may be in a dated subdirectory like `data/processed/{TICKER}/YYYY-MM-DD/`):
+Search for the following files (they should be in a dated subdirectory like `data/processed/{TICKER}/YYYY-MM-DD/`):
 
 ```
-peer_vd_a0_universe.json
-peer_vd_a1_metrics.json
-peer_vd_a2_raw_data.json
-peer_vd_a3_standardized.json
-peer_vd_a4_correlations.json
-peer_vd_a4b_methodology.md
-peer_vd_a5_driver_ranking.json
-peer_vd_b0_sources.json
-peer_vd_b1_strategies.json
-peer_vd_b2_actions.json
-peer_vd_c1_final_set.json
-peer_vd_d1_platform_deepdives.json
-peer_vd_d2_asset_class_deepdives.json
-peer_vd_p1_value_principles.md
-peer_vd_p2_platform_playbook.json
-peer_vd_p3_asset_class_playbooks.json
-peer_vd_final_report.html
+1-universe/peer_universe.json
+1-universe/metric_taxonomy.json
+1-universe/source_catalog.json
+2-data/quantitative_data.json
+2-data/strategy_profiles.json
+2-data/strategic_actions.json
+3-analysis/standardized_data.json
+3-analysis/correlations.json
+3-analysis/statistical_methodology.md
+3-analysis/driver_ranking.json
+3-analysis/final_peer_set.json
+4-deep-dives/platform_profiles.json
+4-deep-dives/asset_class_analysis.json
+5-playbook/value_principles.md
+5-playbook/platform_playbook.json
+5-playbook/asset_class_playbooks.json
+5-playbook/target_company_lens.json
+5-playbook/final_report.html
 ```
 
 If the dated subdirectory format is used, use the most recent date directory (sort alphabetically descending and take the first match).
@@ -61,9 +62,9 @@ Display to the user:
 - Which files are missing (if any)
 - The base path being reviewed
 
-If the final report (`peer_vd_final_report.html`) is not found and no `--report` override was provided, ask: "Could not locate peer_vd_final_report.html. Please specify the report path with --report or confirm the TICKER is correct."
+If the final report (`5-playbook/final_report.html`) is not found and no `--report` override was provided, ask: "Could not locate 5-playbook/final_report.html. Please specify the report path with --report or confirm the TICKER is correct."
 
-Set `BASE_PATH` to the directory containing the located files.
+Set `BASE_PATH` to the dated subdirectory containing the located files (e.g., `data/processed/{TICKER}/YYYY-MM-DD`).
 
 ## Step 2: Spawn Review Agents
 
@@ -79,13 +80,13 @@ Instructions:
 > **Your task:** Critically review the statistical methodology and data quality of a completed VDA analysis. Identify gaps, weaknesses, and improvement opportunities.
 >
 > **Files to read (in order):**
-> 1. `{BASE_PATH}/peer_vd_a4b_methodology.md` — statistical documentation
-> 2. `{BASE_PATH}/peer_vd_a4_correlations.json` — correlation results
-> 3. `{BASE_PATH}/peer_vd_a3_standardized.json` — standardized data
-> 4. `{BASE_PATH}/peer_vd_a0_universe.json` — peer universe
-> 5. `{BASE_PATH}/peer_vd_a1_metrics.json` — metric taxonomy
-> 6. `{BASE_PATH}/peer_vd_a2_raw_data.json` — raw data (check coverage)
-> 7. `{BASE_PATH}/peer_vd_c1_final_set.json` — final peer set selection
+> 1. `{BASE_PATH}/3-analysis/statistical_methodology.md` — statistical documentation
+> 2. `{BASE_PATH}/3-analysis/correlations.json` — correlation results
+> 3. `{BASE_PATH}/3-analysis/standardized_data.json` — standardized data
+> 4. `{BASE_PATH}/1-universe/peer_universe.json` — peer universe
+> 5. `{BASE_PATH}/1-universe/metric_taxonomy.json` — metric taxonomy
+> 6. `{BASE_PATH}/2-data/quantitative_data.json` — raw data (check coverage)
+> 7. `{BASE_PATH}/3-analysis/final_peer_set.json` — final peer set selection
 > 8. Design doc: `docs/plans/2026-03-06-valuation-driver-analysis-design.md`
 >
 > **Review dimensions:**
@@ -118,7 +119,7 @@ Instructions:
 > - Is the final set within the 9–12 firm target? If not, is the deviation documented?
 > - Are cautionary cases (bottom-quartile firms) included where instructive?
 >
-> **Output:** Write your findings to `{BASE_PATH}/peer_vd_review_methodology.md`
+> **Output:** Write your findings to `{BASE_PATH}/6-review/methodology_review.md`
 >
 > Structure:
 > ```markdown
@@ -152,14 +153,15 @@ Instructions:
 > **Your task:** Critically review the analytical conclusions, insights, and strategic playbook of a completed VDA analysis. Identify missed insights, weak conclusions, and untapped analytical angles.
 >
 > **Files to read (in order):**
-> 1. `{BASE_PATH}/peer_vd_final_report.html` — final report
-> 2. `{BASE_PATH}/peer_vd_p1_value_principles.md` — value creation principles
-> 3. `{BASE_PATH}/peer_vd_p2_platform_playbook.json` — platform strategic menu
-> 4. `{BASE_PATH}/peer_vd_p3_asset_class_playbooks.json` — asset class playbooks
-> 5. `{BASE_PATH}/peer_vd_d1_platform_deepdives.json` — platform deep-dives
-> 6. `{BASE_PATH}/peer_vd_d2_asset_class_deepdives.json` — asset class deep-dives
-> 7. `{BASE_PATH}/peer_vd_a5_driver_ranking.json` — driver ranking
-> 8. `{BASE_PATH}/peer_vd_b2_actions.json` — peer actions catalog
+> 1. `{BASE_PATH}/5-playbook/final_report.html` — final report
+> 2. `{BASE_PATH}/5-playbook/value_principles.md` — value creation principles
+> 3. `{BASE_PATH}/5-playbook/platform_playbook.json` — platform strategic menu
+> 4. `{BASE_PATH}/5-playbook/asset_class_playbooks.json` — asset class playbooks
+> 5. `{BASE_PATH}/4-deep-dives/platform_profiles.json` — platform deep-dives
+> 6. `{BASE_PATH}/4-deep-dives/asset_class_analysis.json` — asset class deep-dives
+> 7. `{BASE_PATH}/3-analysis/driver_ranking.json` — driver ranking
+> 8. `{BASE_PATH}/2-data/strategic_actions.json` — peer actions catalog
+> 9. `{BASE_PATH}/5-playbook/target_company_lens.json` — target company lens (if exists)
 >
 > **Review dimensions:**
 >
@@ -168,6 +170,7 @@ Instructions:
 > - Are there peer actions in VD-B2 that do not appear in the platform strategic menu (VD-P2)? Unexploited evidence is a gap.
 > - Are there patterns across multiple firms' actions that the synthesizer did not surface as a theme?
 > - Are there cautionary cases (bottom-quartile firms) that should have been analyzed as negative examples but are absent?
+> - Are anti-patterns (ANTI-NNN) present alongside proven plays (PLAY-NNN)? Are they grounded in evidence?
 >
 > **2. Weak conclusions**
 > - Are any transferable insights in VD-D1 stated as inference without a cited action (ACT-VD-NNN) or source (PS-VD-NNN)?
@@ -185,8 +188,9 @@ Instructions:
 > - Is the temporal dimension explored — do firms that improved on a stable driver over 3 years show valuation re-rating?
 > - Are there vertical-specific drivers that were not surfaced because the overall correlation analysis averaged across all verticals?
 > - Is the relationship between growth model type (organic vs. M&A) and valuation premium analyzed?
+> - If a target company lens exists, does it adequately contextualize plays with governance cascade (PHL/Board → Management → per-BU)?
 >
-> **Output:** Write your findings to `{BASE_PATH}/peer_vd_review_results.md`
+> **Output:** Write your findings to `{BASE_PATH}/6-review/results_review.md`
 >
 > Structure:
 > ```markdown
@@ -215,8 +219,8 @@ Instructions:
 Wait for both review agents to complete.
 
 Verify that both output files exist:
-- `{BASE_PATH}/peer_vd_review_methodology.md`
-- `{BASE_PATH}/peer_vd_review_results.md`
+- `{BASE_PATH}/6-review/methodology_review.md`
+- `{BASE_PATH}/6-review/results_review.md`
 
 If either file is missing, check whether the agent completed (look for error messages). If the agent timed out or produced no output, re-dispatch with a focused prompt covering only the highest-priority review dimensions (statistical documentation for methodology; missed insights + weak conclusions for results).
 
@@ -227,11 +231,11 @@ Display a consolidated summary:
 
 ### Methodology Review
 [Paste Critical Issues and Significant Gaps sections]
-Full review: {BASE_PATH}/peer_vd_review_methodology.md
+Full review: {BASE_PATH}/6-review/methodology_review.md
 
 ### Results Review
 [Paste Critical Issues and Missed Insights sections]
-Full review: {BASE_PATH}/peer_vd_review_results.md
+Full review: {BASE_PATH}/6-review/results_review.md
 ```
 
 Offer next steps:

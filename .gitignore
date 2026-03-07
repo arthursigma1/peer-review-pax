@@ -27,6 +27,10 @@ Thumbs.db
 data/raw/*.pdf
 data/raw/*.html
 
+# Tauri / Rust build artifacts
+src/tauri/src-tauri/target/
+node_modules/
+
 # Misc
 *.log
 .cache/

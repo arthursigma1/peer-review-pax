@@ -1,6 +1,6 @@
 ---
 name: valuation-driver
-description: Run the full Valuation Driver Analysis pipeline for any public company. Orchestrates 10 specialized agents across 5 steps to identify what drives valuation multiples and produce a strategic playbook. Usage: /valuation-driver TICKER [--auto] [--ui] [--sources /path/to/dir]
+description: Run the full Valuation Driver Analysis pipeline for any public company. Orchestrates 13 specialized agents across 5 steps to identify what drives valuation multiples and produce a strategic playbook. Usage: /valuation-driver TICKER [--auto] [--ui] [--sources /path/to/dir] [--base-run YYYY-MM-DD] [--style-ref /path/to/doc]
 ---
 
 # Valuation Driver Analysis
@@ -204,7 +204,7 @@ Instructions:
 >
 > Use WebSearch extensively. Prioritize regulatory filings and factual data sources. Do not estimate or interpolate any values — record `null` with a `missing_reason` for unavailable data.
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_a0_universe.json`
+> **Output:** `data/processed/{TICKER}/{DATE}/1-universe/peer_universe.json`
 >
 > Schema per firm:
 > ```json
@@ -248,7 +248,7 @@ Instructions:
 >
 > **Bias tags:** `company-produced`, `regulatory-filing`, `third-party-analyst`, `journalist`, `industry-report`, `peer-disclosure`
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_b0_sources.json`
+> **Output:** `data/processed/{TICKER}/{DATE}/1-universe/source_catalog.json`
 >
 > Schema per source:
 > ```json
@@ -298,7 +298,7 @@ Instructions:
 >
 > Note on Asset class HHI: calculated as sum of squared market share proportions across asset classes multiplied by 10,000. Higher = more concentrated.
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_a1_metrics.json`
+> **Output:** `data/processed/{TICKER}/{DATE}/1-universe/metric_taxonomy.json`
 
 ### Quality Gate 1
 
@@ -336,8 +336,8 @@ Instructions:
 >
 > **Your task:** Execute Stage VD-A2 — Data Collection for Tier 1 firms.
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a0_universe.json` to get the full firm list.
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a1_metrics.json` to get the metric taxonomy.
+> Read `data/processed/{TICKER}/{DATE}/1-universe/peer_universe.json` to get the full firm list.
+> Read `data/processed/{TICKER}/{DATE}/1-universe/metric_taxonomy.json` to get the metric taxonomy.
 >
 > **Cover firms ranked 1–9 by AUM** (the largest firms in the universe).
 >
@@ -349,7 +349,7 @@ Instructions:
 >
 > Missing data: record as `null` with explicit `missing_reason`. No estimation or interpolation.
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_a2_raw_data_t1.json`
+> **Output:** `data/processed/{TICKER}/{DATE}/2-data/quantitative_tier1.json`
 
 **Tier 2 (mid-tier firms — approximately firms 10–18):**
 
@@ -360,8 +360,8 @@ Instructions:
 >
 > **Your task:** Execute Stage VD-A2 — Data Collection for Tier 2 firms.
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a0_universe.json` to get the full firm list.
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a1_metrics.json` to get the metric taxonomy.
+> Read `data/processed/{TICKER}/{DATE}/1-universe/peer_universe.json` to get the full firm list.
+> Read `data/processed/{TICKER}/{DATE}/1-universe/metric_taxonomy.json` to get the metric taxonomy.
 >
 > **Cover firms ranked 10–18 by AUM** (mid-tier firms in the universe).
 >
@@ -371,7 +371,7 @@ Instructions:
 >
 > For each data point record: firm_id, metric_id, value, period, currency, source_id, bias_tag, confidence, extraction_notes. Missing data → `null` with `missing_reason`.
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_a2_raw_data_t2.json`
+> **Output:** `data/processed/{TICKER}/{DATE}/2-data/quantitative_tier2.json`
 
 **Tier 3 (remaining firms — approximately firms 19–end):**
 
@@ -382,8 +382,8 @@ Instructions:
 >
 > **Your task:** Execute Stage VD-A2 — Data Collection for Tier 3 firms.
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a0_universe.json` to get the full firm list.
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a1_metrics.json` to get the metric taxonomy.
+> Read `data/processed/{TICKER}/{DATE}/1-universe/peer_universe.json` to get the full firm list.
+> Read `data/processed/{TICKER}/{DATE}/1-universe/metric_taxonomy.json` to get the metric taxonomy.
 >
 > **Cover firms ranked 19 through the end** (smaller firms in the universe).
 >
@@ -393,12 +393,12 @@ Instructions:
 >
 > For each data point record: firm_id, metric_id, value, period, currency, source_id, bias_tag, confidence, extraction_notes. Missing data → `null` with `missing_reason`.
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_a2_raw_data_t3.json`
+> **Output:** `data/processed/{TICKER}/{DATE}/2-data/quantitative_tier3.json`
 
 After all three tiers complete, merge the outputs:
 
 > Send to metric-architect (via SendMessage):
-> Merge `peer_vd_a2_raw_data_t1.json`, `peer_vd_a2_raw_data_t2.json`, `peer_vd_a2_raw_data_t3.json` into a single `peer_vd_a2_raw_data.json`. Deduplicate by firm_id + metric_id + period. Log any conflicts (same firm+metric+period with different values) to `peer_vd_a2_merge_conflicts.md`.
+> Merge `2-data/quantitative_tier1.json`, `2-data/quantitative_tier2.json`, `2-data/quantitative_tier3.json` into a single `2-data/quantitative_data.json`. Deduplicate by firm_id + metric_id + period. Log any conflicts (same firm+metric+period with different values) to `2-data/merge_conflicts.md`.
 
 ### Agent: strategy-extractor
 
@@ -413,7 +413,7 @@ Instructions:
 >
 > **Task A — Stage VD-B1:** Execute Strategy Extraction for all firms in the qualitative peer set.
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_b0_sources.json` for sources.
+> Read `data/processed/{TICKER}/{DATE}/1-universe/source_catalog.json` for sources.
 >
 > For each firm in the qualitative peer set (BX, KKR, APO, ARES, BAM, OWL, TPG, CG, EQT, PGHN, STEP, HLN, BN, ICP, AMK), extract a standalone strategic profile across 10 dimensions:
 > 1. Geographic reach (domestic / regional / global; primary markets)
@@ -429,7 +429,7 @@ Instructions:
 >
 > Profiles are self-contained — they do not reference {COMPANY} and do not compare firms against any external benchmark.
 >
-> **Output A:** `data/processed/{TICKER}/{DATE}/peer_vd_b1_strategies.json`
+> **Output A:** `data/processed/{TICKER}/{DATE}/2-data/strategy_profiles.json`
 >
 > **Task B — Stage VD-B2:** Execute Action Cataloging for all firms in the qualitative peer set.
 >
@@ -443,7 +443,7 @@ Instructions:
 > - timeline (announced, closed, operational)
 > - source_citation (PS-VD-NNN)
 >
-> **Output B:** `data/processed/{TICKER}/{DATE}/peer_vd_b2_actions.json`
+> **Output B:** `data/processed/{TICKER}/{DATE}/2-data/strategic_actions.json`
 
 ### Quality Gate 2
 
@@ -454,7 +454,7 @@ After all four agents complete (three data-collector tiers + strategy-extractor)
 - All three valuation multiples (P/FRE, P/DE, EV/FEAUM) are populated for all firms
 - Qualitative profiles have >= 2 concrete actions per firm (VD-B2)
 
-**Timeout detection:** Check whether all three `peer_vd_a2_raw_data_t*.json` files exist and are non-empty. If a tier file is missing or empty after the agent completes, re-dispatch that tier's data-collector with a simpler prompt focused only on the most critical metrics (valuation multiples + FRE margin + FEAUM CAGR).
+**Timeout detection:** Check whether all three `2-data/quantitative_tier*.json` files exist and are non-empty. If a tier file is missing or empty after the agent completes, re-dispatch that tier's data-collector with a simpler prompt focused only on the most critical metrics (valuation multiples + FRE margin + FEAUM CAGR).
 
 **Interactive mode:** Display:
 - Metric coverage summary (% populated by firm and by metric)
@@ -472,7 +472,7 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 
 > **Stage VD-A3 — Standardization.**
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a2_raw_data.json`.
+> Read `data/processed/{TICKER}/{DATE}/2-data/quantitative_data.json`.
 >
 > Normalize for cross-sectional comparability:
 > 1. **Currency conversion:** convert all values to USD using period-end exchange rates. Document rate, date, and source for each conversion.
@@ -481,13 +481,13 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 > 4. **Coverage flagging:** mark any metric with fewer than 15 of ~25 firms reporting as "low coverage."
 > 5. **Outlier flagging:** values exceeding 2 standard deviations from the cross-sectional mean are flagged for review.
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_a3_standardized.json`
+> **Output:** `data/processed/{TICKER}/{DATE}/3-analysis/standardized_data.json`
 
 ### Send to metric-architect: VD-A4 Correlation Analysis
 
 > **Stage VD-A4 — Correlation Analysis.**
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a3_standardized.json`.
+> Read `data/processed/{TICKER}/{DATE}/3-analysis/standardized_data.json`.
 >
 > Compute Spearman rank correlation coefficients for each driver metric against each of the three valuation multiples (P/FRE, P/DE, EV/FEAUM), yielding ~45 pairwise correlations.
 >
@@ -501,13 +501,13 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 >
 > For each correlation result record: correlation_id (COR-NNN), driver_metric_id, valuation_multiple, spearman_rho, classification, n_firms_included, notes.
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_a4_correlations.json`
+> **Output:** `data/processed/{TICKER}/{DATE}/3-analysis/correlations.json`
 
 ### Send to metric-architect: VD-A4b Statistical Documentation
 
 > **Stage VD-A4b — Statistical Documentation and Explainability.**
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a4_correlations.json`.
+> Read `data/processed/{TICKER}/{DATE}/3-analysis/correlations.json`.
 >
 > Produce a standalone methodology document. Required contents:
 >
@@ -535,14 +535,14 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 >    - Endogeneity: several drivers may be simultaneously caused by and causally related to valuation multiples.
 >    - FRE definition heterogeneity: FRE is non-GAAP; firm-specific definitions vary; measurement error is present.
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_a4b_methodology.md`
+> **Output:** `data/processed/{TICKER}/{DATE}/3-analysis/statistical_methodology.md`
 
 ### Send to metric-architect: VD-A5 Value Driver Ranking
 
 > **Stage VD-A5 — Value Driver Ranking.**
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a4_correlations.json`.
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a4b_methodology.md`.
+> Read `data/processed/{TICKER}/{DATE}/3-analysis/correlations.json`.
+> Read `data/processed/{TICKER}/{DATE}/3-analysis/statistical_methodology.md`.
 >
 > Rank the top 5–6 stable drivers by average absolute Spearman coefficient across the three valuation multiples.
 >
@@ -556,7 +556,7 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 > - bottom_quartile_firms (list of firm_ids in Q4)
 > - non_obvious_peers: firms in top quartile on 2+ stable drivers that were NOT in the original VD-B0 qualitative peer list — flag these for possible inclusion in Phase 2
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_a5_driver_ranking.json`
+> **Output:** `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json`
 
 ### Send to metric-architect: VD-C1 Convergence
 
@@ -570,9 +570,9 @@ Instructions:
 > **Your task:** Execute Stage VD-C1 — Convergence and Final Peer Set Selection.
 >
 > Read:
-> - `data/processed/{TICKER}/{DATE}/peer_vd_a5_driver_ranking.json` (Track A results)
-> - `data/processed/{TICKER}/{DATE}/peer_vd_b2_actions.json` (Track B results)
-> - `data/processed/{TICKER}/{DATE}/peer_vd_b0_sources.json` (source coverage)
+> - `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json` (Track A results)
+> - `data/processed/{TICKER}/{DATE}/2-data/strategic_actions.json` (Track B results)
+> - `data/processed/{TICKER}/{DATE}/1-universe/source_catalog.json` (source coverage)
 >
 > The target final peer set for Phase 2 deep-dives is **9–12 firms**.
 >
@@ -589,7 +589,7 @@ Instructions:
 >
 > For each included firm, document the inclusion rationale. For each excluded candidate, document the exclusion rationale.
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_c1_final_set.json`
+> **Output:** `data/processed/{TICKER}/{DATE}/3-analysis/final_peer_set.json`
 >
 > Schema:
 > ```json
@@ -642,9 +642,9 @@ Instructions:
 >
 > **Your task:** Execute Stage VD-D1 — Platform-Level Deep-Dives.
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_c1_final_set.json` for the list of 9–12 firms.
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a5_driver_ranking.json` for stable driver rankings.
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_b1_strategies.json` and `peer_vd_b2_actions.json`.
+> Read `data/processed/{TICKER}/{DATE}/3-analysis/final_peer_set.json` for the list of 9–12 firms.
+> Read `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json` for stable driver rankings.
+> Read `data/processed/{TICKER}/{DATE}/2-data/strategy_profiles.json` and `data/processed/{TICKER}/{DATE}/2-data/strategic_actions.json`.
 >
 > For each firm in the final set, produce a structured platform-level profile with six sections:
 >
@@ -662,7 +662,7 @@ Instructions:
 >
 > All profiles must be internally consistent. Transferable insights must be grounded in documented evidence from VD-B2, not inference.
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_d1_platform_deepdives.json`
+> **Output:** `data/processed/{TICKER}/{DATE}/4-deep-dives/platform_profiles.json`
 
 ### Agent: vertical-analyst
 
@@ -673,8 +673,8 @@ Instructions:
 >
 > **Your task:** Execute Stage VD-D2 — Asset Class Deep-Dives.
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a5_driver_ranking.json` for which stable drivers are most salient.
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_b2_actions.json` for peer actions.
+> Read `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json` for which stable drivers are most salient.
+> Read `data/processed/{TICKER}/{DATE}/2-data/strategic_actions.json` for peer actions.
 >
 > Conduct deep-dives for 5 verticals with their reference firms:
 >
@@ -692,7 +692,7 @@ Instructions:
 > - Vertical-specific metric drivers (which stable drivers from VD-A5 are most salient within this vertical)
 > - Emerging trends and structural changes affecting the vertical
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_d2_asset_class_deepdives.json`
+> **Output:** `data/processed/{TICKER}/{DATE}/4-deep-dives/asset_class_analysis.json`
 
 ### Quality Gate 4
 
@@ -724,9 +724,9 @@ Instructions:
 >
 > **Task A — Stage VD-P1: Value Creation Principles**
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a5_driver_ranking.json`.
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_a4b_methodology.md`.
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_d1_platform_deepdives.json`.
+> Read `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json`.
+> Read `data/processed/{TICKER}/{DATE}/3-analysis/statistical_methodology.md`.
+> Read `data/processed/{TICKER}/{DATE}/4-deep-dives/platform_profiles.json`.
 >
 > For each of the 5–6 stable value drivers:
 > - Restate the statistical finding in plain language, accompanied by the full statistical documentation (rho, CI, Bonferroni-corrected p-value, confidence class)
@@ -734,11 +734,11 @@ Instructions:
 > - Identify which firms illustrate the principle most clearly (from VD-D1 findings)
 > - Note limitations and boundary conditions on the principle
 >
-> **Output A:** `data/processed/{TICKER}/{DATE}/peer_vd_p1_value_principles.md`
+> **Output A:** `data/processed/{TICKER}/{DATE}/5-playbook/value_principles.md`
 >
 > **Task B — Stage VD-P2: Platform Strategic Menu**
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_d1_platform_deepdives.json`.
+> Read `data/processed/{TICKER}/{DATE}/4-deep-dives/platform_profiles.json`.
 >
 > Organize findings into a strategic menu at the platform level. Organize by value driver (not by firm). For each stable value driver:
 > - Enumerate the proven strategic plays that peers have executed to improve performance on that driver
@@ -752,17 +752,17 @@ Instructions:
 > - Frame as "Don'ts" — lessons from what did not work, not just what did
 > - Cite ACT-VD-NNN and PS-VD-NNN identifiers throughout
 >
-> **Output B:** `data/processed/{TICKER}/{DATE}/peer_vd_p2_platform_playbook.json`
+> **Output B:** `data/processed/{TICKER}/{DATE}/5-playbook/platform_playbook.json`
 >
 > **Task C — Stage VD-P3: Asset Class Playbooks**
 >
-> Read `data/processed/{TICKER}/{DATE}/peer_vd_d2_asset_class_deepdives.json`.
+> Read `data/processed/{TICKER}/{DATE}/4-deep-dives/asset_class_analysis.json`.
 >
 > Produce a parallel strategic menu at the vertical level, organized by value driver within each vertical. Same structure as VD-P2 — evidence citations to specific peer actions (ACT-VD-NNN). Cover all 5 verticals: Credit, Private Equity, Infrastructure, Real Estate, GP-Led Solutions/Secondaries.
 >
-> **Output C:** `data/processed/{TICKER}/{DATE}/peer_vd_p3_asset_class_playbooks.json`
+> **Output C:** `data/processed/{TICKER}/{DATE}/5-playbook/asset_class_playbooks.json`
 
-Wait for playbook-synthesizer to complete, then spawn the report builder:
+Wait for playbook-synthesizer to complete, then spawn the report-builder and target-lens agents **in parallel** (they share the same inputs and have no dependency on each other):
 
 ### Agent: report-builder
 
@@ -774,13 +774,13 @@ Instructions:
 > **Your task:** Execute Stage VD-P4 — Final Navigable HTML Report.
 >
 > Read all pipeline outputs in `data/processed/{TICKER}/{DATE}/`:
-> - `peer_vd_p1_value_principles.md`
-> - `peer_vd_p2_platform_playbook.json`
-> - `peer_vd_p3_asset_class_playbooks.json`
-> - `peer_vd_d1_platform_deepdives.json`
-> - `peer_vd_d2_asset_class_deepdives.json`
-> - `peer_vd_a4b_methodology.md`
-> - `peer_vd_a5_driver_ranking.json`
+> - `5-playbook/value_principles.md`
+> - `5-playbook/platform_playbook.json`
+> - `5-playbook/asset_class_playbooks.json`
+> - `4-deep-dives/platform_profiles.json`
+> - `4-deep-dives/asset_class_analysis.json`
+> - `3-analysis/statistical_methodology.md`
+> - `3-analysis/driver_ranking.json`
 >
 > Produce a single self-contained HTML file with two addressable layers:
 >
@@ -823,9 +823,7 @@ Instructions:
 > - Real Estate BU: Real Estate vertical section
 > - GP-Led Solutions BU: Solutions/Secondaries vertical section
 >
-> **Output:** `data/processed/{TICKER}/{DATE}/peer_vd_final_report.html`
-
-Wait for report-builder to complete, then spawn the target lens agent:
+> **Output:** `data/processed/{TICKER}/{DATE}/5-playbook/final_report.html`
 
 ### Agent: target-lens
 
@@ -948,7 +946,7 @@ Display final summary:
 - Universe size: N firms
 - Final peer set: M firms
 - Top stable value driver: [driver name] (ρ = X.XX across all three multiples)
-- Report path: `data/processed/{TICKER}/{DATE}/peer_vd_final_report.html`
+- Report path: `data/processed/{TICKER}/{DATE}/5-playbook/final_report.html`
 
 Clean up: `TeamDelete → team_name: "vda-{TICKER_LOWER}"`
 
