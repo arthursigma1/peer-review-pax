@@ -4,7 +4,7 @@ use portable_pty::{native_pty_system, CommandBuilder, PtySize};
 use serde::{Deserialize, Serialize};
 use std::io::{Read as IoRead, Write as IoWrite};
 use std::path::PathBuf;
-use std::sync::{Arc, Mutex};
+use std::sync::Mutex;
 use tauri::{AppHandle, Emitter, Manager};
 use tokio::sync::mpsc;
 
@@ -35,8 +35,10 @@ pub struct GateDecision {
 }
 
 struct WatcherState {
-    _watcher: Box<dyn Watcher + Send>,
+    watcher: Option<Box<dyn Watcher + Send>>,
 }
+
+struct WatcherHolder(Mutex<WatcherState>);
 
 #[tauri::command]
 fn get_project_root() -> String {
@@ -225,10 +227,10 @@ async fn start_file_watcher(app: AppHandle, ticker: String) -> Result<(), String
         .watch(&watch_dir, RecursiveMode::Recursive)
         .map_err(|e| format!("Failed to watch directory: {}", e))?;
 
-    // Store watcher to keep it alive
-    app.manage(Arc::new(Mutex::new(WatcherState {
-        _watcher: Box::new(watcher),
-    })));
+    // Store watcher to keep it alive (replace any previous watcher)
+    let holder = app.state::<WatcherHolder>();
+    let mut ws = holder.0.lock().map_err(|e| format!("{}", e))?;
+    ws.watcher = Some(Box::new(watcher));
 
     let app_clone = app.clone();
     let ticker_clone = ticker.clone();
@@ -625,22 +627,40 @@ async fn pty_spawn(app: AppHandle, command: String, args: Vec<String>, cols: u16
 
     let app_clone = app.clone();
     std::thread::spawn(move || {
-        let mut buf = [0u8; 4096];
+        use base64::Engine;
+        let mut buf = [0u8; 16384];
+        let mut pending = Vec::with_capacity(32768);
+        let mut last_emit = std::time::Instant::now();
+        let throttle = std::time::Duration::from_millis(16); // ~60fps max
+
         eprintln!("[PTY] Reader thread started");
         loop {
             match reader.read(&mut buf) {
                 Ok(0) => {
                     eprintln!("[PTY] EOF");
+                    // Flush remaining data
+                    if !pending.is_empty() {
+                        let encoded = base64::engine::general_purpose::STANDARD.encode(&pending);
+                        let _ = app_clone.emit("pty-output", &encoded);
+                    }
                     break;
                 }
                 Ok(n) => {
-                    eprintln!("[PTY] Read {} bytes", n);
-                    use base64::Engine;
-                    let encoded = base64::engine::general_purpose::STANDARD.encode(&buf[..n]);
-                    let _ = app_clone.emit("pty-output", &encoded);
+                    pending.extend_from_slice(&buf[..n]);
+                    let now = std::time::Instant::now();
+                    if now.duration_since(last_emit) >= throttle || pending.len() > 32768 {
+                        let encoded = base64::engine::general_purpose::STANDARD.encode(&pending);
+                        let _ = app_clone.emit("pty-output", &encoded);
+                        pending.clear();
+                        last_emit = now;
+                    }
                 }
                 Err(e) => {
                     eprintln!("[PTY] Read error: {}", e);
+                    if !pending.is_empty() {
+                        let encoded = base64::engine::general_purpose::STANDARD.encode(&pending);
+                        let _ = app_clone.emit("pty-output", &encoded);
+                    }
                     break;
                 }
             }
@@ -685,6 +705,7 @@ fn pty_kill(app: AppHandle) -> Result<(), String> {
 pub fn run() {
     tauri::Builder::default()
         .manage(PtyHolder(Mutex::new(PtyState { writer: None, child: None })))
+        .manage(WatcherHolder(Mutex::new(WatcherState { watcher: None })))
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_notification::init())

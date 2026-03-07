@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { PipelineMonitor } from "./components/PipelineMonitor";
 import { QualityGate } from "./components/QualityGate";
@@ -11,6 +11,7 @@ import { useFileWatcher } from "./hooks/useFileWatcher";
 import { useNotifications } from "./hooks/useNotifications";
 import type { PipelineConfig, ToneProfile } from "./types/pipeline";
 import { DEFAULT_TONE_PROFILE } from "./types/pipeline";
+import { parsePtyChunk } from "./lib/ptyParser";
 
 interface ExistingSession {
   ticker: string;
@@ -54,13 +55,84 @@ function App() {
   const [isReviewRunning, setIsReviewRunning] = useState(false);
   const [restored, setRestored] = useState(false);
   const [existingSession, setExistingSession] = useState<ExistingSession | null>(null);
+  const knownAgentsRef = useRef(new Set<string>());
+
+  // Parse PTY output to detect agents and step transitions
+  const handlePtyData = useCallback((text: string) => {
+    if (!pipeline.isRunning) return;
+    const events = parsePtyChunk(text, knownAgentsRef.current);
+    for (const ev of events) {
+      switch (ev.type) {
+        case "agent-spawned":
+          if (ev.agent) {
+            pipeline.addAgent(ev.stepIndex, ev.agent);
+            pipeline.updateStep(ev.stepIndex, { status: "running", startedAt: Date.now() });
+          }
+          break;
+        case "agent-complete":
+          if (ev.agent) {
+            pipeline.addAgent(ev.stepIndex, ev.agent);
+          }
+          break;
+        case "step-started":
+          pipeline.updateStep(ev.stepIndex, { status: "running", startedAt: Date.now() });
+          break;
+        case "step-complete":
+          pipeline.updateStep(ev.stepIndex, { status: "complete", completedAt: Date.now() });
+          // Mark all agents in this step as complete
+          markStepAgentsComplete(ev.stepIndex);
+          break;
+        case "checkpoint": {
+          if (ev.message) pipeline.addLog(`[CHECKPOINT] ${ev.message}`);
+          // Find the checkpoint that matches this step and update its status
+          const cp = pipeline.checkpoints.find(c => c.afterStep === ev.stepIndex);
+          if (cp && cp.status === "pending") {
+            const passed = /PASSED|passed/i.test(ev.message || "");
+            const blocked = /BLOCKED|blocked/i.test(ev.message || "");
+            pipeline.updateCheckpoint(cp.id, {
+              status: blocked ? "blocked" : passed ? "passed" : "scanning",
+            });
+          }
+          break;
+        }
+        case "quality-gate":
+          if (ev.message) pipeline.addLog(`[GATE] ${ev.message}`);
+          break;
+      }
+    }
+  }, [pipeline.isRunning, pipeline.addAgent, pipeline.updateStep, pipeline.addLog]);
+
+  // When file sync marks a step as complete, also mark its agents complete
+  const markStepAgentsComplete = useCallback((stepIndex: number) => {
+    const step = pipeline.steps[stepIndex];
+    if (!step) return;
+    for (const agent of step.agents) {
+      if (agent.status === "running") {
+        pipeline.addAgent(stepIndex, { ...agent, status: "complete" });
+      }
+    }
+  }, [pipeline.steps, pipeline.addAgent]);
 
   // Sync pipeline step status from detected files
+  // Also mark agents complete when their step completes via file detection
+  const prevStepStatuses = useRef<string[]>([]);
   useEffect(() => {
     if (files.length > 0) {
       pipeline.syncFromFiles(files);
     }
   }, [files]);
+
+  // Watch for step status changes and mark agents complete
+  useEffect(() => {
+    const currentStatuses = pipeline.steps.map(s => s.status);
+    const prev = prevStepStatuses.current;
+    for (let i = 0; i < currentStatuses.length; i++) {
+      if (currentStatuses[i] === "complete" && prev[i] !== "complete") {
+        markStepAgentsComplete(i);
+      }
+    }
+    prevStepStatuses.current = currentStatuses;
+  }, [pipeline.steps, markStepAgentsComplete]);
 
   // Notify on quality gate awaiting review
   useEffect(() => {
@@ -129,27 +201,9 @@ function App() {
     const reviewTicker = pipeline.config?.ticker || ticker;
     if (!reviewTicker || isReviewRunning) return;
     setIsReviewRunning(true);
+    setPtyCommand("claude");
+    setPtyArgs(["--dangerously-skip-permissions", "--model", "sonnet", `/review-analysis ${reviewTicker}`]);
     setScreen("monitor");
-    try {
-      const { Command } = await import("@tauri-apps/plugin-shell");
-      const command = Command.create("claude", [
-        "--print",
-        `/review-analysis ${reviewTicker}`,
-      ]);
-      command.stdout.on("data", (line: string) => {
-        pipeline.addLog?.(line);
-      });
-      command.stderr.on("data", (line: string) => {
-        pipeline.addLog?.(`[stderr] ${line}`);
-      });
-      command.on("close", () => {
-        setIsReviewRunning(false);
-        notify("Review Complete", `Review analysis for ${reviewTicker} has finished.`);
-      });
-      await command.spawn();
-    } catch {
-      setIsReviewRunning(false);
-    }
   };
 
   useEffect(() => {
@@ -254,9 +308,10 @@ Output ONLY valid JSON matching this schema:
     const sourcesDirs = [sources.sellSide, sources.consulting].filter(Boolean);
     if (sourcesDirs.length > 0) skillCmd += ` --sources ${sourcesDirs.join(",")}`;
     setPtyCommand("claude");
-    setPtyArgs([skillCmd]);
+    setPtyArgs(["--dangerously-skip-permissions", "--model", "sonnet", skillCmd]);
 
     // Also set pipeline config for UI state tracking
+    knownAgentsRef.current.clear();
     pipeline.start(config);
     setScreen("monitor");
   };
@@ -472,10 +527,23 @@ Output ONLY valid JSON matching this schema:
             } : undefined}
             ptyCommand={ptyCommand}
             ptyArgs={ptyArgs}
+            onPtyData={handlePtyData}
             onPtyExit={() => {
+              // Mark all running agents as complete when session ends
+              for (const step of pipeline.steps) {
+                for (const agent of step.agents) {
+                  if (agent.status === "running") {
+                    pipeline.addAgent(step.index, { ...agent, status: "complete" });
+                  }
+                }
+                if (step.status === "running") {
+                  pipeline.updateStep(step.index, { status: "complete", completedAt: Date.now() });
+                }
+              }
               pipeline.stop();
               setPtyCommand(null);
               setPtyArgs([]);
+              knownAgentsRef.current.clear();
             }}
           />
         )}

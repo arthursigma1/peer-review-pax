@@ -3,9 +3,11 @@ import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import type { Terminal } from "@xterm/xterm";
 
-export function usePty() {
+export function usePty(onData?: (text: string) => void) {
   const termRef = useRef<Terminal | null>(null);
   const [isRunning, setIsRunning] = useState(false);
+  const onDataRef = useRef(onData);
+  onDataRef.current = onData;
 
   // Listen for PTY output and exit events
   useEffect(() => {
@@ -22,6 +24,8 @@ export function usePty() {
       }
       const text = new TextDecoder().decode(bytes);
       termRef.current.write(text);
+      // Forward decoded text to callback for parsing
+      onDataRef.current?.(text);
     });
 
     const unlisten2 = listen("pty-exit", () => {

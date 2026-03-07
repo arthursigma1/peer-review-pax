@@ -17,6 +17,7 @@ interface PipelineMonitorProps {
   ptyCommand?: string | null;
   ptyArgs?: string[];
   onPtyExit?: () => void;
+  onPtyData?: (text: string) => void;
 }
 
 export function PipelineMonitor({
@@ -30,10 +31,9 @@ export function PipelineMonitor({
   ptyCommand,
   ptyArgs = [],
   onPtyExit,
+  onPtyData,
 }: PipelineMonitorProps) {
   const [selectedStep, setSelectedStep] = useState<number>(0);
-  const [showLogs, setShowLogs] = useState(false);
-  const [showTerminal, setShowTerminal] = useState(true);
   const [expandedAgent, setExpandedAgent] = useState<string | null>(null);
 
   const activeStep = steps[selectedStep] || steps[0];
@@ -92,107 +92,55 @@ export function PipelineMonitor({
           ))}
         </div>
 
-        {/* Step detail center */}
+        {/* Main content area */}
         <div className="flex-1 flex flex-col min-w-0">
-          <div className="px-6 py-4 border-b border-zinc-800/80">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-lg font-semibold text-zinc-100">
-                  {activeStep.name}
-                </h2>
-                <p className="text-sm text-zinc-500 mt-1">
-                  {activeStep.description}
-                </p>
+          {/* Terminal (primary) */}
+          {ptyCommand && (
+            <div className="flex-1 min-h-0">
+              <Terminal command={ptyCommand} args={ptyArgs} autoStart onExit={onPtyExit} onData={onPtyData} />
+            </div>
+          )}
+
+          {/* Agents bar (compact, below terminal) */}
+          <div className="border-t border-zinc-800/80 flex flex-col" style={{ height: activeStep.agents.length > 0 || !ptyCommand ? "35%" : "auto" }}>
+            <div className="flex items-center justify-between px-4 py-2 bg-zinc-900/50 border-b border-zinc-800/40">
+              <div className="flex items-center gap-3">
+                <h2 className="text-sm font-medium text-zinc-300">{activeStep.name}</h2>
+                {activeStep.agents.length > 0 && (
+                  <span className="text-[10px] text-zinc-500">{activeStep.agents.length} agent{activeStep.agents.length !== 1 ? "s" : ""}</span>
+                )}
               </div>
               {!isRunning && onRerunFromStep && (activeStep.status === "complete" || activeStep.status === "failed") && (
                 <button
                   onClick={() => onRerunFromStep(activeStep.index)}
-                  className="px-3 py-1.5 rounded-md text-xs font-medium text-amber-400 ring-1 ring-amber-500/30 hover:bg-amber-500/10 transition-colors shrink-0 ml-4"
+                  className="px-2 py-1 rounded text-[10px] font-medium text-amber-400 ring-1 ring-amber-500/30 hover:bg-amber-500/10 transition-colors"
                 >
                   Re-run from here
                 </button>
               )}
             </div>
-          </div>
-
-          {/* Agents grid */}
-          <div className="flex-1 overflow-y-auto px-6 py-4">
-            {activeStep.agents.length > 0 ? (
-              <div className="space-y-2">
-                <h3 className="text-xs uppercase tracking-wider text-zinc-500 mb-3">
-                  Agents ({activeStep.agents.length})
-                </h3>
-                <div className="grid gap-2">
+            <div className="flex-1 overflow-y-auto px-4 py-2">
+              {activeStep.agents.length > 0 ? (
+                <div className="grid gap-1.5">
                   {activeStep.agents.map((agent) => (
                     <AgentCard
                       key={agent.id}
                       agent={agent}
                       isExpanded={expandedAgent === agent.id}
                       onToggle={() =>
-                        setExpandedAgent(
-                          expandedAgent === agent.id ? null : agent.id
-                        )
+                        setExpandedAgent(expandedAgent === agent.id ? null : agent.id)
                       }
                     />
                   ))}
                 </div>
-              </div>
-            ) : (
-              <div className="flex items-center justify-center h-full text-zinc-600 text-sm">
-                {activeStep.status === "pending"
-                  ? "Waiting to start..."
-                  : "No agents dispatched yet"}
-              </div>
-            )}
-          </div>
-
-          {/* Bottom panel: Terminal / Logs */}
-          <div className="border-t border-zinc-800/80 flex flex-col" style={{ height: showTerminal || showLogs ? "45%" : "auto" }}>
-            <div className="flex items-center gap-1 px-3 py-1 bg-zinc-900/50 border-b border-zinc-800/40">
-              {ptyCommand && (
-                <button
-                  onClick={() => { setShowTerminal(!showTerminal); setShowLogs(false); }}
-                  className={`px-2 py-1 text-[10px] font-medium rounded transition-colors ${
-                    showTerminal ? "bg-zinc-800 text-teal-400" : "text-zinc-500 hover:text-zinc-300"
-                  }`}
-                >
-                  Terminal
-                </button>
-              )}
-              <button
-                onClick={() => { setShowLogs(!showLogs); setShowTerminal(false); }}
-                className={`px-2 py-1 text-[10px] font-medium rounded transition-colors ${
-                  showLogs ? "bg-zinc-800 text-teal-400" : "text-zinc-500 hover:text-zinc-300"
-                }`}
-              >
-                Logs ({logs.length})
-              </button>
-            </div>
-            {showTerminal && ptyCommand && (
-              <div className="flex-1 min-h-0">
-                <Terminal command={ptyCommand} args={ptyArgs} autoStart onExit={onPtyExit} />
-              </div>
-            )}
-            {showLogs && (
-              <div className="flex-1 overflow-y-auto px-6 py-3 min-h-0">
-                <div className="font-mono text-[11px] text-zinc-600 space-y-0.5">
-                  {logs.slice(-200).map((line, i) => (
-                    <div
-                      key={i}
-                      className={
-                        line.includes("[ERROR]")
-                          ? "text-red-400"
-                          : line.includes("[stderr]")
-                          ? "text-amber-500/70"
-                          : ""
-                      }
-                    >
-                      {line}
-                    </div>
-                  ))}
+              ) : !ptyCommand ? (
+                <div className="flex items-center justify-center h-full text-zinc-600 text-sm">
+                  {activeStep.status === "pending"
+                    ? "Waiting to start..."
+                    : "No agents dispatched yet"}
                 </div>
-              </div>
-            )}
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

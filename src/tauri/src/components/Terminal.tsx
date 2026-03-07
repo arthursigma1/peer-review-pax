@@ -10,14 +10,15 @@ interface TerminalProps {
   args: string[];
   autoStart?: boolean;
   onExit?: () => void;
+  onData?: (text: string) => void;
 }
 
-export function Terminal({ command, args, autoStart = false, onExit }: TerminalProps) {
+export function Terminal({ command, args, autoStart = false, onExit, onData }: TerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const xtermRef = useRef<XTerm | null>(null);
   const fitAddonRef = useRef<FitAddon | null>(null);
   const startedRef = useRef(false);
-  const { termRef, isRunning, spawn, write, kill } = usePty();
+  const { termRef, isRunning, spawn, write, kill } = usePty(onData);
 
   // Initialize xterm.js
   useEffect(() => {

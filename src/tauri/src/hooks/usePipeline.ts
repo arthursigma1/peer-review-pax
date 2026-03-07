@@ -2,6 +2,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import type {
   PipelineStep,
+  PipelineAgent,
   PipelineConfig,
   QualityGate,
   StepStatus,
@@ -359,5 +360,8 @@ export function usePipeline() {
     loadExistingSession,
     addLog,
     syncFromFiles,
+    updateStep,
+    addAgent,
+    updateCheckpoint,
   };
 }
