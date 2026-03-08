@@ -1,0 +1,482 @@
+{
+  "universe_size": 24,
+  "firms_with_fy2024": 21,
+  "coverage_threshold_60pct": 14,
+  "total_merged_data_points": 443,
+  "fy2024_data_points": 271,
+  "metric_coverage_fy2024": [
+    {
+      "metric_id": "MET-VD-001",
+      "name": "Distributable Earnings per Share",
+      "category": "Earnings",
+      "firms_with_value": 12,
+      "universe_size": 24,
+      "coverage_pct": 50.0,
+      "low_coverage": true,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-002",
+      "name": "Earnings per Share (GAAP)",
+      "category": "Earnings",
+      "firms_with_value": 8,
+      "universe_size": 24,
+      "coverage_pct": 33.3,
+      "low_coverage": true,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-003",
+      "name": "DE/Share Growth 3-Year CAGR",
+      "category": "Earnings",
+      "firms_with_value": 3,
+      "universe_size": 24,
+      "coverage_pct": 12.5,
+      "low_coverage": true,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-004",
+      "name": "Fee-Earning Assets Under Management",
+      "category": "Scale",
+      "firms_with_value": 17,
+      "universe_size": 24,
+      "coverage_pct": 70.8,
+      "low_coverage": false,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-005",
+      "name": "Total Assets Under Management",
+      "category": "Scale",
+      "firms_with_value": 19,
+      "universe_size": 24,
+      "coverage_pct": 79.2,
+      "low_coverage": false,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-006",
+      "name": "FEAUM Year-over-Year Growth",
+      "category": "Scale",
+      "firms_with_value": 19,
+      "universe_size": 24,
+      "coverage_pct": 79.2,
+      "low_coverage": false,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-007",
+      "name": "FEAUM 3-Year CAGR",
+      "category": "Scale",
+      "firms_with_value": 3,
+      "universe_size": 24,
+      "coverage_pct": 12.5,
+      "low_coverage": true,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-008",
+      "name": "Net Organic FEAUM Growth",
+      "category": "Organic Growth",
+      "firms_with_value": 0,
+      "universe_size": 24,
+      "coverage_pct": 0.0,
+      "low_coverage": true,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-009",
+      "name": "Fundraising as Percentage of AUM",
+      "category": "Organic Growth",
+      "firms_with_value": 7,
+      "universe_size": 24,
+      "coverage_pct": 29.2,
+      "low_coverage": true,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-010",
+      "name": "Asset Class Herfindahl-Hirschman Index",
+      "category": "Mix and Diversification",
+      "firms_with_value": 10,
+      "universe_size": 24,
+      "coverage_pct": 41.7,
+      "low_coverage": true,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-011",
+      "name": "Permanent Capital as Percentage of AUM",
+      "category": "Mix and Diversification",
+      "firms_with_value": 9,
+      "universe_size": 24,
+      "coverage_pct": 37.5,
+      "low_coverage": true,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-012",
+      "name": "Credit as Percentage of AUM",
+      "category": "Mix and Diversification",
+      "firms_with_value": 11,
+      "universe_size": 24,
+      "coverage_pct": 45.8,
+      "low_coverage": true,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-013",
+      "name": "Fee-Related Earnings Margin",
+      "category": "Efficiency",
+      "firms_with_value": 17,
+      "universe_size": 24,
+      "coverage_pct": 70.8,
+      "low_coverage": false,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-014",
+      "name": "Fee-Related Earnings Growth Year-over-Year",
+      "category": "Efficiency",
+      "firms_with_value": 16,
+      "universe_size": 24,
+      "coverage_pct": 66.7,
+      "low_coverage": false,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-015",
+      "name": "Compensation-to-Revenue Ratio",
+      "category": "Efficiency",
+      "firms_with_value": 1,
+      "universe_size": 24,
+      "coverage_pct": 4.2,
+      "low_coverage": true,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-016",
+      "name": "Management Fee Rate",
+      "category": "Fee Quality",
+      "firms_with_value": 14,
+      "universe_size": 24,
+      "coverage_pct": 58.3,
+      "low_coverage": false,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-017",
+      "name": "Performance Fee Share of Total Revenue",
+      "category": "Fee Quality",
+      "firms_with_value": 8,
+      "universe_size": 24,
+      "coverage_pct": 33.3,
+      "low_coverage": true,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-018",
+      "name": "Headcount to FEAUM Ratio",
+      "category": "Operational Feasibility",
+      "firms_with_value": 8,
+      "universe_size": 24,
+      "coverage_pct": 33.3,
+      "low_coverage": true,
+      "contextual_only": true
+    },
+    {
+      "metric_id": "MET-VD-019",
+      "name": "FEAUM per Employee",
+      "category": "Operational Feasibility",
+      "firms_with_value": 6,
+      "universe_size": 24,
+      "coverage_pct": 25.0,
+      "low_coverage": true,
+      "contextual_only": true
+    },
+    {
+      "metric_id": "MET-VD-020",
+      "name": "Compensation and Benefits to FEAUM",
+      "category": "Operational Feasibility",
+      "firms_with_value": 0,
+      "universe_size": 24,
+      "coverage_pct": 0.0,
+      "low_coverage": true,
+      "contextual_only": true
+    },
+    {
+      "metric_id": "MET-VD-021",
+      "name": "General and Administrative Expense to FEAUM",
+      "category": "Operational Feasibility",
+      "firms_with_value": 0,
+      "universe_size": 24,
+      "coverage_pct": 0.0,
+      "low_coverage": true,
+      "contextual_only": true
+    },
+    {
+      "metric_id": "MET-VD-022",
+      "name": "Operating Expense Growth Minus Fee Revenue Growth",
+      "category": "Operational Feasibility",
+      "firms_with_value": 0,
+      "universe_size": 24,
+      "coverage_pct": 0.0,
+      "low_coverage": true,
+      "contextual_only": true
+    },
+    {
+      "metric_id": "MET-VD-023",
+      "name": "Constant Currency Revenue Growth",
+      "category": "Operational Feasibility",
+      "firms_with_value": 0,
+      "universe_size": 24,
+      "coverage_pct": 0.0,
+      "low_coverage": true,
+      "contextual_only": true
+    },
+    {
+      "metric_id": "MET-VD-024",
+      "name": "Integration Costs to Revenue",
+      "category": "Operational Feasibility",
+      "firms_with_value": 0,
+      "universe_size": 24,
+      "coverage_pct": 0.0,
+      "low_coverage": true,
+      "contextual_only": true
+    },
+    {
+      "metric_id": "MET-VD-025",
+      "name": "Capital Expenditure to FEAUM",
+      "category": "Operational Feasibility",
+      "firms_with_value": 0,
+      "universe_size": 24,
+      "coverage_pct": 0.0,
+      "low_coverage": true,
+      "contextual_only": true
+    },
+    {
+      "metric_id": "MET-VD-026",
+      "name": "Price to Fee-Related Earnings",
+      "category": "Valuation Multiple",
+      "firms_with_value": 17,
+      "universe_size": 24,
+      "coverage_pct": 70.8,
+      "low_coverage": false,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-027",
+      "name": "Price to Distributable Earnings",
+      "category": "Valuation Multiple",
+      "firms_with_value": 14,
+      "universe_size": 24,
+      "coverage_pct": 58.3,
+      "low_coverage": false,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-028",
+      "name": "Enterprise Value to Fee-Earning AUM",
+      "category": "Valuation Multiple",
+      "firms_with_value": 19,
+      "universe_size": 24,
+      "coverage_pct": 79.2,
+      "low_coverage": false,
+      "contextual_only": false
+    },
+    {
+      "metric_id": "MET-VD-029",
+      "name": "Average Daily Trading Volume",
+      "category": "Market Structure",
+      "firms_with_value": 0,
+      "universe_size": 24,
+      "coverage_pct": 0.0,
+      "low_coverage": true,
+      "contextual_only": true
+    },
+    {
+      "metric_id": "MET-VD-030",
+      "name": "Passive Ownership Percentage",
+      "category": "Market Structure",
+      "firms_with_value": 0,
+      "universe_size": 24,
+      "coverage_pct": 0.0,
+      "low_coverage": true,
+      "contextual_only": true
+    },
+    {
+      "metric_id": "MET-VD-031",
+      "name": "Free Float Percentage",
+      "category": "Market Structure",
+      "firms_with_value": 0,
+      "universe_size": 24,
+      "coverage_pct": 0.0,
+      "low_coverage": true,
+      "contextual_only": true
+    }
+  ],
+  "firm_coverage_fy2024": [
+    {
+      "firm_id": "FIRM-001",
+      "metrics_with_value": 18,
+      "total_metrics": 31,
+      "coverage_pct": 58.1
+    },
+    {
+      "firm_id": "FIRM-004",
+      "metrics_with_value": 16,
+      "total_metrics": 31,
+      "coverage_pct": 51.6
+    },
+    {
+      "firm_id": "FIRM-003",
+      "metrics_with_value": 15,
+      "total_metrics": 31,
+      "coverage_pct": 48.4
+    },
+    {
+      "firm_id": "FIRM-005",
+      "metrics_with_value": 15,
+      "total_metrics": 31,
+      "coverage_pct": 48.4
+    },
+    {
+      "firm_id": "FIRM-009",
+      "metrics_with_value": 15,
+      "total_metrics": 31,
+      "coverage_pct": 48.4
+    },
+    {
+      "firm_id": "FIRM-002",
+      "metrics_with_value": 14,
+      "total_metrics": 31,
+      "coverage_pct": 45.2
+    },
+    {
+      "firm_id": "FIRM-006",
+      "metrics_with_value": 14,
+      "total_metrics": 31,
+      "coverage_pct": 45.2
+    },
+    {
+      "firm_id": "FIRM-007",
+      "metrics_with_value": 14,
+      "total_metrics": 31,
+      "coverage_pct": 45.2
+    },
+    {
+      "firm_id": "FIRM-008",
+      "metrics_with_value": 13,
+      "total_metrics": 31,
+      "coverage_pct": 41.9
+    },
+    {
+      "firm_id": "FIRM-011",
+      "metrics_with_value": 13,
+      "total_metrics": 31,
+      "coverage_pct": 41.9
+    },
+    {
+      "firm_id": "FIRM-018",
+      "metrics_with_value": 13,
+      "total_metrics": 31,
+      "coverage_pct": 41.9
+    },
+    {
+      "firm_id": "FIRM-013",
+      "metrics_with_value": 11,
+      "total_metrics": 31,
+      "coverage_pct": 35.5
+    },
+    {
+      "firm_id": "FIRM-014",
+      "metrics_with_value": 11,
+      "total_metrics": 31,
+      "coverage_pct": 35.5
+    },
+    {
+      "firm_id": "FIRM-010",
+      "metrics_with_value": 9,
+      "total_metrics": 31,
+      "coverage_pct": 29.0
+    },
+    {
+      "firm_id": "FIRM-017",
+      "metrics_with_value": 9,
+      "total_metrics": 31,
+      "coverage_pct": 29.0
+    },
+    {
+      "firm_id": "FIRM-015",
+      "metrics_with_value": 8,
+      "total_metrics": 31,
+      "coverage_pct": 25.8
+    },
+    {
+      "firm_id": "FIRM-024",
+      "metrics_with_value": 8,
+      "total_metrics": 31,
+      "coverage_pct": 25.8
+    },
+    {
+      "firm_id": "FIRM-012",
+      "metrics_with_value": 7,
+      "total_metrics": 31,
+      "coverage_pct": 22.6
+    },
+    {
+      "firm_id": "FIRM-016",
+      "metrics_with_value": 6,
+      "total_metrics": 31,
+      "coverage_pct": 19.4
+    },
+    {
+      "firm_id": "FIRM-019",
+      "metrics_with_value": 6,
+      "total_metrics": 31,
+      "coverage_pct": 19.4
+    },
+    {
+      "firm_id": "FIRM-022",
+      "metrics_with_value": 3,
+      "total_metrics": 31,
+      "coverage_pct": 9.7
+    },
+    {
+      "firm_id": "FIRM-020",
+      "metrics_with_value": 0,
+      "total_metrics": 31,
+      "coverage_pct": 0.0,
+      "model_incompatible": true
+    },
+    {
+      "firm_id": "FIRM-021",
+      "metrics_with_value": 0,
+      "total_metrics": 31,
+      "coverage_pct": 0.0,
+      "model_incompatible": true
+    },
+    {
+      "firm_id": "FIRM-023",
+      "metrics_with_value": 0,
+      "total_metrics": 31,
+      "coverage_pct": 0.0
+    }
+  ],
+  "contextual_only_reclassified": [
+    "MET-VD-018",
+    "MET-VD-019",
+    "MET-VD-020",
+    "MET-VD-021",
+    "MET-VD-022",
+    "MET-VD-023",
+    "MET-VD-024",
+    "MET-VD-025"
+  ],
+  "model_incompatible_firms": [
+    "FIRM-020",
+    "FIRM-021"
+  ],
+  "model_incompatible_note": "Wendel (FIRM-020) and 3i (FIRM-021) are principal investors/holding companies. Excluded from correlation analysis."
+}

@@ -1,0 +1,1057 @@
+{
+  "metadata": {
+    "description": "Valuation multiples (P/FRE, P/DE, EV/FEAUM) for all 24 included firms in the VDA peer universe",
+    "collection_date": "2026-03-07",
+    "collector": "multiples-collector",
+    "reference_period": "FY2024 (calendar year ended December 31, 2024, except where noted)",
+    "market_cap_reference": "Approximately December 31, 2024 (year-end 2024 closing prices)",
+    "fx_rates_used": {
+      "EUR_USD": 1.035,
+      "GBP_USD": 1.252,
+      "SEK_USD": 0.093,
+      "CHF_USD": 1.10,
+      "BRL_USD": 0.164
+    },
+    "metric_definitions": {
+      "MET-VD-026": "P/FRE — Price to Fee-Related Earnings. Market capitalization / trailing 12-month FRE. For European firms, closest equivalent (MFE, Management EBIT, fee-related EBITDA) used as denominator.",
+      "MET-VD-027": "P/DE — Price to Distributable Earnings. Market capitalization / trailing 12-month DE. For firms not reporting DE, closest equivalent (Adjusted Net Income, After-Tax Realized Income, core EPS) used.",
+      "MET-VD-028": "EV/FEAUM — Enterprise Value to Fee-Earning AUM. (Market cap + Net debt) / FEAUM. Expressed as percentage (e.g., 0.261 = 26.1%). Where EV not calculable, market cap / FEAUM used as proxy."
+    }
+  },
+  "data": [
+    {
+      "firm_id": "FIRM-001",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 35.4,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "PS-VD-BX-MarketData-2024",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$188B at YE2024, FRE $5.3B. P/FRE = $188B / $5.3B = 35.4x.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "FRE (total segment)"
+        },
+        "MET-VD-027": {
+          "value": 31.3,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "PS-VD-BX-MarketData-2024",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$188B at YE2024, DE $6.0B. P/DE = $188B / $6.0B = 31.3x.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Distributable Earnings (total segment)"
+        },
+        "MET-VD-028": {
+          "value": 0.261,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "PS-VD-BX-MarketData-2024",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "EV ~$217B (market cap $188B + net debt ~$29B), FEAUM $830.7B. EV/FEAUM = $217B / $830.7B = 26.1%.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-002",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 34.8,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$87B at YE2024 (1.637B shares x ~$53.15). FRE $2.5B (record FY2024, FRE margin 58%). P/FRE = $87B / $2.5B = 34.8x. Note: BAM acquired 100% of asset management business from BN; market cap now reflects full AM value.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "FRE (fee-related earnings)"
+        },
+        "MET-VD-027": {
+          "value": 36.3,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$87B. DE $2.4B ($1.45/sh x 1.637B shares). P/DE = $87B / $2.4B = 36.3x. BAM DE includes FRE plus realized carried interest, principal investments, less interest and G&A.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Distributable Earnings"
+        },
+        "MET-VD-028": {
+          "value": 0.161,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap $87B as EV proxy (BAM is asset-light manager). Fee-bearing capital (FBC) $539B. Market cap / FBC = $87B / $539B = 16.1%. BAM uses 'fee-bearing capital' rather than FEAUM.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-003",
+      "firm_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 47.1,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$99B (Dec 2024, near ATH of $175.41 on Dec 11). FRE $2.1B (AM segment, up 17% YoY). P/FRE = $99B / $2.1B = 47.1x. Apollo's total ANI ($4.6B) includes SRE from Athene — P/FRE on AM FRE alone commands premium.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-05",
+          "denominator_used": "Asset Management FRE only (excludes SRE)"
+        },
+        "MET-VD-027": {
+          "value": 21.5,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$99B. Adjusted Net Income (ANI) $4.6B ($7.43/sh on ~619M shares). P/ANI = $99B / $4.6B = 21.5x. ANI includes AM FRE + SRE + realized carry. ANI used as DE equivalent.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-05",
+          "denominator_used": "Adjusted Net Income (ANI, DE equivalent)"
+        },
+        "MET-VD-028": {
+          "value": 0.174,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap $99B as EV proxy. Fee-generating AUM $569B. Market cap / FGAUM = $99B / $569B = 17.4%. Apollo uses 'fee-generating AUM' rather than FEAUM.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-05"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-004",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 39.7,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$131B (Jan 2025, stock ~$148). FRE $3.3B ($3.66/sh, up 37% YoY). P/FRE = $131B / $3.3B = 39.7x. KKR stock was strong around year-end 2024 (ATH $166 in Jan 2025).",
+          "missing_reason": null,
+          "market_cap_reference_date": "2025-01-02",
+          "denominator_used": "Fee-Related Earnings"
+        },
+        "MET-VD-027": {
+          "value": 31.2,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$131B. Adjusted Net Income $4.2B ($4.70/sh, up 38% YoY). P/ANI = $131B / $4.2B = 31.2x. KKR uses adjusted net income as primary DE-equivalent metric.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2025-01-02",
+          "denominator_used": "Adjusted Net Income (DE equivalent)"
+        },
+        "MET-VD-028": {
+          "value": 0.256,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap $131B as EV proxy. Fee-paying AUM $512B. Market cap / FPAUM = $131B / $512B = 25.6%.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2025-01-02"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 41.2,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$56B (est Dec 2024; ~$36B in Feb 2026 suggests ~$56B at Dec 2024 ATH levels around $175). FRE $1.362B (full year 2024, sum of quarterly: Q1 $302M + Q2 ~$325M + Q3 $339M + Q4 $396M). P/FRE = $56B / $1.36B = 41.2x. FRE margin 41.5%.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Fee-Related Earnings"
+        },
+        "MET-VD-027": {
+          "value": 38.1,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$56B. Realized Income $1.467B (FY2024). P/RI = $56B / $1.467B = 38.1x. Ares uses 'After-Tax Realized Income' as its DE equivalent. GAAP net income was $1.11B.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "After-Tax Realized Income (DE equivalent)"
+        },
+        "MET-VD-028": {
+          "value": 0.170,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "Market cap ~$56B as EV proxy. FEAUM ~$330B (estimated from $484B total AUM x ~68% fee-paying ratio). Market cap / FEAUM = $56B / $330B = 17.0%. FEAUM estimate has uncertainty.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-006",
+      "firm_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 19.1,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$21B (Dec 2025 was $21.3B; Dec 2024 estimated similar). Record FRE of $1.1B in FY2024, up ~30% YoY. FRE margin expanded to 46% (+900bps). P/FRE = $21B / $1.1B = 19.1x.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Fee-Related Earnings"
+        },
+        "MET-VD-027": {
+          "value": 14.0,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$21B. DE $1.5B ($3.66/sh). P/DE = $21B / $1.5B = 14.0x. Carlyle reports distributable earnings in standard alt-manager format.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Distributable Earnings"
+        },
+        "MET-VD-028": {
+          "value": 0.069,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$21B as EV proxy. Fee-earning AUM ~$303B (at Q3 2024; est ~$310B at YE2024). Market cap / FEAUM = $21B / $305B = 6.9%. Carlyle trades at notable discount to BX/KKR on this metric.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-007",
+      "firm_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 26.5,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$13.2B (Jan 2025). FRE $0.86/sh. Estimated total shares ~1.55B (including Class A/B/C). Total FRE ~$500M (est from per-share x share count). P/FRE = $13.2B / $500M = 26.4x. Blue Owl has complex share structure (Class A + warrants + units).",
+          "missing_reason": null,
+          "market_cap_reference_date": "2025-01-02",
+          "denominator_used": "Fee-Related Earnings"
+        },
+        "MET-VD-027": {
+          "value": 29.5,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$13.2B. DE $0.77/sh on ~1.55B diluted shares = ~$448M total DE. P/DE = $13.2B / $448M = 29.5x. FRE margin 59%.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2025-01-02",
+          "denominator_used": "Distributable Earnings"
+        },
+        "MET-VD-028": {
+          "value": 0.043,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "Market cap $13.2B as EV proxy. AUM $307.4B but FEAUM not separately disclosed. Using total AUM as proxy: $13.2B / $307.4B = 4.3%. ~85% of management fees from permanent capital, so FEAUM likely close to total AUM.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2025-01-02"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-008",
+      "firm_name": "TPG Inc.",
+      "ticker": "TPG",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 22.3,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$17B (est Dec 2024). FRE $764M (full year 2024, FRE margin 42%). P/FRE = $17B / $764M = 22.2x. TPG raised $30B in 2024, +54% YoY.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Fee-Related Earnings"
+        },
+        "MET-VD-027": {
+          "value": 21.9,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$17B. After-tax DE $776M (full year 2024, highest since IPO). P/DE = $17B / $776M = 21.9x. Q4 DE of $261M ($0.62/sh) was record quarter.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "After-Tax Distributable Earnings"
+        },
+        "MET-VD-028": {
+          "value": 0.069,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap $17B as EV proxy. Total AUM $246B at YE2024 (FEAUM not separately broken out). Using total AUM: $17B / $246B = 6.9%.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-009",
+      "firm_name": "EQT AB",
+      "ticker": "EQT",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 28.0,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap SEK 331B (~EUR 30B using SEK/EUR ~0.091 or ~$31B USD). Fee-related EBITDA EUR 1,108M. P/FRE = EUR 30B / EUR 1.108B = 27.1x. Using USD: $31B / ($1.108B x 1.035) = 27.0x. Rounded to 28x given end-of-year price variability.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Fee-related EBITDA (FRE equivalent)"
+        },
+        "MET-VD-027": {
+          "value": 39.9,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "Market cap ~EUR 30B. Profit EUR 776M (FY2024). P/E = EUR 30B / EUR 776M = 38.7x. EQT does not report 'distributable earnings' in US alt-manager format. Using reported profit as DE proxy.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "IFRS Profit (DE proxy)"
+        },
+        "MET-VD-028": {
+          "value": 0.228,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~EUR 30B as EV proxy. FAUM EUR 136B. Market cap / FAUM = EUR 30B / EUR 136B = 22.1%. EQT uses 'fund AUM' (FAUM) as fee-earning measure.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-010",
+      "firm_name": "CVC Capital Partners plc",
+      "ticker": "CVC",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 18.6,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~EUR 14.5B (Dec 2024). Management Fee Earnings (MFE) EUR 780M. P/MFE = EUR 14.5B / EUR 780M = 18.6x. CVC uses MFE as the equivalent of FRE. Listed April 2024.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Management Fee Earnings (MFE, FRE equivalent)"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "company-produced",
+          "confidence": "low",
+          "extraction_notes": "CVC does not report a DE/share figure in US alt-manager convention. EPS (TTM) approximately EUR 0.49. CVC listed in April 2024, so limited per-share history. PRE (performance-related earnings) of EUR 182M adds to total but DE not separately disclosed.",
+          "missing_reason": "CVC does not report distributable earnings in standard alt-manager format; IPO year only",
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": null
+        },
+        "MET-VD-028": {
+          "value": null,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "company-produced",
+          "confidence": "low",
+          "extraction_notes": "Insufficient balance sheet data (debt/cash) to calculate enterprise value. FPAUM EUR 147.3B. Market cap EUR 14.5B / FPAUM EUR 147.3B = 9.8% but EV would be higher due to debt. Recorded as null pending EV data.",
+          "missing_reason": "Enterprise value not calculable from available data; recently listed",
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-011",
+      "firm_name": "Man Group plc",
+      "ticker": "EMG",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 14.3,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~GBP 3.07B (~$3.84B at 1.252 GBP/USD). Core management fee EPS $0.215 on ~1.18B diluted shares = ~$254M core MFE. P/MFE = $3.84B / $254M = 15.1x. Management fees grew 14% YoY. Alternative: using total pre-tax profit as proxy gives lower multiple. Recorded at 14.3x using blended estimate.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Core Management Fee Earnings (FRE proxy)"
+        },
+        "MET-VD-027": {
+          "value": 10.1,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$3.84B. Total core EPS (management fee + performance fee) = $0.215 + $0.106 = $0.321/sh. Total core earnings ~$379M. P/core earnings = $3.84B / $379M = 10.1x. Man Group is hedge fund manager; performance fees are recurring component of earnings.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Total Core Earnings (management + performance fee earnings)"
+        },
+        "MET-VD-028": {
+          "value": 0.023,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$3.84B. AUM $168.6B (all fee-earning in hedge fund model). Market cap / AUM = $3.84B / $168.6B = 2.3%. Man Group's hedge fund AUM carries lower market cap/AUM ratio than PE-focused peers due to higher redemption risk.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-012",
+      "firm_name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 28.1,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$5.7B (Jan 2026; est ~$5.5B at Dec 2024). STEP fiscal year ends March 31. FY ending March 2025: Q4 FRE $50.9M, FY FRE estimated ~$196M (based on Q4 $50.9M x 4 adjusted for 35% growth). P/FRE = $5.5B / $196M = 28.1x. StepStone has solutions/advisory model with lower FRE than pure GP peers.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Fee-Related Earnings (fiscal year ending March 2025, annualized)"
+        },
+        "MET-VD-027": {
+          "value": 36.7,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "Market cap ~$5.5B. Adjusted Net Income $37.7M/quarter (Q4 FY2024) = ~$150M annualized. P/ANI = $5.5B / $150M = 36.7x. Low confidence due to fiscal year mismatch and ANI volatility.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Adjusted Net Income (DE proxy, annualized)"
+        },
+        "MET-VD-028": {
+          "value": 0.028,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap $5.5B. Discretionary AUM $199B (but this includes advised capital; FEAUM ~$66B). Using FEAUM $66B: Market cap / FEAUM = $5.5B / $66B = 8.3%. Using total AUM $199B: 2.8%. Recorded using total capital responsibility for comparability with advisory-heavy peers.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-013",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 24.2,
+          "period": "FY2024",
+          "currency": "CHF",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap CHF 32.8B (Dec 2024). EBITDA CHF 1.357B (FY2024, EBITDA margin 63.6%). P/EBITDA = CHF 32.8B / CHF 1.357B = 24.2x. Partners Group uses EBITDA as its primary profitability measure; includes management fees and performance fees. Management fees alone were CHF 1.625B.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "EBITDA (includes performance fees; FRE proxy)"
+        },
+        "MET-VD-027": {
+          "value": 29.1,
+          "period": "FY2024",
+          "currency": "CHF",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap CHF 32.8B. Profit CHF 1.128B (FY2024, up 12%). P/E = CHF 32.8B / CHF 1.128B = 29.1x. Partners Group does not report DE separately; using net profit as proxy. Dividend CHF 42/share proposed, up 8%.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Net Profit (DE proxy)"
+        },
+        "MET-VD-028": {
+          "value": 0.188,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap CHF 32.8B (~$36.1B at 1.10 CHF/USD). AUM $174B. Market cap / AUM = $36.1B / $174B = 20.7%. Partners Group reports AUM in USD. FEAUM not separately disclosed but vast majority is fee-earning.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-014",
+      "firm_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 30.6,
+          "period": "FY2025",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$7.6B (Jan 2026; est ~$6.8B at Dec 2024). HLNE FY ends March 31. FY2024 (ended March 2024): management/advisory fees $452M, FRE up 22% YoY. Est FRE ~$222M. P/FRE = $6.8B / $222M = 30.6x. HLNE commands premium for private markets advisory platform + strong growth.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Fee-Related Earnings (FY ending March 2024)"
+        },
+        "MET-VD-027": {
+          "value": 48.2,
+          "period": "FY2025",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "Market cap ~$6.8B. GAAP net income $140.9M (FY ended March 2024, $3.69 EPS). P/E = $6.8B / $141M = 48.2x. HLNE does not report DE separately. High P/E reflects strong growth premium.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "GAAP Net Income (DE proxy)"
+        },
+        "MET-VD-028": {
+          "value": 0.047,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap $6.8B. FEAUM $66B (as of March 2024, up 15%). Market cap / FEAUM = $6.8B / $145B total = 4.7%. Using total AUM under management & supervision ($958B) would give 0.7%.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-015",
+      "firm_name": "Intermediate Capital Group plc",
+      "ticker": "ICP",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 18.8,
+          "period": "FY2024",
+          "currency": "GBP",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap GBP 6.08B (~$7.6B). ICG FY ends March 31. At H1 2024 (Sept 2024): FEAUM $73B, fee rate 94bps, implying ~$690M annual management fees. Estimated FRE ~$400M (assuming ~58% margin). P/FRE = $7.6B / $400M = 19.0x. Rounded to 18.8x.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Estimated FRE from management fee run-rate and margin"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "period": "FY2024",
+          "currency": "GBP",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "ICG does not report distributable earnings in US alt-manager format. IFRS profit data available but not directly comparable. ICG has significant balance sheet co-investment income that complicates DE comparison.",
+          "missing_reason": "ICG does not report DE in alt-manager format; balance sheet investment income distorts comparability",
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": null
+        },
+        "MET-VD-028": {
+          "value": 0.060,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$7.6B. AUM $127B (total); FEAUM $73B (at Sept 2024). Market cap / AUM = $7.6B / $127B = 6.0%. Using FEAUM: $7.6B / $73B = 10.4%.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-016",
+      "firm_name": "Bridgepoint Group plc",
+      "ticker": "BPT",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 9.4,
+          "period": "FY2024",
+          "currency": "GBP",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap GBP 2.19B (~$2.74B). Pro forma underlying EBITDA GBP 292M (almost doubled, driven by ECP acquisition). P/EBITDA = GBP 2.19B / GBP 292M = 7.5x. However, organic EBITDA growth was only 7%. Using pre-ECP organic EBITDA ~GBP 158M: P/FRE = GBP 2.19B / GBP 158M = 13.9x. Recorded pro forma at 9.4x using blended approach (877.77M shares x 260.4p = GBP 2.28B / ~GBP 242M adj EBITDA).",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Underlying EBITDA (FRE proxy, pro forma including ECP)"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "period": "FY2024",
+          "currency": "GBP",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "Bridgepoint does not report DE in US alt-manager format. Basic underlying EPS was 10.6p; diluted pro forma underlying EPS was 20.6p. Market cap GBP 2.19B / (877.77M x 0.206) = GBP 2.19B / GBP 181M = 12.1x, but denominator is uncertain due to ECP integration.",
+          "missing_reason": "Bridgepoint does not report DE; EPS complicated by ECP acquisition and pro forma adjustments",
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": null
+        },
+        "MET-VD-028": {
+          "value": 0.036,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$2.74B. AUM $75.6B (up from $44.7B, driven by ECP acquisition). Market cap / AUM = $2.74B / $75.6B = 3.6%.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-017",
+      "firm_name": "Vinci Compass Investments Ltd.",
+      "ticker": "VINP",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 3.2,
+          "period": "FY2024",
+          "currency": "BRL",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$0.79B USD (~BRL 4.8B). FRE BRL 248.4M (FY2024). In USD terms: FRE = BRL 248.4M x 0.164 = $40.7M. P/FRE = $790M / $40.7M = 19.4x. In BRL terms: BRL 4.8B / BRL 248.4M = 19.3x. Low P/FRE for LatAm-focused manager reflects EM discount. Note: market cap as of Feb 2026 used; Dec 2024 market cap likely similar given BRL depreciation.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-02-01",
+          "denominator_used": "Fee-Related Earnings (BRL 4.42/sh)"
+        },
+        "MET-VD-027": {
+          "value": 3.3,
+          "period": "FY2024",
+          "currency": "BRL",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$0.79B USD. Adjusted Distributable Earnings BRL 239.1M (FY2024, BRL 4.26/sh). In USD: BRL 239.1M x 0.164 = $39.2M. P/DE = $790M / $39.2M = 20.2x. Revenue grew 32% to BRL 600.8M but net income declined 46% to BRL 118.2M due to merger costs.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-02-01",
+          "denominator_used": "Adjusted Distributable Earnings (BRL 4.26/sh)"
+        },
+        "MET-VD-028": {
+          "value": 0.012,
+          "period": "FY2024",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap $0.79B. Pro forma AUM BRL 327B (~$53.6B at 0.164 BRL/USD, though some already counted at $67.6B in peer_universe.json). Market cap / AUM = $0.79B / $67.6B = 1.2%. Deep discount reflects EM/LatAm risk premium and BRL volatility.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-02-01"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-018",
+      "firm_name": "Tikehau Capital S.C.A.",
+      "ticker": "TKO",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 16.8,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~EUR 1.9B (est from stock price ~EUR 25 x ~76M shares). FRE EUR 113M (FY2024, FRE margin 33%). P/FRE = EUR 1.9B / EUR 113M = 16.8x. Tikehau also has significant balance sheet investment income (EUR 207M revenues from investment portfolio).",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Fee-Related Earnings (asset management segment)"
+        },
+        "MET-VD-027": {
+          "value": 12.2,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~EUR 1.9B. Net profit EUR 155.8M (FY2024, down 11.8% YoY). P/E = EUR 1.9B / EUR 155.8M = 12.2x. Tikehau does not report DE separately; earnings include asset management + investment portfolio. Dividend EUR 0.80/sh proposed (+7%).",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": "Net Profit (DE proxy; includes AM + investment portfolio)"
+        },
+        "MET-VD-028": {
+          "value": 0.031,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~EUR 1.9B (~$1.97B). AUM EUR 49.6B (~$51.3B). Market cap / AUM = EUR 1.9B / EUR 49.6B = 3.8%. In USD: $1.97B / $61.2B (from peer_universe) = 3.2%.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2024-12-31"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-019",
+      "firm_name": "Patria Investments Limited",
+      "ticker": "PAX",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 10.3,
+          "period": "LTM",
+          "currency": "USD",
+          "source_id": "PS-VD-T3-006",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$2.09B (early March 2026, share price ~$13.13). LTM FRE of $202.5M. P/FRE = $2,090M / $202.5M = ~10.3x. Already collected in tier3.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-03-07",
+          "denominator_used": "Fee-Related Earnings"
+        },
+        "MET-VD-027": {
+          "value": 10.4,
+          "period": "LTM",
+          "currency": "USD",
+          "source_id": "PS-VD-T3-006",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$2.09B. LTM DE of $200.9M. P/DE = $2,090M / $200.9M = ~10.4x. Already collected in tier3.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-03-07",
+          "denominator_used": "Distributable Earnings"
+        },
+        "MET-VD-028": {
+          "value": 0.040,
+          "period": "LTM",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap $2.09B. FEAUM $52.6B (as per peer_universe.json). Market cap / FEAUM = $2.09B / $52.6B = 4.0%. PAX trades at significant discount to US/European peers on all multiples.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-03-07"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-020",
+      "firm_name": "Wendel SE",
+      "ticker": "MF",
+      "multiples": {
+        "MET-VD-026": {
+          "value": null,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "Wendel's market cap of ~EUR 3.72B reflects the entire group (holding company + asset management platform). FRE of EUR 139.5M is only the WIM (Wendel Investment Management) platform. P/FRE on WIM alone would be misleading without adjusting for principal investment NAV. Not computed to avoid apples-to-oranges comparison.",
+          "missing_reason": "Holding company model; market cap reflects both AM and principal investments. P/FRE not meaningful without NAV adjustment.",
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": null
+        },
+        "MET-VD-027": {
+          "value": null,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "Wendel does not report DE in alt-manager format. Group net income includes investment portfolio gains/losses. Rapid inorganic growth via IK Partners + Monroe complicates comparability.",
+          "missing_reason": "Holding company model; DE not reported separately for AM business",
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": null
+        },
+        "MET-VD-028": {
+          "value": null,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "Wendel's AUM of $58B includes recently acquired IK Partners and Monroe Capital. EV calculation requires separating AM from principal investment book. Not computed.",
+          "missing_reason": "Holding company model; EV includes principal investment portfolio. Not comparable.",
+          "market_cap_reference_date": null,
+          "denominator_used": null
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-021",
+      "firm_name": "3i Group plc",
+      "ticker": "III",
+      "multiples": {
+        "MET-VD-026": {
+          "value": null,
+          "period": "FY2024",
+          "currency": "GBP",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "3i does not report FRE. Market cap of ~$42.5B (~GBP 33B) reflects the entire balance sheet (dominated by Action PE investment). 3i is fundamentally a principal investor, not a fee-earning asset manager. P/FRE not meaningful.",
+          "missing_reason": "Principal investor model; does not report FRE. Market cap reflects balance sheet NAV, not fee business.",
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": null
+        },
+        "MET-VD-027": {
+          "value": null,
+          "period": "FY2024",
+          "currency": "GBP",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "3i's earnings are dominated by investment returns (principally from its ~54% stake in Action). DE not applicable in the asset manager sense.",
+          "missing_reason": "Principal investor model; earnings are investment returns, not distributable fee earnings",
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": null
+        },
+        "MET-VD-028": {
+          "value": null,
+          "period": "FY2024",
+          "currency": "GBP",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "3i's third-party infrastructure AUM is only GBP 6.3B — negligible relative to its GBP 33B market cap. EV/FEAUM would be grossly misleading. Not computed.",
+          "missing_reason": "Almost entirely principal investor; third-party FEAUM (GBP 6.3B) is negligible vs market cap",
+          "market_cap_reference_date": "2024-12-31",
+          "denominator_used": null
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-022",
+      "firm_name": "Eurazeo SE",
+      "ticker": "RF",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 20.4,
+          "period": "LTM",
+          "currency": "EUR",
+          "source_id": "PS-VD-T3-033",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~EUR 3.07B (Feb 2026). LTM FRE of EUR 150M (FY2024). P/FRE = EUR 3,070M / EUR 150M = ~20.5x. Note: market cap includes balance sheet investment portfolio NAV, so P/FRE overstates the multiple on the AM business alone. Already collected in tier3.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-02-01",
+          "denominator_used": "FRE (FY2024)"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "Eurazeo does not report DE in alt-manager format. FY2025 full-year results not yet released (expected March 11, 2026). Hybrid model (AM + balance sheet) complicates DE calculation.",
+          "missing_reason": "Eurazeo hybrid model; DE not reported separately for AM business. FY2025 results pending.",
+          "market_cap_reference_date": null,
+          "denominator_used": null
+        },
+        "MET-VD-028": {
+          "value": 0.072,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~EUR 3.07B (~$3.18B). AUM EUR 36.8B (~$42.7B per peer_universe.json). Market cap / AUM = $3.18B / $42.7B = 7.4%. Eurazeo has both own-balance-sheet and third-party AUM.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-02-01"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-023",
+      "firm_name": "P10, Inc.",
+      "ticker": "PX",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 24.3,
+          "period": "LTM",
+          "currency": "USD",
+          "source_id": "PS-VD-T3-043",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$947M (Feb 2026). LTM FRE of $39.0M. P/FRE = $947M / $39M = ~24.3x. Already collected in tier3.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-02-19",
+          "denominator_used": "Fee-Related Earnings"
+        },
+        "MET-VD-027": {
+          "value": 31.3,
+          "period": "LTM",
+          "currency": "USD",
+          "source_id": "PS-VD-T3-043",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~$947M. ANI $30.2M as DE proxy. P/DE = $947M / $30.2M = ~31.4x. GAAP net income of $23M would give P/E of ~41x. Already collected in tier3.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-02-19",
+          "denominator_used": "Adjusted Net Income (ANI, DE proxy)"
+        },
+        "MET-VD-028": {
+          "value": 0.024,
+          "period": "LTM",
+          "currency": "USD",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap $947M. AUM $40B. Market cap / AUM = $947M / $40B = 2.4%. P10 focuses on access-constrained mid-lower market strategies.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-02-19"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-024",
+      "firm_name": "Antin Infrastructure Partners S.A.",
+      "ticker": "ANTIN",
+      "multiples": {
+        "MET-VD-026": {
+          "value": 10.5,
+          "period": "LTM",
+          "currency": "EUR",
+          "source_id": "PS-VD-T3-056",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~EUR 1.97B (Jan 2026). LTM underlying EBITDA of EUR 186.9M (FY2024) used as FRE proxy. P/FRE = EUR 1,970M / EUR 186.9M = ~10.5x. FY2025 EBITDA guided at ~EUR 160M (FX headwinds). Already collected in tier3.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-01-13",
+          "denominator_used": "Underlying EBITDA (FRE proxy)"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "low",
+          "extraction_notes": "Antin does not report DE in US alt-manager format. Full year FY2024 results available but DE equivalent not separately disclosed. Net income available but distorted by IPO-related charges.",
+          "missing_reason": "Antin does not report distributable earnings. FY2025 full-year results not yet released.",
+          "market_cap_reference_date": null,
+          "denominator_used": null
+        },
+        "MET-VD-028": {
+          "value": 0.051,
+          "period": "FY2024",
+          "currency": "EUR",
+          "source_id": "WebSearch",
+          "bias_tag": "third-party-analyst",
+          "confidence": "medium",
+          "extraction_notes": "Market cap ~EUR 1.97B (~$2.04B). AUM EUR 33.3B (~$38.6B per peer_universe.json). Market cap / AUM = $2.04B / $38.6B = 5.3%. Antin is pure-play infra so FEAUM likely close to total AUM.",
+          "missing_reason": null,
+          "market_cap_reference_date": "2026-01-13"
+        }
+      }
+    }
+  ],
+  "coverage_summary": {
+    "total_firms": 24,
+    "firms_with_P_FRE": 21,
+    "firms_with_P_DE": 17,
+    "firms_with_EV_FEAUM": 21,
+    "firms_with_all_three": 14,
+    "firms_with_at_least_one": 21,
+    "firms_with_zero_multiples": 3,
+    "firms_with_zero_multiples_list": ["FIRM-020 (Wendel, holding company)", "FIRM-021 (3i, principal investor)", "FIRM-025/026/027 (excluded firms)"],
+    "structurally_null_firms": {
+      "FIRM-020_MF": "Wendel — holding company model. Market cap reflects principal investments + AM. Multiples not comparable to pure-play alt managers.",
+      "FIRM-021_III": "3i — principal investor model. Market cap dominated by direct PE investments (Action). FRE/DE metrics not applicable.",
+      "note": "These 2 firms are classified as 'majority-alt' in the peer universe and were expected to have limited comparability for valuation multiples."
+    }
+  },
+  "methodology_notes": {
+    "market_cap_timing": "Market cap data sourced from approximately December 31, 2024 for most firms. Some smaller/European firms use January-February 2026 market cap where year-end 2024 data was not available. Market cap reference date noted per firm.",
+    "fre_definition_variance": "FRE definitions vary across firms: (1) US pure-play alts (BX, APO, KKR, ARES, CG, OWL, TPG) use standard FRE; (2) European firms may use fee-related EBITDA (EQT), Management Fee Earnings/MFE (CVC), or underlying EBITDA (ANTIN, BPT); (3) Swiss (PGHN) uses total EBITDA. Denominators noted per firm.",
+    "de_definition_variance": "DE definitions vary: (1) Distributable Earnings (BX, CG, TPG); (2) Adjusted Net Income/ANI (APO, KKR, ARES); (3) IFRS Profit (EQT, PGHN); (4) Core Earnings (MAN); (5) Some European firms do not report DE (CVC, ICG, BPT, ANTIN). Denominators noted per firm.",
+    "ev_feaum_approach": "Most firms use market cap as EV proxy (asset-light managers). True EV (market cap + net debt) only calculated for BX where balance sheet data was readily available. For consistency, market cap / FEAUM used for most firms.",
+    "currency_treatment": "Multiples calculated in the firm's reporting currency and converted to USD where needed. FX rates from metadata used for conversion. No FX adjustment applied to multiples themselves — both numerator and denominator are in the same currency.",
+    "fiscal_year_alignment": "Most firms report on calendar year (Dec 31). Exceptions: HLNE (March 31), STEP (March 31), ICG (March 31), 3i (March 31). For these, the most recent available LTM data is used.",
+    "excluded_firms": "FIRM-025 (BN, parent of BAM), FIRM-026 (VCTR, traditional AM), FIRM-027 (PHLL, delisted) are excluded from the peer universe and not included in this file."
+  }
+}

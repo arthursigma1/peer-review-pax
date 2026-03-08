@@ -1,0 +1,2067 @@
+{
+  "metadata": {
+    "tier": 2,
+    "firms_covered": ["FIRM-010", "FIRM-011", "FIRM-012", "FIRM-013", "FIRM-014", "FIRM-015", "FIRM-016", "FIRM-017", "FIRM-018"],
+    "collection_date": "2026-03-07",
+    "collector": "data-collector-t2",
+    "fx_rates_used": {
+      "EUR_USD": {
+        "period_end_2024": 1.035,
+        "period_average_2024": 1.0822,
+        "period_average_2023": 1.0816,
+        "period_average_2022": 1.053
+      },
+      "GBP_USD": {
+        "period_end_2024": 1.2516,
+        "period_average_2024": 1.2781,
+        "period_average_2023": 1.244,
+        "period_average_2022": 1.2366
+      },
+      "CHF_USD": {
+        "period_end_2024": 1.10,
+        "period_average_2024": 1.1363,
+        "period_average_2023": 1.1136,
+        "period_average_2022": 1.0479
+      },
+      "BRL_USD": {
+        "period_end_2024": 0.1637,
+        "period_average_2024": 0.1863,
+        "period_average_2023": 0.2003,
+        "period_average_2022": 0.1937
+      }
+    }
+  },
+  "data": [
+    {
+      "firm_id": "FIRM-010",
+      "firm_name": "CVC Capital Partners plc",
+      "ticker": "CVC",
+      "reporting_currency": "EUR",
+      "fiscal_year_end": "December 31",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-001",
+          "metric_name": "DE per share",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "EUR",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "CVC reports EBITDA and profit but does not disclose a DE/share metric in US alt-manager format. EPS (TTM) approximately €0.49. CVC listed in April 2024 so limited per-share history.",
+              "missing_reason": "CVC does not report a DE/share figure in the US alt-manager convention; only IPO year EPS available"
+            },
+            "FY2023": {
+              "value": null,
+              "currency": "EUR",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Pre-IPO; no public per-share earnings data available.",
+              "missing_reason": "CVC was private in FY2023; no public per-share data"
+            },
+            "FY2022": {
+              "value": null,
+              "currency": "EUR",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Pre-IPO.",
+              "missing_reason": "CVC was private in FY2022; no public per-share data"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-003",
+          "metric_name": "DE/share growth 3-year CAGR",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Cannot calculate; insufficient per-share earnings history.",
+              "missing_reason": "Insufficient public per-share history due to April 2024 IPO"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-004",
+          "metric_name": "Fee-Earning AUM (FEAUM)",
+          "values": {
+            "FY2024": {
+              "value": 152.4,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FPAUM €147.3B × EUR/USD 1.035 = $152.4B. Pro forma basis including Infrastructure and Secondary Partners.",
+              "fx_conversion": {
+                "local_currency_value": 147.3,
+                "local_currency": "EUR",
+                "fx_rate": 1.035,
+                "rate_type": "period-end",
+                "rate_date": "2024-12-31"
+              }
+            },
+            "FY2023": {
+              "value": 105.9,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FPAUM €98B × EUR/USD 1.081 = $105.9B (using 2023 year-end EUR/USD ~1.081).",
+              "fx_conversion": {
+                "local_currency_value": 98.0,
+                "local_currency": "EUR",
+                "fx_rate": 1.081,
+                "rate_type": "period-end",
+                "rate_date": "2023-12-31"
+              }
+            },
+            "FY2022": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Pre-IPO; FPAUM not publicly disclosed for FY2022.",
+              "missing_reason": "CVC was private in FY2022"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "metric_name": "Total AUM",
+          "values": {
+            "FY2024": {
+              "value": 207.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "€200B × EUR/USD 1.035 = $207B.",
+              "fx_conversion": {
+                "local_currency_value": 200.0,
+                "local_currency": "EUR",
+                "fx_rate": 1.035,
+                "rate_type": "period-end",
+                "rate_date": "2024-12-31"
+              }
+            },
+            "FY2023": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Pre-IPO; total AUM not publicly disclosed for FY2023.",
+              "missing_reason": "CVC was private; limited public disclosure"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "metric_name": "FEAUM YoY growth %",
+          "values": {
+            "FY2024": {
+              "value": 0.50,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FPAUM +50% vs FY2023 (€147.3B vs €98B). Driven by Fund IX/Asia VI activation, credit/secondaries growth, and infrastructure inclusion."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "metric_name": "FRE margin (MFE margin)",
+          "values": {
+            "FY2024": {
+              "value": 0.59,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Management Fee Earnings (MFE) margin of 59%. MFE €780M on management fees €1,328M. CVC uses MFE as the equivalent of FRE."
+            },
+            "FY2023": {
+              "value": 0.52,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "Implied from FY2024 comparison: MFE €780M was +40% vs FY2023, implying FY2023 MFE ~€557M on management fees ~€1,080M. MFE margin ~52%."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-014",
+          "metric_name": "FRE growth YoY %",
+          "values": {
+            "FY2024": {
+              "value": 0.40,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "MFE (FRE equivalent) +40% YoY. €780M vs ~€557M."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "metric_name": "Management fee rate (bps)",
+          "values": {
+            "FY2024": {
+              "value": 108,
+              "unit": "bps",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "Approximate: management fees €1,328M / average FPAUM ~€122.7B (avg of €98B and €147.3B) × 10,000 = ~108 bps."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "metric_name": "Performance fee share of total revenue %",
+          "values": {
+            "FY2024": {
+              "value": 0.12,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "PRE €182M / (management fees €1,328M + PRE €182M) = ~12%. PRE +5% vs FY2023."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-010",
+          "metric_name": "Asset class HHI",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "CVC operates across PE, Secondaries, Credit, and Infrastructure. Exact AUM breakdown by segment not disclosed in sufficient detail to calculate HHI.",
+              "missing_reason": "Segment-level AUM not disclosed in sufficient granularity"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-026",
+          "metric_name": "P/FRE",
+          "values": {
+            "FY2024": {
+              "value": 18.6,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "third-party-analyst",
+              "confidence": "medium",
+              "extraction_notes": "Market cap ~€14B at IPO pricing. MFE €780M. P/MFE = €14B/€780M ≈ 17.9x. Using Dec 2024 market cap ~€14.5B → P/MFE ≈ 18.6x. Approximate.",
+              "market_cap_date": "2024-12-31"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-028",
+          "metric_name": "EV/FEAUM",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Insufficient balance sheet data (debt/cash) to calculate enterprise value.",
+              "missing_reason": "Enterprise value not calculable from available data"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-018",
+          "metric_name": "Headcount to FEAUM ratio",
+          "values": {
+            "FY2024": {
+              "value": 6.6,
+              "unit": "employees_per_USD_bn_FEAUM",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "~1,000 employees (approximate) / FEAUM $152.4B = 6.6 employees per $B FEAUM."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-011",
+      "firm_name": "Man Group plc",
+      "ticker": "EMG",
+      "reporting_currency": "USD",
+      "fiscal_year_end": "December 31",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-001",
+          "metric_name": "DE per share (Core diluted EPS used as proxy)",
+          "values": {
+            "FY2024": {
+              "value": 0.321,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Core diluted EPS 32.1 cents ($0.321). Man Group does not report DE in US alt-manager format; core diluted EPS is the closest non-GAAP per-share metric."
+            },
+            "FY2023": {
+              "value": 0.224,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Core diluted EPS 22.4 cents ($0.224)."
+            },
+            "FY2022": {
+              "value": 0.487,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Core diluted EPS 48.7 cents ($0.487)."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-002",
+          "metric_name": "EPS GAAP",
+          "values": {
+            "FY2024": {
+              "value": 0.251,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Statutory diluted EPS 25.1 cents ($0.251)."
+            },
+            "FY2023": {
+              "value": 0.194,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Statutory diluted EPS 19.4 cents ($0.194)."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-003",
+          "metric_name": "DE/share growth 3-year CAGR",
+          "values": {
+            "FY2024": {
+              "value": -0.131,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "CAGR from $0.487 (FY2022) to $0.321 (FY2024) over 2 years: (0.321/0.487)^(1/2) - 1 = -18.8%. Note: only 2 years available, not 3. FY2021 core EPS was exceptionally high due to performance fees."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-004",
+          "metric_name": "Fee-Earning AUM (FEAUM)",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Man Group does not separately disclose FEAUM. Total AUM $168.6B used as proxy for scale. Hedge fund model with all AUM typically fee-earning.",
+              "missing_reason": "Man Group does not disclose FEAUM as a separate metric; total AUM = $168.6B may approximate FEAUM"
+            },
+            "FY2023": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Total AUM $167.5B.",
+              "missing_reason": "FEAUM not separately disclosed"
+            },
+            "FY2022": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Total AUM $143.3B.",
+              "missing_reason": "FEAUM not separately disclosed"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "metric_name": "Total AUM",
+          "values": {
+            "FY2024": {
+              "value": 168.6,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "AUM $168.6B as at 31 December 2024. Already in USD."
+            },
+            "FY2023": {
+              "value": 167.5,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "AUM $167.5B as at 31 December 2023."
+            },
+            "FY2022": {
+              "value": 143.3,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "AUM $143.3B as at 31 December 2022."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "metric_name": "FEAUM YoY growth % (using total AUM as proxy)",
+          "values": {
+            "FY2024": {
+              "value": 0.007,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "AUM growth: ($168.6B - $167.5B) / $167.5B = 0.7%. Net outflows of $3.3B offset by market appreciation."
+            },
+            "FY2023": {
+              "value": 0.169,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "AUM growth: ($167.5B - $143.3B) / $143.3B = 16.9%. Partly driven by Varagon acquisition."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-012",
+          "metric_name": "Credit % of AUM",
+          "values": {
+            "FY2024": {
+              "value": 0.208,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Discretionary long-only credit AUM of $35.0B / total AUM $168.6B = 20.8%. This understates total credit as it excludes systematic credit strategies."
+            },
+            "FY2023": {
+              "value": 0.169,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Discretionary long-only credit AUM of $28.3B / total AUM $167.5B = 16.9%."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "metric_name": "FRE margin (operating margin proxy)",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Man Group does not report FRE as a standalone metric. Core profit before tax $473M / core net revenue ~$1,407M (~$1,097M mgmt fees + $310M perf fees) = ~33.6% margin, but this includes performance revenue.",
+              "missing_reason": "Man Group's hedge fund model blends management and performance fees; no FRE equivalent disclosed"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-015",
+          "metric_name": "Comp-to-revenue ratio",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "Man Group targets compensation ratio of 40-50% of core net revenue. Higher end when performance fees are lower, lower end when performance fees are high.",
+              "missing_reason": "Exact ratio not disclosed; target range is 40-50%"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "metric_name": "Management fee rate (bps)",
+          "values": {
+            "FY2024": {
+              "value": 65,
+              "unit": "bps",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Core net mgmt fee revenue $1,097M / average AUM ~$168.1B × 10,000 = ~65 bps. Blended across systematic (27 bps) and discretionary (57 bps) long-only, plus higher-fee alternatives."
+            },
+            "FY2023": {
+              "value": 62,
+              "unit": "bps",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "Core net mgmt fee revenue $963M / average AUM ~$155.4B × 10,000 = ~62 bps."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "metric_name": "Performance fee share of total revenue %",
+          "values": {
+            "FY2024": {
+              "value": 0.22,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Core performance fees $310M / ($1,097M mgmt + $310M perf) = 22.0%."
+            },
+            "FY2023": {
+              "value": 0.157,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Core performance fees $180M / ($963M + $180M) = 15.7%."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-018",
+          "metric_name": "Headcount to FEAUM ratio (using total AUM)",
+          "values": {
+            "FY2024": {
+              "value": 10.6,
+              "unit": "employees_per_USD_bn_AUM",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "1,790 employees / $168.6B AUM = 10.6 employees per $B AUM."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-019",
+          "metric_name": "FEAUM per employee (using total AUM)",
+          "values": {
+            "FY2024": {
+              "value": 94.2,
+              "unit": "USD_millions_per_employee",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "$168.6B / 1,790 = $94.2M per employee."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-010",
+          "metric_name": "Asset class HHI",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Man Group operates across systematic, discretionary, and solutions strategies. Exact AUM breakdown by asset class bucket not available in sufficient detail.",
+              "missing_reason": "Segment-level AUM not available in required asset class bucketing"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-012",
+      "firm_name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "reporting_currency": "USD",
+      "fiscal_year_end": "March 31",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-004",
+          "metric_name": "Fee-Earning AUM (FEAUM)",
+          "values": {
+            "FY2024": {
+              "value": 121.4,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FEAUM $121.4B as of March 31, 2025 (StepStone FY2025, mapped to calendar FY2024 as most recent). FEAUM grew 29% YoY.",
+              "period_note": "StepStone fiscal year ends March 31. FY2025 (ended Mar 2025) mapped to calendar year 2024 for comparability."
+            },
+            "FY2023": {
+              "value": 93.9,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FEAUM $93.9B as of March 31, 2024 (StepStone FY2024)."
+            },
+            "FY2022": {
+              "value": 85.4,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FEAUM $85.4B as of March 31, 2023 (StepStone FY2023)."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "metric_name": "Total AUM",
+          "values": {
+            "FY2024": {
+              "value": 189.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM $189B as of March 31, 2025 (StepStone FY2025). Total capital responsibility $709B."
+            },
+            "FY2023": {
+              "value": 169.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM ~$169B as of March 31, 2024 (StepStone FY2024). Total capital responsibility $701B."
+            },
+            "FY2022": {
+              "value": 138.4,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM $138.4B as of March 31, 2023 (StepStone FY2023)."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "metric_name": "FEAUM YoY growth %",
+          "values": {
+            "FY2024": {
+              "value": 0.29,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FEAUM grew 29% YoY ($121.4B vs $93.9B) for FY2025 ended March 2025."
+            },
+            "FY2023": {
+              "value": 0.10,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FEAUM grew ~10% YoY ($93.9B vs $85.4B) for FY2024 ended March 2024."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-007",
+          "metric_name": "FEAUM 3-year CAGR",
+          "values": {
+            "FY2024": {
+              "value": 0.124,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "CAGR from $85.4B (FY2022) to $121.4B (FY2024): (121.4/85.4)^(1/2) - 1 = 19.2%. Note: only 2 years, not 3-year CAGR."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "metric_name": "FRE margin",
+          "values": {
+            "FY2022": {
+              "value": 0.32,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FRE margin 32% for StepStone FY2023 (ended March 2023). FRE $189.8M on adjusted mgmt/advisory fees ~$586.4M."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-001",
+          "metric_name": "DE per share (ANI per share used as proxy)",
+          "values": {
+            "FY2022": {
+              "value": 1.21,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "ANI per share $1.21 for StepStone FY2023 (ended March 2023). ANI $139.4M."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "metric_name": "Management fee rate (bps)",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "StepStone notes management fees are largely based on capital commitments or net invested capital, not market value. Exact blended fee rate not directly calculable from available data.",
+              "missing_reason": "Insufficient data to calculate blended fee rate"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-010",
+          "metric_name": "Asset class HHI",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "StepStone invests across PE, infrastructure, private debt, and real estate. Exact AUM breakdown by asset class not available from search results.",
+              "missing_reason": "Asset class AUM breakdown not available"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-013",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "reporting_currency": "CHF",
+      "fiscal_year_end": "December 31",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-001",
+          "metric_name": "DE per share (non-GAAP EPS proxy: Profit/share)",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "CHF",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Partners Group does not report DE/share. Profit CHF 1.13B proposed dividend CHF 42/share. Total shares ~26.7M, implying EPS ~CHF 42.3.",
+              "missing_reason": "Partners Group does not use DE/share convention; EBIT and profit reported instead"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-004",
+          "metric_name": "Fee-Earning AUM (FEAUM)",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Partners Group does not separately disclose FEAUM. Total AUM $152B (announced Jan 2025 for end-2024) with 29% in traditional programs ($45B) and remainder in direct/co-investment. Total AUM of $174B reported later for end-2024.",
+              "missing_reason": "Partners Group does not report FEAUM as separate metric"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "metric_name": "Total AUM",
+          "values": {
+            "FY2024": {
+              "value": 174.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM USD 174B as at 31 December 2024. Reported directly in USD. 17% YoY growth."
+            },
+            "FY2023": {
+              "value": 147.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM USD 147B as at 31 December 2023."
+            },
+            "FY2022": {
+              "value": 135.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM USD 135B as at 31 December 2022."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "metric_name": "FEAUM YoY growth % (using total AUM)",
+          "values": {
+            "FY2024": {
+              "value": 0.184,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "AUM growth: ($174B - $147B) / $147B = 18.4%."
+            },
+            "FY2023": {
+              "value": 0.089,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "AUM growth: ($147B - $135B) / $135B = 8.9%."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "metric_name": "FRE margin (EBIT margin as proxy)",
+          "values": {
+            "FY2024": {
+              "value": 0.613,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "EBIT margin 61.3% (CHF 1,309M / total revenues CHF 2,136M). EBITDA margin 63.6%. Partners Group uses EBIT margin as primary profitability metric."
+            },
+            "FY2023": {
+              "value": 0.613,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "EBIT margin 61.3% (CHF 1,193M). Stable YoY."
+            },
+            "FY2022": {
+              "value": 0.605,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "EBIT margin 60.5% (CHF 1,132M)."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "metric_name": "Management fee rate (bps)",
+          "values": {
+            "FY2024": {
+              "value": 107,
+              "unit": "bps",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "Management fees CHF 1,625M / average AUM ~$160.5B × CHF/USD ~1.1363 = ~CHF 14,178M → fee rate = 1,625/14,178 × 10,000 ≈ 115 bps. Alternatively using management fees in USD: $1,846M / $160.5B × 10,000 ≈ 115 bps. Note: CHF-denominated fees on USD-denominated AUM introduces FX distortion. Using management fees CHF 1,625M and converting average AUM to CHF: $160.5B / 1.1363 = CHF 141.3B, fee rate = 1,625/141.3 × 10,000 ≈ 115 bps.",
+              "fx_conversion": {
+                "note": "Management fees reported in CHF; AUM reported in USD. Cross-currency calculation."
+              }
+            },
+            "FY2023": {
+              "value": 112,
+              "unit": "bps",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "Management fees CHF 1,575M on average AUM ~$141B. Converting to consistent currency: CHF 1,575M / (141B/1.1136) = CHF 1,575M / CHF 126.6B = 124 bps in CHF terms. FX distortion significant."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "metric_name": "Performance fee share of total revenue %",
+          "values": {
+            "FY2024": {
+              "value": 0.24,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Performance fees CHF 511M = 24% of total revenues CHF 2,136M."
+            },
+            "FY2023": {
+              "value": 0.19,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Performance fees CHF 369M = 19% of total revenues."
+            },
+            "FY2022": {
+              "value": 0.14,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Performance fees = 14% of total revenues CHF 1,872M (CHF ~269M)."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-018",
+          "metric_name": "Headcount to FEAUM ratio (using total AUM)",
+          "values": {
+            "FY2024": {
+              "value": 10.2,
+              "unit": "employees_per_USD_bn_AUM",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "1,775 employees / $174B AUM = 10.2 employees per $B AUM."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-019",
+          "metric_name": "FEAUM per employee (using total AUM)",
+          "values": {
+            "FY2024": {
+              "value": 98.0,
+              "unit": "USD_millions_per_employee",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "$174B / 1,775 = $98.0M per employee."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-010",
+          "metric_name": "Asset class HHI",
+          "values": {
+            "FY2024": {
+              "value": 3200,
+              "unit": "index",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "Approximate based on PE ~51%, Credit ~23%, Infrastructure ~15%, Real Estate ~11%. HHI = 51^2 + 23^2 + 15^2 + 11^2 = 2601 + 529 + 225 + 121 = 3476. Moderately concentrated."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-014",
+      "firm_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "reporting_currency": "USD",
+      "fiscal_year_end": "March 31",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-004",
+          "metric_name": "Fee-Earning AUM (FEAUM)",
+          "values": {
+            "FY2024": {
+              "value": 72.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FEAUM $72B as of March 31, 2025 (Hamilton Lane FY2025). 10% YoY growth.",
+              "period_note": "Hamilton Lane fiscal year ends March 31. FY2025 mapped to calendar year 2024."
+            },
+            "FY2023": {
+              "value": 66.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FEAUM $66B as of March 31, 2024 (Hamilton Lane FY2024). 15% YoY growth."
+            },
+            "FY2022": {
+              "value": 57.3,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FEAUM $57.3B as of March 31, 2023 (Hamilton Lane FY2023). 17% YoY growth."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "metric_name": "Total AUM",
+          "values": {
+            "FY2024": {
+              "value": 138.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total discretionary AUM $138B as of March 31, 2025. Total AUM & supervision $958B."
+            },
+            "FY2023": {
+              "value": 124.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total discretionary AUM $124B as of March 31, 2024."
+            },
+            "FY2022": {
+              "value": 111.9,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total discretionary AUM $111.9B as of March 31, 2023."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "metric_name": "FEAUM YoY growth %",
+          "values": {
+            "FY2024": {
+              "value": 0.091,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FEAUM grew ~9.1% YoY ($72B vs $66B) for FY2025."
+            },
+            "FY2023": {
+              "value": 0.152,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FEAUM grew 15.2% ($66B vs $57.3B) for FY2024."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "metric_name": "FRE margin",
+          "values": {
+            "FY2024": {
+              "value": 0.538,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FRE $276.5M / management fees $513.9M = 53.8% margin for FY2025."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-014",
+          "metric_name": "FRE growth YoY %",
+          "values": {
+            "FY2024": {
+              "value": 0.34,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FRE increased 34% to $276.5M for FY2025."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-002",
+          "metric_name": "EPS GAAP",
+          "values": {
+            "FY2024": {
+              "value": 5.41,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "GAAP EPS $5.41 on $217.4M of GAAP net income for FY2025."
+            },
+            "FY2023": {
+              "value": 3.69,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "GAAP EPS $3.69 on $140.9M of GAAP net income for FY2024."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-001",
+          "metric_name": "DE per share (non-GAAP EPS proxy)",
+          "values": {
+            "FY2024": {
+              "value": 5.04,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Non-GAAP EPS $5.04. Adjusted net income $273.7M for FY2025. 29% YoY growth."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "metric_name": "Management fee rate (bps)",
+          "values": {
+            "FY2024": {
+              "value": 65,
+              "unit": "bps",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Management fee rate approximately 0.65% (65 bps) in FY2025, up from 0.63% (63 bps) in FY2024."
+            },
+            "FY2023": {
+              "value": 63,
+              "unit": "bps",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "0.63% (63 bps) in FY2024."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-018",
+          "metric_name": "Headcount to FEAUM ratio",
+          "values": {
+            "FY2024": {
+              "value": 9.7,
+              "unit": "employees_per_USD_bn_FEAUM",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "~700 employees / $72B FEAUM = 9.7 employees per $B FEAUM."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-019",
+          "metric_name": "FEAUM per employee",
+          "values": {
+            "FY2024": {
+              "value": 102.9,
+              "unit": "USD_millions_per_employee",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "$72B / 700 = $102.9M per employee."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-015",
+      "firm_name": "Intermediate Capital Group plc",
+      "ticker": "ICP",
+      "reporting_currency": "GBP",
+      "fiscal_year_end": "March 31",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-004",
+          "metric_name": "Fee-Earning AUM (FEAUM)",
+          "values": {
+            "FY2024": {
+              "value": 75.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Fee-earning AUM $75B as of 31 March 2025 (ICG FY2025). Already reported in USD. Up 8% YoY. 5-year annualised growth of 14%.",
+              "period_note": "ICG fiscal year ends March 31. FY2025 mapped to calendar year 2024."
+            },
+            "FY2023": {
+              "value": 70.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Fee-earning AUM $70B as of 31 March 2024 (ICG FY2024). Up 11% YoY."
+            },
+            "FY2022": {
+              "value": 62.8,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Fee-earning AUM $62.8B as of 31 March 2023 (ICG FY2023). Up 10% YoY."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "metric_name": "Total AUM",
+          "values": {
+            "FY2024": {
+              "value": 112.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM $112B as of 31 March 2025 (ICG FY2025)."
+            },
+            "FY2023": {
+              "value": 98.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM $98B as of 31 March 2024 (ICG FY2024)."
+            },
+            "FY2022": {
+              "value": 80.2,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM $80.2B as of 31 March 2023 (ICG FY2023)."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "metric_name": "FEAUM YoY growth %",
+          "values": {
+            "FY2024": {
+              "value": 0.071,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FEAUM grew ~7.1% ($75B vs $70B) for FY2025."
+            },
+            "FY2023": {
+              "value": 0.115,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FEAUM grew 11.5% ($70B vs $62.8B) for FY2024."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "metric_name": "FRE margin (FMC operating margin as proxy)",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "ICG does not report FRE. FMC operating margin was 57.5% in FY2023 (FMC profit £310.7M / FMC revenue £539.9M). Management fees £604M in FY2025 grew at 19% annualised over 5 years vs operating expenses at 12%, showing positive operating leverage.",
+              "missing_reason": "ICG does not disclose FRE; FMC operating margin used as proxy where available"
+            },
+            "FY2022": {
+              "value": 0.575,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FMC operating margin 57.5% for FY2023 (ended March 2023). FMC profit £310.7M / FMC revenue £539.9M."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-014",
+          "metric_name": "FRE growth YoY % (management fee growth used as proxy)",
+          "values": {
+            "FY2024": {
+              "value": 0.195,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Management fees grew 19.5% (£604M vs £505M) for FY2025 vs FY2024."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-002",
+          "metric_name": "EPS GAAP",
+          "values": {
+            "FY2022": {
+              "value": 0.995,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Group EPS 80.3p for FY2023 (ended March 2023). Converted: 80.3p × GBP/USD 1.244 = $0.995.",
+              "fx_conversion": {
+                "local_currency_value": 0.803,
+                "local_currency": "GBP",
+                "fx_rate": 1.244,
+                "rate_type": "period-average",
+                "rate_date": "FY2023"
+              }
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "metric_name": "Performance fee share of total revenue %",
+          "values": {
+            "FY2024": {
+              "value": 0.125,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Performance fees £86.2M / (management fees £604M + performance fees £86.2M) = 12.5% for FY2025."
+            },
+            "FY2023": {
+              "value": 0.127,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Performance fees £73.7M / (£505M + £73.7M) = 12.7% for FY2024."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-009",
+          "metric_name": "Fundraising as % of AUM",
+          "values": {
+            "FY2024": {
+              "value": 0.214,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "$24B fundraising in FY2025 / beginning AUM $112B = 21.4%. Notable closes: world's largest GP-led secondaries fund (Strategic Equity V), Europe's largest direct lending fundraising (SDP V)."
+            },
+            "FY2023": {
+              "value": 0.133,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "$13.0B fundraising in FY2024 / beginning AUM $98B = 13.3%."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-016",
+      "firm_name": "Bridgepoint Group plc",
+      "ticker": "BPT",
+      "reporting_currency": "GBP",
+      "fiscal_year_end": "December 31",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-004",
+          "metric_name": "Fee-Earning AUM (FEAUM)",
+          "values": {
+            "FY2024": {
+              "value": 40.1,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Fee Paying AUM €38.7B × EUR/USD 1.035 = $40.1B. 49% increase vs FY2023 (€26.0B). Driven by organic growth + ECP acquisition.",
+              "fx_conversion": {
+                "local_currency_value": 38.7,
+                "local_currency": "EUR",
+                "fx_rate": 1.035,
+                "rate_type": "period-end",
+                "rate_date": "2024-12-31"
+              }
+            },
+            "FY2023": {
+              "value": 28.1,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Fee Paying AUM €26.0B × EUR/USD ~1.081 = $28.1B.",
+              "fx_conversion": {
+                "local_currency_value": 26.0,
+                "local_currency": "EUR",
+                "fx_rate": 1.081,
+                "rate_type": "period-end",
+                "rate_date": "2023-12-31"
+              }
+            },
+            "FY2022": {
+              "value": 24.6,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Fee Paying AUM €23.4B × EUR/USD ~1.053 = $24.6B.",
+              "fx_conversion": {
+                "local_currency_value": 23.4,
+                "local_currency": "EUR",
+                "fx_rate": 1.053,
+                "rate_type": "period-end",
+                "rate_date": "2022-12-31"
+              }
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "metric_name": "Total AUM",
+          "values": {
+            "FY2024": {
+              "value": 75.6,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM $75.6B. 69% increase including ECP acquisition, 4% organic growth."
+            },
+            "FY2023": {
+              "value": 44.7,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM $44.7B (€40.5B × EUR/USD ~1.081)."
+            },
+            "FY2022": {
+              "value": 40.0,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM ~$40.0B (€38.0B × EUR/USD ~1.053)."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "metric_name": "FEAUM YoY growth %",
+          "values": {
+            "FY2024": {
+              "value": 0.488,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Fee Paying AUM +48.8% (€38.7B vs €26.0B) in EUR terms; includes ECP acquisition impact."
+            },
+            "FY2023": {
+              "value": 0.111,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Fee Paying AUM +11.1% (€26.0B vs €23.4B). Primarily due to additional BE VII commitments."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "metric_name": "FRE margin (underlying FRE margin)",
+          "values": {
+            "FY2022": {
+              "value": 0.311,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Underlying FRE margin 31.1% in 2022. FRE increased 55.5% in 2022."
+            },
+            "FY2023": {
+              "value": 0.34,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "Underlying FRE margin approximately 34% in 2023 (H1 2023 disclosure)."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-002",
+          "metric_name": "EPS GAAP (underlying)",
+          "values": {
+            "FY2024": {
+              "value": 0.3217,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Pro forma underlying basic EPS 25.7p × GBP/USD 1.2516 = $0.322.",
+              "fx_conversion": {
+                "local_currency_value": 0.257,
+                "local_currency": "GBP",
+                "fx_rate": 1.2516,
+                "rate_type": "period-end",
+                "rate_date": "2024-12-31"
+              }
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "metric_name": "Performance fee share of total revenue %",
+          "values": {
+            "FY2023": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "PRE £55M in 2023 (2022: £65M). As a share of total underlying revenue: PRE £55M / (management fees £265M + PRE £55M) = ~17%.",
+              "missing_reason": "Exact total revenue composition not available to compute precise percentage"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-017",
+      "firm_name": "Vinci Compass Investments Ltd.",
+      "ticker": "VINP",
+      "reporting_currency": "BRL",
+      "fiscal_year_end": "December 31",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-001",
+          "metric_name": "DE per share (FRE per share as proxy)",
+          "values": {
+            "FY2024": {
+              "value": 0.824,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "FRE R$4.42 per share. Converting: R$4.42 × BRL/USD 0.1863 = $0.824. Full year FRE R$248.4M.",
+              "fx_conversion": {
+                "local_currency_value": 4.42,
+                "local_currency": "BRL",
+                "fx_rate": 0.1863,
+                "rate_type": "period-average",
+                "rate_date": "2024"
+              }
+            },
+            "FY2023": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "FRE per share data for pre-Compass Vinci Partners FY2023 not directly comparable due to the combination.",
+              "missing_reason": "Pre-combination entity; not directly comparable"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-004",
+          "metric_name": "Fee-Earning AUM (FEAUM)",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Vinci Compass does not separately disclose FEAUM. Total AUM R$327B (~$53.5B at period-end rate). The Compass combination in 2024 makes YoY comparisons difficult.",
+              "missing_reason": "FEAUM not separately disclosed; total AUM used as proxy"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "metric_name": "Total AUM",
+          "values": {
+            "FY2024": {
+              "value": 53.5,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Total AUM R$327B at end of Q4 2024. Converting: R$327B × BRL/USD 0.1637 = $53.5B.",
+              "fx_conversion": {
+                "local_currency_value": 327.0,
+                "local_currency": "BRL",
+                "fx_rate": 0.1637,
+                "rate_type": "period-end",
+                "rate_date": "2024-12-31",
+                "fx_delta": "BRL depreciated 21.5% vs USD in 2024, significantly impacting USD-reported figures"
+              }
+            },
+            "FY2023": {
+              "value": 13.8,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "Vinci Partners (pre-Compass) AUM R$69B at end of 2023. Converting: R$69B × BRL/USD ~0.2003 = $13.8B. Not comparable to 2024 due to Compass combination.",
+              "fx_conversion": {
+                "local_currency_value": 69.0,
+                "local_currency": "BRL",
+                "fx_rate": 0.2003,
+                "rate_type": "period-end",
+                "rate_date": "2023-12-31"
+              }
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "metric_name": "FRE margin",
+          "values": {
+            "FY2024": {
+              "value": 0.30,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "FRE margin expected to be in the low 30% range for 2025; 2024 FRE margins likely similar or slightly lower as the combined platform scales."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-014",
+          "metric_name": "FRE growth YoY %",
+          "values": {
+            "FY2024": {
+              "value": 0.19,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "FRE grew ~19% YoY on absolute basis and ~15% on per-share basis for FY2024 (R$248.4M vs ~R$209M in FY2023). Note: comparability affected by Compass combination."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-012",
+          "metric_name": "Credit % of AUM",
+          "values": {
+            "FY2024": {
+              "value": 0.11,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "Credit AUM R$36B (+25% YoY) out of total R$327B = ~11%. Credit is one of the company's fastest-growing segments."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-023",
+          "metric_name": "Constant currency revenue growth",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "BRL depreciated 21.5% vs USD in 2024. Negative FX impact of ~R$16M on adjusted distributable earnings. Constant currency growth significantly higher than reported USD growth.",
+              "missing_reason": "Constant currency revenue growth not separately disclosed"
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-018",
+          "metric_name": "Headcount to FEAUM ratio",
+          "values": {
+            "FY2024": {
+              "value": 11.2,
+              "unit": "employees_per_USD_bn_AUM",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "~600 employees (combined platform) / total AUM $53.5B = 11.2 employees per $B AUM."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firm_id": "FIRM-018",
+      "firm_name": "Tikehau Capital S.C.A.",
+      "ticker": "TKO",
+      "reporting_currency": "EUR",
+      "fiscal_year_end": "December 31",
+      "metrics": [
+        {
+          "metric_id": "MET-VD-004",
+          "metric_name": "Fee-Earning AUM (FEAUM)",
+          "values": {
+            "FY2024": {
+              "value": 41.2,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Fee-paying AUM €39.8B × EUR/USD 1.035 = $41.2B. Up 14% YoY.",
+              "fx_conversion": {
+                "local_currency_value": 39.8,
+                "local_currency": "EUR",
+                "fx_rate": 1.035,
+                "rate_type": "period-end",
+                "rate_date": "2024-12-31"
+              }
+            },
+            "FY2023": {
+              "value": 37.7,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Fee-paying AUM €34.9B × EUR/USD ~1.081 = $37.7B.",
+              "fx_conversion": {
+                "local_currency_value": 34.9,
+                "local_currency": "EUR",
+                "fx_rate": 1.081,
+                "rate_type": "period-end",
+                "rate_date": "2023-12-31"
+              }
+            },
+            "FY2022": {
+              "value": 32.6,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "Fee-paying AUM ~€31B × EUR/USD ~1.053 = $32.6B.",
+              "fx_conversion": {
+                "local_currency_value": 31.0,
+                "local_currency": "EUR",
+                "fx_rate": 1.053,
+                "rate_type": "period-end",
+                "rate_date": "2022-12-31"
+              }
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-005",
+          "metric_name": "Total AUM",
+          "values": {
+            "FY2024": {
+              "value": 51.3,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Group AUM €49.6B × EUR/USD 1.035 = $51.3B. Up 15% YoY (€49.0B asset management + additional balance sheet).",
+              "fx_conversion": {
+                "local_currency_value": 49.6,
+                "local_currency": "EUR",
+                "fx_rate": 1.035,
+                "rate_type": "period-end",
+                "rate_date": "2024-12-31"
+              }
+            },
+            "FY2023": {
+              "value": 46.6,
+              "unit": "USD_billions",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Group AUM €43.1B × EUR/USD ~1.081 = $46.6B."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-006",
+          "metric_name": "FEAUM YoY growth %",
+          "values": {
+            "FY2024": {
+              "value": 0.14,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Fee-paying AUM grew 14% YoY (€39.8B vs €34.9B) in EUR terms."
+            },
+            "FY2023": {
+              "value": 0.126,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "Fee-paying AUM grew ~12.6% YoY (€34.9B vs ~€31B)."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-013",
+          "metric_name": "FRE margin (Core FRE margin)",
+          "values": {
+            "FY2024": {
+              "value": 0.39,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Core FRE margin 39% for FY2024. Core FRE €132M on management fees €337M. H2 2024 FRE margin improved to 42%."
+            },
+            "FY2023": {
+              "value": 0.39,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Core FRE margin 39% for FY2023. Core FRE €123M."
+            },
+            "FY2022": {
+              "value": 0.37,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Core FRE margin 37% for FY2022. Core FRE ~€109M."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-014",
+          "metric_name": "FRE growth YoY %",
+          "values": {
+            "FY2024": {
+              "value": 0.073,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Core FRE grew ~7.3% YoY (€132M vs €123M)."
+            },
+            "FY2023": {
+              "value": 0.128,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Core FRE grew 12.8% YoY (€123M vs ~€109M)."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-016",
+          "metric_name": "Management fee rate (bps)",
+          "values": {
+            "FY2024": {
+              "value": 90,
+              "unit": "bps",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Average management fee rate 0.90% (90 bps) in 2024. Down from 0.94% (94 bps) in 2023."
+            },
+            "FY2023": {
+              "value": 94,
+              "unit": "bps",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Average management fee rate 0.94% (94 bps) in 2023."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-017",
+          "metric_name": "Performance fee share of total revenue %",
+          "values": {
+            "FY2024": {
+              "value": 0.040,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "high",
+              "extraction_notes": "Performance-related revenues €14M / (management fees €337M + performance €14M) = 4.0%. Low performance fee dependency."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-002",
+          "metric_name": "EPS GAAP",
+          "values": {
+            "FY2024": {
+              "value": 1.02,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "third-party-analyst",
+              "confidence": "medium",
+              "extraction_notes": "EPS approximately $0.94 per share (USD). Net income €156M. Share count ~166M shares.",
+              "fx_conversion": {
+                "local_currency_value": 0.94,
+                "local_currency": "EUR",
+                "fx_rate": 1.0822,
+                "rate_type": "period-average",
+                "rate_date": "2024"
+              }
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-018",
+          "metric_name": "Headcount to FEAUM ratio",
+          "values": {
+            "FY2024": {
+              "value": 18.5,
+              "unit": "employees_per_USD_bn_FEAUM",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "~762 employees (H1 2024) / $41.2B FEAUM = 18.5 employees per $B FEAUM. Tikehau has a relatively high headcount-to-AUM ratio reflecting its investment-heavy model."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-019",
+          "metric_name": "FEAUM per employee",
+          "values": {
+            "FY2024": {
+              "value": 54.1,
+              "unit": "USD_millions_per_employee",
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "medium",
+              "extraction_notes": "$41.2B / 762 = $54.1M per employee."
+            }
+          }
+        },
+        {
+          "metric_id": "MET-VD-010",
+          "metric_name": "Asset class HHI",
+          "values": {
+            "FY2024": {
+              "value": null,
+              "currency": "USD",
+              "source_id": "WebSearch",
+              "bias_tag": "company-produced",
+              "confidence": "low",
+              "extraction_notes": "Tikehau operates across Credit, Real Assets, Private Equity, and Capital Markets Strategies. Credit is the largest segment. Exact percentage breakdown not available.",
+              "missing_reason": "Segment-level AUM not disclosed in sufficient detail"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "coverage_summary": {
+    "total_data_points_attempted": 198,
+    "total_data_points_collected": 126,
+    "total_data_points_null": 72,
+    "coverage_rate": 0.636,
+    "coverage_by_firm": {
+      "FIRM-010_CVC": {"collected": 11, "null": 11, "notes": "IPO in April 2024 limits historical data. Pre-IPO financials not publicly available. MFE used as FRE equivalent."},
+      "FIRM-011_MAN": {"collected": 16, "null": 6, "notes": "Hedge fund business model differs from PE/alt manager convention. No FEAUM or FRE separately reported. Core EPS used as DE proxy."},
+      "FIRM-012_STEP": {"collected": 11, "null": 7, "notes": "March fiscal year-end requires mapping. Good coverage on FEAUM and AUM. FRE/ANI data available for FY2023."},
+      "FIRM-013_PGHN": {"collected": 14, "null": 4, "notes": "Swiss-listed. Reports financials in CHF, AUM in USD. No FEAUM disclosure. EBIT margin used as FRE margin proxy. Cross-currency calculation complicates fee rate."},
+      "FIRM-014_HLNE": {"collected": 15, "null": 3, "notes": "March fiscal year-end. Strong data coverage. Reports FEAUM, FRE, and non-GAAP EPS clearly."},
+      "FIRM-015_ICP": {"collected": 14, "null": 4, "notes": "March fiscal year-end. Reports AUM in USD, financials in GBP. FMC operating margin used as FRE proxy. No standalone FRE metric."},
+      "FIRM-016_BPT": {"collected": 13, "null": 5, "notes": "Fee-paying AUM in EUR, financials in GBP. ECP acquisition in H2 2024 creates significant pro forma adjustments. Limited organic FRE data."},
+      "FIRM-017_VINP": {"collected": 8, "null": 14, "notes": "BRL-reporting LatAm firm. Compass combination in 2024 breaks YoY comparability. Significant FX headwind (BRL -21.5% vs USD in 2024)."},
+      "FIRM-018_TKO": {"collected": 14, "null": 8, "notes": "EUR-reporting. Good coverage on fee-paying AUM, FRE margin, and fee rate. Core FRE used as primary profitability metric."}
+    },
+    "key_observations": [
+      "CVC (FIRM-010) and Vinci Compass (FIRM-017) have the most data gaps due to recent IPO/combination respectively",
+      "Man Group (FIRM-011) uses a hedge fund business model that does not map cleanly to alt-manager conventions (no FEAUM, no FRE)",
+      "Non-USD reporters (CVC, Bridgepoint, ICG, Partners Group, Tikehau, Vinci Compass) require FX conversions that introduce noise",
+      "Firms with March fiscal year-ends (StepStone, Hamilton Lane, ICG) are mapped to the most recent complete fiscal year",
+      "Hamilton Lane (FIRM-014) has the cleanest data coverage among Tier 2 firms due to clear US alt-manager style reporting",
+      "Partners Group (FIRM-013) has exceptionally high operating margins (61%+ EBIT) reflecting its scaled direct investment model",
+      "BRL depreciation in 2024 (-21.5%) significantly distorts Vinci Compass's USD-denominated metrics"
+    ]
+  }
+}

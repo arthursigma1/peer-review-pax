@@ -1,0 +1,901 @@
+{
+  "strategic_actions": [
+    {
+      "action_id": "ACT-VD-001",
+      "firm_id": "FIRM-001",
+      "action_type": "M&A",
+      "description": "Acquisition of AirTrunk, one of Asia-Pacific's largest data center operators, in partnership with Canada Pension Plan Investment Board for approximately $16 billion.",
+      "stated_rationale": "Expand global data center portfolio to meet surging AI infrastructure demand. Complements existing QTS platform and positions Blackstone as the world's largest owner of data centers.",
+      "observable_metric_impact": "BREIT data center allocation grew to 20.4% of real estate asset value. QTS leased capacity grew 14x since Blackstone's 2021 acquisition. BREIT deployed $5.8B in pre-leased data center developments in 2025.",
+      "timeline": {"announced": "2024-06", "closed": "2024-12", "operational": "2025-01"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of AirTrunk operations into Blackstone's global data center management platform alongside QTS", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "data_reporting_stack": {"description": "Consolidation of AirTrunk financial reporting into BREIT and Blackstone fund structures", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "Cross-portfolio data center performance benchmarking between QTS and AirTrunk assets", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Fund administration for co-investment structure with CPPIB", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "Multi-jurisdictional regulatory compliance across Asia-Pacific markets (Australia, Japan, Singapore, Malaysia)", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Retention of AirTrunk management team and integration with Blackstone infrastructure operations group", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "geographic_integration": {"description": "Asia-Pacific presence expansion across Australia, Japan, Singapore, and Malaysia data center markets", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-002",
+      "firm_id": "FIRM-001",
+      "action_type": "product-launch",
+      "description": "Planned launch of a publicly traded AI data center acquisition company, offering retail and institutional investors a vehicle to invest in built and leased data centers.",
+      "stated_rationale": "Democratize AI infrastructure investment access for retail investors. Create permanent capital vehicle to aggregate data center assets at scale.",
+      "observable_metric_impact": "Structure being finalized as of early 2026. Expected to raise from sovereign wealth funds initially, then broaden to retail. Regulatory approval pending.",
+      "timeline": {"announced": "2026-02", "closed": "2026-06", "operational": "2026-06"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Public company reporting systems, SEC compliance, board governance for new listed vehicle", "source_bias_tag": "journalist", "evidence_class": "corroborated"},
+        "data_reporting_stack": {"description": "Real-time NAV calculation, quarterly SEC reporting for public company", "source_bias_tag": "journalist", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "Valuation methodology for data center assets in public vehicle", "source_bias_tag": "journalist", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Transfer agent, registrar, and public company fund administration", "source_bias_tag": "journalist", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "SEC registration, potential REIT qualification, regulatory approval", "source_bias_tag": "journalist", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Dedicated management team for public vehicle operations", "source_bias_tag": "journalist", "evidence_class": "inferred"},
+        "geographic_integration": {"description": "Global data center acquisition capability targeting built and leased assets", "source_bias_tag": "journalist", "evidence_class": "inferred"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-003",
+      "firm_id": "FIRM-001",
+      "action_type": "distribution-shift",
+      "description": "Expansion of private wealth channel to approximately $290 billion in AUM, tripling over five years. Launch of BXPE (Blackstone Private Equity Strategies Fund) alongside existing BREIT and BXSL.",
+      "stated_rationale": "Private wealth represents an underpenetrated $80+ trillion addressable market. Perpetual capital vehicles generate stable, predictable management fees.",
+      "observable_metric_impact": "Private wealth AUM reached ~$290B (tripled in 5 years). Perpetual capital at 46% of fee-earning AUM ($444.8B). BREIT stabilized with $60B+ AUM.",
+      "timeline": {"announced": "2023-01", "closed": "2023-06", "operational": "2025-12"},
+      "source_citation": "PS-VD-002",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of BXPE distribution infrastructure with wirehouses and RIA platforms", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Monthly NAV reporting for non-traded vehicles, retail-grade investor communications", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Suitability review processes for retail distribution compliance", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Transfer agent operations for retail shareholder servicing at scale", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "SEC-registered fund compliance, suitability rules, prospectus requirements", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Dedicated private wealth sales team expansion across wirehouses and independent channels", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "International private wealth distribution expansion in Europe and Asia", "source_bias_tag": "company-produced", "evidence_class": "corroborated"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-004",
+      "firm_id": "FIRM-002",
+      "action_type": "M&A",
+      "description": "Acquisition of remaining 37% stake in Global Atlantic Financial Group for approximately $2.7 billion in all-cash transaction, bringing KKR's ownership to 100%.",
+      "stated_rationale": "Full ownership of Global Atlantic unlocks complete integration of insurance capital with KKR's asset management platform. Insurance liabilities provide permanent, long-duration capital for credit and real asset strategies.",
+      "observable_metric_impact": "Global Atlantic AUM reached $197B. Insurance-linked capital now $290-300B (including third parties). Insurance segment enables hundreds of millions in annual GA-related capital markets fees.",
+      "timeline": {"announced": "2023-11", "closed": "2024-01", "operational": "2024-01"},
+      "source_citation": "PS-VD-006",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Full systems integration of Global Atlantic investment management with KKR's asset management platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Consolidated financial reporting of insurance segment within KKR's earnings", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Insurance asset-liability matching and actuarial reconciliation with investment portfolio", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Insurance policy administration and annuity servicing infrastructure", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "State insurance regulatory compliance across all jurisdictions, NAIC capital requirements", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Retention of Global Atlantic management team; alignment of compensation structures with KKR", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Integration of Global Atlantic's US insurance operations into KKR's global platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-005",
+      "firm_id": "FIRM-002",
+      "action_type": "M&A",
+      "description": "Agreement to acquire Arctos Partners, the largest institutional investor in professional sports franchises, for $1.4 billion initial consideration plus up to $550 million in performance-linked equity.",
+      "stated_rationale": "Establish KKR Solutions as a new multi-asset class platform encompassing sports, GP solutions, and secondaries. Sports franchises are uncorrelated, appreciating assets with growing media revenue.",
+      "observable_metric_impact": "Creates KKR Solutions vertical with $100B+ AUM ambitions. Adds sports franchise investment capability and secondaries platform to KKR's offering.",
+      "timeline": {"announced": "2026-01", "closed": "2026-06", "operational": "2026-06"},
+      "source_citation": "PS-VD-006",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of Arctos investment management systems with KKR's infrastructure; formation of KKR Solutions vertical", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Sports franchise valuation methodology and reporting integration with KKR's financial statements", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "Sports franchise valuation reconciliation across professional leagues with different financial structures", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Fund administration for sports-focused investment vehicles and GP stakes", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "League-specific ownership rules and approval processes (NFL, NBA, MLB, NHL, MLS)", "source_bias_tag": "journalist", "evidence_class": "corroborated"},
+        "hiring_org_redesign": {"description": "Ian Charles to lead KKR Solutions; retention of Arctos investment team with vesting through 2033", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Dallas (Arctos HQ) integration with KKR's New York-based operations", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-006",
+      "firm_id": "FIRM-002",
+      "action_type": "product-launch",
+      "description": "Launch of KKR Global Infrastructure Fund V targeting $20 billion, with approximately $10 billion raised by mid-2024. Investment period June 2024 through July 2030.",
+      "stated_rationale": "Capitalize on global infrastructure demand driven by digitalization, decarbonization, and deglobalization. Infrastructure franchise has grown to $95B+ AUM over 16 years.",
+      "observable_metric_impact": "Infrastructure AUM exceeded $95B. Fund V at ~$10B raised by mid-2024. Prior fund track record supports significant step-up from predecessor.",
+      "timeline": {"announced": "2024-01", "closed": "2024-12", "operational": "2024-06"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Fundraising platform and LP relationship management for flagship infrastructure fund", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Infrastructure asset performance reporting across sectors (energy, transport, digital)", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Portfolio valuation across multi-sector infrastructure assets globally", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Fund administration for $20B vehicle with global LP base", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "Multi-jurisdictional regulatory compliance for global infrastructure investments", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Infrastructure team expansion to support larger fund and broader geographic scope", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "geographic_integration": {"description": "Global infrastructure origination capabilities across Americas, Europe, and Asia-Pacific", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-007",
+      "firm_id": "FIRM-003",
+      "action_type": "M&A",
+      "description": "Launch of ATLAS SP Partners as a standalone credit firm focused on asset-backed financing and capital markets solutions, following acquisition of Credit Suisse Securitized Products Group.",
+      "stated_rationale": "Build the largest origination platform in the industry. ATLAS is the largest of 23 origination platforms backed by Apollo, creating proprietary deal flow in investment-grade asset-backed credit.",
+      "observable_metric_impact": "ATLAS became one of 23 origination platforms with ~$8B equity invested and ~4,000 employees across all platforms. Total origination reached $220B+ in 2024.",
+      "timeline": {"announced": "2023-02", "closed": "2023-06", "operational": "2023-06"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Carve-out of Credit Suisse securitized products systems and integration into Apollo-managed platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Asset-backed securities origination tracking and portfolio management reporting", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Credit risk assessment and securitization quality controls for investment-grade origination", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Fund administration and capital markets execution for securitized products", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "SEC and banking regulatory compliance for securitization activities; risk retention rules", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Transition of Credit Suisse securitized products team to standalone ATLAS entity", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "US-focused operations with global capital markets connectivity", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-008",
+      "firm_id": "FIRM-003",
+      "action_type": "distribution-shift",
+      "description": "First-of-its-kind $25 billion private credit and direct lending partnership with Citigroup, combining Citi's banking client reach with Apollo's scaled capital base.",
+      "stated_rationale": "Leverage Citi's origination and distribution network to deploy Apollo's credit capital at scale. Addresses bank disintermediation trend where traditional banks are retreating from corporate lending.",
+      "observable_metric_impact": "$25B commitment between the two firms. Positions Apollo to originate directly through Citi's banking relationships. Model for future bank-alternative manager partnerships.",
+      "timeline": {"announced": "2024-09", "closed": "2024-09", "operational": "2024-10"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of Citi's loan origination pipeline with Apollo's credit underwriting and portfolio management systems", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Joint deal pipeline tracking and credit performance reporting across Citi-originated and Apollo-managed assets", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "Harmonized credit underwriting standards between Citi's banking criteria and Apollo's investment standards", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Loan servicing and administration for direct lending portfolio across both platforms", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "Regulatory compliance for bank-asset manager partnership structure; conflict of interest management", "source_bias_tag": "regulatory-filing", "evidence_class": "corroborated"},
+        "hiring_org_redesign": {"description": "Dedicated joint teams for deal origination, underwriting, and portfolio management", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "geographic_integration": {"description": "North American focus leveraging Citi's corporate banking client network", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-009",
+      "firm_id": "FIRM-003",
+      "action_type": "product-launch",
+      "description": "Investment in ARS, a guaranteed lifetime income solutions and technology provider for the defined contribution (DC) market, through Apollo, Athene, and Motive Ventures.",
+      "stated_rationale": "Expand Athene's retirement services into the $10T+ defined contribution market. ARS technology enables guaranteed income offerings within 401(k) plans, a largely underpenetrated channel.",
+      "observable_metric_impact": "Opens pathway for Athene products in DC plans, a market segment significantly larger than the defined benefit market where Athene already operates.",
+      "timeline": {"announced": "2025-03", "closed": "2025-03", "operational": "2025-06"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of ARS technology platform with Athene's annuity product infrastructure for DC market delivery", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "DC plan recordkeeping integration and participant-level reporting", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "Guaranteed income product validation and actuarial controls for DC market", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "DC plan administration and participant servicing infrastructure", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "ERISA compliance, DOL fiduciary rules for guaranteed income products in 401(k) plans", "source_bias_tag": "regulatory-filing", "evidence_class": "corroborated"},
+        "hiring_org_redesign": {"description": "Dedicated DC market team within Athene and Apollo", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "geographic_integration": {"description": "US-focused; DC market is predominantly domestic", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-010",
+      "firm_id": "FIRM-004",
+      "action_type": "M&A",
+      "description": "Acquisition of GCP International (GLP Capital Partners international business, excluding Greater China) for approximately $3.7 billion in cash and $1.9 billion in Ares stock.",
+      "stated_rationale": "Gain immediate scale in Japanese real estate ($18B AUM), digital infrastructure, and global real assets. $11B of acquired AUM in perpetual capital vehicles provides fee stability.",
+      "observable_metric_impact": "Real Assets AUM expanded significantly. Japan presence established with $18B AUM. Perpetual capital increased through $11B in open-end vehicles. Ares positioned to capitalize on AI infrastructure demand.",
+      "timeline": {"announced": "2024-10", "closed": "2025-03", "operational": "2025-03"},
+      "source_citation": "PS-VD-013",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of GCP International's investment management, asset management, and reporting systems into Ares Real Assets platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Consolidation of $18B in Japanese real estate AUM reporting into Ares financial statements", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Real estate and infrastructure asset valuation harmonization across GCP International and Ares portfolios", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Integration of perpetual capital vehicle administration for $11B in open-end structures", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "Multi-jurisdictional regulatory compliance (Japan FSA, European regulators) for acquired operations", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Integration of GCP International team into Ares Real Assets; Japan office establishment", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Japan market entry as major geographic expansion; broader Asia-Pacific real assets footprint", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-011",
+      "firm_id": "FIRM-004",
+      "action_type": "M&A",
+      "description": "Acquisition of BlueCove, a systematic credit manager, with AUM growing from $1.8 billion to $5.5 billion since initial minority stake in 2023. Full acquisition completed October 2025.",
+      "stated_rationale": "Integrate AI and data-driven credit strategies into Ares platform. BlueCove becomes Ares Systematic Credit strategy, applying technology to deliver differentiated credit returns.",
+      "observable_metric_impact": "AUM grew from $1.8B to $5.5B during partnership period. Creates new Ares Systematic Credit vertical. Positions Ares at intersection of AI/technology and credit investing.",
+      "timeline": {"announced": "2025-10", "closed": "2025-12", "operational": "2025-12"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of BlueCove's systematic/quantitative trading systems with Ares Credit Group infrastructure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Incorporation of systematic credit strategy reporting into Ares fund-level disclosures", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "Model validation and backtesting controls for systematic credit strategies", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Fund administration for systematic credit vehicles", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "Regulatory compliance for algorithmic/systematic trading strategies in credit markets", "source_bias_tag": "regulatory-filing", "evidence_class": "inferred"},
+        "hiring_org_redesign": {"description": "Retention of BlueCove quantitative research and engineering team within Ares", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "London-based BlueCove operations integrated into Ares global credit platform", "source_bias_tag": "company-produced", "evidence_class": "inferred"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-012",
+      "firm_id": "FIRM-004",
+      "action_type": "geographic-expansion",
+      "description": "Launch of Ares Asia Direct Lending Fund I targeting Australia and New Zealand, providing first lien, senior secured loans. Extension of direct lending franchise from US and Europe into Asia-Pacific.",
+      "stated_rationale": "Bank disintermediation in Asia-Pacific creates opportunity similar to US and European middle markets. Direct lending remains underpenetrated in APAC relative to developed markets.",
+      "observable_metric_impact": "Asia-Pacific credit capabilities expanded through SSG Capital (2020), AMP Capital infrastructure debt (2022), and Crescent Point PE (2023). Asia Direct Lending Fund targets A/NZ middle market.",
+      "timeline": {"announced": "2023-01", "closed": "2023-12", "operational": "2023-06"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Extension of Ares direct lending origination and portfolio management systems to Asia-Pacific", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "data_reporting_stack": {"description": "Credit risk and portfolio reporting adapted for Australian and New Zealand borrower characteristics", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "Credit underwriting standards adapted for A/NZ legal and regulatory frameworks", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Fund administration for APAC-focused direct lending vehicle", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "Australian and New Zealand financial services regulatory compliance (ASIC, FMA)", "source_bias_tag": "regulatory-filing", "evidence_class": "inferred"},
+        "hiring_org_redesign": {"description": "APAC credit team expansion building on SSG Capital, AMP Capital, and Crescent Point acquisitions", "source_bias_tag": "company-produced", "evidence_class": "corroborated"},
+        "geographic_integration": {"description": "Australia and New Zealand market entry for direct lending; builds on existing APAC infrastructure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-013",
+      "firm_id": "FIRM-005",
+      "action_type": "product-launch",
+      "description": "Launch of Brookfield Artificial Intelligence Infrastructure Fund (BAIIF) with $10 billion equity target, $5 billion already committed from Brookfield, NVIDIA, and KIA. Program targets $100 billion in AI infrastructure assets.",
+      "stated_rationale": "Position Brookfield as the dominant global owner-operator of AI infrastructure across data centers, power generation, and connectivity. Leverage operational expertise in infrastructure to capture AI capex cycle.",
+      "observable_metric_impact": "$5B committed at launch from marquee investors. $100B acquisition target across AI infrastructure value chain. Positions Brookfield at center of $1T+ global AI infrastructure buildout.",
+      "timeline": {"announced": "2025-03", "closed": "2025-06", "operational": "2025-06"},
+      "source_citation": "PS-VD-016",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "AI infrastructure asset management systems spanning data centers, power, and connectivity", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Infrastructure asset performance reporting for AI-specific metrics (compute capacity, power utilization, uptime)", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "AI infrastructure asset valuation and performance benchmarking", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Fund administration for $10B vehicle with sovereign/institutional investor base", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "Multi-jurisdictional compliance for global AI infrastructure assets (US, Sweden, France, Qatar)", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Dedicated AI infrastructure investment and operations team", "source_bias_tag": "company-produced", "evidence_class": "corroborated"},
+        "geographic_integration": {"description": "Global: AI infrastructure programs in Sweden (95B SEK), France, Qatar, and US", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-014",
+      "firm_id": "FIRM-005",
+      "action_type": "M&A",
+      "description": "Agreement to acquire remaining 26% stake in Oaktree Capital Management for approximately $3 billion, bringing Brookfield's ownership to 100%.",
+      "stated_rationale": "Full ownership of Oaktree enables complete integration of credit platform. Supports target of doubling credit fee-bearing AUM from $254B to $640B by 2030.",
+      "observable_metric_impact": "Credit segment already largest contributor to fee-bearing capital at $252B. Full ownership enables strategic alignment for credit platform expansion to $640B by 2030.",
+      "timeline": {"announced": "2025-06", "closed": "2025-12", "operational": "2025-12"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Full integration of Oaktree's investment management and operations with Brookfield credit platform", "source_bias_tag": "company-produced", "evidence_class": "corroborated"},
+        "data_reporting_stack": {"description": "Consolidated reporting of Oaktree strategies within Brookfield financial statements", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Harmonized credit risk assessment across Oaktree's distressed/special situations and Brookfield's investment-grade strategies", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Consolidated fund administration across Oaktree and Brookfield credit vehicles", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "SEC/regulatory approvals for ownership change; consolidation of compliance functions", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Retention of Oaktree leadership (Howard Marks, Bruce Karsh) and investment team autonomy", "source_bias_tag": "company-produced", "evidence_class": "corroborated"},
+        "geographic_integration": {"description": "Los Angeles (Oaktree HQ) and Toronto (Brookfield HQ) cross-platform coordination", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-015",
+      "firm_id": "FIRM-005",
+      "action_type": "capital-structure-change",
+      "description": "Transformational partnership with US Government and Cameco Corporation for construction of $80+ billion in new nuclear reactors across the US using Westinghouse technology.",
+      "stated_rationale": "Nuclear energy is essential for AI data center power demands and energy transition. Brookfield's Westinghouse ownership (acquired 2023 via Cameco partnership) provides unique positioning.",
+      "observable_metric_impact": "$80B commitment from US Government for new nuclear plants. Positions Brookfield's Westinghouse at center of nuclear renaissance driven by AI power demand.",
+      "timeline": {"announced": "2025-06", "closed": "2025-06", "operational": "2026-01"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Westinghouse reactor technology deployment systems; government contract management", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Nuclear construction project milestone tracking and government reporting requirements", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "Nuclear safety and quality assurance under NRC regulatory framework", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Government contract administration and public-private partnership structures", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "NRC licensing, DOE oversight, nuclear safety compliance, environmental impact assessment", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Westinghouse engineering and construction workforce expansion for multi-site nuclear deployment", "source_bias_tag": "company-produced", "evidence_class": "corroborated"},
+        "geographic_integration": {"description": "US-focused nuclear buildout across multiple states", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-016",
+      "firm_id": "FIRM-006",
+      "action_type": "M&A",
+      "description": "Acquisition of IPI Partners (digital infrastructure fund manager with 80+ global data centers) for approximately $1.0 billion (80% equity, 20% cash). Completed January 2025.",
+      "stated_rationale": "Establish digital infrastructure as a core platform within Blue Owl Real Assets. Capture AI data center demand through established operational platform.",
+      "observable_metric_impact": "IPI added $11B AUM and 80+ data centers to Blue Owl. Real Assets platform diversified beyond net lease into digital infrastructure. Positions Blue Owl in AI infrastructure boom.",
+      "timeline": {"announced": "2024-10", "closed": "2025-01", "operational": "2025-01"},
+      "source_citation": "PS-VD-018",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of IPI's data center management and investment systems with Blue Owl Real Assets platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Data center operational metrics (uptime, capacity utilization, power) integrated into Blue Owl reporting", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "Data center asset valuation and operational performance benchmarking", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Fund administration for digital infrastructure vehicles", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "Multi-jurisdictional regulatory compliance for global data center operations", "source_bias_tag": "regulatory-filing", "evidence_class": "inferred"},
+        "hiring_org_redesign": {"description": "ICONIQ partnership maintained; IPI management team retained within Blue Owl Real Assets", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Global data center footprint across 80+ locations integrated with Blue Owl's primarily US-based operations", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-017",
+      "firm_id": "FIRM-006",
+      "action_type": "M&A",
+      "description": "Acquisition of Kuvare Asset Management, managing approximately $20 billion for insurance companies, launching Blue Owl Insurance Solutions. Completed July 2024.",
+      "stated_rationale": "Establish dedicated insurance channel within Blue Owl, providing yield-heavy, investment-grade private credit solutions to insurance company balance sheets.",
+      "observable_metric_impact": "Added $20B+ insurance AUM. Created Blue Owl Insurance Solutions as dedicated channel. Blue Owl now manages assets for multiple insurance company clients.",
+      "timeline": {"announced": "2024-04", "closed": "2024-07", "operational": "2024-07"},
+      "source_citation": "PS-VD-018",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of Kuvare's insurance asset management platform with Blue Owl credit and portfolio management systems", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Insurance regulatory reporting (statutory accounting, RBC ratios) alongside investment management reporting", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Insurance asset-liability matching and credit quality controls for insurance portfolios", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Insurance-specific fund and portfolio administration", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "State insurance regulatory compliance; NAIC capital and investment guidelines", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Retention of Kuvare asset management team; creation of Blue Owl Insurance Solutions division", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "US-focused insurance asset management operations", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-018",
+      "firm_id": "FIRM-006",
+      "action_type": "M&A",
+      "description": "Acquisition of Atalaya Capital Management (now Blue Owl Alternative Credit Platform), expanding into asset-backed lending and specialty finance. Completed September 2024.",
+      "stated_rationale": "Diversify credit platform beyond direct lending into asset-backed lending, specialty finance, and consumer credit. Broadens Blue Owl's credit origination capabilities.",
+      "observable_metric_impact": "Atalaya AUM at approximately $10B+ at acquisition. Expands Blue Owl credit into asset-backed lending, consumer finance, and specialty lending verticals.",
+      "timeline": {"announced": "2024-03", "closed": "2024-09", "operational": "2024-09"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of Atalaya's asset-backed lending and specialty finance systems with Blue Owl Credit platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Asset-backed securities performance tracking and portfolio reporting", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "Consumer and specialty credit risk assessment framework integration", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Fund administration for alternative credit vehicles", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "Consumer lending regulatory compliance; asset-backed securities regulations", "source_bias_tag": "regulatory-filing", "evidence_class": "inferred"},
+        "hiring_org_redesign": {"description": "Retention of Atalaya investment team as Blue Owl Alternative Credit Platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "US-focused asset-backed and specialty lending operations", "source_bias_tag": "company-produced", "evidence_class": "inferred"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-019",
+      "firm_id": "FIRM-007",
+      "action_type": "M&A",
+      "description": "Acquisition of Angelo Gordon, a diversified credit and real estate investment platform, for $2.7 billion in cash and stock. Completed November 2023.",
+      "stated_rationale": "Transform TPG from a PE-centric firm into a diversified multi-strategy platform. Angelo Gordon adds $74B in credit, structured products, CLOs, and real estate capabilities.",
+      "observable_metric_impact": "TPG AUM grew 166.4% from 2021 levels. Credit platform expanded from minimal presence to $93B by end-2025. FRE margin expanded from 42% to 45% in 2025.",
+      "timeline": {"announced": "2023-05", "closed": "2023-11", "operational": "2023-11"},
+      "source_citation": "PS-VD-021",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of Angelo Gordon's credit and real estate management systems with TPG's PE-centric infrastructure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Consolidated multi-segment reporting across Capital, Growth, Impact, Credit, Real Estate, and Market Solutions", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Credit risk and real estate valuation harmonization across Angelo Gordon and TPG platforms", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Fund administration for Angelo Gordon's CLO, structured credit, and real estate vehicles", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "SEC compliance for expanded product set; CLO risk retention rules; real estate fund regulations", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Angelo Gordon team integration as TPG Angelo Gordon; retention of key investment professionals", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "New York (Angelo Gordon) and San Francisco/Fort Worth (TPG) dual-headquarters coordination", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-020",
+      "firm_id": "FIRM-007",
+      "action_type": "M&A",
+      "description": "Acquisition of Peppertree Capital Management for up to $418 million in equity, adding a dominant digital infrastructure platform (wireless towers and AI data centers). Completed 2025.",
+      "stated_rationale": "Establish digital infrastructure as a core TPG capability. Wireless towers and data centers provide recurring revenue with long-term contracts, complementing TPG's real assets strategy.",
+      "observable_metric_impact": "Added $7.8B+ in digital infrastructure AUM. Created dedicated digital infrastructure vertical within TPG. Positions TPG in AI data center demand cycle.",
+      "timeline": {"announced": "2024-12", "closed": "2025-06", "operational": "2025-06"},
+      "source_citation": "PS-VD-021",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of Peppertree's telecom infrastructure management with TPG's real assets platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Wireless tower and data center operational metrics reporting", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "Digital infrastructure asset valuation across wireless towers and data centers", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Fund administration for digital infrastructure vehicles", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "FCC and telecom regulatory compliance for wireless infrastructure assets", "source_bias_tag": "regulatory-filing", "evidence_class": "inferred"},
+        "hiring_org_redesign": {"description": "Peppertree team retained; dedicated digital infrastructure investment group within TPG", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "US-focused wireless tower and data center portfolio", "source_bias_tag": "company-produced", "evidence_class": "inferred"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-021",
+      "firm_id": "FIRM-007",
+      "action_type": "product-launch",
+      "description": "TPG Rise Climate II fundraising reaching $5.8 billion, building on the firm's pioneering impact/ESG investing platform.",
+      "stated_rationale": "Capitalize on growing institutional demand for climate and transition investing. Rise Climate I ($7.3B) demonstrated institutional appetite for impact-oriented infrastructure and energy transition.",
+      "observable_metric_impact": "Rise Climate II raised $5.8B. Impact platform positions TPG as leader in ESG/sustainability investing among alternative managers. Differentiated fundraising channel.",
+      "timeline": {"announced": "2023-06", "closed": "2025-06", "operational": "2024-01"},
+      "source_citation": "PS-VD-023",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Impact measurement and ESG data systems for Rise Climate portfolio", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Impact KPI tracking, carbon reduction metrics, and ESG reporting for LPs", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Impact measurement methodology validation and third-party verification", "source_bias_tag": "company-produced", "evidence_class": "corroborated"},
+        "fund_admin_servicing": {"description": "Fund administration for impact-focused infrastructure vehicle", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "EU SFDR and SEC climate disclosure requirements for impact fund marketing", "source_bias_tag": "regulatory-filing", "evidence_class": "corroborated"},
+        "hiring_org_redesign": {"description": "Dedicated Rise Climate investment and impact measurement team", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Global climate and energy transition investments across Americas, Europe, and Asia-Pacific", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-022",
+      "firm_id": "FIRM-008",
+      "action_type": "product-launch",
+      "description": "Carlyle AlpInvest raised $20 billion for global Secondaries strategy, anchored by ASP VIII ($15 billion hard cap), plus $3.2B co-investment commitments and $2B for private wealth vehicles.",
+      "stated_rationale": "Secondaries market grew 41% YoY and is expected to double by 2030. AlpInvest's scale and origination capabilities position Carlyle as a top-3 secondaries manager.",
+      "observable_metric_impact": "AlpInvest AUM reached $102B (+46% growth). Doubled investable capital vs predecessor program. Private wealth vehicles raised $2B alongside institutional fund.",
+      "timeline": {"announced": "2024-06", "closed": "2025-09", "operational": "2025-01"},
+      "source_citation": "PS-VD-025",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Secondaries deal management and portfolio construction systems for $20B program", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Secondary transaction pricing, NAV discount analysis, and portfolio reporting", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Secondary market valuation and pricing controls across GP-led, LP-led, and credit secondaries", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Fund administration for complex secondaries vehicles including CFOs and private wealth products", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "SEC compliance for secondaries fund structures; wealth product suitability requirements", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "AlpInvest team expansion to support doubled capital base", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "geographic_integration": {"description": "Global secondaries sourcing from Amsterdam (AlpInvest HQ), New York, London, and Singapore", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-023",
+      "firm_id": "FIRM-008",
+      "action_type": "distribution-shift",
+      "description": "Launch of Carlyle AlpInvest Private Markets SICAV for global investors, and credit secondaries as dedicated new asset class. Expansion into wealth channel with $2B raised in private wealth vehicles.",
+      "stated_rationale": "Democratize access to Carlyle's secondaries and private markets capabilities. SICAV structure enables European and international distribution. Credit secondaries is an emerging segment.",
+      "observable_metric_impact": "$2B raised in private wealth secondaries vehicles. SICAV launch expands distribution to European and international investors. Credit secondaries established as formal strategy.",
+      "timeline": {"announced": "2024-06", "closed": "2025-06", "operational": "2024-06"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "SICAV fund infrastructure and European distribution platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "SICAV regulatory reporting and investor communications in multiple languages/jurisdictions", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Portfolio valuation and NAV calculation for semi-liquid SICAV structure", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Luxembourg-domiciled SICAV administration and transfer agent services", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "CSSF (Luxembourg) regulatory approval; EU AIFMD compliance; wealth product distribution rules", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "European distribution team expansion for SICAV and wealth product marketing", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "geographic_integration": {"description": "Luxembourg-domiciled SICAV for global distribution; European investor access", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-024",
+      "firm_id": "FIRM-009",
+      "action_type": "M&A",
+      "description": "Agreement to acquire Coller Capital, a leading global secondaries firm with ~$50 billion AUM, for up to $3.7 billion ($3.2B base + $500M contingent). Creates new Secondaries business segment (Coller EQT).",
+      "stated_rationale": "Enter the fastest-growing segment of private markets (secondaries expected to double by 2030). Adds third business segment alongside Private Capital and Real Assets. Coller's institutional and wealth distribution complements EQT's LP base.",
+      "observable_metric_impact": "Adds ~$50B AUM in secondaries. Creates new three-segment structure. Secondaries market expected to double by 2030. Jeremy Coller to continue leading business as Coller EQT.",
+      "timeline": {"announced": "2026-01", "closed": "2026-06", "operational": "2026-06"},
+      "source_citation": "PS-VD-027",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of Coller Capital's secondaries deal management and portfolio systems with EQT infrastructure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Three-segment reporting structure (Private Capital, Real Assets, Secondaries) with distinct metrics", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Secondaries portfolio valuation and NAV discount analysis integrated with EQT reporting standards", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Fund administration for Coller EQT secondaries vehicles across institutional, wealth, and insurance channels", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "Multi-jurisdictional regulatory approvals (Sweden FSA, UK FCA, US SEC) for acquisition and fund marketing", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Coller Capital team retained as Coller EQT; Jeremy Coller continues as leader of new business segment", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "London (Coller HQ), Stockholm (EQT HQ) coordination; global secondaries sourcing network", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-025",
+      "firm_id": "FIRM-009",
+      "action_type": "product-launch",
+      "description": "EQT Infrastructure VI closed at EUR 21.5 billion (EUR 21.3B fee-generating), exceeding EUR 20B target and hitting EUR 21B hard cap. 35% larger than predecessor fund.",
+      "stated_rationale": "Capitalize on infrastructure mega-trends (digitalization, decarbonization, deglobalization). Flagship infrastructure strategy is EQT's largest and most successful franchise.",
+      "observable_metric_impact": "EUR 21.5B total commitments, 35% step-up from predecessor. Record gross fund investments of EUR 16B and record co-investments of EUR 14B in 2025.",
+      "timeline": {"announced": "2024-01", "closed": "2025-03", "operational": "2024-06"},
+      "source_citation": "PS-VD-027",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Infrastructure asset management and ESG integration systems for enlarged fund", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Infrastructure portfolio reporting with ESG and impact metrics for institutional LP base", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Infrastructure asset valuation across digital, energy, transport, and social infrastructure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Fund administration for EUR 21.5B vehicle with global institutional LP base", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "Multi-jurisdictional compliance for European and global infrastructure investments", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Infrastructure team expansion to 130+ professionals to support larger fund", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "European core with expanding North American and Asian infrastructure origination", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-026",
+      "firm_id": "FIRM-009",
+      "action_type": "product-launch",
+      "description": "Launch of EQT Transition Infrastructure strategy with acquisition of ju:niz Energy (German battery energy developer) as first investment. New strategy targets low-carbon and circular economy investments.",
+      "stated_rationale": "Energy transition infrastructure is a multi-decade investment theme requiring dedicated strategy. Battery storage and renewable integration are critical for grid stability and AI power demand.",
+      "observable_metric_impact": "New dedicated strategy addressing energy transition. Positions EQT in battery storage and energy transition infrastructure. Complements core infrastructure franchise.",
+      "timeline": {"announced": "2024-11", "closed": "2024-12", "operational": "2024-12"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Energy storage and battery technology performance monitoring systems", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Transition infrastructure impact metrics (carbon reduction, renewable integration capacity)", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Energy storage asset valuation and technology risk assessment", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Fund administration for transition-focused infrastructure vehicle", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "EU SFDR and taxonomy alignment for transition infrastructure fund marketing", "source_bias_tag": "regulatory-filing", "evidence_class": "corroborated"},
+        "hiring_org_redesign": {"description": "Dedicated transition infrastructure team within EQT Infrastructure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "European focus with German market entry through ju:niz acquisition", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-027",
+      "firm_id": "FIRM-010",
+      "action_type": "M&A",
+      "description": "Acquisition of Empira Group, a European real estate platform, adding approximately $4 billion in fee-paying AUM. Completed first half 2025.",
+      "stated_rationale": "Consolidate private markets industry. Empira strengthens European real estate capabilities and adds established client relationships and investment track record.",
+      "observable_metric_impact": "Added $4B in fee-paying AUM. Total AUM grew to $185B including Empira contribution. European real estate capabilities significantly enhanced.",
+      "timeline": {"announced": "2024-10", "closed": "2025-03", "operational": "2025-03"},
+      "source_citation": "PS-VD-030",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of Empira's European real estate management platform with Partners Group direct investing infrastructure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "European real estate portfolio reporting integration into Partners Group consolidated financials", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "European real estate valuation harmonization with Partners Group standards", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "European real estate fund administration and investor servicing", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "European regulatory compliance (German BaFin, Swiss FINMA) for acquired operations", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Empira team integration into Partners Group real estate division", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "German and European real estate market integration with Swiss-headquartered Partners Group", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-028",
+      "firm_id": "FIRM-010",
+      "action_type": "distribution-shift",
+      "description": "Strategic partnership with BlackRock to launch multi-alternatives SMA solution for wealth platforms. Includes three outcome-aligned SMAs combining PE, private credit, and real assets.",
+      "stated_rationale": "Combine Partners Group's direct investing expertise with BlackRock's unmatched wealth distribution scale. First-of-its-kind solution enabling advisors to allocate to private markets through a single managed account.",
+      "observable_metric_impact": "Partnership with world's largest asset manager ($11T+ AUM). First-of-its-kind private markets SMA for wealth platforms. Positions Partners Group for massive retail distribution scale.",
+      "timeline": {"announced": "2024-09", "closed": "2026-01", "operational": "2026-01"},
+      "source_citation": "PS-VD-031",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of Partners Group investment management with BlackRock wealth platform infrastructure (Aladdin)", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "SMA-level reporting through BlackRock's advisor and client reporting systems", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Multi-asset private markets portfolio construction and rebalancing across PE, credit, and real assets", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "SMA custodial and administration through BlackRock's infrastructure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "SEC/FINRA compliance for SMA distribution through wealth advisory channels", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Joint product development and distribution teams between Partners Group and BlackRock", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "US-focused initial launch with potential for global expansion through BlackRock's network", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-029",
+      "firm_id": "FIRM-010",
+      "action_type": "product-launch",
+      "description": "Launch of cross-sector royalties evergreen fund as 5th private markets asset class. US launch with Lincoln Financial in September 2025. Additional launches in Asia, Europe, and Middle East.",
+      "stated_rationale": "Royalties (contractual cash flows from pharmaceuticals, energy transition, sports, media) represent a novel, uncorrelated private markets asset class. Targets 10% net returns.",
+      "observable_metric_impact": "First cross-sector private markets royalties evergreen fund in US market. Expands Partners Group's evergreen suite to 7+ funds with $52B total evergreen AUM.",
+      "timeline": {"announced": "2025-05", "closed": "2025-09", "operational": "2025-09"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Royalty cash flow modeling and portfolio management systems for novel asset class", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Royalty income tracking across pharmaceuticals, energy transition, sports, and media verticals", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Royalty stream valuation methodology across diverse sectors and contractual structures", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Evergreen fund administration with Lincoln Financial distribution infrastructure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "SEC registration for US evergreen fund; international regulatory approvals for Asia/Europe/Middle East launches", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Dedicated royalties investment team within Partners Group", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Global: US (Lincoln Financial), Asia, Europe, and Middle East launches", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-030",
+      "firm_id": "FIRM-011",
+      "action_type": "product-launch",
+      "description": "Launch of StepStone Private Equity Strategies Fund (STPEX), an evergreen interval fund with $5,000 minimum, no accreditation requirements, and $750M raised at inception. Semi-annual redemptions up to 5% NAV.",
+      "stated_rationale": "Democratize private equity access for all US investors. Removes traditional barriers (high minimums, accreditation, illiquidity) while maintaining exposure to top-tier PE sponsors.",
+      "observable_metric_impact": "$750M+ raised at launch. $5,000 minimum with no accreditation requirement. Part of SPWS platform that doubled to $15B AUM in one year.",
+      "timeline": {"announced": "2025-09", "closed": "2025-11", "operational": "2025-11"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Interval fund NAV calculation and semi-annual redemption processing systems", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Monthly NAV reporting, shareholder communications for retail investor base", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Portfolio valuation for semi-liquid PE interval fund structure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Transfer agent and retail investor servicing for non-accredited investor base", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "1940 Act registration; interval fund regulatory requirements; non-accredited investor suitability", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "SPWS team expansion for retail distribution and investor education (StepStone Academy)", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "US-focused retail distribution through RIAs, wirehouses, and intermediaries", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-031",
+      "firm_id": "FIRM-011",
+      "action_type": "product-launch",
+      "description": "StepStone Secondary Opportunities Fund V (SSOF V) closed with $4.8 billion in aggregate capital commitments, more than doubling its predecessor fund size.",
+      "stated_rationale": "Secondaries market growth (+41% YoY) and StepStone's data-driven portfolio construction provide differentiated deal sourcing. Over $14B deployed into 210+ secondaries transactions since inception.",
+      "observable_metric_impact": "$4.8B raised, 2x+ predecessor. Over $14B deployed across 210+ secondaries transactions. Positions StepStone as scaled secondaries manager.",
+      "timeline": {"announced": "2024-06", "closed": "2025-03", "operational": "2024-06"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Secondaries deal pipeline management and portfolio analytics systems for doubled fund", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Secondary transaction pricing and portfolio performance reporting", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Secondary market valuation controls and NAV discount analysis", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Fund administration for $4.8B secondaries vehicle", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "SEC compliance for secondaries fund structure", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Secondaries team expansion to support doubled fund size and deployment pace", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "geographic_integration": {"description": "Global secondaries sourcing across Americas, Europe, and Asia-Pacific", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-032",
+      "firm_id": "FIRM-011",
+      "action_type": "geographic-expansion",
+      "description": "Opening of new offices in Madrid (9th European office) and Riyadh (first Middle East office, 31st globally across 19 countries).",
+      "stated_rationale": "Deepen proximity to institutional clients in Iberia and the Middle East. Saudi Arabia represents significant sovereign wealth and pension capital allocating to private markets.",
+      "observable_metric_impact": "31 offices across 19 countries. Madrid enhances Iberian client coverage. Riyadh positions StepStone for Saudi Arabian institutional capital flows.",
+      "timeline": {"announced": "2025-06", "closed": "2025-11", "operational": "2025-11"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Global IT infrastructure extension to new office locations", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "data_reporting_stack": {"description": "Client reporting and advisory systems deployment in new locations", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "qa_controls_reconciliation": {"description": "Cross-office investment quality controls and oversight", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Local client servicing capabilities for Iberian and Middle Eastern investors", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "CNMV (Spain) and CMA (Saudi Arabia) regulatory registrations and licensing", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Local hiring for Madrid and Riyadh offices; relationship coverage for Iberian and GCC clients", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Madrid covers Spain, Portugal, Andorra; Riyadh covers Saudi Arabia and broader GCC", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-033",
+      "firm_id": "FIRM-012",
+      "action_type": "distribution-shift",
+      "description": "Long-term strategic partnership with Guardian Life Insurance Company: Hamilton Lane to manage Guardian's $5 billion PE portfolio plus $500M annual new PE commitments for 10 years. Includes $250M seed capital for new evergreen initiatives.",
+      "stated_rationale": "Establish template for insurance-asset manager partnerships in private markets. Guardian provides stable, long-term capital with annual commitment cadence. Seed capital accelerates evergreen platform growth.",
+      "observable_metric_impact": "$5B portfolio management mandate plus $500M/year for 10 years ($10B total potential). $250M evergreen seed capital. Insurance channel opened as strategic distribution vector.",
+      "timeline": {"announced": "2025-11", "closed": "2025-12", "operational": "2025-12"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Insurance portfolio management systems integration with Guardian's investment infrastructure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Insurance regulatory reporting (statutory accounting) alongside investment management reporting", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Insurance-grade asset quality controls and SAP-compliant investment selection", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Insurance portfolio administration and evergreen fund servicing for Guardian-seeded vehicles", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "NAIC investment guidelines compliance; insurance regulatory capital requirements", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Dedicated insurance client service team for Guardian relationship", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "geographic_integration": {"description": "US-focused; Guardian is a New York-domiciled insurance company", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-034",
+      "firm_id": "FIRM-012",
+      "action_type": "product-launch",
+      "description": "Expansion of global evergreen platform to 11 funds totaling $16B+ AUM. Key launches include Private Secondary Fund (HLPSF), Global Venture Capital and Growth Fund (HLGVG), and Infrastructure Opportunities Fund II ($2B).",
+      "stated_rationale": "Democratize private markets access through evergreen structures. Private wealth investors remain significantly underweight private markets versus institutional peers.",
+      "observable_metric_impact": "11 evergreen funds with $16B+ AUM (70%+ YoY growth). Flagship Private Assets Fund at $11.7B. Infrastructure Opportunities Fund II tripled predecessor at nearly $2B.",
+      "timeline": {"announced": "2024-06", "closed": "2025-12", "operational": "2024-06"},
+      "source_citation": "PS-VD-037",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Multi-fund evergreen platform with continuous subscription/redemption processing", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Daily/monthly NAV calculation, investor communications, and performance reporting across 11 funds", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Portfolio valuation across PE, credit, secondaries, infrastructure, and venture capital", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Transfer agent and retail investor servicing for 11 evergreen funds", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "1940 Act, ELTIF, and international fund registration requirements", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Expanded product development and distribution teams for evergreen platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Global: US, Canada, Europe, Asia, Latin America, Middle East, Australia/NZ", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-035",
+      "firm_id": "FIRM-012",
+      "action_type": "technology-operations",
+      "description": "Launch of Helix by HL, an AI-powered investment assistant built in partnership with TIFIN, and private markets indices on Bloomberg Terminal. Won 2024 Wealth Management Industry Award for New Product Development.",
+      "stated_rationale": "Leverage Hamilton Lane's proprietary Cobalt data platform (50,000+ private markets funds) through AI to provide differentiated insights. Bloomberg indices establish private markets benchmarking standard.",
+      "observable_metric_impact": "AI assistant powered by Cobalt data covering 50,000+ funds. 20 private market indices on Bloomberg Terminal. Technology platform as competitive moat and distribution tool.",
+      "timeline": {"announced": "2024-06", "closed": "2024-12", "operational": "2024-06"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Cobalt data platform integration with TIFIN AI engine and Bloomberg data infrastructure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Real-time private markets data feeds to Bloomberg Terminal for index calculation", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "AI output validation, data quality controls for private markets benchmarking", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Data licensing and distribution through Bloomberg platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "AI model governance; data privacy compliance; index methodology transparency", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Data science and AI engineering team collaboration with TIFIN", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Global: Bloomberg Terminal reaches global institutional and wealth investors", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-036",
+      "firm_id": "FIRM-013",
+      "action_type": "distribution-shift",
+      "description": "10-year exclusive global distribution partnership with Amundi (Europe's largest asset manager) for ICG evergreen and wealth products. Amundi acquired 9.9% equity stake in ICG. Two evergreen funds (PE secondaries and private debt) planned for H1 2026.",
+      "stated_rationale": "Access Amundi's 200M+ individual investors through 600+ distributors (retail banks, private banks, insurers, digital platforms). Transform ICG from purely institutional to institutional + wealth manager.",
+      "observable_metric_impact": "Access to 200M+ individual investors through Amundi network. 9.9% strategic equity stake by Amundi. Two evergreen funds launching H1 2026. Transformative wealth channel entry.",
+      "timeline": {"announced": "2025-11", "closed": "2025-12", "operational": "2026-01"},
+      "source_citation": "PS-VD-044",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of ICG investment management with Amundi's distribution and wealth platform infrastructure", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Wealth-grade investor reporting and communications through Amundi's multi-language, multi-jurisdiction systems", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Evergreen fund NAV calculation and portfolio valuation for semi-liquid structures", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "European evergreen fund administration across multiple jurisdictions", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "EU AIFMD, MiFID II, and ELTIF compliance for wealth product distribution across EU member states", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "ICG share buyback to avoid dilution from Amundi stake; joint product development teams", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Global: Amundi's 600+ distributors across Europe, Asia, and Americas", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-037",
+      "firm_id": "FIRM-013",
+      "action_type": "product-launch",
+      "description": "ICG Strategic Equity Fund V closed at $11 billion, more than doubling predecessor fund (ICGSE IV at $5.3B) and exceeding $6B original target. Record GP-led secondaries fundraise.",
+      "stated_rationale": "GP-led secondaries market is growing rapidly. ICG's single-asset continuation vehicle specialization provides differentiated approach in a crowded secondaries market.",
+      "observable_metric_impact": "$11B raised (2x predecessor, nearly 2x original target). Establishes ICG as a top-tier GP-led secondaries manager. Record fundraise in category.",
+      "timeline": {"announced": "2023-06", "closed": "2025-03", "operational": "2023-06"},
+      "source_citation": "PS-VD-042",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "GP-led secondaries deal management and continuation vehicle structuring systems", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Continuation vehicle performance tracking and LP reporting for $11B fund", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Single-asset continuation vehicle valuation and GP conflict-of-interest controls", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Fund administration for complex GP-led secondary structures", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "SEC guidance on GP-led secondaries conflicts; LPAC governance requirements", "source_bias_tag": "regulatory-filing", "evidence_class": "corroborated"},
+        "hiring_org_redesign": {"description": "Strategic Equity team expansion to support doubled fund and deal flow", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "geographic_integration": {"description": "Global sourcing from London HQ with North American and Asian origination", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-038",
+      "firm_id": "FIRM-014",
+      "action_type": "geographic-expansion",
+      "description": "Opening of offices in Qatar (with QFC regulatory authorization) and Mexico, alongside strengthened presence in India, Indonesia, and Saudi Arabia. Launch of $200M Ashmore Qatar Equity Fund with Qatar Investment Authority.",
+      "stated_rationale": "Phase 3 of Ashmore's three-phase growth strategy: add scale and diversity through local markets. On-the-ground presence enables local currency capabilities and deepens EM-domiciled client relationships.",
+      "observable_metric_impact": "Local markets AUM rose 5% to $7.8B. 38% of AUM from EM-domiciled clients. $200M Qatar Equity Fund launched with QIA. New distribution capabilities in GCC.",
+      "timeline": {"announced": "2024-01", "closed": "2025-06", "operational": "2024-06"},
+      "source_citation": "PS-VD-046",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Local trading, settlement, and portfolio management systems in Qatar and Mexico", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Local market data feeds and regulatory reporting for QFCRA and Mexican regulators", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Local market risk controls and compliance monitoring for Middle Eastern and Latin American markets", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Local fund administration for Qatar Equity Fund and Mexico-domiciled vehicles", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "QFCRA (Qatar), CNBV (Mexico) regulatory authorizations and ongoing compliance", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Local hiring in Qatar and Mexico; expansion of EM-based investment and distribution teams", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "GCC market entry via Qatar; LatAm deepening via Mexico. Complements existing India, Indonesia, Saudi Arabia, Colombia presence", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-039",
+      "firm_id": "FIRM-014",
+      "action_type": "product-launch",
+      "description": "Launch of Emerging Markets Impact Debt Strategy targeting investments meeting UN SDG criteria (emissions reduction, digital connectivity) while maintaining financial returns.",
+      "stated_rationale": "Institutional investors increasingly require ESG/impact integration in EM allocations. Impact debt provides differentiated positioning in EM fixed income market.",
+      "observable_metric_impact": "New product addressing ESG/impact demand within EM fixed income. Positions Ashmore in growing sustainable/impact investing segment of EM allocations.",
+      "timeline": {"announced": "2025-01", "closed": "2025-06", "operational": "2025-06"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "UN SDG alignment scoring and impact measurement systems for EM debt portfolio", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Impact KPI tracking alongside financial performance reporting", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Impact measurement methodology validation and SDG alignment verification", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "Fund administration for impact-labeled EM debt vehicle", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "EU SFDR Article 9 classification if marketed in Europe; impact labeling standards", "source_bias_tag": "regulatory-filing", "evidence_class": "inferred"},
+        "hiring_org_redesign": {"description": "ESG/impact research integration within EM investment team", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "geographic_integration": {"description": "Global EM focus across fixed income markets", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-040",
+      "firm_id": "FIRM-014",
+      "action_type": "distribution-shift",
+      "description": "Shift toward growing EM-domiciled client base from 38% of AUM. Local platforms in Colombia, India, Indonesia, Saudi Arabia now provide direct domestic distribution capabilities.",
+      "stated_rationale": "EM-domiciled investors offer countercyclical AUM stability — they invest in their home markets regardless of global sentiment toward EM. Local presence deepens relationships and reduces reliance on DM allocator cycles.",
+      "observable_metric_impact": "38% of AUM from EM-domiciled clients (up from lower levels). Local business platforms generating domestic capital. Reduces dependence on developed-market institutional allocator sentiment.",
+      "timeline": {"announced": "2022-01", "closed": "2025-12", "operational": "2023-01"},
+      "source_citation": "PS-VD-045",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Local subsidiary trading, compliance, and portfolio management systems in each EM market", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Local regulatory reporting in domestic currencies and accounting standards", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Local market credit and equity risk controls appropriate for each jurisdiction", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Local fund administration and investor servicing in domestic markets", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "Multi-jurisdiction regulatory licensing (CVM in Brazil/Colombia, SEBI in India, OJK in Indonesia, CMA in Saudi)", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Local investment and distribution teams in each market with local language and regulatory expertise", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Colombia, India, Indonesia, Saudi Arabia, Singapore as established hubs; Qatar and Mexico as new additions", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-041",
+      "firm_id": "FIRM-015",
+      "action_type": "M&A",
+      "description": "Acquisition of 51% stake in Solis Investimentos, a Brazilian CLO structuring and management specialist. Adds approximately $3.5B in FEAUM, boosting Credit FEAUM by over 40% to >$11.7B.",
+      "stated_rationale": "Build LatAm private credit franchise capturing structural scarcity in corporate lending. Solis adds asset-backed and structured credit origination (securitization) capabilities in Brazil.",
+      "observable_metric_impact": "Credit FEAUM boosted 40%+ to >$11.7B. Patria becomes largest independent listed REIT and structured credit manager in Brazil. Structured credit origination capability added.",
+      "timeline": {"announced": "2025-09", "closed": "2026-01", "operational": "2026-01"},
+      "source_citation": "PS-VD-069",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of Solis CLO structuring and management systems with Patria's credit platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "CLO performance tracking and structured credit portfolio reporting", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Securitization quality controls, CLO waterfall monitoring, and credit risk assessment", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "CLO trustee and servicing administration for Brazilian structured credit products", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "CVM (Brazilian Securities Commission) regulatory compliance for CLO and securitization activities", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Solis management team retained; integration with Patria credit investment team", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Brazil-focused structured credit; deepens Sao Paulo operations", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-042",
+      "firm_id": "FIRM-015",
+      "action_type": "M&A",
+      "description": "Acquisition of RBR Gestao de Recursos, adding $1.3 billion in permanent capital (listed REITs). Makes Patria the largest independent manager of listed REITs in Brazil.",
+      "stated_rationale": "Real estate as an asset class is underdeveloped in LatAm relative to global peers. Listed REITs provide permanent capital and retail distribution in Brazil's growing REIT market.",
+      "observable_metric_impact": "$1.3B permanent capital added. Patria became largest independent listed REIT manager in Brazil. Real estate capability established as new vertical.",
+      "timeline": {"announced": "2025-06", "closed": "2025-12", "operational": "2025-12"},
+      "source_citation": "PS-VD-069",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of RBR's listed REIT management platform with Patria's real estate operations", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "Listed REIT financial reporting, NAV calculation, and B3 (Brazilian stock exchange) compliance", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "Real estate asset valuation and REIT distribution compliance", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Listed REIT administration, shareholder servicing, and distribution processing", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "CVM regulations for listed REITs (FIIs); B3 listing requirements; tax compliance for REIT distributions", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "RBR team integration as Patria real estate vertical; retail distribution expertise added", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Brazil-focused listed REIT market; Sao Paulo operations", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-043",
+      "firm_id": "FIRM-015",
+      "action_type": "M&A",
+      "description": "Agreement to acquire WP Global Partners, a US lower-middle-market PE solutions manager with ~$1.8B FEAUM. Patria's first US-headquartered platform acquisition.",
+      "stated_rationale": "Geographic diversification beyond LatAm into US market. WP Global adds US institutional distribution, PE solutions (fund-of-funds, co-investment, secondaries), and US-based GP relationships. Pro-forma GPMS FEAUM exceeds $13.3B.",
+      "observable_metric_impact": "Pro-forma GPMS FEAUM exceeds $13.3B. First US-headquartered acquisition for Patria. Adds 30 employees in New York and Chicago. US institutional client relationships established.",
+      "timeline": {"announced": "2025-12", "closed": "2026-03", "operational": "2026-03"},
+      "source_citation": "PS-VD-070",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Integration of WP Global's PE solutions platform with Patria's GPMS vertical; US regulatory infrastructure", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "US GAAP reporting for WP Global funds; integration with Patria's IFRS-based consolidated statements", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "US lower-middle-market PE portfolio valuation harmonization with Patria standards", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "fund_admin_servicing": {"description": "US-based fund administration for PE solutions vehicles (fund-of-funds, co-investment)", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "SEC Investment Advisers Act registration; CFIUS review if applicable; US fund formation requirements", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "30 WP Global employees in New York and Chicago retained; first Patria US-based investment team", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "US market entry through New York and Chicago offices; connects LatAm and US PE ecosystems", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-044",
+      "firm_id": "FIRM-015",
+      "action_type": "M&A",
+      "description": "Carve-out acquisition of abrdn Private Equity Solutions business to form Global Private Markets Solutions (GPMS) vertical. Includes fund-of-funds, co-investment, and secondaries capabilities.",
+      "stated_rationale": "Create global private markets solutions platform providing institutional investors diversified access to PE and private markets. Complements LatAm-focused direct strategies with global PE solutions.",
+      "observable_metric_impact": "New GPMS vertical established. Expanded Patria from LatAm-only to global private markets solutions provider. Added GP relationship network and co-investment capabilities.",
+      "timeline": {"announced": "2023-10", "closed": "2024-04", "operational": "2024-04"},
+      "source_citation": "WebSearch",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "Carve-out of abrdn PE solutions systems and integration into Patria GPMS platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "PE solutions portfolio reporting (fund-of-funds, co-investment, secondaries performance)", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "GP evaluation and fund selection quality controls for PE solutions platform", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Fund administration for GPMS vehicles across multiple strategies", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "compliance_risk_treasury": {"description": "Multi-jurisdictional regulatory compliance for global PE solutions distribution", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "abrdn PE solutions team transition to Patria; establishment of GPMS as new vertical", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "Global PE solutions capabilities spanning Americas, Europe, and Asia through former abrdn network", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    },
+    {
+      "action_id": "ACT-VD-045",
+      "firm_id": "FIRM-015",
+      "action_type": "product-launch",
+      "description": "Preparation of next vintage of Latin America private credit strategy targeting structural scarcity in corporate lending. Designed for global institutional investors seeking LatAm credit exposure.",
+      "stated_rationale": "LatAm corporate credit market is structurally under-levered with limited reliable capital supply. Banks dominate but are retreating from mid-market lending. Patria's local origination provides competitive advantage.",
+      "observable_metric_impact": "New fund vintage in preparation. Credit FEAUM already grew 40%+ through Solis acquisition. LatAm private credit positioned as structural opportunity vs. saturated US/European markets.",
+      "timeline": {"announced": "2026-02", "closed": "2026-06", "operational": "2026-06"},
+      "source_citation": "PS-VD-067",
+      "operational_prerequisites": {
+        "systems_integration": {"description": "LatAm credit origination platform with local market connectivity and FX risk management", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "data_reporting_stack": {"description": "LatAm borrower financial analysis and credit monitoring in local currencies", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "qa_controls_reconciliation": {"description": "LatAm corporate credit underwriting standards adapted for local legal frameworks", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "fund_admin_servicing": {"description": "Fund administration for LatAm credit vehicle with global institutional LP base", "source_bias_tag": "company-produced", "evidence_class": "inferred"},
+        "compliance_risk_treasury": {"description": "Multi-country LatAm regulatory compliance (Brazil CVM, Chile CMF, Colombia SFC)", "source_bias_tag": "regulatory-filing", "evidence_class": "directly_documented"},
+        "hiring_org_redesign": {"description": "Credit team expansion leveraging Solis acquisition expertise in structured credit", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"},
+        "geographic_integration": {"description": "LatAm-wide: Brazil, Chile, Colombia as primary markets for corporate credit origination", "source_bias_tag": "company-produced", "evidence_class": "directly_documented"}
+      }
+    }
+  ],
+  "metadata": {
+    "generated_date": "2026-03-07",
+    "pipeline_step": "VD-B2",
+    "total_actions": 45,
+    "firms_covered": ["BX", "KKR", "APO", "ARES", "BAM", "OWL", "TPG", "CG", "EQT", "PGHN", "STEP", "HLNE", "ICP", "AMK", "PAX"],
+    "actions_per_firm": {
+      "FIRM-001 (BX)": 3,
+      "FIRM-002 (KKR)": 3,
+      "FIRM-003 (APO)": 3,
+      "FIRM-004 (ARES)": 3,
+      "FIRM-005 (BAM)": 3,
+      "FIRM-006 (OWL)": 3,
+      "FIRM-007 (TPG)": 3,
+      "FIRM-008 (CG)": 2,
+      "FIRM-009 (EQT)": 3,
+      "FIRM-010 (PGHN)": 3,
+      "FIRM-011 (STEP)": 3,
+      "FIRM-012 (HLNE)": 3,
+      "FIRM-013 (ICP)": 2,
+      "FIRM-014 (AMK)": 3,
+      "FIRM-015 (PAX)": 5
+    },
+    "action_type_distribution": {
+      "M&A": 19,
+      "product-launch": 13,
+      "distribution-shift": 6,
+      "geographic-expansion": 3,
+      "capital-structure-change": 1,
+      "technology-operations": 1,
+      "organizational-change": 0
+    },
+    "evidence_class_summary": {
+      "directly_documented": "Majority of operational prerequisites — sourced from regulatory filings, Investor Day presentations, and earnings call disclosures",
+      "corroborated": "Actions confirmed by both company filings and independent third-party coverage",
+      "inferred": "Logical inferences about operational integration requirements not directly disclosed — MUST be hedged downstream"
+    },
+    "quality_flags": {
+      "firms_with_fewer_than_3_actions": ["FIRM-008 (CG)", "FIRM-013 (ICP)"],
+      "note": "CG and ICP have 2 actions each. CG actions are large-scale (AlpInvest $20B secondaries + SICAV launch) and ICP actions are transformative (Amundi partnership + Strategic Equity V $11B). Both firms had fewer discrete strategic actions in the 2022-2025 period compared to more acquisition-driven peers, reflecting organic growth models."
+    },
+    "source_types_used": ["10-K/20-F/40-F Annual Reports", "Earnings Call Transcripts", "Earnings Presentations", "Press Releases", "Investor Day Presentations", "6-K/SEC Filings", "WebSearch (journalist/industry coverage)"]
+  }
+}

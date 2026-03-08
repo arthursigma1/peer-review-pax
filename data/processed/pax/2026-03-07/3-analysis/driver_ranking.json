@@ -1,0 +1,1126 @@
+{
+  "metadata": {
+    "stage": "VD-A5",
+    "date": "2026-03-07",
+    "n_eligible_drivers": 6,
+    "n_top_drivers": 6,
+    "n_stable_drivers": 2,
+    "n_multiple_specific": 1,
+    "n_moderate_signal": 1,
+    "stable_driver_rule": "stable_v1_two_of_three"
+  },
+  "top_drivers": [
+    {
+      "driver_id": "DVR-001",
+      "metric_id": "MET-VD-005",
+      "driver_name": "Total Assets Under Management",
+      "category": "Scale",
+      "classification": "stable_value_driver",
+      "avg_abs_rho": 0.595,
+      "confidence_class": "not_significant",
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.7451,
+          "p_uncorrected": 0.000599,
+          "p_bonferroni": 0.010777,
+          "ci_95": [
+            0.3998,
+            0.9082
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "moderate_confidence"
+        },
+        "MET-VD-027": {
+          "rho": 0.3102,
+          "p_uncorrected": 0.22555,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.2161,
+            0.6959
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-028": {
+          "rho": 0.7296,
+          "p_uncorrected": 0.000887,
+          "p_bonferroni": 0.01596,
+          "ci_95": [
+            0.4371,
+            0.8932
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "moderate_confidence"
+        }
+      },
+      "n_firms_with_data": 22,
+      "firm_quartiles": {
+        "FIRM-001": {
+          "quartile": "Q1",
+          "value": 1127.2
+        },
+        "FIRM-002": {
+          "quartile": "Q1",
+          "value": 1030.0
+        },
+        "FIRM-003": {
+          "quartile": "Q1",
+          "value": 751.0
+        },
+        "FIRM-004": {
+          "quartile": "Q1",
+          "value": 638.0
+        },
+        "FIRM-005": {
+          "quartile": "Q1",
+          "value": 484.0
+        },
+        "FIRM-006": {
+          "quartile": "Q1",
+          "value": 441.0
+        },
+        "FIRM-009": {
+          "quartile": "Q2",
+          "value": 294.6
+        },
+        "FIRM-007": {
+          "quartile": "Q2",
+          "value": 251.1
+        },
+        "FIRM-008": {
+          "quartile": "Q2",
+          "value": 246.0
+        },
+        "FIRM-010": {
+          "quartile": "Q2",
+          "value": 207.0
+        },
+        "FIRM-012": {
+          "quartile": "Q2",
+          "value": 189.0
+        },
+        "FIRM-013": {
+          "quartile": "Q3",
+          "value": 174.0
+        },
+        "FIRM-011": {
+          "quartile": "Q3",
+          "value": 168.6
+        },
+        "FIRM-014": {
+          "quartile": "Q3",
+          "value": 138.0
+        },
+        "FIRM-015": {
+          "quartile": "Q3",
+          "value": 112.0
+        },
+        "FIRM-016": {
+          "quartile": "Q3",
+          "value": 75.6
+        },
+        "FIRM-017": {
+          "quartile": "Q3",
+          "value": 53.5
+        },
+        "FIRM-018": {
+          "quartile": "Q4",
+          "value": 51.3
+        },
+        "FIRM-023": {
+          "quartile": "Q4",
+          "value": 43.0
+        },
+        "FIRM-019": {
+          "quartile": "Q4",
+          "value": 41.7
+        },
+        "FIRM-022": {
+          "quartile": "Q4",
+          "value": 38.088
+        },
+        "FIRM-024": {
+          "quartile": "Q4",
+          "value": 34.4655
+        }
+      },
+      "top_quartile_firms": [
+        "FIRM-001",
+        "FIRM-002",
+        "FIRM-003",
+        "FIRM-004",
+        "FIRM-005",
+        "FIRM-006"
+      ],
+      "bottom_quartile_firms": [
+        "FIRM-018",
+        "FIRM-023",
+        "FIRM-019",
+        "FIRM-022",
+        "FIRM-024"
+      ]
+    },
+    {
+      "driver_id": "DVR-002",
+      "metric_id": "MET-VD-004",
+      "driver_name": "Fee-Earning Assets Under Management",
+      "category": "Scale",
+      "classification": "stable_value_driver",
+      "avg_abs_rho": 0.552,
+      "confidence_class": "not_significant",
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.7451,
+          "p_uncorrected": 0.00223,
+          "p_bonferroni": 0.040141,
+          "ci_95": [
+            0.3651,
+            0.905
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "moderate_confidence"
+        },
+        "MET-VD-027": {
+          "rho": 0.1056,
+          "p_uncorrected": 0.719353,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.5395,
+            0.6278
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-028": {
+          "rho": 0.8053,
+          "p_uncorrected": 0.00051,
+          "p_bonferroni": 0.009178,
+          "ci_95": [
+            0.4777,
+            0.9564
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "high_confidence"
+        }
+      },
+      "n_firms_with_data": 19,
+      "firm_quartiles": {
+        "FIRM-001": {
+          "quartile": "Q1",
+          "value": 830.7
+        },
+        "FIRM-003": {
+          "quartile": "Q1",
+          "value": 569.0
+        },
+        "FIRM-002": {
+          "quartile": "Q1",
+          "value": 539.0
+        },
+        "FIRM-004": {
+          "quartile": "Q1",
+          "value": 512.0
+        },
+        "FIRM-005": {
+          "quartile": "Q1",
+          "value": 293.0
+        },
+        "FIRM-006": {
+          "quartile": "Q2",
+          "value": 169.0
+        },
+        "FIRM-007": {
+          "quartile": "Q2",
+          "value": 159.8
+        },
+        "FIRM-010": {
+          "quartile": "Q2",
+          "value": 152.4
+        },
+        "FIRM-009": {
+          "quartile": "Q2",
+          "value": 148.9
+        },
+        "FIRM-008": {
+          "quartile": "Q2",
+          "value": 141.0
+        },
+        "FIRM-012": {
+          "quartile": "Q3",
+          "value": 121.4
+        },
+        "FIRM-015": {
+          "quartile": "Q3",
+          "value": 75.0
+        },
+        "FIRM-014": {
+          "quartile": "Q3",
+          "value": 72.0
+        },
+        "FIRM-018": {
+          "quartile": "Q3",
+          "value": 41.2
+        },
+        "FIRM-016": {
+          "quartile": "Q3",
+          "value": 40.1
+        },
+        "FIRM-019": {
+          "quartile": "Q4",
+          "value": 33.0
+        },
+        "FIRM-023": {
+          "quartile": "Q4",
+          "value": 29.4
+        },
+        "FIRM-022": {
+          "quartile": "Q4",
+          "value": 28.773
+        },
+        "FIRM-024": {
+          "quartile": "Q4",
+          "value": 22.356
+        }
+      },
+      "top_quartile_firms": [
+        "FIRM-001",
+        "FIRM-003",
+        "FIRM-002",
+        "FIRM-004",
+        "FIRM-005"
+      ],
+      "bottom_quartile_firms": [
+        "FIRM-019",
+        "FIRM-023",
+        "FIRM-022",
+        "FIRM-024"
+      ]
+    },
+    {
+      "driver_id": "DVR-003",
+      "metric_id": "MET-VD-013",
+      "driver_name": "Fee-Related Earnings Margin",
+      "category": "Efficiency",
+      "classification": "multiple_specific_driver",
+      "avg_abs_rho": 0.4224,
+      "confidence_class": "not_significant",
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.37,
+          "p_uncorrected": 0.174671,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.145,
+            0.8113
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-027": {
+          "rho": 0.3247,
+          "p_uncorrected": 0.237704,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.2043,
+            0.6989
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-028": {
+          "rho": 0.5725,
+          "p_uncorrected": 0.025737,
+          "p_bonferroni": 0.463262,
+          "ci_95": [
+            0.0553,
+            0.8769
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        }
+      },
+      "n_firms_with_data": 18,
+      "firm_quartiles": {
+        "FIRM-004": {
+          "quartile": "Q1",
+          "value": 0.71
+        },
+        "FIRM-024": {
+          "quartile": "Q1",
+          "value": 0.6385
+        },
+        "FIRM-013": {
+          "quartile": "Q1",
+          "value": 0.613
+        },
+        "FIRM-007": {
+          "quartile": "Q1",
+          "value": 0.59
+        },
+        "FIRM-010": {
+          "quartile": "Q1",
+          "value": 0.59
+        },
+        "FIRM-002": {
+          "quartile": "Q2",
+          "value": 0.58
+        },
+        "FIRM-009": {
+          "quartile": "Q2",
+          "value": 0.5736
+        },
+        "FIRM-001": {
+          "quartile": "Q2",
+          "value": 0.57
+        },
+        "FIRM-019": {
+          "quartile": "Q2",
+          "value": 0.57
+        },
+        "FIRM-003": {
+          "quartile": "Q3",
+          "value": 0.55
+        },
+        "FIRM-014": {
+          "quartile": "Q3",
+          "value": 0.538
+        },
+        "FIRM-023": {
+          "quartile": "Q3",
+          "value": 0.48
+        },
+        "FIRM-006": {
+          "quartile": "Q3",
+          "value": 0.46
+        },
+        "FIRM-008": {
+          "quartile": "Q3",
+          "value": 0.42
+        },
+        "FIRM-005": {
+          "quartile": "Q4",
+          "value": 0.415
+        },
+        "FIRM-018": {
+          "quartile": "Q4",
+          "value": 0.39
+        },
+        "FIRM-022": {
+          "quartile": "Q4",
+          "value": 0.3842
+        },
+        "FIRM-017": {
+          "quartile": "Q4",
+          "value": 0.3
+        }
+      },
+      "top_quartile_firms": [
+        "FIRM-004",
+        "FIRM-024",
+        "FIRM-013",
+        "FIRM-007",
+        "FIRM-010"
+      ],
+      "bottom_quartile_firms": [
+        "FIRM-005",
+        "FIRM-018",
+        "FIRM-022",
+        "FIRM-017"
+      ]
+    },
+    {
+      "driver_id": "DVR-004",
+      "metric_id": "MET-VD-014",
+      "driver_name": "Fee-Related Earnings Growth Year-over-Year",
+      "category": "Efficiency",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.2515,
+      "confidence_class": "not_significant",
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.3439,
+          "p_uncorrected": 0.249952,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.193,
+            0.7536
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-027": {
+          "rho": 0.0661,
+          "p_uncorrected": 0.830082,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.5347,
+            0.6457
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-028": {
+          "rho": 0.3444,
+          "p_uncorrected": 0.249257,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.3808,
+            0.7627
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        }
+      },
+      "n_firms_with_data": 17,
+      "firm_quartiles": {
+        "FIRM-010": {
+          "quartile": "Q1",
+          "value": 0.4
+        },
+        "FIRM-004": {
+          "quartile": "Q1",
+          "value": 0.37
+        },
+        "FIRM-008": {
+          "quartile": "Q1",
+          "value": 0.35
+        },
+        "FIRM-014": {
+          "quartile": "Q1",
+          "value": 0.34
+        },
+        "FIRM-006": {
+          "quartile": "Q1",
+          "value": 0.3
+        },
+        "FIRM-003": {
+          "quartile": "Q2",
+          "value": 0.24
+        },
+        "FIRM-005": {
+          "quartile": "Q2",
+          "value": 0.24
+        },
+        "FIRM-001": {
+          "quartile": "Q2",
+          "value": 0.21
+        },
+        "FIRM-015": {
+          "quartile": "Q2",
+          "value": 0.195
+        },
+        "FIRM-017": {
+          "quartile": "Q3",
+          "value": 0.19
+        },
+        "FIRM-019": {
+          "quartile": "Q3",
+          "value": 0.15
+        },
+        "FIRM-022": {
+          "quartile": "Q3",
+          "value": 0.119
+        },
+        "FIRM-002": {
+          "quartile": "Q3",
+          "value": 0.1
+        },
+        "FIRM-009": {
+          "quartile": "Q4",
+          "value": 0.0758
+        },
+        "FIRM-018": {
+          "quartile": "Q4",
+          "value": 0.073
+        },
+        "FIRM-024": {
+          "quartile": "Q4",
+          "value": 0.0703
+        },
+        "FIRM-023": {
+          "quartile": "Q4",
+          "value": -0.087
+        }
+      },
+      "top_quartile_firms": [
+        "FIRM-010",
+        "FIRM-004",
+        "FIRM-008",
+        "FIRM-014",
+        "FIRM-006"
+      ],
+      "bottom_quartile_firms": [
+        "FIRM-009",
+        "FIRM-018",
+        "FIRM-024",
+        "FIRM-023"
+      ]
+    },
+    {
+      "driver_id": "DVR-005",
+      "metric_id": "MET-VD-006",
+      "driver_name": "FEAUM Year-over-Year Growth",
+      "category": "Scale",
+      "classification": "not_a_driver",
+      "avg_abs_rho": 0.0822,
+      "confidence_class": "not_significant",
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.0826,
+          "p_uncorrected": 0.761048,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.5533,
+            0.6417
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-027": {
+          "rho": 0.1491,
+          "p_uncorrected": 0.58161,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.4199,
+            0.6687
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-028": {
+          "rho": -0.0148,
+          "p_uncorrected": 0.956733,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.4973,
+            0.5104
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        }
+      },
+      "n_firms_with_data": 20,
+      "firm_quartiles": {
+        "FIRM-010": {
+          "quartile": "Q1",
+          "value": 0.5
+        },
+        "FIRM-016": {
+          "quartile": "Q1",
+          "value": 0.488
+        },
+        "FIRM-019": {
+          "quartile": "Q1",
+          "value": 0.38
+        },
+        "FIRM-012": {
+          "quartile": "Q1",
+          "value": 0.29
+        },
+        "FIRM-007": {
+          "quartile": "Q1",
+          "value": 0.258
+        },
+        "FIRM-013": {
+          "quartile": "Q2",
+          "value": 0.184
+        },
+        "FIRM-002": {
+          "quartile": "Q2",
+          "value": 0.18
+        },
+        "FIRM-003": {
+          "quartile": "Q2",
+          "value": 0.154
+        },
+        "FIRM-004": {
+          "quartile": "Q2",
+          "value": 0.15
+        },
+        "FIRM-009": {
+          "quartile": "Q2",
+          "value": 0.15
+        },
+        "FIRM-023": {
+          "quartile": "Q3",
+          "value": 0.15
+        },
+        "FIRM-018": {
+          "quartile": "Q3",
+          "value": 0.14
+        },
+        "FIRM-005": {
+          "quartile": "Q3",
+          "value": 0.12
+        },
+        "FIRM-014": {
+          "quartile": "Q3",
+          "value": 0.091
+        },
+        "FIRM-001": {
+          "quartile": "Q3",
+          "value": 0.089
+        },
+        "FIRM-024": {
+          "quartile": "Q4",
+          "value": 0.073
+        },
+        "FIRM-015": {
+          "quartile": "Q4",
+          "value": 0.071
+        },
+        "FIRM-008": {
+          "quartile": "Q4",
+          "value": 0.03
+        },
+        "FIRM-011": {
+          "quartile": "Q4",
+          "value": 0.007
+        },
+        "FIRM-006": {
+          "quartile": "Q4",
+          "value": -0.01
+        }
+      },
+      "top_quartile_firms": [
+        "FIRM-010",
+        "FIRM-016",
+        "FIRM-019",
+        "FIRM-012",
+        "FIRM-007"
+      ],
+      "bottom_quartile_firms": [
+        "FIRM-024",
+        "FIRM-015",
+        "FIRM-008",
+        "FIRM-011",
+        "FIRM-006"
+      ]
+    },
+    {
+      "driver_id": "DVR-006",
+      "metric_id": "MET-VD-016",
+      "driver_name": "Management Fee Rate",
+      "category": "Fee Quality",
+      "classification": "not_a_driver",
+      "avg_abs_rho": 0.0624,
+      "confidence_class": "not_significant",
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.1073,
+          "p_uncorrected": 0.727186,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.7604,
+            0.5284
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-027": {
+          "rho": 0.0055,
+          "p_uncorrected": 0.985767,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.6676,
+            0.661
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-028": {
+          "rho": 0.0744,
+          "p_uncorrected": 0.809174,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.5374,
+            0.6271
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        }
+      },
+      "n_firms_with_data": 15,
+      "firm_quartiles": {
+        "FIRM-024": {
+          "quartile": "Q1",
+          "value": 145.0148
+        },
+        "FIRM-006": {
+          "quartile": "Q1",
+          "value": 141.4
+        },
+        "FIRM-005": {
+          "quartile": "Q1",
+          "value": 133.7
+        },
+        "FIRM-008": {
+          "quartile": "Q1",
+          "value": 130.5
+        },
+        "FIRM-007": {
+          "quartile": "Q2",
+          "value": 125.0
+        },
+        "FIRM-010": {
+          "quartile": "Q2",
+          "value": 108
+        },
+        "FIRM-009": {
+          "quartile": "Q2",
+          "value": 107.1378
+        },
+        "FIRM-013": {
+          "quartile": "Q2",
+          "value": 107
+        },
+        "FIRM-004": {
+          "quartile": "Q3",
+          "value": 96.0
+        },
+        "FIRM-018": {
+          "quartile": "Q3",
+          "value": 90
+        },
+        "FIRM-002": {
+          "quartile": "Q3",
+          "value": 86.0
+        },
+        "FIRM-003": {
+          "quartile": "Q3",
+          "value": 71.6
+        },
+        "FIRM-001": {
+          "quartile": "Q4",
+          "value": 66.5
+        },
+        "FIRM-011": {
+          "quartile": "Q4",
+          "value": 65
+        },
+        "FIRM-014": {
+          "quartile": "Q4",
+          "value": 65
+        }
+      },
+      "top_quartile_firms": [
+        "FIRM-024",
+        "FIRM-006",
+        "FIRM-005",
+        "FIRM-008"
+      ],
+      "bottom_quartile_firms": [
+        "FIRM-001",
+        "FIRM-011",
+        "FIRM-014"
+      ]
+    }
+  ],
+  "all_drivers_ranked": [
+    {
+      "metric_id": "MET-VD-005",
+      "metric_name": "Total Assets Under Management",
+      "category": "Scale",
+      "classification": "stable_value_driver",
+      "avg_abs_rho": 0.595,
+      "confidence_class": "not_significant",
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.7451,
+          "p_uncorrected": 0.000599,
+          "p_bonferroni": 0.010777,
+          "ci_95": [
+            0.3998,
+            0.9082
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "moderate_confidence"
+        },
+        "MET-VD-027": {
+          "rho": 0.3102,
+          "p_uncorrected": 0.22555,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.2161,
+            0.6959
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-028": {
+          "rho": 0.7296,
+          "p_uncorrected": 0.000887,
+          "p_bonferroni": 0.01596,
+          "ci_95": [
+            0.4371,
+            0.8932
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "moderate_confidence"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-004",
+      "metric_name": "Fee-Earning Assets Under Management",
+      "category": "Scale",
+      "classification": "stable_value_driver",
+      "avg_abs_rho": 0.552,
+      "confidence_class": "not_significant",
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.7451,
+          "p_uncorrected": 0.00223,
+          "p_bonferroni": 0.040141,
+          "ci_95": [
+            0.3651,
+            0.905
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "moderate_confidence"
+        },
+        "MET-VD-027": {
+          "rho": 0.1056,
+          "p_uncorrected": 0.719353,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.5395,
+            0.6278
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-028": {
+          "rho": 0.8053,
+          "p_uncorrected": 0.00051,
+          "p_bonferroni": 0.009178,
+          "ci_95": [
+            0.4777,
+            0.9564
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "high_confidence"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-013",
+      "metric_name": "Fee-Related Earnings Margin",
+      "category": "Efficiency",
+      "classification": "multiple_specific_driver",
+      "avg_abs_rho": 0.4224,
+      "confidence_class": "not_significant",
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.37,
+          "p_uncorrected": 0.174671,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.145,
+            0.8113
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-027": {
+          "rho": 0.3247,
+          "p_uncorrected": 0.237704,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.2043,
+            0.6989
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-028": {
+          "rho": 0.5725,
+          "p_uncorrected": 0.025737,
+          "p_bonferroni": 0.463262,
+          "ci_95": [
+            0.0553,
+            0.8769
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-014",
+      "metric_name": "Fee-Related Earnings Growth Year-over-Year",
+      "category": "Efficiency",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.2515,
+      "confidence_class": "not_significant",
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.3439,
+          "p_uncorrected": 0.249952,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.193,
+            0.7536
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-027": {
+          "rho": 0.0661,
+          "p_uncorrected": 0.830082,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.5347,
+            0.6457
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-028": {
+          "rho": 0.3444,
+          "p_uncorrected": 0.249257,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.3808,
+            0.7627
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-006",
+      "metric_name": "FEAUM Year-over-Year Growth",
+      "category": "Scale",
+      "classification": "not_a_driver",
+      "avg_abs_rho": 0.0822,
+      "confidence_class": "not_significant",
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.0826,
+          "p_uncorrected": 0.761048,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.5533,
+            0.6417
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-027": {
+          "rho": 0.1491,
+          "p_uncorrected": 0.58161,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.4199,
+            0.6687
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-028": {
+          "rho": -0.0148,
+          "p_uncorrected": 0.956733,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.4973,
+            0.5104
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        }
+      }
+    },
+    {
+      "metric_id": "MET-VD-016",
+      "metric_name": "Management Fee Rate",
+      "category": "Fee Quality",
+      "classification": "not_a_driver",
+      "avg_abs_rho": 0.0624,
+      "confidence_class": "not_significant",
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.1073,
+          "p_uncorrected": 0.727186,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.7604,
+            0.5284
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-027": {
+          "rho": 0.0055,
+          "p_uncorrected": 0.985767,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.6676,
+            0.661
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        },
+        "MET-VD-028": {
+          "rho": 0.0744,
+          "p_uncorrected": 0.809174,
+          "p_bonferroni": 1.0,
+          "ci_95": [
+            -0.5374,
+            0.6271
+          ],
+          "partial_rho_ctrl_feaum": null,
+          "confidence_class": "not_significant"
+        }
+      }
+    }
+  ],
+  "non_obvious_peers": [
+    {
+      "firm_id": "FIRM-001",
+      "firm_name": "Blackstone Inc.",
+      "q1_on_n_stable_drivers": 2,
+      "stable_drivers_in_q1": [
+        "MET-VD-005",
+        "MET-VD-004"
+      ]
+    },
+    {
+      "firm_id": "FIRM-002",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "q1_on_n_stable_drivers": 2,
+      "stable_drivers_in_q1": [
+        "MET-VD-005",
+        "MET-VD-004"
+      ]
+    },
+    {
+      "firm_id": "FIRM-003",
+      "firm_name": "Apollo Global Management, Inc.",
+      "q1_on_n_stable_drivers": 2,
+      "stable_drivers_in_q1": [
+        "MET-VD-005",
+        "MET-VD-004"
+      ]
+    },
+    {
+      "firm_id": "FIRM-004",
+      "firm_name": "KKR & Co. Inc.",
+      "q1_on_n_stable_drivers": 2,
+      "stable_drivers_in_q1": [
+        "MET-VD-005",
+        "MET-VD-004"
+      ]
+    },
+    {
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "q1_on_n_stable_drivers": 2,
+      "stable_drivers_in_q1": [
+        "MET-VD-005",
+        "MET-VD-004"
+      ]
+    }
+  ]
+}
