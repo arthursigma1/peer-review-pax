@@ -21,6 +21,8 @@ export interface PipelineAgent {
   status: AgentStatus;
   outputFile: string | null;
   logs: string[];
+  startedAt: number | null;
+  completedAt: number | null;
 }
 
 export interface QualityGate {
@@ -81,7 +83,7 @@ export const FOLDER_LABELS: Record<string, string> = {
   "2-data": "Data Collection",
   "3-analysis": "Statistical Analysis",
   "4-deep-dives": "Deep-Dive Profiles",
-  "5-playbook": "Playbook & Report",
+  "5-playbook": "PAX Memo & Report",
   "6-review": "Review",
 };
 
@@ -154,7 +156,7 @@ export const PIPELINE_STEPS: Omit<PipelineStep, "status" | "agents" | "gate" | "
     index: 4,
     id: "build-playbook",
     name: "Build the Playbook",
-    description: "Synthesize insights and generate report",
+    description: "Synthesize the PAX-first playbook, target lens, and decision memo",
   },
   {
     index: 5,
@@ -164,19 +166,3 @@ export const PIPELINE_STEPS: Omit<PipelineStep, "status" | "agents" | "gate" | "
   },
 ];
 
-export const AGENT_NAMES: Record<string, string> = {
-  "universe-scout": "Industry Scanner",
-  "source-mapper": "Source Cataloger",
-  "metric-architect": "Metrics Designer",
-  "data-collector": "Data Collector",
-  "strategy-extractor": "Strategy Researcher",
-  "metric-architect-w3": "Statistical Analyst",
-  "platform-analyst": "Platform Profiler",
-  "vertical-analyst": "Sector Specialist",
-  "playbook-synthesizer": "Insight Synthesizer",
-  "report-builder": "Report Composer",
-  "target-lens": "Target Company Lens",
-  "claim-auditor": "Fact Checker",
-  "methodology-reviewer": "Methodology Reviewer",
-  "results-reviewer": "Results Reviewer",
-};

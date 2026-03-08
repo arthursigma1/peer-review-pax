@@ -4,6 +4,7 @@ import { StepCard } from "./StepCard";
 import { AgentCard } from "./AgentCard";
 import { CheckpointBar } from "./CheckpointBar";
 import { Terminal } from "./Terminal";
+import { AgentTimeline } from "./AgentTimeline";
 import { formatElapsed } from "../lib/cli";
 
 interface PipelineMonitorProps {
@@ -13,7 +14,11 @@ interface PipelineMonitorProps {
   startTime: number | null;
   isRunning: boolean;
   checkpoints: Checkpoint[];
+  runs?: string[];
+  selectedRun?: string | null;
+  onSelectRun?: (run: string) => void;
   onRerunFromStep?: (stepIndex: number) => void;
+  onRunNextStep?: () => void;
   ptyCommand?: string | null;
   ptyArgs?: string[];
   onPtyExit?: () => void;
@@ -27,7 +32,11 @@ export function PipelineMonitor({
   startTime,
   isRunning,
   checkpoints,
+  runs,
+  selectedRun,
+  onSelectRun,
   onRerunFromStep,
+  onRunNextStep,
   ptyCommand,
   ptyArgs = [],
   onPtyExit,
@@ -35,10 +44,14 @@ export function PipelineMonitor({
 }: PipelineMonitorProps) {
   const [selectedStep, setSelectedStep] = useState<number>(0);
   const [expandedAgent, setExpandedAgent] = useState<string | null>(null);
+  const [bottomTab, setBottomTab] = useState<"agents" | "timeline">("agents");
 
   const activeStep = steps[selectedStep] || steps[0];
   const elapsed = startTime ? Date.now() - startTime : 0;
   const completedSteps = steps.filter((s) => s.status === "complete").length;
+  const hasTimingData = startTime !== null && steps.some((s) =>
+    s.agents.some((a) => a.startedAt !== null)
+  );
 
   return (
     <div className="flex flex-col h-full">
@@ -61,11 +74,33 @@ export function PipelineMonitor({
                 : "Pipeline Ready"}
             </span>
           </div>
-          {startTime && (
-            <span className="text-xs text-gray-400 font-mono">
-              {formatElapsed(elapsed)}
-            </span>
-          )}
+          <div className="flex items-center gap-3">
+            {/* Run selector */}
+            {runs && runs.length > 1 && !isRunning && onSelectRun && (
+              <select
+                value={selectedRun || ""}
+                onChange={(e) => onSelectRun(e.target.value)}
+                className="px-2 py-1 rounded bg-gray-50 border border-gray-200 text-xs text-gray-700 font-mono focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
+              >
+                {runs.map((r) => (
+                  <option key={r} value={r}>{r}</option>
+                ))}
+              </select>
+            )}
+            {!isRunning && onRunNextStep && completedSteps > 0 && completedSteps < steps.length && (
+              <button
+                onClick={onRunNextStep}
+                className="px-3 py-1 rounded text-xs font-medium text-[#0068ff] border border-[#0068ff]/40 hover:bg-[#0068ff]/5 transition-colors"
+              >
+                Run Next Step →
+              </button>
+            )}
+            {startTime && (
+              <span className="text-xs text-gray-400 font-mono">
+                {formatElapsed(elapsed)}
+              </span>
+            )}
+          </div>
         </div>
         <div className="h-1 rounded-full bg-gray-200 overflow-hidden">
           <div
@@ -103,16 +138,40 @@ export function PipelineMonitor({
             </div>
           )}
 
-          {/* Agents bar (compact, below terminal) */}
+          {/* Bottom panel: tabbed between Agents and Timeline */}
           <div className={`border-t border-gray-200 flex flex-col ${activeStep.agents.length > 0 || !ptyCommand ? "h-[35%]" : "h-auto"}`}>
-            <div className="flex items-center justify-between px-4 py-2 bg-gray-50/50 border-b border-gray-200">
-              <div className="flex items-center gap-3">
-                <h2 className="text-sm font-medium text-gray-700">{activeStep.name}</h2>
-                {activeStep.agents.length > 0 && (
-                  <span className="text-[10px] text-gray-400">{activeStep.agents.length} agent{activeStep.agents.length !== 1 ? "s" : ""}</span>
+            {/* Tab bar */}
+            <div className="flex items-center justify-between px-4 py-0 bg-gray-50/50 border-b border-gray-200">
+              <div className="flex items-center gap-0">
+                <button
+                  onClick={() => setBottomTab("agents")}
+                  className={`px-3 py-2 text-[11px] font-medium border-b-2 transition-colors ${
+                    bottomTab === "agents"
+                      ? "border-[#0068ff] text-[#0068ff]"
+                      : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  {activeStep.name}
+                  {activeStep.agents.length > 0 && (
+                    <span className="ml-1.5 text-[9px] text-gray-400">
+                      {activeStep.agents.length} agent{activeStep.agents.length !== 1 ? "s" : ""}
+                    </span>
+                  )}
+                </button>
+                {hasTimingData && (
+                  <button
+                    onClick={() => setBottomTab("timeline")}
+                    className={`px-3 py-2 text-[11px] font-medium border-b-2 transition-colors ${
+                      bottomTab === "timeline"
+                        ? "border-[#0068ff] text-[#0068ff]"
+                        : "border-transparent text-gray-500 hover:text-gray-700"
+                    }`}
+                  >
+                    Timeline
+                  </button>
                 )}
               </div>
-              {!isRunning && onRerunFromStep && (activeStep.status === "complete" || activeStep.status === "failed") && (
+              {bottomTab === "agents" && !isRunning && onRerunFromStep && (activeStep.status === "complete" || activeStep.status === "failed") && (
                 <button
                   onClick={() => onRerunFromStep(activeStep.index)}
                   className="px-2 py-1 rounded text-[10px] font-medium text-amber-600 border border-amber-300 hover:bg-amber-50 transition-colors"
@@ -121,27 +180,37 @@ export function PipelineMonitor({
                 </button>
               )}
             </div>
-            <div className="flex-1 overflow-y-auto px-4 py-2">
-              {activeStep.agents.length > 0 ? (
-                <div className="grid gap-1.5">
-                  {activeStep.agents.map((agent) => (
-                    <AgentCard
-                      key={agent.id}
-                      agent={agent}
-                      isExpanded={expandedAgent === agent.id}
-                      onToggle={() =>
-                        setExpandedAgent(expandedAgent === agent.id ? null : agent.id)
-                      }
-                    />
-                  ))}
+
+            {/* Tab content */}
+            <div className="flex-1 overflow-y-auto">
+              {bottomTab === "agents" ? (
+                <div className="px-4 py-2">
+                  {activeStep.agents.length > 0 ? (
+                    <div className="grid gap-1.5">
+                      {activeStep.agents.map((agent) => (
+                        <AgentCard
+                          key={agent.id}
+                          agent={agent}
+                          isExpanded={expandedAgent === agent.id}
+                          onToggle={() =>
+                            setExpandedAgent(expandedAgent === agent.id ? null : agent.id)
+                          }
+                        />
+                      ))}
+                    </div>
+                  ) : !ptyCommand ? (
+                    <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+                      {activeStep.status === "pending"
+                        ? "Waiting to start..."
+                        : "No agents dispatched yet"}
+                    </div>
+                  ) : null}
                 </div>
-              ) : !ptyCommand ? (
-                <div className="flex items-center justify-center h-full text-gray-400 text-sm">
-                  {activeStep.status === "pending"
-                    ? "Waiting to start..."
-                    : "No agents dispatched yet"}
+              ) : (
+                <div className="px-4 py-3">
+                  <AgentTimeline steps={steps} startTime={startTime} />
                 </div>
-              ) : null}
+              )}
             </div>
           </div>
         </div>

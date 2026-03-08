@@ -35,6 +35,30 @@ const SECTORS = [
   "Industrials",
 ];
 
+const STEP_RANGE_OPTIONS = [
+  { index: 1, label: "Step 1 — Map the Industry" },
+  { index: 2, label: "Step 2 — Gather Data" },
+  { index: 3, label: "Step 3 — Find What Drives Value" },
+  { index: 4, label: "Step 4 — Deep-Dive Peers" },
+  { index: 5, label: "Step 5 — Build the Playbook" },
+  { index: 6, label: "Step 6 — Review Analysis" },
+];
+
+function buildSkillCmd(
+  ticker: string,
+  autoMode: boolean,
+  sourcesDirs: (string | null)[],
+  fromStep: number,
+  toStep: number,
+): string {
+  let cmd = `/valuation-driver ${ticker}`;
+  if (autoMode) cmd += " --auto";
+  const dirs = sourcesDirs.filter(Boolean);
+  if (dirs.length > 0) cmd += ` --sources ${dirs.join(",")}`;
+  if (fromStep !== 1 || toStep !== 6) cmd += ` --from-step ${fromStep} --to-step ${toStep}`;
+  return cmd;
+}
+
 function App() {
   const [screen, setScreen] = useState<Screen>("home");
   const [ticker, setTicker] = useState("");
@@ -47,9 +71,11 @@ function App() {
   const [toneStatus, setToneStatus] = useState<"idle" | "extracting" | "done" | "error">("idle");
   const [ptyCommand, setPtyCommand] = useState<string | null>(null);
   const [ptyArgs, setPtyArgs] = useState<string[]>([]);
+  const [fromStep, setFromStep] = useState(1);
+  const [toStep, setToStep] = useState(6);
 
   const pipeline = usePipeline();
-  const { files, runs, selectedRun, setSelectedRun, error: watcherError } = useFileWatcher(pipeline.config?.ticker || ticker || null);
+  const { files, runs, selectedRun, setSelectedRun, error: watcherError, resetForNewRun } = useFileWatcher(pipeline.config?.ticker || ticker || null);
   const { notify } = useNotifications();
 
   const [isReviewRunning, setIsReviewRunning] = useState(false);
@@ -57,10 +83,36 @@ function App() {
   const [existingSession, setExistingSession] = useState<ExistingSession | null>(null);
   const knownAgentsRef = useRef(new Set<string>());
 
+  // Sync run selection: when user switches run in Results, also load that run's pipeline state
+  useEffect(() => {
+    if (!selectedRun || pipeline.isRunning) return;
+    const t = pipeline.config?.ticker || ticker;
+    if (!t) return;
+    // Only reload if the run changed from what pipeline currently has
+    if (selectedRun === pipeline.runDate) return;
+    pipeline.restore(t, selectedRun).then((loaded) => {
+      if (!loaded) {
+        // No saved pipeline state for this run — reconstruct from files
+        pipeline.loadExistingSession(t, selectedRun);
+      }
+    });
+  }, [selectedRun]);
+
+  // When file sync marks a step as complete, also mark its agents complete
+  const markStepAgentsComplete = useCallback((stepIndex: number) => {
+    const step = pipeline.steps[stepIndex];
+    if (!step) return;
+    for (const agent of step.agents) {
+      if (agent.status === "running") {
+        pipeline.addAgent(stepIndex, { ...agent, status: "complete" });
+      }
+    }
+  }, [pipeline.steps, pipeline.addAgent]);
+
   // Parse PTY output to detect agents and step transitions
   const handlePtyData = useCallback((text: string) => {
     if (!pipeline.isRunning) return;
-    const events = parsePtyChunk(text, knownAgentsRef.current);
+    const events = parsePtyChunk(text, knownAgentsRef.current, pipeline.currentStep);
     for (const ev of events) {
       switch (ev.type) {
         case "agent-spawned":
@@ -79,14 +131,12 @@ function App() {
           break;
         case "step-complete":
           pipeline.updateStep(ev.stepIndex, { status: "complete", completedAt: Date.now() });
-          // Mark all agents in this step as complete
           markStepAgentsComplete(ev.stepIndex);
           break;
         case "checkpoint": {
           if (ev.message) pipeline.addLog(`[CHECKPOINT] ${ev.message}`);
-          // Find the checkpoint that matches this step and update its status
           const cp = pipeline.checkpoints.find(c => c.afterStep === ev.stepIndex);
-          if (cp && cp.status === "pending") {
+          if (cp && (cp.status === "pending" || cp.status === "scanning")) {
             const passed = /PASSED|passed/i.test(ev.message || "");
             const blocked = /BLOCKED|blocked/i.test(ev.message || "");
             pipeline.updateCheckpoint(cp.id, {
@@ -100,21 +150,8 @@ function App() {
           break;
       }
     }
-  }, [pipeline.isRunning, pipeline.addAgent, pipeline.updateStep, pipeline.addLog]);
+  }, [pipeline.isRunning, pipeline.currentStep, pipeline.addAgent, pipeline.updateStep, pipeline.addLog, pipeline.checkpoints, pipeline.updateCheckpoint, markStepAgentsComplete]);
 
-  // When file sync marks a step as complete, also mark its agents complete
-  const markStepAgentsComplete = useCallback((stepIndex: number) => {
-    const step = pipeline.steps[stepIndex];
-    if (!step) return;
-    for (const agent of step.agents) {
-      if (agent.status === "running") {
-        pipeline.addAgent(stepIndex, { ...agent, status: "complete" });
-      }
-    }
-  }, [pipeline.steps, pipeline.addAgent]);
-
-  // Sync pipeline step status from detected files
-  // Also mark agents complete when their step completes via file detection
   const prevStepStatuses = useRef<string[]>([]);
   useEffect(() => {
     if (files.length > 0) {
@@ -198,6 +235,21 @@ function App() {
     };
     init();
   }, []);
+
+  const handleRunNextStep = () => {
+    if (!pipeline.config || pipeline.isRunning) return;
+    const nextStepIndex = pipeline.steps.findIndex((s) => s.status !== "complete");
+    if (nextStepIndex < 0 || nextStepIndex >= pipeline.steps.length) return;
+    const nextStepNumber = nextStepIndex + 1;
+    const { ticker: t, autoMode: am, sellSideDir, consultingDir } = pipeline.config;
+    const skillCmd = buildSkillCmd(t, am, [sellSideDir, consultingDir], nextStepNumber, nextStepNumber);
+    setPtyCommand("claude");
+    setPtyArgs(["--dangerously-skip-permissions", "--model", "sonnet", skillCmd]);
+    resetForNewRun();
+    knownAgentsRef.current.clear();
+    pipeline.start(pipeline.config, nextStepIndex);
+    setScreen("monitor");
+  };
 
   const handleStartReview = async () => {
     const reviewTicker = pipeline.config?.ticker || ticker;
@@ -304,17 +356,14 @@ Output ONLY valid JSON matching this schema:
     };
     localStorage.setItem("vda-last-ticker", config.ticker);
 
-    // Build claude CLI command for interactive PTY session
-    let skillCmd = `/valuation-driver ${t}`;
-    if (autoMode) skillCmd += " --auto";
-    const sourcesDirs = [sources.sellSide, sources.consulting].filter(Boolean);
-    if (sourcesDirs.length > 0) skillCmd += ` --sources ${sourcesDirs.join(",")}`;
+    const skillCmd = buildSkillCmd(t, autoMode, [sources.sellSide, sources.consulting], fromStep, toStep);
     setPtyCommand("claude");
     setPtyArgs(["--dangerously-skip-permissions", "--model", "sonnet", skillCmd]);
 
-    // Also set pipeline config for UI state tracking
+    // Reset file watcher and pipeline state for fresh run
+    resetForNewRun();
     knownAgentsRef.current.clear();
-    pipeline.start(config);
+    pipeline.start(config, fromStep - 1);
     setScreen("monitor");
   };
 
@@ -490,6 +539,64 @@ Output ONLY valid JSON matching this schema:
                     Advanced options
                   </summary>
                   <div className="mt-4 space-y-5 pl-0">
+                    {/* Step range */}
+                    <div>
+                      <label className="block text-xs text-gray-500 mb-1.5">
+                        Step range
+                      </label>
+                      <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-xs text-gray-400">From</span>
+                          <select
+                            value={fromStep}
+                            onChange={(e) => {
+                              const val = Number(e.target.value);
+                              setFromStep(val);
+                              if (val > toStep) setToStep(val);
+                            }}
+                            className="px-3 py-2 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-700 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
+                          >
+                            {STEP_RANGE_OPTIONS.map((s) => (
+                              <option key={s.index} value={s.index}>
+                                {s.label}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-xs text-gray-400">To</span>
+                          <select
+                            value={toStep}
+                            onChange={(e) => {
+                              const val = Number(e.target.value);
+                              setToStep(val);
+                              if (val < fromStep) setFromStep(val);
+                            }}
+                            className="px-3 py-2 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-700 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
+                          >
+                            {STEP_RANGE_OPTIONS.map((s) => (
+                              <option key={s.index} value={s.index}>
+                                {s.label}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        {(fromStep !== 1 || toStep !== 6) && (
+                          <button
+                            onClick={() => { setFromStep(1); setToStep(6); }}
+                            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+                          >
+                            Reset
+                          </button>
+                        )}
+                      </div>
+                      {(fromStep !== 1 || toStep !== 6) && (
+                        <p className="text-[11px] text-[#0068ff] mt-1.5">
+                          Running steps {fromStep}–{toStep} only
+                        </p>
+                      )}
+                    </div>
+
                     {/* Reference peers */}
                     <div>
                       <label htmlFor="reference-peers" className="block text-xs text-gray-500 mb-1.5">
@@ -559,9 +666,13 @@ Output ONLY valid JSON matching this schema:
             startTime={pipeline.startTime}
             isRunning={pipeline.isRunning}
             checkpoints={pipeline.checkpoints}
+            runs={runs}
+            selectedRun={selectedRun}
+            onSelectRun={setSelectedRun}
             onRerunFromStep={pipeline.config ? (stepIndex) => {
               pipeline.start(pipeline.config!, stepIndex);
             } : undefined}
+            onRunNextStep={pipeline.config ? handleRunNextStep : undefined}
             ptyCommand={ptyCommand}
             ptyArgs={ptyArgs}
             onPtyData={handlePtyData}

@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VDA Report Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "report_mode",
+    "default_synthesis",
+    "target_company",
+    "target_ticker",
+    "peer_evidence_layer_present",
+    "pax_interpretation_layer_present",
+    "pax_decision_layer_present",
+    "statistical_governance"
+  ],
+  "properties": {
+    "report_mode": {
+      "type": "string",
+      "enum": ["pax_decision_memo"]
+    },
+    "default_synthesis": {
+      "type": "string",
+      "enum": ["pax_first"]
+    },
+    "target_company": { "type": "string" },
+    "target_ticker": { "type": "string" },
+    "peer_evidence_layer_present": { "type": "boolean", "enum": [true] },
+    "pax_interpretation_layer_present": { "type": "boolean", "enum": [true] },
+    "pax_decision_layer_present": { "type": "boolean", "enum": [true] },
+    "statistical_governance": {
+      "$ref": "./statistics_metadata.schema.json"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VDA Strategy Profile",
+  "description": "Per-peer business-model mapping using the PAX peer strategy ontology",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "firm_id",
+    "firm_ticker",
+    "ontology_mapping",
+    "contextual_market_factors",
+    "stated_strategic_priorities",
+    "source_ids"
+  ],
+  "properties": {
+    "firm_id": { "type": "string" },
+    "firm_ticker": { "type": "string" },
+    "archetype": {
+      "type": "string",
+      "enum": ["north_star_peer", "near_peer", "adjacent_peer", "anti_pattern_peer"]
+    },
+    "archetype_secondary": {
+      "type": ["string", "null"],
+      "enum": ["north_star_peer", "near_peer", "adjacent_peer", "anti_pattern_peer", null]
+    },
+    "ontology_mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "geographical_reach": { "$ref": "#/$defs/ontology_field_string_array" },
+        "business_focus": { "$ref": "#/$defs/ontology_field_string_array" },
+        "asset_focus": { "$ref": "#/$defs/ontology_field_string_array" },
+        "asset_class_and_investment_strategies": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "private_equity": { "$ref": "#/$defs/ontology_field_string_array" },
+            "infrastructure": { "$ref": "#/$defs/ontology_field_string_array" },
+            "private_credit": { "$ref": "#/$defs/ontology_field_string_array" },
+            "real_estate": { "$ref": "#/$defs/ontology_field_string_array" },
+            "natural_resources": { "$ref": "#/$defs/ontology_field_string_array" }
+          }
+        },
+        "sector_orientation": { "$ref": "#/$defs/ontology_field_string_array" },
+        "origination_engine": { "$ref": "#/$defs/ontology_field_string_array" },
+        "fund_type": { "$ref": "#/$defs/ontology_field_string_array" },
+        "capital_source": { "$ref": "#/$defs/ontology_field_string_array" },
+        "distribution_strategy": { "$ref": "#/$defs/ontology_field_string_array" },
+        "client_segment": { "$ref": "#/$defs/ontology_field_string_array" },
+        "growth_agenda": { "$ref": "#/$defs/ontology_field_string_array" },
+        "share_class": { "$ref": "#/$defs/ontology_field_string_array" }
+      }
+    },
+    "contextual_market_factors": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tam": { "type": ["string", "null"] },
+        "market_share": { "type": ["string", "null"] },
+        "governance": { "type": ["string", "null"] },
+        "regulation": { "type": ["string", "null"] }
+      }
+    },
+    "stated_strategic_priorities": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "source_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "missing_dimensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["dimension", "missing_reason"],
+        "properties": {
+          "dimension": { "type": "string" },
+          "missing_reason": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "ontology_field_string_array": {
+      "description": "One or more ontology values for a dimension, or null with missing_reason tracked in the missing_dimensions array",
+      "type": ["array", "null"],
+      "items": { "type": "string" }
+    }
+  }
+}

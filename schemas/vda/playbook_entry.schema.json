@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VDA Playbook Entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "Play_ID",
+    "What_Was_Done",
+    "Observed_Metric_Impact",
+    "Why_It_Worked",
+    "PAX_Relevance",
+    "Preconditions",
+    "Operational_And_Tech_Prerequisites",
+    "Execution_Burden",
+    "Time_To_Build",
+    "Margin_Risk",
+    "Failure_Modes_And_Margin_Destroyers",
+    "Transferability_Constraints",
+    "Archetype_Relevance",
+    "Evidence_Strength",
+    "Recommendation_For_PAX"
+  ],
+  "properties": {
+    "Play_ID": { "type": "string" },
+    "What_Was_Done": { "type": "string", "minLength": 1 },
+    "Observed_Metric_Impact": { "type": "string", "minLength": 1 },
+    "Why_It_Worked": { "type": "string", "minLength": 1 },
+    "PAX_Relevance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scale_fit",
+        "geography_fit",
+        "client_distribution_fit",
+        "balance_sheet_fit",
+        "regulatory_fit",
+        "operating_model_fit",
+        "tech_readiness",
+        "data_reporting_readiness",
+        "time_to_build",
+        "capital_intensity",
+        "margin_risk",
+        "execution_complexity",
+        "feasibility_horizon"
+      ],
+      "properties": {
+        "scale_fit": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "geography_fit": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "client_distribution_fit": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "balance_sheet_fit": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "regulatory_fit": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "operating_model_fit": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "tech_readiness": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "data_reporting_readiness": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "time_to_build": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "capital_intensity": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "margin_risk": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "execution_complexity": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "feasibility_horizon": {
+          "type": "string",
+          "enum": ["near_term_feasible", "medium_term_feasible", "aspirational"]
+        }
+      }
+    },
+    "Preconditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "Operational_And_Tech_Prerequisites": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "Execution_Burden": { "type": "string", "minLength": 1 },
+    "Time_To_Build": { "type": "string", "minLength": 1 },
+    "Margin_Risk": { "type": "string", "minLength": 1 },
+    "Failure_Modes_And_Margin_Destroyers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "Transferability_Constraints": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "Archetype_Relevance": { "type": "string", "minLength": 1 },
+    "Evidence_Strength": {
+      "type": "string",
+      "enum": ["high", "moderate", "directional", "unsupported"]
+    },
+    "Recommendation_For_PAX": { "type": "string", "minLength": 1 }
+  }
+}

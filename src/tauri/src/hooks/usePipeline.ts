@@ -7,6 +7,7 @@ import type {
   QualityGate,
   StepStatus,
   Checkpoint,
+  OutputFile,
 } from "../types/pipeline";
 import { PIPELINE_STEPS, DEFAULT_TONE_PROFILE, INITIAL_CHECKPOINTS } from "../types/pipeline";
 
@@ -19,7 +20,26 @@ interface PipelineSnapshot {
   config: PipelineConfig | null;
   checkpoints: Checkpoint[];
   savedAt: number;
+  runDate?: string | null;
 }
+
+const FOLDER_TO_STEP: Record<string, number> = {
+  "1-universe": 0,
+  "2-data": 1,
+  "3-analysis": 2,
+  "4-deep-dives": 3,
+  "5-playbook": 4,
+  "6-review": 5,
+};
+
+const STEP_COMPLETE_FILES: Record<number, string[]> = {
+  0: ["peer_universe.json", "metric_taxonomy.json", "source_catalog.json"],
+  1: ["quantitative_data.json", "strategy_profiles.json"],
+  2: ["correlations.json", "driver_ranking.json", "final_peer_set.json"],
+  3: ["platform_profiles.json", "asset_class_analysis.json"],
+  4: ["final_report.html"],
+  5: ["methodology_review.md", "results_review.md"],
+};
 
 function createInitialSteps(): PipelineStep[] {
   return PIPELINE_STEPS.map((s) => ({
@@ -51,6 +71,7 @@ export function usePipeline() {
   const [pendingGate, setPendingGate] = useState<QualityGate | null>(null);
   const [config, setConfig] = useState<PipelineConfig | null>(null);
   const [checkpoints, setCheckpoints] = useState<Checkpoint[]>(createInitialCheckpoints());
+  const [runDate, setRunDate] = useState<string | null>(null);
   const childRef = useRef<any | null>(null);
 
   const addLog = useCallback((line: string) => {
@@ -85,33 +106,18 @@ export function usePipeline() {
     );
   }, []);
 
-  // Map output folders to step indices
-  const FOLDER_TO_STEP: Record<string, number> = {
-    "1-universe": 0,
-    "2-data": 1,
-    "3-analysis": 2,
-    "4-deep-dives": 3,
-    "5-playbook": 4,
-    "6-review": 5,
-  };
-
-  // Key output files that indicate a step is complete
-  const STEP_COMPLETE_FILES: Record<number, string[]> = {
-    0: ["peer_universe.json", "metric_taxonomy.json", "source_catalog.json"],
-    1: ["quantitative_data.json", "strategy_profiles.json"],
-    2: ["correlations.json", "driver_ranking.json", "final_peer_set.json"],
-    3: ["platform_profiles.json", "asset_class_analysis.json"],
-    4: ["final_report.html"],
-    5: ["methodology_review.md", "results_review.md"],
-  };
 
   // Sync pipeline step status from detected output files
-  const syncFromFiles = useCallback((files: { filename: string; folder: string }[]) => {
+  const syncFromFiles = useCallback((files: OutputFile[]) => {
     if (!isRunning) return;
+
+    // Only consider files that were created/modified after the pipeline started.
+    // This prevents stale files from a previous run from immediately completing all steps.
+    const freshFiles = files.filter((f) => f.modified >= (startTime ?? 0));
 
     // Group files by folder → step
     const filesByStep: Record<number, string[]> = {};
-    for (const f of files) {
+    for (const f of freshFiles) {
       const stepIdx = FOLDER_TO_STEP[f.folder];
       if (stepIdx !== undefined) {
         if (!filesByStep[stepIdx]) filesByStep[stepIdx] = [];
@@ -141,7 +147,7 @@ export function usePipeline() {
     if (highestActive !== undefined && highestActive > currentStep) {
       setCurrentStep(highestActive);
     }
-  }, [isRunning, currentStep]);
+  }, [isRunning, startTime, currentStep]);
 
   const start = useCallback(
     (pipelineConfig: PipelineConfig, fromStep?: number) => {
@@ -211,11 +217,12 @@ export function usePipeline() {
     setPendingGate(null);
     setConfig(null);
     setCheckpoints(createInitialCheckpoints());
+    setRunDate(null);
   }, []);
 
   // Use a ref to capture latest state so saveState callback is stable
-  const stateRef = useRef({ steps, currentStep, isRunning, startTime, logs, config, checkpoints });
-  stateRef.current = { steps, currentStep, isRunning, startTime, logs, config, checkpoints };
+  const stateRef = useRef({ steps, currentStep, isRunning, startTime, logs, config, checkpoints, runDate });
+  stateRef.current = { steps, currentStep, isRunning, startTime, logs, config, checkpoints, runDate };
 
   const saveState = useCallback(() => {
     const s = stateRef.current;
@@ -228,10 +235,12 @@ export function usePipeline() {
       logs: s.logs.slice(-500), // Keep last 500 lines
       config: s.config,
       checkpoints: s.checkpoints,
+      runDate: s.runDate,
       savedAt: Date.now(),
     };
     invoke("save_pipeline_state", {
       ticker: s.config.ticker,
+      runDate: s.runDate,
       state: JSON.stringify(snapshot),
     }).catch(console.error);
   }, []);
@@ -242,7 +251,7 @@ export function usePipeline() {
     return () => clearInterval(interval);
   }, [isRunning, saveState]);
 
-  const loadExistingSession = useCallback(async (ticker: string): Promise<boolean> => {
+  const loadExistingSession = useCallback(async (ticker: string, sessionRunDate?: string | null): Promise<boolean> => {
     try {
       const result = await invoke<Array<{
         step_index: number;
@@ -273,13 +282,14 @@ export function usePipeline() {
 
       setConfig({
         ticker: ticker.toUpperCase(),
-        sector: "", // Resolved from company_context.json at pipeline start
+        sector: "",
         autoMode: false,
         sellSideDir: null,
         consultingDir: null,
         referencePeers: null,
         toneProfile: DEFAULT_TONE_PROFILE,
       });
+      setRunDate(sessionRunDate ?? null);
       setIsRunning(false);
       return true;
     } catch {
@@ -287,31 +297,30 @@ export function usePipeline() {
     }
   }, []);
 
-  const restore = useCallback(async (ticker: string): Promise<boolean> => {
+  const restore = useCallback(async (ticker: string, restoreRunDate?: string | null): Promise<boolean> => {
     try {
-      const raw = await invoke<string | null>("load_pipeline_state", { ticker });
+      const raw = await invoke<string | null>("load_pipeline_state", { ticker, runDate: restoreRunDate ?? null });
       if (!raw) return false;
       const snapshot: PipelineSnapshot = JSON.parse(raw);
-      // Only restore if pipeline was running (not finished cleanly)
-      if (!snapshot.isRunning) return false;
       setSteps(snapshot.steps);
       setCurrentStep(snapshot.currentStep);
       setStartTime(snapshot.startTime);
       setLogs(snapshot.logs);
       setConfig(snapshot.config);
+      setRunDate(snapshot.runDate ?? restoreRunDate ?? null);
       if (snapshot.checkpoints) {
         setCheckpoints(snapshot.checkpoints);
       }
       // Mark as NOT running since the CLI process is gone
       setIsRunning(false);
-      // Mark any "running" steps/agents as "failed" since the process died
+      // Mark any "running" steps/agents as stale (complete, not failed — session ended normally)
       setSteps((prev) =>
         prev.map((s) => ({
           ...s,
-          status: s.status === "running" ? ("failed" as const) : s.status,
+          status: s.status === "running" ? ("complete" as const) : s.status,
           agents: s.agents.map((a) => ({
             ...a,
-            status: a.status === "running" ? ("failed" as const) : a.status,
+            status: a.status === "running" ? ("complete" as const) : a.status,
           })),
         }))
       );
@@ -330,6 +339,8 @@ export function usePipeline() {
     pendingGate,
     config,
     checkpoints,
+    runDate,
+    setRunDate,
     start,
     stop,
     reset,

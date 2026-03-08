@@ -44,8 +44,17 @@ function stripAnsi(text: string): string {
 
 /**
  * Parse a chunk of PTY output text and return any detected events.
+ *
+ * @param raw         Raw PTY output chunk (may contain ANSI codes)
+ * @param knownAgents Mutable Set tracking already-seen agents. Keys use the
+ *                    composite format `${agentId}:${stepIndex}` so that an
+ *                    agent reused across steps (e.g. metric-architect in step 0
+ *                    and step 2) generates a fresh spawn event for each step.
+ * @param currentStep The pipeline step index currently active, as tracked by
+ *                    the caller. Pass -1 when unknown; the parser will fall
+ *                    back to AGENT_MAP.stepIndex.
  */
-export function parsePtyChunk(raw: string, knownAgents: Set<string>): PtyParseEvent[] {
+export function parsePtyChunk(raw: string, knownAgents: Set<string>, currentStep: number = -1): PtyParseEvent[] {
   const text = stripAnsi(raw);
   const events: PtyParseEvent[] = [];
 
@@ -54,12 +63,18 @@ export function parsePtyChunk(raw: string, knownAgents: Set<string>): PtyParseEv
   if (agentMentions) {
     for (const match of agentMentions) {
       const agentId = match.slice(1);
-      if (AGENT_MAP[agentId] && !knownAgents.has(agentId)) {
-        knownAgents.add(agentId);
-        const info = AGENT_MAP[agentId];
+      if (!AGENT_MAP[agentId]) continue;
+
+      const info = AGENT_MAP[agentId];
+      // Use the caller-supplied step when known; fall back to the map default.
+      const effectiveStep = currentStep >= 0 ? currentStep : info.stepIndex;
+      const compositeKey = `${agentId}:${effectiveStep}`;
+
+      if (!knownAgents.has(compositeKey)) {
+        knownAgents.add(compositeKey);
         events.push({
           type: "agent-spawned",
-          stepIndex: info.stepIndex,
+          stepIndex: effectiveStep,
           agent: {
             id: agentId,
             name: agentId,
@@ -67,6 +82,8 @@ export function parsePtyChunk(raw: string, knownAgents: Set<string>): PtyParseEv
             status: "running",
             outputFile: null,
             logs: [],
+            startedAt: Date.now(),
+            completedAt: null,
           },
         });
       }
@@ -78,7 +95,11 @@ export function parsePtyChunk(raw: string, knownAgents: Set<string>): PtyParseEv
   //    - "Wrote N lines to .../filename.json" pattern
   //    - "agent-name ... completed" or "agent-name ... finished"
   for (const [agentId, info] of Object.entries(AGENT_MAP)) {
-    if (!knownAgents.has(agentId)) continue;
+    // Resolve the effective step the same way as section 1 so the composite
+    // key lookup matches what was inserted during spawn.
+    const effectiveStep = currentStep >= 0 ? currentStep : info.stepIndex;
+    const compositeKey = `${agentId}:${effectiveStep}`;
+    if (!knownAgents.has(compositeKey)) continue;
 
     // Pattern: @agent-name> ... complete/finished/done
     const completionPattern = new RegExp(
@@ -88,7 +109,7 @@ export function parsePtyChunk(raw: string, knownAgents: Set<string>): PtyParseEv
     if (completionPattern.test(text)) {
       events.push({
         type: "agent-complete",
-        stepIndex: info.stepIndex,
+        stepIndex: effectiveStep,
         agent: {
           id: agentId,
           name: agentId,
@@ -96,6 +117,8 @@ export function parsePtyChunk(raw: string, knownAgents: Set<string>): PtyParseEv
           status: "complete",
           outputFile: null,
           logs: [],
+          startedAt: null,
+          completedAt: Date.now(),
         },
       });
     }
@@ -119,32 +142,40 @@ export function parsePtyChunk(raw: string, knownAgents: Set<string>): PtyParseEv
       "correlations.json": "metric-architect",
       "driver_ranking.json": "metric-architect",
       "statistical_methodology.md": "metric-architect",
+      "statistics_metadata.json": "metric-architect",
       "final_peer_set.json": "convergence-analyst",
       "platform_profiles.json": "platform-analyst",
       "asset_class_analysis.json": "vertical-analyst",
       "value_principles.md": "playbook-synthesizer",
       "platform_playbook.json": "playbook-synthesizer",
       "asset_class_playbooks.json": "playbook-synthesizer",
+      "report_metadata.json": "report-builder",
       "final_report.html": "report-builder",
       "target_company_lens.json": "target-lens",
       "methodology_review.md": "methodology-reviewer",
       "results_review.md": "results-reviewer",
     };
     const agentId = fileToAgent[filename];
-    if (agentId && knownAgents.has(agentId)) {
+    if (agentId) {
       const info = AGENT_MAP[agentId];
-      events.push({
-        type: "agent-complete",
-        stepIndex: info?.stepIndex ?? -1,
-        agent: {
-          id: agentId,
-          name: agentId,
-          friendlyName: info?.friendlyName ?? agentId,
-          status: "complete",
-          outputFile: filename,
-          logs: [],
-        },
-      });
+      const effectiveStep = currentStep >= 0 ? currentStep : (info?.stepIndex ?? -1);
+      const compositeKey = `${agentId}:${effectiveStep}`;
+      if (knownAgents.has(compositeKey)) {
+        events.push({
+          type: "agent-complete",
+          stepIndex: effectiveStep,
+          agent: {
+            id: agentId,
+            name: agentId,
+            friendlyName: info?.friendlyName ?? agentId,
+            status: "complete",
+            outputFile: filename,
+            logs: [],
+            startedAt: null,
+            completedAt: Date.now(),
+          },
+        });
+      }
     }
   }
 
@@ -168,8 +199,11 @@ export function parsePtyChunk(raw: string, knownAgents: Set<string>): PtyParseEv
   }
 
   // 6. Detect checkpoints (claim-auditor)
-  if (/CLAIM-AUDIT|CP-\d|claim.auditor|Fact Check/i.test(text)) {
-    const cpMatch = text.match(/CP-(\d)/);
+  //    Matches broad set of patterns emitted by claim-auditor in real CLI output.
+  const checkpointTrigger =
+    /CLAIM-AUDIT|CP-\d|claim[_\-. ]?audit(?:or)?|Fact[\s-]?Check(?:er|point)?|audit[\s-]?complete|claim[\s-]?verification|Checkpoint\s+CP-\d/i;
+  if (checkpointTrigger.test(text)) {
+    const cpMatch = text.match(/CP-(\d)/i);
     const cpIndex = cpMatch ? parseInt(cpMatch[1]) : -1;
     // Map CP number to after-step: CP-1 after step 1, CP-2 after step 3, CP-3 after step 4
     const cpToAfterStep: Record<number, number> = { 1: 1, 2: 3, 3: 4 };

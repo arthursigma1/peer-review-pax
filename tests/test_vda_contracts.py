@@ -1,0 +1,173 @@
+import json
+import tempfile
+import unittest
+from pathlib import Path
+
+from src.validation.vda_contracts import validate_run_directory
+
+
+def _write(path: Path, payload: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2))
+
+
+class VDAContractsTest(unittest.TestCase):
+    def setUp(self) -> None:
+        self.tmp = tempfile.TemporaryDirectory()
+        self.run_dir = Path(self.tmp.name)
+
+        stats = {
+            "discovery_method": "bh_fdr_q_0.10",
+            "discovery_q": 0.10,
+            "confirmatory_badge": "bonferroni_survivor",
+            "p_value_method_primary": "permutation",
+            "p_value_method_fallback": "asymptotic_t_with_disclosure",
+            "stable_driver_rule_id": "stable_v1_two_of_three",
+            "confidence_taxonomy": ["high", "moderate", "directional", "unsupported"],
+            "sensitivity_protocol": [
+                "leave_one_out",
+                "matched_sample",
+                "archetype_stratified",
+                "coverage_and_comparability",
+                "mechanical_overlap",
+                "confounding_check",
+                "panel_robustness"
+            ],
+            "n_effective": 25,
+            "temporal_depth": {
+                "target_range": "FY2022-FY2024",
+                "mandatory_years": 2,
+                "firms_with_multi_year": 20
+            },
+            "ci_method": "bootstrap_10k",
+            "minimum_sample_rule": {
+                "ranking_threshold": 12,
+                "reporting_threshold": 8
+            }
+        }
+        _write(self.run_dir / "3-analysis" / "statistics_metadata.json", stats)
+        _write(
+            self.run_dir / "5-playbook" / "report_metadata.json",
+            {
+                "report_mode": "pax_decision_memo",
+                "default_synthesis": "pax_first",
+                "target_company": "Patria Investments Limited",
+                "target_ticker": "PAX",
+                "peer_evidence_layer_present": True,
+                "pax_interpretation_layer_present": True,
+                "pax_decision_layer_present": True,
+                "statistical_governance": stats,
+            },
+        )
+        play = {
+            "Play_ID": "PLAY-001",
+            "What_Was_Done": "Built a permanent capital credit vehicle.",
+            "Observed_Metric_Impact": "Improved fee durability and margin resilience.",
+            "Why_It_Worked": "Matched product structure to client liquidity needs.",
+            "PAX_Relevance": {
+                "scale_fit": 3,
+                "geography_fit": 4,
+                "client_distribution_fit": 4,
+                "balance_sheet_fit": 3,
+                "regulatory_fit": 3,
+                "operating_model_fit": 4,
+                "tech_readiness": 3,
+                "data_reporting_readiness": 3,
+                "time_to_build": 3,
+                "capital_intensity": 3,
+                "margin_risk": 2,
+                "execution_complexity": 3,
+                "feasibility_horizon": "medium_term_feasible",
+            },
+            "Preconditions": ["A credit platform with repeat issuance capacity"],
+            "Operational_And_Tech_Prerequisites": ["Daily or periodic valuation controls"],
+            "Execution_Burden": "Moderate multi-year build.",
+            "Time_To_Build": "18-24 months",
+            "Margin_Risk": "Medium due to channel economics.",
+            "Failure_Modes_And_Margin_Destroyers": ["Fee-rate dilution"],
+            "Transferability_Constraints": ["Requires stronger reporting stack"],
+            "Archetype_Relevance": "near_peer",
+            "Evidence_Strength": "moderate",
+            "Recommendation_For_PAX": "Pursue only after Solis reporting integration is stable."
+        }
+        _write(
+            self.run_dir / "5-playbook" / "platform_playbook.json",
+            {"driver_playbooks": [{"driver_id": "DVR-001", "plays": [play], "anti_patterns": [play]}]},
+        )
+        _write(
+            self.run_dir / "5-playbook" / "asset_class_playbooks.json",
+            {"vertical_playbooks": [{"vertical_id": "VERT-001", "plays": [play], "anti_patterns": []}]},
+        )
+        _write(
+            self.run_dir / "5-playbook" / "target_company_lens.json",
+            {
+                "target_company": "Patria Investments Limited",
+                "target_ticker": "PAX",
+                "ranked_recommendations": [
+                    {
+                        "play_id": "PLAY-001",
+                        "priority_rank": 1,
+                        "why_this_matters_for_pax": "Improves fee durability.",
+                        "what_must_be_true": ["Reporting stack upgraded"],
+                        "why_this_may_fail_for_pax": ["Distribution channel adoption too slow"],
+                        "feasibility_horizon": "medium_term_feasible",
+                    }
+                ],
+                "decision_risks": ["Execution complexity"],
+                "governance_cascade": {
+                    "board": ["Approve sequencing"],
+                    "management": ["Build underwriting controls"],
+                    "business_units": ["Launch product design work"],
+                },
+            },
+        )
+
+    def tearDown(self) -> None:
+        self.tmp.cleanup()
+
+    def test_validate_run_directory_passes_for_valid_contract(self) -> None:
+        validate_run_directory(self.run_dir)
+
+    def test_validate_run_directory_fails_on_metadata_drift(self) -> None:
+        report_metadata = json.loads((self.run_dir / "5-playbook" / "report_metadata.json").read_text())
+        report_metadata["statistical_governance"]["discovery_method"] = "bonferroni"
+        (self.run_dir / "5-playbook" / "report_metadata.json").write_text(json.dumps(report_metadata))
+        with self.assertRaises(ValueError):
+            validate_run_directory(self.run_dir)
+
+    def test_minimum_sample_rule_ranking_threshold_must_be_12(self) -> None:
+        stats = json.loads((self.run_dir / "3-analysis" / "statistics_metadata.json").read_text())
+        stats["minimum_sample_rule"]["ranking_threshold"] = 10
+        report = json.loads((self.run_dir / "5-playbook" / "report_metadata.json").read_text())
+        report["statistical_governance"]["minimum_sample_rule"]["ranking_threshold"] = 10
+        _write(self.run_dir / "3-analysis" / "statistics_metadata.json", stats)
+        _write(self.run_dir / "5-playbook" / "report_metadata.json", report)
+        with self.assertRaises(ValueError):
+            validate_run_directory(self.run_dir)
+
+    def test_n_effective_must_be_at_least_12(self) -> None:
+        stats = json.loads((self.run_dir / "3-analysis" / "statistics_metadata.json").read_text())
+        stats["n_effective"] = 8
+        report = json.loads((self.run_dir / "5-playbook" / "report_metadata.json").read_text())
+        report["statistical_governance"]["n_effective"] = 8
+        _write(self.run_dir / "3-analysis" / "statistics_metadata.json", stats)
+        _write(self.run_dir / "5-playbook" / "report_metadata.json", report)
+        with self.assertRaises(ValueError):
+            validate_run_directory(self.run_dir)
+
+    def test_panel_robustness_required_in_sensitivity_protocol(self) -> None:
+        stats = json.loads((self.run_dir / "3-analysis" / "statistics_metadata.json").read_text())
+        stats["sensitivity_protocol"] = [
+            "leave_one_out", "matched_sample", "archetype_stratified",
+            "coverage_and_comparability", "mechanical_overlap", "confounding_check"
+        ]  # missing panel_robustness
+        report = json.loads((self.run_dir / "5-playbook" / "report_metadata.json").read_text())
+        report["statistical_governance"]["sensitivity_protocol"] = stats["sensitivity_protocol"]
+        _write(self.run_dir / "3-analysis" / "statistics_metadata.json", stats)
+        _write(self.run_dir / "5-playbook" / "report_metadata.json", report)
+        with self.assertRaises(ValueError):
+            validate_run_directory(self.run_dir)
+
+
+if __name__ == "__main__":
+    unittest.main()

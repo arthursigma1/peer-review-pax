@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VDA Statistics Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "discovery_method",
+    "discovery_q",
+    "confirmatory_badge",
+    "p_value_method_primary",
+    "p_value_method_fallback",
+    "stable_driver_rule_id",
+    "confidence_taxonomy",
+    "sensitivity_protocol",
+    "n_effective",
+    "temporal_depth",
+    "ci_method",
+    "minimum_sample_rule"
+  ],
+  "properties": {
+    "discovery_method": {
+      "type": "string",
+      "enum": [
+        "bh_fdr_q_0.10"
+      ]
+    },
+    "discovery_q": {
+      "type": "number",
+      "enum": [
+        0.1
+      ]
+    },
+    "confirmatory_badge": {
+      "type": "string",
+      "enum": [
+        "bonferroni_survivor"
+      ]
+    },
+    "p_value_method_primary": {
+      "type": "string",
+      "enum": [
+        "permutation"
+      ]
+    },
+    "p_value_method_fallback": {
+      "type": "string",
+      "enum": [
+        "asymptotic_t_with_disclosure"
+      ]
+    },
+    "stable_driver_rule_id": {
+      "type": "string",
+      "enum": [
+        "stable_v1_two_of_three"
+      ]
+    },
+    "confidence_taxonomy": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "high",
+          "moderate",
+          "directional",
+          "unsupported"
+        ]
+      },
+      "minItems": 4,
+      "uniqueItems": true
+    },
+    "sensitivity_protocol": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "leave_one_out",
+          "matched_sample",
+          "archetype_stratified",
+          "coverage_and_comparability",
+          "mechanical_overlap",
+          "confounding_check",
+          "panel_robustness"
+        ]
+      },
+      "minItems": 4,
+      "uniqueItems": true
+    },
+    "n_effective": {
+      "type": "integer",
+      "minimum": 12,
+      "description": "Number of firms in the correlation universe after hygiene exclusions"
+    },
+    "temporal_depth": {
+      "type": "object",
+      "required": [
+        "target_range",
+        "mandatory_years",
+        "firms_with_multi_year"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "target_range": {
+          "type": "string",
+          "description": "Target fiscal year range, e.g. FY2020-FY2024"
+        },
+        "mandatory_years": {
+          "type": "integer",
+          "minimum": 2,
+          "description": "Number of mandatory fiscal years (FY T and FY T-1)"
+        },
+        "firms_with_multi_year": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of firms with at least 2 years of data"
+        }
+      }
+    },
+    "ci_method": {
+      "type": "string",
+      "enum": [
+        "bootstrap_10k",
+        "fisher_z_with_disclosure"
+      ],
+      "description": "Confidence interval computation method"
+    },
+    "minimum_sample_rule": {
+      "type": "object",
+      "required": [
+        "ranking_threshold",
+        "reporting_threshold"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ranking_threshold": {
+          "type": "integer",
+          "enum": [
+            12
+          ],
+          "description": "Minimum N for formal_ranking_eligible correlations"
+        },
+        "reporting_threshold": {
+          "type": "integer",
+          "enum": [
+            8
+          ],
+          "description": "Minimum N for any reported correlation"
+        }
+      }
+    }
+  }
+}

@@ -245,12 +245,15 @@ async fn start_file_watcher(app: AppHandle, ticker: String) -> Result<(), String
 }
 
 #[tauri::command]
-fn save_pipeline_state(ticker: String, state: String) -> Result<(), String> {
+fn save_pipeline_state(ticker: String, run_date: Option<String>, state: String) -> Result<(), String> {
     let root = get_project_root();
-    let dir = PathBuf::from(&root)
+    let mut dir = PathBuf::from(&root)
         .join("data")
         .join("processed")
         .join(ticker.to_lowercase());
+    if let Some(ref rd) = run_date {
+        dir = dir.join(rd);
+    }
     std::fs::create_dir_all(&dir).map_err(|e| format!("{}", e))?;
     let path = dir.join("pipeline_state.json");
     std::fs::write(&path, state).map_err(|e| format!("{}", e))?;
@@ -258,18 +261,32 @@ fn save_pipeline_state(ticker: String, state: String) -> Result<(), String> {
 }
 
 #[tauri::command]
-fn load_pipeline_state(ticker: String) -> Result<Option<String>, String> {
+fn load_pipeline_state(ticker: String, run_date: Option<String>) -> Result<Option<String>, String> {
     let root = get_project_root();
-    let path = PathBuf::from(&root)
+    let mut dir = PathBuf::from(&root)
         .join("data")
         .join("processed")
-        .join(ticker.to_lowercase())
-        .join("pipeline_state.json");
+        .join(ticker.to_lowercase());
+    if let Some(ref rd) = run_date {
+        dir = dir.join(rd);
+    }
+    let path = dir.join("pipeline_state.json");
     if path.exists() {
         let content = std::fs::read_to_string(&path).map_err(|e| format!("{}", e))?;
         Ok(Some(content))
     } else {
-        Ok(None)
+        // Fallback: try the old per-ticker location for backwards compat
+        let fallback = PathBuf::from(&root)
+            .join("data")
+            .join("processed")
+            .join(ticker.to_lowercase())
+            .join("pipeline_state.json");
+        if run_date.is_some() && fallback.exists() {
+            let content = std::fs::read_to_string(&fallback).map_err(|e| format!("{}", e))?;
+            Ok(Some(content))
+        } else {
+            Ok(None)
+        }
     }
 }
 
@@ -544,6 +561,33 @@ fn html_escape(s: &str) -> String {
         .replace('"', "&quot;")
 }
 
+#[derive(Serialize)]
+struct ContractResult {
+    passed: bool,
+    message: String,
+}
+
+#[tauri::command]
+async fn validate_contract(run_dir: String) -> Result<ContractResult, String> {
+    let root = get_project_root();
+    let output = std::process::Command::new("python3")
+        .arg("-m")
+        .arg("src.validation.vda_contracts")
+        .arg(&run_dir)
+        .current_dir(&root)
+        .output()
+        .map_err(|e| format!("Failed to run validator: {}", e))?;
+
+    let passed = output.status.success();
+    let message = if passed {
+        String::from_utf8_lossy(&output.stdout).trim().to_string()
+    } else {
+        String::from_utf8_lossy(&output.stderr).trim().to_string()
+    };
+
+    Ok(ContractResult { passed, message })
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LaunchConfig {
     pub ticker: Option<String>,
@@ -766,6 +810,7 @@ pub fn run() {
             pty_write,
             pty_resize,
             pty_kill,
+            validate_contract,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

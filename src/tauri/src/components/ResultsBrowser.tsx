@@ -4,6 +4,9 @@ import type { OutputFile } from "../types/pipeline";
 import { FOLDER_LABELS } from "../types/pipeline";
 import { formatFileSize } from "../lib/cli";
 import { viewerBaseCSS, markdownViewerCSS } from "../lib/theme";
+import { AnalysisInsights } from "./AnalysisInsights";
+import { DataQualityHeatmap } from "./DataQualityHeatmap";
+import { ContractBadge } from "./ContractBadge";
 
 
 interface ResultsBrowserProps {
@@ -99,11 +102,17 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
   const [summary, setSummary] = useState<string>("");
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [editMode, setEditMode] = useState(false);
+  const [insightsTab, setInsightsTab] = useState<"summary" | "data-quality">("summary");
   const [editContent, setEditContent] = useState("");
   const [saving, setSaving] = useState(false);
   const [collapsedFolders, setCollapsedFolders] = useState<Set<string>>(new Set());
 
   const htmlReport = files.find((f) => f.filename === "final_report.html");
+
+  // Derive run directory from any file path: /path/to/run-dir/step-folder/file.json → /path/to/run-dir
+  const runDir = files.length > 0
+    ? files[0].path.split("/").slice(0, -2).join("/")
+    : null;
 
   // Group files by folder
   const grouped = files.reduce<Record<string, OutputFile[]>>((acc, f) => {
@@ -292,30 +301,79 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
             <span className="truncate text-red-500/70">{watcherError}</span>
           </div>
         )}
-        {/* Executive summary banner */}
-        {htmlReport && !selectedFile && summary && (
-          <div className="px-6 py-5 border-b border-gray-200">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-lg font-semibold text-gray-900">Executive Summary</h2>
-              <button
-                onClick={handleOpenInBrowser}
-                className="px-3 py-1.5 rounded-md text-xs font-medium text-[#0068ff] border border-blue-200 hover:bg-blue-50 transition-colors"
-              >
-                Open Full Report
-              </button>
+        {/* Insights area: Summary / Data Quality tabs */}
+        {!selectedFile && files.length > 0 && (
+          <>
+            {/* Tab bar */}
+            <div className="flex items-center justify-between px-6 bg-gray-50/50 border-b border-gray-200">
+              <div className="flex items-center gap-0">
+                <button
+                  onClick={() => setInsightsTab("summary")}
+                  className={`px-3 py-2 text-[11px] font-medium border-b-2 transition-colors ${
+                    insightsTab === "summary"
+                      ? "border-[#0068ff] text-[#0068ff]"
+                      : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  Summary
+                </button>
+                <button
+                  onClick={() => setInsightsTab("data-quality")}
+                  className={`px-3 py-2 text-[11px] font-medium border-b-2 transition-colors ${
+                    insightsTab === "data-quality"
+                      ? "border-[#0068ff] text-[#0068ff]"
+                      : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  Data Quality
+                </button>
+              </div>
+              <ContractBadge runDir={runDir} />
             </div>
-            <div className="text-sm text-gray-600 leading-relaxed whitespace-pre-line max-h-96 overflow-y-auto">
-              {summary}
+
+            {/* Tab content */}
+            <div className="flex-1 overflow-y-auto">
+              {insightsTab === "summary" ? (
+                <>
+                  {/* Executive summary banner */}
+                  {htmlReport && summary && (
+                    <div className="px-6 py-5 border-b border-gray-200">
+                      <div className="flex items-center justify-between mb-3">
+                        <h2 className="text-lg font-semibold text-gray-900">Executive Summary</h2>
+                        <button
+                          onClick={handleOpenInBrowser}
+                          className="px-3 py-1.5 rounded-md text-xs font-medium text-[#0068ff] border border-blue-200 hover:bg-blue-50 transition-colors"
+                        >
+                          Open Full Report
+                        </button>
+                      </div>
+                      <div className="text-sm text-gray-600 leading-relaxed whitespace-pre-line max-h-96 overflow-y-auto">
+                        {summary}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Statistical confidence + checkpoint trend */}
+                  <AnalysisInsights files={files} />
+
+                  {/* No report yet */}
+                  {!htmlReport && (
+                    <div className="flex-1 flex items-center justify-center text-gray-400 text-sm py-16">
+                      Pipeline in progress — final report not yet generated
+                    </div>
+                  )}
+                </>
+              ) : (
+                <DataQualityHeatmap files={files} />
+              )}
             </div>
-          </div>
+          </>
         )}
 
-        {/* No report yet */}
-        {!htmlReport && !selectedFile && (
+        {/* Empty state: no files at all */}
+        {!selectedFile && files.length === 0 && (
           <div className="flex-1 flex items-center justify-center text-gray-400 text-sm">
-            {files.length === 0
-              ? "Start an analysis to see results here"
-              : "Pipeline in progress — final report not yet generated"}
+            Start an analysis to see results here
           </div>
         )}
 

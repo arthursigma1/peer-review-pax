@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VDA Strategy Sub-Type Analysis",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "vertical",
+    "strategy_sub_type",
+    "thematic_focus",
+    "economic_model",
+    "value_creation_mechanics",
+    "fee_model",
+    "operating_model",
+    "tech_data_reporting_requirements",
+    "scaling_constraints",
+    "margin_sensitivities",
+    "pax_transferability_barriers"
+  ],
+  "properties": {
+    "vertical": { "type": "string" },
+    "strategy_sub_type": { "type": "string" },
+    "thematic_focus": { "type": "string" },
+    "economic_model": { "type": "string" },
+    "value_creation_mechanics": { "type": "string", "minLength": 1 },
+    "fee_model": { "type": "string", "minLength": 1 },
+    "operating_model": { "type": "string", "minLength": 1 },
+    "tech_data_reporting_requirements": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "scaling_constraints": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "margin_sensitivities": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "pax_transferability_barriers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    }
+  }
+}
