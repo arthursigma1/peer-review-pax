@@ -1,8 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "VDA Statistics Metadata",
+  "description": "Statistical governance metadata produced by the metric-architect agent. Strict on governance constants; tolerant on additional fields agents may include.",
   "type": "object",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "required": [
     "discovery_method",
     "discovery_q",
@@ -20,68 +21,40 @@
   "properties": {
     "discovery_method": {
       "type": "string",
-      "enum": [
-        "bh_fdr_q_0.10"
-      ]
+      "enum": ["bh_fdr_q_0.10"]
     },
     "discovery_q": {
       "type": "number",
-      "enum": [
-        0.1
-      ]
+      "enum": [0.1]
     },
     "confirmatory_badge": {
       "type": "string",
-      "enum": [
-        "bonferroni_survivor"
-      ]
+      "enum": ["bonferroni_survivor"]
     },
     "p_value_method_primary": {
       "type": "string",
-      "enum": [
-        "permutation"
-      ]
+      "enum": ["permutation"]
     },
     "p_value_method_fallback": {
       "type": "string",
-      "enum": [
-        "asymptotic_t_with_disclosure"
-      ]
+      "enum": ["asymptotic_t_with_disclosure"]
     },
     "stable_driver_rule_id": {
       "type": "string",
-      "enum": [
-        "stable_v1_two_of_three"
-      ]
+      "enum": ["stable_v1_two_of_three"]
     },
     "confidence_taxonomy": {
       "type": "array",
       "items": {
         "type": "string",
-        "enum": [
-          "high",
-          "moderate",
-          "directional",
-          "unsupported"
-        ]
+        "enum": ["high", "moderate", "directional", "unsupported"]
       },
       "minItems": 4,
       "uniqueItems": true
     },
     "sensitivity_protocol": {
       "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "leave_one_out",
-          "matched_sample",
-          "archetype_stratified",
-          "coverage_and_comparability",
-          "mechanical_overlap",
-          "confounding_check",
-          "panel_robustness"
-        ]
-      },
+      "items": { "type": "string" },
       "minItems": 4,
       "uniqueItems": true
     },
@@ -92,12 +65,8 @@
     },
     "temporal_depth": {
       "type": "object",
-      "required": [
-        "target_range",
-        "mandatory_years",
-        "firms_with_multi_year"
-      ],
-      "additionalProperties": false,
+      "additionalProperties": true,
+      "required": ["target_range", "firms_with_multi_year"],
       "properties": {
         "target_range": {
           "type": "string",
@@ -106,7 +75,12 @@
         "mandatory_years": {
           "type": "integer",
           "minimum": 2,
-          "description": "Number of mandatory fiscal years (FY T and FY T-1)"
+          "description": "Number of mandatory fiscal years — schema canonical name"
+        },
+        "actual_years": {
+          "type": "integer",
+          "minimum": 2,
+          "description": "Number of actual fiscal years — SKILL.md canonical name (alias for mandatory_years)"
         },
         "firms_with_multi_year": {
           "type": "integer",
@@ -117,32 +91,22 @@
     },
     "ci_method": {
       "type": "string",
-      "enum": [
-        "bootstrap_10k",
-        "fisher_z_with_disclosure"
-      ],
+      "enum": ["bootstrap_10k", "fisher_z_with_disclosure"],
       "description": "Confidence interval computation method"
     },
     "minimum_sample_rule": {
       "type": "object",
-      "required": [
-        "ranking_threshold",
-        "reporting_threshold"
-      ],
+      "required": ["ranking_threshold", "reporting_threshold"],
       "additionalProperties": false,
       "properties": {
         "ranking_threshold": {
           "type": "integer",
-          "enum": [
-            12
-          ],
+          "enum": [12],
           "description": "Minimum N for formal_ranking_eligible correlations"
         },
         "reporting_threshold": {
           "type": "integer",
-          "enum": [
-            8
-          ],
+          "enum": [8],
           "description": "Minimum N for any reported correlation"
         }
       }

@@ -47,6 +47,87 @@ class VDAContractsTest(unittest.TestCase):
         }
         _write(self.run_dir / "3-analysis" / "statistics_metadata.json", stats)
         _write(
+            self.run_dir / "2-data" / "strategic_actions.json",
+            {
+                "actions": [
+                    {
+                        "action_id": "ACT-001",
+                        "firm_ticker": "BX",
+                        "strategy_sub_type": "perpetual-capital",
+                        "thematic_focus": "wealth-distribution",
+                        "economic_model": "fee-bearing",
+                        "what_was_done": "Launched an evergreen vehicle through an existing distribution channel.",
+                        "observed_metric_impact": "Increased permanent capital and fee durability.",
+                        "operational_prerequisites": [
+                            {
+                                "requirement": "Upgrade reporting controls",
+                                "evidence_class": "corroborated",
+                                "source_bias_tag": "regulatory-filing",
+                                "confidence_level": "moderate",
+                                "stated_or_inferred": "stated",
+                            }
+                        ],
+                    }
+                ]
+            },
+        )
+        _write(
+            self.run_dir / "3-analysis" / "correlations.json",
+            {
+                "correlations": [
+                    {
+                        "correlation_id": "COR-001",
+                        "driver_metric_id": "MET-001",
+                        "valuation_multiple": "P/FRE",
+                        "spearman_rho": 0.63,
+                        "p_value": 0.01,
+                        "n_firms_included": 14,
+                        "coverage_quality": "adequate",
+                        "comparability_quality": "good",
+                        "mechanical_overlap_flag": False,
+                        "independence_flag": "independent",
+                        "p_value_method": "permutation",
+                        "confirmatory_badge": None,
+                    }
+                ]
+            },
+        )
+        _write(
+            self.run_dir / "3-analysis" / "driver_ranking.json",
+            {
+                "drivers": [
+                    {
+                        "driver_id": "DVR-001",
+                        "correlation_classification": "stable_value_driver",
+                        "confidence_class": "moderate",
+                        "coverage_quality": "adequate",
+                        "comparability_quality": "good",
+                        "mechanical_overlap_flag": False,
+                        "independence_flag": "independent",
+                        "p_value_method": "permutation",
+                        "confirmatory_badge": "bonferroni_survivor",
+                    }
+                ]
+            },
+        )
+        _write(
+            self.run_dir / "4-deep-dives" / "asset_class_analysis.json",
+            {
+                "verticals": [
+                    {
+                        "vertical_id": "VERT-001",
+                        "vertical_name": "Credit",
+                        "driver_plays": [
+                            {
+                                "driver_id": "DVR-001",
+                                "plays": ["PLAY-001"],
+                            }
+                        ],
+                    }
+                ]
+            },
+        )
+        _write(
             self.run_dir / "5-playbook" / "report_metadata.json",
             {
                 "report_mode": "pax_decision_memo",
@@ -107,9 +188,14 @@ class VDAContractsTest(unittest.TestCase):
                     {
                         "play_id": "PLAY-001",
                         "priority_rank": 1,
+                        "applicability": "requires_adaptation",
+                        "strategic_principle": "Durable fee-bearing capital tends to support stronger valuation outcomes.",
+                        "rationale": "The principle is relevant, but PAX would need to adapt distribution and reporting infrastructure.",
+                        "adaptation_notes": "Use a phased launch and upgrade reporting before broad distribution.",
                         "why_this_matters_for_pax": "Improves fee durability.",
                         "what_must_be_true": ["Reporting stack upgraded"],
                         "why_this_may_fail_for_pax": ["Distribution channel adoption too slow"],
+                        "implementation_pathway": ["Upgrade reporting controls", "Pilot vehicle design", "Phase distribution rollout"],
                         "feasibility_horizon": "medium_term_feasible",
                     }
                 ],
@@ -120,6 +206,11 @@ class VDAContractsTest(unittest.TestCase):
                     "business_units": ["Launch product design work"],
                 },
             },
+        )
+        (
+            self.run_dir / "5-playbook" / "final_report.html"
+        ).write_text(
+            "<html><body><h1>Patria Investments Limited (PAX)</h1><p>PAX decision memo.</p></body></html>"
         )
 
     def tearDown(self) -> None:
@@ -165,6 +256,13 @@ class VDAContractsTest(unittest.TestCase):
         report["statistical_governance"]["sensitivity_protocol"] = stats["sensitivity_protocol"]
         _write(self.run_dir / "3-analysis" / "statistics_metadata.json", stats)
         _write(self.run_dir / "5-playbook" / "report_metadata.json", report)
+        with self.assertRaises(ValueError):
+            validate_run_directory(self.run_dir)
+
+    def test_driver_ranking_missing_statistical_flags_fails(self) -> None:
+        ranking = json.loads((self.run_dir / "3-analysis" / "driver_ranking.json").read_text())
+        del ranking["drivers"][0]["mechanical_overlap_flag"]
+        _write(self.run_dir / "3-analysis" / "driver_ranking.json", ranking)
         with self.assertRaises(ValueError):
             validate_run_directory(self.run_dir)
 

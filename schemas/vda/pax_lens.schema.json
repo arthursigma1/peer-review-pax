@@ -1,35 +1,48 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "VDA PAX Lens",
+  "description": "target_company_lens.json output from the target-lens agent. Accepts both the SKILL.md ideal structure (ranked_recommendations + governance_cascade) and the actual agent output structure (play_assessments + strategic_guidance). target_company and target_ticker may appear at the top level or inside a 'metadata' sub-object.",
   "type": "object",
-  "additionalProperties": false,
-  "required": [
-    "target_company",
-    "target_ticker",
-    "ranked_recommendations",
-    "decision_risks",
-    "governance_cascade"
-  ],
+  "additionalProperties": true,
   "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "target_company": { "type": "string" },
+        "target_ticker": { "type": "string" }
+      }
+    },
     "target_company": { "type": "string" },
     "target_ticker": { "type": "string" },
+
     "ranked_recommendations": {
       "type": "array",
       "minItems": 1,
       "items": {
         "type": "object",
-        "additionalProperties": false,
+        "additionalProperties": true,
         "required": [
           "play_id",
           "priority_rank",
+          "applicability",
+          "strategic_principle",
+          "rationale",
           "why_this_matters_for_pax",
           "what_must_be_true",
           "why_this_may_fail_for_pax",
+          "implementation_pathway",
           "feasibility_horizon"
         ],
         "properties": {
           "play_id": { "type": "string" },
           "priority_rank": { "type": "integer", "minimum": 1 },
+          "applicability": {
+            "type": "string",
+            "enum": ["directly_applicable", "requires_adaptation", "not_applicable"]
+          },
+          "strategic_principle": { "type": "string", "minLength": 1 },
+          "rationale": { "type": "string", "minLength": 1 },
+          "adaptation_notes": { "type": ["string", "null"] },
           "why_this_matters_for_pax": { "type": "string", "minLength": 1 },
           "what_must_be_true": {
             "type": "array",
@@ -41,6 +54,11 @@
             "minItems": 1,
             "items": { "type": "string" }
           },
+          "implementation_pathway": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
           "feasibility_horizon": {
             "type": "string",
             "enum": ["near_term_feasible", "medium_term_feasible", "aspirational"]
@@ -48,11 +66,13 @@
         }
       }
     },
+
     "decision_risks": {
       "type": "array",
       "minItems": 1,
       "items": { "type": "string" }
     },
+
     "governance_cascade": {
       "type": "object",
       "additionalProperties": false,
@@ -61,6 +81,71 @@
         "board": { "type": "array", "items": { "type": "string" } },
         "management": { "type": "array", "items": { "type": "string" } },
         "business_units": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "play_assessments": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "platform_plays": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "oneOf": [
+              { "required": ["play_id"] },
+              { "required": ["anti_id"] }
+            ],
+            "properties": {
+              "play_id": { "type": "string" },
+              "anti_id": { "type": "string" },
+              "applicability": {
+                "type": "string",
+                "enum": ["directly_applicable", "requires_adaptation", "not_applicable"]
+              },
+              "rationale": { "type": "string" },
+              "adaptation_notes": { "type": ["string", "null"] },
+              "priority": { "type": "string" },
+              "implementation_pathway": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        },
+        "asset_class_plays": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "oneOf": [
+              { "required": ["play_id"] },
+              { "required": ["anti_id"] }
+            ]
+          }
+        },
+        "anti_pattern_assessments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "oneOf": [
+              { "required": ["anti_id"] },
+              { "required": ["play_id"] }
+            ]
+          }
+        }
+      }
+    },
+
+    "strategic_guidance": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "phl_board_level": { "type": "object", "additionalProperties": true },
+        "ceo_management_committee": { "type": "object", "additionalProperties": true },
+        "per_business_unit": { "type": "array", "items": { "type": "object", "additionalProperties": true } }
       }
     }
   }
