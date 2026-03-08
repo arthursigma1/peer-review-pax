@@ -53,6 +53,14 @@ Rules:
 
 ### Asset Class and Investment Strategies
 
+Interpretation rule:
+
+- treat the asset classes below as the default top-level vertical taxonomy for
+  PAX runs
+- treat secondaries, GP-leds, co-investments, primaries, and other
+  solutions-style formats as strategy sub-types or wrappers within the relevant
+  asset class unless a run-specific override is disclosed explicitly
+
 #### Private Equity
 
 - `vc`

@@ -49,6 +49,7 @@ export function PipelineMonitor({
   const activeStep = steps[selectedStep] || steps[0];
   const elapsed = startTime ? Date.now() - startTime : 0;
   const completedSteps = steps.filter((s) => s.status === "complete").length;
+  const pipelineComplete = completedSteps === steps.length;
   const hasTimingData = startTime !== null && steps.some((s) =>
     s.agents.some((a) => a.startedAt !== null)
   );
@@ -61,13 +62,13 @@ export function PipelineMonitor({
           <div className="flex items-center gap-3">
             {isRunning ? (
               <div className="w-2 h-2 rounded-full bg-[#0068ff]" />
-            ) : completedSteps >= 5 ? (
+            ) : pipelineComplete ? (
               <div className="w-2 h-2 rounded-full bg-emerald-500" />
             ) : null}
-            <span className={`text-sm ${completedSteps >= 5 && !isRunning ? "text-emerald-600 font-medium" : "text-gray-700"}`}>
+            <span className={`text-sm ${pipelineComplete && !isRunning ? "text-emerald-600 font-medium" : "text-gray-700"}`}>
               {isRunning
                 ? `Step ${currentStep + 1} of ${steps.length}`
-                : completedSteps >= 5
+                : pipelineComplete
                 ? "✓ Pipeline Complete"
                 : completedSteps > 0
                 ? `${completedSteps}/${steps.length} Steps Complete`

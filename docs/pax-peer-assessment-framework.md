@@ -128,6 +128,9 @@ Must answer:
 - which strategic configurations are associated with those drivers
 - what PAX should reinforce, add, or avoid
 - which medium-term priorities deserve management attention
+- which peer-derived strategic principles seem to matter
+- which implementation pathways are plausible for PAX, without treating them as
+  proven peer facts
 
 ### Business-Unit Level
 
@@ -137,6 +140,8 @@ Must answer:
 - which peer patterns are transferable
 - which moves are not transferable
 - what the BU head should treat as do's and don'ts
+- what matters at the business-model level versus how that BU could pursue it
+  in practice
 
 ## 6. Usage Rules
 
