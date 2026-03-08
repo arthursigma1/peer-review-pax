@@ -51,7 +51,7 @@ Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers 
 
 **Claim Verification:** A Fact Checker agent runs at three checkpoints (CP-1 after data collection, CP-2 after deep-dives, CP-3 after playbook) to verify claims against upstream evidence using a 4-dimension over-compliance audit. Ungrounded or fabricated claims trigger a hard block requiring revision.
 
-**Methodology:** `docs/valuation-driver-methodology.md` — Reusable, company-agnostic VDA methodology reference.
+**Methodology:** `docs/pax-first-valuation-driver-methodology.md` — Authoritative PAX-first VDA methodology reference. The legacy reusable spec in `docs/valuation-driver-methodology.md` is archival only.
 
 ### Key Directories
 
@@ -62,7 +62,9 @@ Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers 
 - `docs/plans/` — Execution plans with agent team architecture
 - `docs/strategy-drift-methodology.md` — Reusable drift methodology
 - `docs/peer-comparison-methodology.md` — Reusable peer comparison methodology
-- `docs/valuation-driver-methodology.md` — Reusable VDA methodology
+- `docs/pax-first-valuation-driver-methodology.md` — Authoritative PAX-first VDA methodology
+- `docs/vda-repository-drift-audit.md` — Drift log and patch plan
+- `docs/valuation-driver-methodology.md` — Legacy reusable VDA methodology kept for historical reference
 - `src/tauri/` — Tauri desktop dashboard (React + TypeScript + Tailwind + Rust)
 - `src/document_converter.py` — PDF/DOCX/PPTX to text converter using marker-pdf
 
@@ -165,10 +167,10 @@ Output: `data/processed/{TICKER}/{YYYY-MM-DD}/6-review/methodology_review.md` + 
 
 | Classification | Criterion |
 |---|---|
-| Stable value driver | rho > 0.5 across all three multiples |
-| Multiple-specific driver | rho > 0.5 for exactly one multiple |
-| Moderate signal | 0.3 <= rho <= 0.5 for at least one multiple |
-| Not a driver | rho < 0.3 for all three multiples |
+| Stable value driver | Satisfies repository rule `stable_v1_two_of_three` |
+| Multiple-specific driver | `abs(rho) >= 0.5` on exactly one eligible multiple and fails stable rule |
+| Contextual driver | Useful for decomposition or interpretation but not headline ranking |
+| Unsupported | Not defensible for strategic interpretation |
 
 ## Reuse for Another Company
 

@@ -1,3 +1,17 @@
+# Legacy Note
+
+This document is a legacy neutral-spec snapshot retained for historical reference only.
+
+The authoritative VDA methodology is now:
+
+- `docs/pax-first-valuation-driver-methodology.md`
+
+The repository drift log and patch plan live at:
+
+- `docs/vda-repository-drift-audit.md`
+
+The content below reflects the earlier reusable design and is not the source of truth for current PAX-first runs.
+
 # Valuation Driver Analysis — Reusable Methodology
 
 ## Overview

@@ -31,7 +31,7 @@ Requires a completed drift analysis (uses pillar structure as the comparison fra
 
 ### 3. Valuation Driver Analysis
 
-The flagship pipeline. Identifies **which operational and financial metrics drive valuation multiples** across an entire peer universe, then synthesizes a strategic playbook organized by value driver.
+The flagship pipeline. Identifies **which operational and financial metrics matter for valuation in alternative asset management**, then converts peer evidence into a PAX-first decision memo with explicit transferability, execution burden, and margin-risk controls.
 
 ```
 Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers → Build the Playbook
@@ -48,11 +48,12 @@ Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers 
 | **Deep-Dive Peers** | Platform-level profiles and sector-specific analysis for 9-12 firms | Platform Profiler, Sector Specialist |
 | **Build the Playbook** | Synthesize insights, produce HTML report, contextualize for target company | Insight Synthesizer, Report Composer, Target Company Lens |
 
-The final output is a navigable HTML playbook with two layers:
-- **Platform layer** — executive summary, value driver findings, firm-level strategies, strategic menu (for C-suite and corporate strategy)
-- **Sector layer** — per-vertical deep-dives with vertical-specific playbooks (for business unit heads)
+The final output is a navigable HTML **PAX decision memo** with three visible layers:
+- **Peer evidence layer** — what the cross-peer data and deep-dives actually support
+- **PAX interpretation layer** — transferability scoring, archetype relevance, and execution realism
+- **PAX decision layer** — ranked strategic implications, margin-risk, and governance cascade
 
-The playbook includes both proven plays (PLAY-NNN) and documented anti-patterns (ANTI-NNN). A **Target Company Lens** contextualizes every finding for governance cascade: PHL/Board guidance, management priorities, and per-BU recommendations.
+The playbook includes both proven plays (PLAY-NNN) and documented anti-patterns (ANTI-NNN). Every final recommendation must address transferability to PAX, operational and tech prerequisites, time-to-build, capital intensity, and margin-risk.
 
 ---
 
@@ -107,13 +108,14 @@ src/
 
 ### Statistical Methodology
 
-The quantitative layer uses **Spearman rank correlation** (not regression — the ~25-firm universe lacks sufficient degrees of freedom for reliable multiple regression). Each correlation coefficient includes:
-- Bootstrap 95% confidence intervals (1,000 iterations)
-- Bonferroni-corrected p-values
-- Leave-one-out sensitivity analysis
-- Temporal stability checks across fiscal years
+The quantitative layer uses **Spearman rank correlation** (not regression — the ~25-firm universe lacks sufficient degrees of freedom for reliable multiple regression). Statistical governance is unified across the repo:
+- Primary discovery framework: BH FDR `q = 0.10`
+- Confirmatory badge: survives Bonferroni
+- Primary inference for small-N rank tests: permutation-based p-values where feasible
+- Leave-one-out, matched-sample, archetype-stratified, coverage, comparability, and confounding checks
+- Explicit `mechanical_overlap_flag` where a driver is algebraically coupled to the valuation multiple
 
-A metric is classified as a **stable value driver** when rho > 0.5 across all three valuation multiples.
+A metric may be called a **stable value driver** only if it satisfies the repository rule `stable_v1_two_of_three`.
 
 ### Source Controls
 
@@ -163,6 +165,7 @@ All pipelines run through Claude Code slash commands:
 - Python 3.11+ with `pip install -r requirements.txt`
 - `ANTHROPIC_API_KEY` in `.env`
 - For dashboard: Node.js 18+, Rust toolchain, Tauri prerequisites
+- Optional contract validation: `python -m src.validation.vda_contracts /path/to/data/processed/pax/YYYY-MM-DD-runN`
 
 ### Reuse for Another Company
 
@@ -182,8 +185,9 @@ Detailed methodology documents are available in `docs/`:
 
 - **[Strategy Drift Methodology](docs/strategy-drift-methodology.md)** — 5-dimension weighted scoring, source bias controls
 - **[Peer Comparison Methodology](docs/peer-comparison-methodology.md)** — standardized benchmarking framework
-- **[Valuation Driver Methodology](docs/valuation-driver-methodology.md)** — hybrid statistical-qualitative approach, Spearman correlation, claim verification
-- **[Valuation Driver Methodology (HTML)](docs/valuation-driver-methodology.html)** — navigable design document with pipeline diagrams and statistical appendix
+- **[PAX-First Valuation Driver Methodology](docs/pax-first-valuation-driver-methodology.md)** — authoritative PAX-first methodology, statistical governance, report contract, and validation rules
+- **[Repository Drift Audit](docs/vda-repository-drift-audit.md)** — mismatch log, patch plan, and upgrade changelog
+- **[Legacy Reusable VDA Methodology](docs/valuation-driver-methodology.md)** — archived neutral-spec snapshot retained for historical reference only
 
 ---
 
@@ -197,5 +201,5 @@ Detailed methodology documents are available in `docs/`:
 | Prompts | Markdown templates with `{COMPANY}` / `{TICKER}` / `{SECTOR}` placeholders |
 | Desktop dashboard | Tauri 2.0 + React + TypeScript + Tailwind CSS |
 | Document conversion | marker-pdf (PDF/DOCX/PPTX to text) |
-| Statistical method | Spearman rank correlation with bootstrap CIs and Bonferroni correction |
+| Statistical method | Spearman rank correlation with BH FDR q=0.10, Bonferroni confirmatory badge, and permutation-based inference where feasible |
 | Reports | Self-contained HTML with sidebar navigation, sortable tables, collapsible sections |

@@ -1,3 +1,12 @@
+# Legacy Note
+
+This design document is a historical planning artifact from the pre-PAX-first repository state.
+
+Current source of truth:
+
+- `docs/pax-first-valuation-driver-methodology.md`
+- `docs/vda-repository-drift-audit.md`
+
 # Valuation Driver Analysis — Design Document
 
 **Version:** 1.0

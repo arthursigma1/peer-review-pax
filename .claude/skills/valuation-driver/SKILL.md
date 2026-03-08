@@ -1,6 +1,6 @@
 ---
 name: valuation-driver
-description: Run the full Valuation Driver Analysis pipeline for any public company. Orchestrates 14 specialized agents across 5 steps to identify what drives valuation multiples and produce a strategic playbook. Usage: /valuation-driver TICKER [--auto] [--ui] [--sources /path/to/dir] [--base-run YYYY-MM-DD] [--style-ref /path/to/doc]
+description: Run the full Valuation Driver Analysis pipeline for any public company. Orchestrates 14 specialized agents across 5 steps to identify what drives valuation multiples and produce a strategic playbook. Usage: /valuation-driver TICKER [--auto] [--ui] [--sources /path/to/dir] [--base-run YYYY-MM-DD] [--style-ref /path/to/doc] [--from-step N] [--to-step N]
 ---
 
 # Valuation Driver Analysis
@@ -17,6 +17,9 @@ Identify which operational and financial metrics drive valuation multiples acros
 /valuation-driver TICKER --auto --sources /path   # automatic + supplemental data
 /valuation-driver TICKER --base-run 2026-03-06      # iterative: improve upon previous run
 /valuation-driver TICKER --style-ref /path/to/doc   # match writing style of reference doc
+/valuation-driver TICKER --from-step 2            # start from step 2 (skip step 1)
+/valuation-driver TICKER --to-step 3              # stop after step 3
+/valuation-driver TICKER --from-step 2 --to-step 4  # run steps 2–4 only
 ```
 
 ## Step 0: Parse Arguments
@@ -28,8 +31,25 @@ Extract from the user's input:
 - `--sources /path/to/dir` (optional) — path to a directory containing supplemental data files (PDFs, DOCX, PPTX)
 - `--base-run YYYY-MM-DD` (optional) — date of a previous run to use as baseline. Agents receive previous outputs as context and are instructed to improve upon them.
 - `--style-ref /path/to/doc` (optional) — path to a reference document whose writing style the report should match.
+- `--from-step N` (optional) — start execution from pipeline step N (1-indexed: 1=Map the Industry, 2=Gather Data, 3=Find What Drives Value, 4=Deep-Dive Peers, 5=Build the Playbook, 6=Review Analysis). Steps before N are skipped; their outputs are read from the most recent existing run in `data/processed/{TICKER}/`.
+- `--to-step N` (optional) — stop execution after pipeline step N (inclusive, same 1-indexed scale). Steps after N are not executed.
+
+Set `FROM_STEP` to the value of `--from-step` (default: 1).
+Set `TO_STEP` to the value of `--to-step` (default: 6).
 
 If no TICKER is provided, ask the user for one.
+
+### Step Range Behavior
+
+When `FROM_STEP > 1`:
+- Locate the most recent existing output directory for this ticker: find the latest `data/processed/{TICKER}/YYYY-MM-DD*/` that contains relevant output files for steps before `FROM_STEP`.
+- All agents in skipped steps read their inputs from that directory. The current run's output directory is still created fresh.
+- Display to the user: "Starting from Step {FROM_STEP}. Using existing outputs from `data/processed/{TICKER}/{prior_date}/` for steps 1–{FROM_STEP - 1}."
+- **Important:** If no prior outputs are found for a required skipped step, warn the user and ask whether to run from Step 1 instead.
+
+When `TO_STEP < 6`:
+- After completing Step `TO_STEP`, display: "Stopped after Step {TO_STEP} as requested. Run with `--from-step {TO_STEP + 1}` to continue."
+- Do not execute any quality gates or agents for steps after `TO_STEP`.
 
 ### If `--ui` is present:
 
@@ -228,6 +248,8 @@ TeamCreate → team_name: "vda-{TICKER_LOWER}"
 
 ## Step 7: Step 1 of 5 — "Map the Industry" (Parallel)
 
+**Step range check:** If `FROM_STEP > 1`, skip this step entirely. Load existing outputs for this step from the prior run directory identified in the Step Range Behavior section above.
+
 Spawn three agents in parallel:
 
 ### Agent: universe-scout
@@ -386,6 +408,8 @@ After all three agents complete, check:
 
 ## Step 8: Step 2 of 5 — "Gather Data" (Parallel)
 
+**Step range check:** If `FROM_STEP > 2`, skip this step and load existing outputs from the prior run. If `TO_STEP < 2`, stop here after completing Step 1 and display the stop message.
+
 Spawn two agents in parallel:
 
 ### Agent: data-collector
@@ -408,13 +432,13 @@ Instructions:
 >
 > **Cover firms ranked 1–9 by AUM** (the largest firms in the universe).
 >
-> For each firm and each metric, extract the most recent completed fiscal year (FY1), prior fiscal year (FY2), and three-year historical data where available.
+> For each firm and each metric, collect a **5-year panel**: FY T through FY T-4, where T is the most recent completed fiscal year (currently FY2024, so collect FY2020–FY2024). FY T and FY T-1 are mandatory; FY T-2 through FY T-4 are best-effort. For each data point, record the exact `period` (e.g., `FY2022`), `period_end_date`, and `fiscal_year_type` (calendar vs non-calendar with month).
 >
 > Primary sources: earnings releases, annual reports (20-F / 10-K), investor day presentations, earnings supplements, filesystem at `data/raw/{TICKER}/{DATE}/supplemental/` (check manifest.json — supplemental data takes priority over web search).
 >
-> For each data point record: firm_id, metric_id, value, period (FY1/FY2/FY3), currency, source_id, bias_tag, confidence (high/medium/low), extraction_notes.
+> For each data point record: firm_id, metric_id, value, period, currency, source_id, bias_tag, confidence (high/medium/low), extraction_notes.
 >
-> Missing data: record as `null` with explicit `missing_reason`. No estimation or interpolation.
+> Missing data: record as `null` with explicit `missing_reason`. No estimation or interpolation. **However, when a target metric is not directly disclosed but its components are available, derive the ratio.** Tag derived values with `derivation_method` (formula), `component_sources` (source IDs for each input), and `derivation_confidence` (`high` if both components from same filing, `medium` if different filings, `low` if any component estimated). Common derivable metrics: Compensation_to_Revenue (comp / mgmt fee revenue), G&A_to_FEAUM (G&A / FEAUM), Headcount_to_FEAUM (employees / FEAUM). Derived metrics with confidence `low` are classified `contextual_only`.
 >
 > **Output:** `data/processed/{TICKER}/{DATE}/2-data/quantitative_tier1.json`
 
@@ -432,11 +456,11 @@ Instructions:
 >
 > **Cover firms ranked 10–18 by AUM** (mid-tier firms in the universe).
 >
-> For each firm and each metric, extract FY1, FY2, and three-year historical data where available.
+> For each firm and each metric, collect a **5-year panel**: FY T through FY T-4, where T is the most recent completed fiscal year (currently FY2024, so collect FY2020–FY2024). FY T and FY T-1 are mandatory; FY T-2 through FY T-4 are best-effort. For each data point, record the exact `period` (e.g., `FY2022`), `period_end_date`, and `fiscal_year_type` (calendar vs non-calendar with month).
 >
 > Primary sources: earnings releases, annual reports (20-F / 10-K), investor day presentations, earnings supplements. Check `data/raw/{TICKER}/{DATE}/supplemental/manifest.json` — supplemental data takes priority.
 >
-> For each data point record: firm_id, metric_id, value, period, currency, source_id, bias_tag, confidence, extraction_notes. Missing data → `null` with `missing_reason`.
+> For each data point record: firm_id, metric_id, value, period, currency, source_id, bias_tag, confidence, extraction_notes. Missing data → `null` with `missing_reason`. **However, when a target metric is not directly disclosed but its components are available, derive the ratio.** Tag derived values with `derivation_method` (formula), `component_sources` (source IDs), and `derivation_confidence` (`high`/`medium`/`low`). Common derivable metrics: Compensation_to_Revenue, G&A_to_FEAUM, Headcount_to_FEAUM. Derived metrics with confidence `low` are `contextual_only`.
 >
 > **Output:** `data/processed/{TICKER}/{DATE}/2-data/quantitative_tier2.json`
 
@@ -454,11 +478,11 @@ Instructions:
 >
 > **Cover firms ranked 19 through the end** (smaller firms in the universe).
 >
-> For each firm and each metric, extract FY1, FY2, and three-year historical data where available.
+> For each firm and each metric, collect a **5-year panel**: FY T through FY T-4, where T is the most recent completed fiscal year (currently FY2024, so collect FY2020–FY2024). FY T and FY T-1 are mandatory; FY T-2 through FY T-4 are best-effort. For each data point, record the exact `period` (e.g., `FY2022`), `period_end_date`, and `fiscal_year_type` (calendar vs non-calendar with month).
 >
 > Primary sources: earnings releases, annual reports (20-F / 10-K), investor day presentations, earnings supplements. Check `data/raw/{TICKER}/{DATE}/supplemental/manifest.json` — supplemental data takes priority.
 >
-> For each data point record: firm_id, metric_id, value, period, currency, source_id, bias_tag, confidence, extraction_notes. Missing data → `null` with `missing_reason`.
+> For each data point record: firm_id, metric_id, value, period, currency, source_id, bias_tag, confidence, extraction_notes. Missing data → `null` with `missing_reason`. **However, when a target metric is not directly disclosed but its components are available, derive the ratio.** Tag derived values with `derivation_method` (formula), `component_sources` (source IDs), and `derivation_confidence` (`high`/`medium`/`low`). Common derivable metrics: Compensation_to_Revenue, G&A_to_FEAUM, Headcount_to_FEAUM. Derived metrics with confidence `low` are `contextual_only`.
 >
 > **Output:** `data/processed/{TICKER}/{DATE}/2-data/quantitative_tier3.json`
 
@@ -481,22 +505,31 @@ Instructions:
 > **Task A — Stage VD-B1:** Execute Strategy Extraction for all firms in the qualitative peer set.
 >
 > Read `data/processed/{TICKER}/{DATE}/1-universe/source_catalog.json` for sources.
+> Read `docs/pax-peer-strategy-ontology.md` for the minimum business-model decomposition grid.
+> Read `docs/pax-peer-assessment-framework.md` for business context.
 >
-> For each firm in the qualitative peer set (BX, KKR, APO, ARES, BAM, OWL, TPG, CG, EQT, PGHN, STEP, HLN, BN, ICP, AMK), extract a standalone strategic profile across 10 dimensions:
-> 1. Geographic reach (domestic / regional / global; primary markets)
-> 2. Asset focus (core strategies by asset type)
-> 3. Asset class mix (distribution of AUM across PE, credit, infra, real estate, solutions/multi-asset)
-> 4. Origination model (proprietary vs. sponsor-to-sponsor vs. platform/operating companies)
-> 5. Fund type emphasis (closed-end flagship vs. open-end / perpetual / evergreen vs. co-mingled SMAs)
-> 6. Capital source (institutional LP vs. retail/wealth vs. insurance/corporate balance sheet)
-> 7. Distribution strategy (direct institutional vs. third-party networks vs. wirehouse/RIA)
-> 8. Client segment (sovereign wealth/large pensions vs. mid-market institutions vs. UHNW/family office vs. retail/DC)
-> 9. Growth model (organic vs. geographic expansion vs. product adjacency vs. M&A/consolidation)
-> 10. Stated strategic priorities (top 3–5 verbatim or closely paraphrased from most recent Investor Day or annual report)
+> For each firm in the qualitative peer set (read the list from `1-universe/peer_universe.json`), extract a standalone strategic profile by mapping the peer across the full ontology grid:
+> - Geographical reach
+> - Business focus
+> - Asset focus
+> - Asset class and investment strategies (with sub-strategies per vertical: PE, Credit, Infrastructure, Real Estate, Natural Resources)
+> - Sector orientation
+> - Origination engine
+> - Fund type
+> - Capital source
+> - Distribution strategy
+> - Client segment
+> - Growth agenda
+> - Share class
+> - Stated strategic priorities (top 3–5 verbatim or closely paraphrased from most recent Investor Day or annual report)
+>
+> Also capture contextual market factors (TAM, market share, governance, regulation) separately from the business-model grid — these are market-context data, not strategic choices.
+>
+> Use `null` plus `missing_reason` for dimensions without adequate evidence. Do not force-fit. Add new categories only when repeated evidence requires it. The ontology is a minimum baseline, not a ceiling.
 >
 > Profiles are self-contained — they do not reference {COMPANY} and do not compare firms against any external benchmark.
 >
-> **Output A:** `data/processed/{TICKER}/{DATE}/2-data/strategy_profiles.json`
+> **Output A:** `data/processed/{TICKER}/{DATE}/2-data/strategy_profiles.json` (must conform to `schemas/vda/strategy_profile.schema.json`)
 >
 > **Task B — Stage VD-B2:** Execute Action Cataloging for all firms in the qualitative peer set.
 >
@@ -537,6 +570,7 @@ After all four agents complete (three data-collector tiers + strategy-extractor)
 
 **Criteria:**
 - Data coverage: >= 60% of metrics are populated for >= 80% of universe firms
+- **Universe hygiene:** exclude firms with < 15% metric coverage or flagged as `model_incompatible` from the correlation universe. These firms remain in the qualitative peer set. Log `N_effective` (number of firms entering correlation analysis) — this must be >= 15
 - All three valuation multiples (P/FRE, P/DE, EV/FEAUM) are populated for all firms
 - Qualitative profiles have >= 2 concrete actions per firm (VD-B2)
 - **Operational metrics coverage:** verify disclosure quality for Operational Feasibility & Scalable Infrastructure metrics — any metric with < 60% coverage is reclassified as `contextual-only` (excluded from VD-A4 correlation analysis but permitted in context tables and deep-dives)
@@ -576,6 +610,8 @@ Before proceeding to Step 3, dispatch the claim-auditor agent to verify data col
 
 ## Step 9: Step 3 of 5 — "Find What Drives Value" (Sequential)
 
+**Step range check:** If `FROM_STEP > 3`, skip this step and load existing outputs from the prior run. If `TO_STEP < 3`, stop here after completing Step 2 and display the stop message.
+
 Send all subsequent steps in this phase to metric-architect via SendMessage, waiting for each to complete before sending the next.
 
 ### Send to metric-architect: VD-A3 Standardization
@@ -611,10 +647,15 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 >
 > Compute Spearman rank correlation coefficients for each driver metric against each of the three valuation multiples (P/FRE, P/DE, EV/FEAUM), yielding ~45 pairwise correlations.
 >
+> **Minimum sample rule:** Only compute correlations where N >= 12 firms have non-null values for both the driver and the multiple. Correlations with N < 12 are classified as `insufficient_sample` and excluded from the ranking. Correlations with N < 8 are not reported.
+>
+> **Temporal stability:** When at least 12 firms have data for FY T and FY T-1, compute Spearman correlations on BOTH years and compare. Flag any driver whose sign reverses or whose |Δρ| > 0.25 as `temporally_unstable`. Temporally unstable drivers cannot be classified as `stable_value_driver`.
+>
 > Classification of results:
-> - Stable value driver: ρ > 0.5 across all three multiples
+> - Stable value driver: satisfies `stable_v1_two_of_three` rule AND not `temporally_unstable`
 > - Multiple-specific driver: ρ > 0.5 for exactly one multiple
 > - Moderate signal: 0.3 ≤ ρ ≤ 0.5 for at least one multiple
+> - Insufficient sample: N < 12 — excluded from ranking
 > - Not a driver: ρ < 0.3 for all three multiples
 >
 > Following classification, test for multicollinearity among top-ranked stable drivers. Where two drivers exhibit ρ > 0.7 with each other, document the pair and flag the multicollinearity risk.
@@ -633,7 +674,7 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 >
 > 1. **Methods and justification:** Document choice of Spearman over Pearson (robustness to non-normality, outlier resistance, monotonic relationships). Document explicitly why multiple regression was not used (insufficient degrees of freedom with N≈25, multicollinearity, overfitting risk, endogeneity).
 >
-> 2. **Bootstrap confidence intervals:** 1,000 bootstrap iterations per coefficient. Report 95% CIs. Flag CIs that include zero.
+> 2. **Bootstrap confidence intervals:** 10,000 bootstrap resamples per coefficient (preferred over asymptotic Fisher-z for N < 30). Report 95% CIs. Flag CIs that include zero. Record `ci_method: bootstrap_10k` in metadata.
 >
 > 3. **Multiple comparisons correction:** Apply Bonferroni correction to ~45 hypothesis tests. Report corrected and uncorrected p-values.
 >
@@ -645,7 +686,8 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 >
 > 5. **Sensitivity analyses:**
 >    - Leave-one-out: recompute each significant correlation excluding each firm in turn; flag findings driven by a single influential observation
->    - Temporal stability: compare correlations on FY1 vs. FY2 data; flag unstable correlations
+>    - Temporal stability: compare correlations on FY T vs. FY T-1 vs. FY T-2 (where available); flag drivers with sign reversal or |Δρ| > 0.25 as `temporally_unstable`
+>    - **Panel robustness (supplementary):** construct a firm × year panel using all available years. Compute Spearman correlations on the panel. Report total observations, N firms, N periods. Note: panel results are supplementary only (within-firm autocorrelation violates independence) — they do not override the cross-sectional primary analysis
 >
 > 6. **Mandatory disclaimers (reproduce verbatim):**
 >    - Correlation does not imply causation.
@@ -656,6 +698,8 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 >    - FRE definition heterogeneity: FRE is non-GAAP; firm-specific definitions vary; measurement error is present.
 >
 > **Output:** `data/processed/{TICKER}/{DATE}/3-analysis/statistical_methodology.md`
+>
+> **Additionally produce:** `data/processed/{TICKER}/{DATE}/3-analysis/statistics_metadata.json` conforming to the `schemas/vda/statistics_metadata.schema.json` schema. Include `n_effective`, `temporal_depth` (object with `target_range`, `actual_years`, `firms_with_multi_year`), `ci_method`, and `minimum_sample_rule` fields.
 
 ### Send to metric-architect: VD-A5 Value Driver Ranking
 
@@ -751,6 +795,8 @@ After VD-C1 completes, check:
 
 ## Step 10: Step 4 of 5 — "Deep-Dive Peers" (Parallel)
 
+**Step range check:** If `FROM_STEP > 4`, skip this step and load existing outputs from the prior run. If `TO_STEP < 4`, stop here after completing Step 3 and display the stop message.
+
 Spawn two agents in parallel:
 
 ### Agent: platform-analyst
@@ -795,6 +841,8 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json` for which stable drivers are most salient.
 > Read `data/processed/{TICKER}/{DATE}/2-data/strategic_actions.json` for peer actions.
+> Read `docs/pax-peer-strategy-ontology.md` for the minimum business-model decomposition grid.
+> Read `docs/pax-peer-assessment-framework.md` for business context.
 >
 > Conduct deep-dives for 5 verticals with their reference firms:
 >
@@ -878,6 +926,8 @@ Before proceeding to Step 5, dispatch the claim-auditor agent to verify deep-div
 6. Log: `[CLAIM-AUDIT] CP-2 PASSED (N/N claims)` or `[CLAIM-AUDIT] CP-2 BLOCKED (N ungrounded, N fabricated)`
 
 ## Step 11: Step 5 of 5 — "Build the Playbook" (Sequential)
+
+**Step range check:** If `FROM_STEP > 5`, skip this step (no agents to skip in this skill — this would mean Review only). If `TO_STEP < 5`, stop here after completing Step 4 and display the stop message.
 
 ### Agent: playbook-synthesizer
 
@@ -1131,7 +1181,9 @@ The methodology document, VD-A4b statistical documentation, and the final report
 - Same multiple-testing correction method (Bonferroni or effective-independent-tests variant)
 - Same confidence taxonomy thresholds (High / Moderate / Suggestive / Not significant)
 - Same driver classification rules (Stable / Multiple-specific / Moderate signal / Not a driver)
-- Same sensitivity-check definitions (leave-one-out, temporal stability)
+- Same sensitivity-check definitions (leave-one-out, temporal stability, panel robustness)
+- Same minimum sample rule (N >= 12 for formal ranking, N < 8 not reported)
+- Same N_effective across all statistical outputs
 
 Low-coverage operational metrics (< 60% coverage) from the Operational Feasibility category may appear in context tables and deep-dives but must be labeled `contextual-only` and never cited as evidence of driver status.
 
@@ -1140,8 +1192,8 @@ The Statistical Analyst agent (VD-A4/A4b) must additionally:
 1. **Run all correlations on a consistent sub-sample** of firms for which all three valuation multiples are available. Present supplementary results for the full sample separately.
 2. **Flag metrics with N<10** as "insufficient data for evaluation" rather than classifying them as "not a driver."
 3. **Compute partial correlations** for the top drivers, controlling for scale (mgmt_fee_rev), to test for confounded signals.
-4. **Use 1,000-iteration bootstrap CIs** as specified. If Fisher z is used as a substitute, document the rationale explicitly.
-5. **Execute temporal stability check** comparing FY1 vs FY2 correlations when data is available.
+4. **Use 10,000-resample bootstrap CIs** (`bootstrap_10k`). If Fisher z is used as a substitute, document the rationale explicitly and record `ci_method: fisher_z_with_disclosure`.
+5. **Execute temporal stability check** comparing FY T vs FY T-1 vs FY T-2 (where available); flag drivers with sign reversal or |Δρ| > 0.25 as `temporally_unstable`.
 6. **Estimate effective independent tests** for multiple comparison correction (accounting for collinear pairs) rather than applying Bonferroni over all raw tests.
 
 ### Data Provenance Requirements (from peer review)
