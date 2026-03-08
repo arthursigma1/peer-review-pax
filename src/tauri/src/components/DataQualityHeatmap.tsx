@@ -264,7 +264,6 @@ export function DataQualityHeatmap({ files }: DataQualityHeatmapProps) {
 
   const showTooltip = (
     e: React.MouseEvent,
-    metricId: string,
     metricName: string,
     entry: MetricValue | undefined
   ) => {
@@ -441,7 +440,7 @@ export function DataQualityHeatmap({ files }: DataQualityHeatmapProps) {
                             `}
                             style={{ width: 24, height: 20 }}
                             onMouseEnter={(e) =>
-                              showTooltip(e, metId, colName(metId), entry)
+                              showTooltip(e, colName(metId), entry)
                             }
                             onMouseLeave={hideTooltip}
                             role="gridcell"

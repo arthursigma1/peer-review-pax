@@ -47,6 +47,34 @@ class VDAContractsTest(unittest.TestCase):
         }
         _write(self.run_dir / "3-analysis" / "statistics_metadata.json", stats)
         _write(
+            self.run_dir / "2-data" / "strategy_profiles.json",
+            [
+                {
+                    "firm_id": "FIRM-001",
+                    "firm_ticker": "BX",
+                    "archetype": "north_star_peer",
+                    "archetype_secondary": "adjacent_peer",
+                    "ontology_mapping": {
+                        "geographical_reach": ["global"],
+                        "business_focus": ["alternatives-platform"],
+                        "asset_focus": ["multi-asset"],
+                    },
+                    "contextual_market_factors": {
+                        "tam": "Large institutional and wealth alternatives market",
+                        "market_share": "Leading",
+                        "governance": "Mature public-company governance",
+                        "regulation": "Multi-jurisdictional",
+                    },
+                    "stated_strategic_priorities": [
+                        "Expand fee-bearing perpetual capital",
+                        "Improve distribution mix",
+                    ],
+                    "source_ids": ["PS-VD-001"],
+                    "missing_dimensions": [],
+                }
+            ],
+        )
+        _write(
             self.run_dir / "2-data" / "strategic_actions.json",
             {
                 "actions": [
@@ -113,15 +141,29 @@ class VDAContractsTest(unittest.TestCase):
         _write(
             self.run_dir / "4-deep-dives" / "asset_class_analysis.json",
             {
-                "verticals": [
+                "strategy_subtype_analyses": [
                     {
-                        "vertical_id": "VERT-001",
-                        "vertical_name": "Credit",
-                        "driver_plays": [
-                            {
-                                "driver_id": "DVR-001",
-                                "plays": ["PLAY-001"],
-                            }
+                        "vertical": "Credit",
+                        "strategy_sub_type": "Direct Lending",
+                        "thematic_focus": "Upper middle market",
+                        "economic_model": "Recurring management fees with episodic performance fees",
+                        "value_creation_mechanics": "Origination scale and underwriting discipline support durable fee-bearing AUM.",
+                        "fee_model": "Management fees plus incentive economics on selected vehicles.",
+                        "operating_model": "Centralized underwriting with local origination coverage.",
+                        "tech_data_reporting_requirements": [
+                            "Borrower monitoring stack",
+                            "LP reporting controls",
+                        ],
+                        "scaling_constraints": [
+                            "Origination talent capacity",
+                            "Credit-cycle discipline",
+                        ],
+                        "margin_sensitivities": [
+                            "Comp ratio for deal teams",
+                            "Servicing complexity",
+                        ],
+                        "pax_transferability_barriers": [
+                            "Requires scaled credit underwriting and reporting controls",
                         ],
                     }
                 ]
@@ -263,6 +305,36 @@ class VDAContractsTest(unittest.TestCase):
         ranking = json.loads((self.run_dir / "3-analysis" / "driver_ranking.json").read_text())
         del ranking["drivers"][0]["mechanical_overlap_flag"]
         _write(self.run_dir / "3-analysis" / "driver_ranking.json", ranking)
+        with self.assertRaises(ValueError):
+            validate_run_directory(self.run_dir)
+
+    def test_legacy_strategy_profiles_wrapper_fails(self) -> None:
+        wrapped = {
+            "metadata": {"legacy": True},
+            "profiles": json.loads((self.run_dir / "2-data" / "strategy_profiles.json").read_text()),
+        }
+        _write(self.run_dir / "2-data" / "strategy_profiles.json", wrapped)
+        with self.assertRaises(ValueError):
+            validate_run_directory(self.run_dir)
+
+    def test_legacy_target_lens_shape_fails(self) -> None:
+        _write(
+            self.run_dir / "5-playbook" / "target_company_lens.json",
+            {
+                "target_company": "Patria Investments Limited",
+                "target_ticker": "PAX",
+                "play_assessments": {
+                    "platform_plays": [
+                        {
+                            "play_id": "PLAY-001",
+                            "applicability": "requires_adaptation",
+                            "rationale": "Legacy shape should be rejected by the strict contract.",
+                        }
+                    ]
+                },
+                "strategic_guidance": {},
+            },
+        )
         with self.assertRaises(ValueError):
             validate_run_directory(self.run_dir)
 

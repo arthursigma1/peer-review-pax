@@ -591,6 +591,110 @@ async fn validate_contract(run_dir: String) -> Result<ContractResult, String> {
     Ok(ContractResult { passed, message })
 }
 
+#[tauri::command]
+async fn export_html_to_pdf(html_path: String) -> Result<String, String> {
+    let src = std::path::Path::new(&html_path);
+    if !src.exists() {
+        return Err(format!("File not found: {}", html_path));
+    }
+
+    let pdf_path = src.with_extension("pdf");
+
+    // Read HTML and inject print overrides: show TOC, expand all collapsibles
+    let html = std::fs::read_to_string(src)
+        .map_err(|e| format!("Failed to read HTML: {}", e))?;
+
+    let pdf_css = r#"<style id="pdf-export-overrides">
+@media print {
+  /* Show sidebar as flat TOC at top of document */
+  .sidebar {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    border-right: none !important;
+    border-bottom: 2px solid #d1d5db !important;
+    padding: 24px 32px !important;
+    page-break-after: always;
+  }
+  .sidebar .nav-group,
+  .sidebar .nav-group.collapsed {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .nav-layer.collapsed::before { transform: rotate(0deg) !important; }
+  .sidebar-toggle { display: none !important; }
+  .site-header { display: block !important; }
+
+  /* Expand main content area */
+  .main {
+    margin-left: 0 !important;
+    padding: 24px 32px !important;
+    max-width: 100% !important;
+  }
+
+  /* Expand ALL collapsible sections */
+  .collapsible-body,
+  .collapsible-body.collapsed {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .collapsible-header.collapsed::before { transform: rotate(0deg) !important; }
+}
+</style>"#;
+
+    let modified = html.replace("</head>", &format!("{}\n</head>", pdf_css));
+
+    // Write temp file next to the original
+    let temp_path = src.with_file_name(format!(
+        ".{}.pdf_temp.html",
+        src.file_stem().unwrap_or_default().to_string_lossy()
+    ));
+    std::fs::write(&temp_path, &modified)
+        .map_err(|e| format!("Failed to write temp file: {}", e))?;
+
+    let temp_url = format!("file://{}", temp_path.display());
+
+    // Find Chrome binary
+    let chrome = [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "/Applications/Chromium.app/Contents/MacOS/Chromium",
+        "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+    ]
+    .iter()
+    .find(|p| std::path::Path::new(p).exists())
+    .ok_or_else(|| "Chrome/Chromium not found. Install Google Chrome to export PDFs.".to_string())?;
+
+    let output = std::process::Command::new(chrome)
+        .args([
+            "--headless",
+            "--disable-gpu",
+            "--no-pdf-header-footer",
+            "--run-all-compositor-stages-before-draw",
+            "--virtual-time-budget=5000",
+            &format!("--print-to-pdf={}", pdf_path.display()),
+            &temp_url,
+        ])
+        .output()
+        .map_err(|e| format!("Failed to run Chrome: {}", e))?;
+
+    // Clean up temp file regardless of outcome
+    let _ = std::fs::remove_file(&temp_path);
+
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        return Err(format!("Chrome PDF export failed: {}", stderr));
+    }
+
+    if !pdf_path.exists() {
+        return Err("PDF file was not created".to_string());
+    }
+
+    Ok(pdf_path.to_string_lossy().to_string())
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LaunchConfig {
     pub ticker: Option<String>,
@@ -814,6 +918,7 @@ pub fn run() {
             pty_resize,
             pty_kill,
             validate_contract,
+            export_html_to_pdf,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

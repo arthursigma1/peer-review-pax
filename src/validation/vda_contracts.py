@@ -3,14 +3,31 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Any, Optional, Sequence
+from typing import Any, Sequence
 
 from pydantic import BaseModel, Field, ValidationError, model_validator
 
-# Shared constants — keep in sync with schemas/vda/*.schema.json
+
 VALID_ARCHETYPES = frozenset({"north_star_peer", "near_peer", "adjacent_peer", "anti_pattern_peer"})
 VALID_FEASIBILITY_HORIZONS = frozenset({"near_term_feasible", "medium_term_feasible", "aspirational"})
 VALID_CONFIDENCE_LABELS = frozenset({"high", "moderate", "directional", "unsupported"})
+VALID_DRIVER_CLASSES = frozenset({"stable_value_driver", "multiple_specific_driver", "contextual_driver", "unsupported"})
+VALID_COVERAGE_QUALITY = frozenset({"adequate", "thin", "poor"})
+VALID_COMPARABILITY_QUALITY = frozenset({"good", "mixed", "poor"})
+VALID_INDEPENDENCE_FLAGS = frozenset({"independent", "partially_confounded", "confounded"})
+VALID_P_VALUE_METHODS = frozenset({"permutation", "asymptotic_t_with_disclosure"})
+VALID_SOURCE_BIAS_TAGS = frozenset({
+    "regulatory-filing",
+    "company-produced",
+    "third-party-analyst",
+    "journalist",
+    "industry-report",
+    "peer-disclosure",
+    "supporting-low-trust",
+})
+VALID_PREREQ_EVIDENCE_CLASSES = frozenset({"directly_stated", "corroborated", "inferred"})
+VALID_PREREQ_CONFIDENCE = frozenset({"high", "moderate", "low"})
+VALID_STATED_OR_INFERRED = frozenset({"stated", "inferred"})
 REQUIRED_SENSITIVITY_CHECKS = frozenset({
     "leave_one_out",
     "matched_sample",
@@ -20,30 +37,23 @@ REQUIRED_SENSITIVITY_CHECKS = frozenset({
     "confounding_check",
     "panel_robustness",
 })
+RANKING_THRESHOLD = 12
+REPORTING_THRESHOLD = 8
 
 
 class TemporalDepth(BaseModel):
-    """Accept either mandatory_years (schema name) or actual_years (SKILL.md name)."""
-    target_range: str
-    # SKILL.md says actual_years; schema says mandatory_years — accept both
-    mandatory_years: Optional[int] = Field(default=None, ge=2)
-    actual_years: Optional[int] = Field(default=None, ge=2)
+    target_range: str = Field(min_length=1)
+    mandatory_years: int = Field(ge=2)
     firms_with_multi_year: int = Field(ge=0)
 
-    @model_validator(mode="after")
-    def validate_years(self) -> "TemporalDepth":
-        if self.mandatory_years is None and self.actual_years is None:
-            raise ValueError("temporal_depth must include mandatory_years or actual_years")
-        return self
-
-
-RANKING_THRESHOLD = 12
-REPORTING_THRESHOLD = 8
+    model_config = {"extra": "forbid"}
 
 
 class MinimumSampleRule(BaseModel):
     ranking_threshold: int
     reporting_threshold: int
+
+    model_config = {"extra": "forbid"}
 
     @model_validator(mode="after")
     def validate_thresholds(self) -> "MinimumSampleRule":
@@ -55,10 +65,6 @@ class MinimumSampleRule(BaseModel):
 
 
 class StatisticalGovernance(BaseModel):
-    """
-    Tolerant model — only the fields that carry governance meaning are strict.
-    Extra fields produced by agents are silently ignored.
-    """
     discovery_method: str = Field(pattern=r"^bh_fdr_q_0\.10$")
     discovery_q: float
     confirmatory_badge: str = Field(pattern=r"^bonferroni_survivor$")
@@ -72,7 +78,7 @@ class StatisticalGovernance(BaseModel):
     ci_method: str
     minimum_sample_rule: MinimumSampleRule
 
-    model_config = {"extra": "ignore"}
+    model_config = {"extra": "forbid"}
 
     @model_validator(mode="after")
     def validate_constants(self) -> "StatisticalGovernance":
@@ -88,88 +94,60 @@ class StatisticalGovernance(BaseModel):
 
 
 class MissingDimension(BaseModel):
-    dimension: str
-    missing_reason: str
+    dimension: str = Field(min_length=1)
+    missing_reason: str = Field(min_length=1)
+
+    model_config = {"extra": "forbid"}
 
 
 class ContextualMarketFactors(BaseModel):
-    tam: Optional[str] = None
-    market_share: Optional[str] = None
-    governance: Optional[str] = None
-    regulation: Optional[str] = None
+    tam: str | None = None
+    market_share: str | None = None
+    governance: str | None = None
+    regulation: str | None = None
+
+    model_config = {"extra": "forbid"}
 
 
 class AssetClassStrategies(BaseModel):
-    private_equity: Optional[list[str]] = None
-    infrastructure: Optional[list[str]] = None
-    private_credit: Optional[list[str]] = None
-    real_estate: Optional[list[str]] = None
-    natural_resources: Optional[list[str]] = None
+    private_equity: list[str] | None = None
+    infrastructure: list[str] | None = None
+    private_credit: list[str] | None = None
+    real_estate: list[str] | None = None
+    natural_resources: list[str] | None = None
+
+    model_config = {"extra": "forbid"}
 
 
 class OntologyMapping(BaseModel):
-    geographical_reach: Optional[list[str]] = None
-    business_focus: Optional[list[str]] = None
-    asset_focus: Optional[list[str]] = None
-    asset_class_and_investment_strategies: Optional[AssetClassStrategies] = None
-    sector_orientation: Optional[list[str]] = None
-    origination_engine: Optional[list[str]] = None
-    fund_type: Optional[list[str]] = None
-    capital_source: Optional[list[str]] = None
-    distribution_strategy: Optional[list[str]] = None
-    client_segment: Optional[list[str]] = None
-    growth_agenda: Optional[list[str]] = None
-    share_class: Optional[list[str]] = None
+    geographical_reach: list[str] | None = None
+    business_focus: list[str] | None = None
+    asset_focus: list[str] | None = None
+    asset_class_and_investment_strategies: AssetClassStrategies | None = None
+    sector_orientation: list[str] | None = None
+    origination_engine: list[str] | None = None
+    fund_type: list[str] | None = None
+    capital_source: list[str] | None = None
+    distribution_strategy: list[str] | None = None
+    client_segment: list[str] | None = None
+    growth_agenda: list[str] | None = None
+    share_class: list[str] | None = None
+
+    model_config = {"extra": "forbid"}
 
 
 class StrategyProfile(BaseModel):
-    firm_id: str
-    firm_ticker: Optional[str] = None
-    # agent may use ticker instead of firm_ticker
-    ticker: Optional[str] = None
-    firm_name: Optional[str] = None
-    archetype: Optional[str] = None
-    archetype_secondary: Optional[str] = None
-    ontology_mapping: Optional[OntologyMapping] = None
-    contextual_market_factors: Optional[ContextualMarketFactors] = None
-    stated_strategic_priorities: list[str]
-    source_ids: Optional[list[str]] = None
+    firm_id: str = Field(min_length=1)
+    firm_ticker: str = Field(min_length=1)
+    archetype: str | None = None
+    archetype_secondary: str | None = None
+    ontology_mapping: OntologyMapping
+    contextual_market_factors: ContextualMarketFactors
+    stated_strategic_priorities: list[str] = Field(min_length=1)
+    source_ids: list[str] = Field(min_length=1)
     missing_dimensions: list[MissingDimension] = Field(default_factory=list)
 
-    model_config = {"extra": "ignore"}
-
-    @model_validator(mode="before")
-    @classmethod
-    def unwrap_nested_profile(cls, data: Any) -> Any:
-        """
-        Handle the actual agent output format where profile fields are nested inside
-        a 'profile' sub-object rather than at the top level.
-
-        Example actual output:
-        {
-          "firm_id": "FIRM-002",
-          "firm_name": "...",
-          "ticker": "BX",
-          "profile": {
-            "stated_strategic_priorities": [...],
-            "source_citations": [...]
-          }
-        }
-        """
-        if isinstance(data, dict) and "profile" in data and isinstance(data["profile"], dict):
-            nested = data["profile"]
-            merged = dict(data)
-            # Hoist stated_strategic_priorities from nested profile if not at top level
-            if "stated_strategic_priorities" not in merged and "stated_strategic_priorities" in nested:
-                merged["stated_strategic_priorities"] = nested["stated_strategic_priorities"]
-            # Hoist source_ids / source_citations as source_ids
-            if "source_ids" not in merged:
-                if "source_ids" in nested:
-                    merged["source_ids"] = nested["source_ids"]
-                elif "source_citations" in nested:
-                    merged["source_ids"] = nested["source_citations"]
-            return merged
-        return data
+    model_config = {"extra": "forbid"}
 
     @model_validator(mode="after")
     def validate_archetypes(self) -> "StrategyProfile":
@@ -177,9 +155,145 @@ class StrategyProfile(BaseModel):
             raise ValueError(f"invalid archetype: {self.archetype}")
         if self.archetype_secondary is not None and self.archetype_secondary not in VALID_ARCHETYPES:
             raise ValueError(f"invalid archetype_secondary: {self.archetype_secondary}")
-        if not self.stated_strategic_priorities:
-            raise ValueError("stated_strategic_priorities cannot be empty")
         return self
+
+
+class OperationalPrerequisite(BaseModel):
+    requirement: str = Field(min_length=1)
+    evidence_class: str
+    source_bias_tag: str
+    confidence_level: str
+    stated_or_inferred: str
+
+    model_config = {"extra": "forbid"}
+
+    @model_validator(mode="after")
+    def validate_contract_fields(self) -> "OperationalPrerequisite":
+        if self.evidence_class not in VALID_PREREQ_EVIDENCE_CLASSES:
+            raise ValueError("invalid evidence_class")
+        if self.source_bias_tag not in VALID_SOURCE_BIAS_TAGS:
+            raise ValueError("invalid source_bias_tag")
+        if self.confidence_level not in VALID_PREREQ_CONFIDENCE:
+            raise ValueError("invalid confidence_level")
+        if self.stated_or_inferred not in VALID_STATED_OR_INFERRED:
+            raise ValueError("invalid stated_or_inferred")
+        return self
+
+
+class StrategicActionRecord(BaseModel):
+    action_id: str = Field(min_length=1)
+    firm_ticker: str = Field(min_length=1)
+    strategy_sub_type: str = Field(min_length=1)
+    thematic_focus: str = Field(min_length=1)
+    economic_model: str = Field(min_length=1)
+    what_was_done: str = Field(min_length=1)
+    observed_metric_impact: str = Field(min_length=1)
+    operational_prerequisites: list[OperationalPrerequisite] = Field(min_length=1)
+
+    model_config = {"extra": "forbid"}
+
+
+class StrategicActionsContract(BaseModel):
+    actions: list[StrategicActionRecord] = Field(min_length=1)
+
+    model_config = {"extra": "forbid"}
+
+
+class CorrelationRecord(BaseModel):
+    correlation_id: str = Field(min_length=1)
+    driver_metric_id: str = Field(min_length=1)
+    valuation_multiple: str = Field(min_length=1)
+    spearman_rho: float
+    p_value: float = Field(ge=0.0, le=1.0)
+    n_firms_included: int = Field(ge=REPORTING_THRESHOLD)
+    coverage_quality: str
+    comparability_quality: str
+    mechanical_overlap_flag: bool
+    independence_flag: str
+    p_value_method: str
+    confirmatory_badge: str | None = None
+
+    model_config = {"extra": "ignore"}
+
+    @model_validator(mode="after")
+    def validate_correlation_flags(self) -> "CorrelationRecord":
+        if self.coverage_quality not in VALID_COVERAGE_QUALITY:
+            raise ValueError("invalid coverage_quality")
+        if self.comparability_quality not in VALID_COMPARABILITY_QUALITY:
+            raise ValueError("invalid comparability_quality")
+        if self.independence_flag not in VALID_INDEPENDENCE_FLAGS:
+            raise ValueError("invalid independence_flag")
+        if self.p_value_method not in VALID_P_VALUE_METHODS:
+            raise ValueError("invalid p_value_method")
+        if self.confirmatory_badge not in {None, "bonferroni_survivor"}:
+            raise ValueError("invalid confirmatory_badge")
+        return self
+
+
+class CorrelationsContract(BaseModel):
+    correlations: list[CorrelationRecord] = Field(min_length=1)
+
+    model_config = {"extra": "ignore"}
+
+
+class DriverRankingEntry(BaseModel):
+    driver_id: str = Field(min_length=1)
+    correlation_classification: str
+    confidence_class: str
+    coverage_quality: str
+    comparability_quality: str
+    mechanical_overlap_flag: bool
+    independence_flag: str
+    p_value_method: str
+    confirmatory_badge: str | None = None
+
+    model_config = {"extra": "ignore"}
+
+    @model_validator(mode="after")
+    def validate_driver_fields(self) -> "DriverRankingEntry":
+        if self.correlation_classification not in VALID_DRIVER_CLASSES:
+            raise ValueError("invalid correlation_classification")
+        if self.confidence_class not in VALID_CONFIDENCE_LABELS:
+            raise ValueError("invalid confidence_class")
+        if self.coverage_quality not in VALID_COVERAGE_QUALITY:
+            raise ValueError("invalid coverage_quality")
+        if self.comparability_quality not in VALID_COMPARABILITY_QUALITY:
+            raise ValueError("invalid comparability_quality")
+        if self.independence_flag not in VALID_INDEPENDENCE_FLAGS:
+            raise ValueError("invalid independence_flag")
+        if self.p_value_method not in VALID_P_VALUE_METHODS:
+            raise ValueError("invalid p_value_method")
+        if self.confirmatory_badge not in {None, "bonferroni_survivor"}:
+            raise ValueError("invalid confirmatory_badge")
+        return self
+
+
+class DriverRankingContract(BaseModel):
+    drivers: list[DriverRankingEntry] = Field(min_length=1)
+
+    model_config = {"extra": "ignore"}
+
+
+class StrategySubtypeAnalysis(BaseModel):
+    vertical: str = Field(min_length=1)
+    strategy_sub_type: str = Field(min_length=1)
+    thematic_focus: str = Field(min_length=1)
+    economic_model: str = Field(min_length=1)
+    value_creation_mechanics: str = Field(min_length=1)
+    fee_model: str = Field(min_length=1)
+    operating_model: str = Field(min_length=1)
+    tech_data_reporting_requirements: list[str] = Field(min_length=1)
+    scaling_constraints: list[str] = Field(min_length=1)
+    margin_sensitivities: list[str] = Field(min_length=1)
+    pax_transferability_barriers: list[str] = Field(min_length=1)
+
+    model_config = {"extra": "forbid"}
+
+
+class AssetClassAnalysisContract(BaseModel):
+    strategy_subtype_analyses: list[StrategySubtypeAnalysis] = Field(min_length=1)
+
+    model_config = {"extra": "forbid"}
 
 
 class PAXRelevance(BaseModel):
@@ -197,6 +311,8 @@ class PAXRelevance(BaseModel):
     execution_complexity: int = Field(ge=1, le=5)
     feasibility_horizon: str
 
+    model_config = {"extra": "forbid"}
+
     @model_validator(mode="after")
     def validate_feasibility_horizon(self) -> "PAXRelevance":
         if self.feasibility_horizon not in VALID_FEASIBILITY_HORIZONS:
@@ -205,95 +321,83 @@ class PAXRelevance(BaseModel):
 
 
 class PlaybookEntry(BaseModel):
-    """
-    Flexible playbook entry accepting both:
-    - SKILL.md PascalCase field names (What_Was_Done, Observed_Metric_Impact, etc.)
-    - Snake_case field names that agents actually produce (what_was_done, metric_impact, etc.)
-    - Anti-pattern entries (anti_id instead of play_id)
+    Play_ID: str | None = None
+    Anti_ID: str | None = None
+    What_Was_Done: str = Field(min_length=1)
+    Observed_Metric_Impact: str = Field(min_length=1)
+    Why_It_Worked: str = Field(min_length=1)
+    PAX_Relevance: PAXRelevance
+    Preconditions: list[str] = Field(min_length=1)
+    Operational_And_Tech_Prerequisites: list[str] = Field(min_length=1)
+    Execution_Burden: str = Field(min_length=1)
+    Time_To_Build: str = Field(min_length=1)
+    Margin_Risk: str = Field(min_length=1)
+    Failure_Modes_And_Margin_Destroyers: list[str] = Field(min_length=1)
+    Transferability_Constraints: list[str] = Field(min_length=1)
+    Archetype_Relevance: str = Field(min_length=1)
+    Evidence_Strength: str
+    Recommendation_For_PAX: str = Field(min_length=1)
 
-    The only hard requirement: at least one ID field must be present.
-    """
-    # ID fields — play_id is the canonical name; Play_ID accepted via alias; anti_id for anti-patterns
-    play_id: Optional[str] = Field(default=None)
-    anti_id: Optional[str] = Field(default=None)
-
-    # PascalCase fields (SKILL.md mandatory field names & test fixture)
-    Play_ID: Optional[str] = Field(default=None)
-    What_Was_Done: Optional[str] = Field(default=None)
-    Observed_Metric_Impact: Optional[str] = Field(default=None)
-    Prerequisites: Optional[list[str]] = Field(default=None)
-    # Some test fixtures / agents use Preconditions as an alias for Prerequisites
-    Preconditions: Optional[list[str]] = Field(default=None)
-    Operational_And_Tech_Prerequisites: Optional[list[str]] = Field(default=None)
-    Execution_Burden: Optional[str] = Field(default=None)
-    Time_To_Build: Optional[str] = Field(default=None)
-    Margin_Risk: Optional[str] = Field(default=None)
-    Failure_Modes_And_Margin_Destroyers: Optional[list[str]] = Field(default=None)
-    Transferability_Constraints: Optional[list[str]] = Field(default=None)
-    Archetype_Relevance: Optional[str] = Field(default=None)
-    Evidence_Strength: Optional[str] = Field(default=None)
-    Recommendation_For_PAX: Optional[str] = Field(default=None)
-    PAX_Relevance: Optional[PAXRelevance] = Field(default=None)
-
-    # Snake_case fields (actual agent output)
-    what_was_done: Optional[str] = Field(default=None)
-    metric_impact: Optional[str] = Field(default=None)
-    prerequisites: Optional[list[str]] = Field(default=None)
-    risks_limitations: Optional[list[str]] = Field(default=None)
-
-    # Common supplemental fields from actual output
-    play_name: Optional[str] = None
-    anti_name: Optional[str] = None
-    description: Optional[str] = None
-    firms_executed: Optional[list[str]] = None
-    firms_attempted: Optional[list[str]] = None
-    negative_outcome: Optional[str] = None
-    why_it_failed: Optional[str] = None
-    action_citations: Optional[list[str]] = None
-    source_citations: Optional[list[str]] = None
-
-    model_config = {"extra": "ignore"}
-
-    def resolved_play_id(self) -> Optional[str]:
-        """Return whichever ID field is populated."""
-        return self.play_id or self.Play_ID or self.anti_id
+    model_config = {"extra": "forbid"}
 
     @model_validator(mode="after")
     def validate_entry(self) -> "PlaybookEntry":
-        if self.resolved_play_id() is None:
-            raise ValueError("PlaybookEntry must have play_id, Play_ID, or anti_id")
-        if self.Evidence_Strength is not None and self.Evidence_Strength not in VALID_CONFIDENCE_LABELS:
+        if not self.Play_ID and not self.Anti_ID:
+            raise ValueError("playbook entry must have Play_ID or Anti_ID")
+        if self.Evidence_Strength not in VALID_CONFIDENCE_LABELS:
             raise ValueError("invalid Evidence_Strength")
         return self
 
 
+class DriverPlaybook(BaseModel):
+    driver_id: str = Field(min_length=1)
+    plays: list[PlaybookEntry] = Field(min_length=1)
+    anti_patterns: list[PlaybookEntry] = Field(default_factory=list)
+
+    model_config = {"extra": "forbid"}
+
+
+class PlatformPlaybookContract(BaseModel):
+    driver_playbooks: list[DriverPlaybook] = Field(min_length=1)
+
+    model_config = {"extra": "forbid"}
+
+
+class VerticalPlaybook(BaseModel):
+    vertical_id: str = Field(min_length=1)
+    plays: list[PlaybookEntry] = Field(min_length=1)
+    anti_patterns: list[PlaybookEntry] = Field(default_factory=list)
+
+    model_config = {"extra": "forbid"}
+
+
+class AssetClassPlaybookContract(BaseModel):
+    vertical_playbooks: list[VerticalPlaybook] = Field(min_length=1)
+
+    model_config = {"extra": "forbid"}
+
+
 class RankedRecommendation(BaseModel):
-    play_id: str
+    play_id: str = Field(min_length=1)
     priority_rank: int = Field(ge=1)
     applicability: str
-    strategic_principle: str
-    rationale: str
-    adaptation_notes: Optional[str] = None
-    why_this_matters_for_pax: str
-    what_must_be_true: list[str]
-    why_this_may_fail_for_pax: list[str]
-    implementation_pathway: list[str]
+    strategic_principle: str = Field(min_length=1)
+    rationale: str = Field(min_length=1)
+    adaptation_notes: str | None = None
+    why_this_matters_for_pax: str = Field(min_length=1)
+    what_must_be_true: list[str] = Field(min_length=1)
+    why_this_may_fail_for_pax: list[str] = Field(min_length=1)
+    implementation_pathway: list[str] = Field(min_length=1)
     feasibility_horizon: str
+
+    model_config = {"extra": "forbid"}
 
     @model_validator(mode="after")
     def validate_recommendation(self) -> "RankedRecommendation":
-        if self.applicability not in {
-            "directly_applicable",
-            "requires_adaptation",
-            "not_applicable",
-        }:
+        if self.applicability not in {"directly_applicable", "requires_adaptation", "not_applicable"}:
             raise ValueError("invalid applicability")
         if self.feasibility_horizon not in VALID_FEASIBILITY_HORIZONS:
             raise ValueError("invalid feasibility_horizon")
-        if not self.what_must_be_true or not self.why_this_may_fail_for_pax:
-            raise ValueError("recommendation arrays cannot be empty")
-        if not self.implementation_pathway:
-            raise ValueError("implementation_pathway cannot be empty")
         return self
 
 
@@ -302,116 +406,30 @@ class GovernanceCascade(BaseModel):
     management: list[str]
     business_units: list[str]
 
-
-class PlayAssessmentEntry(BaseModel):
-    """
-    Flexible play/anti-pattern assessment as produced by target-lens agent.
-    Fields: play_id/anti_id, applicability, rationale, adaptation_notes,
-    priority, implementation_pathway (for plays); relevance_to_pax, assessment,
-    defensive_actions (for anti-patterns).
-    """
-    play_id: Optional[str] = None
-    anti_id: Optional[str] = None
-    play_name: Optional[str] = None
-    anti_name: Optional[str] = None
-    applicability: Optional[str] = None
-    rationale: Optional[str] = None
-    adaptation_notes: Optional[str] = None
-    priority: Optional[str] = None
-    implementation_pathway: Optional[list[str]] = None
-    relevance_to_pax: Optional[str] = None
-    assessment: Optional[str] = None
-    defensive_actions: Optional[list[str]] = None
-
-    model_config = {"extra": "ignore"}
-
-    def resolved_id(self) -> Optional[str]:
-        return self.play_id or self.anti_id
-
-    @model_validator(mode="after")
-    def validate_has_id(self) -> "PlayAssessmentEntry":
-        if self.resolved_id() is None:
-            raise ValueError("PlayAssessmentEntry must have play_id or anti_id")
-        return self
-
-
-class PlayAssessments(BaseModel):
-    """Container for the play_assessments block in actual target_company_lens output."""
-    platform_plays: Optional[list[PlayAssessmentEntry]] = None
-    asset_class_plays: Optional[list[PlayAssessmentEntry]] = None
-    anti_pattern_assessments: Optional[list[PlayAssessmentEntry]] = None
-
-    model_config = {"extra": "ignore"}
+    model_config = {"extra": "forbid"}
 
 
 class PAXLensContract(BaseModel):
-    """
-    Accept both:
-    - The SKILL.md/test-fixture structure: ranked_recommendations + decision_risks + governance_cascade
-    - The actual agent output structure: play_assessments + strategic_guidance
-    At least one form of play data must be present.
+    target_company: str = Field(min_length=1)
+    target_ticker: str = Field(min_length=1)
+    ranked_recommendations: list[RankedRecommendation] = Field(min_length=1)
+    decision_risks: list[str] = Field(min_length=1)
+    governance_cascade: GovernanceCascade
 
-    Also handles the metadata-wrapped format from actual agent output where
-    target_company and target_ticker are inside a 'metadata' sub-object.
-    """
-    target_company: str
-    target_ticker: str
-
-    # SKILL.md ideal / test-fixture structure
-    ranked_recommendations: Optional[list[RankedRecommendation]] = None
-    decision_risks: Optional[list[str]] = None
-    governance_cascade: Optional[GovernanceCascade] = None
-
-    # Actual agent output structure
-    play_assessments: Optional[PlayAssessments] = None
-    strategic_guidance: Optional[Any] = None
-
-    model_config = {"extra": "ignore"}
-
-    @model_validator(mode="before")
-    @classmethod
-    def unwrap_metadata(cls, data: Any) -> Any:
-        """
-        Handle actual agent output format where target_company and target_ticker
-        are nested inside a 'metadata' sub-object rather than at the top level.
-        """
-        if isinstance(data, dict) and "metadata" in data and isinstance(data["metadata"], dict):
-            meta = data["metadata"]
-            merged = dict(data)
-            if "target_company" not in merged and "target_company" in meta:
-                merged["target_company"] = meta["target_company"]
-            if "target_ticker" not in merged and "target_ticker" in meta:
-                merged["target_ticker"] = meta["target_ticker"]
-            return merged
-        return data
-
-    @model_validator(mode="after")
-    def validate_has_play_data(self) -> "PAXLensContract":
-        has_ranked = bool(self.ranked_recommendations)
-        has_assessments = (
-            self.play_assessments is not None
-            and (
-                bool(self.play_assessments.platform_plays)
-                or bool(self.play_assessments.asset_class_plays)
-            )
-        )
-        if not has_ranked and not has_assessments:
-            raise ValueError(
-                "PAXLensContract must have ranked_recommendations or "
-                "play_assessments.platform_plays/asset_class_plays"
-            )
-        return self
+    model_config = {"extra": "forbid"}
 
 
 class ReportMetadata(BaseModel):
     report_mode: str
     default_synthesis: str
-    target_company: str
-    target_ticker: str
+    target_company: str = Field(min_length=1)
+    target_ticker: str = Field(min_length=1)
     peer_evidence_layer_present: bool
     pax_interpretation_layer_present: bool
     pax_decision_layer_present: bool
     statistical_governance: StatisticalGovernance
+
+    model_config = {"extra": "forbid"}
 
     @model_validator(mode="after")
     def validate_mode(self) -> "ReportMetadata":
@@ -426,130 +444,6 @@ class ReportMetadata(BaseModel):
         ):
             raise ValueError("all report layers must be present")
         return self
-
-
-class DriverRankingEntry(BaseModel):
-    """
-    Single entry in driver_ranking.json.
-
-    Two valid formats:
-    - Simple format (test fixture / SKILL.md contract): flat fields including
-      mechanical_overlap_flag, coverage_quality, comparability_quality,
-      independence_flag, p_value_method — all required when this format is used.
-    - Rich format (actual agent output): nested per_multiple stats with avg_abs_rho,
-      independent_signal, quartile_analysis — mechanical_overlap_flag is not required
-      because governance is encoded per-multiple.
-
-    Detection: if 'avg_abs_rho' is present, treat as rich format (optional fields).
-    If 'avg_abs_rho' is absent, treat as simple format (required fields).
-    """
-    driver_id: str
-    correlation_classification: str
-    confidence_class: str
-
-    # Fields required in simple format, optional in rich format
-    coverage_quality: Optional[str] = None
-    comparability_quality: Optional[str] = None
-    mechanical_overlap_flag: Optional[bool] = None
-    independence_flag: Optional[str] = None
-    p_value_method: Optional[str] = None
-    confirmatory_badge: Optional[str] = None
-
-    # Rich format fields
-    avg_abs_rho: Optional[float] = None
-    independent_signal: Optional[bool] = None
-    per_multiple: Optional[Any] = None
-
-    model_config = {"extra": "ignore"}
-
-    @model_validator(mode="after")
-    def validate_governance_fields(self) -> "DriverRankingEntry":
-        is_rich_format = self.avg_abs_rho is not None
-        if not is_rich_format:
-            # Simple format: governance fields are required
-            missing = []
-            if self.coverage_quality is None:
-                missing.append("coverage_quality")
-            if self.comparability_quality is None:
-                missing.append("comparability_quality")
-            if self.mechanical_overlap_flag is None:
-                missing.append("mechanical_overlap_flag")
-            if self.independence_flag is None:
-                missing.append("independence_flag")
-            if self.p_value_method is None:
-                missing.append("p_value_method")
-            if missing:
-                raise ValueError(
-                    f"driver_ranking entry {self.driver_id} is missing required statistical "
-                    f"governance fields: {', '.join(missing)}"
-                )
-        return self
-
-
-class DriverRankingContract(BaseModel):
-    drivers: list[DriverRankingEntry]
-
-    model_config = {"extra": "ignore"}
-
-
-class DriverPlaybook(BaseModel):
-    driver_id: str
-    plays: list[PlaybookEntry]
-    anti_patterns: list[PlaybookEntry] = Field(default_factory=list)
-
-    model_config = {"extra": "ignore"}
-
-
-class PlatformPlaybookContract(BaseModel):
-    driver_playbooks: list[DriverPlaybook]
-
-    model_config = {"extra": "ignore"}
-
-
-class DriverPlays(BaseModel):
-    """Actual agent output: plays organised by driver, nested inside a vertical."""
-    driver_id: str
-    plays: list[PlaybookEntry] = Field(default_factory=list)
-    anti_patterns: list[PlaybookEntry] = Field(default_factory=list)
-
-    model_config = {"extra": "ignore"}
-
-
-class VerticalPlaybook(BaseModel):
-    vertical_id: str
-    # Test-fixture uses plays directly at the vertical level
-    plays: Optional[list[PlaybookEntry]] = None
-    anti_patterns: Optional[list[PlaybookEntry]] = Field(default_factory=list)
-    # Actual agent output nests plays inside driver_plays
-    driver_plays: Optional[list[DriverPlays]] = None
-
-    model_config = {"extra": "ignore"}
-
-    @model_validator(mode="after")
-    def validate_has_content(self) -> "VerticalPlaybook":
-        has_plays = bool(self.plays)
-        has_driver_plays = bool(self.driver_plays)
-        if not has_plays and not has_driver_plays:
-            raise ValueError(f"vertical {self.vertical_id} must have plays or driver_plays")
-        return self
-
-
-class AssetClassPlaybookContract(BaseModel):
-    # Test-fixture field name
-    vertical_playbooks: Optional[list[VerticalPlaybook]] = None
-    # Actual agent output field name
-    verticals: Optional[list[VerticalPlaybook]] = None
-
-    model_config = {"extra": "ignore"}
-
-    @model_validator(mode="after")
-    def validate_has_verticals(self) -> "AssetClassPlaybookContract":
-        if not self.vertical_playbooks and not self.verticals:
-            raise ValueError("asset_class_playbooks must contain at least one vertical")
-        return self
-
-    def all_verticals(self) -> list[VerticalPlaybook]:
-        return (self.vertical_playbooks or []) + (self.verticals or [])
 
 
 def _load_json(path: Path) -> Any:
@@ -568,23 +462,12 @@ def _validate_model(model_cls: type[BaseModel], path: Path) -> BaseModel:
 
 
 def _validate_strategy_profiles(path: Path) -> list[StrategyProfile]:
-    """
-    Validate strategy_profiles.json.
-    Accepts:
-    - a bare JSON array of profile objects
-    - a dict with a 'profiles' key containing the array (actual agent output wraps metadata + profiles)
-    """
     data = _load_json(path)
-    if isinstance(data, dict):
-        if "profiles" in data:
-            data = data["profiles"]
-        else:
-            raise ValueError(f"{path}: expected a JSON array or a dict with a 'profiles' key")
     if not isinstance(data, list):
         raise ValueError(f"{path}: expected a JSON array of strategy profiles")
     if not data:
         raise ValueError(f"{path}: strategy_profiles must contain at least one profile")
-    profiles = []
+    profiles: list[StrategyProfile] = []
     for i, item in enumerate(data):
         try:
             profiles.append(StrategyProfile.model_validate(item))
@@ -593,64 +476,58 @@ def _validate_strategy_profiles(path: Path) -> list[StrategyProfile]:
     return profiles
 
 
-def _cross_check_statistics(
-    stats_metadata: StatisticalGovernance,
-    report_metadata: ReportMetadata,
-) -> None:
+def _validate_final_report(path: Path, target_company: str, target_ticker: str) -> None:
+    try:
+        content = path.read_text()
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Missing required artifact: {path}") from None
+
+    lowered = content.lower()
+    if "<html" not in lowered:
+        raise ValueError(f"{path}: expected an HTML document")
+    if target_company.lower() not in lowered:
+        raise ValueError(f"{path}: target_company not mentioned in final_report.html")
+    if target_ticker.lower() not in lowered:
+        raise ValueError(f"{path}: target_ticker not mentioned in final_report.html")
+
+
+def _cross_check_statistics(stats_metadata: StatisticalGovernance, report_metadata: ReportMetadata) -> None:
     if report_metadata.statistical_governance != stats_metadata:
         raise ValueError("report_metadata statistical governance does not match statistics_metadata")
 
 
 def validate_run_directory(run_dir: Path) -> None:
-    # Optional: validate strategy profiles if present (step 1 output)
-    strategy_profiles_path = run_dir / "2-data" / "strategy_profiles.json"
-    try:
-        _validate_strategy_profiles(strategy_profiles_path)
-    except FileNotFoundError:
-        pass
+    _validate_strategy_profiles(run_dir / "2-data" / "strategy_profiles.json")
+    _validate_model(StrategicActionsContract, run_dir / "2-data" / "strategic_actions.json")
 
-    # statistics_metadata.json is produced by metric-architect in step 2.
-    # Some runs may not include it (e.g. when only later steps are re-run).
-    # When present it is strictly validated; when absent the validator skips
-    # downstream cross-checks that depend on it.
-    stats_metadata_path = run_dir / "3-analysis" / "statistics_metadata.json"
-    stats_metadata: Optional[StatisticalGovernance] = None
-    if stats_metadata_path.exists():
-        stats_metadata = _validate_model(StatisticalGovernance, stats_metadata_path)
+    stats_metadata = _validate_model(StatisticalGovernance, run_dir / "3-analysis" / "statistics_metadata.json")
+    _validate_model(CorrelationsContract, run_dir / "3-analysis" / "correlations.json")
+    _validate_model(DriverRankingContract, run_dir / "3-analysis" / "driver_ranking.json")
 
-    # Validate driver_ranking.json if present — mechanical_overlap_flag and independence_flag
-    # are required fields that catch statistical governance violations.
-    driver_ranking_path = run_dir / "3-analysis" / "driver_ranking.json"
-    if driver_ranking_path.exists():
-        _validate_model(DriverRankingContract, driver_ranking_path)
+    _validate_model(AssetClassAnalysisContract, run_dir / "4-deep-dives" / "asset_class_analysis.json")
 
-    # report_metadata.json is optional — the SKILL.md does not instruct any agent to produce it.
-    # If the file exists, validate it and run cross-checks; if absent, skip silently.
-    report_metadata_path = run_dir / "5-playbook" / "report_metadata.json"
-    report_metadata: Optional[ReportMetadata] = None
-    if report_metadata_path.exists():
-        report_metadata = _validate_model(ReportMetadata, report_metadata_path)
-
-    platform_playbook = _validate_model(
-        PlatformPlaybookContract, run_dir / "5-playbook" / "platform_playbook.json"
-    )
-    asset_playbook = _validate_model(
-        AssetClassPlaybookContract, run_dir / "5-playbook" / "asset_class_playbooks.json"
-    )
+    platform_playbook = _validate_model(PlatformPlaybookContract, run_dir / "5-playbook" / "platform_playbook.json")
+    asset_playbook = _validate_model(AssetClassPlaybookContract, run_dir / "5-playbook" / "asset_class_playbooks.json")
     pax_lens = _validate_model(PAXLensContract, run_dir / "5-playbook" / "target_company_lens.json")
+    report_metadata = _validate_model(ReportMetadata, run_dir / "5-playbook" / "report_metadata.json")
 
-    if report_metadata is not None:
-        if stats_metadata is not None:
-            _cross_check_statistics(stats_metadata, report_metadata)
-        if report_metadata.target_ticker != pax_lens.target_ticker:
-            raise ValueError("target_ticker mismatch between report metadata and PAX lens")
-        if report_metadata.target_company != pax_lens.target_company:
-            raise ValueError("target_company mismatch between report metadata and PAX lens")
+    _cross_check_statistics(stats_metadata, report_metadata)
+
+    if report_metadata.target_ticker != pax_lens.target_ticker:
+        raise ValueError("target_ticker mismatch between report metadata and PAX lens")
+    if report_metadata.target_company != pax_lens.target_company:
+        raise ValueError("target_company mismatch between report metadata and PAX lens")
 
     if not platform_playbook.driver_playbooks:
         raise ValueError("platform_playbook must contain at least one driver_playbook")
-    if not asset_playbook.all_verticals():
-        raise ValueError("asset_class_playbooks must contain at least one vertical")
+    if not asset_playbook.vertical_playbooks:
+        raise ValueError("asset_class_playbooks must contain at least one vertical_playbook")
+
+    _validate_final_report(
+        run_dir / "5-playbook" / "final_report.html",
+        target_company=report_metadata.target_company,
+        target_ticker=report_metadata.target_ticker,
+    )
 
 
 def main(argv: Sequence[str] | None = None) -> int:

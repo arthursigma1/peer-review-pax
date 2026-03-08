@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import type { OutputFile } from "../types/pipeline";
 
 interface AnalysisInsightsProps {
   files: OutputFile[];
 }
-
-// ── Statistical confidence data ──────────────────────────────────────────────
 
 interface CorrelationsMetadata {
   methodology?: {
@@ -32,13 +30,21 @@ interface DriverRanking {
   drivers?: DriverEntry[];
 }
 
-// Future-proof fallback from statistics_metadata.json
 interface StatisticsMetadata {
+  discovery_method?: string;
+  discovery_q?: number;
   n_effective?: number;
-  temporal_depth?: string;
+  temporal_depth?: {
+    target_range?: string;
+    mandatory_years?: number;
+    firms_with_multi_year?: number;
+  };
   ci_method?: string;
-  minimum_sample_rule?: string;
-  sensitivity_protocol?: string;
+  minimum_sample_rule?: {
+    ranking_threshold?: number;
+    reporting_threshold?: number;
+  };
+  sensitivity_protocol?: string[];
 }
 
 interface ConfidenceStats {
@@ -47,22 +53,29 @@ interface ConfidenceStats {
   correction: string | null;
   stableDrivers: number;
   multipleSpecificDrivers: number;
-  moderateDrivers: number;
+  contextualDrivers: number;
   unsupportedDrivers: number;
   totalRanked: number | null;
 }
 
-// ── Checkpoint audit data ─────────────────────────────────────────────────────
-
 interface AuditData {
   checkpoint: string;
   verdict: "PASSED" | "BLOCKED" | string;
+  summary?:
+    | {
+        total_claims?: number;
+        grounded?: number;
+        inferred?: number;
+        weak_evidence?: number;
+        ungrounded?: number;
+        fabricated?: number;
+      }
+    | string;
   claims_audited?: number;
   claims_passed?: number;
   claims_flagged?: number;
   inferred_claims?: unknown[];
   blocked_claims?: unknown[];
-  // CP-3 stores totals inside a "statistics" key
   statistics?: {
     total_claims_audited?: number;
     passed?: number;
@@ -77,8 +90,6 @@ interface CheckpointResult {
   total: number;
   hasInferred: boolean;
 }
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
 
 function findFile(files: OutputFile[], folder: string, filename: string): OutputFile | undefined {
   return files.find((f) => f.folder === folder && f.filename === filename);
@@ -97,22 +108,55 @@ function classificationCounts(drivers: DriverEntry[]): Record<string, number> {
   const counts: Record<string, number> = {
     stable_value_driver: 0,
     multiple_specific_driver: 0,
+    contextual_driver: 0,
+    unsupported: 0,
     moderate_signal: 0,
     not_a_driver: 0,
     other: 0,
   };
-  for (const d of drivers) {
-    const cls = d.correlation_classification ?? "";
-    if (cls in counts) {
-      (counts as Record<string, number>)[cls]++;
+
+  for (const driver of drivers) {
+    const classification = driver.correlation_classification ?? "";
+    if (classification in counts) {
+      counts[classification] += 1;
     } else {
-      counts.other++;
+      counts.other += 1;
     }
   }
+
   return counts;
 }
 
-// ── Sub-components ────────────────────────────────────────────────────────────
+function formatDiscoveryMethod(sm: StatisticsMetadata): string | null {
+  if (sm.discovery_method === "bh_fdr_q_0.10") {
+    return "BH FDR q=0.10";
+  }
+  return sm.discovery_method ?? null;
+}
+
+function getAuditTotals(audit: AuditData): { passed: number; total: number; hasInferred: boolean } {
+  if (audit.summary && typeof audit.summary !== "string") {
+    const total = audit.summary.total_claims ?? 0;
+    const blocked = (audit.summary.ungrounded ?? 0) + (audit.summary.fabricated ?? 0);
+    return {
+      passed: Math.max(total - blocked, 0),
+      total,
+      hasInferred: (audit.summary.inferred ?? 0) > 0,
+    };
+  }
+
+  let passed = audit.claims_passed ?? audit.statistics?.passed ?? 0;
+  let total = audit.claims_audited ?? audit.statistics?.total_claims_audited ?? 0;
+  if (total === 0 && audit.claims_flagged !== undefined && passed !== 0) {
+    total = passed + audit.claims_flagged;
+  }
+
+  return {
+    passed,
+    total,
+    hasInferred: Array.isArray(audit.inferred_claims) && audit.inferred_claims.length > 0,
+  };
+}
 
 interface ConfidencePillProps {
   label: string;
@@ -132,12 +176,12 @@ function ConfidencePill({ label, value }: ConfidencePillProps) {
 interface DriverBarProps {
   stable: number;
   multipleSpecific: number;
-  moderate: number;
+  contextual: number;
   unsupported: number;
 }
 
-function DriverBar({ stable, multipleSpecific, moderate, unsupported }: DriverBarProps) {
-  const total = stable + multipleSpecific + moderate + unsupported;
+function DriverBar({ stable, multipleSpecific, contextual, unsupported }: DriverBarProps) {
+  const total = stable + multipleSpecific + contextual + unsupported;
   if (total === 0) return null;
 
   const pct = (n: number) => `${((n / total) * 100).toFixed(1)}%`;
@@ -159,18 +203,18 @@ function DriverBar({ stable, multipleSpecific, moderate, unsupported }: DriverBa
             title={`Multiple-specific drivers: ${multipleSpecific}`}
           />
         )}
-        {moderate > 0 && (
+        {contextual > 0 && (
           <div
             className="bg-amber-400 h-full"
-            style={{ width: pct(moderate) }}
-            title={`Moderate signal: ${moderate}`}
+            style={{ width: pct(contextual) }}
+            title={`Contextual drivers: ${contextual}`}
           />
         )}
         {unsupported > 0 && (
           <div
             className="bg-gray-300 h-full"
             style={{ width: pct(unsupported) }}
-            title={`Not a driver / insufficient: ${unsupported}`}
+            title={`Unsupported or weak drivers: ${unsupported}`}
           />
         )}
       </div>
@@ -187,10 +231,10 @@ function DriverBar({ stable, multipleSpecific, moderate, unsupported }: DriverBa
             {multipleSpecific} specific
           </span>
         )}
-        {moderate > 0 && (
+        {contextual > 0 && (
           <span className="inline-flex items-center gap-1 text-[10px] text-gray-500">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" />
-            {moderate} moderate
+            {contextual} contextual
           </span>
         )}
         {unsupported > 0 && (
@@ -229,78 +273,60 @@ function CheckpointBadge({ cp }: CheckpointBadgeProps) {
       title={
         isBlocked
           ? `${cp.id}: BLOCKED`
-          : `${cp.id}: ${cp.passed}/${cp.total} claims passed${hasInferred ? " (inferred claims present)" : ""}`
+          : hasInferred
+          ? `${cp.id}: passed with inferred claims`
+          : `${cp.id}: passed`
       }
     >
-      <span className="font-mono text-[10px]">{cp.id}</span>
-      <span className="font-mono text-[10px]">
-        {cp.passed}/{cp.total}
-      </span>
-      <span className="text-[10px]">{checkMark}</span>
+      <span>{checkMark}</span>
+      <span className="font-mono">{cp.id}</span>
+      {cp.total > 0 && <span className="text-current/70">{cp.passed}/{cp.total}</span>}
     </span>
   );
 }
 
-// ── Main component ────────────────────────────────────────────────────────────
-
 export function AnalysisInsights({ files }: AnalysisInsightsProps) {
+  const [loading, setLoading] = useState(true);
   const [confidence, setConfidence] = useState<ConfidenceStats | null>(null);
   const [checkpoints, setCheckpoints] = useState<CheckpointResult[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (files.length === 0) {
-      setLoading(false);
-      return;
-    }
-
     let cancelled = false;
 
     async function load() {
       setLoading(true);
 
-      // ── Confidence card ──────────────────────────────────────────────────
-      let stats: ConfidenceStats = {
+      const statsMeta = findFile(files, "3-analysis", "statistics_metadata.json");
+      const correlationsFile = findFile(files, "3-analysis", "correlations.json");
+      const driverFile = findFile(files, "3-analysis", "driver_ranking.json");
+
+      const stats: ConfidenceStats = {
         maxN: null,
         totalCorrelations: null,
         correction: null,
         stableDrivers: 0,
         multipleSpecificDrivers: 0,
-        moderateDrivers: 0,
+        contextualDrivers: 0,
         unsupportedDrivers: 0,
         totalRanked: null,
       };
 
-      // Try statistics_metadata.json first (future runs)
-      const statsMeta = findFile(files, "3-analysis", "statistics_metadata.json");
       if (statsMeta) {
         const sm = await readJson<StatisticsMetadata>(statsMeta.path);
         if (sm && sm.n_effective !== undefined) {
           stats.maxN = sm.n_effective;
-          stats.correction = sm.ci_method ?? null;
+          stats.correction = formatDiscoveryMethod(sm);
         }
       }
 
-      // Fall back to correlations.json + driver_ranking.json
-      const correlationsFile = findFile(files, "3-analysis", "correlations.json");
-      const driverFile = findFile(files, "3-analysis", "driver_ranking.json");
-
       if (correlationsFile) {
-        const cor = await readJson<{ metadata?: CorrelationsMetadata }>(correlationsFile.path);
-        const meta = cor?.metadata?.methodology;
+        const correlations = await readJson<CorrelationsMetadata>(correlationsFile.path);
+        const meta = correlations?.methodology;
         if (meta) {
-          // Pick the highest N across multiples as the headline sample size
-          if (stats.maxN === null && meta.full_sample_n_by_multiple) {
-            const ns = Object.values(meta.full_sample_n_by_multiple);
-            if (ns.length > 0) {
-              stats.maxN = Math.max(...ns);
-            }
-          }
           if (meta.total_correlations_computed !== undefined) {
             stats.totalCorrelations = meta.total_correlations_computed;
           }
           if (stats.correction === null && meta.multiple_testing_correction) {
-            // Shorten to a compact label
             stats.correction = meta.multiple_testing_correction
               .replace("Benjamini-Hochberg FDR at ", "BH FDR ")
               .replace("Benjamini-Hochberg ", "BH ");
@@ -316,22 +342,19 @@ export function AnalysisInsights({ files }: AnalysisInsightsProps) {
             const counts = classificationCounts(ranking.drivers);
             stats.stableDrivers = counts.stable_value_driver ?? 0;
             stats.multipleSpecificDrivers = counts.multiple_specific_driver ?? 0;
-            stats.moderateDrivers = counts.moderate_signal ?? 0;
-            stats.unsupportedDrivers = (counts.not_a_driver ?? 0) + (counts.other ?? 0);
+            stats.contextualDrivers = (counts.contextual_driver ?? 0) + (counts.moderate_signal ?? 0);
+            stats.unsupportedDrivers =
+              (counts.unsupported ?? 0) + (counts.not_a_driver ?? 0) + (counts.other ?? 0);
           }
         }
       }
 
       if (!cancelled) {
-        // Only surface the card if we have at least some data
         const hasAnyData =
-          stats.maxN !== null ||
-          stats.totalCorrelations !== null ||
-          stats.totalRanked !== null;
+          stats.maxN !== null || stats.totalCorrelations !== null || stats.totalRanked !== null;
         setConfidence(hasAnyData ? stats : null);
       }
 
-      // ── Checkpoint trend ─────────────────────────────────────────────────
       const cpDefs: Array<{ id: string; folder: string; filename: string }> = [
         { id: "CP-1", folder: "2-data", filename: "audit_cp1_data.json" },
         { id: "CP-2", folder: "4-deep-dives", filename: "audit_cp2_deep_dives.json" },
@@ -339,31 +362,16 @@ export function AnalysisInsights({ files }: AnalysisInsightsProps) {
       ];
 
       const cpResults: CheckpointResult[] = [];
-
       for (const def of cpDefs) {
-        const f = findFile(files, def.folder, def.filename);
-        if (!f) continue;
+        const file = findFile(files, def.folder, def.filename);
+        if (!file) continue;
 
-        const audit = await readJson<AuditData>(f.path);
+        const audit = await readJson<AuditData>(file.path);
         if (!audit) continue;
 
         const verdict =
-          audit.verdict === "PASSED" || audit.verdict === "BLOCKED"
-            ? audit.verdict
-            : "UNKNOWN";
-
-        // CP-3 nests totals under "statistics"
-        let passed = audit.claims_passed ?? audit.statistics?.passed ?? 0;
-        let total = audit.claims_audited ?? audit.statistics?.total_claims_audited ?? 0;
-
-        // Fallback: derive from flagged count
-        if (total === 0 && audit.claims_flagged !== undefined && passed !== 0) {
-          total = passed + audit.claims_flagged;
-        }
-
-        const hasInferred =
-          Array.isArray(audit.inferred_claims) && audit.inferred_claims.length > 0;
-
+          audit.verdict === "PASSED" || audit.verdict === "BLOCKED" ? audit.verdict : "UNKNOWN";
+        const { passed, total, hasInferred } = getAuditTotals(audit);
         cpResults.push({ id: def.id, verdict, passed, total, hasInferred });
       }
 
@@ -382,7 +390,6 @@ export function AnalysisInsights({ files }: AnalysisInsightsProps) {
     };
   }, [files]);
 
-  // Nothing to show until analysis files exist
   if (loading || (confidence === null && checkpoints.length === 0)) {
     return null;
   }
@@ -391,13 +398,12 @@ export function AnalysisInsights({ files }: AnalysisInsightsProps) {
     confidence !== null &&
     (confidence.stableDrivers +
       confidence.multipleSpecificDrivers +
-      confidence.moderateDrivers +
+      confidence.contextualDrivers +
       confidence.unsupportedDrivers) >
       0;
 
   return (
     <div className="px-6 py-4 border-b border-gray-200 space-y-3">
-      {/* Statistical confidence card */}
       {confidence !== null && (
         <div>
           <div className="flex items-center gap-1 mb-1.5">
@@ -406,7 +412,6 @@ export function AnalysisInsights({ files }: AnalysisInsightsProps) {
             </span>
           </div>
 
-          {/* Pill row */}
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             {confidence.maxN !== null && (
               <ConfidencePill value={`N = ${confidence.maxN}`} label="firms (max sample)" />
@@ -425,13 +430,12 @@ export function AnalysisInsights({ files }: AnalysisInsightsProps) {
             )}
           </div>
 
-          {/* Driver classification bar */}
           {hasDriverBar && (
             <div className="mt-2">
               <DriverBar
                 stable={confidence.stableDrivers}
                 multipleSpecific={confidence.multipleSpecificDrivers}
-                moderate={confidence.moderateDrivers}
+                contextual={confidence.contextualDrivers}
                 unsupported={confidence.unsupportedDrivers}
               />
             </div>
@@ -439,7 +443,6 @@ export function AnalysisInsights({ files }: AnalysisInsightsProps) {
         </div>
       )}
 
-      {/* Checkpoint trend */}
       {checkpoints.length > 0 && (
         <div>
           <div className="flex items-center gap-1 mb-1.5">
