@@ -15,7 +15,6 @@ import { parsePtyChunk } from "./lib/ptyParser";
 
 interface ExistingSession {
   ticker: string;
-  runDate: string | null;
   completedSteps: number;
   totalSteps: number;
   hasReport: boolean;
@@ -78,115 +77,91 @@ function App() {
   const pipeline = usePipeline();
   const { files, runs, selectedRun, setSelectedRun, error: watcherError, resetForNewRun } = useFileWatcher(pipeline.config?.ticker || ticker || null);
   const { notify } = useNotifications();
-  const {
-    addAgent,
-    addLog,
-    approveGate,
-    checkpoints,
-    config,
-    currentStep,
-    isRunning,
-    loadExistingSession,
-    logs,
-    pendingGate,
-    restore,
-    runDate,
-    saveState,
-    start,
-    startTime,
-    steps,
-    stop,
-    syncFromFiles,
-    updateCheckpoint,
-    updateStep,
-    rejectGate,
-  } = pipeline;
 
   const [isReviewRunning, setIsReviewRunning] = useState(false);
   const [restored, setRestored] = useState(false);
   const [existingSession, setExistingSession] = useState<ExistingSession | null>(null);
   const knownAgentsRef = useRef(new Set<string>());
-  const validatedContractRef = useRef<string | null>(null);
 
   // Sync run selection: when user switches run in Results, also load that run's pipeline state
   useEffect(() => {
-    if (!selectedRun || isRunning) return;
-    const t = config?.ticker || ticker;
+    if (!selectedRun || pipeline.isRunning) return;
+    const t = pipeline.config?.ticker || ticker;
     if (!t) return;
     // Only reload if the run changed from what pipeline currently has
-    if (selectedRun === runDate) return;
-    restore(t, selectedRun).then((loaded) => {
+    if (selectedRun === pipeline.runDate) return;
+    pipeline.restore(t, selectedRun).then((loaded) => {
       if (!loaded) {
         // No saved pipeline state for this run — reconstruct from files
-        loadExistingSession(t, selectedRun);
+        pipeline.loadExistingSession(t, selectedRun);
       }
     });
-  }, [selectedRun, isRunning, config?.ticker, ticker, runDate, restore, loadExistingSession]);
+  }, [selectedRun]);
 
   // When file sync marks a step as complete, also mark its agents complete
   const markStepAgentsComplete = useCallback((stepIndex: number) => {
-    const step = steps[stepIndex];
+    const step = pipeline.steps[stepIndex];
     if (!step) return;
     for (const agent of step.agents) {
       if (agent.status === "running") {
-        addAgent(stepIndex, { ...agent, status: "complete" });
+        pipeline.addAgent(stepIndex, { ...agent, status: "complete" });
       }
     }
-  }, [steps, addAgent]);
+  }, [pipeline.steps, pipeline.addAgent]);
 
   // Parse PTY output to detect agents and step transitions
   const handlePtyData = useCallback((text: string) => {
-    if (!isRunning) return;
-    const events = parsePtyChunk(text, knownAgentsRef.current, currentStep);
+    if (!pipeline.isRunning) return;
+    const events = parsePtyChunk(text, knownAgentsRef.current, pipeline.currentStep);
     for (const ev of events) {
       switch (ev.type) {
         case "agent-spawned":
           if (ev.agent) {
-            addAgent(ev.stepIndex, ev.agent);
-            updateStep(ev.stepIndex, { status: "running", startedAt: Date.now() });
+            pipeline.addAgent(ev.stepIndex, ev.agent);
+            pipeline.updateStep(ev.stepIndex, { status: "running", startedAt: Date.now() });
           }
           break;
         case "agent-complete":
           if (ev.agent) {
-            addAgent(ev.stepIndex, ev.agent);
+            pipeline.addAgent(ev.stepIndex, ev.agent);
           }
           break;
         case "step-started":
-          updateStep(ev.stepIndex, { status: "running", startedAt: Date.now() });
+          pipeline.updateStep(ev.stepIndex, { status: "running", startedAt: Date.now() });
           break;
         case "step-complete":
-          updateStep(ev.stepIndex, { status: "complete", completedAt: Date.now() });
+          pipeline.updateStep(ev.stepIndex, { status: "complete", completedAt: Date.now() });
           markStepAgentsComplete(ev.stepIndex);
           break;
         case "checkpoint": {
-          if (ev.message) addLog(`[CHECKPOINT] ${ev.message}`);
-          const cp = checkpoints.find(c => c.afterStep === ev.stepIndex);
+          if (ev.message) pipeline.addLog(`[CHECKPOINT] ${ev.message}`);
+          const cp = pipeline.checkpoints.find(c => c.afterStep === ev.stepIndex);
           if (cp && (cp.status === "pending" || cp.status === "scanning")) {
             const passed = /PASSED|passed/i.test(ev.message || "");
             const blocked = /BLOCKED|blocked/i.test(ev.message || "");
-            updateCheckpoint(cp.id, {
+            pipeline.updateCheckpoint(cp.id, {
               status: blocked ? "blocked" : passed ? "passed" : "scanning",
             });
           }
           break;
         }
         case "quality-gate":
-          if (ev.message) addLog(`[GATE] ${ev.message}`);
+          if (ev.message) pipeline.addLog(`[GATE] ${ev.message}`);
           break;
       }
     }
-  }, [isRunning, currentStep, addAgent, updateStep, addLog, checkpoints, updateCheckpoint, markStepAgentsComplete]);
+  }, [pipeline.isRunning, pipeline.currentStep, pipeline.addAgent, pipeline.updateStep, pipeline.addLog, pipeline.checkpoints, pipeline.updateCheckpoint, markStepAgentsComplete]);
 
   const prevStepStatuses = useRef<string[]>([]);
   useEffect(() => {
     if (files.length > 0) {
-      syncFromFiles(files);
+      pipeline.syncFromFiles(files);
     }
-  }, [files, syncFromFiles]);
+  }, [files, pipeline.syncFromFiles]);
 
   // Watch for step status changes and mark agents complete
   useEffect(() => {
-    const currentStatuses = steps.map(s => s.status);
+    const currentStatuses = pipeline.steps.map(s => s.status);
     const prev = prevStepStatuses.current;
     for (let i = 0; i < currentStatuses.length; i++) {
       if (currentStatuses[i] === "complete" && prev[i] !== "complete") {
@@ -194,31 +169,31 @@ function App() {
       }
     }
     prevStepStatuses.current = currentStatuses;
-  }, [steps, markStepAgentsComplete]);
+  }, [pipeline.steps, markStepAgentsComplete]);
 
   // Notify on quality gate awaiting review
   useEffect(() => {
-    if (pendingGate) {
-      const stepName = steps[pendingGate.stepIndex]?.name ?? `Step ${pendingGate.stepIndex + 1}`;
+    if (pipeline.pendingGate) {
+      const stepName = pipeline.steps[pipeline.pendingGate.stepIndex]?.name ?? `Step ${pipeline.pendingGate.stepIndex + 1}`;
       notify("Quality Gate — Action Required", `"${stepName}" needs your review before the pipeline can continue.`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- steps accessed for display only, trigger is pendingGate
-  }, [pendingGate, notify]);
+  }, [pipeline.pendingGate, notify]);
 
   // Notify on pipeline completion or failure
   useEffect(() => {
-    if (!isRunning && steps.length > 0) {
-      const allDone = steps.every((s) => s.status === "complete");
-      const anyFailed = steps.some((s) => s.status === "failed");
+    if (!pipeline.isRunning && pipeline.steps.length > 0) {
+      const allDone = pipeline.steps.every((s) => s.status === "complete");
+      const anyFailed = pipeline.steps.some((s) => s.status === "failed");
       if (allDone) {
-        notify("Pipeline Complete", `Analysis for ${config?.ticker ?? "ticker"} finished successfully.`);
+        notify("Pipeline Complete", `Analysis for ${pipeline.config?.ticker ?? "ticker"} finished successfully.`);
       } else if (anyFailed) {
-        const failed = steps.filter((s) => s.status === "failed").map((s) => s.name);
+        const failed = pipeline.steps.filter((s) => s.status === "failed").map((s) => s.name);
         notify("Pipeline Error", `Failed steps: ${failed.join(", ")}`);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- steps/config read at trigger time; adding them would cause spurious notifications
-  }, [isRunning, notify]);
+  }, [pipeline.isRunning, notify]);
 
   // Read launch config (env vars) and pre-fill form, then check for existing session
   useEffect(() => {
@@ -242,17 +217,14 @@ function App() {
       if (lastTicker && !ticker) {
         setTicker(lastTicker);
         try {
-          const availableRuns = await invoke<string[]>("list_analysis_runs", { ticker: lastTicker });
-          const latestRun = availableRuns[0] ?? null;
           const steps = await invoke<Array<{ step_index: number; files_found: string[]; complete: boolean }>>(
-            "detect_existing_session", { ticker: lastTicker, runDate: latestRun }
+            "detect_existing_session", { ticker: lastTicker }
           );
           const completed = steps.filter((s) => s.complete).length;
           const hasFiles = steps.some((s) => s.files_found.length > 0);
           if (hasFiles) {
             setExistingSession({
               ticker: lastTicker,
-              runDate: latestRun,
               completedSteps: completed,
               totalSteps: 6,
               hasReport: steps.some((s) => s.files_found.some((f) => f.includes("final_report"))),
@@ -264,47 +236,23 @@ function App() {
     init();
   }, []);
 
-  const launchPipelineRun = useCallback(
-    async (config: PipelineConfig, startStepNumber: number, endStepNumber: number) => {
-      let nextRunDate: string | null = null;
-      try {
-        nextRunDate = await invoke<string>("resolve_next_run_dir", { ticker: config.ticker });
-      } catch (err) {
-        console.error("Failed to resolve next run directory:", err);
-      }
-
-      const skillCmd = buildSkillCmd(
-        config.ticker,
-        config.autoMode,
-        [config.sellSideDir, config.consultingDir],
-        startStepNumber,
-        endStepNumber,
-      );
-
-      validatedContractRef.current = null;
-      resetForNewRun();
-      knownAgentsRef.current.clear();
-      start(config, startStepNumber - 1, nextRunDate);
-      if (nextRunDate) {
-        setSelectedRun(nextRunDate);
-      }
-      setPtyCommand("claude");
-      setPtyArgs(["--dangerously-skip-permissions", "--model", "sonnet", skillCmd]);
-      setScreen("monitor");
-    },
-    [resetForNewRun, setSelectedRun, start],
-  );
-
-  const handleRunNextStep = useCallback(async () => {
-    if (!config || isRunning) return;
-    const nextStepIndex = steps.findIndex((s) => s.status !== "complete");
-    if (nextStepIndex < 0 || nextStepIndex >= steps.length) return;
+  const handleRunNextStep = () => {
+    if (!pipeline.config || pipeline.isRunning) return;
+    const nextStepIndex = pipeline.steps.findIndex((s) => s.status !== "complete");
+    if (nextStepIndex < 0 || nextStepIndex >= pipeline.steps.length) return;
     const nextStepNumber = nextStepIndex + 1;
-    await launchPipelineRun(config, nextStepNumber, nextStepNumber);
-  }, [config, isRunning, steps, launchPipelineRun]);
+    const { ticker: t, autoMode: am, sellSideDir, consultingDir } = pipeline.config;
+    const skillCmd = buildSkillCmd(t, am, [sellSideDir, consultingDir], nextStepNumber, nextStepNumber);
+    setPtyCommand("claude");
+    setPtyArgs(["--dangerously-skip-permissions", "--model", "sonnet", skillCmd]);
+    resetForNewRun();
+    knownAgentsRef.current.clear();
+    pipeline.start(pipeline.config, nextStepIndex);
+    setScreen("monitor");
+  };
 
   const handleStartReview = async () => {
-    const reviewTicker = config?.ticker || ticker;
+    const reviewTicker = pipeline.config?.ticker || ticker;
     if (!reviewTicker || isReviewRunning) return;
     setIsReviewRunning(true);
     setPtyCommand("claude");
@@ -315,69 +263,15 @@ function App() {
   useEffect(() => {
     const lastTicker = localStorage.getItem("vda-last-ticker");
     if (lastTicker && !restored) {
-      const restoreLatestRun = async () => {
-        let latestRun: string | null = null;
-        try {
-          const availableRuns = await invoke<string[]>("list_analysis_runs", { ticker: lastTicker });
-          latestRun = availableRuns[0] ?? null;
-        } catch {
-          latestRun = null;
-        }
-
-        const didRestore = await restore(lastTicker, latestRun);
+      pipeline.restore(lastTicker).then((didRestore) => {
         if (didRestore) {
           setTicker(lastTicker);
-          if (latestRun) setSelectedRun(latestRun);
           setScreen("monitor");
           setRestored(true);
         }
-      };
-
-      void restoreLatestRun();
-    }
-  }, [restore, restored, setSelectedRun]);
-
-  useEffect(() => {
-    if (isRunning || !config || !runDate || files.length === 0) return;
-
-    const requiredPlaybookFiles = [
-      "value_principles.md",
-      "platform_playbook.json",
-      "asset_class_playbooks.json",
-      "report_metadata.json",
-      "target_company_lens.json",
-      "final_report.html",
-    ];
-    const hasBuildArtifacts = requiredPlaybookFiles.every((filename) =>
-      files.some((file) => file.folder === "5-playbook" && file.filename === filename),
-    );
-    if (!hasBuildArtifacts) return;
-
-    const firstFile = files[0];
-    if (!firstFile) return;
-    const runDir = firstFile.path.split("/").slice(0, -2).join("/");
-    const latestModified = Math.max(...files.map((file) => file.modified));
-    const validationKey = `${runDir}:${latestModified}`;
-    if (validatedContractRef.current === validationKey) return;
-    validatedContractRef.current = validationKey;
-
-    invoke<{ passed: boolean; message: string }>("validate_contract", { runDir })
-      .then((result) => {
-        addLog(`[CONTRACT] ${result.passed ? "PASS" : "FAIL"} ${result.message}`);
-        if (result.passed) {
-          updateStep(4, { status: "complete", completedAt: Date.now() });
-          window.setTimeout(saveState, 0);
-          return;
-        }
-        updateStep(4, { status: "failed", completedAt: Date.now() });
-        window.setTimeout(saveState, 0);
-      })
-      .catch((err) => {
-        addLog(`[CONTRACT] FAIL ${err}`);
-        updateStep(4, { status: "failed", completedAt: Date.now() });
-        window.setTimeout(saveState, 0);
       });
-  }, [files, isRunning, config, runDate, addLog, updateStep, saveState]);
+    }
+  }, []);
 
   // Keyboard shortcuts: ⌘1 / ⌘2 / ⌘3 for navigation
   useEffect(() => {
@@ -448,7 +342,7 @@ Output ONLY valid JSON matching this schema:
     extractTone();
   }, [toneFiles]);
 
-  const handleStart = async () => {
+  const handleStart = () => {
     if (!ticker.trim()) return;
     const t = ticker.trim().toUpperCase();
     const config: PipelineConfig = {
@@ -461,7 +355,16 @@ Output ONLY valid JSON matching this schema:
       toneProfile,
     };
     localStorage.setItem("vda-last-ticker", config.ticker);
-    await launchPipelineRun(config, fromStep, toStep);
+
+    const skillCmd = buildSkillCmd(t, autoMode, [sources.sellSide, sources.consulting], fromStep, toStep);
+    setPtyCommand("claude");
+    setPtyArgs(["--dangerously-skip-permissions", "--model", "sonnet", skillCmd]);
+
+    // Reset file watcher and pipeline state for fresh run
+    resetForNewRun();
+    knownAgentsRef.current.clear();
+    pipeline.start(config, fromStep - 1);
+    setScreen("monitor");
   };
 
   return (
@@ -473,9 +376,9 @@ Output ONLY valid JSON matching this schema:
             <span className="text-[#0068ff] font-semibold text-base">VDA</span>{" "}
             <span className="text-gray-500 font-normal">Pipeline Dashboard</span>
           </h1>
-          {config && (
+          {pipeline.config && (
             <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-500 font-mono">
-              {config.ticker}
+              {pipeline.config.ticker}
             </span>
           )}
         </div>
@@ -530,21 +433,17 @@ Output ONLY valid JSON matching this schema:
                   <div className="flex gap-3 mt-5">
                     {existingSession.hasReport && (
                       <button
-                        onClick={() => {
-                          if (existingSession.runDate) setSelectedRun(existingSession.runDate);
-                          setScreen("results");
-                        }}
+                        onClick={() => setScreen("results")}
                         className="px-5 py-2 rounded-md text-sm font-medium bg-[#0068ff] text-white hover:bg-[#0055d4] transition-colors"
                       >
                         View Results
                       </button>
                     )}
-                      <button
+                    <button
                       onClick={async () => {
-                        const loaded = await loadExistingSession(existingSession.ticker, existingSession.runDate);
+                        const loaded = await pipeline.loadExistingSession(existingSession.ticker);
                         if (loaded) {
                           localStorage.setItem("vda-last-ticker", existingSession.ticker);
-                          if (existingSession.runDate) setSelectedRun(existingSession.runDate);
                           setScreen("monitor");
                         }
                       }}
@@ -614,17 +513,17 @@ Output ONLY valid JSON matching this schema:
                   </div>
                   <button
                     onClick={handleStart}
-                    disabled={!ticker.trim() || isRunning}
+                    disabled={!ticker.trim() || pipeline.isRunning}
                     className={`
                       px-6 py-2.5 rounded-md text-sm font-semibold transition-all whitespace-nowrap
                       ${
-                        ticker.trim() && !isRunning
+                        ticker.trim() && !pipeline.isRunning
                           ? "bg-[#0068ff] text-white hover:bg-[#0055d4]"
                           : "bg-gray-100 text-gray-400 cursor-not-allowed"
                       }
                     `}
                   >
-                    {isRunning ? "Running..." : "Run VDA →"}
+                    {pipeline.isRunning ? "Running..." : "Run VDA →"}
                   </button>
                 </div>
 
@@ -761,39 +660,38 @@ Output ONLY valid JSON matching this schema:
         {/* Keep PipelineMonitor mounted (hidden) so the PTY terminal survives screen switches */}
         <div className={screen === "monitor" ? "flex-1 min-h-0" : "hidden"}>
           <PipelineMonitor
-            steps={steps}
-            currentStep={currentStep}
-            logs={logs}
-            startTime={startTime}
-            isRunning={isRunning}
-            checkpoints={checkpoints}
+            steps={pipeline.steps}
+            currentStep={pipeline.currentStep}
+            logs={pipeline.logs}
+            startTime={pipeline.startTime}
+            isRunning={pipeline.isRunning}
+            checkpoints={pipeline.checkpoints}
             runs={runs}
             selectedRun={selectedRun}
             onSelectRun={setSelectedRun}
-            onRerunFromStep={config ? (stepIndex) => {
-              void launchPipelineRun(config, stepIndex + 1, 6);
+            onRerunFromStep={pipeline.config ? (stepIndex) => {
+              pipeline.start(pipeline.config!, stepIndex);
             } : undefined}
-            onRunNextStep={config ? () => { void handleRunNextStep(); } : undefined}
+            onRunNextStep={pipeline.config ? handleRunNextStep : undefined}
             ptyCommand={ptyCommand}
             ptyArgs={ptyArgs}
             onPtyData={handlePtyData}
             onPtyExit={() => {
               // Mark all running agents as complete when session ends
-              for (const step of steps) {
+              for (const step of pipeline.steps) {
                 for (const agent of step.agents) {
                   if (agent.status === "running") {
-                    addAgent(step.index, { ...agent, status: "complete" });
+                    pipeline.addAgent(step.index, { ...agent, status: "complete" });
                   }
                 }
                 if (step.status === "running") {
-                  updateStep(step.index, { status: "complete", completedAt: Date.now() });
+                  pipeline.updateStep(step.index, { status: "complete", completedAt: Date.now() });
                 }
               }
-              stop();
+              pipeline.stop();
               setPtyCommand(null);
               setPtyArgs([]);
               knownAgentsRef.current.clear();
-              window.setTimeout(saveState, 0);
             }}
           />
         </div>
@@ -801,7 +699,7 @@ Output ONLY valid JSON matching this schema:
         {screen === "results" && (
           <ResultsBrowser
             files={files}
-            ticker={config?.ticker || ticker || ""}
+            ticker={pipeline.config?.ticker || ticker || ""}
             onStartReview={ticker ? handleStartReview : undefined}
             isReviewRunning={isReviewRunning}
             runs={runs}
@@ -817,11 +715,11 @@ Output ONLY valid JSON matching this schema:
       </main>
 
       {/* Quality gate modal */}
-      {pendingGate && (
+      {pipeline.pendingGate && (
         <QualityGate
-          gate={pendingGate}
-          onApprove={approveGate}
-          onReject={rejectGate}
+          gate={pipeline.pendingGate}
+          onApprove={pipeline.approveGate}
+          onReject={pipeline.rejectGate}
         />
       )}
     </div>

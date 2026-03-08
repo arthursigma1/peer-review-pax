@@ -106,34 +106,13 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
   const [editContent, setEditContent] = useState("");
   const [saving, setSaving] = useState(false);
   const [collapsedFolders, setCollapsedFolders] = useState<Set<string>>(new Set());
-  const [exporting, setExporting] = useState(false);
 
   const htmlReport = files.find((f) => f.filename === "final_report.html");
-  const hasStatisticsMetadata = files.some(
-    (f) => f.folder === "3-analysis" && f.filename === "statistics_metadata.json"
-  );
-  const hasReportMetadata = files.some(
-    (f) => f.folder === "5-playbook" && f.filename === "report_metadata.json"
-  );
-  const hasPlaybookArtifacts = files.some((f) => f.folder === "5-playbook");
 
   // Derive run directory from any file path: /path/to/run-dir/step-folder/file.json → /path/to/run-dir
   const runDir = files.length > 0
     ? files[0].path.split("/").slice(0, -2).join("/")
     : null;
-  const latestModified = files.length > 0
-    ? Math.max(...files.map((f) => f.modified))
-    : null;
-  const contractMode: "validate" | "legacy" | "hidden" =
-    hasStatisticsMetadata && hasReportMetadata
-      ? "validate"
-      : hasPlaybookArtifacts
-      ? "legacy"
-      : "hidden";
-  const contractValidationKey =
-    contractMode === "validate" && runDir && latestModified !== null
-      ? `${runDir}:${latestModified}`
-      : null;
 
   // Group files by folder
   const grouped = files.reduce<Record<string, OutputFile[]>>((acc, f) => {
@@ -176,20 +155,6 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
   const handleOpenInBrowser = () => {
     if (htmlReport) {
       invoke("open_in_browser", { path: htmlReport.path }).catch(console.error);
-    }
-  };
-
-  const handleExportPdf = async () => {
-    if (!selectedFile || selectedFile.file_type !== "html") return;
-    setExporting(true);
-    try {
-      const pdfPath = await invoke<string>("export_html_to_pdf", { htmlPath: selectedFile.path });
-      // Brief flash of the path so user knows where it landed
-      console.log("PDF exported:", pdfPath);
-    } catch (err) {
-      console.error("PDF export failed:", err);
-    } finally {
-      setExporting(false);
     }
   };
 
@@ -363,11 +328,7 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                   Data Quality
                 </button>
               </div>
-              <ContractBadge
-                runDir={contractMode === "validate" ? runDir : null}
-                validationKey={contractValidationKey}
-                mode={contractMode}
-              />
+              <ContractBadge runDir={runDir} />
             </div>
 
             {/* Tab content */}
@@ -426,19 +387,6 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
                 <span className="text-xs font-mono text-gray-500 truncate">{selectedFile.filename}</span>
               </div>
               <div className="flex items-center gap-2 shrink-0">
-                {selectedFile.file_type === "html" && (
-                  <button
-                    onClick={handleExportPdf}
-                    disabled={exporting}
-                    className={`text-xs px-3 py-2 rounded transition-colors ${
-                      exporting
-                        ? "text-gray-400 cursor-not-allowed"
-                        : "text-[#0068ff] hover:text-[#0055d4] hover:bg-blue-50"
-                    }`}
-                  >
-                    {exporting ? "Exporting..." : "Export PDF"}
-                  </button>
-                )}
                 {selectedFile.file_type === "md" && !editMode && (
                   <button onClick={handleEdit} className="text-xs text-[#0068ff] hover:text-[#0055d4] px-3 py-2 rounded hover:bg-blue-50">
                     Edit

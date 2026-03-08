@@ -182,13 +182,13 @@ When any claim receives `UNGROUNDED` or `FABRICATED`, the overall audit verdict 
 
 ### CP-3 — After Playbook, Pre-Gate 5
 
-**Trigger:** After the PAX decision artifacts are produced (`value_principles.md`, `platform_playbook.json`, `asset_class_playbooks.json`, `target_company_lens.json`, `report_metadata.json`, and `final_report.html`), before Gate 5 sign-off.
+**Trigger:** After the Insight Synthesizer produces the playbook draft, before report-builder and target-lens run (both spawn in parallel after this checkpoint passes).
 
-**Scope:** PLAY-* recommendations, ANTI-* anti-patterns, target-company recommendations, report metadata, and all target-company-specific claims in the final decision outputs.
+**Scope:** PLAY-* recommendations, ANTI-* anti-patterns, and any target company specific claims in the playbook.
 
 **Primary dimensions:** Sycophantic Fabrication (D3), Confidence Miscalibration (D4).
 
-**Evidence files:** `platform_profiles.json`, `asset_class_analysis.json`, `driver_ranking.json`, `statistics_metadata.json`.
+**Evidence files:** `platform_profiles.json`, `asset_class_analysis.json`, `driver_ranking.json`.
 
 **Focus questions:**
 - Is every PLAY-NNN recommendation traceable to at least one platform profile or asset class analysis entry?
@@ -200,21 +200,13 @@ When any claim receives `UNGROUNDED` or `FABRICATED`, the overall audit verdict 
 - **Mandatory field completeness:** For every PLAY-NNN and ANTI-NNN entry, verify the presence of ALL mandatory fields:
   - `What_Was_Done`
   - `Observed_Metric_Impact`
-  - `Why_It_Worked`
-  - `PAX_Relevance`
-  - `Preconditions`
+  - `Prerequisites`
   - `Operational_And_Tech_Prerequisites`
   - `Execution_Burden`
-  - `Time_To_Build`
-  - `Margin_Risk`
   - `Failure_Modes_And_Margin_Destroyers`
   - `Transferability_Constraints`
-  - `Archetype_Relevance`
   - `Evidence_Strength`
-  - `Recommendation_For_PAX`
   - If ANY mandatory field is missing or empty, the entry receives an `UNGROUNDED` verdict. The pipeline may not proceed until the playbook-synthesizer fills the missing fields.
-- **Metadata consistency check:** Verify that `report_metadata.json` agrees with `statistics_metadata.json` on discovery method, confirmatory badge, stable-driver rule, confidence taxonomy, sample thresholds, and sensitivity protocol. Any disagreement is `FABRICATED` at repository-contract level.
-- **Inferred-claim propagation check:** If CP-2 marked an operational prerequisite or peer narrative as `INFERRED`, ensure `target_company_lens.json` and `final_report.html` preserve hedged language. Restating an inferred claim as hard fact is `UNGROUNDED`.
 - **Panel vs. cross-section confusion:** Verify that no playbook recommendation cites panel-based correlation results as if they were primary cross-sectional findings. Panel results are supplementary robustness checks only. A recommendation grounded solely in panel evidence without cross-sectional support receives `WEAK-EVIDENCE` at minimum.
 - **Anti-pattern mechanism check:** Every ANTI-NNN entry must identify the specific **operational mechanism** of value destruction (not just "margin compressed"). Valid mechanisms include: duplicated overhead, fragmented platforms, reporting/control failures, insufficient systems integration, headcount outrunning revenue/AUM, fee-rate dilution. Generic anti-patterns without mechanism identification receive `WEAK-EVIDENCE` at minimum.
 

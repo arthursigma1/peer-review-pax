@@ -34,20 +34,11 @@ interface DriverRanking {
 
 // Future-proof fallback from statistics_metadata.json
 interface StatisticsMetadata {
-  discovery_method?: string;
-  discovery_q?: number;
   n_effective?: number;
-  temporal_depth?: {
-    target_range?: string;
-    mandatory_years?: number;
-    firms_with_multi_year?: number;
-  };
+  temporal_depth?: string;
   ci_method?: string;
-  minimum_sample_rule?: {
-    ranking_threshold?: number;
-    reporting_threshold?: number;
-  };
-  sensitivity_protocol?: string[];
+  minimum_sample_rule?: string;
+  sensitivity_protocol?: string;
 }
 
 interface ConfidenceStats {
@@ -66,16 +57,6 @@ interface ConfidenceStats {
 interface AuditData {
   checkpoint: string;
   verdict: "PASSED" | "BLOCKED" | string;
-  summary?:
-    | {
-        total_claims?: number;
-        grounded?: number;
-        inferred?: number;
-        weak_evidence?: number;
-        ungrounded?: number;
-        fabricated?: number;
-      }
-    | string;
   claims_audited?: number;
   claims_passed?: number;
   claims_flagged?: number;
@@ -129,36 +110,6 @@ function classificationCounts(drivers: DriverEntry[]): Record<string, number> {
     }
   }
   return counts;
-}
-
-function formatDiscoveryMethod(sm: StatisticsMetadata): string | null {
-  if (sm.discovery_method === "bh_fdr_q_0.10") {
-    return "BH FDR q=0.10";
-  }
-  return sm.discovery_method ?? null;
-}
-
-function getAuditTotals(audit: AuditData): { passed: number; total: number; hasInferred: boolean } {
-  if (audit.summary && typeof audit.summary !== "string") {
-    const total = audit.summary.total_claims ?? 0;
-    const blocked = (audit.summary.ungrounded ?? 0) + (audit.summary.fabricated ?? 0);
-    return {
-      passed: Math.max(total - blocked, 0),
-      total,
-      hasInferred: (audit.summary.inferred ?? 0) > 0,
-    };
-  }
-
-  let passed = audit.claims_passed ?? audit.statistics?.passed ?? 0;
-  let total = audit.claims_audited ?? audit.statistics?.total_claims_audited ?? 0;
-  if (total === 0 && audit.claims_flagged !== undefined && passed !== 0) {
-    total = passed + audit.claims_flagged;
-  }
-  return {
-    passed,
-    total,
-    hasInferred: Array.isArray(audit.inferred_claims) && audit.inferred_claims.length > 0,
-  };
 }
 
 // ── Sub-components ────────────────────────────────────────────────────────────
@@ -326,7 +277,7 @@ export function AnalysisInsights({ files }: AnalysisInsightsProps) {
         const sm = await readJson<StatisticsMetadata>(statsMeta.path);
         if (sm && sm.n_effective !== undefined) {
           stats.maxN = sm.n_effective;
-          stats.correction = formatDiscoveryMethod(sm);
+          stats.correction = sm.ci_method ?? null;
         }
       }
 
@@ -401,7 +352,17 @@ export function AnalysisInsights({ files }: AnalysisInsightsProps) {
             ? audit.verdict
             : "UNKNOWN";
 
-        const { passed, total, hasInferred } = getAuditTotals(audit);
+        // CP-3 nests totals under "statistics"
+        let passed = audit.claims_passed ?? audit.statistics?.passed ?? 0;
+        let total = audit.claims_audited ?? audit.statistics?.total_claims_audited ?? 0;
+
+        // Fallback: derive from flagged count
+        if (total === 0 && audit.claims_flagged !== undefined && passed !== 0) {
+          total = passed + audit.claims_flagged;
+        }
+
+        const hasInferred =
+          Array.isArray(audit.inferred_claims) && audit.inferred_claims.length > 0;
 
         cpResults.push({ id: def.id, verdict, passed, total, hasInferred });
       }

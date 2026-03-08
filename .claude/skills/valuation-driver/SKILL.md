@@ -676,13 +676,13 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 >
 > 2. **Bootstrap confidence intervals:** 10,000 bootstrap resamples per coefficient (preferred over asymptotic Fisher-z for N < 30). Report 95% CIs. Flag CIs that include zero. Record `ci_method: bootstrap_10k` in metadata.
 >
-> 3. **Multiple comparisons correction:** Use Benjamini-Hochberg FDR at `q = 0.10` as the primary discovery rule across the declared test family. Report BH-adjusted status for every tested relationship. Bonferroni survives only as a confirmatory badge layered on top of the BH result.
+> 3. **Multiple comparisons correction:** Apply Bonferroni correction to ~45 hypothesis tests. Report corrected and uncorrected p-values.
 >
-> 4. **Confidence classification:** Use the repository contract exactly:
->    - `high`: BH-significant, `abs(rho) >= 0.50`, CI excludes zero, leave-one-out robust, coverage adequate, comparability not poor
->    - `moderate`: BH-significant or strong effect with one material limitation
->    - `directional`: not BH-significant but coherent enough for contextual interpretation
->    - `unsupported`: weak, unstable, poorly covered, or materially non-comparable
+> 4. **Confidence classification:**
+>    - High confidence: p < 0.01 after Bonferroni correction
+>    - Moderate confidence: p < 0.05 after correction
+>    - Suggestive: p < 0.10 after correction
+>    - Not significant: p >= 0.10 after correction
 >
 > 5. **Sensitivity analyses:**
 >    - Leave-one-out: recompute each significant correlation excluding each firm in turn; flag findings driven by a single influential observation
@@ -852,7 +852,7 @@ Instructions:
 > | Private Equity | KKR, APO, CG, TPG | Mid-market vs. mega-cap; sector specialization vs. generalist; co-investment programs; GP-led secondaries |
 > | Infrastructure | BAM, EQT | Core vs. value-added risk profile; energy transition; digital infrastructure; regulatory environments |
 > | Real Estate | BX, BAM | PERE vs. core/core-plus; credit-oriented real estate; BREIT-style perpetual vehicles; retail investor access |
-> | Natural Resources | BAM, GCMG, PAX context notes | TIMO vs. reforestation vs. climate / nature strategies; permanent-capital variants; deployment and reporting constraints |
+> | GP-Led Solutions / Secondaries | STEP, HLN, PGHN | Primary vs. secondaries vs. co-investment; portfolio construction role; fee model differences |
 >
 > **Strategy Sub-Type Segmentation:** Do NOT stop at broad verticals. Within each vertical, segment by:
 > - **Strategy Sub-Type** — specific investment approach or product variant
@@ -864,8 +864,7 @@ Instructions:
 > - Credit: direct lending, asset-backed finance, infrastructure debt, opportunistic credit, insurance-oriented credit, CLO management
 > - Real Estate: logistics platforms, residential niches, data centers, real estate credit, core/core-plus perpetual vehicles
 > - Infrastructure: core/super-core, value-added, energy transition, digital infrastructure, transport/logistics
-> - Natural Resources: TIMO, reforestation, climate / nature vehicles, carbon-oriented land strategies, specialist co-investment programs
-> - Cross-vertical solutions wrappers: secondaries, GP-leds, co-investments, bespoke mandates, and advisory-heavy solutions should be analyzed as strategy sub-types or wrappers within the relevant asset-class vertical, not as the default top-level vertical taxonomy
+> - Solutions: secondaries, GP-leds, bespoke mandates, advisory-heavy allocation solutions, co-investment programs
 >
 > For each sub-type, document:
 > - Operational value-creation levers (what the GP does beyond capital allocation)
@@ -946,7 +945,7 @@ Instructions:
 > Read `data/processed/{TICKER}/{DATE}/4-deep-dives/platform_profiles.json`.
 >
 > For each of the 5–6 stable value drivers:
-> - Restate the statistical finding in plain language, accompanied by the full statistical documentation (rho, CI, BH status, confirmatory badge if any, confidence class)
+> - Restate the statistical finding in plain language, accompanied by the full statistical documentation (rho, CI, Bonferroni-corrected p-value, confidence class)
 > - Explain the underlying economic mechanism: why should this metric correlate with valuation in this industry?
 > - Identify which firms illustrate the principle most clearly (from VD-D1 findings)
 > - Note limitations and boundary conditions on the principle
@@ -992,9 +991,9 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/4-deep-dives/asset_class_analysis.json`.
 >
-> Produce a parallel strategic menu at the vertical level, organized by value driver within each vertical. Same structure as VD-P2 — every PLAY-NNN and ANTI-NNN must include ALL mandatory fields (What_Was_Done, Observed_Metric_Impact, Prerequisites, Operational_And_Tech_Prerequisites, Execution_Burden, Failure_Modes_And_Margin_Destroyers, Transferability_Constraints, Evidence_Strength). Evidence citations to specific peer actions (ACT-VD-NNN). Cover all 5 verticals: Credit, Private Equity, Infrastructure, Real Estate, Natural Resources.
+> Produce a parallel strategic menu at the vertical level, organized by value driver within each vertical. Same structure as VD-P2 — every PLAY-NNN and ANTI-NNN must include ALL mandatory fields (What_Was_Done, Observed_Metric_Impact, Prerequisites, Operational_And_Tech_Prerequisites, Execution_Burden, Failure_Modes_And_Margin_Destroyers, Transferability_Constraints, Evidence_Strength). Evidence citations to specific peer actions (ACT-VD-NNN). Cover all 5 verticals: Credit, Private Equity, Infrastructure, Real Estate, GP-Led Solutions/Secondaries.
 >
-> Within each vertical, organize plays by **strategy sub-type** (from VD-D2) where applicable, so readers can identify plays relevant to their specific sub-type. Treat secondaries, GP-leds, co-investments, and bespoke solutions as sub-types or wrappers inside the relevant vertical unless a run-specific override is disclosed.
+> Within each vertical, organize plays by **strategy sub-type** (from VD-D2) where applicable, so readers can identify plays relevant to their specific sub-type.
 >
 > **Entries missing any mandatory field will be blocked at CP-3.**
 >
@@ -1054,7 +1053,7 @@ Instructions:
 > - Platform strategic menu (organized by driver)
 >
 > **Layer 2 (Asset Class — 5 vertical sections, each self-contained):**
-> - Credit, Private Equity, Infrastructure, Real Estate, Natural Resources
+> - Credit, Private Equity, Infrastructure, Real Estate, GP-Led Solutions/Secondaries
 > - Vertical-specific metric drivers
 > - Vertical strategic menu
 >
@@ -1083,8 +1082,7 @@ Instructions:
 > - Private Equity BU: PE vertical section
 > - Infrastructure BU: Infrastructure vertical section
 > - Real Estate BU: Real Estate vertical section
-> - Natural Resources BU: Natural Resources vertical section
-> - Solutions / secondaries readers: the relevant sub-type sections embedded inside PE / Credit / Natural Resources
+> - GP-Led Solutions BU: Solutions/Secondaries vertical section
 >
 > **Output:** `data/processed/{TICKER}/{DATE}/5-playbook/final_report.html`
 
@@ -1117,18 +1115,11 @@ Instructions:
 >
 > For each play, produce:
 > - `play_id`: PLAY-NNN
-> - `priority_rank`: integer ranking across recommendations
 > - `applicability`: directly_applicable | requires_adaptation | not_applicable
-> - `strategic_principle`: the peer-derived idea about what seems to create value
 > - `rationale`: why this classification
 > - `adaptation_notes`: if requires_adaptation, what would need to change
-> - `why_this_matters_for_pax`
-> - `what_must_be_true`
-> - `why_this_may_fail_for_pax`
+> - `priority`: high | medium | low (based on potential valuation impact for {COMPANY})
 > - `implementation_pathway`: concrete steps {COMPANY} could take, in what sequence, with what prerequisites
-> - `feasibility_horizon`: near_term_feasible | medium_term_feasible | aspirational
->
-> Keep `strategic_principle` and `implementation_pathway` separate. The principle is peer-derived evidence about what matters. The pathway is a PAX-specific recommendation layer and must not be presented as if it were directly proven by peer evidence.
 >
 > **Additionally, produce a "Strategic Guidance" section structured for governance cascading:**
 >
@@ -1187,8 +1178,8 @@ Agents that receive supplemental data (from the `--sources` flag, converted by m
 
 ### Statistical Governance Consistency
 The methodology document, VD-A4b statistical documentation, and the final report must use the SAME statistical rulebook throughout. No downstream output may silently switch methods. Specifically:
-- Same primary discovery framework (BH FDR `q = 0.10`) and same confirmatory badge logic (Bonferroni survivor only as additive badge)
-- Same confidence taxonomy (`high` / `moderate` / `directional` / `unsupported`)
+- Same multiple-testing correction method (Bonferroni or effective-independent-tests variant)
+- Same confidence taxonomy thresholds (High / Moderate / Suggestive / Not significant)
 - Same driver classification rules (Stable / Multiple-specific / Moderate signal / Not a driver)
 - Same sensitivity-check definitions (leave-one-out, temporal stability, panel robustness)
 - Same minimum sample rule (N >= 12 for formal ranking, N < 8 not reported)
@@ -1203,7 +1194,7 @@ The Statistical Analyst agent (VD-A4/A4b) must additionally:
 3. **Compute partial correlations** for the top drivers, controlling for scale (mgmt_fee_rev), to test for confounded signals.
 4. **Use 10,000-resample bootstrap CIs** (`bootstrap_10k`). If Fisher z is used as a substitute, document the rationale explicitly and record `ci_method: fisher_z_with_disclosure`.
 5. **Execute temporal stability check** comparing FY T vs FY T-1 vs FY T-2 (where available); flag drivers with sign reversal or |Δρ| > 0.25 as `temporally_unstable`.
-6. **Apply one discovery contract everywhere:** BH FDR `q = 0.10` as the primary discovery framework and Bonferroni only as a confirmatory badge. Do not silently swap to an alternative effective-test-count rule.
+6. **Estimate effective independent tests** for multiple comparison correction (accounting for collinear pairs) rather than applying Bonferroni over all raw tests.
 
 ### Data Provenance Requirements (from peer review)
 The Data Collector agents must:
@@ -1226,7 +1217,7 @@ Display final summary:
 - Sector: {SECTOR}
 - Universe size: N firms
 - Final peer set: M firms
-- Top stable value driver: [driver name] (best-supported ρ summary under `stable_v1_two_of_three`)
+- Top stable value driver: [driver name] (ρ = X.XX across all three multiples)
 - Report path: `data/processed/{TICKER}/{DATE}/5-playbook/final_report.html`
 
 Clean up: `TeamDelete → team_name: "vda-{TICKER_LOWER}"`

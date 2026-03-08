@@ -350,12 +350,7 @@ business-model choices, and must not be mixed into the ontology mapping.
 
 ## 8. Vertical and Sub-Type Analysis
 
-Verticals must be broken into strategy sub-types. The repository may not treat `Private Equity`, `Credit`, `Infrastructure`, `Real Estate`, or `Natural Resources` as monoliths.
-
-`Solutions`, `secondaries`, `GP-leds`, `co-investments`, and similar wrappers
-should default to strategy sub-types or cross-vertical program formats inside
-the relevant asset-class vertical. They are not the default top-level vertical
-taxonomy for PAX runs unless a run-specific override is disclosed explicitly.
+Verticals must be broken into strategy sub-types. The repository may not treat `Private Equity`, `Credit`, `Infrastructure`, or `Solutions` as monoliths.
 
 For PAX runs, the minimum business-model decomposition grid is defined in
 `docs/pax-peer-strategy-ontology.md`. Agents may add dimensions or values when
@@ -432,16 +427,6 @@ Each play must end with:
 - what would have to be true for PAX to execute it well
 - why this may fail for PAX
 - whether it is `near_term_feasible`, `medium_term_feasible`, or `aspirational`
-
-The PAX decision layer must keep two lenses separate:
-
-- `strategic_principle` — the peer-derived idea about what appears to create
-  value
-- `implementation_pathway` — the contingent sequence by which PAX could pursue
-  that idea
-
-Peer evidence may support the principle. It does not by itself prove that one
-specific PAX implementation path is correct.
 
 ## 11. Driver Decomposition for PAX
 
@@ -526,7 +511,7 @@ Hard fail the run when:
 | `4-deep-dives/asset_class_analysis.json` | Peer Evidence | Strategy sub-type evidence and scaling constraints |
 | `5-playbook/platform_playbook.json` | PAX Interpretation | PAX-scored plays and anti-patterns |
 | `5-playbook/asset_class_playbooks.json` | PAX Interpretation | Vertical and sub-type implications for PAX |
-| `5-playbook/target_company_lens.json` | PAX Decision | Ranked implications, strategic principles, implementation pathways, feasibility, risk, governance cascade |
+| `5-playbook/target_company_lens.json` | PAX Decision | Ranked implications, feasibility, risk, governance cascade |
 | `5-playbook/report_metadata.json` | PAX Decision | Contract metadata for report consistency checks |
 | `5-playbook/final_report.html` | PAX Decision | Default final decision memo |
 

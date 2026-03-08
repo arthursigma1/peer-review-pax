@@ -591,33 +591,6 @@ async fn validate_contract(run_dir: String) -> Result<ContractResult, String> {
     Ok(ContractResult { passed, message })
 }
 
-#[tauri::command]
-async fn export_html_to_pdf(html_path: String) -> Result<String, String> {
-    use carbonpdf::{PageSize, PdfBuilder};
-
-    let src = std::path::Path::new(&html_path);
-    if !src.exists() {
-        return Err(format!("File not found: {}", html_path));
-    }
-
-    let pdf_path = src.with_extension("pdf");
-
-    let pdf_bytes = PdfBuilder::new()
-        .file(src)
-        .page_size(PageSize::A4)
-        .print_background(true)
-        .margin_all(0.4)
-        .timeout(60)
-        .build()
-        .await
-        .map_err(|e| format!("PDF generation failed: {}", e))?;
-
-    std::fs::write(&pdf_path, pdf_bytes)
-        .map_err(|e| format!("Failed to write PDF: {}", e))?;
-
-    Ok(pdf_path.to_string_lossy().to_string())
-}
-
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LaunchConfig {
     pub ticker: Option<String>,
@@ -841,7 +814,6 @@ pub fn run() {
             pty_resize,
             pty_kill,
             validate_contract,
-            export_html_to_pdf,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
