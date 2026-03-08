@@ -62,8 +62,8 @@ export function useFileWatcher(ticker: string | null) {
         await invoke("start_file_watcher", { ticker });
         setWatching(true);
         setError(null);
-        unlisten = await listen<OutputFile[]>("output-files-changed", (event) => {
-          setFiles(event.payload);
+        unlisten = await listen<OutputFile[]>("output-files-changed", () => {
+          void refresh();
         });
       } catch (err) {
         console.error("Failed to start watcher:", err);

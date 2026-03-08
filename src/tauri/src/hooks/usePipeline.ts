@@ -34,10 +34,10 @@ const FOLDER_TO_STEP: Record<string, number> = {
 
 const STEP_COMPLETE_FILES: Record<number, string[]> = {
   0: ["peer_universe.json", "metric_taxonomy.json", "source_catalog.json"],
-  1: ["quantitative_data.json", "strategy_profiles.json"],
-  2: ["correlations.json", "driver_ranking.json", "final_peer_set.json"],
+  1: ["quantitative_data.json", "strategy_profiles.json", "strategic_actions.json"],
+  2: ["standardized_data.json", "correlations.json", "driver_ranking.json", "final_peer_set.json", "statistics_metadata.json"],
   3: ["platform_profiles.json", "asset_class_analysis.json"],
-  4: ["final_report.html"],
+  4: ["value_principles.md", "platform_playbook.json", "asset_class_playbooks.json", "report_metadata.json", "target_company_lens.json", "final_report.html"],
   5: ["methodology_review.md", "results_review.md"],
 };
 
@@ -150,13 +150,19 @@ export function usePipeline() {
   }, [isRunning, startTime, currentStep]);
 
   const start = useCallback(
-    (pipelineConfig: PipelineConfig, fromStep?: number) => {
+    (pipelineConfig: PipelineConfig, fromStep?: number, nextRunDate?: string | null) => {
+      const now = Date.now();
       setConfig(pipelineConfig);
+      setRunDate(nextRunDate ?? null);
       if (fromStep !== undefined && fromStep > 0) {
         setSteps((prev) =>
           prev.map((s) =>
             s.index < fromStep
-              ? s
+              ? {
+                  ...s,
+                  status: "complete" as StepStatus,
+                  completedAt: s.completedAt ?? now,
+                }
               : { ...s, status: "pending" as StepStatus, agents: [], gate: null, startedAt: null, completedAt: null }
           )
         );
@@ -166,7 +172,7 @@ export function usePipeline() {
         setCurrentStep(0);
       }
       setIsRunning(true);
-      setStartTime(Date.now());
+      setStartTime(now);
       setLogs([]);
       setPendingGate(null);
       setCheckpoints(createInitialCheckpoints());
@@ -258,7 +264,7 @@ export function usePipeline() {
         step_name: string;
         files_found: string[];
         complete: boolean;
-      }>>("detect_existing_session", { ticker });
+      }>>("detect_existing_session", { ticker, runDate: sessionRunDate ?? null });
 
       const hasAnyFiles = result.some((s) => s.files_found.length > 0);
       if (!hasAnyFiles) return false;

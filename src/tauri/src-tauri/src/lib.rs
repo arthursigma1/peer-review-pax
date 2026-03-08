@@ -388,28 +388,31 @@ pub struct StepCompletionInfo {
 }
 
 #[tauri::command]
-fn detect_existing_session(ticker: String) -> Vec<StepCompletionInfo> {
+fn detect_existing_session(ticker: String, run_date: Option<String>) -> Vec<StepCompletionInfo> {
     let root = get_project_root();
     let base = PathBuf::from(&root)
         .join("data")
         .join("processed")
         .join(ticker.to_lowercase());
 
-    // Find latest run
-    let runs = list_analysis_runs(ticker);
-    let run_dir = if let Some(latest) = runs.first() {
-        base.join(latest)
+    let run_dir = if let Some(selected) = run_date {
+        base.join(selected)
     } else {
-        return Vec::new();
+        let runs = list_analysis_runs(ticker);
+        if let Some(latest) = runs.first() {
+            base.join(latest)
+        } else {
+            return Vec::new();
+        }
     };
 
     // Map pipeline steps to their expected subfolders and filenames
     let step_checks: Vec<(usize, &str, &str, Vec<&str>)> = vec![
         (0, "Map the Industry", "1-universe", vec!["peer_universe.json", "metric_taxonomy.json", "source_catalog.json"]),
         (1, "Gather Data", "2-data", vec!["quantitative_data.json", "strategy_profiles.json", "strategic_actions.json"]),
-        (2, "Find What Drives Value", "3-analysis", vec!["standardized_data.json", "correlations.json", "driver_ranking.json", "final_peer_set.json"]),
+        (2, "Find What Drives Value", "3-analysis", vec!["standardized_data.json", "correlations.json", "driver_ranking.json", "final_peer_set.json", "statistics_metadata.json"]),
         (3, "Deep-Dive Peers", "4-deep-dives", vec!["platform_profiles.json", "asset_class_analysis.json"]),
-        (4, "Build the Playbook", "5-playbook", vec!["value_principles.md", "platform_playbook.json", "final_report.html"]),
+        (4, "Build the Playbook", "5-playbook", vec!["value_principles.md", "platform_playbook.json", "asset_class_playbooks.json", "report_metadata.json", "target_company_lens.json", "final_report.html"]),
         (5, "Review Analysis", "6-review", vec!["methodology_review.md", "results_review.md"]),
     ];
 
