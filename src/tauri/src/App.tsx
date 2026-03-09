@@ -79,7 +79,6 @@ function App() {
   const { notify } = useNotifications();
 
   const [isReviewRunning, setIsReviewRunning] = useState(false);
-  const [restored, setRestored] = useState(false);
   const [existingSession, setExistingSession] = useState<ExistingSession | null>(null);
   const knownAgentsRef = useRef(new Set<string>());
 
@@ -259,19 +258,6 @@ function App() {
     setPtyArgs(["--dangerously-skip-permissions", "--model", "sonnet", `/review-analysis ${reviewTicker}`]);
     setScreen("monitor");
   };
-
-  useEffect(() => {
-    const lastTicker = localStorage.getItem("vda-last-ticker");
-    if (lastTicker && !restored) {
-      pipeline.restore(lastTicker).then((didRestore) => {
-        if (didRestore) {
-          setTicker(lastTicker);
-          setScreen("monitor");
-          setRestored(true);
-        }
-      });
-    }
-  }, []);
 
   // Keyboard shortcuts: ⌘1 / ⌘2 / ⌘3 for navigation
   useEffect(() => {
