@@ -367,7 +367,7 @@ Output ONLY valid JSON matching this schema:
               {pipeline.config.ticker}
             </span>
           )}
-          {pipeline.config && runs.length > 0 && (
+          {runs.length > 0 && (
             <div className="flex items-center gap-1.5">
               <div
                 aria-hidden="true"
