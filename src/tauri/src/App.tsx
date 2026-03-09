@@ -357,7 +357,7 @@ Output ONLY valid JSON matching this schema:
     <div className="h-screen flex flex-col bg-white text-gray-900 overflow-hidden">
       {/* Top nav */}
       <header className="h-12 flex items-center justify-between px-5 border-b border-gray-200 bg-white shrink-0">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <h1 className="text-sm font-semibold tracking-tight">
             <span className="text-[#0068ff] font-semibold text-base">VDA</span>{" "}
             <span className="text-gray-500 font-normal">Pipeline Dashboard</span>
@@ -366,6 +366,28 @@ Output ONLY valid JSON matching this schema:
             <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-500 font-mono">
               {pipeline.config.ticker}
             </span>
+          )}
+          {pipeline.config && runs.length > 0 && (
+            <div className="flex items-center gap-1.5">
+              <div
+                aria-hidden="true"
+                className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
+                  pipeline.isRunning
+                    ? "bg-emerald-500 animate-pulse"
+                    : "bg-[#0068ff]"
+                }`}
+              />
+              <select
+                aria-label="Select analysis run"
+                value={selectedRun || ""}
+                onChange={(e) => setSelectedRun(e.target.value)}
+                className="px-2 py-0.5 rounded bg-gray-50 border border-gray-200 text-xs text-gray-600 font-mono focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
+              >
+                {runs.map((r) => (
+                  <option key={r} value={r}>{r}</option>
+                ))}
+              </select>
+            </div>
           )}
         </div>
         <nav className="flex items-center gap-1">
@@ -652,9 +674,6 @@ Output ONLY valid JSON matching this schema:
             startTime={pipeline.startTime}
             isRunning={pipeline.isRunning}
             checkpoints={pipeline.checkpoints}
-            runs={runs}
-            selectedRun={selectedRun}
-            onSelectRun={setSelectedRun}
             onRerunFromStep={pipeline.config ? (stepIndex) => {
               pipeline.start(pipeline.config!, stepIndex);
             } : undefined}

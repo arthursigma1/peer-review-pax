@@ -14,9 +14,6 @@ interface PipelineMonitorProps {
   startTime: number | null;
   isRunning: boolean;
   checkpoints: Checkpoint[];
-  runs?: string[];
-  selectedRun?: string | null;
-  onSelectRun?: (run: string) => void;
   onRerunFromStep?: (stepIndex: number) => void;
   onRunNextStep?: () => void;
   ptyCommand?: string | null;
@@ -32,9 +29,6 @@ export function PipelineMonitor({
   startTime,
   isRunning,
   checkpoints,
-  runs,
-  selectedRun,
-  onSelectRun,
   onRerunFromStep,
   onRunNextStep,
   ptyCommand,
@@ -75,18 +69,6 @@ export function PipelineMonitor({
             </span>
           </div>
           <div className="flex items-center gap-3">
-            {/* Run selector */}
-            {runs && runs.length > 1 && !isRunning && onSelectRun && (
-              <select
-                value={selectedRun || ""}
-                onChange={(e) => onSelectRun(e.target.value)}
-                className="px-2 py-1 rounded bg-gray-50 border border-gray-200 text-xs text-gray-700 font-mono focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
-              >
-                {runs.map((r) => (
-                  <option key={r} value={r}>{r}</option>
-                ))}
-              </select>
-            )}
             {!isRunning && onRunNextStep && completedSteps > 0 && completedSteps < steps.length && (
               <button
                 onClick={onRunNextStep}
