@@ -153,7 +153,9 @@ export function usePipeline() {
     (pipelineConfig: PipelineConfig, fromStep?: number, nextRunDate?: string | null) => {
       const now = Date.now();
       setConfig(pipelineConfig);
-      setRunDate(nextRunDate ?? null);
+      const d = new Date();
+      const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+      setRunDate(nextRunDate ?? today);
       if (fromStep !== undefined && fromStep > 0) {
         setSteps((prev) =>
           prev.map((s) =>
