@@ -45,7 +45,7 @@ Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers 
 - **Gather Data** — Collect quantitative data and extract strategies (Data Collector splits into 3 tiers of ~9 firms; Strategy Researcher runs in parallel)
 - **Find What Drives Value** — Standardize, correlate (Spearman), rank drivers (Statistical Analyst, sequential)
 - **Deep-Dive Peers** — Platform profiles and asset class analysis (Platform Profiler + Sector Specialist, parallel)
-- **Build the Playbook** — Synthesize insights and generate HTML report (Insight Synthesizer + Report Composer, sequential). Playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN). Target Company Lens agent contextualizes playbook for governance cascade (PHL/Board → Management → per-BU). Supports `--base-run YYYY-MM-DD` for iterative refinement and `--style-ref /path/to/doc` for writing style matching.
+- **Build the Playbook** — Synthesize insights and generate HTML report (Insight Synthesizer + Report Composer, sequential). Playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN). Target Company Lens agent extracts transferable principles from peer evidence for governance cascade (PHL/Board → Management → per-BU) — language is exploratory, not prescriptive. A Ghost Report Skeleton (action titles) is produced before the final report to ensure narrative coherence. Supports `--base-run YYYY-MM-DD` for iterative refinement and `--style-ref /path/to/doc` for writing style matching. Writing reference: `docs/sigma-final-report-guide.md`.
 
 **Independence:** VDA pipeline operates independently of the drift pipeline. No PIL-* pillar IDs are referenced.
 
@@ -65,6 +65,7 @@ Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers 
 - `docs/pax-first-valuation-driver-methodology.md` — Authoritative PAX-first VDA methodology
 - `docs/vda-repository-drift-audit.md` — Drift log and patch plan
 - `docs/valuation-driver-methodology.md` — Legacy reusable VDA methodology kept for historical reference
+- `docs/sigma-final-report-guide.md` — SIGMA writing guide for final report (Pyramid Principle, action titles, footnotes, bumper statements)
 - `src/tauri/` — Tauri desktop dashboard (React + TypeScript + Tailwind + Rust)
 - `src/document_converter.py` — PDF/DOCX/PPTX to text converter using marker-pdf
 

@@ -212,11 +212,13 @@ When any claim receives `UNGROUNDED` or `FABRICATED`, the overall audit verdict 
   - `Archetype_Relevance`
   - `Evidence_Strength`
   - `Recommendation_For_PAX`
+  - `source_citations` (array of PS-VD-NNN IDs grounding the play's evidence)
   - If ANY mandatory field is missing or empty, the entry receives an `UNGROUNDED` verdict. The pipeline may not proceed until the playbook-synthesizer fills the missing fields.
 - **Metadata consistency check:** Verify that `report_metadata.json` agrees with `statistics_metadata.json` on discovery method, confirmatory badge, stable-driver rule, confidence taxonomy, sample thresholds, and sensitivity protocol. Any disagreement is `FABRICATED` at repository-contract level.
 - **Inferred-claim propagation check:** If CP-2 marked an operational prerequisite or peer narrative as `INFERRED`, ensure `target_company_lens.json` and `final_report.html` preserve hedged language. Restating an inferred claim as hard fact is `UNGROUNDED`.
 - **Panel vs. cross-section confusion:** Verify that no playbook recommendation cites panel-based correlation results as if they were primary cross-sectional findings. Panel results are supplementary robustness checks only. A recommendation grounded solely in panel evidence without cross-sectional support receives `WEAK-EVIDENCE` at minimum.
 - **Anti-pattern mechanism check:** Every ANTI-NNN entry must identify the specific **operational mechanism** of value destruction (not just "margin compressed"). Valid mechanisms include: duplicated overhead, fragmented platforms, reporting/control failures, insufficient systems integration, headcount outrunning revenue/AUM, fee-rate dilution. Generic anti-patterns without mechanism identification receive `WEAK-EVIDENCE` at minimum.
+- **Over-commitment check (target lens only):** Verify that `target_company_lens.json` does NOT use prescriptive language ("PAX should", "must", imperative voice) for strategic actions. Plays should be framed as "observed mechanisms." Specific timelines, named partners, and dollar amounts for uncommitted initiatives should be flagged as `WEAK-EVIDENCE` if presented as recommendations rather than peer observations. Board guidance should be principle-based, not action-item lists. Language must be exploratory ("the evidence suggests", "peers that achieved [outcome] typically...") not prescriptive ("PAX should prioritize", "management must execute"). Implementation pathways should describe "what peers did" not "what {COMPANY} should do."
 
 ---
 

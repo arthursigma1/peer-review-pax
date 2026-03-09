@@ -85,6 +85,8 @@ Rules:
 - Final synthesis is explicitly advisory
 - Peer evidence remains visible underneath the advisory layer
 - No stable-driver claim may appear unless it satisfies the exact stable-driver rule below
+- Target Company Lens extracts principles from peer evidence; does not prescribe specific actions. Language must be exploratory ("the evidence suggests", "peers that achieved [outcome] typically...") not prescriptive ("PAX should", "PAX must")
+- Plays are framed as "observed mechanisms" and "peer-demonstrated patterns", never as "recommendations" or "action items"
 
 ## 3. Statistical Governance
 
@@ -391,6 +393,7 @@ Every `PLAY-*` entry must include:
 - `Archetype_Relevance`
 - `Evidence_Strength`
 - `Recommendation_For_PAX`
+- `source_citations` — array of PS-VD-NNN source IDs grounding the play's evidence
 
 Every anti-pattern must identify the likely destruction mechanism, for example:
 
@@ -467,7 +470,7 @@ Required bridges:
 The final report defaults to a PAX decision memo with the following sections:
 
 1. Decision summary for PAX
-2. Statistical governance box
+2. Methodology brief (analytical framework, universe size, primary method — link to Statistical Appendix)
 3. What the peer evidence says
 4. What is actually transferable to PAX
 5. Ranked strategic implications for Patria
@@ -475,7 +478,8 @@ The final report defaults to a PAX decision memo with the following sections:
 7. Archetype-specific lessons
 8. Margin-risk and execution-risk register
 9. Governance cascade
-10. Method appendix and data limitations
+10. Sources & References (numbered footnote list: title, date, bias tag, URL)
+11. Statistical Appendix (full statistical parameters, confidence taxonomy, driver classification rules, sensitivity protocol, disclaimers)
 
 Required report metadata:
 

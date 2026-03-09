@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any, Sequence
 
@@ -37,6 +38,8 @@ REQUIRED_SENSITIVITY_CHECKS = frozenset({
     "confounding_check",
     "panel_robustness",
 })
+VALID_ADAPTATION_DISTANCES = frozenset({"low", "medium", "high"})
+SOURCE_CITATION_RE = re.compile(r"^PS-VD-\d+$")
 RANKING_THRESHOLD = 12
 REPORTING_THRESHOLD = 8
 
@@ -337,6 +340,7 @@ class PlaybookEntry(BaseModel):
     Archetype_Relevance: str = Field(min_length=1)
     Evidence_Strength: str
     Recommendation_For_PAX: str = Field(min_length=1)
+    source_citations: list[str] = Field(default_factory=list)
 
     model_config = {"extra": "forbid"}
 
@@ -346,6 +350,9 @@ class PlaybookEntry(BaseModel):
             raise ValueError("playbook entry must have Play_ID or Anti_ID")
         if self.Evidence_Strength not in VALID_CONFIDENCE_LABELS:
             raise ValueError("invalid Evidence_Strength")
+        for cit in self.source_citations:
+            if not SOURCE_CITATION_RE.match(cit):
+                raise ValueError(f"source_citations entry does not match PS-VD-NNN: {cit!r}")
         return self
 
 
@@ -389,6 +396,10 @@ class RankedRecommendation(BaseModel):
     why_this_may_fail_for_pax: list[str] = Field(min_length=1)
     implementation_pathway: list[str] = Field(min_length=1)
     feasibility_horizon: str
+    transferability_score: int = Field(default=3, ge=1, le=5)
+    adaptation_distance: str = Field(default="medium")
+    copycat_risk: str | None = None
+    principle_extracted: str | None = None
 
     model_config = {"extra": "forbid"}
 
@@ -398,6 +409,8 @@ class RankedRecommendation(BaseModel):
             raise ValueError("invalid applicability")
         if self.feasibility_horizon not in VALID_FEASIBILITY_HORIZONS:
             raise ValueError("invalid feasibility_horizon")
+        if self.adaptation_distance not in VALID_ADAPTATION_DISTANCES:
+            raise ValueError("invalid adaptation_distance")
         return self
 
 
@@ -489,6 +502,10 @@ def _validate_final_report(path: Path, target_company: str, target_ticker: str) 
         raise ValueError(f"{path}: target_company not mentioned in final_report.html")
     if target_ticker.lower() not in lowered:
         raise ValueError(f"{path}: target_ticker not mentioned in final_report.html")
+    if not re.search(r'class=["\']fn["\']', content):
+        raise ValueError(f"{path}: no footnote markers found (expected <sup class=\"fn\"> elements)")
+    if "sources & references" not in lowered and not re.search(r"<h[1-6][^>]*>.*?sources.*?references.*?</h[1-6]>", lowered, re.DOTALL):
+        raise ValueError(f"{path}: missing 'Sources & References' section")
 
 
 def _cross_check_statistics(stats_metadata: StatisticalGovernance, report_metadata: ReportMetadata) -> None:

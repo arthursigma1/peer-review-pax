@@ -158,7 +158,7 @@ If no tone profile was provided, write the default tone profile:
   "hedging": "explicit",
   "data_presentation": "tables-first",
   "terminology": "technical",
-  "nuances": "Lead with evidence before conclusions. Every claim cites a source ID. Use Oxford commas. Qualify correlation-based findings with statistical confidence. Avoid marketing language — prefer 'the data suggest' over 'clearly demonstrates'. Section headers are descriptive, not clever. Footnotes for methodological caveats."
+  "nuances": "Lead with the answer before the evidence (Pyramid Principle). Section headers are action titles that state a conclusion, not topic labels (e.g., 'Scale is the dominant valuation driver, but not all scale is equal' not 'Industry Value Drivers'). Every claim cites a numbered footnote linking to source title, date, and bias tag. Use Oxford commas. Qualify correlation-based findings with statistical confidence. Avoid marketing language. Statistical methodology details belong in the Appendix, not inline. Plays are framed as observed peer mechanisms, not recommendations. Reference: docs/sigma-final-report-guide.md"
 }
 ```
 
@@ -967,6 +967,7 @@ Instructions:
 >   - `Failure_Modes_And_Margin_Destroyers` — what could go wrong; specific mechanisms by which this play could destroy rather than create value
 >   - `Transferability_Constraints` — scale, geography, regulatory, capability, or track-record barriers
 >   - `Evidence_Strength` — `high` (multi-source, independent corroboration), `moderate` (single independent source or corroborated company disclosure), `low` (company-produced only or inferred)
+>   - `source_citations` — array of PS-VD-NNN IDs grounding this play's evidence (resolved from action_citations' source_citation fields in `strategic_actions.json`)
 >
 > The menu presents evidence and does not prioritize or recommend specific plays. Cite ACT-VD-NNN and PS-VD-NNN identifiers throughout.
 >
@@ -991,7 +992,7 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/4-deep-dives/asset_class_analysis.json`.
 >
-> Produce a parallel strategic menu at the vertical level, organized by value driver within each vertical. Same structure as VD-P2 — every PLAY-NNN and ANTI-NNN must include ALL mandatory fields (What_Was_Done, Observed_Metric_Impact, Prerequisites, Operational_And_Tech_Prerequisites, Execution_Burden, Failure_Modes_And_Margin_Destroyers, Transferability_Constraints, Evidence_Strength). Evidence citations to specific peer actions (ACT-VD-NNN). Cover all 5 verticals: Credit, Private Equity, Infrastructure, Real Estate, GP-Led Solutions/Secondaries.
+> Produce a parallel strategic menu at the vertical level, organized by value driver within each vertical. Same structure as VD-P2 — every PLAY-NNN and ANTI-NNN must include ALL mandatory fields (What_Was_Done, Observed_Metric_Impact, Prerequisites, Operational_And_Tech_Prerequisites, Execution_Burden, Failure_Modes_And_Margin_Destroyers, Transferability_Constraints, Evidence_Strength, source_citations). Evidence citations to specific peer actions (ACT-VD-NNN). Cover all 5 verticals: Credit, Private Equity, Infrastructure, Real Estate, GP-Led Solutions/Secondaries.
 >
 > Within each vertical, organize plays by **strategy sub-type** (from VD-D2) where applicable, so readers can identify plays relevant to their specific sub-type.
 >
@@ -1023,6 +1024,30 @@ After playbook-synthesizer produces outputs and BEFORE report-builder generates 
 6. Pass any INFERRED claims list to report-builder so it uses hedged language for those specific claims
 7. Log: `[CLAIM-AUDIT] CP-3 PASSED (N/N claims)` or `[CLAIM-AUDIT] CP-3 BLOCKED (N ungrounded, N fabricated, N incomplete_fields)`
 
+### Ghost Report Skeleton
+
+Before spawning report-builder and target-lens, produce a narrative skeleton:
+
+1. Read all playbook outputs: `5-playbook/value_principles.md`, `5-playbook/platform_playbook.json`, `5-playbook/asset_class_playbooks.json`
+2. Read `3-analysis/driver_ranking.json` for headline findings
+3. Write `5-playbook/ghost_report_skeleton.md` — a sequence of ~10 **action titles** (one per major report section) that form a coherent executive narrative arc when read top-to-bottom
+
+Rules for action titles:
+- Each title states a **conclusion or finding**, not a topic label
+- The sequence reads as a coherent executive narrative top-to-bottom
+- Titles follow the same hedging rules as body text (no causal language for moderate-signal correlations)
+- Examples of strong titles:
+  - "Scale drives valuation premiums more than any other factor, but only when converted into investable earnings quality"
+  - "A small number of firms convert scale into premium through structurally advantaged business models"
+  - "The most attractive near-term plays concentrate on replicable platform advantages, not prestige moves"
+- Examples of weak titles (DO NOT use):
+  - "Industry Value Drivers"
+  - "Peer Profiles"
+  - "Strategic Implications"
+- Reference: `docs/sigma-final-report-guide.md` (Ghost Report section)
+
+Output: `data/processed/{TICKER}/{DATE}/5-playbook/ghost_report_skeleton.md`
+
 Then spawn the report-builder and target-lens agents **in parallel** (they share the same inputs and have no dependency on each other):
 
 ### Agent: report-builder
@@ -1038,19 +1063,25 @@ Instructions:
 > - `5-playbook/value_principles.md`
 > - `5-playbook/platform_playbook.json`
 > - `5-playbook/asset_class_playbooks.json`
+> - `5-playbook/ghost_report_skeleton.md` — use as H2 section headers
 > - `4-deep-dives/platform_profiles.json`
 > - `4-deep-dives/asset_class_analysis.json`
 > - `3-analysis/statistical_methodology.md`
 > - `3-analysis/driver_ranking.json`
+> - `1-universe/source_catalog.json` — for footnote registry
+> - `2-data/strategic_actions.json` — for ACT-VD → PS-VD resolution
+>
+> Also read the writing reference: `docs/sigma-final-report-guide.md`
 >
 > Produce a single self-contained HTML file with two addressable layers:
 >
 > **Layer 1 (Platform):**
 > - Executive summary
-> - Methodology and statistical appendix (reproduce verbatim disclaimers from VD-A4b)
+> - Methodology brief (2-3 paragraphs: analytical framework, universe size, primary method, link to Statistical Appendix). Move all statistical parameters, confidence taxonomy, driver classification rules, and disclaimers to the Statistical Appendix at end of document.
 > - Industry value driver findings (stable drivers with full statistical documentation)
 > - Firm-level strategies and actions (platform deep-dives)
 > - Platform strategic menu (organized by driver)
+> - Sources & References (numbered footnote list before Appendix)
 >
 > **Layer 2 (Asset Class — 5 vertical sections, each self-contained):**
 > - Credit, Private Equity, Infrastructure, Real Estate, GP-Led Solutions/Secondaries
@@ -1064,6 +1095,22 @@ Instructions:
 >
 > **Style matching:**
 > - If `data/processed/{TICKER}/{DATE}/style_guide.json` exists, adapt the report's tone, terminology, and structure to match the style guide while preserving all analytical rigor and mandatory disclaimers
+>
+> **Footnote generation system:**
+> 1. Build a footnote registry: assign each PS-VD-NNN in `source_catalog.json` a sequential number (1, 2, 3...)
+> 2. Replace inline bare source IDs with superscript footnotes: `<sup class="fn"><a href="#fn-N">N</a></sup>`
+> 3. Resolve ACT-VD-NNN → source_citation → PS-VD-NNN for play citations (using `strategic_actions.json`)
+> 4. Render a "Sources & References" ordered list section before the Appendix:
+>    - Format: `[N] Title (Date). Bias: [tag]. URL`
+>    - Each footnote anchored with `id="fn-N"` for navigation
+>
+> **Writing principles (mandatory — reference: docs/sigma-final-report-guide.md):**
+> - **Pyramid Principle:** Lead every section with the answer/conclusion, then support with evidence. The reader should understand the "so what" before seeing the proof.
+> - **Action titles:** Use the action titles from `ghost_report_skeleton.md` as H2 headers. Each title states a conclusion, not a topic label.
+> - **Bumper statements:** End major sections (Executive Summary, Driver Findings, Strategic Implications, Anti-patterns) with "Therefore: [implication for {COMPANY}]"
+> - **Evidence → pattern → implication sequence:** Never skip directly to recommendation. Show the data, identify the pattern, then state the implication.
+> - **Plays as observations:** Describe plays as "observed mechanisms" / "peer-demonstrated patterns", never as "recommendations" or "things to do"
+> - **Methodology demotion:** Keep inline methodology to 2-3 paragraphs (framework, universe, method). All statistical parameters, confidence taxonomy, classification rules, sensitivity protocols, and disclaimers go in the Statistical Appendix at end of document.
 >
 > **Technical requirements:**
 > - Sidebar navigation linking to all major sections
@@ -1106,7 +1153,16 @@ Instructions:
 > - `data/processed/{TICKER}/{DATE}/4-deep-dives/platform_profiles.json`
 > - `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json`
 >
-> For each PLAY-NNN in the platform and asset class playbooks, assess applicability to {COMPANY}:
+> For each PLAY-NNN in the platform and asset class playbooks, assess relevance to {COMPANY}.
+>
+> **Core posture: Extract transferable PRINCIPLES from peer evidence. Do NOT prescribe specific actions.**
+>
+> **Language rules (mandatory):**
+> - NEVER use: "{COMPANY} should...", "{COMPANY} must...", imperative voice, prescriptive language
+> - USE: "The peer evidence suggests...", "Firms that achieved [outcome] typically...", "An area worth exploring is...", "The data is consistent with..."
+> - Plays are "observed mechanisms" — not "recommended actions"
+> - Implementation pathways describe "what peers did" — not "what {COMPANY} should do"
+> - Board guidance frames "principles the evidence supports" — not "decisions to make"
 >
 > **Classification:**
 > - `directly_applicable` — {COMPANY} operates in the same geography/asset class AND has the prerequisites
@@ -1119,24 +1175,28 @@ Instructions:
 > - `rationale`: why this classification
 > - `adaptation_notes`: if requires_adaptation, what would need to change
 > - `priority`: high | medium | low (based on potential valuation impact for {COMPANY})
-> - `implementation_pathway`: concrete steps {COMPANY} could take, in what sequence, with what prerequisites
+> - `implementation_pathway`: what peers did, in what sequence, with what prerequisites (descriptive, not prescriptive)
+> - `transferability_score`: 1-5 (how transferable is this play to {COMPANY}'s context)
+> - `adaptation_distance`: low | medium | high (how much adaptation would be needed)
+> - `copycat_risk`: what could go wrong if copied without the peer's prerequisites, scale, or context
+> - `principle_extracted`: the general principle this play illustrates (not the specific action)
 >
 > **Additionally, produce a "Strategic Guidance" section structured for governance cascading:**
 >
-> **For PHL/Board level** (top-down strategic guidelines):
-> - Top 5 value-creating principles relevant to {COMPANY}
-> - Portfolio-level strategic priorities (which asset classes to grow, which capabilities to build)
-> - 3-year directional targets linked to stable value drivers
+> **For PHL/Board level** (principles the peer evidence supports):
+> - Top 5 principles the peer evidence supports as value-creating for firms in {COMPANY}'s position
+> - For each principle: evidence anchor, peer examples, boundary conditions
+> - Framed as "The evidence suggests that..." not "The board should..."
 >
-> **For CEO/Management Committee** (operational translation):
-> - Priority initiatives mapped to value drivers
-> - Resource allocation implications
-> - Quick wins vs. structural investments
+> **For CEO/Management Committee** (areas the evidence suggests are worth exploring):
+> - Areas the evidence suggests are worth exploring, mapped to value drivers
+> - For each area: what peers did, what the evidence shows about outcomes, what prerequisites matter
+> - Framed as exploration, not as priority initiatives
 >
-> **Per Business Unit** (asset class specific):
-> - For each of {COMPANY}'s business segments: top 3 applicable plays with implementation pathway
-> - Competitive positioning vs. peers in that asset class
-> - Do's and Don'ts grounded in peer evidence
+> **Per Business Unit** (patterns observed in each asset class):
+> - For each of {COMPANY}'s business segments: top 3 relevant peer-demonstrated patterns
+> - What peer evidence exists in this asset class
+> - Observed mechanisms and their prerequisites — framed as "patterns observed" not "launch this by Q3"
 >
 > **Output:** `data/processed/{TICKER}/{DATE}/5-playbook/target_company_lens.json`
 

@@ -4,6 +4,27 @@
   "description": "target_company_lens.json output from the target-lens agent. Accepts both the SKILL.md ideal structure (ranked_recommendations + governance_cascade) and the actual agent output structure (play_assessments + strategic_guidance). target_company and target_ticker may appear at the top level or inside a 'metadata' sub-object.",
   "type": "object",
   "additionalProperties": true,
+  "definitions": {
+    "transferability_score": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "How transferable this play is to the target company (1=not transferable, 5=directly transferable)"
+    },
+    "adaptation_distance": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "How much adaptation would be needed to apply this play"
+    },
+    "copycat_risk": {
+      "type": ["string", "null"],
+      "description": "What could go wrong if copied without the peer's prerequisites, scale, or context"
+    },
+    "principle_extracted": {
+      "type": ["string", "null"],
+      "description": "The general principle this play illustrates (not the specific action)"
+    }
+  },
   "properties": {
     "metadata": {
       "type": "object",
@@ -62,7 +83,11 @@
           "feasibility_horizon": {
             "type": "string",
             "enum": ["near_term_feasible", "medium_term_feasible", "aspirational"]
-          }
+          },
+          "transferability_score": { "$ref": "#/definitions/transferability_score" },
+          "adaptation_distance": { "$ref": "#/definitions/adaptation_distance" },
+          "copycat_risk": { "$ref": "#/definitions/copycat_risk" },
+          "principle_extracted": { "$ref": "#/definitions/principle_extracted" }
         }
       }
     },
@@ -110,7 +135,11 @@
               "implementation_pathway": {
                 "type": "array",
                 "items": { "type": "string" }
-              }
+              },
+              "transferability_score": { "$ref": "#/definitions/transferability_score" },
+              "adaptation_distance": { "$ref": "#/definitions/adaptation_distance" },
+              "copycat_risk": { "$ref": "#/definitions/copycat_risk" },
+              "principle_extracted": { "$ref": "#/definitions/principle_extracted" }
             }
           }
         },

@@ -91,7 +91,8 @@
     },
     "source_citations": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": { "type": "string", "pattern": "^PS-VD-\\d+" },
+      "description": "PS-VD-NNN source IDs grounding this play's evidence"
     },
     "negative_outcome": { "type": "string" },
     "why_it_failed": { "type": "string" },
