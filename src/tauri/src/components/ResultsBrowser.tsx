@@ -7,6 +7,7 @@ import { viewerBaseCSS, markdownViewerCSS } from "../lib/theme";
 import { AnalysisInsights } from "./AnalysisInsights";
 import { DataQualityHeatmap } from "./DataQualityHeatmap";
 import { ContractBadge } from "./ContractBadge";
+import { RunSelector } from "./RunSelector";
 
 
 interface ResultsBrowserProps {
@@ -242,15 +243,11 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
             {/* Run selector */}
             {runs && runs.length > 0 && (
               <div className="px-3 py-2 border-b border-gray-200">
-                <select
-                  value={selectedRun || ""}
-                  onChange={(e) => onSelectRun?.(e.target.value)}
-                  className="w-full px-2 py-1.5 rounded bg-gray-50 border border-gray-200 text-xs text-gray-700 font-mono focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
-                >
-                  {runs.map((r) => (
-                    <option key={r} value={r}>{r}</option>
-                  ))}
-                </select>
+                <RunSelector
+                  runs={runs}
+                  value={selectedRun}
+                  onChange={(r) => onSelectRun?.(r)}
+                />
               </div>
             )}
 

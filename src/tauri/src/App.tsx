@@ -12,6 +12,7 @@ import { useNotifications } from "./hooks/useNotifications";
 import type { PipelineConfig, ToneProfile } from "./types/pipeline";
 import { DEFAULT_TONE_PROFILE } from "./types/pipeline";
 import { parsePtyChunk } from "./lib/ptyParser";
+import { RunSelector } from "./components/RunSelector";
 
 interface ExistingSession {
   ticker: string;
@@ -373,20 +374,16 @@ Output ONLY valid JSON matching this schema:
                 aria-hidden="true"
                 className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
                   pipeline.isRunning
-                    ? "bg-emerald-500 animate-pulse"
-                    : "bg-[#0068ff]"
+                    ? "bg-[#0068ff] animate-pulse"
+                    : "bg-emerald-500"
                 }`}
               />
-              <select
-                aria-label="Select analysis run"
-                value={selectedRun || ""}
-                onChange={(e) => setSelectedRun(e.target.value)}
+              <RunSelector
+                runs={runs}
+                value={selectedRun}
+                onChange={setSelectedRun}
                 className="px-2 py-0.5 rounded bg-gray-50 border border-gray-200 text-xs text-gray-600 font-mono focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none"
-              >
-                {runs.map((r) => (
-                  <option key={r} value={r}>{r}</option>
-                ))}
-              </select>
+              />
             </div>
           )}
         </div>
