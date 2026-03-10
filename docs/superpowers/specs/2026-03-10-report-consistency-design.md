@@ -100,7 +100,7 @@ Each chart is wrapped in a `<figure data-chart-type="TYPE">` element where TYPE 
 Based on chapters 1-4 of Cole Nussbaumer Knaflic's book:
 
 - **Action titles**: Every chart heading is a sentence with a verb ("DE/share drives 73% of P/E variation"), never a label ("P/E vs DE/share")
-- **"So what" captions**: Every chart has a `<p class="chart-caption">` below it stating the conclusion
+- **"So what" captions**: Every chart has a `<p class="chart-so-what">` below it stating the conclusion
 - **Preattentive attributes**: Only 1 highlight color (blue) for the data that matters. Everything else is gray. Never rainbow palettes
 - **Declutter**: No gridlines, no chart borders, no separate legends. Labels inline on data
 - **Gestalt proximity**: Chart + title + caption grouped in `<figure>` with no margin between them
@@ -140,6 +140,16 @@ Defines structure, chart rules, and citation requirements that the validator che
       "target_company_lens",
       "appendix"
     ],
+    "canonical_ids": {
+      "executive_summary": "executive-summary",
+      "methodology": "methodology",
+      "driver_ranking": "driver-ranking",
+      "correlation_analysis": "correlation-analysis",
+      "peer_deep_dives": "peer-deep-dives",
+      "strategic_playbook": "strategic-playbook",
+      "target_company_lens": "target-company-lens",
+      "appendix": "appendix"
+    },
     "playbook_subsections": ["plays", "anti_patterns"]
   },
   "chart_rules": {
@@ -151,14 +161,28 @@ Defines structure, chart rules, and citation requirements that the validator che
     "highlight_color": "#0068ff",
     "default_color": "#e5e7eb"
   },
+  "chart_title_verbs": [
+    "drives", "explains", "shows", "reveals", "indicates",
+    "suggests", "dominates", "outperforms", "correlates",
+    "predicts", "leads", "exceeds", "trails", "separates",
+    "distinguishes", "accounts", "contributes", "represents"
+  ],
   "citation_rules": {
     "required_prefix": "PS-VD-",
-    "min_citations_per_claim": 1
+    "min_citations_per_claim": 1,
+    "exempt_sections": ["methodology", "appendix"]
   },
   "navigation": {
     "require_heading_ids": true,
-    "require_toc_component": true
+    "require_toc_component": true,
+    "toc_selector": "nav.toc"
   },
+  "css_required_tokens": [
+    "--color-primary",
+    "--color-text-primary",
+    "--font-body",
+    "--font-mono"
+  ],
   "regression": {
     "plays_removed_require_reason": true,
     "severity": "warning"
