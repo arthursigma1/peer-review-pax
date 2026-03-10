@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "sections": {
+    "required": [
+      "executive_summary",
+      "methodology",
+      "driver_ranking",
+      "correlation_analysis",
+      "peer_deep_dives",
+      "strategic_playbook",
+      "target_company_lens",
+      "appendix"
+    ],
+    "canonical_ids": {
+      "executive_summary": "executive-summary",
+      "methodology": "methodology",
+      "driver_ranking": "driver-ranking",
+      "correlation_analysis": "correlation-analysis",
+      "peer_deep_dives": "peer-deep-dives",
+      "strategic_playbook": "strategic-playbook",
+      "target_company_lens": "target-company-lens",
+      "appendix": "appendix"
+    },
+    "playbook_subsections": ["plays", "anti_patterns"]
+  },
+  "chart_rules": {
+    "forbidden_types": ["pie", "donut", "radar", "3d"],
+    "allowed_types": ["horizontalBar", "heatmap", "simpleText"],
+    "require_action_title": true,
+    "require_so_what_caption": true,
+    "max_highlight_colors": 1,
+    "highlight_color": "#0068ff",
+    "default_color": "#e5e7eb"
+  },
+  "chart_title_verbs": [
+    "drives", "explains", "shows", "reveals", "indicates",
+    "suggests", "dominates", "outperforms", "correlates",
+    "predicts", "leads", "exceeds", "trails", "separates",
+    "distinguishes", "accounts", "contributes", "represents"
+  ],
+  "citation_rules": {
+    "required_prefix": "PS-VD-",
+    "min_citations_per_claim": 1,
+    "exempt_sections": ["methodology", "appendix"]
+  },
+  "navigation": {
+    "require_heading_ids": true,
+    "require_toc_component": true,
+    "toc_selector": "nav.toc"
+  },
+  "css_required_tokens": [
+    "--color-primary",
+    "--color-text-primary",
+    "--font-body",
+    "--font-mono"
+  ],
+  "regression": {
+    "plays_removed_require_reason": true,
+    "severity": "warning"
+  }
+}
