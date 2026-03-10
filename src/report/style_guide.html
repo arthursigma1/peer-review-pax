@@ -822,11 +822,352 @@ tbody tr:hover { background: var(--color-surface-raised); }
 .muted { color: var(--color-text-muted); }
 
 /* ══════════════════════════════════════════════════════════════════
+   COMPONENT: COVER PAGE
+   Full-page report cover. min-height: 100vh, flex column.
+   ══════════════════════════════════════════════════════════════════ */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 3rem;
+  border-bottom: 3px solid var(--color-primary);
+}
+
+.cover-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+.cover h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+  max-width: 700px;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-top: 0;
+}
+
+.cover-subtitle {
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  max-width: 620px;
+  line-height: 1.5;
+}
+
+.cover-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 2;
+}
+
+.cover-meta span {
+  color: var(--color-text-secondary);
+}
+
+.confidential {
+  margin-top: 3rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: STAT ROW (KPI Dashboard)
+   Flex row of metric summary boxes for Executive Summary.
+   ══════════════════════════════════════════════════════════════════ */
+.stat-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+
+.stat-box {
+  flex: 1;
+  min-width: 160px;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  text-align: center;
+  background: var(--color-surface-base);
+}
+
+.stat-box .stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--color-primary);
+  line-height: 1.1;
+}
+
+.stat-box .stat-label {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: AUM BAR (inline table bar visualization)
+   Used in peer universe tables. One column contains a CSS bar.
+   ══════════════════════════════════════════════════════════════════ */
+.aum-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.aum-bar {
+  height: 14px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  min-width: 2px;
+  transition: width 0.3s;
+}
+
+.aum-bar.target {
+  background: var(--color-warning);
+}
+
+.aum-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: PEER CARD GRID
+   Multi-card grid for firm profiles (Deep-Dive section).
+   ══════════════════════════════════════════════════════════════════ */
+.peer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 1.25rem 0;
+}
+
+.peer-card {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.peer-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 1.25rem;
+  background: var(--color-surface-alt);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.peer-card-ticker {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.peer-card-aum {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.peer-card-body {
+  padding: 1.25rem;
+}
+
+.peer-card-body h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+}
+
+.peer-card-body p {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.peer-mini-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+}
+
+.peer-mini-stats span strong {
+  color: var(--color-text-primary);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: GOVERNANCE CASCADE
+   Target Company Lens section — cascading decision levels.
+   Blue left border for Board/Management, green for BU level.
+   ══════════════════════════════════════════════════════════════════ */
+.cascade-level {
+  border-left: 3px solid var(--color-primary);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.cascade-level.bu {
+  border-left-color: var(--color-success);
+}
+
+.cascade-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.cascade-level .cascade-label {
+  color: var(--color-primary);
+}
+
+.cascade-level.bu .cascade-label {
+  color: var(--color-success);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: GENERIC CARD VARIANTS
+   Base .card + color-coded variants for contextual callouts.
+   ══════════════════════════════════════════════════════════════════ */
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin: 1rem 0;
+  background: var(--color-surface-base);
+}
+
+.card-blue {
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-primary-dim);
+}
+
+.card-amber {
+  border-left: 3px solid var(--color-warning);
+  background: #fffbeb;
+}
+
+.card-red {
+  border-left: 3px solid var(--color-error);
+  background: #fef2f2;
+}
+
+.card-emerald {
+  border-left: 3px solid var(--color-success);
+  background: #f0fdf4;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: KEY FINDING BOX
+   Gray surface box with mono eyebrow label.
+   ══════════════════════════════════════════════════════════════════ */
+.key-finding {
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin: 1.25rem 0;
+}
+
+.key-finding .label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: DISCLAIMER BOX
+   Amber-tinted legal/methodological warning box.
+   ══════════════════════════════════════════════════════════════════ */
+.disclaimer {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 6px;
+  padding: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--color-text-primary);
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: SECTION DIVIDER
+   2px primary-blue horizontal rule between major report sections.
+   ══════════════════════════════════════════════════════════════════ */
+hr.section-divider {
+  border: none;
+  border-top: 2px solid var(--color-primary);
+  margin: 3rem 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: RHO INDICATOR CLASSES
+   Color coding for Spearman rho values in correlation tables.
+   ══════════════════════════════════════════════════════════════════ */
+.rho-pos   { color: var(--color-success); font-weight: 600; }
+.rho-neg   { color: var(--color-error);   font-weight: 600; }
+.rho-weak  { color: var(--color-text-muted); }
+.p-sig     { font-weight: 600; }
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: VERTICAL HEADER
+   Gray pill section sub-label used before grouped content blocks.
+   ══════════════════════════════════════════════════════════════════ */
+.vertical-header {
+  background: var(--color-surface-alt);
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  margin: 2rem 0 1rem 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+}
+
+/* ══════════════════════════════════════════════════════════════════
    PRINT
    ══════════════════════════════════════════════════════════════════ */
 @media print {
   .nav-trigger, .nav-sidebar, .nav-backdrop { display: none !important; }
   h2 { break-before: page; }
+  .cover { min-height: auto; page-break-after: always; }
+}
+
+@media (max-width: 720px) {
+  .peer-grid { grid-template-columns: 1fr; }
+  .stat-row .stat-box { min-width: 140px; }
 }
 
 </style>
@@ -932,7 +1273,9 @@ tbody tr:hover { background: var(--color-surface-raised); }
     <div class="component-label">component: play-card</div>
     <p class="sg-rule">Each play has a unique PLAY-NNN ID, a headline action title (verb-first), a supporting evidence block, and an actionable recommendation. Driver tags in header are mono, comma-separated. Play IDs are blue. Body is compact — 3–5 sentences, no fluffy prose.</p>
 
-    <!-- COMPONENT: play-card -->
+    <!-- COMPONENT: play-card (Variant B — canonical structure) -->
+    <!-- RULE: Play body MUST use this exact four-label structure:
+         Reference firm / What was done / Why it works / Operational prerequisites -->
     <div class="play-card">
       <div class="play-header">
         <span class="play-id">PLAY-003</span>
@@ -940,12 +1283,18 @@ tbody tr:hover { background: var(--color-surface-raised); }
         <span class="play-drivers">DVR-001 · DVR-010</span>
       </div>
       <div class="play-body">
-        <p>Platforms with the most durable P/DE premiums — Apollo, Blue Owl, KKR post-Global Atlantic — derive over 80% of distributable earnings from management fee income rather than realized carry. This creates a predictable, non-cyclical DE/share trajectory that the market prices at premium multiples independent of the credit or PE cycle.</p>
+        <p><strong>Reference firm:</strong> APO (Apollo Global Management)</p>
+        <p><strong>What was done:</strong> Integrated Athene insurance platform creating $300B+ permanent capital base, reducing fundraising dependency and anchoring DE/share to non-cyclical management fee income.</p>
+        <p><strong>Why it works:</strong> Permanent capital eliminates vintage risk and smooths fee revenue, driving P/FRE premium independent of the credit or PE cycle. Apollo FRE grew from $2.2B (2022) to $3.8B (2024) while carry fluctuated; DE/share grew monotonically each year (PS-VD-003).</p>
+        <p><strong>Operational prerequisites:</strong> Insurance subsidiary or strategic partnership; regulatory compliance infrastructure across insurance and asset management; actuarial talent pipeline; NAIC/SUSEP-equivalent regulatory approval.</p>
         <div class="play-evidence">
-          <strong>Evidence:</strong> Apollo FRE grew from $2.2B (2022) to $3.8B (2024) while carry fluctuated; DE/share grew monotonically each year. Blue Owl achieved a 0.85 FRE-to-DE conversion ratio — among the highest in the peer universe — because its fee streams are non-redeemable. <sup class="fn"><a href="#fn-sg-1">1</a></sup>
+          <span class="badge badge-stable">PS-VD-003</span>
+          <span class="badge badge-specific">PS-VD-008</span>
+          <span class="badge badge-contextual">DVR-001</span>
+          <span class="badge badge-contextual">DVR-010</span>
         </div>
         <div class="play-recommendation">
-          <strong>For PAX:</strong> Accelerate the GP stakes mandate (GPMS) — it is the only current business line with >90% permanent capital and FRE margins above 60%. Each $1B in GP stakes AUM adds approximately $8–10M in permanent FRE at near-zero G&amp;A. Prioritize GP stakes fundraising in the next capital formation cycle over incremental open-end PE vehicles.
+          <strong>Recommendation:</strong> Accelerate the GP stakes mandate (GPMS) — the only current PAX business line with &gt;90% permanent capital and FRE margins above 60%. Each $1B in GP stakes AUM adds approximately $8–10M in permanent FRE at near-zero G&amp;A. Prioritize GP stakes fundraising in the next capital formation cycle over incremental open-end PE vehicles.
         </div>
       </div>
     </div>
@@ -1398,6 +1747,456 @@ tbody tr:hover { background: var(--color-surface-raised); }
     </div>
   </div>
 
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 14: COVER PAGE
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-cover">
+    <h2>Cover Page</h2>
+    <div class="component-label">component: .cover</div>
+    <p class="sg-rule">Full-page cover with <code>min-height: 100vh</code>. Mono eyebrow label in primary blue. <code>h1</code> is the main company + analysis title (font-size 2.6rem). Subtitle in secondary text, max-width 620px. Meta block uses mono, line-height 2. Confidential notice at bottom in muted mono caps. Blue 3px bottom border separates cover from body.</p>
+
+    <!-- COMPONENT: cover -->
+    <div class="cover" style="min-height: auto; padding: 3rem 2.5rem 2.5rem;">
+      <div class="cover-label">Valuation Driver Analysis</div>
+      <h1>What Drives Value in Alternative Asset Management, and What It Means for Patria</h1>
+      <p class="cover-subtitle">A cross-sectional analysis of 23 publicly listed alternative asset managers, identifying the metrics, business model structures, and strategic actions most associated with valuation premiums&mdash;translated into an actionable playbook for <span class="ticker">PAX</span>.</p>
+      <div class="cover-meta">
+        <span>Target Company</span>&emsp;Patria Investments Limited (<span class="ticker">PAX</span> &middot; NASDAQ)<br>
+        <span>Universe</span>&emsp;23 firms &middot; 19 pure-play alt, 3 majority-alt, 1 partial-alt<br>
+        <span>Analysis Date</span>&emsp;10 March 2026<br>
+        <span>Run</span>&emsp;2026-03-10-run2 &middot; Base run: 2026-03-09-run2<br>
+        <span>Classification</span>&emsp;Confidential &mdash; Board &amp; Management Use Only
+      </div>
+      <div class="confidential">Confidential &mdash; Prepared for Board and Senior Management Use Only</div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 15: STAT ROW (KPI DASHBOARD)
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-stat-row">
+    <h2>Stat Row (KPI Dashboard)</h2>
+    <div class="component-label">component: .stat-row · .stat-box</div>
+    <p class="sg-rule">Appears immediately after the governing finding bumper in Executive Summary. Five boxes maximum — one stat per box. Mono font on values. Labels in small caps. Wraps gracefully on narrow screens. Values are blue; labels are muted secondary text. Do not use stat-row for more than one cluster per section.</p>
+
+    <!-- COMPONENT: stat-row -->
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-value">23</div>
+        <div class="stat-label">Peer Firms</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">31</div>
+        <div class="stat-label">Metrics Tested</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">1</div>
+        <div class="stat-label">Stable Driver</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">25.6%</div>
+        <div class="stat-label">Fill Rate</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">$2.4T</div>
+        <div class="stat-label">Total AUM</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 16: PEER UNIVERSE TABLE WITH INLINE AUM BAR
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-peer-table">
+    <h2>Peer Universe Table with Inline AUM Bar</h2>
+    <div class="component-label">component: table + .aum-bar-container · .aum-bar · .aum-label</div>
+    <p class="sg-rule">Standard table with one column reserved for a CSS bar visualization. Bar width is set inline as a percentage of the maximum AUM in the universe. Target firm bar uses <code>.aum-bar.target</code> (amber). All other firms use the default primary blue. The <code>.aum-label</code> shows the numeric value to the right of the bar. Row for target firm should use <code>tbody tr:hover</code> baseline — do not add extra highlight class.</p>
+
+    <!-- COMPONENT: peer-universe-table -->
+    <div style="overflow-x: auto;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:4%">#</th>
+            <th style="width:7%">Ticker</th>
+            <th style="width:24%">Firm</th>
+            <th style="width:8%">Class</th>
+            <th class="right" style="width:11%">AUM ($B)</th>
+            <th style="width:46%">AUM Scale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="num">1</td>
+            <td><span class="ticker">BX</span></td>
+            <td>Blackstone Inc.</td>
+            <td><span class="badge badge-stable">Pure</span></td>
+            <td class="num">1,274.9</td>
+            <td><div class="aum-bar-container"><div class="aum-bar" style="width:100%;"></div><div class="aum-label">$1,274.9B</div></div></td>
+          </tr>
+          <tr>
+            <td class="num">2</td>
+            <td><span class="ticker">APO</span></td>
+            <td>Apollo Global Management</td>
+            <td><span class="badge badge-stable">Pure</span></td>
+            <td class="num">938.0</td>
+            <td><div class="aum-bar-container"><div class="aum-bar" style="width:74%;"></div><div class="aum-label">$938.0B</div></div></td>
+          </tr>
+          <tr>
+            <td class="num">3</td>
+            <td><span class="ticker">KKR</span></td>
+            <td>KKR &amp; Co.</td>
+            <td><span class="badge badge-stable">Pure</span></td>
+            <td class="num">744.0</td>
+            <td><div class="aum-bar-container"><div class="aum-bar" style="width:58%;"></div><div class="aum-label">$744.0B</div></div></td>
+          </tr>
+          <tr>
+            <td class="num">4</td>
+            <td><span class="ticker">OWL</span></td>
+            <td>Blue Owl Capital</td>
+            <td><span class="badge badge-stable">Pure</span></td>
+            <td class="num">307.4</td>
+            <td><div class="aum-bar-container"><div class="aum-bar" style="width:24%;"></div><div class="aum-label">$307.4B</div></div></td>
+          </tr>
+          <tr style="background: #fffbeb;">
+            <td class="num">5</td>
+            <td><span class="ticker">PAX</span></td>
+            <td><strong>Patria Investments</strong> &mdash; target</td>
+            <td><span class="badge badge-stable">Pure</span></td>
+            <td class="num">40.8</td>
+            <td><div class="aum-bar-container"><div class="aum-bar target" style="width:3%;"></div><div class="aum-label">$40.8B</div></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.82rem; color:var(--color-text-muted);">Target firm row background: <code>#fffbeb</code> (amber wash). Target bar uses <code>.aum-bar.target</code> (amber). All other bars use default primary blue.</p>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 17: PEER CARD GRID
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-peer-cards">
+    <h2>Peer Card Grid</h2>
+    <div class="component-label">component: .peer-grid · .peer-card · .peer-mini-stats</div>
+    <p class="sg-rule">Two-column grid for firm profiles in Deep-Dive section. Each card has a gray header with ticker (primary blue, mono) and AUM (muted mono) separated by flexbox space-between. Body contains firm name as h4, a one-paragraph thesis, and a mini-stats row. Mini-stats use mono, 0.8rem, muted color with bold values. Three to four stats maximum per mini-stats row.</p>
+
+    <!-- COMPONENT: peer-card-grid -->
+    <div class="peer-grid">
+      <div class="peer-card">
+        <div class="peer-card-header">
+          <span class="peer-card-ticker">APO</span>
+          <span class="peer-card-aum">$938B AUM</span>
+        </div>
+        <div class="peer-card-body">
+          <h4>Apollo Global Management</h4>
+          <p>Insurance-integrated credit platform. Athene integration ($300B+ permanent capital) creates a non-cyclical fee base that eliminates vintage risk. One origination team serves both the insurance general account and third-party funds, achieving exceptional G&amp;A/FEAUM leverage across $559B FEAUM.</p>
+          <div class="peer-mini-stats">
+            <span><strong>P/FRE:</strong> 18.4&times;</span>
+            <span><strong>DE/share:</strong> $4.87</span>
+            <span><strong>G&amp;A/FEAUM:</strong> <span class="q1">Q1</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="peer-card">
+        <div class="peer-card-header">
+          <span class="peer-card-ticker">BX</span>
+          <span class="peer-card-aum">$1,275B AUM</span>
+        </div>
+        <div class="peer-card-body">
+          <h4>Blackstone Inc.</h4>
+          <p>Largest alternative asset manager by AUM. Four-segment diversification (PE, RE, Credit, HDFS) with no single segment exceeding 39% of AUM. BREIT and BIS anchor $155B+ in semi-permanent and perpetual real estate capital.</p>
+          <div class="peer-mini-stats">
+            <span><strong>P/FRE:</strong> 22.1&times;</span>
+            <span><strong>DE/share:</strong> $3.78</span>
+            <span><strong>G&amp;A/FEAUM:</strong> <span class="q2">Q2</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="peer-card">
+        <div class="peer-card-header">
+          <span class="peer-card-ticker">KKR</span>
+          <span class="peer-card-aum">$744B AUM</span>
+        </div>
+        <div class="peer-card-body">
+          <h4>KKR &amp; Co.</h4>
+          <p>Global Atlantic integration (2021) added $150B+ in insurance-linked permanent capital. C-Corp conversion and S&amp;P 500 inclusion (2024) eliminated governance discount and expanded investor base. Perpetual capital share rose from 20% to 43% of AUM.</p>
+          <div class="peer-mini-stats">
+            <span><strong>P/FRE:</strong> 20.3&times;</span>
+            <span><strong>DE/share:</strong> $4.21</span>
+            <span><strong>G&amp;A/FEAUM:</strong> <span class="q1">Q1</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="peer-card">
+        <div class="peer-card-header">
+          <span class="peer-card-ticker" style="color: var(--color-warning);">PAX</span>
+          <span class="peer-card-aum">$40.8B AUM</span>
+        </div>
+        <div class="peer-card-body">
+          <h4>Patria Investments Limited</h4>
+          <p>LatAm-focused multi-asset manager across PE, infrastructure, credit, RE, public equities, and GP stakes (GPMS). First-mover positioning in LatAm alternative asset management with a growing US institutional LP base. Drawdown-heavy vehicle mix constrains FEAUM quality relative to peers.</p>
+          <div class="peer-mini-stats">
+            <span><strong>P/FRE:</strong> 11.2&times;</span>
+            <span><strong>DE/share:</strong> $1.19</span>
+            <span><strong>G&amp;A/FEAUM:</strong> <span class="q3">Q3</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem; color:var(--color-text-muted);">Target company (<span class="ticker">PAX</span>) uses <code>color: var(--color-warning)</code> on <code>.peer-card-ticker</code> to signal target status. All other tickers use default <code>var(--color-primary)</code>.</p>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 18: GOVERNANCE CASCADE
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-cascade">
+    <h2>Governance Cascade</h2>
+    <div class="component-label">component: .cascade-level · .cascade-label · TL-NNN-NNN items</div>
+    <p class="sg-rule">Used in the Target Company Lens section. Each level has a 3px left border (blue for Board/Management, green for BU). A <code>.cascade-label</code> mono eyebrow identifies the decision level. Inside each level, individual TL-numbered items use the standard <code>.card</code> pattern: <code>h4</code> with the TL-NNN-NNN ID, evidence paragraph with badge references, and a "PAX context:" paragraph in italic styling to signal the applied PAX interpretation. Language is exploratory throughout — never prescriptive.</p>
+
+    <!-- COMPONENT: governance-cascade -->
+    <div class="cascade-level">
+      <div class="cascade-label">Board-Level Principles</div>
+
+      <div class="card" style="margin-bottom: 0.75rem;">
+        <h4>TL-B-001: Perpetual capital structures appear to be the strongest predictor of valuation premium</h4>
+        <p><span class="badge badge-stable">High</span> &middot; <span class="mono">DVR-001, DVR-004</span></p>
+        <p><span class="ticker">OWL</span> derives 91% of AUM from permanent capital and commands premium EV/FEAUM despite modest absolute scale. <span class="ticker">BAM</span> reports 87% long-dated/perpetual. <span class="ticker">KKR</span>'s perpetual share rose from ~20% to 43%, coinciding with record DE/share of $4.70. <span class="ticker">PGHN</span>'s evergreen model delivers the highest FEAUM/AUM ratio in the universe (84.2%).<sup class="fn"><a href="#fn-sg-1">1</a></sup></p>
+        <p style="font-size:0.88rem; font-style:italic;"><strong>PAX context:</strong> PAX's vehicle mix appears weighted toward drawdown and listed structures. Infrastructure ($15B) and credit ($8B) offer natural candidates for open-end or evergreen structures. GPMS ($1.5B) already operates with perpetual-capital-like economics. A deliberate shift in vehicle composition warrants board-level strategic discussion.</p>
+      </div>
+
+      <div class="card" style="margin-bottom: 0.75rem;">
+        <h4>TL-B-002: Acquisitions succeed when they fill capability gaps rather than pursue AUM aggregation</h4>
+        <p><span class="badge badge-specific">Medium</span> &middot; <span class="mono">DVR-002, DVR-004</span></p>
+        <p><span class="ticker">KKR</span>'s Global Atlantic created a captive perpetual capital pool. <span class="ticker">APO</span>/Athene defined a new business model. Conversely, <span class="ticker">EQT</span>'s acquisitions added $59B AUM but compressed margins and slowed FEAUM growth.</p>
+        <p style="font-size:0.88rem; font-style:italic;"><strong>PAX context:</strong> PAX's recent acquisitions (iGah3 for growth equity, GPMS for GP stakes) follow the capability-gap model. Prioritizing capability complementarity and FEAUM quality over headline AUM appears aligned with the evidence on value-creating M&amp;A.</p>
+      </div>
+    </div>
+
+    <div class="cascade-level">
+      <div class="cascade-label">Management-Level Priorities</div>
+
+      <div class="card" style="margin-bottom: 0.75rem;">
+        <h4>TL-M-001: FRE margin expansion appears achievable through operating leverage as FEAUM scales</h4>
+        <p><span class="badge badge-specific">Medium</span> &middot; <span class="mono">DVR-002, DVR-006</span></p>
+        <p>Peer evidence indicates margins inflect positively once fee-earning bases exceed critical thresholds. <span class="ticker">BX</span> FRE margin expanded from ~53% to 57% as FEAUM grew. <span class="ticker">KKR</span> FRE/share grew 37% YoY as management fees scaled. <span class="ticker">PGHN</span> sustained 63–64% EBITDA margin through cost discipline.</p>
+        <p style="font-size:0.88rem; font-style:italic;"><strong>PAX context:</strong> Credit platform expansion and GPMS represent new fee revenue streams with potentially low marginal cost once operational. Management attention to cost discipline during this scaling phase appears critical.</p>
+      </div>
+    </div>
+
+    <div class="cascade-level bu">
+      <div class="cascade-label">Business Unit Implications</div>
+
+      <div class="card" style="margin-bottom: 0.75rem;">
+        <h4>TL-INF-001: Open-end and core/core+ infrastructure vehicles appear to be the most effective mechanism for converting infrastructure AUM into perpetual FEAUM</h4>
+        <p><span class="badge badge-stable">High</span> &middot; <span class="mono">DVR-001, DVR-004</span></p>
+        <p><span class="ticker">BAM</span> Super-Core, <span class="ticker">EQT</span> EACI, and listed BIP demonstrate the open-end infrastructure model at scale. Launching a core/core+ open-end vehicle is potentially the single highest-impact product initiative for PAX.<sup class="fn"><a href="#fn-sg-2">2</a></sup></p>
+        <p style="font-size:0.88rem; font-style:italic;"><strong>PAX context:</strong> PAX's infrastructure platform ($15B AUM, focus on LatAm energy transition, logistics, and digital) appears well-positioned to launch a core/core+ vehicle targeting institutional LPs seeking perpetual LatAm infrastructure exposure. Brazil's regulatory framework supports open-end FII structures as a domestic vehicle analog.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 19: KEY FINDING BOX
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-key-finding">
+    <h2>Key Finding Box</h2>
+    <div class="component-label">component: .key-finding</div>
+    <p class="sg-rule">Gray surface box (not blue — that is the bumper) used for standalone statistical or analytical findings that need visual separation from surrounding prose. Mono eyebrow label in small caps identifies the finding type. Use once per subsection at most. Distinguished from bumper by: gray background (not blue), all-caps label, no left border.</p>
+
+    <!-- COMPONENT: key-finding -->
+    <div class="key-finding">
+      <div class="label">Key Finding &mdash; Stable Driver</div>
+      <p style="margin-bottom:0;"><strong>G&amp;A/FEAUM is the only metric satisfying the <code>stable_v1_two_of_three</code> rule.</strong> Spearman &rho; = &minus;0.61 on P/FRE (p&nbsp;=&nbsp;0.0036, N=19) and &rho; = &minus;0.51 on P/DE (p&nbsp;=&nbsp;0.0138, N=19). Bootstrap CI on P/FRE does not cross zero. Not flagged as temporally unstable across FY2023–FY2024.</p>
+    </div>
+
+    <div class="key-finding">
+      <div class="label">Cross-Run Stability Note</div>
+      <p style="margin-bottom:0;">DE/share (DVR-001) was the sole stable driver in the 2026-03-09-run2 base analysis (&rho;&nbsp;=&nbsp;0.857 on EV/FEAUM). G&amp;A/FEAUM was not testable in the base run due to data gaps (N&nbsp;=&nbsp;14, below the 18-firm threshold). The two findings are complementary — together they establish a cost-efficiency + earnings-quality two-pillar framework.</p>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 20: DISCLAIMER BOX
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-disclaimer">
+    <h2>Disclaimer Box</h2>
+    <div class="component-label">component: .disclaimer</div>
+    <p class="sg-rule">Amber-tinted box for legal disclaimers, methodology caveats, and INFERRED-claim hedges. Appears at the end of analytical sections or before the final playbook. Font-size 0.85rem. Not for key findings or bumpers — those use their own components.</p>
+
+    <!-- COMPONENT: disclaimer -->
+    <div class="disclaimer">
+      <strong>Analytical disclaimer:</strong> This analysis is based on publicly available information as of March 2026. Spearman rank correlations are descriptive statistical associations — they do not establish causality. All forward-looking strategic observations are exploratory in nature and grounded in peer evidence; they should not be interpreted as investment advice or prescriptive directives. Claims marked <code>INFERRED</code> by the Fact Checker require hedged language ("suggests", "appears to") and must not use causal language ("demonstrates", "proves").
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 21: SECTION DIVIDER
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-divider">
+    <h2>Section Divider</h2>
+    <div class="component-label">component: hr.section-divider</div>
+    <p class="sg-rule">A 2px primary-blue horizontal rule used between major report sections (e.g., between Peer Universe and Driver Analysis, between Playbook and Target Lens). Not used between subsections — those use <code>h3</code> headings. One per major section transition. Add before the next <code>h2</code>.</p>
+
+    <p>Content above the divider — for example, the executive summary closing bumper or the peer universe table.</p>
+    <!-- COMPONENT: section-divider -->
+    <hr class="section-divider">
+    <p>Content below the divider — the next major section begins here with a new <code>h2</code>.</p>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 22: RHO INDICATOR CLASSES
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-rho">
+    <h2>Rho Indicator Classes</h2>
+    <div class="component-label">component: .rho-pos · .rho-neg · .rho-weak · .p-sig</div>
+    <p class="sg-rule">Applied to numeric cells in correlation tables. <code>.rho-pos</code> (green) for positive correlations with |&rho;| &ge; 0.3. <code>.rho-neg</code> (red) for negative. <code>.rho-weak</code> (muted) for |&rho;| &lt; 0.3. <code>.p-sig</code> bolds statistically significant p-values. Combine with <code>.num</code> for right-alignment. Do not use color coding outside of correlation/driver tables.</p>
+
+    <!-- COMPONENT: rho-indicator-classes -->
+    <table>
+      <thead>
+        <tr>
+          <th>Driver</th>
+          <th class="right">P/FRE &rho;</th>
+          <th class="right">P/DE &rho;</th>
+          <th class="right">EV/FEAUM &rho;</th>
+          <th>Classification</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>G&amp;A/FEAUM (DVR-010)</td>
+          <td class="num"><span class="rho-neg">&minus;0.61</span></td>
+          <td class="num"><span class="rho-neg">&minus;0.51</span></td>
+          <td class="num"><span class="rho-weak">&minus;0.02</span></td>
+          <td><span class="badge badge-stable">stable</span></td>
+        </tr>
+        <tr>
+          <td>DE/share (DVR-001)</td>
+          <td class="num"><span class="rho-pos">0.54</span></td>
+          <td class="num"><span class="rho-pos">0.38</span></td>
+          <td class="num"><span class="rho-pos">0.86</span></td>
+          <td><span class="badge badge-stable">stable</span></td>
+        </tr>
+        <tr>
+          <td>FRE Growth (DVR-005)</td>
+          <td class="num"><span class="rho-pos">0.58</span></td>
+          <td class="num"><span class="rho-weak">0.24</span></td>
+          <td class="num"><span class="rho-weak">0.21</span></td>
+          <td><span class="badge badge-specific">multiple-specific</span></td>
+        </tr>
+        <tr>
+          <td>Comp/FEAUM (DVR-009)</td>
+          <td class="num"><span class="rho-neg">&minus;0.34</span></td>
+          <td class="num"><span class="rho-weak">&minus;0.22</span></td>
+          <td class="num"><span class="rho-weak">&minus;0.08</span></td>
+          <td><span class="badge badge-contextual">contextual</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>P-value Highlighting</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Multiple</th>
+          <th class="right">Spearman &rho;</th>
+          <th class="right">p-value</th>
+          <th>N</th>
+          <th>Confidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>P/FRE</td>
+          <td class="num"><span class="rho-neg">&minus;0.6061</span></td>
+          <td class="num"><span class="p-sig">0.0036</span></td>
+          <td class="num">19</td>
+          <td><span class="confidence-high">High</span></td>
+        </tr>
+        <tr>
+          <td>P/DE</td>
+          <td class="num"><span class="rho-neg">&minus;0.5053</span></td>
+          <td class="num"><span class="p-sig">0.0138</span></td>
+          <td class="num">19</td>
+          <td><span class="confidence-moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td>EV/FEAUM</td>
+          <td class="num"><span class="rho-weak">&minus;0.0228</span></td>
+          <td class="num muted">0.9196</td>
+          <td class="num">19</td>
+          <td><span class="confidence-low">Unsupported</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 23: VERTICAL HEADER
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-vertical-header">
+    <h2>Vertical Header</h2>
+    <div class="component-label">component: .vertical-header</div>
+    <p class="sg-rule">Gray pill label used to name a group of related content blocks within a section. Appears before grouped play cards, before a set of peer cards, or before BU-specific analysis. Provides visual separation without the weight of an <code>h3</code>. One per content group. Do not use as a replacement for headings — it is a supplemental label.</p>
+
+    <!-- COMPONENT: vertical-header -->
+    <div class="vertical-header">Infrastructure &mdash; Core / Core+ Strategies</div>
+    <p>Content block one — e.g., an APO infrastructure deep dive card or a specific play card relevant to infrastructure.</p>
+
+    <div class="vertical-header">Credit &mdash; Permanent Vehicle Structures</div>
+    <p>Content block two — e.g., ARES BDC analysis or a credit-specific play card.</p>
+
+    <div class="vertical-header">GP Stakes &amp; Solutions (GPMS)</div>
+    <p>Content block three — e.g., Blue Owl GP stakes profile and GPMS relevance for PAX.</p>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 24: GENERIC CARD VARIANTS
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-cards">
+    <h2>Generic Card Variants</h2>
+    <div class="component-label">component: .card · .card-blue · .card-amber · .card-red · .card-emerald</div>
+    <p class="sg-rule">Base <code>.card</code> for neutral content blocks (standard gray border). Color variants add a 3px left border + tinted background for semantic emphasis. Use <code>.card-blue</code> for recommendations and observations, <code>.card-amber</code> for cautions and limitations, <code>.card-red</code> for risks and anti-patterns (outside the dedicated anti-card component), <code>.card-emerald</code> for high-confidence positive findings and BU-level opportunities. Do not use card variants as a substitute for bumper statements.</p>
+
+    <!-- COMPONENT: generic-card-variants -->
+    <div class="card">
+      <h4>Base Card — neutral</h4>
+      <p>Used for TL-NNN-NNN items in the governance cascade, peer profile summaries, and grouped supporting evidence. No color signal. Standard gray border on all sides.</p>
+    </div>
+
+    <div class="card card-blue">
+      <h4>Blue Card — recommendation / observation</h4>
+      <p>Applied to board-level and management-level TL items with High or Medium confidence. Blue left border signals this content is action-oriented. Example: TL-B-001 perpetual capital principle for PAX's infrastructure franchise.</p>
+    </div>
+
+    <div class="card card-amber">
+      <h4>Amber Card — caution / limitation</h4>
+      <p>Used for items where peer evidence exists but boundary conditions constrain applicability to PAX. Example: insurance-linked capital integration is transformative for mega-alts but represents a longer-term exploration for PAX at current scale (<span class="badge badge-contextual">Low confidence</span>).</p>
+    </div>
+
+    <div class="card card-red">
+      <h4>Red Card — risk / failure mode</h4>
+      <p>For structural risk observations that do not rise to the level of a dedicated ANTI-NNN card. Example: PAX's Cayman dual-class structure imposes a governance discount that will increasingly constrain the institutional investor base as market cap scales.</p>
+    </div>
+
+    <div class="card card-emerald">
+      <h4>Emerald Card — high-confidence opportunity</h4>
+      <p>Reserved for <span class="badge badge-stable">High</span> confidence BU-level findings where peer evidence is direct and the transfer mechanism to PAX is clear. Example: TL-INF-001 core/core+ open-end infrastructure vehicle — BAM Super-Core and EQT EACI provide direct analogs (PS-VD-002, PS-VD-010).</p>
+    </div>
+  </div>
+
 </div><!-- /.container -->
 
 
@@ -1425,6 +2224,17 @@ tbody tr:hover { background: var(--color-surface-raised); }
   <a href="#sg-grid">Two-Column Grid</a>
   <a href="#sg-nav">Navigation Component</a>
   <a href="#sg-citations">Citation Conventions</a>
+  <a href="#sg-cover" class="nav-sub">Cover Page</a>
+  <a href="#sg-stat-row" class="nav-sub">Stat Row (KPI Dashboard)</a>
+  <a href="#sg-peer-table" class="nav-sub">Peer Universe Table + AUM Bar</a>
+  <a href="#sg-peer-cards" class="nav-sub">Peer Card Grid</a>
+  <a href="#sg-cascade" class="nav-sub">Governance Cascade</a>
+  <a href="#sg-key-finding" class="nav-sub">Key Finding Box</a>
+  <a href="#sg-disclaimer" class="nav-sub">Disclaimer Box</a>
+  <a href="#sg-divider" class="nav-sub">Section Divider</a>
+  <a href="#sg-rho" class="nav-sub">Rho Indicator Classes</a>
+  <a href="#sg-vertical-header" class="nav-sub">Vertical Header</a>
+  <a href="#sg-cards" class="nav-sub">Generic Card Variants</a>
 </nav>
 
 
