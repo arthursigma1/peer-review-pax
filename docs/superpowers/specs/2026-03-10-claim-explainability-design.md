@@ -86,7 +86,7 @@ When `evidence[]` contains non-CLM IDs, the indexer assigns default scores for c
 |---|---|---|
 | `PS-VD-*` | 3 | Primary source document — grounded by definition |
 | `FIRM-*` | 3 | Peer universe entry — structural, not a claim |
-| `ACT-VD-*` | 2 | Strategic action — documented but interpretive |
+| `ACT-VD-*` | 3 | Documented peer action from filings — grounded |
 | `MET-VD-*` | Score of covering CLM, or 1 if uncovered | Metric ID without a claim = weak provenance |
 | `COR-*` | Score of covering CLM, or 1 if uncovered | Correlation ID without a claim = weak provenance |
 | `DVR-*` | Score of covering CLM, or 1 if uncovered | Driver ID without a claim = weak provenance |
