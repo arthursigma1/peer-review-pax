@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { PipelineStep, Checkpoint } from "../types/pipeline";
+import type { RunDigest } from "../hooks/useRunDigest";
 import { StepCard } from "./StepCard";
 import { AgentCard } from "./AgentCard";
 import { CheckpointBar } from "./CheckpointBar";
 import { Terminal } from "./Terminal";
 import { AgentTimeline } from "./AgentTimeline";
+import { RunDigestPanel } from "./RunDigestPanel";
 import { formatElapsed } from "../lib/cli";
 
 interface PipelineMonitorProps {
@@ -14,12 +16,40 @@ interface PipelineMonitorProps {
   startTime: number | null;
   isRunning: boolean;
   checkpoints: Checkpoint[];
+  digest?: RunDigest | null;
+  digestTicker?: string;
+  digestRunDate?: string;
   onRerunFromStep?: (stepIndex: number) => void;
   onRunNextStep?: () => void;
   ptyCommand?: string | null;
   ptyArgs?: string[];
   onPtyExit?: () => void;
   onPtyData?: (text: string) => void;
+}
+
+function getStepSubtitle(index: number, digest: RunDigest | null | undefined): string | null {
+  if (!digest) return null;
+  switch (index) {
+    case 0:
+      if (digest.peers_total != null || digest.metrics_total != null)
+        return [
+          digest.peers_total != null ? `${digest.peers_total} peers` : null,
+          digest.metrics_total != null ? `${digest.metrics_total} metrics` : null,
+        ].filter(Boolean).join(" · ");
+      return null;
+    case 2:
+      if (digest.drivers.length > 0) {
+        const top = digest.drivers[0];
+        return `${top.id} ρ=${top.rho.toFixed(2)}${digest.stable_drivers_count ? ` · ${digest.stable_drivers_count} stable` : ""}`;
+      }
+      return null;
+    case 4:
+      if (digest.plays_total > 0)
+        return `${digest.plays_total} plays · ${digest.anti_patterns_total} anti-patterns`;
+      return null;
+    default:
+      return null;
+  }
 }
 
 export function PipelineMonitor({
@@ -29,6 +59,9 @@ export function PipelineMonitor({
   startTime,
   isRunning,
   checkpoints,
+  digest,
+  digestTicker,
+  digestRunDate,
   onRerunFromStep,
   onRunNextStep,
   ptyCommand,
@@ -38,14 +71,19 @@ export function PipelineMonitor({
 }: PipelineMonitorProps) {
   const [selectedStep, setSelectedStep] = useState<number>(0);
   const [expandedAgent, setExpandedAgent] = useState<string | null>(null);
-  const [bottomTab, setBottomTab] = useState<"agents" | "timeline">("agents");
+  const hasDigest = !!(digest && (digest.drivers.length > 0 || digest.plays_total > 0));
+  const [bottomTab, setBottomTab] = useState<"agents" | "timeline" | "digest">("agents");
+
+  // Auto-switch to Digest tab when data arrives and no terminal is active
+  useEffect(() => {
+    if (hasDigest && !ptyCommand && bottomTab === "agents") {
+      setBottomTab("digest");
+    }
+  }, [hasDigest, ptyCommand]);
 
   const activeStep = steps[selectedStep] || steps[0];
   const elapsed = startTime ? Date.now() - startTime : 0;
   const completedSteps = steps.filter((s) => s.status === "complete").length;
-  const hasTimingData = startTime !== null && steps.some((s) =>
-    s.agents.some((a) => a.startedAt !== null)
-  );
 
   return (
     <div className="flex flex-col h-full">
@@ -101,6 +139,7 @@ export function PipelineMonitor({
                 step={step}
                 isActive={selectedStep === step.index}
                 onClick={() => setSelectedStep(step.index)}
+                subtitle={getStepSubtitle(step.index, digest)}
               />
               {checkpoints
                 .filter((cp) => cp.afterStep === step.index)
@@ -120,8 +159,8 @@ export function PipelineMonitor({
             </div>
           )}
 
-          {/* Bottom panel: tabbed between Agents and Timeline */}
-          <div className={`border-t border-gray-200 flex flex-col ${activeStep.agents.length > 0 || !ptyCommand ? "h-[35%]" : "h-auto"}`}>
+          {/* Bottom panel: tabbed between Agents, Timeline, and Digest */}
+          <div className={`border-t border-gray-200 flex flex-col ${ptyCommand ? "h-[35%]" : "flex-1"}`}>
             {/* Tab bar */}
             <div className="flex items-center justify-between px-4 py-0 bg-gray-50/50 border-b border-gray-200">
               <div className="flex items-center gap-0">
@@ -140,7 +179,7 @@ export function PipelineMonitor({
                     </span>
                   )}
                 </button>
-                {hasTimingData && (
+                {completedSteps > 0 && (
                   <button
                     onClick={() => setBottomTab("timeline")}
                     className={`px-3 py-2 text-[11px] font-medium border-b-2 transition-colors ${
@@ -150,6 +189,18 @@ export function PipelineMonitor({
                     }`}
                   >
                     Timeline
+                  </button>
+                )}
+                {digest && (digest.drivers.length > 0 || digest.plays_total > 0) && (
+                  <button
+                    onClick={() => setBottomTab("digest")}
+                    className={`px-3 py-2 text-[11px] font-medium border-b-2 transition-colors ${
+                      bottomTab === "digest"
+                        ? "border-[#0068ff] text-[#0068ff]"
+                        : "border-transparent text-gray-500 hover:text-gray-700"
+                    }`}
+                  >
+                    Digest
                   </button>
                 )}
               </div>
@@ -188,11 +239,13 @@ export function PipelineMonitor({
                     </div>
                   ) : null}
                 </div>
-              ) : (
+              ) : bottomTab === "timeline" ? (
                 <div className="px-4 py-3">
                   <AgentTimeline steps={steps} startTime={startTime} />
                 </div>
-              )}
+              ) : digest && digestTicker && digestRunDate ? (
+                <RunDigestPanel digest={digest} ticker={digestTicker} runDate={digestRunDate} />
+              ) : null}
             </div>
           </div>
         </div>

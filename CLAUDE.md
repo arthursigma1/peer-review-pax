@@ -67,6 +67,7 @@ Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers 
 - `docs/valuation-driver-methodology.md` — Legacy reusable VDA methodology kept for historical reference
 - `docs/sigma-final-report-guide.md` — SIGMA writing guide for final report (Pyramid Principle, action titles, footnotes, bumper statements)
 - `src/tauri/` — Tauri desktop dashboard (React + TypeScript + Tailwind + Rust)
+- `src/analyzer/` — VDA data quality tools (metric_checklist, data_gaps, delta_spec)
 - `src/document_converter.py` — PDF/DOCX/PPTX to text converter using marker-pdf
 
 ## Commands
@@ -83,6 +84,12 @@ cd src/tauri && npm run tauri build
 
 # Convert supplemental documents (PDF, DOCX, PPTX)
 python -c "from src.document_converter import convert_directory; print(convert_directory('/path/to/dir'))"
+
+# VDA data quality tools
+python3 -m src.analyzer.metric_checklist --run-dir data/processed/pax/2026-03-09-run2/
+python3 -m src.analyzer.data_gaps --run-dir data/processed/pax/2026-03-09-run2/
+python3 -m src.analyzer.delta_spec --base-run data/processed/pax/2026-03-09-run2/ --new-run-dir data/processed/pax/2026-03-10/
+python3 -m src.analyzer.delta_spec --merge --new-run-dir data/processed/pax/2026-03-10/  # after delta collection
 ```
 
 ## Skills (Slash Commands)
@@ -97,15 +104,20 @@ Run the full Strategy Drift Detection pipeline for any public company.
 
 Output: `data/processed/{TICKER}/{YYYY-MM-DD}/final_report.md` + `final_report.html`
 
-### `/valuation-driver TICKER [--auto] [--sources /path/to/dir] [--base-run YYYY-MM-DD] [--style-ref /path/to/doc]`
+### `/valuation-driver TICKER [--auto] [--ui] [--sources /path/to/dir] [--base-run YYYY-MM-DD] [--style-ref /path/to/doc] [--from-step N] [--to-step N]`
 
 Run the full Valuation Driver Analysis pipeline for any public company.
 
 - `TICKER` — stock ticker symbol (e.g., `PAX`, `BX`, `KKR`)
 - `--auto` — optional flag for fire-and-forget mode
+- `--ui` — launch the Tauri desktop dashboard instead of CLI mode
 - `--sources /path/to/dir` — optional path to supplemental data files (PDFs, DOCX, PPTX converted via marker-pdf)
 - `--base-run YYYY-MM-DD` — optional date of a previous run; agents improve upon prior outputs rather than starting from scratch
 - `--style-ref /path/to/doc` — optional reference document whose writing style the final report should match
+- `--from-step N` — start from step N (1–6); prior step outputs are read from the most recent existing run
+- `--to-step N` — stop after step N (1–6); steps after N are not executed
+
+Steps: 1=Map the Industry, 2=Gather Data, 3=Find What Drives Value, 4=Deep-Dive Peers, 5=Build the Playbook, 6=Review Analysis
 
 Output: `data/processed/{TICKER}/{YYYY-MM-DD}/5-playbook/final_report.html` + supporting JSON files organized in step folders
 
@@ -150,6 +162,16 @@ Output: `data/processed/{TICKER}/{YYYY-MM-DD}/6-review/methodology_review.md` + 
 - Multiple runs per day use incremental suffix: `YYYY-MM-DD`, `YYYY-MM-DD-run2`, `YYYY-MM-DD-run3`
 - VDA data collection always splits into 3 parallel tiers (~9 firms each)
 - VDA output files use folder structure: `{ticker}/{date}/{step-folder}/` where step folders are: `1-universe`, `2-data`, `3-analysis`, `4-deep-dives`, `5-playbook`, `6-review`
+- **VDA canonical output filenames** — Pipeline agents MUST use these exact names. The Tauri dashboard detects step completion and infers agent activity from filenames. Changing a filename without updating both the SKILL.md and the dashboard (`usePipeline.ts` STEP_COMPLETE_REQS + FILE_TO_AGENT, `lib.rs` detect_existing_session) will break the UI.
+
+| Step | Folder | Canonical Files |
+|---|---|---|
+| 0 | 1-universe | `peer_universe.json`, `metric_taxonomy.json`, `source_catalog.json` |
+| 1 | 2-data | `quantitative_tier1.json`, `quantitative_tier2.json`, `quantitative_tier3.json`, `strategy_profiles.json`, `strategic_actions.json`, `metric_checklist.json`, `delta_spec.json` (if `--base-run`) |
+| 2 | 3-analysis | `standardized_matrix.json`, `correlation_results.json`, `driver_ranking.json`, `data_gaps.json` |
+| 3 | 4-deep-dives | `platform_profiles.json`, `asset_class_analysis.json` |
+| 4 | 5-playbook | `playbook.json`, `target_lens.json`, `final_report.html` |
+| 5 | 6-review | `methodology_review.md`, `results_review.md` |
 - VDA playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN)
 - VDA Fact Checker produces audit files per checkpoint: `audit_cp1_data.json`, `audit_cp2_deep_dives.json`, `audit_cp3_playbook.json`
 - Claims marked `INFERRED` by Fact Checker require hedged language in final report ("suggests", "appears to", never "demonstrates" or "proves")
@@ -172,6 +194,21 @@ Output: `data/processed/{TICKER}/{YYYY-MM-DD}/6-review/methodology_review.md` + 
 | Multiple-specific driver | `abs(rho) >= 0.5` on exactly one eligible multiple and fails stable rule |
 | Contextual driver | Useful for decomposition or interpretation but not headline ranking |
 | Unsupported | Not defensible for strategic interpretation |
+
+## VDA Agent Orchestration Best Practices
+
+Learned from 2026-03-09-run2 (best run to date). These patterns prevent agent stalls and context overflow:
+
+1. **1-agent-per-firm for qualitative tasks** — Never assign 15 firms to a single agent. Each agent handles 1 firm (profile + actions). ~27K tokens each, zero stalls. Dispatch all 15 in parallel.
+2. **No WebSearch for qualitative data** — Strategy profiles and strategic actions of major public alt-asset managers are well-known. Use training data only. WebSearch is the #1 context consumer and primary cause of stalls.
+3. **Incremental file writing** — Instruct agents to write partial results every 3 firms. If they stall at firm 12, you still have 9 firms saved.
+4. **Gap-fill pattern** — When an agent completes partially (e.g., 4 of 8 profiles), dispatch a smaller agent to fill ONLY the gap. Read existing file → append → overwrite. Never redo completed work.
+5. **Split read-heavy from write-heavy** — Separate "research + profile" from "research + actions" into two parallel agents per firm if needed.
+6. **Simplified schemas for large outputs** — `operational_prerequisites` with 7 nested subfields causes stalls. Use `op_prereq_summary` (single string) instead. Expand in post-processing if needed.
+7. **Merge pattern for parallel per-firm agents** — Each agent writes to `profiles/{TICKER}.json` and `actions/{TICKER}.json`. A merge script combines all fragments into the canonical `strategy_profiles.json` and `strategic_actions.json`.
+8. **Context budget rule of thumb** — Agents that read >3 files AND do WebSearch will likely stall before writing. Keep total input under 50K tokens per agent.
+9. **Stall detection** — Monitor URL log line count + output file existence. If URL log is frozen for >5 min with no new output file, the agent has stalled. Redispatch immediately.
+10. **`bypassPermissions` mode** — Background agents with `settings.local.json` restrictions silently fail on Write/Bash. Use `mode: bypassPermissions` or ensure permissions include `Write(**)`, `Bash(*)`.
 
 ## Reuse for Another Company
 

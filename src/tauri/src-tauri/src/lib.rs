@@ -387,6 +387,116 @@ pub struct StepCompletionInfo {
     pub complete: bool,
 }
 
+#[derive(Serialize, Default)]
+struct DriverDigest {
+    id: String,
+    name: String,
+    rho: f64,
+    classification: String,
+}
+
+#[derive(Serialize, Default)]
+struct RunDigestData {
+    peers_total: Option<usize>,
+    metrics_total: Option<u64>,
+    drivers: Vec<DriverDigest>,
+    stable_drivers_count: Option<i64>,
+    plays_total: usize,
+    anti_patterns_total: usize,
+    play_assessments_total: usize,
+    play_assessments_high: usize,
+    top_principles: Vec<String>,
+    has_report: bool,
+}
+
+#[tauri::command]
+fn read_run_digest(ticker: String, run_date: String) -> RunDigestData {
+    let root = get_project_root();
+    let base = PathBuf::from(&root)
+        .join("data").join("processed")
+        .join(ticker.to_lowercase())
+        .join(&run_date);
+
+    let mut d = RunDigestData::default();
+
+    d.has_report = base.join("5-playbook").join("final_report.html").exists();
+
+    if let Ok(raw) = std::fs::read_to_string(base.join("1-universe").join("peer_universe.json")) {
+        if let Ok(v) = serde_json::from_str::<serde_json::Value>(&raw) {
+            d.peers_total = v["firms"].as_array().map(|a| a.len());
+        }
+    }
+
+    if let Ok(raw) = std::fs::read_to_string(base.join("1-universe").join("metric_taxonomy.json")) {
+        if let Ok(v) = serde_json::from_str::<serde_json::Value>(&raw) {
+            d.metrics_total = v["total_metrics"].as_u64();
+        }
+    }
+
+    if let Ok(raw) = std::fs::read_to_string(base.join("3-analysis").join("driver_ranking.json")) {
+        if let Ok(v) = serde_json::from_str::<serde_json::Value>(&raw) {
+            d.stable_drivers_count = v["stable_drivers_count"].as_i64();
+            if let Some(drivers) = v["ranked_drivers"].as_array() {
+                d.drivers = drivers.iter().take(5).filter_map(|dr| {
+                    Some(DriverDigest {
+                        id: dr["driver_id"].as_str()?.to_string(),
+                        name: dr["driver_name"].as_str()?.to_string(),
+                        rho: dr["avg_abs_rho"].as_f64()?,
+                        classification: dr["classification"].as_str()?.to_string(),
+                    })
+                }).collect();
+            }
+        }
+    }
+
+    if let Ok(raw) = std::fs::read_to_string(base.join("5-playbook").join("platform_playbook.json")) {
+        if let Ok(v) = serde_json::from_str::<serde_json::Value>(&raw) {
+            if let Some(vd_plays) = v["value_driver_plays"].as_array() {
+                for vd in vd_plays {
+                    d.plays_total += vd["plays"].as_array().map(|a| a.len()).unwrap_or(0);
+                    d.anti_patterns_total += vd["anti_patterns"].as_array().map(|a| a.len()).unwrap_or(0);
+                }
+            }
+        }
+    }
+
+    if let Ok(raw) = std::fs::read_to_string(base.join("5-playbook").join("target_company_lens.json")) {
+        if let Ok(v) = serde_json::from_str::<serde_json::Value>(&raw) {
+            if let Some(pa) = v["play_assessments"].as_array() {
+                d.play_assessments_total = pa.len();
+                d.play_assessments_high = pa.iter()
+                    .filter(|p| p["priority"].as_str() == Some("high"))
+                    .count();
+            }
+            if let Some(principles) = v["strategic_guidance"]["board_level"]["top_5_principles"].as_array() {
+                d.top_principles = principles.iter()
+                    .filter_map(|p| p["principle"].as_str().map(|s| s.to_string()))
+                    .collect();
+            }
+        }
+    }
+
+    d
+}
+
+/// Returns the newest run that has a final_report.html, falling back to the newest run overall.
+#[tauri::command]
+fn find_latest_complete_run(ticker: String) -> Option<String> {
+    let root = get_project_root();
+    let base = PathBuf::from(&root)
+        .join("data")
+        .join("processed")
+        .join(ticker.to_lowercase());
+    let runs = list_analysis_runs(ticker);
+    for run in &runs {
+        let report = base.join(run).join("5-playbook").join("final_report.html");
+        if report.exists() {
+            return Some(run.clone());
+        }
+    }
+    runs.into_iter().next()
+}
+
 #[tauri::command]
 fn detect_existing_session(ticker: String, run_date: Option<String>) -> Vec<StepCompletionInfo> {
     let root = get_project_root();
@@ -406,19 +516,39 @@ fn detect_existing_session(ticker: String, run_date: Option<String>) -> Vec<Step
         }
     };
 
-    // Map pipeline steps to their expected subfolders and filenames
-    let step_checks: Vec<(usize, &str, &str, Vec<&str>)> = vec![
-        (0, "Map the Industry", "1-universe", vec!["peer_universe.json", "metric_taxonomy.json", "source_catalog.json"]),
-        (1, "Gather Data", "2-data", vec!["quantitative_data.json", "strategy_profiles.json", "strategic_actions.json"]),
-        (2, "Find What Drives Value", "3-analysis", vec!["standardized_data.json", "correlations.json", "driver_ranking.json", "final_peer_set.json", "statistics_metadata.json"]),
-        (3, "Deep-Dive Peers", "4-deep-dives", vec!["platform_profiles.json", "asset_class_analysis.json"]),
-        (4, "Build the Playbook", "5-playbook", vec!["value_principles.md", "platform_playbook.json", "asset_class_playbooks.json", "report_metadata.json", "target_company_lens.json", "final_report.html"]),
-        (5, "Review Analysis", "6-review", vec!["methodology_review.md", "results_review.md"]),
+    // Map pipeline steps to their expected subfolders and file groups.
+    // Each group is a list of alternative filenames — any one match satisfies the requirement.
+    let step_checks: Vec<(usize, &str, &str, Vec<Vec<&str>>)> = vec![
+        (0, "Map the Industry", "1-universe", vec![
+            vec!["peer_universe.json"],
+            vec!["metric_taxonomy.json"],
+            vec!["source_catalog.json"],
+        ]),
+        (1, "Gather Data", "2-data", vec![
+            vec!["quantitative_data.json", "quantitative_tier1.json"],
+            vec!["strategy_profiles.json"],
+            vec!["strategic_actions.json"],
+        ]),
+        (2, "Find What Drives Value", "3-analysis", vec![
+            vec!["standardized_data.json", "standardized_matrix.json"],
+            vec!["correlations.json", "correlation_results.json"],
+            vec!["driver_ranking.json"],
+        ]),
+        (3, "Deep-Dive Peers", "4-deep-dives", vec![
+            vec!["platform_profiles.json"],
+            vec!["asset_class_analysis.json"],
+        ]),
+        (4, "Build the Playbook", "5-playbook", vec![
+            vec!["final_report.html"],
+        ]),
+        (5, "Review Analysis", "6-review", vec![
+            vec!["methodology_review.md", "results_review.md", "source_coverage_audit.md"],
+        ]),
     ];
 
     step_checks
         .into_iter()
-        .map(|(index, name, folder, expected_files)| {
+        .map(|(index, name, folder, required_groups)| {
             let folder_path = run_dir.join(folder);
             let found: Vec<String> = std::fs::read_dir(&folder_path)
                 .map(|entries| {
@@ -428,7 +558,9 @@ fn detect_existing_session(ticker: String, run_date: Option<String>) -> Vec<Step
                         .collect()
                 })
                 .unwrap_or_default();
-            let complete = expected_files.iter().all(|f| found.iter().any(|e| e == f));
+            let complete = !required_groups.is_empty() && required_groups.iter().all(|alts| {
+                alts.iter().any(|alt| found.iter().any(|e| e == alt))
+            });
             StepCompletionInfo {
                 step_index: index,
                 step_name: name.to_string(),
@@ -909,6 +1041,8 @@ pub fn run() {
             open_in_browser,
             read_html_summary,
             detect_existing_session,
+            find_latest_complete_run,
+            read_run_digest,
             read_json_as_table,
             copy_tone_files,
             resolve_next_run_dir,

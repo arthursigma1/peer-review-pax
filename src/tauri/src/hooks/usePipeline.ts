@@ -33,14 +33,135 @@ const FOLDER_TO_STEP: Record<string, number> = {
   "6-review": 5,
 };
 
-const STEP_COMPLETE_FILES: Record<number, string[]> = {
-  0: ["peer_universe.json", "metric_taxonomy.json", "source_catalog.json"],
-  1: ["quantitative_data.json", "strategy_profiles.json", "strategic_actions.json"],
-  2: ["standardized_data.json", "correlations.json", "driver_ranking.json", "final_peer_set.json", "statistics_metadata.json"],
-  3: ["platform_profiles.json", "asset_class_analysis.json"],
-  4: ["value_principles.md", "platform_playbook.json", "asset_class_playbooks.json", "report_metadata.json", "target_company_lens.json", "final_report.html"],
-  5: ["methodology_review.md", "results_review.md"],
+// Each requirement is an array of alternative filenames — any match satisfies it
+const STEP_COMPLETE_REQS: Record<number, string[][]> = {
+  0: [["peer_universe.json"], ["metric_taxonomy.json"], ["source_catalog.json"]],
+  1: [["quantitative_data.json", "quantitative_tier1.json"], ["strategy_profiles.json"], ["strategic_actions.json"]],
+  2: [["standardized_data.json", "standardized_matrix.json"], ["correlations.json", "correlation_results.json"], ["driver_ranking.json"]],
+  3: [["platform_profiles.json"], ["asset_class_analysis.json"]],
+  4: [["final_report.html"]],
+  5: [["methodology_review.md", "results_review.md", "source_coverage_audit.md"]],
 };
+
+// Maps output files to the agent that produced them, for historical reconstruction
+const FILE_TO_AGENT: Record<string, { step: number; id: string; name: string }> = {
+  // Step 0 — Map the Industry
+  "peer_universe.json": { step: 0, id: "universe-scout", name: "Industry Scanner" },
+  "source_catalog.json": { step: 0, id: "source-mapper", name: "Source Cataloger" },
+  "metric_taxonomy.json": { step: 0, id: "metric-architect", name: "Metrics Designer" },
+  // Step 1 — Gather Data
+  "quantitative_data.json": { step: 1, id: "data-collector", name: "Data Collector" },
+  "quantitative_tier1.json": { step: 1, id: "data-collector-t1", name: "Data Collector T1" },
+  "quantitative_tier2.json": { step: 1, id: "data-collector-t2", name: "Data Collector T2" },
+  "quantitative_tier3.json": { step: 1, id: "data-collector-t3", name: "Data Collector T3" },
+  "strategy_profiles.json": { step: 1, id: "strategy-extractor", name: "Strategy Researcher" },
+  "strategic_actions.json": { step: 1, id: "strategy-extractor", name: "Strategy Researcher" },
+  // Step 2 — Find What Drives Value
+  "standardized_data.json": { step: 2, id: "metric-architect", name: "Statistical Analyst" },
+  "standardized_matrix.json": { step: 2, id: "metric-architect", name: "Statistical Analyst" },
+  "correlations.json": { step: 2, id: "metric-architect", name: "Statistical Analyst" },
+  "correlation_results.json": { step: 2, id: "metric-architect", name: "Statistical Analyst" },
+  "driver_ranking.json": { step: 2, id: "metric-architect", name: "Statistical Analyst" },
+  "final_peer_set.json": { step: 2, id: "metric-architect", name: "Statistical Analyst" },
+  // Step 3 — Deep-Dive Peers
+  "platform_profiles.json": { step: 3, id: "platform-analyst", name: "Platform Profiler" },
+  "asset_class_analysis.json": { step: 3, id: "vertical-analyst", name: "Sector Specialist" },
+  // Step 4 — Build the Playbook
+  "platform_playbook.json": { step: 4, id: "playbook-synthesizer", name: "Insight Synthesizer" },
+  "playbook.json": { step: 4, id: "playbook-synthesizer", name: "Insight Synthesizer" },
+  "asset_class_playbooks.json": { step: 4, id: "playbook-synthesizer", name: "Insight Synthesizer" },
+  "target_company_lens.json": { step: 4, id: "target-lens", name: "Target Company Lens" },
+  "target_lens.json": { step: 4, id: "target-lens", name: "Target Company Lens" },
+  "final_report.html": { step: 4, id: "report-builder", name: "Report Composer" },
+  // Step 5 — Review Analysis
+  "methodology_review.md": { step: 5, id: "methodology-reviewer", name: "Methodology Reviewer" },
+  "results_review.md": { step: 5, id: "results-reviewer", name: "Results Reviewer" },
+  "source_coverage_audit.md": { step: 5, id: "methodology-reviewer", name: "Methodology Reviewer" },
+  // Checkpoints
+  "audit_cp1_data.json": { step: 1, id: "claim-auditor", name: "Fact Checker" },
+  "audit_cp2_deep_dives.json": { step: 3, id: "claim-auditor", name: "Fact Checker" },
+  "audit_cp3_playbook.json": { step: 4, id: "claim-auditor", name: "Fact Checker" },
+};
+
+// Infer agents from output files. If OutputFile objects are provided, use their
+// modification timestamps to approximate agent start/end times for the timeline.
+function inferAgentsFromFiles(
+  filenames: string[],
+  outputFiles?: OutputFile[],
+): { agents: Record<number, PipelineAgent[]>; earliestMs: number | null; latestMs: number | null } {
+  // Build a filename → modified-ms lookup from the full OutputFile list
+  const tsLookup: Record<string, number> = {};
+  if (outputFiles) {
+    for (const f of outputFiles) {
+      // OutputFile.modified is seconds since epoch; convert to ms
+      tsLookup[f.filename] = f.modified * 1000;
+    }
+  }
+
+  const agentsByStep: Record<number, Map<string, PipelineAgent>> = {};
+  let earliestMs: number | null = null;
+  let latestMs: number | null = null;
+
+  for (const filename of filenames) {
+    const mapping = FILE_TO_AGENT[filename];
+    if (!mapping) continue;
+    if (!agentsByStep[mapping.step]) agentsByStep[mapping.step] = new Map();
+    const map = agentsByStep[mapping.step];
+
+    const fileTs = tsLookup[filename] ?? null;
+    if (fileTs !== null) {
+      if (earliestMs === null || fileTs < earliestMs) earliestMs = fileTs;
+      if (latestMs === null || fileTs > latestMs) latestMs = fileTs;
+    }
+
+    if (!map.has(mapping.id)) {
+      map.set(mapping.id, {
+        id: mapping.id,
+        name: mapping.name,
+        friendlyName: mapping.name,
+        status: "complete",
+        outputFile: null,
+        logs: [],
+        startedAt: null,
+        completedAt: fileTs,
+      });
+    } else {
+      // Update completedAt to the latest file timestamp for this agent
+      const existing = map.get(mapping.id)!;
+      if (fileTs !== null && (existing.completedAt === null || fileTs > existing.completedAt)) {
+        existing.completedAt = fileTs;
+      }
+    }
+  }
+
+  // Estimate startedAt per agent: use the earliest file time of the previous step
+  // (or pipeline start for step 0). This gives a rough Gantt chart.
+  const stepEarliestTs: Record<number, number> = {};
+  for (const [step, map] of Object.entries(agentsByStep)) {
+    const times = Array.from(map.values())
+      .map((a) => a.completedAt)
+      .filter((t): t is number => t !== null);
+    if (times.length > 0) stepEarliestTs[Number(step)] = Math.min(...times);
+  }
+
+  for (const [step, map] of Object.entries(agentsByStep)) {
+    const stepIdx = Number(step);
+    // Use previous step's earliest time as this step's start estimate
+    const prevStepTs = stepIdx > 0 ? stepEarliestTs[stepIdx - 1] : null;
+    const fallbackStart = prevStepTs ?? earliestMs;
+    for (const agent of map.values()) {
+      if (agent.startedAt === null && fallbackStart !== null) {
+        agent.startedAt = fallbackStart;
+      }
+    }
+  }
+
+  const result: Record<number, PipelineAgent[]> = {};
+  for (const [step, map] of Object.entries(agentsByStep)) {
+    result[Number(step)] = Array.from(map.values());
+  }
+  return { agents: result, earliestMs, latestMs };
+}
 
 function createInitialSteps(): PipelineStep[] {
   return PIPELINE_STEPS.map((s) => ({
@@ -131,8 +252,8 @@ export function usePipeline() {
       if (!detected || detected.length === 0) return step;
 
       // Has files → at least running
-      const completionFiles = STEP_COMPLETE_FILES[step.index] || [];
-      const allComplete = completionFiles.length > 0 && completionFiles.every((f) => detected.includes(f));
+      const reqs = STEP_COMPLETE_REQS[step.index] || [];
+      const allComplete = reqs.length > 0 && reqs.every((alts) => alts.some((f) => detected.includes(f)));
 
       if (allComplete && step.status !== "complete") {
         return { ...step, status: "complete" as StepStatus, completedAt: Date.now() };
@@ -270,15 +391,35 @@ export function usePipeline() {
       const hasAnyFiles = result.some((s) => s.files_found.length > 0);
       if (!hasAnyFiles) return false;
 
+      // Fetch full file metadata (with timestamps) for agent timing reconstruction
+      const outputFiles = await invoke<OutputFile[]>("list_outputs", {
+        ticker,
+        runDate: sessionRunDate ?? null,
+      }).catch(() => [] as OutputFile[]);
+
+      // Collect all files across steps for agent inference
+      const allFiles = result.flatMap((s) => s.files_found);
+      const { agents: inferredAgents, earliestMs } = inferAgentsFromFiles(allFiles, outputFiles);
+
       // Reconstruct pipeline state from existing files
       setSteps((prev) =>
         prev.map((step) => {
           const detected = result.find((r) => r.step_index === step.index);
           if (!detected || detected.files_found.length === 0) return step;
+          const stepAgents = inferredAgents[step.index] ?? [];
+          // Use file timestamps for step timing
+          const agentTimes = stepAgents
+            .map((a) => a.completedAt)
+            .filter((t): t is number => t !== null);
+          const stepStartedAt = stepAgents
+            .map((a) => a.startedAt)
+            .filter((t): t is number => t !== null);
           return {
             ...step,
             status: detected.complete ? ("complete" as const) : ("running" as const),
-            completedAt: detected.complete ? Date.now() : null,
+            startedAt: stepStartedAt.length > 0 ? Math.min(...stepStartedAt) : null,
+            completedAt: detected.complete && agentTimes.length > 0 ? Math.max(...agentTimes) : null,
+            agents: stepAgents,
           };
         })
       );
@@ -286,6 +427,9 @@ export function usePipeline() {
       // Find the last completed step to set currentStep
       const lastComplete = [...result].reverse().find((s) => s.complete);
       setCurrentStep(lastComplete ? lastComplete.step_index : 0);
+
+      // Set startTime from earliest file so the timeline has a reference point
+      setStartTime(earliestMs);
 
       setConfig({
         ticker: ticker.toUpperCase(),

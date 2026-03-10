@@ -13,19 +13,33 @@ interface MetricValue {
   unit?: string;
   confidence?: "high" | "medium" | "low" | string;
   status?: "standardized" | "derived" | "estimated" | string;
+  source?: string;
+  as_of?: string;
 }
 
 interface FirmData {
   firm_id: string;
   ticker: string;
-  firm_name: string;
+  firm_name?: string;
   metrics: Record<string, MetricValue>;
   valuation_multiples?: Record<string, number | null>;
 }
 
 interface StandardizedData {
-  metadata?: { total_firms?: number };
+  metadata?: { total_firms?: number; firms?: number };
   firms: FirmData[];
+}
+
+// Newer runs may use { matrix: [...] } instead of { firms: [...] }
+interface RawStandardizedJson {
+  metadata?: Record<string, unknown>;
+  firms?: FirmData[];
+  matrix?: FirmData[];
+}
+
+function normalizeStandardizedData(raw: RawStandardizedJson): StandardizedData {
+  const firms = raw.firms ?? raw.matrix ?? [];
+  return { metadata: raw.metadata as StandardizedData["metadata"], firms };
 }
 
 interface MetricDefinition {
@@ -64,6 +78,10 @@ function getCellColor(entry: MetricValue | undefined): string {
   const stat = entry.status?.toLowerCase() ?? "";
   if (conf === "low") return "bg-amber-400";
   if (conf === "high" && stat === "standardized") return "bg-emerald-500";
+  // If no confidence/status fields at all (newer format), infer from presence of source
+  if (!conf && !stat) {
+    return entry.source ? "bg-emerald-500" : "bg-[#0068ff]";
+  }
   // medium confidence, derived, estimated
   return "bg-[#0068ff]";
 }
@@ -111,12 +129,15 @@ export function DataQualityHeatmap({ files }: DataQualityHeatmapProps) {
   const [tooltip, setTooltip] = useState<TooltipState>(TOOLTIP_INIT);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Find relevant files from the file list
-  const findFile = (folder: string, filename: string) =>
-    files.find((f) => f.folder === folder && f.filename === filename) ?? null;
+  // Find relevant files from the file list — supports fallback filenames
+  const findFile = (folder: string, ...filenames: string[]) =>
+    filenames.reduce<OutputFile | null>(
+      (found, name) => found ?? files.find((f) => f.folder === folder && f.filename === name) ?? null,
+      null
+    );
 
   useEffect(() => {
-    const stdFile = findFile("3-analysis", "standardized_data.json");
+    const stdFile = findFile("3-analysis", "standardized_data.json", "standardized_matrix.json");
     const taxFile = findFile("1-universe", "metric_taxonomy.json");
     const peerFile = findFile("3-analysis", "final_peer_set.json");
 
@@ -133,7 +154,7 @@ export function DataQualityHeatmap({ files }: DataQualityHeatmapProps) {
       invoke<string>("read_output_file", { path: stdFile.path })
         .then((raw) => {
           try {
-            setStandardizedData(JSON.parse(raw) as StandardizedData);
+            setStandardizedData(normalizeStandardizedData(JSON.parse(raw)));
           } catch {
             setStandardizedData(null);
           }

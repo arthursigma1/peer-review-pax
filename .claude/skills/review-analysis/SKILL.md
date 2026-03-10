@@ -72,7 +72,7 @@ Spawn two agents in parallel:
 
 ### Agent: methodology-reviewer
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "methodology-reviewer"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "methodology-reviewer", model: "claude-opus-4-6"):
 
 Instructions:
 > You are the methodology-reviewer for the Valuation Driver Analysis review.
@@ -145,7 +145,7 @@ Instructions:
 
 ### Agent: results-reviewer
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "results-reviewer"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "results-reviewer", model: "claude-opus-4-6"):
 
 Instructions:
 > You are the results-reviewer for the Valuation Driver Analysis review.

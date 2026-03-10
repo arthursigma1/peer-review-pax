@@ -256,12 +256,13 @@ export function AgentsOrg() {
   const [selectedAgent, setSelectedAgent] = useState<string | null>(null);
   const [tab, setTab] = useState<"pipeline" | "command">("pipeline");
   const [dirty, setDirty] = useState(false);
+  const [configSource, setConfigSource] = useState<"default" | "file">("default");
 
   useEffect(() => {
     invoke<string>("get_project_root").then((root) => {
       invoke<string>("read_output_file", { path: `${root}/.claude/agent_config.json` })
-        .then((content) => setConfig(JSON.parse(content) as AgentConfig))
-        .catch(() => {});
+        .then((content) => { setConfig(JSON.parse(content) as AgentConfig); setConfigSource("file"); })
+        .catch(() => { setConfigSource("default"); });
     });
   }, []);
 
@@ -300,6 +301,7 @@ export function AgentsOrg() {
         content: JSON.stringify(config, null, 2),
       });
       setDirty(false);
+      setConfigSource("file");
     } catch (err) {
       console.error("Failed to save config:", err);
     }
@@ -321,7 +323,12 @@ export function AgentsOrg() {
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <button onClick={() => { setConfig(DEFAULT_CONFIG); setDirty(true); }}
+          <span className={`text-[9px] px-2 py-0.5 rounded font-mono ${configSource === "file" ? "bg-emerald-50 text-emerald-600 border border-emerald-200" : "bg-gray-50 text-gray-400 border border-gray-200"}`}
+            title={configSource === "file" ? "Pipeline reads this config from .claude/agent_config.json" : "Using defaults — save to connect to pipeline"}
+          >
+            {configSource === "file" ? "synced with pipeline" : "defaults (not saved)"}
+          </span>
+          <button onClick={() => { setConfig(DEFAULT_CONFIG); setDirty(true); setConfigSource("default"); }}
             className="px-3 py-1.5 rounded-md text-xs text-gray-400 hover:text-gray-700 transition-colors">
             Reset
           </button>

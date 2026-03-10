@@ -25,18 +25,27 @@ function formatDuration(ms: number): string {
 }
 
 function formatAxisLabel(ms: number): string {
-  if (ms === 0) return "0s";
+  if (ms === 0) return "0";
   if (ms < 60_000) return `${Math.round(ms / 1000)}s`;
-  const minutes = Math.floor(ms / 60_000);
-  const seconds = Math.round((ms % 60_000) / 1000);
-  return seconds === 0 ? `${minutes}m` : `${minutes}m${seconds}s`;
+  if (ms < 3_600_000) {
+    const minutes = Math.floor(ms / 60_000);
+    return `${minutes}m`;
+  }
+  const hours = Math.floor(ms / 3_600_000);
+  const minutes = Math.round((ms % 3_600_000) / 60_000);
+  return minutes === 0 ? `${hours}h` : `${hours}h${minutes}m`;
 }
 
 function buildTicks(totalMs: number): number[] {
-  const magnitudes = [1000, 5000, 10000, 15000, 30000, 60000, 120000, 300000, 600000];
-  const interval = totalMs / 5;
+  // Pick an interval that yields 4-7 ticks across the total span
+  const magnitudes = [
+    1_000, 5_000, 10_000, 15_000, 30_000,         // seconds
+    60_000, 120_000, 300_000, 600_000,              // 1m–10m
+    900_000, 1_800_000, 3_600_000, 7_200_000,       // 15m–2h
+  ];
+  const target = totalMs / 5;
   const bestInterval = magnitudes.reduce((prev, curr) =>
-    Math.abs(curr - interval) < Math.abs(prev - interval) ? curr : prev
+    Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev
   );
   const ticks: number[] = [];
   let t = 0;

@@ -12,9 +12,10 @@ interface StepCardProps {
   step: PipelineStep;
   isActive: boolean;
   onClick: () => void;
+  subtitle?: string | null;
 }
 
-export const StepCard = memo(function StepCard({ step, isActive, onClick }: StepCardProps) {
+export const StepCard = memo(function StepCard({ step, isActive, onClick, subtitle }: StepCardProps) {
   const style = STATUS_STYLES[step.status];
   const activeAgents = step.agents.filter((a) => a.status === "running").length;
   const doneAgents = step.agents.filter((a) => a.status === "complete").length;
@@ -51,6 +52,9 @@ export const StepCard = memo(function StepCard({ step, isActive, onClick }: Step
           <p className="text-xs text-gray-500 mt-0.5 truncate">
             {step.description}
           </p>
+          {subtitle && step.status === "complete" && (
+            <p className="text-[10px] text-emerald-700 font-mono mt-1 truncate">{subtitle}</p>
+          )}
           {step.agents.length > 0 && (
             <div className="flex items-center gap-2 mt-1.5">
               {activeAgents > 0 && (

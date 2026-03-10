@@ -8,6 +8,7 @@ import { SourceUpload, ToneUpload } from "./components/SourceUpload";
 import type { SourcePaths } from "./components/SourceUpload";
 import { usePipeline } from "./hooks/usePipeline";
 import { useFileWatcher } from "./hooks/useFileWatcher";
+import { useRunDigest } from "./hooks/useRunDigest";
 import { useNotifications } from "./hooks/useNotifications";
 import type { PipelineConfig, ToneProfile } from "./types/pipeline";
 import { DEFAULT_TONE_PROFILE } from "./types/pipeline";
@@ -51,11 +52,13 @@ function buildSkillCmd(
   sourcesDirs: (string | null)[],
   fromStep: number,
   toStep: number,
+  baseRun?: string | null,
 ): string {
   let cmd = `/valuation-driver ${ticker}`;
   if (autoMode) cmd += " --auto";
   const dirs = sourcesDirs.filter(Boolean);
   if (dirs.length > 0) cmd += ` --sources ${dirs.join(",")}`;
+  if (baseRun) cmd += ` --base-run ${baseRun}`;
   if (fromStep !== 1 || toStep !== 6) cmd += ` --from-step ${fromStep} --to-step ${toStep}`;
   return cmd;
 }
@@ -74,9 +77,12 @@ function App() {
   const [ptyArgs, setPtyArgs] = useState<string[]>([]);
   const [fromStep, setFromStep] = useState(1);
   const [toStep, setToStep] = useState(6);
+  const [baseRun, setBaseRun] = useState("");
 
   const pipeline = usePipeline();
   const { files, runs, selectedRun, setSelectedRun, error: watcherError, resetForNewRun } = useFileWatcher(pipeline.config?.ticker || ticker || null);
+  const digestTicker = pipeline.config?.ticker || ticker || null;
+  const digest = useRunDigest(digestTicker, selectedRun);
   const { notify } = useNotifications();
 
   const [isReviewRunning, setIsReviewRunning] = useState(false);
@@ -343,7 +349,7 @@ Output ONLY valid JSON matching this schema:
     };
     localStorage.setItem("vda-last-ticker", config.ticker);
 
-    const skillCmd = buildSkillCmd(t, autoMode, [sources.sellSide, sources.consulting], fromStep, toStep);
+    const skillCmd = buildSkillCmd(t, autoMode, [sources.sellSide, sources.consulting], fromStep, toStep, baseRun.trim() || null);
     setPtyCommand("claude");
     setPtyArgs(["--dangerously-skip-permissions", "--model", "sonnet", skillCmd]);
 
@@ -602,6 +608,48 @@ Output ONLY valid JSON matching this schema:
                       )}
                     </div>
 
+                    {/* Base run (iterative refinement) */}
+                    <div>
+                      <label htmlFor="base-run" className="block text-xs text-gray-500 mb-1.5">
+                        Base run <span className="text-gray-400">(iterative refinement)</span>
+                      </label>
+                      <div className="flex items-center gap-2">
+                        <input
+                          id="base-run"
+                          type="text"
+                          value={baseRun}
+                          onChange={(e) => setBaseRun(e.target.value)}
+                          placeholder="YYYY-MM-DD"
+                          className="w-44 px-4 py-2.5 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none font-mono"
+                        />
+                        {runs.length > 0 && (
+                          <select
+                            value={baseRun}
+                            onChange={(e) => setBaseRun(e.target.value)}
+                            className="px-3 py-2.5 rounded-md bg-gray-50 border border-gray-200 text-xs text-gray-500 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none font-mono"
+                          >
+                            <option value="">pick from history</option>
+                            {runs.map((r) => (
+                              <option key={r} value={r}>{r}</option>
+                            ))}
+                          </select>
+                        )}
+                        {baseRun && (
+                          <button
+                            onClick={() => setBaseRun("")}
+                            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+                          >
+                            Clear
+                          </button>
+                        )}
+                      </div>
+                      {baseRun && (
+                        <p className="text-[11px] text-[#0068ff] mt-1.5">
+                          Agents will improve upon outputs from {baseRun}
+                        </p>
+                      )}
+                    </div>
+
                     {/* Reference peers */}
                     <div>
                       <label htmlFor="reference-peers" className="block text-xs text-gray-500 mb-1.5">
@@ -671,6 +719,9 @@ Output ONLY valid JSON matching this schema:
             startTime={pipeline.startTime}
             isRunning={pipeline.isRunning}
             checkpoints={pipeline.checkpoints}
+            digest={digest}
+            digestTicker={digestTicker ?? undefined}
+            digestRunDate={selectedRun ?? undefined}
             onRerunFromStep={pipeline.config ? (stepIndex) => {
               pipeline.start(pipeline.config!, stepIndex);
             } : undefined}

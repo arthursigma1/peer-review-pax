@@ -12,6 +12,7 @@ from pydantic import BaseModel, Field, ValidationError, model_validator
 VALID_ARCHETYPES = frozenset({"north_star_peer", "near_peer", "adjacent_peer", "anti_pattern_peer"})
 VALID_FEASIBILITY_HORIZONS = frozenset({"near_term_feasible", "medium_term_feasible", "aspirational"})
 VALID_CONFIDENCE_LABELS = frozenset({"high", "moderate", "directional", "unsupported"})
+VALID_EVIDENCE_STRENGTH = frozenset({"high", "moderate", "low"})
 VALID_DRIVER_CLASSES = frozenset({"stable_value_driver", "multiple_specific_driver", "contextual_driver", "unsupported"})
 VALID_COVERAGE_QUALITY = frozenset({"adequate", "thin", "poor"})
 VALID_COMPARABILITY_QUALITY = frozenset({"good", "mixed", "poor"})
@@ -324,32 +325,26 @@ class PAXRelevance(BaseModel):
 
 
 class PlaybookEntry(BaseModel):
-    Play_ID: str | None = None
-    Anti_ID: str | None = None
+    play_id: str | None = None
+    anti_id: str | None = None
     What_Was_Done: str = Field(min_length=1)
     Observed_Metric_Impact: str = Field(min_length=1)
-    Why_It_Worked: str = Field(min_length=1)
-    PAX_Relevance: PAXRelevance
-    Preconditions: list[str] = Field(min_length=1)
-    Operational_And_Tech_Prerequisites: list[str] = Field(min_length=1)
+    Prerequisites: str | list[str] = Field(min_length=1)
+    Operational_And_Tech_Prerequisites: str | list[str] = Field(min_length=1)
     Execution_Burden: str = Field(min_length=1)
-    Time_To_Build: str = Field(min_length=1)
-    Margin_Risk: str = Field(min_length=1)
-    Failure_Modes_And_Margin_Destroyers: list[str] = Field(min_length=1)
-    Transferability_Constraints: list[str] = Field(min_length=1)
-    Archetype_Relevance: str = Field(min_length=1)
+    Failure_Modes_And_Margin_Destroyers: str | list[str] = Field(min_length=1)
+    Transferability_Constraints: str | list[str] = Field(min_length=1)
     Evidence_Strength: str
-    Recommendation_For_PAX: str = Field(min_length=1)
     source_citations: list[str] = Field(default_factory=list)
 
-    model_config = {"extra": "forbid"}
+    model_config = {"extra": "allow"}
 
     @model_validator(mode="after")
     def validate_entry(self) -> "PlaybookEntry":
-        if not self.Play_ID and not self.Anti_ID:
-            raise ValueError("playbook entry must have Play_ID or Anti_ID")
-        if self.Evidence_Strength not in VALID_CONFIDENCE_LABELS:
-            raise ValueError("invalid Evidence_Strength")
+        if not self.play_id and not self.anti_id:
+            raise ValueError("playbook entry must have play_id or anti_id")
+        if self.Evidence_Strength not in VALID_EVIDENCE_STRENGTH:
+            raise ValueError(f"invalid Evidence_Strength: {self.Evidence_Strength!r}")
         for cit in self.source_citations:
             if not SOURCE_CITATION_RE.match(cit):
                 raise ValueError(f"source_citations entry does not match PS-VD-NNN: {cit!r}")
@@ -357,31 +352,31 @@ class PlaybookEntry(BaseModel):
 
 
 class DriverPlaybook(BaseModel):
-    driver_id: str = Field(min_length=1)
+    driver_id: str | None = None
+    driver: str | None = None
     plays: list[PlaybookEntry] = Field(min_length=1)
     anti_patterns: list[PlaybookEntry] = Field(default_factory=list)
 
-    model_config = {"extra": "forbid"}
+    model_config = {"extra": "allow"}
 
 
 class PlatformPlaybookContract(BaseModel):
-    driver_playbooks: list[DriverPlaybook] = Field(min_length=1)
+    value_driver_plays: list[DriverPlaybook] = Field(min_length=1)
 
-    model_config = {"extra": "forbid"}
+    model_config = {"extra": "allow"}
 
 
 class VerticalPlaybook(BaseModel):
     vertical_id: str = Field(min_length=1)
-    plays: list[PlaybookEntry] = Field(min_length=1)
-    anti_patterns: list[PlaybookEntry] = Field(default_factory=list)
+    value_driver_plays: list[DriverPlaybook] = Field(min_length=1)
 
-    model_config = {"extra": "forbid"}
+    model_config = {"extra": "allow"}
 
 
 class AssetClassPlaybookContract(BaseModel):
-    vertical_playbooks: list[VerticalPlaybook] = Field(min_length=1)
+    verticals: list[VerticalPlaybook] = Field(min_length=1)
 
-    model_config = {"extra": "forbid"}
+    model_config = {"extra": "allow"}
 
 
 class RankedRecommendation(BaseModel):
@@ -457,6 +452,197 @@ class ReportMetadata(BaseModel):
         ):
             raise ValueError("all report layers must be present")
         return self
+
+
+# ---------------------------------------------------------------------------
+# Data Quality Tool Contracts
+# ---------------------------------------------------------------------------
+
+VALID_GAP_TYPES = frozenset({"never_attempted", "not_disclosed", "derivable_not_derived", "stale"})
+VALID_PRIORITY_LEVELS = frozenset({"critical", "high", "medium", "low", "skip"})
+# Aliases for backward compatibility with any external code that references these names.
+VALID_BACKFILL_PRIORITIES = VALID_PRIORITY_LEVELS
+VALID_COLLECTION_PRIORITIES = VALID_PRIORITY_LEVELS
+
+
+class GapRecord(BaseModel):
+    firm_id: str = Field(min_length=1)
+    ticker: str = Field(min_length=1)
+    metric_id: str = Field(min_length=1)
+    metric_name: str = Field(min_length=1)
+    gap_type: str
+    missing_reason: str
+    high_impact: bool
+    derivable_from: list[str] | None = None
+    backfill_priority: str
+
+    model_config = {"extra": "forbid"}
+
+    @model_validator(mode="after")
+    def validate_gap_fields(self) -> "GapRecord":
+        if self.gap_type not in VALID_GAP_TYPES:
+            raise ValueError(f"invalid gap_type: {self.gap_type}")
+        if self.backfill_priority not in VALID_PRIORITY_LEVELS:
+            raise ValueError(f"invalid backfill_priority: {self.backfill_priority}")
+        return self
+
+
+class MetricCoverageEntry(BaseModel):
+    metric_id: str = Field(min_length=1)
+    metric_name: str = Field(min_length=1)
+    category: str = Field(min_length=1)
+    is_driver: bool
+    firms_with_data: int = Field(ge=0)
+    firms_total: int = Field(ge=0)
+    coverage_pct: float = Field(ge=0.0, le=100.0)
+    above_correlation_threshold: bool
+    gap_to_threshold: int = Field(ge=0)
+
+    model_config = {"extra": "allow"}
+
+
+class HighImpactTarget(BaseModel):
+    metric_id: str = Field(min_length=1)
+    metric_name: str = Field(min_length=1)
+    current_coverage: int = Field(ge=0)
+    target_coverage: int = Field(ge=0)
+    already_above_threshold: bool
+    firms_to_backfill: list[str]
+    reason: str = Field(min_length=1)
+
+    model_config = {"extra": "forbid"}
+
+
+class DataGapsMetadata(BaseModel):
+    pipeline: str = Field(pattern=r"^VDA$")
+    generated_at: str = Field(min_length=1)
+    run_id: str = Field(min_length=1)
+    total_firms: int = Field(ge=1)
+    total_driver_metrics: int = Field(ge=1)
+    total_cells: int = Field(ge=1)
+    filled_cells: int = Field(ge=0)
+    null_cells: int = Field(ge=0)
+    fill_rate_pct: float = Field(ge=0.0, le=100.0)
+    stale_cells: int = Field(ge=0)
+    coverage_threshold_pct: int = Field(ge=0, le=100)
+    coverage_threshold_firms: int = Field(ge=0)
+
+    model_config = {"extra": "forbid"}
+
+
+class DataGapsContract(BaseModel):
+    metadata: DataGapsMetadata
+    metric_coverage: list[MetricCoverageEntry] = Field(min_length=1)
+    firm_coverage: list = Field(min_length=1)
+    gaps: list[GapRecord]
+    high_impact_backfill_targets: list[HighImpactTarget]
+    summary: dict
+
+    model_config = {"extra": "forbid"}
+
+
+class DeltaSpecMetadata(BaseModel):
+    generated_at: str = Field(min_length=1)
+    base_run_dir: str = Field(min_length=1)
+    new_run_dir: str = Field(min_length=1)
+    mode: str = Field(pattern=r"^incremental$")
+    total_cells_to_collect: int = Field(ge=0)
+    total_cells_existing: int = Field(ge=0)
+    total_cells_skipped_not_disclosed: int = Field(ge=0)
+    priority_breakdown: dict
+
+    model_config = {"extra": "forbid"}
+
+
+class CollectMetricEntry(BaseModel):
+    metric_id: str = Field(min_length=1)
+    metric_name: str = Field(min_length=1)
+    collection_priority: str
+    gap_classification: str
+    hint: str = Field(min_length=1)
+
+    model_config = {"extra": "forbid"}
+
+    @model_validator(mode="after")
+    def validate_collect_fields(self) -> "CollectMetricEntry":
+        if self.collection_priority not in VALID_PRIORITY_LEVELS:
+            raise ValueError(f"invalid collection_priority: {self.collection_priority}")
+        if self.gap_classification not in VALID_GAP_TYPES:
+            raise ValueError(f"invalid gap_classification: {self.gap_classification}")
+        return self
+
+
+class TierAssignment(BaseModel):
+    firm_id: str = Field(min_length=1)
+    ticker: str = Field(min_length=1)
+    metrics_to_collect: list[CollectMetricEntry] = Field(min_length=1)
+
+    model_config = {"extra": "forbid"}
+
+
+class TierBlock(BaseModel):
+    firms: list[str]
+    assignments: list[TierAssignment]
+
+    model_config = {"extra": "forbid"}
+
+
+class CollectBlock(BaseModel):
+    description: str = Field(min_length=1)
+    tier1: TierBlock
+    tier2: TierBlock
+    tier3: TierBlock
+
+    model_config = {"extra": "forbid"}
+
+
+class DeltaSpecContract(BaseModel):
+    metadata: DeltaSpecMetadata
+    carry_forward: dict
+    skip: dict
+    collect: CollectBlock
+
+    model_config = {"extra": "forbid"}
+
+
+class ChecklistMetricEntry(BaseModel):
+    metric_id: str = Field(min_length=1)
+    metric_name: str = Field(min_length=1)
+    category: str = Field(min_length=1)
+    collection_priority: str
+    derivable_from: str | None = None
+    status: str = Field(pattern=r"^pending$")
+
+    model_config = {"extra": "forbid"}
+
+    @model_validator(mode="after")
+    def validate_priority(self) -> "ChecklistMetricEntry":
+        if self.collection_priority not in VALID_PRIORITY_LEVELS:
+            raise ValueError(f"invalid collection_priority: {self.collection_priority}")
+        return self
+
+
+class FirmChecklist(BaseModel):
+    firm_id: str = Field(min_length=1)
+    ticker: str = Field(min_length=1)
+    metrics: list[ChecklistMetricEntry] = Field(min_length=1)
+
+    model_config = {"extra": "forbid"}
+
+
+class TierChecklist(BaseModel):
+    firms: list[str]
+    checklist: list[FirmChecklist]
+
+    model_config = {"extra": "forbid"}
+
+
+class MetricChecklistContract(BaseModel):
+    metadata: dict
+    priority_rules: dict
+    tiers: dict
+
+    model_config = {"extra": "allow"}
 
 
 def _load_json(path: Path) -> Any:
@@ -535,10 +721,10 @@ def validate_run_directory(run_dir: Path) -> None:
     if report_metadata.target_company != pax_lens.target_company:
         raise ValueError("target_company mismatch between report metadata and PAX lens")
 
-    if not platform_playbook.driver_playbooks:
-        raise ValueError("platform_playbook must contain at least one driver_playbook")
-    if not asset_playbook.vertical_playbooks:
-        raise ValueError("asset_class_playbooks must contain at least one vertical_playbook")
+    if not platform_playbook.value_driver_plays:
+        raise ValueError("platform_playbook must contain at least one value_driver_play")
+    if not asset_playbook.verticals:
+        raise ValueError("asset_class_playbooks must contain at least one vertical")
 
     _validate_final_report(
         run_dir / "5-playbook" / "final_report.html",

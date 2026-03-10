@@ -221,6 +221,36 @@ When agents use prompts from `prompts/`, they must replace these placeholders wi
 
 All output file paths use: `data/processed/{TICKER}/{DATE}/` and `data/raw/{TICKER}/{DATE}/`
 
+## Step 5b: Load Agent Configuration
+
+Before spawning any agent, check if a custom agent configuration exists:
+
+1. Read `.claude/agent_config.json` using the Read tool (path: `{PROJECT_ROOT}/.claude/agent_config.json` where `{PROJECT_ROOT}` is the repository root).
+2. If the file exists and parses as valid JSON, use it as the **agent config**. For each agent being spawned, find the matching entry by `id` in the config's `agents` array.
+3. If the file does not exist, use the default values specified in each agent section below.
+
+**Overridable parameters from agent config:**
+- `model` → pass as the `model` parameter to the Agent tool call (e.g., `model: "claude-sonnet-4-6"`)
+- `temperature` → prepend to the agent's prompt: `"Temperature: {value}. "`
+- `max_output_tokens` → prepend to the agent's prompt: `"Max output tokens: {value}. "`
+- `tools` → the agent should only use tools listed in this array
+- `instructions` → if present and non-empty, append to the base prompt as additional context: `"\n\nAdditional instructions from config:\n{instructions}"`
+- `timeout_minutes` → use as the timeout for the Agent tool call (converted to milliseconds)
+
+**Non-overridable (always from SKILL.md):**
+- Full spawn prompt (the detailed Instructions block for each agent)
+- Input/output file paths
+- Pipeline step assignment and execution order
+- Quality gate criteria
+
+**Command-level overrides:** If the config has a `command` object:
+- `command.auto_mode` → use as the auto/interactive mode flag (overrides `--auto` CLI flag)
+- `command.tier_size` → use as the number of firms per data-collector tier
+- `command.base_run` → use as the base run date (overrides `--base-run` CLI flag)
+- `command.tone_profile` → pass to the report-builder agent as tone configuration
+
+The Tauri dashboard's Agents tab saves this config file. Users can modify agent models, temperatures, tools, and other parameters through the UI, and the pipeline will respect those settings on the next run.
+
 ## Step 6: Create Agent Team
 
 ```
@@ -254,7 +284,7 @@ Spawn three agents in parallel:
 
 ### Agent: universe-scout
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "universe-scout", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "universe-scout", model: "claude-sonnet-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are the universe-scout agent for the Valuation Driver Analysis pipeline.
@@ -280,6 +310,8 @@ Instructions:
 >
 > Use WebSearch extensively. Prioritize regulatory filings and factual data sources. Do not estimate or interpolate any values — record `null` with a `missing_reason` for unavailable data.
 >
+> **URL log:** Append every URL you visit to `data/raw/{TICKER}/{DATE}/urls_consumed_universe.jsonl` — one JSON object per line: `{"url": "...", "firm": "...", "timestamp": "...", "status": "ok|error|irrelevant"}`.
+>
 > **Output:** `data/processed/{TICKER}/{DATE}/1-universe/peer_universe.json`
 >
 > Schema per firm:
@@ -299,7 +331,7 @@ Instructions:
 
 ### Agent: source-mapper
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "source-mapper", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "source-mapper", model: "claude-sonnet-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are the source-mapper agent for the Valuation Driver Analysis pipeline.
@@ -324,6 +356,8 @@ Instructions:
 >
 > **Bias tags:** `company-produced`, `regulatory-filing`, `third-party-analyst`, `journalist`, `industry-report`, `peer-disclosure`
 >
+> **URL log:** Append every URL you visit to `data/raw/{TICKER}/{DATE}/urls_consumed_sources.jsonl` — one JSON object per line: `{"url": "...", "firm": "...", "timestamp": "...", "status": "ok|error|irrelevant"}`.
+>
 > **Output:** `data/processed/{TICKER}/{DATE}/1-universe/source_catalog.json`
 >
 > Schema per source:
@@ -342,7 +376,7 @@ Instructions:
 
 ### Agent: metric-architect
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "metric-architect", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "metric-architect", model: "claude-sonnet-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are the metric-architect agent for the Valuation Driver Analysis pipeline.
@@ -416,11 +450,30 @@ Spawn two agents in parallel:
 
 **CRITICAL: Split into 3 parallel tiers of ~9 firms each. Never assign 25+ firms to one agent — this will cause timeouts and incomplete output.**
 
+**Pre-dispatch: Generate metric checklist and (optionally) delta spec**
+
+Before spawning data-collector agents, generate the metric checklist:
+
+```bash
+python3 -m src.analyzer.metric_checklist --run-dir data/processed/{TICKER}/{DATE}/
+```
+
+This creates `2-data/metric_checklist.json` with per-tier, per-firm collection priorities (critical/high/medium/low/skip).
+
+If `--base-run` was provided, also generate the delta spec:
+
+```bash
+python3 -m src.analyzer.data_gaps --run-dir data/processed/{TICKER}/{base_run_date}/
+python3 -m src.analyzer.delta_spec --base-run data/processed/{TICKER}/{base_run_date}/ --new-run-dir data/processed/{TICKER}/{DATE}/
+```
+
+This creates `2-data/delta_spec.json` with carry-forward data (never re-collected), skip list (confirmed non-disclosure), and targeted collection assignments per tier. **When delta_spec.json exists, data-collector agents collect ONLY cells listed in `collect.tierN.assignments` — no other metrics.**
+
 Spawn three sub-instances of the data-collector, each covering a tier of firms:
 
 **Tier 1 (top firms by AUM — approximately first 9):**
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "data-collector-t1", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "data-collector-t1", model: "claude-sonnet-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are data-collector-t1 for the Valuation Driver Analysis pipeline.
@@ -429,6 +482,8 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/1-universe/peer_universe.json` to get the full firm list.
 > Read `data/processed/{TICKER}/{DATE}/1-universe/metric_taxonomy.json` to get the metric taxonomy.
+> Read `data/processed/{TICKER}/{DATE}/2-data/metric_checklist.json` for per-metric collection priorities. Focus effort on `critical` and `high` priority metrics first. For `skip` priority metrics, do not attempt collection.
+> If `data/processed/{TICKER}/{DATE}/2-data/delta_spec.json` exists, this is an incremental run. Read the delta spec and collect ONLY the metrics listed in `collect.tier1.assignments` for your tier's firms. Carry-forward data is already preserved — do NOT re-collect existing data points.
 >
 > **Cover firms ranked 1–9 by AUM** (the largest firms in the universe).
 >
@@ -440,11 +495,13 @@ Instructions:
 >
 > Missing data: record as `null` with explicit `missing_reason`. No estimation or interpolation. **However, when a target metric is not directly disclosed but its components are available, derive the ratio.** Tag derived values with `derivation_method` (formula), `component_sources` (source IDs for each input), and `derivation_confidence` (`high` if both components from same filing, `medium` if different filings, `low` if any component estimated). Common derivable metrics: Compensation_to_Revenue (comp / mgmt fee revenue), G&A_to_FEAUM (G&A / FEAUM), Headcount_to_FEAUM (employees / FEAUM). Derived metrics with confidence `low` are classified `contextual_only`.
 >
+> **URL log:** Append every URL you visit (WebSearch result pages, WebFetch targets, filing URLs) to `data/raw/{TICKER}/{DATE}/urls_consumed_tier1.jsonl` — one JSON object per line: `{"url": "...", "firm": "...", "timestamp": "...", "status": "ok|error|irrelevant"}`. Write this log incrementally as you work, not just at the end.
+>
 > **Output:** `data/processed/{TICKER}/{DATE}/2-data/quantitative_tier1.json`
 
 **Tier 2 (mid-tier firms — approximately firms 10–18):**
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "data-collector-t2", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "data-collector-t2", model: "claude-sonnet-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are data-collector-t2 for the Valuation Driver Analysis pipeline.
@@ -453,6 +510,8 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/1-universe/peer_universe.json` to get the full firm list.
 > Read `data/processed/{TICKER}/{DATE}/1-universe/metric_taxonomy.json` to get the metric taxonomy.
+> Read `data/processed/{TICKER}/{DATE}/2-data/metric_checklist.json` for per-metric collection priorities. Focus effort on `critical` and `high` priority metrics first. For `skip` priority metrics, do not attempt collection.
+> If `data/processed/{TICKER}/{DATE}/2-data/delta_spec.json` exists, this is an incremental run. Read the delta spec and collect ONLY the metrics listed in `collect.tier2.assignments` for your tier's firms. Carry-forward data is already preserved — do NOT re-collect existing data points.
 >
 > **Cover firms ranked 10–18 by AUM** (mid-tier firms in the universe).
 >
@@ -462,11 +521,13 @@ Instructions:
 >
 > For each data point record: firm_id, metric_id, value, period, currency, source_id, bias_tag, confidence, extraction_notes. Missing data → `null` with `missing_reason`. **However, when a target metric is not directly disclosed but its components are available, derive the ratio.** Tag derived values with `derivation_method` (formula), `component_sources` (source IDs), and `derivation_confidence` (`high`/`medium`/`low`). Common derivable metrics: Compensation_to_Revenue, G&A_to_FEAUM, Headcount_to_FEAUM. Derived metrics with confidence `low` are `contextual_only`.
 >
+> **URL log:** Append every URL you visit to `data/raw/{TICKER}/{DATE}/urls_consumed_tier2.jsonl` — one JSON object per line: `{"url": "...", "firm": "...", "timestamp": "...", "status": "ok|error|irrelevant"}`.
+>
 > **Output:** `data/processed/{TICKER}/{DATE}/2-data/quantitative_tier2.json`
 
 **Tier 3 (remaining firms — approximately firms 19–end):**
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "data-collector-t3", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "data-collector-t3", model: "claude-sonnet-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are data-collector-t3 for the Valuation Driver Analysis pipeline.
@@ -475,6 +536,8 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/1-universe/peer_universe.json` to get the full firm list.
 > Read `data/processed/{TICKER}/{DATE}/1-universe/metric_taxonomy.json` to get the metric taxonomy.
+> Read `data/processed/{TICKER}/{DATE}/2-data/metric_checklist.json` for per-metric collection priorities. Focus effort on `critical` and `high` priority metrics first. For `skip` priority metrics, do not attempt collection.
+> If `data/processed/{TICKER}/{DATE}/2-data/delta_spec.json` exists, this is an incremental run. Read the delta spec and collect ONLY the metrics listed in `collect.tier3.assignments` for your tier's firms. Carry-forward data is already preserved — do NOT re-collect existing data points.
 >
 > **Cover firms ranked 19 through the end** (smaller firms in the universe).
 >
@@ -484,16 +547,26 @@ Instructions:
 >
 > For each data point record: firm_id, metric_id, value, period, currency, source_id, bias_tag, confidence, extraction_notes. Missing data → `null` with `missing_reason`. **However, when a target metric is not directly disclosed but its components are available, derive the ratio.** Tag derived values with `derivation_method` (formula), `component_sources` (source IDs), and `derivation_confidence` (`high`/`medium`/`low`). Common derivable metrics: Compensation_to_Revenue, G&A_to_FEAUM, Headcount_to_FEAUM. Derived metrics with confidence `low` are `contextual_only`.
 >
+> **URL log:** Append every URL you visit to `data/raw/{TICKER}/{DATE}/urls_consumed_tier3.jsonl` — one JSON object per line: `{"url": "...", "firm": "...", "timestamp": "...", "status": "ok|error|irrelevant"}`.
+>
 > **Output:** `data/processed/{TICKER}/{DATE}/2-data/quantitative_tier3.json`
 
-After all three tiers complete, merge the outputs:
+After all three tiers complete:
+
+**If `--base-run` was provided:** Merge carry-forward data into the tier files before proceeding. This injects base-run data points that were NOT re-collected into the tier files so the standardization step sees the full dataset:
+
+```bash
+python3 -m src.analyzer.delta_spec --merge --new-run-dir data/processed/{TICKER}/{DATE}/
+```
+
+**Then** merge tier outputs into a single file:
 
 > Send to metric-architect (via SendMessage):
 > Merge `2-data/quantitative_tier1.json`, `2-data/quantitative_tier2.json`, `2-data/quantitative_tier3.json` into a single `2-data/quantitative_data.json`. Deduplicate by firm_id + metric_id + period. Log any conflicts (same firm+metric+period with different values) to `2-data/merge_conflicts.md`.
 
 ### Agent: strategy-extractor
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "strategy-extractor", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "strategy-extractor", model: "claude-opus-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are the strategy-extractor agent for the Valuation Driver Analysis pipeline.
@@ -528,6 +601,8 @@ Instructions:
 > Use `null` plus `missing_reason` for dimensions without adequate evidence. Do not force-fit. Add new categories only when repeated evidence requires it. The ontology is a minimum baseline, not a ceiling.
 >
 > Profiles are self-contained — they do not reference {COMPANY} and do not compare firms against any external benchmark.
+>
+> **URL log:** Append every URL you visit to `data/raw/{TICKER}/{DATE}/urls_consumed_strategy.jsonl` — one JSON object per line: `{"url": "...", "firm": "...", "timestamp": "...", "status": "ok|error|irrelevant"}`.
 >
 > **Output A:** `data/processed/{TICKER}/{DATE}/2-data/strategy_profiles.json` (must conform to `schemas/vda/strategy_profile.schema.json`)
 >
@@ -575,6 +650,20 @@ After all four agents complete (three data-collector tiers + strategy-extractor)
 - Qualitative profiles have >= 2 concrete actions per firm (VD-B2)
 - **Operational metrics coverage:** verify disclosure quality for Operational Feasibility & Scalable Infrastructure metrics — any metric with < 60% coverage is reclassified as `contextual-only` (excluded from VD-A4 correlation analysis but permitted in context tables and deep-dives)
 - **FX methodology check:** verify that FX_MATERIAL flags are populated where applicable; confirm period-end rates used for stock metrics and period-average rates for flow metrics
+
+**Data gaps analysis:** After validating coverage, generate the data gaps report:
+
+```bash
+python3 -m src.analyzer.data_gaps --run-dir data/processed/{TICKER}/{DATE}/
+```
+
+This creates `3-analysis/data_gaps.json` with gap classifications (never_attempted/not_disclosed/derivable_not_derived/stale), backfill priorities, and high-impact targets. Display the summary to the user:
+- Fill rate: N% (X/Y driver metric cells populated)
+- Metrics above 60% threshold: N | Below: N | Zero coverage: N
+- High-impact backfill targets: list metrics where N more cells would cross the 60% threshold
+- Recommended action: backfill_critical | proceed_with_warning | sufficient_coverage
+
+If recommended action is `backfill_critical` in auto mode, dispatch targeted backfill agents for the top 5 high-impact metrics before proceeding.
 
 **Timeout detection:** Check whether all three `2-data/quantitative_tier*.json` files exist and are non-empty. If a tier file is missing or empty after the agent completes, re-dispatch that tier's data-collector with a simpler prompt focused only on the most critical metrics (valuation multiples + FRE margin + FEAUM CAGR).
 
@@ -726,7 +815,7 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 
 After VD-A5 completes, spawn the convergence analyst:
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "convergence-analyst", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "convergence-analyst", model: "claude-opus-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are the convergence-analyst for the Valuation Driver Analysis pipeline.
@@ -801,7 +890,7 @@ Spawn two agents in parallel:
 
 ### Agent: platform-analyst
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "platform-analyst", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "platform-analyst", model: "claude-opus-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are the platform-analyst for the Valuation Driver Analysis pipeline.
@@ -832,7 +921,7 @@ Instructions:
 
 ### Agent: vertical-analyst
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "vertical-analyst", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "vertical-analyst", model: "claude-opus-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are the vertical-analyst for the Valuation Driver Analysis pipeline.
@@ -931,7 +1020,7 @@ Before proceeding to Step 5, dispatch the claim-auditor agent to verify deep-div
 
 ### Agent: playbook-synthesizer
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "playbook-synthesizer", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "playbook-synthesizer", model: "claude-opus-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are the playbook-synthesizer for the Valuation Driver Analysis pipeline.
@@ -1052,7 +1141,7 @@ Then spawn the report-builder and target-lens agents **in parallel** (they share
 
 ### Agent: report-builder
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "report-builder", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "report-builder", model: "claude-opus-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are the report-builder for the Valuation Driver Analysis pipeline.
@@ -1135,7 +1224,7 @@ Instructions:
 
 ### Agent: target-lens
 
-Spawn with Agent tool (subagent_type: general-purpose, name: "target-lens", team_name: "vda-{TICKER_LOWER}"):
+Spawn with Agent tool (subagent_type: general-purpose, name: "target-lens", model: "claude-opus-4-6", team_name: "vda-{TICKER_LOWER}"):
 
 Instructions:
 > You are the target-lens agent for the Valuation Driver Analysis pipeline.
@@ -1263,12 +1352,14 @@ The Data Collector agents must:
 3. **Flag firms with non-calendar fiscal years** and specify the exact period covered.
 
 ### Iterative Run Support
+
 When `--base-run` is provided:
-1. All agents receive the path to the previous run's outputs as additional context
-2. Agents are instructed to: review previous findings, identify gaps or weak points, incorporate any new supplemental sources, and produce improved outputs
-3. The convergence analyst explicitly compares the new peer set against the previous run's peer set and documents changes
-4. The report-builder includes a "Changes from Previous Analysis" appendix if base_run outputs exist
-5. Quality gates compare coverage metrics against the base run — new run should not regress on coverage
+1. Before data collection, generate the delta spec (see data-collector pre-dispatch above). The delta spec ensures agents collect ONLY complementary data — existing data is carried forward, confirmed non-disclosures are skipped.
+2. Data-collector agents read `2-data/delta_spec.json` and follow its `collect.tierN.assignments` — they do NOT re-collect carry-forward data.
+3. The convergence analyst explicitly compares the new peer set against the previous run's peer set and documents changes.
+4. The report-builder includes a "Changes from Previous Analysis" appendix if base_run outputs exist.
+5. Quality gates compare coverage metrics against the base run — new run should not regress on coverage.
+6. After QG2, the data gaps report shows improvement: compare `fill_rate_pct` and `metrics_above_threshold` against the base run's `data_gaps.json`.
 
 ## Step 12: Cleanup and Report
 

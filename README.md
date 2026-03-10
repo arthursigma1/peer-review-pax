@@ -167,6 +167,42 @@ All pipelines run through Claude Code slash commands:
 - For dashboard: Node.js 18+, Rust toolchain, Tauri prerequisites
 - Optional contract validation: `python -m src.validation.vda_contracts /path/to/data/processed/pax/YYYY-MM-DD-runN`
 
+### Crawlee Source Enrichment
+
+The repo now includes a Crawlee-based enrichment step for VDA source catalogs. It reads the latest
+`data/processed/pax/*/1-universe/source_catalog.json`, crawls the seeded URLs, follows a small number
+of relevant links (earnings pages, SEC filings, investor presentations), and writes:
+
+- structured crawl outputs to `data/processed/pax/<run>/1-universe/crawl/`
+- extracted raw text files to `data/raw/pax/crawled/<run>/`
+
+Run it with Python 3.11:
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python -m src.ingestion.crawlee_vda --max-seeds 10
+```
+
+Useful flags:
+
+```bash
+python -m src.ingestion.crawlee_vda --catalog data/processed/pax/2026-03-09-run2/1-universe/source_catalog.json
+python -m src.ingestion.crawlee_vda --max-seeds 25 --max-links-per-page 3 --max-requests 120
+python -m src.ingestion.crawlee_vda --respect-robots-txt
+```
+
+To convert crawl output into a VDA-friendly dataset with per-source utility scores, signal counts,
+ranked snippets, and firm-level evidence summaries:
+
+```bash
+python -m src.analyzer.crawl_vda_dataset --crawl-results data/processed/pax/2026-03-09-run2/1-universe/crawl/crawl_results.json
+```
+
+This writes `crawl_vda_dataset.json`, `crawl_vda_firm_summary.json`, and `crawl_vda_sources.csv`
+to `data/processed/pax/<run>/2-data/`.
+
 ### Reuse for Another Company
 
 Replace the ticker. All prompts use `{COMPANY}`, `{TICKER}`, and `{SECTOR}` placeholders. The VDA pipeline auto-detects sector and identifies peers:
