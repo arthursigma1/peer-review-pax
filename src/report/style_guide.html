@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VDA Report Design System — Style Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Single source of truth.
+   All component styles reference these variables.
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+  /* Accent */
+  --color-primary: #0068ff;
+  --color-primary-hover: #0055d4;
+  --color-primary-dim: #e8f0ff;
+
+  /* Text hierarchy */
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #9ca3af;
+
+  /* Surfaces */
+  --color-surface-base: #ffffff;
+  --color-surface-raised: #f8f9fa;
+  --color-surface-alt: #f3f4f6;
+
+  /* Borders */
+  --color-border: #e0e0e0;
+
+  /* Status */
+  --color-success: #10b981;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+
+  /* Chart */
+  --color-bar-default: #e5e7eb;
+
+  /* Typography */
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ══════════════════════════════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background: var(--color-surface-base);
+  line-height: 1.65;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LAYOUT
+   ══════════════════════════════════════════════════════════════════ */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem 8rem;
+}
+
+.section {
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+/* Two-column grid */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 720px) {
+  .two-col { grid-template-columns: 1fr; }
+  .container { padding: 2rem 1.25rem 6rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   TYPOGRAPHY
+   ══════════════════════════════════════════════════════════════════ */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-text-primary);
+}
+
+h1 { font-size: 2rem; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+h2 {
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  margin: 3rem 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+h3 { font-size: 1.05rem; font-weight: 600; margin: 1.75rem 0 0.75rem; }
+h4 { font-size: 0.9rem; font-weight: 600; margin: 1.25rem 0 0.5rem; }
+
+p { margin-bottom: 0.9rem; color: var(--color-text-primary); }
+
+code, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--color-surface-alt);
+  color: var(--color-primary);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+}
+
+.ticker {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--color-text-primary);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   STYLE GUIDE CHROME — meta elements for the guide itself
+   ══════════════════════════════════════════════════════════════════ */
+.sg-header {
+  padding: 2.5rem 0 2rem;
+  border-bottom: 3px solid var(--color-primary);
+  margin-bottom: 3rem;
+}
+
+.sg-header .sg-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.sg-header p {
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  font-size: 0.95rem;
+}
+
+.component-label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  background: var(--color-surface-alt);
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+
+.sg-rule {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.25rem;
+  border-left: 2px solid var(--color-border);
+  padding-left: 0.75rem;
+  font-style: italic;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: BUMPER STATEMENT
+   Key conclusion callout — blue left border, light blue background.
+   Use at the close of each analytical section with a "Therefore:" lead.
+   ══════════════════════════════════════════════════════════════════ */
+.bumper {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--color-primary-dim);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 6px 6px 0;
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-text-primary);
+}
+
+.bumper strong {
+  color: var(--color-primary-hover);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: PLAY CARD
+   Strategic play (PLAY-NNN). Gray header + body. Blue ID tag.
+   ══════════════════════════════════════════════════════════════════ */
+.play-card {
+  margin: 1rem 0;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.play-card .play-header {
+  padding: 0.75rem 1rem;
+  background: var(--color-surface-raised);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.play-card .play-id {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.play-card .play-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+.play-card .play-drivers {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.play-card .play-body {
+  padding: 1rem;
+  font-size: 0.87rem;
+}
+
+.play-card .play-body p {
+  margin-bottom: 0.65rem;
+  color: var(--color-text-primary);
+}
+
+.play-evidence {
+  background: var(--color-surface-raised);
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin: 0.75rem 0;
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.play-evidence strong { color: var(--color-text-primary); }
+
+.play-recommendation {
+  background: var(--color-primary-dim);
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: ANTI-PATTERN CARD
+   Cautionary lesson (ANTI-NNN). Red border + header.
+   ══════════════════════════════════════════════════════════════════ */
+.anti-card {
+  margin: 1rem 0;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.anti-card .anti-header {
+  padding: 0.75rem 1rem;
+  background: #fef2f2;
+  border-bottom: 1px solid #fecaca;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.anti-card .anti-id {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-error);
+  white-space: nowrap;
+}
+
+.anti-card .anti-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+.anti-card .anti-body {
+  padding: 1rem;
+  font-size: 0.87rem;
+}
+
+.anti-card .anti-body p {
+  margin-bottom: 0.65rem;
+  color: var(--color-text-primary);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: CHART WRAPPERS (Knaflic proximity rule)
+   All charts live inside <figure data-chart-type="...">.
+   Title is action-oriented (verb). Caption answers "So what?".
+   No gridlines, no borders, no legend — only 1 highlight color.
+   ══════════════════════════════════════════════════════════════════ */
+figure[data-chart-type] {
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+figure[data-chart-type] .chart-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+figure[data-chart-type] .chart-so-what {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin: 0.5rem 0 0 0;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ── Horizontal Bar Chart ──────────────────────────────────────── */
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bar-label {
+  width: 140px;
+  font-size: 0.85rem;
+  text-align: right;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bar {
+  height: 28px;
+  background: var(--color-bar-default);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  transition: width 0.3s ease;
+}
+
+.bar.highlight {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* ── Heatmap ───────────────────────────────────────────────────── */
+.heatmap {
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.heatmap th {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  padding: 0.4rem 0.5rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.heatmap th.col-header {
+  text-align: center;
+  width: 64px;
+}
+
+.heatmap td {
+  width: 64px;
+  height: 36px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  border: 1px solid var(--color-surface-base);
+}
+
+.heatmap .row-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  text-align: left;
+  padding-right: 1rem;
+  white-space: nowrap;
+}
+
+/* Strength levels — opacity steps of primary blue */
+.heatmap .strength-0 { background: var(--color-surface-alt); color: var(--color-text-muted); }
+.heatmap .strength-1 { background: rgba(0, 104, 255, 0.08); color: var(--color-text-secondary); }
+.heatmap .strength-2 { background: rgba(0, 104, 255, 0.20); color: var(--color-text-primary); }
+.heatmap .strength-3 { background: rgba(0, 104, 255, 0.40); color: var(--color-text-primary); }
+.heatmap .strength-4 { background: rgba(0, 104, 255, 0.65); color: white; }
+.heatmap .strength-5 { background: rgba(0, 104, 255, 1.0);  color: white; }
+
+/* ── Simple Text / Stat Callout ────────────────────────────────── */
+.stat-callout {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--color-surface-raised);
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+
+.stat-callout .stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  line-height: 1.1;
+}
+
+.stat-callout .stat-label {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+.stat-callout .stat-sub {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  margin-top: 0.5rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: FOOTNOTE APPARATUS
+   Numbered superscript citations + footnotes section with bias tags.
+   ══════════════════════════════════════════════════════════════════ */
+sup.fn a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+sup.fn a:hover { text-decoration: underline; }
+
+.footnotes {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+}
+
+.footnotes ol {
+  padding-left: 1.75rem;
+}
+
+.footnotes li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.footnotes li .fn-source {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.footnotes .bias-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.05rem 0.35rem;
+  border-radius: 3px;
+  background: var(--color-surface-alt);
+  color: var(--color-text-secondary);
+  vertical-align: middle;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: COLLAPSIBLE DETAILS
+   Native <details>/<summary> with custom expand indicator.
+   ══════════════════════════════════════════════════════════════════ */
+details {
+  margin: 1rem 0;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+details summary {
+  padding: 0.75rem 1rem;
+  background: var(--color-surface-raised);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  list-style: none;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+details summary::-webkit-details-marker { display: none; }
+
+details summary::before {
+  content: "\25B6";
+  display: inline-block;
+  margin-right: 0.55rem;
+  font-size: 0.6rem;
+  color: var(--color-text-muted);
+  transition: transform 0.2s;
+  vertical-align: middle;
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+details summary:hover {
+  background: var(--color-surface-alt);
+  color: var(--color-text-primary);
+}
+
+.detail-content {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.88rem;
+  color: var(--color-text-primary);
+}
+
+.detail-content p:last-child { margin-bottom: 0; }
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: QUARTILE BADGES
+   q1 = top quartile (green), q4 = bottom (red). Mono font.
+   ══════════════════════════════════════════════════════════════════ */
+.q1, .q2, .q3, .q4 {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.q1 { background: #dcfce7; color: #166534; }
+.q2 { background: #e0f2fe; color: #075985; }
+.q3 { background: #fef3c7; color: #92400e; }
+.q4 { background: #fee2e2; color: #991b1b; }
+
+/* Driver classification badges */
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-stable    { background: #dcfce7; color: #166534; }
+.badge-specific  { background: #dbeafe; color: #1e40af; }
+.badge-contextual{ background: var(--color-surface-alt); color: var(--color-text-secondary); }
+
+/* Confidence */
+.confidence-high     { color: var(--color-success); font-weight: 600; }
+.confidence-moderate { color: var(--color-warning); font-weight: 600; }
+.confidence-low      { color: var(--color-text-muted); font-weight: 600; }
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: TWO-COLUMN COMPARISON GRID
+   ══════════════════════════════════════════════════════════════════ */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin: 1.25rem 0;
+}
+
+.comparison-grid .col-card {
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1.25rem;
+}
+
+.comparison-grid .col-card .col-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.65rem;
+}
+
+.comparison-grid .col-card .ticker {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.comparison-grid .col-card ul {
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.comparison-grid .col-card ul li {
+  margin-bottom: 0.3rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: NAVIGATION
+   Floating trigger button (bottom-right) + slide-in sidebar overlay.
+   Scroll spy highlights current section.
+   ══════════════════════════════════════════════════════════════════ */
+.nav-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.nav-trigger:hover {
+  background: var(--color-primary-hover);
+}
+
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: none;
+}
+
+.nav-backdrop.open { display: block; }
+
+.nav-sidebar {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100vh;
+  background: var(--color-surface-base);
+  border-left: 1px solid var(--color-border);
+  z-index: 1001;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  transition: right 0.25s ease;
+}
+
+.nav-sidebar.open { right: 0; }
+
+.nav-sidebar .nav-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: var(--color-surface-alt);
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-sidebar .nav-close:hover {
+  background: var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.nav-sidebar .nav-title {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+  margin-top: 0.25rem;
+}
+
+.nav-sidebar a {
+  display: block;
+  padding: 6px 0;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  padding-left: 12px;
+  transition: color 0.15s, border-left-color 0.15s;
+  line-height: 1.4;
+}
+
+.nav-sidebar a:hover {
+  color: var(--color-primary);
+  border-left-color: var(--color-primary-dim);
+}
+
+.nav-sidebar a.active {
+  color: var(--color-primary);
+  border-left-color: var(--color-primary);
+  font-weight: 500;
+}
+
+.nav-sidebar a.nav-sub {
+  font-size: 0.78rem;
+  padding-left: 24px;
+  color: var(--color-text-muted);
+}
+
+.nav-sidebar a.nav-sub.active {
+  color: var(--color-primary);
+  border-left-color: var(--color-primary);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   TABLES (general)
+   ══════════════════════════════════════════════════════════════════ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.87rem;
+  margin-bottom: 1.25rem;
+}
+
+thead th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  padding: 0.6rem 0.75rem;
+  border-bottom: 2px solid var(--color-border);
+  white-space: nowrap;
+}
+
+tbody td {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+tbody tr:hover { background: var(--color-surface-raised); }
+
+.num {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-align: right;
+}
+
+.pos { color: var(--color-success); font-weight: 600; }
+.neg { color: var(--color-error); font-weight: 600; }
+.muted { color: var(--color-text-muted); }
+
+/* ══════════════════════════════════════════════════════════════════
+   PRINT
+   ══════════════════════════════════════════════════════════════════ */
+@media print {
+  .nav-trigger, .nav-sidebar, .nav-backdrop { display: none !important; }
+  h2 { break-before: page; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ────────────────────────────────────────────────────────── -->
+  <!-- STYLE GUIDE HEADER -->
+  <!-- ────────────────────────────────────────────────────────── -->
+  <div class="sg-header" id="top">
+    <div class="sg-label">VDA Report System &mdash; Design Reference v1.0</div>
+    <h1>Report Design System</h1>
+    <p>One example of each codified component. Copy the HTML structure directly into final reports. All tokens reference the <code>:root</code> variables above &mdash; never hard-code hex values.</p>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 1: TYPOGRAPHY & TOKENS
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-tokens">
+    <h2>Design Tokens</h2>
+    <p class="sg-rule">All colors, fonts, and spacing values live in <code>:root</code>. Component styles reference variables, not hex literals. This ensures a single-source change updates every component simultaneously.</p>
+
+    <h3>Color Palette</h3>
+    <table>
+      <thead>
+        <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>--color-primary</code></td><td class="num" style="color: #0068ff;">&#9632; #0068ff</td><td>Accent — links, active states, highlight bars, bumper borders, play IDs</td></tr>
+        <tr><td><code>--color-primary-hover</code></td><td class="num" style="color: #0055d4;">&#9632; #0055d4</td><td>Hover state for primary-colored elements</td></tr>
+        <tr><td><code>--color-primary-dim</code></td><td class="num" style="background:#e8f0ff; padding:0 4px;">&#9632; #e8f0ff</td><td>Bumper background, recommendation boxes</td></tr>
+        <tr><td><code>--color-text-primary</code></td><td class="num">#1a1a1a</td><td>Body text, headings, data values</td></tr>
+        <tr><td><code>--color-text-secondary</code></td><td class="num">#6b7280</td><td>Supporting text, labels, bar labels</td></tr>
+        <tr><td><code>--color-text-muted</code></td><td class="num">#9ca3af</td><td>Footnotes, timestamps, placeholders</td></tr>
+        <tr><td><code>--color-surface-base</code></td><td class="num">#ffffff</td><td>Page background</td></tr>
+        <tr><td><code>--color-surface-raised</code></td><td class="num">#f8f9fa</td><td>Card backgrounds, table headers, summary bars</td></tr>
+        <tr><td><code>--color-surface-alt</code></td><td class="num">#f3f4f6</td><td>Code backgrounds, secondary surfaces</td></tr>
+        <tr><td><code>--color-border</code></td><td class="num">#e0e0e0</td><td>All structural borders</td></tr>
+        <tr><td><code>--color-success</code></td><td class="num" style="color:#10b981;">&#9632; #10b981</td><td>Status only — confidence high, positive values, Q1 badge context</td></tr>
+        <tr><td><code>--color-warning</code></td><td class="num" style="color:#d97706;">&#9632; #d97706</td><td>Status only — confidence moderate</td></tr>
+        <tr><td><code>--color-error</code></td><td class="num" style="color:#dc2626;">&#9632; #dc2626</td><td>Status only — anti-pattern IDs, negative values</td></tr>
+        <tr><td><code>--color-bar-default</code></td><td class="num">#e5e7eb</td><td>Non-highlighted bars in bar charts</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Typography Scale</h3>
+    <div style="border:1px solid var(--color-border); border-radius:6px; overflow:hidden;">
+      <div style="padding:1.25rem; border-bottom:1px solid var(--color-border);">
+        <h1 style="margin:0;">Heading 1 — 2rem, weight 700</h1>
+        <span class="mono" style="font-size:0.72rem; color:var(--color-text-muted);">Cover titles only</span>
+      </div>
+      <div style="padding:1.25rem; border-bottom:1px solid var(--color-border);">
+        <h2 style="margin:0; border:none; padding:0;">Heading 2 — 1.35rem, weight 700</h2>
+        <span class="mono" style="font-size:0.72rem; color:var(--color-text-muted);">Section titles — blue bottom border</span>
+      </div>
+      <div style="padding:1.25rem; border-bottom:1px solid var(--color-border);">
+        <h3 style="margin:0;">Heading 3 — 1.05rem, weight 600</h3>
+        <span class="mono" style="font-size:0.72rem; color:var(--color-text-muted);">Subsection titles</span>
+      </div>
+      <div style="padding:1.25rem; border-bottom:1px solid var(--color-border);">
+        <h4 style="margin:0;">Heading 4 — 0.9rem, weight 600</h4>
+        <span class="mono" style="font-size:0.72rem; color:var(--color-text-muted);">Within-section labels</span>
+      </div>
+      <div style="padding:1.25rem; border-bottom:1px solid var(--color-border);">
+        <p style="margin:0;">Body text — 15px / 1.65 line-height. DM Sans regular. Used for all analytical prose. Sentences short, direct, evidence-first. No passive constructions on key findings.</p>
+        <span class="mono" style="font-size:0.72rem; color:var(--color-text-muted);">Base body</span>
+      </div>
+      <div style="padding:1.25rem;">
+        <span style="font-family: var(--font-mono); font-size:0.88rem;">IBM Plex Mono — tickers, data, IDs, footnote markers, badge text</span>
+        <br><span class="mono" style="font-size:0.72rem; color:var(--color-text-muted);">Mono — data and code only</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 2: BUMPER STATEMENT
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-bumper">
+    <h2>Bumper Statement</h2>
+    <div class="component-label">component: bumper</div>
+    <p class="sg-rule">Appears at the close of each analytical section. Always opens with a bolded directive: <strong>Therefore:</strong>, <strong>Implication:</strong>, or <strong>Bottom line:</strong>. Restates the section's key conclusion in action-oriented language. One bumper per section — never stack two.</p>
+
+    <!-- COMPONENT: bumper -->
+    <div class="bumper">
+      <strong>Therefore:</strong> For PAX, the peer evidence suggests that the highest-impact efficiency levers involve structural product decisions — specifically GP stakes scaling and open-end infrastructure vehicles — rather than operational cost reduction alone. Peers that achieved similar transitions did so over 3&ndash;5 year horizons with front-loaded operational investment.
+    </div>
+
+    <div class="bumper">
+      <strong>Bottom line:</strong> G&amp;A/FEAUM is a structural signal, not a tactical one. Firms that improved it did so by changing the composition of their platform — permanent capital, insurance float, advisory scope — not by cutting headcount.
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 3: PLAY CARD
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-play">
+    <h2>Play Card</h2>
+    <div class="component-label">component: play-card</div>
+    <p class="sg-rule">Each play has a unique PLAY-NNN ID, a headline action title (verb-first), a supporting evidence block, and an actionable recommendation. Driver tags in header are mono, comma-separated. Play IDs are blue. Body is compact — 3–5 sentences, no fluffy prose.</p>
+
+    <!-- COMPONENT: play-card -->
+    <div class="play-card">
+      <div class="play-header">
+        <span class="play-id">PLAY-003</span>
+        <span class="play-title">Anchor distributions to permanent capital vehicles, not mark-to-market carry</span>
+        <span class="play-drivers">DVR-001 · DVR-010</span>
+      </div>
+      <div class="play-body">
+        <p>Platforms with the most durable P/DE premiums — Apollo, Blue Owl, KKR post-Global Atlantic — derive over 80% of distributable earnings from management fee income rather than realized carry. This creates a predictable, non-cyclical DE/share trajectory that the market prices at premium multiples independent of the credit or PE cycle.</p>
+        <div class="play-evidence">
+          <strong>Evidence:</strong> Apollo FRE grew from $2.2B (2022) to $3.8B (2024) while carry fluctuated; DE/share grew monotonically each year. Blue Owl achieved a 0.85 FRE-to-DE conversion ratio — among the highest in the peer universe — because its fee streams are non-redeemable. <sup class="fn"><a href="#fn-sg-1">1</a></sup>
+        </div>
+        <div class="play-recommendation">
+          <strong>For PAX:</strong> Accelerate the GP stakes mandate (GPMS) — it is the only current business line with >90% permanent capital and FRE margins above 60%. Each $1B in GP stakes AUM adds approximately $8–10M in permanent FRE at near-zero G&amp;A. Prioritize GP stakes fundraising in the next capital formation cycle over incremental open-end PE vehicles.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 4: ANTI-PATTERN CARD
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-anti">
+    <h2>Anti-Pattern Card</h2>
+    <div class="component-label">component: anti-card</div>
+    <p class="sg-rule">Anti-patterns document failure modes observed in the peer set. ANTI-NNN IDs are red. Header background is a light red wash. Body describes the failure mode, names the firm(s) that exhibited it, and states the observable consequence. Ends with the condition under which PAX faces the same risk.</p>
+
+    <!-- COMPONENT: anti-card -->
+    <div class="anti-card">
+      <div class="anti-header">
+        <span class="anti-id">ANTI-002</span>
+        <span class="anti-title">Acquiring AUM without acquiring cost leverage degrades G&amp;A/FEAUM</span>
+      </div>
+      <div class="anti-body">
+        <p>Roll-up strategies that add fund AUM through M&amp;A typically import the acquired firm's cost structure alongside its assets. Unless the acquirer achieves integration at the G&amp;A layer — shared compliance, consolidated back-office, single fund administration platform — the consolidated G&amp;A/FEAUM ratio rises even as headline AUM grows.</p>
+        <p><strong>Observed in:</strong> Ridgepost Capital — $29.4B FPAUM acquired through 4 bolt-ons, but each partner manager maintained independent compliance and back-office. G&amp;A as a percentage of management fees remained above the peer median three years post-acquisition. <sup class="fn"><a href="#fn-sg-2">2</a></sup></p>
+        <p><strong>Risk for PAX:</strong> The LatAm M&amp;A strategy (recent Chile/Colombia entries) adds regional offices and regulatory overhead without proportional FEAUM. If PAX pursues further LatAm market entries without consolidating back-office at the Patria level, each entry compounds the G&amp;A/FEAUM penalty. The GPMS initiative is the structural offset — US-domiciled, capital-light, no incremental G&amp;A.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 5: HORIZONTAL BAR CHART
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-barchart">
+    <h2>Horizontal Bar Chart</h2>
+    <div class="component-label">component: figure[data-chart-type="horizontalBar"]</div>
+    <p class="sg-rule">Title is a verb-driven action statement (from <code>chart_title_verbs</code> list). One highlight color only — primary blue on the focal bar, gray on all others. No axis labels, no gridlines, no legend. Value shown inline on bar. Caption answers "So what?" in one sentence.</p>
+
+    <!-- COMPONENT: horizontal-bar-chart -->
+    <figure data-chart-type="horizontalBar">
+      <h4 class="chart-title">G&amp;A/FEAUM drives the widest spread in P/FRE multiples across the peer universe</h4>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <span class="bar-label">APO</span>
+          <div class="bar highlight" style="width: 85%;">−0.61</div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">KKR</span>
+          <div class="bar" style="width: 72%;">−0.54</div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">OWL</span>
+          <div class="bar" style="width: 68%;">−0.51</div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">STEP</span>
+          <div class="bar" style="width: 55%;">−0.41</div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">PAX</span>
+          <div class="bar" style="width: 30%;">−0.22</div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">RPC</span>
+          <div class="bar" style="width: 18%;">−0.13</div>
+        </div>
+      </div>
+      <p class="chart-so-what">Apollo and Blue Owl achieve G&amp;A leverage through structural mechanisms — insurance float and permanent capital — that PAX can replicate via the GP stakes mandate, not cost reduction.</p>
+    </figure>
+
+    <h3>Bar Chart with Quartile Context</h3>
+
+    <figure data-chart-type="horizontalBar">
+      <h4 class="chart-title">DE/share explains valuation premium more reliably than absolute AUM size</h4>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <span class="bar-label">APO <span class="q1">Q1</span></span>
+          <div class="bar highlight" style="width: 90%;">$4.87</div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">KKR <span class="q1">Q1</span></span>
+          <div class="bar" style="width: 78%;">$4.21</div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">BX <span class="q1">Q1</span></span>
+          <div class="bar" style="width: 70%;">$3.78</div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">CG <span class="q2">Q2</span></span>
+          <div class="bar" style="width: 45%;">$2.44</div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">PAX <span class="q3">Q3</span></span>
+          <div class="bar" style="width: 22%;">$1.19</div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">RPC <span class="q4">Q4</span></span>
+          <div class="bar" style="width: 12%;">$0.64</div>
+        </div>
+      </div>
+      <p class="chart-so-what">The correlation is Spearman ρ = 0.857 on EV/FEAUM (High confidence, base run) — DE/share is the clearest shareholder-side signal in the dataset.</p>
+    </figure>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 6: HEATMAP
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-heatmap">
+    <h2>Heatmap</h2>
+    <div class="component-label">component: figure[data-chart-type="heatmap"]</div>
+    <p class="sg-rule">Used for correlation matrices and driver-multiple grids. Five strength levels, all blue opacity steps — no other colors. Row labels in mono. Strength-5 (full blue) for strongest correlations. Empty or insignificant cells use strength-0 (gray). Caption interprets the dominant pattern.</p>
+
+    <!-- COMPONENT: heatmap -->
+    <figure data-chart-type="heatmap">
+      <h4 class="chart-title">G&amp;A/FEAUM leads all drivers on cross-multiple consistency</h4>
+      <div style="overflow-x: auto;">
+        <table class="heatmap">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="col-header">P/FRE</th>
+              <th class="col-header">P/DE</th>
+              <th class="col-header">EV/FEAUM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">G&amp;A/FEAUM (DVR-010)</td>
+              <td class="strength-5">−0.61</td>
+              <td class="strength-4">−0.51</td>
+              <td class="strength-0">−0.02</td>
+            </tr>
+            <tr>
+              <td class="row-label">DE/share (DVR-001)</td>
+              <td class="strength-3">0.54</td>
+              <td class="strength-2">0.38</td>
+              <td class="strength-5">0.86</td>
+            </tr>
+            <tr>
+              <td class="row-label">FRE Growth (DVR-005)</td>
+              <td class="strength-4">0.58</td>
+              <td class="strength-2">0.34</td>
+              <td class="strength-1">0.21</td>
+            </tr>
+            <tr>
+              <td class="row-label">FEAUM (DVR-004)</td>
+              <td class="strength-3">0.47</td>
+              <td class="strength-3">0.45</td>
+              <td class="strength-4">0.63</td>
+            </tr>
+            <tr>
+              <td class="row-label">Total AUM (DVR-003)</td>
+              <td class="strength-2">0.31</td>
+              <td class="strength-2">0.29</td>
+              <td class="strength-3">0.52</td>
+            </tr>
+            <tr>
+              <td class="row-label">Comp/FEAUM (DVR-009)</td>
+              <td class="strength-2">−0.34</td>
+              <td class="strength-1">−0.22</td>
+              <td class="strength-0">−0.08</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="chart-so-what">Only DVR-010 achieves strength-4+ on two of three multiples, satisfying the <code>stable_v1_two_of_three</code> rule. DE/share (DVR-001) is the only other candidate — strong on EV/FEAUM, moderate on the others.</p>
+    </figure>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 7: SIMPLE TEXT CALLOUT
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-stat">
+    <h2>Simple Text Callout</h2>
+    <div class="component-label">component: figure[data-chart-type="simpleText"]</div>
+    <p class="sg-rule">A single large number with a label and optional context line. Used when a single statistic is the entire point. Mono font on the value. One per section maximum — overuse dilutes impact.</p>
+
+    <!-- COMPONENT: simple-text-callout -->
+    <div class="two-col">
+      <figure data-chart-type="simpleText">
+        <h4 class="chart-title">G&amp;A/FEAUM separates the top and bottom quartile by 4×</h4>
+        <div class="stat-callout">
+          <div class="stat-value">4.2×</div>
+          <div class="stat-label">Spread between Q1 and Q4 firms on G&amp;A / FEAUM ratio</div>
+          <div class="stat-sub">Q1 median: 0.18% &nbsp;|&nbsp; Q4 median: 0.76%</div>
+        </div>
+        <p class="chart-so-what">The gap is not noise — it reflects structural business model differences, not operating efficiency.</p>
+      </figure>
+
+      <figure data-chart-type="simpleText">
+        <h4 class="chart-title">DE/share growth predicts multiple expansion with 86% rank correlation</h4>
+        <div class="stat-callout">
+          <div class="stat-value">ρ&nbsp;=&nbsp;0.86</div>
+          <div class="stat-label">Spearman correlation: DE/share vs. EV/FEAUM</div>
+          <div class="stat-sub">N=19 &nbsp;|&nbsp; p=0.0002 &nbsp;|&nbsp; bootstrap CI: [0.71, 0.95]</div>
+        </div>
+        <p class="chart-so-what">The strongest single-metric correlation in the dataset, stable across two consecutive runs.</p>
+      </figure>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 8: FOOTNOTE APPARATUS
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-footnotes">
+    <h2>Footnote Apparatus</h2>
+    <div class="component-label">component: footnotes</div>
+    <p class="sg-rule">Inline superscripts link to numbered footnotes at section end. Each footnote lists the source ID, document name, and bias tag in mono. Bias tags: <code>regulatory-filing</code>, <code>company-produced</code>, <code>third-party-analyst</code>, <code>industry-report</code>. Back-link via anchor <code>id="fn-N"</code>.</p>
+
+    <p>
+      G&amp;A Expense to Fee-Earning AUM is the only metric satisfying the <code>stable_v1_two_of_three</code> classification rule in this run (&rho; = &minus;0.61 on P/FRE, &rho; = &minus;0.51 on P/DE; N=19).<sup class="fn"><a href="#fn-sg-1">1</a></sup> The underlying relationship was first identified in the 2026-03-09 base run,<sup class="fn"><a href="#fn-sg-2">2</a></sup> where DE/share was the primary stable driver.<sup class="fn"><a href="#fn-sg-3">3</a></sup>
+    </p>
+
+    <!-- COMPONENT: footnotes -->
+    <div class="footnotes">
+      <ol>
+        <li id="fn-sg-1">
+          <span class="fn-source">PS-VD-003</span> &mdash; Apollo Global Management, Annual Report 2024 (Form 10-K). Filed 2025-02-14. Section: Segment Operating Results, G&amp;A expense schedule. <span class="bias-tag">regulatory-filing</span>
+        </li>
+        <li id="fn-sg-2">
+          <span class="fn-source">PS-VD-101</span> &mdash; PAX VDA Base Run Analysis, 2026-03-09-run2. <code>driver_ranking.json</code>, field: <code>stable_drivers[0]</code>. <span class="bias-tag">company-produced</span>
+        </li>
+        <li id="fn-sg-3">
+          <span class="fn-source">PS-VD-008</span> &mdash; Blue Owl Capital, Investor Day Presentation 2024-11-20. Slide 14: "Permanent Capital — 85% of management fees." <span class="bias-tag">company-produced</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 9: COLLAPSIBLE DETAILS
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-details">
+    <h2>Collapsible Details</h2>
+    <div class="component-label">component: details</div>
+    <p class="sg-rule">Use for supporting evidence, cautionary cases, and sensitivity analysis that would interrupt the primary narrative if inline. Summary text states the type of content inside. Content follows the same body style as the main document — no markdown formatting.</p>
+
+    <!-- COMPONENT: collapsible-details -->
+    <details>
+      <summary>Q4 Cautionary Cases — G&amp;A/FEAUM</summary>
+      <div class="detail-content">
+        <p><strong><span class="ticker">RPC</span> (Ridgepost Capital):</strong> Multi-franchise roll-up acquired $29.4B FPAUM but also acquired duplicated cost structures. Each partner manager operates semi-autonomously with its own investment team, compliance, and back office. Operational consolidation was not initiated in the available evidence period. <sup class="fn"><a href="#fn-sg-1">1</a></sup></p>
+        <p><strong><span class="ticker">PAX</span> (Patria Investments):</strong> LatAm multi-country operations carry structurally higher G&amp;A per FEAUM dollar due to multi-jurisdiction offices, currency complexity, and regulatory overhead across Brazil, Chile, and Colombia. The $40.8B FEAUM base is insufficient to absorb these costs at the current product mix. The GPMS initiative represents the most promising efficiency vector, as US GP stakes generate fee revenue with developed-market cost structures.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Bootstrap Confidence Intervals — G&amp;A/FEAUM (10,000 resamples)</summary>
+      <div class="detail-content">
+        <table>
+          <thead>
+            <tr><th>Multiple</th><th>Point Estimate ρ</th><th>95% CI Lower</th><th>95% CI Upper</th><th>Confidence</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>P/FRE</td><td class="num neg">−0.61</td><td class="num">−0.81</td><td class="num">−0.29</td><td><span class="confidence-high">High</span></td></tr>
+            <tr><td>P/DE</td><td class="num neg">−0.51</td><td class="num">−0.74</td><td class="num">−0.18</td><td><span class="confidence-moderate">Moderate</span></td></tr>
+            <tr><td>EV/FEAUM</td><td class="num muted">−0.02</td><td class="num">−0.42</td><td class="num">0.39</td><td><span class="confidence-low">Unsupported</span></td></tr>
+          </tbody>
+        </table>
+        <p>The bootstrap CI on P/FRE does not cross zero, providing statistical confidence independent of p-value interpretation.</p>
+      </div>
+    </details>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 10: QUARTILE BADGES
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-badges">
+    <h2>Quartile Badges &amp; Classification Tags</h2>
+    <div class="component-label">component: .q1 .q2 .q3 .q4 · .badge</div>
+    <p class="sg-rule">Quartile badges appear inline in tables and bar chart labels. Q1 = top quartile (highest performance on the metric). For inverse metrics (lower is better, e.g. G&amp;A/FEAUM), Q1 = lowest ratio. Driver classification badges appear in correlation tables.</p>
+
+    <h3>Quartile Badges</h3>
+    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+      <span class="q1">Q1</span>
+      <span style="font-size:0.85rem; color:var(--color-text-secondary);">Top quartile — best-in-class</span>
+    </div>
+    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+      <span class="q2">Q2</span>
+      <span style="font-size:0.85rem; color:var(--color-text-secondary);">Second quartile — above median</span>
+    </div>
+    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+      <span class="q3">Q3</span>
+      <span style="font-size:0.85rem; color:var(--color-text-secondary);">Third quartile — below median</span>
+    </div>
+    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 2rem;">
+      <span class="q4">Q4</span>
+      <span style="font-size:0.85rem; color:var(--color-text-secondary);">Bottom quartile — lagging peers</span>
+    </div>
+
+    <h3>Driver Classification Badges</h3>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+      <span class="badge badge-stable">stable</span>
+      <span class="badge badge-specific">multiple-specific</span>
+      <span class="badge badge-contextual">contextual</span>
+    </div>
+
+    <h3>Confidence Labels</h3>
+    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+      <span class="confidence-high">High</span>
+      <span class="confidence-moderate">Moderate</span>
+      <span class="confidence-low">Low / Unsupported</span>
+    </div>
+
+    <h3>In-Table Usage Example</h3>
+    <table>
+      <thead>
+        <tr><th>Firm</th><th>Ticker</th><th>G&amp;A/FEAUM Quartile</th><th>DE/share Quartile</th><th>Classification</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Apollo Global Management</td>
+          <td><span class="ticker">APO</span></td>
+          <td><span class="q1">Q1</span></td>
+          <td><span class="q1">Q1</span></td>
+          <td><span class="badge badge-stable">stable</span></td>
+        </tr>
+        <tr>
+          <td>KKR &amp; Co.</td>
+          <td><span class="ticker">KKR</span></td>
+          <td><span class="q1">Q1</span></td>
+          <td><span class="q1">Q1</span></td>
+          <td><span class="badge badge-stable">stable</span></td>
+        </tr>
+        <tr>
+          <td>Patria Investments</td>
+          <td><span class="ticker">PAX</span></td>
+          <td><span class="q3">Q3</span></td>
+          <td><span class="q3">Q3</span></td>
+          <td><span class="badge badge-contextual">contextual</span></td>
+        </tr>
+        <tr>
+          <td>Ridgepost Capital</td>
+          <td><span class="ticker">RPC</span></td>
+          <td><span class="q4">Q4</span></td>
+          <td><span class="q4">Q4</span></td>
+          <td><span class="badge badge-contextual">contextual</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 11: TWO-COLUMN GRID
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-grid">
+    <h2>Two-Column Comparison Grid</h2>
+    <div class="component-label">component: .comparison-grid</div>
+    <p class="sg-rule">Side-by-side comparison of two firms, strategies, or time periods. Column label in small mono caps. Ticker displayed at top. Bullet lists for differentiating factors. Keep columns balanced — if one side has 5 bullets, the other should have ~5.</p>
+
+    <!-- COMPONENT: two-column-grid -->
+    <div class="comparison-grid">
+      <div class="col-card">
+        <div class="col-label">Q1 Exemplar</div>
+        <span class="ticker" style="font-size:1.1rem; color:var(--color-primary);">APO</span>
+        <p style="font-size:0.82rem; color:var(--color-text-secondary); margin: 0.25rem 0 0.75rem;">Apollo Global Management — G&amp;A/FEAUM: Q1</p>
+        <ul>
+          <li>Athene insurance integration ($300B+ permanent capital)</li>
+          <li>One origination team serves both GA and third-party funds</li>
+          <li>G&amp;A diluted across $559B FEAUM base</li>
+          <li>C-Corp conversion eliminated minority interest deduction</li>
+          <li>FRE grew $1.6B in 2 years with sub-linear G&amp;A growth</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-label">Q4 Cautionary</div>
+        <span class="ticker" style="font-size:1.1rem; color:var(--color-error);">RPC</span>
+        <p style="font-size:0.82rem; color:var(--color-text-secondary); margin: 0.25rem 0 0.75rem;">Ridgepost Capital — G&amp;A/FEAUM: Q4</p>
+        <ul>
+          <li>Multi-franchise roll-up, 4 acquisitions in 3 years</li>
+          <li>Each partner manager operates semi-autonomously</li>
+          <li>Duplicated compliance, back-office, fund administration</li>
+          <li>Headline AUM grew; G&amp;A/FEAUM ratio did not improve</li>
+          <li>P/FRE multiple trades at peer median despite scale premium</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top: 1.5rem;">
+      <div>
+        <h3>Base Run (2026-03-09)</h3>
+        <p>DE/share (DVR-001) was the sole stable driver. G&amp;A/FEAUM was tested but N=17 fell below the 18-firm threshold for the complete-multiple set. FRE Growth showed moderate correlation on P/FRE only.</p>
+      </div>
+      <div>
+        <h3>Current Run (2026-03-10)</h3>
+        <p>G&amp;A/FEAUM (DVR-010) emerges as the new stable driver. DE/share coverage dropped due to European firm additions (Tikehau, Antin, Bridgepoint, Eurazeo). The underlying DE/share relationship is preserved — coverage is the constraint, not the signal.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 12: NAVIGATION COMPONENT
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-nav">
+    <h2>Navigation Component</h2>
+    <div class="component-label">component: .nav-trigger · .nav-sidebar · nav.toc</div>
+    <p class="sg-rule">Floating circular button (bottom-right, 44px, primary blue) opens a slide-in sidebar. Sidebar contains anchor links to all <code>h2</code> sections. Scroll spy highlights the currently visible section via the <code>.active</code> class. Dismiss on backdrop click or <kbd>Escape</kbd>. The sidebar also serves as the <code>nav.toc</code> required by the schema — include the <code>class="toc"</code> on the nav element to satisfy validator.</p>
+
+    <p>The navigation component is rendered at the bottom of this page (look for the blue circular button in the lower-right corner). Click it to open the sidebar and verify scroll spy behavior.</p>
+
+    <h3>Required HTML Structure</h3>
+    <pre style="background:var(--color-surface-alt); padding:1rem; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; overflow-x:auto; line-height:1.6; color:var(--color-text-primary);"><!-- Navigation trigger (fixed, bottom-right) -->
+&lt;button class="nav-trigger" aria-label="Open navigation"&gt;≡&lt;/button&gt;
+
+&lt;!-- Backdrop (click to dismiss) --&gt;
+&lt;div class="nav-backdrop"&gt;&lt;/div&gt;
+
+&lt;!-- Slide-in sidebar — also serves as nav.toc --&gt;
+&lt;nav class="nav-sidebar toc" aria-label="Report navigation"&gt;
+  &lt;button class="nav-close" aria-label="Close navigation"&gt;✕&lt;/button&gt;
+  &lt;div class="nav-title"&gt;Contents&lt;/div&gt;
+  &lt;a href="#executive-summary"&gt;Executive Summary&lt;/a&gt;
+  &lt;a href="#methodology"&gt;Methodology&lt;/a&gt;
+  &lt;a href="#driver-ranking"&gt;Driver Ranking&lt;/a&gt;
+  &lt;!-- ... --&gt;
+&lt;/nav&gt;</pre>
+
+    <h3>Validator Note</h3>
+    <p>The <code>report_validator.py</code> checks for <code>nav.toc</code> using the <code>toc_selector</code> in <code>report_schema.json</code>. The nav element must have both <code>nav-sidebar</code> and <code>toc</code> classes (or be a standalone <code>&lt;nav class="toc"&gt;</code>) for the validator to pass the TOC check.</p>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 13: CITATION CONVENTIONS
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-citations">
+    <h2>Citation Conventions</h2>
+    <div class="component-label">schema: citation_rules</div>
+    <p class="sg-rule">Every claim in a non-exempt section must cite at least one <code>PS-VD-NNN</code> source. Exempt sections: <code>methodology</code>, <code>appendix</code>. Citations appear as inline superscripts. Multiple citations on one claim: <sup class="fn"><a href="#fn-sg-1">1</a>, <a href="#fn-sg-2">2</a></sup>.</p>
+
+    <table>
+      <thead>
+        <tr><th>Source ID Range</th><th>Source Type</th><th>Allowed Usage</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>PS-VD-001–099</code></td><td>Firm disclosures (10-K, earnings, investor day)</td><td>All claim types</td></tr>
+        <tr><td><code>PS-VD-100–199</code></td><td>Internal pipeline outputs</td><td>Analytical references</td></tr>
+        <tr><td><code>PS-VD-900–999</code></td><td>Consulting / industry reports</td><td>Market context only — not firm-specific facts</td></tr>
+      </tbody>
+    </table>
+
+    <div class="bumper">
+      <strong>Consulting evidence hierarchy:</strong> PS-VD-9xx sources may support market-level claims (industry AUM, fee compression trends, product category growth). They cannot solely sustain firm-specific metrics, firm-specific actions, or final recommendations. If a consulting source conflicts with a filing, the filing wins.
+    </div>
+  </div>
+
+</div><!-- /.container -->
+
+
+<!-- ════════════════════════════════════════════════════════════
+     NAVIGATION — fixed floating button + slide-in sidebar
+     The nav-sidebar also carries class "toc" for schema validation.
+     ════════════════════════════════════════════════════════════ -->
+
+<!-- COMPONENT: navigation -->
+<button class="nav-trigger" id="navTrigger" aria-label="Open navigation" aria-expanded="false">&#9776;</button>
+<div class="nav-backdrop" id="navBackdrop"></div>
+<nav class="nav-sidebar toc" id="navSidebar" aria-label="Report navigation">
+  <button class="nav-close" id="navClose" aria-label="Close navigation">&#x2715;</button>
+  <div class="nav-title">Style Guide Contents</div>
+  <a href="#sg-tokens">Design Tokens</a>
+  <a href="#sg-bumper">Bumper Statement</a>
+  <a href="#sg-play">Play Card</a>
+  <a href="#sg-anti">Anti-Pattern Card</a>
+  <a href="#sg-barchart">Horizontal Bar Chart</a>
+  <a href="#sg-heatmap">Heatmap</a>
+  <a href="#sg-stat">Simple Text Callout</a>
+  <a href="#sg-footnotes">Footnote Apparatus</a>
+  <a href="#sg-details">Collapsible Details</a>
+  <a href="#sg-badges">Quartile Badges</a>
+  <a href="#sg-grid">Two-Column Grid</a>
+  <a href="#sg-nav">Navigation Component</a>
+  <a href="#sg-citations">Citation Conventions</a>
+</nav>
+
+
+<script>
+(function () {
+  "use strict";
+
+  var trigger  = document.getElementById("navTrigger");
+  var sidebar  = document.getElementById("navSidebar");
+  var backdrop = document.getElementById("navBackdrop");
+  var closeBtn = document.getElementById("navClose");
+
+  function openNav() {
+    sidebar.classList.add("open");
+    backdrop.classList.add("open");
+    trigger.setAttribute("aria-expanded", "true");
+    sidebar.focus();
+  }
+
+  function closeNav() {
+    sidebar.classList.remove("open");
+    backdrop.classList.remove("open");
+    trigger.setAttribute("aria-expanded", "false");
+  }
+
+  trigger.addEventListener("click", function () {
+    sidebar.classList.contains("open") ? closeNav() : openNav();
+  });
+
+  closeBtn.addEventListener("click", closeNav);
+  backdrop.addEventListener("click", closeNav);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && sidebar.classList.contains("open")) closeNav();
+  });
+
+  /* ── Scroll spy ────────────────────────────────────────────── */
+  var navLinks = sidebar.querySelectorAll("a[href^='#']");
+  var sections = [];
+
+  navLinks.forEach(function (link) {
+    var id = link.getAttribute("href").slice(1);
+    var el = document.getElementById(id);
+    if (el) sections.push({ id: id, el: el, link: link });
+  });
+
+  function updateActive() {
+    var scrollY = window.scrollY || window.pageYOffset;
+    var viewportMid = scrollY + window.innerHeight * 0.35;
+    var current = null;
+
+    for (var i = 0; i < sections.length; i++) {
+      var top = sections[i].el.getBoundingClientRect().top + scrollY;
+      if (top <= viewportMid) {
+        current = sections[i];
+      }
+    }
+
+    navLinks.forEach(function (l) { l.classList.remove("active"); });
+    if (current) current.link.classList.add("active");
+  }
+
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (!ticking) {
+      requestAnimationFrame(function () {
+        updateActive();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateActive();
+})();
+</script>
+
+</body>
+</html>
