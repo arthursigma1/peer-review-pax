@@ -1,0 +1,347 @@
+# Claim-Level Explainability System
+
+**Date:** 2026-03-10
+**Status:** Approved
+**Goal:** Structural defense against hallucination via full evidence traceability from final report claims down to source documents.
+
+## Problem
+
+The VDA pipeline has strong ID systems at every layer (PS-VD, MET-VD, COR, DVR, ACT-VD, PLAY/ANTI) and valid source citations (110/110 in CP-3 audit). But the evidence chain breaks between layers:
+
+1. Metrics don't cite their source tier files or PS-VD documents
+2. Correlations don't cite the metric rows they compute over
+3. Drivers don't cite the correlations that classified them
+4. Plays don't cite the peer actions they're based on
+5. The HTML report mentions IDs as prose — no interactive evidence navigation
+
+Each layer is self-contained. No backward linkage exists. This makes hallucination hard to detect: a claim can cite a valid source (PS-VD-018 exists) while the logical chain supporting it is broken or fabricated.
+
+## Design
+
+### Approach: Inline Claims + Deterministic Index (Hybrid C)
+
+Each pipeline JSON emits `_claims[]` inline during generation. A Python script (`claim_indexer.py`) post-processes all JSONs to produce a flat `claim_index.json`. No agent loads the full index — zero context overhead.
+
+```
+Agents emit claims inline    Python script generates index    3 consumers
+┌──────────────────────┐    ┌──────────────────┐            ┌──────────────────┐
+│ standardized_matrix   │─┐  │                  │──────────→│ claim-auditor    │
+│ correlation_results   │ │  │  claim_index.json │──────────→│ final_report.html│
+│ driver_ranking        │─┼─→│  (deterministic)  │──────────→│ traceback agent  │
+│ playbook              │ │  │                  │            └──────────────────┘
+│ target_lens           │─┘  └──────────────────┘
+└──────────────────────┘
+```
+
+### Claim Token Schema
+
+Top-level `_claims` field in each pipeline JSON:
+
+```json
+{
+  "_claims": [
+    {
+      "id": "CLM-COR-191-01",
+      "type": "statistical",
+      "evidence": ["MET-VD-021", "MET-VD-026"],
+      "confidence": "grounded",
+      "score": 3,
+      "layer": "3-analysis"
+    }
+  ]
+}
+```
+
+**Fields:**
+
+| Field | Type | Description |
+|---|---|---|
+| `id` | string | `CLM-{parent_id}-{seq}` — hierarchical, self-describing |
+| `parent_id` | string | ID of the JSON object this claim annotates (e.g., `COR-191`, `DVR-010`, `PLAY-001`) |
+| `type` | enum | `statistical`, `factual`, `causal`, `comparative`, `prescriptive` |
+| `evidence` | string[] | Upstream IDs — any mix of PS-VD-*, MET-VD-*, COR-*, DVR-*, ACT-VD-*, CLM-* |
+| `confidence` | enum | `grounded` (3), `partial` (2), `sourced` (1), `unsupported` (0) |
+| `score` | int | 0-3, numeric mirror of confidence for aggregation |
+| `layer` | string | Pipeline step: `2-data`, `3-analysis`, `4-deep-dives`, `5-playbook` |
+
+No `assertion` text field — the claim lives in the context of its parent JSON object. The `parent_id` field enables the indexer to link each claim back to its annotated object without parsing the claim ID string. The traceback agent reads the parent object when semantics are needed.
+
+**Score ceiling by claim type:**
+
+| Type | Max score | Rationale |
+|---|---|---|
+| `factual` | 3 | Can be fully verified against source documents |
+| `statistical` | 3 | Can be reproduced from input data |
+| `comparative` | 3 | Can be verified if both comparands have evidence |
+| `causal` | 2 | Requires experimental evidence (RCT) for score 3; observational data caps at 2 |
+| `prescriptive` | 2 | Generalization from evidence; inherently inferential |
+
+The `claim_indexer.py` enforces these ceilings at index time — if an agent emits `score: 3` on a `causal` claim, the indexer downgrades it to 2.
+
+**Default scores for non-CLM evidence types:**
+
+When `evidence[]` contains non-CLM IDs, the indexer assigns default scores for cascading:
+
+| Evidence type | Default score | Rationale |
+|---|---|---|
+| `PS-VD-*` | 3 | Primary source document — grounded by definition |
+| `FIRM-*` | 3 | Peer universe entry — structural, not a claim |
+| `ACT-VD-*` | 2 | Strategic action — documented but interpretive |
+| `MET-VD-*` | Score of covering CLM, or 1 if uncovered | Metric ID without a claim = weak provenance |
+| `COR-*` | Score of covering CLM, or 1 if uncovered | Correlation ID without a claim = weak provenance |
+| `DVR-*` | Score of covering CLM, or 1 if uncovered | Driver ID without a claim = weak provenance |
+
+**ID conventions per layer:**
+
+| Layer | Format | Example |
+|---|---|---|
+| standardized_matrix | `CLM-MET-{metric}-{firm}-{seq}` | `CLM-MET-021-FIRM-001-01` |
+| correlation_results | `CLM-COR-{corr}-{seq}` | `CLM-COR-191-01` |
+| driver_ranking | `CLM-DVR-{driver}-{seq}` | `CLM-DVR-010-01` |
+| playbook | `CLM-PLAY-{play}-{seq}` or `CLM-ANTI-{anti}-{seq}` | `CLM-PLAY-001-03` |
+| target_lens | `CLM-TL-{play}-{seq}` | `CLM-TL-001-02` |
+
+### Claims Per Layer
+
+**standardized_matrix.json — factual claims (SCRIPT-GENERATED, not agent-emitted)**
+
+Matrix claims are generated by `claim_indexer.py`, not by the metric-architect agent. The real `standardized_matrix.json` contains ~700 cells (23 firms × 31 metrics). Requiring an LLM agent to emit 700 uniquely-IDed claims would cause stalls (violates the "simplified schemas for large outputs" best practice from CLAUDE.md).
+
+The indexer reads the existing `source` field on each matrix cell and auto-generates claims:
+
+```
+CLM-MET-021-FIRM-001-01  type: factual  parent_id: MET-VD-021
+  evidence: [PS-VD-001]  ← extracted from the cell's existing "source" field
+  score: 3 (source field resolves to a PS-VD) or 1 (source field missing/unparseable)
+```
+
+**correlation_results.json — statistical claims**
+
+```
+CLM-COR-191-01  type: statistical
+  evidence: [MET-VD-021, MET-VD-026]  ← the two metrics correlated
+  score: 3 (if all MET inputs have claims with score >= 2)
+```
+
+**driver_ranking.json — classification claims**
+
+```
+CLM-DVR-010-01  type: statistical
+  evidence: [COR-191, COR-192]  ← correlations supporting the classification
+  score: 3 (if both COR claims have score 3)
+```
+
+**playbook.json — causal and prescriptive claims**
+
+```
+CLM-PLAY-001-01  type: factual
+  evidence: [PS-VD-018, ACT-VD-036]
+  score: 3
+
+CLM-PLAY-001-02  type: causal
+  evidence: [CLM-PLAY-001-01, CLM-DVR-010-01]  ← claims cite claims
+  score: 2 (causal without RCT, best case is partial)
+
+CLM-PLAY-001-03  type: prescriptive
+  evidence: [CLM-PLAY-001-02]
+  score: 2 (generalization inference)
+```
+
+**target_lens.json — applicability claims**
+
+```
+CLM-TL-001-01  type: comparative
+  evidence: [PS-VD-093, CLM-PLAY-001-01]
+  score: 2 (analogy, not direct evidence)
+```
+
+**Key design decisions:**
+
+1. **Claims cite claims** — the graph is recursive. `claim_indexer.py` resolves the full chain.
+2. **Score ceiling by type** — `causal` and `prescriptive` claims rarely reach score 3 (would need experimental evidence). Score 2 is the realistic ceiling. This forces hedged language in the report.
+
+### claim_index.json
+
+Generated by `src/analyzer/claim_indexer.py` (deterministic Python, no LLM). Reads all JSONs in a run, extracts `_claims[]`, resolves recursive chains.
+
+```json
+{
+  "run": "2026-03-10-run2",
+  "generated_at": "2026-03-10T14:30:00Z",
+  "stats": {
+    "total_claims": 347,
+    "by_score": { "3": 289, "2": 41, "1": 12, "0": 5 },
+    "by_type": {
+      "statistical": 95,
+      "factual": 148,
+      "causal": 52,
+      "comparative": 31,
+      "prescriptive": 21
+    },
+    "groundedness_pct": 95.1
+  },
+  "claims": {
+    "CLM-DVR-010-01": {
+      "type": "statistical",
+      "evidence": ["COR-191", "COR-192"],
+      "score": 3,
+      "layer": "3-analysis",
+      "source_file": "3-analysis/driver_ranking.json",
+      "chain": ["COR-191", "COR-192", "MET-VD-021", "MET-VD-026", "PS-VD-001", "PS-VD-018"]
+    }
+  }
+}
+```
+
+The `chain` field is the differentiator — the script recursively resolves all evidence IDs down to leaf nodes (PS-VD-* or FIRM-*). This is the pre-computed full traceback.
+
+**The script performs three operations:**
+
+1. **Collect** — scan `_claims[]` from each JSON in the run
+2. **Resolve** — for each claim, follow `evidence[]` recursively to leaves. If an evidence item is another CLM-*, follow its evidence too
+3. **Validate** — verify every referenced ID exists in some JSON. Orphan IDs = warning
+
+**Location:** `data/processed/{ticker}/{date}/claim_index.json`
+
+### Groundedness Scoring (Adapted from TruLens RAG Triad)
+
+Inspired by TruLens' claim-level groundedness evaluation, adapted for structured evidence graphs rather than free-text NLI.
+
+| Score | Label | Meaning | Action |
+|---|---|---|---|
+| 3 | `grounded` | Complete chain: claim -> DVR -> COR -> MET -> PS-VD | Pass |
+| 2 | `partial` | Chain with 1 missing link | Acceptable with note |
+| 1 | `sourced` | Only source citation, no logical chain | Flag for review |
+| 0 | `unsupported` | No evidence | **Hard block** |
+
+**Score cascading rule:** A claim's effective score = min(own_score, min(evidence_scores)). Weakness in lower layers propagates upward. If COR-191 has score 2, DVR-010 that depends on it cannot be score 3.
+
+**Cascading damping:** To prevent a single missing `source` field in the matrix from red-flagging an entire branch of the evidence tree, cascading applies a **floor of 1** — a claim's effective score is `max(1, min(own_score, min(evidence_scores)))` unless the claim itself has score 0 (unsupported). This ensures that data-sourcing quality issues propagate as warnings (score 1-2), not as hard blocks, while truly unsupported claims (no evidence at all) remain blocked.
+
+**`groundedness_pct` formula:** `(claims with effective_score >= 2) / total_claims * 100`. This measures the proportion of claims with at least partial evidence chain coverage.
+
+### Claim-Auditor Evolution (New Dimension D5)
+
+The existing 4-dimension audit framework gains a fifth dimension:
+
+**D5 — Chain Integrity**
+
+| Check | Action | Result |
+|---|---|---|
+| Every claim has non-empty `evidence[]`? | Empty → score 0 → hard block | Prevents ungrounded claims |
+| Every ID in `evidence[]` resolves to an existing object? | Orphan ID → flag | Detects fabricated references |
+| Recursive chain reaches leaf node (PS-VD-*)? | Broken chain → score <= 2 | Detects missing links |
+| Upstream claim scores are consistent? | Claim score 3 but evidence has score 1 → downgrade to 2 | Score cascading |
+| Claims typed `causal`/`prescriptive` use hedged language? | Score <= 2 without "suggests"/"appears to" → flag | Aligns confidence with language |
+
+**Output:** D5 results are added as a `chain_integrity` section inside the existing `audit_cp*.json` files (not a separate file). This preserves the canonical audit filename convention from CLAUDE.md:
+
+```json
+{
+  "groundedness_summary": {
+    "total": 347,
+    "grounded": 289,
+    "partial": 41,
+    "sourced": 12,
+    "unsupported": 5,
+    "score_avg": 2.77,
+    "hard_blocks": 5,
+    "cascading_downgrades": 14
+  }
+}
+```
+
+### Report HTML — Interactive Evidence
+
+The `report-builder` consumes `claim_index.json` and emits HTML with navigable claims. Client-side JS, no backend.
+
+Each assertion with an associated CLM-* becomes a clickable `<span>`:
+
+```html
+<span class="claim" data-claim="CLM-DVR-010-01">
+  G&A/FEAUM is the only metric satisfying the stable value driver
+  classification<sup class="fn"><a href="#fn-1">1</a></sup>
+</span>
+```
+
+On click, a sidebar or tooltip shows the evidence tree:
+
+```
+CLM-DVR-010-01  ·  score 3/3  ·  statistical
+╰─ COR-191  rho=-0.61 P/FRE (N=19)
+   ╰─ MET-VD-021 x MET-VD-026  (19 firms)
+      ╰─ PS-VD-001, PS-VD-018, PS-VD-042...
+╰─ COR-192  rho=-0.51 P/DE (N=19)
+   ╰─ MET-VD-021 x MET-VD-027  (19 firms)
+      ╰─ PS-VD-001, PS-VD-018...
+```
+
+**Visual indicators in text:**
+
+| Score | Indicator |
+|---|---|
+| 3 | None (clean default) |
+| 2 | Discrete amber underline |
+| 1 | Amber underline + icon |
+| 0 | Red highlight (should not exist if auditor blocked) |
+
+The `claim_index.json` is embedded as `<script type="application/json">` in the HTML — self-contained, no external file dependency.
+
+### Traceback Agent
+
+An interactive agent that answers queries about the evidence chain. Uses lazy loading to stay within context limits.
+
+**Context budget strategy:**
+
+Note: A 23-firm run produces ~700+ claims (150 matrix + 60 correlations + 15 drivers + 80 playbook/target_lens + misc). At this scale, `claim_index.json` is ~50-60K tokens.
+
+1. Loads `claim_index.json` but uses the `offset`+`limit` parameters of the Read tool to read only the `stats` section and the specific claims relevant to the query
+2. Only opens parent JSONs on demand for specific entries using grep/search, not full file load
+3. Never loads `standardized_matrix.json` entirely (~100KB+) — uses Grep to find the specific FIRM/MET entry
+4. Budget: claim_index subset (~15K) + 2-3 targeted lookups (~5K each) = ~30K tokens max per query
+
+**Supported queries:**
+
+- "Where did the claim that DE/share is the only stable driver come from?" → full chain traversal
+- "Why does PLAY-003 have score 2?" → shows the weak link
+- "Which claims are score 0?" → lists hard blocks
+- "What is the weakest evidence in the report?" → sorts by score ascending
+- "Show all claims that depend on PS-VD-018" → reverse graph search
+
+**Implementation:** A prompt template + instruction to read `claim_index.json` and resolve queries. Runs as a normal Claude Code agent. No new code module required.
+
+## Rollout Plan (Bottom-Up)
+
+| Phase | Layer | What changes | Estimated claims | Dependency |
+|---|---|---|---|---|
+| F1 | correlation_results | metric-architect prompt: emit `_claims[]` | ~60 | None |
+| F2 | driver_ranking | metric-architect prompt: emit `_claims[]` | ~15 | F1 (reads COR claims) |
+| F3 | playbook + target_lens | playbook-synth, target-lens prompts: emit `_claims[]` | ~80 | F2 (reads DVR claims) |
+| F4 | claim_indexer.py | New Python script — also auto-generates matrix claims from existing `source` fields | ~150 (matrix) + collects F1-F3 | F1-F3 (reads all JSONs) |
+| F5 | claim-auditor D5 | claim-auditor prompt: add chain_integrity section | — | F4 (reads claim_index) |
+| F6 | report HTML | report-builder prompt: embed claim_index, emit `<span class="claim">` | — | F4 (embeds claim_index) |
+| F7 | traceback agent | New prompt template | — | F4 (reads claim_index) |
+
+Note: F1 (not matrix) is the first phase because matrix claims are script-generated in F4. The agent-emitted claims start at the correlation layer.
+
+Each phase is independently testable. F1 can be validated before F2 starts.
+
+**Backward compatibility:** `claim_indexer.py` gracefully handles runs that pre-date the system (no `_claims[]` fields). For these runs, it generates only script-derived claims (matrix provenance) and produces a degraded index with a warning in `stats.legacy_run: true`.
+
+**Canonical file addition:** `claim_index.json` lives at `data/processed/{ticker}/{date}/claim_index.json` (run root, not inside a step folder — it spans all steps). Must be added to CLAUDE.md canonical filenames table.
+
+## Langfuse Integration (Next Step)
+
+After this system is operational, integrate Langfuse (preferred over LangSmith — open source, self-hostable, 1M free traces/month, no LangChain dependency) for execution-level observability. This complements claim-level traceability (which evidence supports which argument) with call-level traceability (which LLM call produced which output). Three layers planned:
+
+1. **Claude Code hook tracing** — Stop/SubagentStop hooks send traces to Langfuse (~4h)
+2. **Claim bridge** — Link Langfuse traces to CLM-* IDs via `_trace_metadata` in agent outputs (~11h)
+3. **`llm_client.py` instrumentation** — Future-proofing for Python-native LLM calls (~1h)
+
+Separate design doc to follow.
+
+## References
+
+- TruLens RAG Triad: groundedness scoring adapted from TruLens' per-claim NLI approach, modified for structured evidence graphs
+- OpenAI "Why Language Models Hallucinate": structural causes of hallucination in multi-step reasoning
+- arXiv 2509.04664: claim decomposition and evidence grounding as hallucination defense
