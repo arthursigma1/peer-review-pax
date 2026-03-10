@@ -67,7 +67,7 @@ Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers 
 - `docs/valuation-driver-methodology.md` — Legacy reusable VDA methodology kept for historical reference
 - `docs/sigma-final-report-guide.md` — SIGMA writing guide for final report (Pyramid Principle, action titles, footnotes, bumper statements)
 - `src/tauri/` — Tauri desktop dashboard (React + TypeScript + Tailwind + Rust)
-- `src/analyzer/` — VDA data quality tools (metric_checklist, data_gaps, delta_spec)
+- `src/analyzer/` — VDA data quality tools (metric_checklist, data_gaps, delta_spec, consulting_context)
 - `src/document_converter.py` — PDF/DOCX/PPTX to text converter using marker-pdf
 
 ## Commands
@@ -90,6 +90,9 @@ python3 -m src.analyzer.metric_checklist --run-dir data/processed/pax/2026-03-09
 python3 -m src.analyzer.data_gaps --run-dir data/processed/pax/2026-03-09-run2/
 python3 -m src.analyzer.delta_spec --base-run data/processed/pax/2026-03-09-run2/ --new-run-dir data/processed/pax/2026-03-10/
 python3 -m src.analyzer.delta_spec --merge --new-run-dir data/processed/pax/2026-03-10/  # after delta collection
+
+# Build consulting context from crawl outputs
+python3 -m src.analyzer.consulting_context --seed-results data/processed/pax/2026-03-09-run2/1-universe/crawl-with-consulting/consulting_seed_results.json
 ```
 
 ## Skills (Slash Commands)
@@ -167,7 +170,7 @@ Output: `data/processed/{TICKER}/{YYYY-MM-DD}/6-review/methodology_review.md` + 
 | Step | Folder | Canonical Files |
 |---|---|---|
 | 0 | 1-universe | `peer_universe.json`, `metric_taxonomy.json`, `source_catalog.json` |
-| 1 | 2-data | `quantitative_tier1.json`, `quantitative_tier2.json`, `quantitative_tier3.json`, `strategy_profiles.json`, `strategic_actions.json`, `metric_checklist.json`, `delta_spec.json` (if `--base-run`) |
+| 1 | 2-data | `quantitative_tier1.json`, `quantitative_tier2.json`, `quantitative_tier3.json`, `strategy_profiles.json`, `strategic_actions.json`, `metric_checklist.json`, `delta_spec.json` (if `--base-run`), `consulting_context.json` (if consulting crawl exists) |
 | 2 | 3-analysis | `standardized_matrix.json`, `correlation_results.json`, `driver_ranking.json`, `data_gaps.json` |
 | 3 | 4-deep-dives | `platform_profiles.json`, `asset_class_analysis.json` |
 | 4 | 5-playbook | `playbook.json`, `target_lens.json`, `final_report.html` |
@@ -194,6 +197,24 @@ Output: `data/processed/{TICKER}/{YYYY-MM-DD}/6-review/methodology_review.md` + 
 | Multiple-specific driver | `abs(rho) >= 0.5` on exactly one eligible multiple and fails stable rule |
 | Contextual driver | Useful for decomposition or interpretation but not headline ranking |
 | Unsupported | Not defensible for strategic interpretation |
+
+## VDA Consulting Evidence Hierarchy
+
+Consulting and industry-report sources (PS-VD-9xx) are **market context only**. Peer evidence always wins.
+
+| Rule | Detail |
+|---|---|
+| Peer evidence > consulting | If a consulting source conflicts with a filing, earnings deck, or investor presentation, the firm source wins |
+| Consulting cannot solely sustain | firm-specific metrics, firm-specific actions, causal claims about a specific firm, or final recommendations |
+| Allowed usage | `market_context`, `distribution_context`, `operating_model_context`, `supporting_context` |
+| Disallowed usage | `firm_specific_fact`, `firm_specific_metric`, `firm_specific_action`, `sole_basis_for_recommendation` |
+| Citation rule | PS-VD-9xx may cite market-level claims; firm-specific claims require peer PS-VD sources |
+| claim-auditor enforcement | Any claim where PS-VD-9xx is the sole citation AND the claim is about a specific firm → BLOCK |
+
+**Agents that consume `consulting_context.json`:** strategy-extractor, vertical-analyst, playbook-synthesizer, target-lens, report-builder, claim-auditor.
+**Agents that do NOT receive it:** data-collector-t1, data-collector-t2, data-collector-t3.
+
+**Claim scope classification:** Each claim in `consulting_context.json` has a `scope` field (`market`, `segment`, `multi_firm`, `single_firm`). Claims with `single_firm` scope must not be used as firm-specific evidence.
 
 ## VDA Agent Orchestration Best Practices
 

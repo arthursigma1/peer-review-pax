@@ -440,6 +440,19 @@ After all three agents complete, check:
 
 **Auto mode:** Verify all three criteria. If universe < 20 firms, send message to universe-scout to expand search. If source coverage is insufficient, send message to source-mapper to fill gaps. Once criteria met, proceed automatically.
 
+### Consulting Context Processing
+
+If consulting crawl outputs exist at `data/processed/{TICKER}/{DATE}/1-universe/crawl-with-consulting/consulting_seed_results.json`:
+
+1. Run the consulting context processor:
+   ```bash
+   python3 -m src.analyzer.consulting_context --seed-results data/processed/{TICKER}/{DATE}/1-universe/crawl-with-consulting/consulting_seed_results.json --output-dir data/processed/{TICKER}/{DATE}/2-data/
+   ```
+2. Verify output: `data/processed/{TICKER}/{DATE}/2-data/consulting_context.json`
+3. Log: `[CONSULTING] Built consulting_context.json — {N} sources included, {M} excluded`
+
+If no consulting crawl outputs exist, skip this step. The pipeline proceeds without consulting context.
+
 ## Step 8: Step 2 of 5 — "Gather Data" (Parallel)
 
 **Step range check:** If `FROM_STEP > 2`, skip this step and load existing outputs from the prior run. If `TO_STEP < 2`, stop here after completing Step 1 and display the stop message.
@@ -580,6 +593,9 @@ Instructions:
 > Read `data/processed/{TICKER}/{DATE}/1-universe/source_catalog.json` for sources.
 > Read `docs/pax-peer-strategy-ontology.md` for the minimum business-model decomposition grid.
 > Read `docs/pax-peer-assessment-framework.md` for business context.
+> Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context.json` if it exists — use it ONLY to enrich `contextual_market_factors` and to frame industry trends (retailization, wealth-channel expansion, fee pressure, fundraising conditions, operating-model demands). Do NOT use consulting sources to assert a peer strategic action or stated priority unless peer/company evidence also supports it.
+>
+> **CONSULTING RULE:** consulting_context.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
 >
 > For each firm in the qualitative peer set (read the list from `1-universe/peer_universe.json`), extract a standalone strategic profile by mapping the peer across the full ontology grid:
 > - Geographical reach
@@ -696,6 +712,7 @@ Before proceeding to Step 3, dispatch the claim-auditor agent to verify data col
      c. Re-dispatch claim-auditor (max 2 retries)
      d. If still blocked after 2 retries → forcibly downgrade blocked claims to INFERRED, save audit file with caveats, proceed
 6. Log: `[CLAIM-AUDIT] CP-1 PASSED (N/N claims)` or `[CLAIM-AUDIT] CP-1 BLOCKED (N ungrounded, N fabricated)`
+7. **Consulting source enforcement:** If `consulting_context.json` exists, verify that no quantitative tier data cites PS-VD-9xx sources as the primary basis for any firm-specific metric value.
 
 ## Step 9: Step 3 of 5 — "Find What Drives Value" (Sequential)
 
@@ -932,6 +949,9 @@ Instructions:
 > Read `data/processed/{TICKER}/{DATE}/2-data/strategic_actions.json` for peer actions.
 > Read `docs/pax-peer-strategy-ontology.md` for the minimum business-model decomposition grid.
 > Read `docs/pax-peer-assessment-framework.md` for business context.
+> Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context.json` if it exists — use it as formal input for vertical and sub-strategy context. It may support claims about market structure, private credit growth, wealth distribution, consolidation, democratization, and operating-model requirements. Keep all peer-specific examples grounded in peer evidence.
+>
+> **CONSULTING RULE:** consulting_context.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
 >
 > Conduct deep-dives for 5 verticals with their reference firms:
 >
@@ -1004,6 +1024,7 @@ Before proceeding to Step 5, dispatch the claim-auditor agent to verify deep-div
    - Stage audited: VD-D1, VD-D2
    - Files audited: `4-deep-dives/platform_profiles.json`, `4-deep-dives/asset_class_analysis.json`
    - Audit focus: ALL (invalid_premises, misleading_context, sycophantic_fabrication, confidence_miscalibration) + operational_prerequisite_evidence (block any prerequisite based solely on job postings or vendor PRs)
+   - Audit focus: sycophantic_fabrication, confidence_miscalibration, consulting_source_enforcement (block firm-specific claims solely backed by PS-VD-9xx sources)
 4. Wait for claim-auditor response
 5. Parse the audit JSON:
    - If verdict is `PASSED` → save `audit_cp2_deep_dives.json`, proceed to Step 5
@@ -1032,6 +1053,9 @@ Instructions:
 > Read `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json`.
 > Read `data/processed/{TICKER}/{DATE}/3-analysis/statistical_methodology.md`.
 > Read `data/processed/{TICKER}/{DATE}/4-deep-dives/platform_profiles.json`.
+> Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context.json` if it exists — use it to explain WHY a theme matters now and WHY the market is moving in that direction. Do NOT let consulting sources replace peer evidence when describing what worked at a given firm.
+>
+> **CONSULTING RULE:** consulting_context.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
 >
 > For each of the 5–6 stable value drivers:
 > - Restate the statistical finding in plain language, accompanied by the full statistical documentation (rho, CI, Bonferroni-corrected p-value, confidence class)
@@ -1112,6 +1136,7 @@ After playbook-synthesizer produces outputs and BEFORE report-builder generates 
      d. If still blocked → forcibly downgrade, save audit file, proceed
 6. Pass any INFERRED claims list to report-builder so it uses hedged language for those specific claims
 7. Log: `[CLAIM-AUDIT] CP-3 PASSED (N/N claims)` or `[CLAIM-AUDIT] CP-3 BLOCKED (N ungrounded, N fabricated, N incomplete_fields)`
+8. **Consulting source enforcement:** Verify that no PLAY-NNN or recommendation uses PS-VD-9xx as the sole evidence for a firm-specific claim. PS-VD-9xx may support "why this matters" context but not "what worked at firm X."
 
 ### Ghost Report Skeleton
 
@@ -1159,6 +1184,9 @@ Instructions:
 > - `3-analysis/driver_ranking.json`
 > - `1-universe/source_catalog.json` — for footnote registry
 > - `2-data/strategic_actions.json` — for ACT-VD → PS-VD resolution
+> - `2-data/consulting_context.json` — for Industry Context section (if it exists)
+>
+> **CONSULTING RULE:** Add a short "Industry Context" section using consulting_context.json. Keep it clearly labeled and separate from peer findings. Consulting sources (PS-VD-9xx) may only support market-level claims. Any firm-specific claim must cite peer PS-VD sources, not consulting sources.
 >
 > Also read the writing reference: `docs/sigma-final-report-guide.md`
 >
@@ -1241,6 +1269,9 @@ Instructions:
 > - `data/processed/{TICKER}/{DATE}/5-playbook/asset_class_playbooks.json`
 > - `data/processed/{TICKER}/{DATE}/4-deep-dives/platform_profiles.json`
 > - `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json`
+> - `data/processed/{TICKER}/{DATE}/2-data/consulting_context.json` (if it exists) — for market timing and structural relevance
+>
+> **CONSULTING RULE:** Use consulting_context.json ONLY to strengthen `why_this_matters_for_pax`, market timing, and structural relevance. Do NOT use consulting evidence as the sole basis for a recommendation, implementation pathway, or claim that a peer has already validated a move. If consulting conflicts with peer evidence, peer evidence wins.
 >
 > For each PLAY-NNN in the platform and asset class playbooks, assess relevance to {COMPANY}.
 >

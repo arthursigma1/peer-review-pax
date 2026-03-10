@@ -540,7 +540,7 @@ Output ONLY valid JSON matching this schema:
 
                 {/* Expectation setter */}
                 <p className="text-xs text-gray-400 mt-3">
-                  ~45 min · 13 agents · HTML report
+                  ~3 hrs · 13 agents · HTML report
                 </p>
 
                 {/* Advanced options (collapsed) */}

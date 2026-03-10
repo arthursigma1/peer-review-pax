@@ -167,19 +167,20 @@ export function ResultsBrowser({ files, ticker: _ticker, onStartReview, isReview
     if (!selectedFile || !content || selectedFile.file_type === "html") {
       return { viewerHtml: "", matchCount: 0 };
     }
+    if (selectedFile.file_type === "md" && editMode) {
+      return { viewerHtml: "", matchCount: 0 };
+    }
+    let result: { html: string; count: number };
     if (selectedFile.file_type === "json") {
-      return highlightInHtml(content, searchQuery);
-    }
-    if (selectedFile.file_type === "md" && !editMode) {
-      const mdHtml = markdownToHtml(content);
-      return highlightInHtml(mdHtml, searchQuery);
-    }
-    if (selectedFile.file_type !== "html" && selectedFile.file_type !== "md") {
+      result = highlightInHtml(content, searchQuery);
+    } else if (selectedFile.file_type === "md") {
+      result = highlightInHtml(markdownToHtml(content), searchQuery);
+    } else {
       const escaped = content.slice(0, 50000)
         .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      return highlightInHtml(escaped, searchQuery);
+      result = highlightInHtml(escaped, searchQuery);
     }
-    return { viewerHtml: "", matchCount: 0 };
+    return { viewerHtml: result.html, matchCount: result.count };
   }, [content, searchQuery, selectedFile, editMode]);
 
   // Sync derived match count to state (consumed by nav buttons)

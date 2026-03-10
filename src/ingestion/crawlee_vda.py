@@ -14,7 +14,7 @@ import shutil
 import time
 import warnings
 from dataclasses import asdict
-from datetime import datetime, timedelta
+from datetime import timedelta
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from urllib.error import HTTPError, URLError
@@ -25,6 +25,7 @@ from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
 from crawlee import Request
 from crawlee.crawlers import HttpCrawler
 
+from src.analyzer._shared import utcnow_iso
 from .source_catalog import SourceRecord, find_latest_catalog_file, load_catalog, load_sources
 
 try:
@@ -426,7 +427,7 @@ async def crawl_sources(args: argparse.Namespace) -> dict[str, object]:
         "result_count": len(results),
         "failure_count": len(failures),
         "visited_url_count": len(visited_urls),
-        "finished_at": datetime.utcnow().isoformat() + "Z",
+        "finished_at": utcnow_iso(),
         "stats": _stats_to_dict(stats),
     }
 

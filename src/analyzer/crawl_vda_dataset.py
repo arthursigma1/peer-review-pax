@@ -9,9 +9,10 @@ import math
 import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass
-from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
+
+from src.analyzer._shared import utcnow_iso
 
 
 SIGNAL_DEFINITIONS = (
@@ -249,7 +250,7 @@ def build_crawl_dataset(args: argparse.Namespace) -> dict[str, object]:
         "metadata": {
             "pipeline": "VDA",
             "stage": "VD-A2X",
-            "generated_at": datetime.utcnow().isoformat() + "Z",
+            "generated_at": utcnow_iso(),
             "crawl_results_path": str(crawl_results_path),
             "peer_universe_path": str(peer_universe_path),
             "source_count": len(source_records),

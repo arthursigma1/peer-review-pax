@@ -645,6 +645,116 @@ class MetricChecklistContract(BaseModel):
     model_config = {"extra": "allow"}
 
 
+# ---------------------------------------------------------------------------
+# Consulting Context Contracts
+# ---------------------------------------------------------------------------
+
+VALID_CONSULTING_THEMES = frozenset({
+    "wealth_distribution",
+    "fundraising_lp_demand",
+    "private_credit",
+    "margin_operating_model",
+    "mna_consolidation",
+    "democratization",
+    "other",
+})
+VALID_CLAIM_SCOPES = frozenset({"market", "segment", "multi_firm", "single_firm"})
+VALID_CONSULTING_UTILITY = frozenset({"high", "medium", "low"})
+VALID_ALLOWED_USAGE = frozenset({
+    "market_context",
+    "distribution_context",
+    "operating_model_context",
+    "supporting_context",
+})
+VALID_DISALLOWED_USAGE = frozenset({
+    "firm_specific_fact",
+    "firm_specific_metric",
+    "firm_specific_action",
+    "sole_basis_for_recommendation",
+})
+
+
+class ConsultingClaim(BaseModel):
+    text: str = Field(min_length=1)
+    scope: str
+
+    model_config = {"extra": "forbid"}
+
+    @model_validator(mode="after")
+    def validate_scope(self) -> "ConsultingClaim":
+        if self.scope not in VALID_CLAIM_SCOPES:
+            raise ValueError(f"invalid scope: {self.scope}")
+        return self
+
+
+class ExcludedConsultingSource(BaseModel):
+    source_id: str = Field(min_length=1)
+    title: str
+    status: str
+    utility_for_agents: str
+
+    model_config = {"extra": "forbid"}
+
+
+class ConsultingSource(BaseModel):
+    source_id: str = Field(pattern=r"^PS-VD-9\d{2}$")
+    firm: str
+    title: str
+    document_type: str
+    bias_tag: str
+    seed_url: str
+    loaded_url: str
+    domain: str
+    text_length: int = Field(ge=0)
+    status: str
+    utility_for_agents: str
+    allowed_usage: list[str]
+    disallowed_usage: list[str]
+    context_themes: list[str] = Field(min_length=1)
+    claims: list[ConsultingClaim]
+    top_snippets: list[str]
+    off_domain_followup_count: int = Field(ge=0)
+
+    model_config = {"extra": "forbid"}
+
+    @model_validator(mode="after")
+    def validate_source_fields(self) -> "ConsultingSource":
+        if self.utility_for_agents not in VALID_CONSULTING_UTILITY:
+            raise ValueError(f"invalid utility_for_agents: {self.utility_for_agents}")
+        for theme in self.context_themes:
+            if theme not in VALID_CONSULTING_THEMES:
+                raise ValueError(f"invalid theme: {theme}")
+        for usage in self.allowed_usage:
+            if usage not in VALID_ALLOWED_USAGE:
+                raise ValueError(f"invalid allowed_usage: {usage}")
+        for usage in self.disallowed_usage:
+            if usage not in VALID_DISALLOWED_USAGE:
+                raise ValueError(f"invalid disallowed_usage: {usage}")
+        return self
+
+
+class ConsultingContextMetadata(BaseModel):
+    pipeline: str = Field(pattern=r"^VDA$")
+    stage: str = Field(pattern=r"^VD-A2C$")
+    generated_at: str = Field(min_length=1)
+    consulting_catalog_count: int = Field(ge=0)
+    seed_result_count: int = Field(ge=0)
+    included_source_count: int = Field(ge=0)
+    excluded_source_count: int = Field(ge=0)
+    included_status_counts: dict
+    theme_counts: dict
+    excluded_sources: list[ExcludedConsultingSource]
+
+    model_config = {"extra": "allow"}
+
+
+class ConsultingContextContract(BaseModel):
+    metadata: ConsultingContextMetadata
+    sources: list[ConsultingSource]
+
+    model_config = {"extra": "forbid"}
+
+
 def _load_json(path: Path) -> Any:
     try:
         with path.open() as handle:

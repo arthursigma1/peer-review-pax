@@ -6,8 +6,10 @@ import argparse
 import json
 import re
 from collections import defaultdict
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 from pathlib import Path
+
+from src.analyzer._shared import utcnow_iso
 
 
 # Missing-reason strings that indicate the firm was never attempted for this metric.
@@ -272,7 +274,7 @@ def analyze_data_gaps(run_dir: Path) -> dict[str, object]:
     report = {
         "metadata": {
             "pipeline": "VDA",
-            "generated_at": datetime.utcnow().isoformat() + "Z",
+            "generated_at": utcnow_iso(),
             "run_id": run_id,
             "total_firms": total_firms,
             "total_driver_metrics": total_driver_metrics,

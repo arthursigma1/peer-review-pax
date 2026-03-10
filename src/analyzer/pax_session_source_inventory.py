@@ -8,10 +8,10 @@ import json
 import re
 from collections import defaultdict
 from dataclasses import dataclass
-from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
+from src.analyzer._shared import utcnow_iso
 from src.ingestion.source_catalog import SourceRecord, load_catalog
 
 
@@ -327,7 +327,7 @@ def build_inventory(args: argparse.Namespace) -> dict[str, object]:
 
     inventory = {
         "metadata": {
-            "generated_at": datetime.utcnow().isoformat() + "Z",
+            "generated_at": utcnow_iso(),
             "processed_root": str(processed_root),
             "baseline_session": baseline_session,
             "session_count": len(session_snapshots),

@@ -6,13 +6,13 @@ import argparse
 import json
 import re
 from dataclasses import dataclass
-from datetime import datetime
 from pathlib import Path
 
 from src.analyzer._shared import (
     FirmRecord,
     load_firms_from_payload,
     split_firms_into_tiers,
+    utcnow_iso,
 )
 
 
@@ -132,7 +132,7 @@ def generate_checklist(args: argparse.Namespace) -> dict[str, object]:
 
     checklist: dict[str, object] = {
         "metadata": {
-            "generated_at": datetime.utcnow().isoformat() + "Z",
+            "generated_at": utcnow_iso(),
             "run_dir": str(run_dir),
             "total_firms": len(firms),
             "total_metrics": len(metrics),

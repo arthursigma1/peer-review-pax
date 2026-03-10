@@ -5,10 +5,11 @@ from __future__ import annotations
 import argparse
 import json
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from src.analyzer._shared import (
+    utcnow_iso,
     FirmRecord,
     load_firms_from_payload,
     split_firms_into_tiers as _split_firms_into_tiers_shared,
@@ -203,7 +204,7 @@ def build_delta_spec(args: argparse.Namespace) -> dict[str, object]:
 
     spec: dict[str, object] = {
         "metadata": {
-            "generated_at": datetime.utcnow().isoformat() + "Z",
+            "generated_at": utcnow_iso(),
             "base_run_dir": str(base_run_dir),
             "new_run_dir": str(new_run_dir),
             "mode": "incremental",
@@ -513,7 +514,7 @@ def merge_carry_forward(new_run_dir: Path) -> dict[str, object]:
             tier_data = {
                 "metadata": {
                     "tier": int(tier_name[-1]),
-                    "generated_at": datetime.utcnow().strftime("%Y-%m-%d"),
+                    "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
                     "notes": f"Carry-forward merge for {tier_name}",
                 },
                 "data_points": [],
