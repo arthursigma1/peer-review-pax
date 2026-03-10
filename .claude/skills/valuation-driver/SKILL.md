@@ -406,6 +406,7 @@ Instructions:
 >   - Constant_Currency_Revenue_Growth (revenue growth after removing FX translation effects)
 >   - Integration_Costs_to_Revenue (integration/restructuring charges / total revenue — only when separately disclosed)
 >   - CapEx_to_FEAUM (capex / FEAUM — only when technology/software capex is separately identifiable)
+>   - Technology_Platform_Maturity (qualitative ordinal metric — collected for all firms regardless of capex disclosure. Values: 0 = standard vendor stack, 1 = proprietary internal platform, 2 = proprietary platform with ML/AI integration, 3 = commercialized technology product sold externally. Source from investor presentations, 20-F disclosures, and management commentary. This metric does NOT require disclosed technology capex — it is assessed from public evidence of technology capability.)
 >
 > **Coverage rule:** any Operational Feasibility metric with fewer than 60% of universe firms reporting is classified as `contextual-only` and excluded from correlation analysis in VD-A4. It may still appear in context tables and deep-dives.
 >
@@ -482,6 +483,16 @@ python3 -m src.analyzer.delta_spec --base-run data/processed/{TICKER}/{base_run_
 
 This creates `2-data/delta_spec.json` with carry-forward data (never re-collected), skip list (confirmed non-disclosure), and targeted collection assignments per tier. **When delta_spec.json exists, data-collector agents collect ONLY cells listed in `collect.tierN.assignments` — no other metrics.**
 
+**Pre-dispatch: Pre-slice context files for data-collector agents**
+
+After generating checklist and delta_spec, run context_slicer to produce per-tier slices:
+
+```bash
+python3 -m src.analyzer.context_slicer --run-dir data/processed/{TICKER}/{DATE}/ --only consulting-slim,checklist-tiers,delta-tiers
+```
+
+This creates `consulting_context_slim.json`, `metric_checklist_tier{1,2,3}.json`, and `delta_spec_tier{1,2,3}.json` — reducing each data-collector's context load by ~45K tokens.
+
 Spawn three sub-instances of the data-collector, each covering a tier of firms:
 
 **Tier 1 (top firms by AUM — approximately first 9):**
@@ -495,8 +506,8 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/1-universe/peer_universe.json` to get the full firm list.
 > Read `data/processed/{TICKER}/{DATE}/1-universe/metric_taxonomy.json` to get the metric taxonomy.
-> Read `data/processed/{TICKER}/{DATE}/2-data/metric_checklist.json` for per-metric collection priorities. Focus effort on `critical` and `high` priority metrics first. For `skip` priority metrics, do not attempt collection.
-> If `data/processed/{TICKER}/{DATE}/2-data/delta_spec.json` exists, this is an incremental run. Read the delta spec and collect ONLY the metrics listed in `collect.tier1.assignments` for your tier's firms. Carry-forward data is already preserved — do NOT re-collect existing data points.
+> Read `data/processed/{TICKER}/{DATE}/2-data/metric_checklist_tier1.json` for per-metric collection priorities (pre-sliced to your tier's firms only). Focus effort on `critical` and `high` priority metrics first. For `skip` priority metrics, do not attempt collection.
+> If `data/processed/{TICKER}/{DATE}/2-data/delta_spec_tier1.json` exists, this is an incremental run. Read the delta spec and collect ONLY the metrics listed in `collect.tier1.assignments` for your tier's firms. Carry-forward data is already preserved — do NOT re-collect existing data points.
 >
 > **Cover firms ranked 1–9 by AUM** (the largest firms in the universe).
 >
@@ -523,8 +534,8 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/1-universe/peer_universe.json` to get the full firm list.
 > Read `data/processed/{TICKER}/{DATE}/1-universe/metric_taxonomy.json` to get the metric taxonomy.
-> Read `data/processed/{TICKER}/{DATE}/2-data/metric_checklist.json` for per-metric collection priorities. Focus effort on `critical` and `high` priority metrics first. For `skip` priority metrics, do not attempt collection.
-> If `data/processed/{TICKER}/{DATE}/2-data/delta_spec.json` exists, this is an incremental run. Read the delta spec and collect ONLY the metrics listed in `collect.tier2.assignments` for your tier's firms. Carry-forward data is already preserved — do NOT re-collect existing data points.
+> Read `data/processed/{TICKER}/{DATE}/2-data/metric_checklist_tier2.json` for per-metric collection priorities (pre-sliced to your tier's firms only). Focus effort on `critical` and `high` priority metrics first. For `skip` priority metrics, do not attempt collection.
+> If `data/processed/{TICKER}/{DATE}/2-data/delta_spec_tier2.json` exists, this is an incremental run. Read the delta spec and collect ONLY the metrics listed in `collect.tier2.assignments` for your tier's firms. Carry-forward data is already preserved — do NOT re-collect existing data points.
 >
 > **Cover firms ranked 10–18 by AUM** (mid-tier firms in the universe).
 >
@@ -549,8 +560,8 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/1-universe/peer_universe.json` to get the full firm list.
 > Read `data/processed/{TICKER}/{DATE}/1-universe/metric_taxonomy.json` to get the metric taxonomy.
-> Read `data/processed/{TICKER}/{DATE}/2-data/metric_checklist.json` for per-metric collection priorities. Focus effort on `critical` and `high` priority metrics first. For `skip` priority metrics, do not attempt collection.
-> If `data/processed/{TICKER}/{DATE}/2-data/delta_spec.json` exists, this is an incremental run. Read the delta spec and collect ONLY the metrics listed in `collect.tier3.assignments` for your tier's firms. Carry-forward data is already preserved — do NOT re-collect existing data points.
+> Read `data/processed/{TICKER}/{DATE}/2-data/metric_checklist_tier3.json` for per-metric collection priorities (pre-sliced to your tier's firms only). Focus effort on `critical` and `high` priority metrics first. For `skip` priority metrics, do not attempt collection.
+> If `data/processed/{TICKER}/{DATE}/2-data/delta_spec_tier3.json` exists, this is an incremental run. Read the delta spec and collect ONLY the metrics listed in `collect.tier3.assignments` for your tier's firms. Carry-forward data is already preserved — do NOT re-collect existing data points.
 >
 > **Cover firms ranked 19 through the end** (smaller firms in the universe).
 >
@@ -593,7 +604,7 @@ Instructions:
 > Read `data/processed/{TICKER}/{DATE}/1-universe/source_catalog.json` for sources.
 > Read `docs/pax-peer-strategy-ontology.md` for the minimum business-model decomposition grid.
 > Read `docs/pax-peer-assessment-framework.md` for business context.
-> Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context.json` if it exists — use it ONLY to enrich `contextual_market_factors` and to frame industry trends (retailization, wealth-channel expansion, fee pressure, fundraising conditions, operating-model demands). Do NOT use consulting sources to assert a peer strategic action or stated priority unless peer/company evidence also supports it.
+> Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context_slim.json` if it exists — use it ONLY to enrich `contextual_market_factors` and to frame industry trends (retailization, wealth-channel expansion, fee pressure, fundraising conditions, operating-model demands). Do NOT use consulting sources to assert a peer strategic action or stated priority unless peer/company evidence also supports it.
 >
 > **CONSULTING RULE:** consulting_context.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
 >
@@ -627,7 +638,7 @@ Instructions:
 > For each firm, catalog concrete strategic actions taken in the prior 2–3 years. For each action record:
 > - action_id (ACT-VD-NNN)
 > - firm_id
-> - action_type: `M&A`, `product-launch`, `geographic-expansion`, `distribution-shift`, `capital-structure-change`, `organizational-change`, `technology-operations`
+> - action_type: `M&A`, `product-launch`, `geographic-expansion`, `distribution-shift`, `capital-structure-change`, `organizational-change`, `technology-operations`, `technology-investment`
 > - description
 > - stated_rationale (from management communications)
 > - observable_metric_impact (quantitative or directional, if disclosed)
@@ -652,6 +663,15 @@ Instructions:
 > For each prerequisite, record: `source_bias_tag`, `evidence_class` (directly_documented / corroborated / inferred).
 > If a prerequisite is inferred rather than directly documented, mark it `INFERRED` and require hedged language downstream ("the acquisition likely required…", "this expansion appears to have involved…").
 > No operational prerequisite may be labeled GROUNDED if it relies only on job postings, vendor PRs, or management commentary without corroboration.
+>
+> **Technology and data platform actions (mandatory sweep):**
+> For every firm, explicitly check for actions in these categories. If evidence exists, catalog them. If no evidence exists, record `no_tech_action_found: true` for the firm (so downstream agents know the absence is verified, not overlooked):
+> - Proprietary technology platform build or acquisition (e.g., EQT Motherbrain, Hamilton Lane Cobalt, KKR Global Atlantic systems)
+> - AI/ML integration into investment process or operations (e.g., Man Group systematic trading, Two Sigma quantitative models)
+> - Commercialization of data/analytics products to external clients
+> - Digital distribution platform launch or investment (e.g., iCapital partnership, direct-to-retail digital channels)
+> - Operational automation or technology-driven headcount efficiency initiatives
+> Use `action_type: technology-operations` for internal platforms and `action_type: technology-investment` for external-facing or commercialized products.
 >
 > **Output B:** `data/processed/{TICKER}/{DATE}/2-data/strategic_actions.json`
 
@@ -903,6 +923,14 @@ After VD-C1 completes, check:
 
 **Step range check:** If `FROM_STEP > 4`, skip this step and load existing outputs from the prior run. If `TO_STEP < 4`, stop here after completing Step 3 and display the stop message.
 
+**Pre-dispatch: Pre-slice context files for deep-dive agents**
+
+```bash
+python3 -m src.analyzer.context_slicer --run-dir data/processed/{TICKER}/{DATE}/ --only actions-final,profiles-final
+```
+
+This creates `strategic_actions_final.json` and `strategy_profiles_final.json` in `4-deep-dives/`, filtered to the final peer set (~50% reduction each).
+
 Spawn two agents in parallel:
 
 ### Agent: platform-analyst
@@ -916,7 +944,7 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/3-analysis/final_peer_set.json` for the list of 9–12 firms.
 > Read `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json` for stable driver rankings.
-> Read `data/processed/{TICKER}/{DATE}/2-data/strategy_profiles.json` and `data/processed/{TICKER}/{DATE}/2-data/strategic_actions.json`.
+> Read `data/processed/{TICKER}/{DATE}/4-deep-dives/strategy_profiles_final.json` and `data/processed/{TICKER}/{DATE}/4-deep-dives/strategic_actions_final.json` (pre-sliced to final peer set firms only).
 >
 > For each firm in the final set, produce a structured platform-level profile with six sections:
 >
@@ -931,6 +959,12 @@ Instructions:
 >    - **Timeline**: how long the transformation took from announcement to measurable impact
 >    - **Enabling conditions**: what organizational, capital, or market conditions made this possible
 >    - Do NOT reference {COMPANY}; keep insights self-contained but operationally detailed
+> 7. **Technology as enabler of value drivers** — For each firm, map documented technology investments (from `strategic_actions.json` where `action_type` is `technology-operations` or `technology-investment`) to the firm's performance on ranked value drivers. Answer:
+>    - Which technology investment preceded or coincided with improvement on which ranked driver? (e.g., "operational automation → FRE margin expansion", "digital distribution platform → FEAUM growth acceleration")
+>    - Is the technology investment a plausible mechanism for the observed driver performance, or merely coincidental?
+>    - What was the sequence: tech investment → operational change → metric improvement? Document the causal chain where evidence supports it; flag as `INFERRED` where the link is plausible but not directly documented.
+>    - If a firm has `no_tech_action_found: true` in strategic_actions.json, note this explicitly — the absence of documented tech investment is itself informative for the analysis.
+>    - Use hedged language for all causal claims: "appears to have contributed to", "coincided with", "may have enabled". Never assert direct causation.
 >
 > All profiles must be internally consistent. Transferable insights must be grounded in documented evidence from VD-B2, not inference.
 >
@@ -946,10 +980,10 @@ Instructions:
 > **Your task:** Execute Stage VD-D2 — Asset Class Deep-Dives.
 >
 > Read `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json` for which stable drivers are most salient.
-> Read `data/processed/{TICKER}/{DATE}/2-data/strategic_actions.json` for peer actions.
+> Read `data/processed/{TICKER}/{DATE}/4-deep-dives/strategic_actions_final.json` for peer actions (pre-sliced to final peer set firms only).
 > Read `docs/pax-peer-strategy-ontology.md` for the minimum business-model decomposition grid.
 > Read `docs/pax-peer-assessment-framework.md` for business context.
-> Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context.json` if it exists — use it as formal input for vertical and sub-strategy context. It may support claims about market structure, private credit growth, wealth distribution, consolidation, democratization, and operating-model requirements. Keep all peer-specific examples grounded in peer evidence.
+> Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context_slim.json` if it exists — use it as formal input for vertical and sub-strategy context. It may support claims about market structure, private credit growth, wealth distribution, consolidation, democratization, and operating-model requirements. Keep all peer-specific examples grounded in peer evidence.
 >
 > **CONSULTING RULE:** consulting_context.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
 >
@@ -1039,6 +1073,14 @@ Before proceeding to Step 5, dispatch the claim-auditor agent to verify deep-div
 
 **Step range check:** If `FROM_STEP > 5`, skip this step (no agents to skip in this skill — this would mean Review only). If `TO_STEP < 5`, stop here after completing Step 4 and display the stop message.
 
+**Pre-dispatch: Pre-slice context files for playbook agents**
+
+```bash
+python3 -m src.analyzer.context_slicer --run-dir data/processed/{TICKER}/{DATE}/ --only action-lookup,footnote-registry
+```
+
+This creates `action_source_lookup.json` (~5KB vs 123KB, 96% reduction) and `footnote_registry.json` (~15KB vs 62KB, 76% reduction) in `5-playbook/` for the report-builder.
+
 ### Agent: playbook-synthesizer
 
 Spawn with Agent tool (subagent_type: general-purpose, name: "playbook-synthesizer", model: "claude-opus-4-6", team_name: "vda-{TICKER_LOWER}"):
@@ -1053,7 +1095,7 @@ Instructions:
 > Read `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json`.
 > Read `data/processed/{TICKER}/{DATE}/3-analysis/statistical_methodology.md`.
 > Read `data/processed/{TICKER}/{DATE}/4-deep-dives/platform_profiles.json`.
-> Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context.json` if it exists — use it to explain WHY a theme matters now and WHY the market is moving in that direction. Do NOT let consulting sources replace peer evidence when describing what worked at a given firm.
+> Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context_slim.json` if it exists — use it to explain WHY a theme matters now and WHY the market is moving in that direction. Do NOT let consulting sources replace peer evidence when describing what worked at a given firm.
 >
 > **CONSULTING RULE:** consulting_context.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
 >
@@ -1097,6 +1139,27 @@ Instructions:
 > - Frame as "Don'ts" — lessons from what did not work, not just what did
 > - Cite ACT-VD-NNN and PS-VD-NNN identifiers throughout
 >
+> **Emerging Themes (mandatory section):**
+> After the driver-organized plays and anti-patterns, include an "Emerging Themes" section for strategic actions that appear in `strategic_actions.json` but have no corresponding ranked driver (because the underlying metric had insufficient coverage for correlation analysis). These are well-documented peer initiatives that the statistical engine cannot yet validate but that governance audiences should monitor.
+>
+> For each emerging theme:
+> - `theme_id`: THEME-NNN
+> - `theme_name`: descriptive label (e.g., "Proprietary Technology Platforms", "AI-Integrated Investment Processes")
+> - `actions`: array of ACT-VD-NNN IDs from strategic_actions.json that support this theme
+> - `firms_involved`: which peers are executing on this theme
+> - `What_Is_Observed`: factual description of what peers are doing — no causal claims
+> - `Why_It_May_Matter`: economic mechanism by which this could affect valuation, stated as hypothesis
+> - `Coverage_Gap`: which metric would need better coverage to test this statistically (e.g., "Technology_Platform_Maturity currently has N/24 firms — below 60% threshold")
+> - `Evidence_Strength`: `observational` (multiple peers pursuing similar initiatives) or `anecdotal` (isolated examples)
+> - `source_citations`: array of PS-VD-NNN IDs
+>
+> **Rules for Emerging Themes:**
+> - NEVER claim causal impact on valuation — these are observed patterns, not validated drivers
+> - Use hedged language throughout: "appears to", "peers are increasingly", "may contribute to"
+> - Minimum 1 emerging theme required (technology/AI initiatives are nearly always present in alt-asset management)
+> - Maximum 5 emerging themes to maintain focus
+> - Each theme must cite at least 2 distinct peer actions from strategic_actions.json
+>
 > **Entries missing any mandatory field will be blocked at CP-3.**
 >
 > **Output B:** `data/processed/{TICKER}/{DATE}/5-playbook/platform_playbook.json`
@@ -1110,6 +1173,9 @@ Instructions:
 > Within each vertical, organize plays by **strategy sub-type** (from VD-D2) where applicable, so readers can identify plays relevant to their specific sub-type.
 >
 > **Entries missing any mandatory field will be blocked at CP-3.**
+>
+> **Emerging Themes (per vertical):**
+> Same structure as VD-P2 Emerging Themes, but scoped to each vertical. Include technology/data themes that are specific to the asset class (e.g., AI-driven credit underwriting in Credit, digital asset origination in PE, smart infrastructure monitoring in Infrastructure). At least 1 emerging theme per vertical where evidence exists.
 >
 > **Output C:** `data/processed/{TICKER}/{DATE}/5-playbook/asset_class_playbooks.json`
 
@@ -1182,9 +1248,9 @@ Instructions:
 > - `4-deep-dives/asset_class_analysis.json`
 > - `3-analysis/statistical_methodology.md`
 > - `3-analysis/driver_ranking.json`
-> - `1-universe/source_catalog.json` — for footnote registry
-> - `2-data/strategic_actions.json` — for ACT-VD → PS-VD resolution
-> - `2-data/consulting_context.json` — for Industry Context section (if it exists)
+> - `5-playbook/footnote_registry.json` — pre-built compact registry (source_id, firm, title, document_type, bias_tag only)
+> - `5-playbook/action_source_lookup.json` — pre-built ACT-VD → PS-VD lookup (action_id, firm_id, source_citation only)
+> - `2-data/consulting_context_slim.json` — for Industry Context section (if it exists, top_snippets removed)
 >
 > **CONSULTING RULE:** Add a short "Industry Context" section using consulting_context.json. Keep it clearly labeled and separate from peer findings. Consulting sources (PS-VD-9xx) may only support market-level claims. Any firm-specific claim must cite peer PS-VD sources, not consulting sources.
 >
@@ -1214,9 +1280,9 @@ Instructions:
 > - If `data/processed/{TICKER}/{DATE}/style_guide.json` exists, adapt the report's tone, terminology, and structure to match the style guide while preserving all analytical rigor and mandatory disclaimers
 >
 > **Footnote generation system:**
-> 1. Build a footnote registry: assign each PS-VD-NNN in `source_catalog.json` a sequential number (1, 2, 3...)
+> 1. Build a footnote registry: assign each PS-VD-NNN in `footnote_registry.json` a sequential number (1, 2, 3...)
 > 2. Replace inline bare source IDs with superscript footnotes: `<sup class="fn"><a href="#fn-N">N</a></sup>`
-> 3. Resolve ACT-VD-NNN → source_citation → PS-VD-NNN for play citations (using `strategic_actions.json`)
+> 3. Resolve ACT-VD-NNN → source_citation → PS-VD-NNN for play citations (using `action_source_lookup.json`)
 > 4. Render a "Sources & References" ordered list section before the Appendix:
 >    - Format: `[N] Title (Date). Bias: [tag]. URL`
 >    - Each footnote anchored with `id="fn-N"` for navigation
@@ -1269,7 +1335,7 @@ Instructions:
 > - `data/processed/{TICKER}/{DATE}/5-playbook/asset_class_playbooks.json`
 > - `data/processed/{TICKER}/{DATE}/4-deep-dives/platform_profiles.json`
 > - `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json`
-> - `data/processed/{TICKER}/{DATE}/2-data/consulting_context.json` (if it exists) — for market timing and structural relevance
+> - `data/processed/{TICKER}/{DATE}/2-data/consulting_context_slim.json` (if it exists) — for market timing and structural relevance
 >
 > **CONSULTING RULE:** Use consulting_context.json ONLY to strengthen `why_this_matters_for_pax`, market timing, and structural relevance. Do NOT use consulting evidence as the sole basis for a recommendation, implementation pathway, or claim that a peer has already validated a move. If consulting conflicts with peer evidence, peer evidence wins.
 >

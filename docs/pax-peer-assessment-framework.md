@@ -98,6 +98,15 @@ Test at minimum:
 - FRE growth
 - FRE margin
 
+### Technology and Data Platform
+
+Test at minimum:
+
+- proprietary platform presence (yes/no)
+- commercialized technology product (yes/no)
+- ML/AI integration in investment process (yes/no)
+- technology capex intensity (when separately disclosed)
+
 ### Market-Structure Context
 
 These should be considered at least as contextual metrics:

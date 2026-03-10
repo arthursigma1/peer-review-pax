@@ -45,7 +45,7 @@ Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers 
 - **Gather Data** — Collect quantitative data and extract strategies (Data Collector splits into 3 tiers of ~9 firms; Strategy Researcher runs in parallel)
 - **Find What Drives Value** — Standardize, correlate (Spearman), rank drivers (Statistical Analyst, sequential)
 - **Deep-Dive Peers** — Platform profiles and asset class analysis (Platform Profiler + Sector Specialist, parallel)
-- **Build the Playbook** — Synthesize insights and generate HTML report (Insight Synthesizer + Report Composer, sequential). Playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN). Target Company Lens agent extracts transferable principles from peer evidence for governance cascade (PHL/Board → Management → per-BU) — language is exploratory, not prescriptive. A Ghost Report Skeleton (action titles) is produced before the final report to ensure narrative coherence. Supports `--base-run YYYY-MM-DD` for iterative refinement and `--style-ref /path/to/doc` for writing style matching. Writing reference: `docs/sigma-final-report-guide.md`.
+- **Build the Playbook** — Synthesize insights and generate HTML report (Insight Synthesizer + Report Composer, sequential). Report Composer receives `src/report/style_guide.html` + `src/report/report_schema.json` as static prompt prefix (~6.5K tokens, prompt-cached); `src/report/report_validator.py` runs post-generation with 1 repair pass on WARN/FAIL. Playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN). Target Company Lens agent extracts transferable principles from peer evidence for governance cascade (PHL/Board → Management → per-BU) — language is exploratory, not prescriptive. A Ghost Report Skeleton (action titles) is produced before the final report to ensure narrative coherence. Supports `--base-run YYYY-MM-DD` for iterative refinement and `--style-ref /path/to/doc` for writing style matching. Writing reference: `docs/sigma-final-report-guide.md`.
 
 **Independence:** VDA pipeline operates independently of the drift pipeline. No PIL-* pillar IDs are referenced.
 
@@ -94,6 +94,10 @@ python3 -m src.analyzer.delta_spec --merge --new-run-dir data/processed/pax/2026
 
 # Build consulting context from crawl outputs
 python3 -m src.analyzer.consulting_context --seed-results data/processed/pax/2026-03-09-run2/1-universe/crawl-with-consulting/consulting_seed_results.json
+
+# Pre-slice context files for agent dispatch (reduces context window load 40-96%)
+python3 -m src.analyzer.context_slicer --run-dir data/processed/pax/2026-03-10-run2/
+python3 -m src.analyzer.context_slicer --run-dir ... --only actions-final,checklist-tiers  # selective slicing
 
 # Validate a generated VDA report
 python3 -m src.report.report_validator --html data/processed/pax/2026-03-10-run2/5-playbook/final_report.html
@@ -177,7 +181,7 @@ Audit cross-cutting dependencies across pipeline agents, dashboard, CLAUDE.md, a
 - Academic language throughout — no marketing speak
 - Every claim in drift reports must cite source IDs (S-*, STR-*, ACT-*, CMT-*, PIL-*)
 - Every claim in peer reports must cite source IDs (PS-*, PEER-*, MET-*, BENCH-*, RANK-*, PIL-*)
-- Every claim in VDA reports must cite source IDs (PS-VD-*, FIRM-*, MET-VD-*, COR-*, DVR-*, ACT-VD-*, PLAY-*, ANTI-*)
+- Every claim in VDA reports must cite source IDs (PS-VD-*, FIRM-*, MET-VD-*, COR-*, DVR-*, ACT-VD-*, PLAY-*, ANTI-*, THEME-*)
 - Per-company directory convention: `data/processed/{ticker}/`, `data/raw/{ticker}/`
 - Multiple runs per day use incremental suffix: `YYYY-MM-DD`, `YYYY-MM-DD-run2`, `YYYY-MM-DD-run3`
 - VDA data collection always splits into 3 parallel tiers (~9 firms each)
@@ -190,63 +194,19 @@ Audit cross-cutting dependencies across pipeline agents, dashboard, CLAUDE.md, a
 | 1 | 2-data | `quantitative_tier1.json`, `quantitative_tier2.json`, `quantitative_tier3.json`, `strategy_profiles.json`, `strategic_actions.json`, `metric_checklist.json`, `delta_spec.json` (if `--base-run`), `consulting_context.json` (if consulting crawl exists) |
 | 2 | 3-analysis | `standardized_matrix.json`, `correlation_results.json`, `driver_ranking.json`, `data_gaps.json` |
 | 3 | 4-deep-dives | `platform_profiles.json`, `asset_class_analysis.json` |
-| 4 | 5-playbook | `playbook.json`, `target_lens.json`, `final_report.html` |
+| 4 | 5-playbook | `playbook.json`, `platform_playbook.json`, `asset_class_playbooks.json`, `target_lens.json`, `final_report.html` |
 | 5 | 6-review | `methodology_review.md`, `results_review.md` |
-- VDA playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN)
+- VDA playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN). Play card canonical structure (Variant B): **Reference firm** / **What was done** / **Why it works** / **Operational prerequisites**
 - VDA Fact Checker produces audit files per checkpoint: `audit_cp1_data.json`, `audit_cp2_deep_dives.json`, `audit_cp3_playbook.json`
 - Claims marked `INFERRED` by Fact Checker require hedged language in final report ("suggests", "appears to", never "demonstrates" or "proves")
 - VDA reports use a structured tone profile (`style_guide.json`) — default is academic/evidence-based; custom tone extracted from user-uploaded reference documents
 
-## Scoring Framework (Drift)
+## Reference Docs
 
-| Classification | Score Range |
-|---|---|
-| Aligned | >= 4.0 |
-| Minor Drift | 3.0–3.9 |
-| Significant Drift | 2.0–2.9 |
-| Strategic Disconnect | < 2.0 |
-
-## VDA Correlation Classification
-
-| Classification | Criterion |
-|---|---|
-| Stable value driver | Satisfies repository rule `stable_v1_two_of_three` |
-| Multiple-specific driver | `abs(rho) >= 0.5` on exactly one eligible multiple and fails stable rule |
-| Contextual driver | Useful for decomposition or interpretation but not headline ranking |
-| Unsupported | Not defensible for strategic interpretation |
-
-## VDA Consulting Evidence Hierarchy
-
-Consulting and industry-report sources (PS-VD-9xx) are **market context only**. Peer evidence always wins.
-
-| Rule | Detail |
-|---|---|
-| Peer evidence > consulting | If a consulting source conflicts with a filing, earnings deck, or investor presentation, the firm source wins |
-| Consulting cannot solely sustain | firm-specific metrics, firm-specific actions, causal claims about a specific firm, or final recommendations |
-| Allowed usage | `market_context`, `distribution_context`, `operating_model_context`, `supporting_context` |
-| Disallowed usage | `firm_specific_fact`, `firm_specific_metric`, `firm_specific_action`, `sole_basis_for_recommendation` |
-| Citation rule | PS-VD-9xx may cite market-level claims; firm-specific claims require peer PS-VD sources |
-| claim-auditor enforcement | Any claim where PS-VD-9xx is the sole citation AND the claim is about a specific firm → BLOCK |
-
-**Agents that consume `consulting_context.json`:** strategy-extractor, vertical-analyst, playbook-synthesizer, target-lens, report-builder, claim-auditor.
-**Agents that do NOT receive it:** data-collector-t1, data-collector-t2, data-collector-t3.
-
-**Claim scope classification:** Each claim in `consulting_context.json` has a `scope` field (`market`, `segment`, `multi_firm`, `single_firm`). Claims with `single_firm` scope must not be used as firm-specific evidence.
-
-## VDA Agent Orchestration Best Practices
-
-Learned from 2026-03-09-run2 (best run to date). These patterns prevent agent stalls and context overflow:
-
-1. **1-agent-per-firm for qualitative tasks** — Never assign 15 firms to a single agent. Each agent handles 1 firm (profile + actions). ~27K tokens each, zero stalls. Dispatch all 15 in parallel.
-2. **No WebSearch for qualitative data** — Strategy profiles and strategic actions of major public alt-asset managers are well-known. Use training data only. WebSearch is the #1 context consumer and primary cause of stalls.
-3. **Incremental file writing** — Instruct agents to write partial results every 3 firms. If they stall at firm 12, you still have 9 firms saved.
-4. **Gap-fill pattern** — When an agent completes partially (e.g., 4 of 8 profiles), dispatch a smaller agent to fill ONLY the gap. Read existing file → append → overwrite. Never redo completed work.
-5. **Split read-heavy from write-heavy** — Separate "research + profile" from "research + actions" into two parallel agents per firm if needed.
-6. **Simplified schemas for large outputs** — `operational_prerequisites` with 7 nested subfields causes stalls. Use `op_prereq_summary` (single string) instead. Expand in post-processing if needed.
-7. **Merge pattern for parallel per-firm agents** — Each agent writes to `profiles/{TICKER}.json` and `actions/{TICKER}.json`. A merge script combines all fragments into the canonical `strategy_profiles.json` and `strategic_actions.json`.
-8. **Context budget rule of thumb** — Agents that read >3 files AND do WebSearch will likely stall before writing. Keep total input under 50K tokens per agent.
-9. **Stall detection** — Monitor URL log line count + output file existence. If URL log is frozen for >5 min with no new output file, the agent has stalled. Redispatch immediately.
-10. **`bypassPermissions` mode** — Background agents with `settings.local.json` restrictions silently fail on Write/Bash. Use `mode: bypassPermissions` or ensure permissions include `Write(**)`, `Bash(*)`.
+- **Drift scoring framework** — `docs/drift-scoring-framework.md` (score ranges, dimension weights)
+- **VDA correlation classification** — `docs/vda-correlation-classification.md` (stable/multiple-specific/contextual/unsupported)
+- **VDA consulting evidence hierarchy** — `docs/vda-consulting-evidence-hierarchy.md` (PS-VD-9xx rules, agent routing, scope classification)
+- **VDA agent orchestration** — `docs/vda-agent-orchestration.md` (1-agent-per-firm, no WebSearch, gap-fill, stall detection)
 
 ## Reuse for Another Company
 

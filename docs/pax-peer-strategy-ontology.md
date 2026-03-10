@@ -160,6 +160,13 @@ Individuals:
 - `organic`
 - `inorganic`
 
+### Technology Capability
+
+- `proprietary_platform` — firm has built or acquired a proprietary technology platform for investment operations (e.g., EQT Motherbrain, Hamilton Lane Cobalt, KKR Global Atlantic platform)
+- `commercialized_data_product` — firm licenses or sells its technology/data products to external clients (e.g., Hamilton Lane Cobalt analytics)
+- `ml_integrated` — firm integrates machine learning or AI into core investment or operational workflows (e.g., Man Group systematic trading, Two Sigma quantitative models)
+- `standard_vendor` — firm uses industry-standard third-party systems without material proprietary technology differentiation
+
 ### Share Class
 
 - `single_class`
