@@ -68,6 +68,7 @@ Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers 
 - `docs/sigma-final-report-guide.md` — SIGMA writing guide for final report (Pyramid Principle, action titles, footnotes, bumper statements)
 - `src/tauri/` — Tauri desktop dashboard (React + TypeScript + Tailwind + Rust)
 - `src/analyzer/` — VDA data quality tools (metric_checklist, data_gaps, delta_spec, consulting_context)
+- `src/report/` — Report consistency system (style_guide.html, report_schema.json, report_validator.py)
 - `src/document_converter.py` — PDF/DOCX/PPTX to text converter using marker-pdf
 
 ## Commands
@@ -93,6 +94,12 @@ python3 -m src.analyzer.delta_spec --merge --new-run-dir data/processed/pax/2026
 
 # Build consulting context from crawl outputs
 python3 -m src.analyzer.consulting_context --seed-results data/processed/pax/2026-03-09-run2/1-universe/crawl-with-consulting/consulting_seed_results.json
+
+# Validate a generated VDA report
+python3 -m src.report.report_validator --html data/processed/pax/2026-03-10-run2/5-playbook/final_report.html
+
+# Validate with regression check against a base run
+python3 -m src.report.report_validator --html path/to/final_report.html --base-run data/processed/pax/2026-03-09-run2/
 ```
 
 ## Skills (Slash Commands)
@@ -132,6 +139,16 @@ Deploy review agents on any completed VDA analysis to identify improvement oppor
 - `--report path` — optional override for report location
 
 Output: `data/processed/{TICKER}/{YYYY-MM-DD}/6-review/methodology_review.md` + `6-review/results_review.md`
+
+### `/consistency-check`
+
+Audit cross-cutting dependencies across pipeline agents, dashboard, CLAUDE.md, and report system. Read-only — flags mismatches across 6 domains:
+- Canonical filenames (CLAUDE.md, SKILL.md, usePipeline.ts, lib.rs)
+- Agent names (CLAUDE.md, SKILL.md, ptyParser.ts)
+- Design tokens (theme.ts, index.css, style_guide.html)
+- Report schema (report_schema.json, report_validator.py, style_guide.html)
+- Pipeline flow (SKILL.md, usePipeline.ts, CLAUDE.md)
+- Methodology (methodology doc, CLAUDE.md conventions)
 
 ## VDA Friendly Naming
 
