@@ -1618,6 +1618,13 @@ Instructions:
 > - `adaptation_distance`: low | medium | high (how much adaptation would be needed)
 > - `copycat_risk`: what could go wrong if copied without the peer's prerequisites, scale, or context
 > - `principle_extracted`: the general principle this play illustrates (not the specific action)
+> - `trade_offs`: array of trade-off objects (1-2 preferred, 3 only if strongly evidenced). Required for `directly_applicable` and `requires_adaptation` plays. Not required for `not_applicable`. Each object:
+>   - `trade_off` (string, required): Bilateral tension framed as "X vs. Y"
+>   - `mechanism` (string, required): How this specifically affects {COMPANY} given its context (drivers, scale, geography)
+>   - `linked_anti_pattern` (string or null, optional): ANTI-NNN that materializes this risk, if one exists
+>   - `severity` (enum: high/medium/low, required): Materiality for {COMPANY}
+>   - `evidence_basis` (array of strings, required): References grounding the trade-off. Minimum 1 concrete reference (DVR-NNN position with value, ANTI-NNN, {COMPANY} metric with number). Generic trade-offs ("all M&A has integration risk") are blocked.
+>   - `claim_id` (string, required): CLM-TL-TO-{play_number}-{seq} (e.g., CLM-TL-TO-005-01)
 >
 > **Additionally, produce a "Strategic Guidance" section structured for governance cascading:**
 >
@@ -1662,6 +1669,22 @@ Instructions:
 > - Type is `comparative` (comparing peer play to target company context)
 > - Score is max 2 (analogy-based, not direct evidence). Use score 1 if applicability is "not_applicable"
 > - Language reminder: "suggests", "appears to", "data is consistent with" — never imperative
+>
+> **Trade-off claim emission:** Each trade-off object also emits a claim in `_claims`:
+> ```json
+> {
+>   "id": "CLM-TL-TO-005-01",
+>   "parent_id": "PLAY-005",
+>   "type": "comparative",
+>   "evidence": ["DVR-003", "ANTI-003", "CLM-PLAY-005-01"],
+>   "confidence": "partial",
+>   "score": 2,
+>   "layer": "5-playbook"
+> }
+> ```
+> - Trade-off claim IDs use pattern CLM-TL-TO-{play_number}-{seq} (separate from the play assessment CLM-TL-{NNN}-01)
+> - Score max 2 (analogy-based). `evidence` must include the references from the trade-off's `evidence_basis`, resolved to IDs.
+> - The tooltip renders the full evidence chain on click via the existing claim evidence layer.
 
 ### Quality Gate 5 (always shown, regardless of mode)
 
