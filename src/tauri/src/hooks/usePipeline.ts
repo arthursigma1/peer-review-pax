@@ -437,6 +437,22 @@ export function usePipeline() {
       // Set startTime from earliest file so the timeline has a reference point
       setStartTime(earliestMs);
 
+      // Reconstruct checkpoint status from audit files
+      const auditFileToCheckpoint: Record<string, string> = {
+        "audit_cp1_data.json": "CP-1",
+        "audit_cp2_deep_dives.json": "CP-2",
+        "audit_cp3_playbook.json": "CP-3",
+      };
+      setCheckpoints((prev) =>
+        prev.map((cp) => {
+          const auditFile = Object.entries(auditFileToCheckpoint).find(([, cpId]) => cpId === cp.id);
+          if (!auditFile) return cp;
+          const found = allFiles.includes(auditFile[0]);
+          if (!found) return cp;
+          return { ...cp, status: "passed" as const };
+        })
+      );
+
       setConfig({
         ticker: ticker.toUpperCase(),
         sector: "",
