@@ -1,6 +1,6 @@
 ---
 name: valuation-driver
-description: Run the full Valuation Driver Analysis pipeline for any public company. Orchestrates 14 specialized agents across 5 steps to identify what drives valuation multiples and produce a strategic playbook. Usage: /valuation-driver TICKER [--auto] [--ui] [--sources /path/to/dir] [--base-run YYYY-MM-DD] [--style-ref /path/to/doc] [--from-step N] [--to-step N]
+description: Run the full Valuation Driver Analysis pipeline for any public company. Orchestrates 14 specialized agents across 5 steps to identify what drives valuation multiples and produce a strategic playbook. Usage: /valuation-driver TICKER [--auto] [--ui] [--sources /path/to/dir] [--base-run YYYY-MM-DD] [--evidence-mode legacy|incremental] [--style-ref /path/to/doc] [--from-step N] [--to-step N]
 ---
 
 # Valuation Driver Analysis
@@ -10,16 +10,17 @@ Identify which operational and financial metrics drive valuation multiples acros
 ## Usage
 
 ```
-/valuation-driver TICKER                          # interactive CLI (pauses at quality gates)
-/valuation-driver TICKER --auto                   # automatic CLI (gates validated by lead agent)
-/valuation-driver TICKER --ui                     # launch Tauri desktop dashboard
-/valuation-driver TICKER --sources /path/to/dir   # with supplemental proprietary data
-/valuation-driver TICKER --auto --sources /path   # automatic + supplemental data
-/valuation-driver TICKER --base-run 2026-03-06      # iterative: improve upon previous run
-/valuation-driver TICKER --style-ref /path/to/doc   # match writing style of reference doc
-/valuation-driver TICKER --from-step 2            # start from step 2 (skip step 1)
-/valuation-driver TICKER --to-step 3              # stop after step 3
-/valuation-driver TICKER --from-step 2 --to-step 4  # run steps 2–4 only
+/valuation-driver TICKER                              # interactive CLI (pauses at quality gates)
+/valuation-driver TICKER --auto                       # automatic CLI (gates validated by lead agent)
+/valuation-driver TICKER --ui                         # launch Tauri desktop dashboard
+/valuation-driver TICKER --sources /path/to/dir       # with supplemental proprietary data
+/valuation-driver TICKER --auto --sources /path       # automatic + supplemental data
+/valuation-driver TICKER --base-run 2026-03-06        # iterative: improve upon previous run
+/valuation-driver TICKER --evidence-mode incremental  # reuse canonical evidence store + plan recrawls only for gaps
+/valuation-driver TICKER --style-ref /path/to/doc     # match writing style of reference doc
+/valuation-driver TICKER --from-step 2                # start from step 2 (skip step 1)
+/valuation-driver TICKER --to-step 3                  # stop after step 3
+/valuation-driver TICKER --from-step 2 --to-step 4    # run steps 2–4 only
 ```
 
 ## Step 0: Parse Arguments
@@ -30,12 +31,14 @@ Extract from the user's input:
 - `--auto` flag (optional) — if present, quality gates are validated automatically; otherwise interactive
 - `--sources /path/to/dir` (optional) — path to a directory containing supplemental data files (PDFs, DOCX, PPTX)
 - `--base-run YYYY-MM-DD` (optional) — date of a previous run to use as baseline. Agents receive previous outputs as context and are instructed to improve upon them.
+- `--evidence-mode legacy|incremental` (optional) — defaults to `legacy`. `incremental` keeps the run-local contracts unchanged but resolves sources against the global `source_inventory/` control plane and the canonical evidence store.
 - `--style-ref /path/to/doc` (optional) — path to a reference document whose writing style the report should match.
 - `--from-step N` (optional) — start execution from pipeline step N (1-indexed: 1=Map the Industry, 2=Gather Data, 3=Find What Drives Value, 4=Deep-Dive Peers, 5=Build the Playbook, 6=Review Analysis). Steps before N are skipped; their outputs are read from the most recent existing run in `data/processed/{TICKER}/`.
 - `--to-step N` (optional) — stop execution after pipeline step N (inclusive, same 1-indexed scale). Steps after N are not executed.
 
 Set `FROM_STEP` to the value of `--from-step` (default: 1).
 Set `TO_STEP` to the value of `--to-step` (default: 6).
+Set `EVIDENCE_MODE` to the value of `--evidence-mode` (default: `legacy`).
 
 If no TICKER is provided, ask the user for one.
 
@@ -247,6 +250,7 @@ Before spawning any agent, check if a custom agent configuration exists:
 - `command.auto_mode` → use as the auto/interactive mode flag (overrides `--auto` CLI flag)
 - `command.tier_size` → use as the number of firms per data-collector tier
 - `command.base_run` → use as the base run date (overrides `--base-run` CLI flag)
+- `command.evidence_mode` → use as the evidence mode for this run (overrides `--evidence-mode`)
 - `command.tone_profile` → pass to the report-builder agent as tone configuration
 
 The Tauri dashboard's Agents tab saves this config file. Users can modify agent models, temperatures, tools, and other parameters through the UI, and the pipeline will respect those settings on the next run.
@@ -454,6 +458,28 @@ If consulting crawl outputs exist at `data/processed/{TICKER}/{DATE}/1-universe/
 
 If no consulting crawl outputs exist, skip this step. The pipeline proceeds without consulting context.
 
+### Incremental Evidence Bootstrap
+
+If `EVIDENCE_MODE == incremental`:
+
+1. Ensure the global control-plane artifacts exist under `data/processed/{TICKER}/source_inventory/`. If any are missing, build them in this order:
+   ```bash
+   python3 -m src.analyzer.carry_forward_registry --processed-root data/processed/{TICKER}/ --output-dir data/processed/{TICKER}/source_inventory/
+   python3 -m src.analyzer.evidence_store --registry data/processed/{TICKER}/source_inventory/carry_forward_registry.json --canonical-root data/raw/{TICKER}/canonical --output-dir data/processed/{TICKER}/source_inventory/
+   python3 -m src.analyzer.recrawl_resolution --registry data/processed/{TICKER}/source_inventory/carry_forward_registry.json --output-dir data/processed/{TICKER}/source_inventory/
+   ```
+2. Materialize the run-local manifests:
+   ```bash
+   python3 -m src.analyzer.incremental_bootstrap --run-dir data/processed/{TICKER}/{DATE}/ --registry data/processed/{TICKER}/source_inventory/carry_forward_registry.json --evidence-index data/processed/{TICKER}/source_inventory/evidence_store_index.json --recrawl-resolution data/processed/{TICKER}/source_inventory/recrawl_resolution.json
+   ```
+3. Verify the run-local artifacts:
+   - `data/processed/{TICKER}/{DATE}/1-universe/source_resolution.json`
+   - `data/processed/{TICKER}/{DATE}/1-universe/reuse_manifest.json`
+   - `data/processed/{TICKER}/{DATE}/1-universe/recrawl_plan.json`
+4. Log: `[INCREMENTAL] Evidence mode incremental enabled — reuse manifest and recrawl plan materialized for this run`
+
+If `EVIDENCE_MODE == legacy`, skip this section entirely. Downstream steps keep consuming the same run-local contracts either way.
+
 ## Step 8: Step 2 of 5 — "Gather Data" (Parallel)
 
 **Step range check:** If `FROM_STEP > 2`, skip this step and load existing outputs from the prior run. If `TO_STEP < 2`, stop here after completing Step 1 and display the stop message.
@@ -606,7 +632,7 @@ Instructions:
 > Read `docs/pax-peer-assessment-framework.md` for business context.
 > Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context_slim.json` if it exists — use it ONLY to enrich `contextual_market_factors` and to frame industry trends (retailization, wealth-channel expansion, fee pressure, fundraising conditions, operating-model demands). Do NOT use consulting sources to assert a peer strategic action or stated priority unless peer/company evidence also supports it.
 >
-> **CONSULTING RULE:** consulting_context.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
+> **CONSULTING RULE:** consulting_context_slim.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
 >
 > For each firm in the qualitative peer set (read the list from `1-universe/peer_universe.json`), extract a standalone strategic profile by mapping the peer across the full ontology grid:
 > - Geographical reach
@@ -789,6 +815,30 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 > For each correlation result record: correlation_id (COR-NNN), driver_metric_id, valuation_multiple, spearman_rho, classification, n_firms_included, notes.
 >
 > **Output:** `data/processed/{TICKER}/{DATE}/3-analysis/correlations.json`
+>
+> **Claim emission (REQUIRED):** Add a top-level `_claims` array to `correlations.json`. For each correlation entry, emit one claim:
+>
+> ```json
+> {
+>   "_claims": [
+>     {
+>       "id": "CLM-COR-{NNN}-01",
+>       "parent_id": "COR-{NNN}",
+>       "type": "statistical",
+>       "evidence": ["{driver_metric_id}", "{valuation_multiple_id}"],
+>       "confidence": "grounded",
+>       "score": 3,
+>       "layer": "3-analysis"
+>     }
+>   ]
+> }
+> ```
+>
+> Rules:
+> - One CLM per COR entry
+> - `evidence` contains the two MET-VD-* IDs being correlated
+> - Score is always 3 (computation is deterministic from input metrics)
+> - `confidence` is always "grounded" for statistical claims backed by computation
 
 ### Send to metric-architect: VD-A4b Statistical Documentation
 
@@ -847,6 +897,31 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 > - non_obvious_peers: firms in top quartile on 2+ stable drivers that were NOT in the original VD-B0 qualitative peer list — flag these for possible inclusion in Phase 2
 >
 > **Output:** `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json`
+>
+> **Claim emission (REQUIRED):** Add a top-level `_claims` array to `driver_ranking.json`. For each driver entry, emit one claim:
+>
+> ```json
+> {
+>   "_claims": [
+>     {
+>       "id": "CLM-DVR-{NNN}-01",
+>       "parent_id": "DVR-{NNN}",
+>       "type": "statistical",
+>       "evidence": ["COR-{X}", "COR-{Y}", "COR-{Z}"],
+>       "confidence": "grounded",
+>       "score": 3,
+>       "layer": "3-analysis"
+>     }
+>   ]
+> }
+> ```
+>
+> Rules:
+> - One CLM per DVR entry
+> - `evidence` lists ALL COR-* IDs that were used to classify this driver
+> - For `stable_value_driver`: evidence includes the 2+ COR-* entries with |rho| >= 0.5
+> - For `multiple_specific_driver`: evidence includes the single qualifying COR-*
+> - Score is 3 for stable/multiple_specific (backed by correlation data), 2 for contextual
 
 ### Send to metric-architect: VD-C1 Convergence
 
@@ -959,11 +1034,11 @@ Instructions:
 >    - **Timeline**: how long the transformation took from announcement to measurable impact
 >    - **Enabling conditions**: what organizational, capital, or market conditions made this possible
 >    - Do NOT reference {COMPANY}; keep insights self-contained but operationally detailed
-> 7. **Technology as enabler of value drivers** — For each firm, map documented technology investments (from `strategic_actions.json` where `action_type` is `technology-operations` or `technology-investment`) to the firm's performance on ranked value drivers. Answer:
+> 7. **Technology as enabler of value drivers** — For each firm, map documented technology investments (from `strategic_actions_final.json` where `action_type` is `technology-operations` or `technology-investment`) to the firm's performance on ranked value drivers. Answer:
 >    - Which technology investment preceded or coincided with improvement on which ranked driver? (e.g., "operational automation → FRE margin expansion", "digital distribution platform → FEAUM growth acceleration")
 >    - Is the technology investment a plausible mechanism for the observed driver performance, or merely coincidental?
 >    - What was the sequence: tech investment → operational change → metric improvement? Document the causal chain where evidence supports it; flag as `INFERRED` where the link is plausible but not directly documented.
->    - If a firm has `no_tech_action_found: true` in strategic_actions.json, note this explicitly — the absence of documented tech investment is itself informative for the analysis.
+>    - If a firm has `no_tech_action_found: true` in strategic_actions_final.json, note this explicitly — the absence of documented tech investment is itself informative for the analysis.
 >    - Use hedged language for all causal claims: "appears to have contributed to", "coincided with", "may have enabled". Never assert direct causation.
 >
 > All profiles must be internally consistent. Transferable insights must be grounded in documented evidence from VD-B2, not inference.
@@ -985,7 +1060,7 @@ Instructions:
 > Read `docs/pax-peer-assessment-framework.md` for business context.
 > Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context_slim.json` if it exists — use it as formal input for vertical and sub-strategy context. It may support claims about market structure, private credit growth, wealth distribution, consolidation, democratization, and operating-model requirements. Keep all peer-specific examples grounded in peer evidence.
 >
-> **CONSULTING RULE:** consulting_context.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
+> **CONSULTING RULE:** consulting_context_slim.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
 >
 > Conduct deep-dives for 5 verticals with their reference firms:
 >
@@ -1052,7 +1127,7 @@ After both deep-dive agents complete, check:
 Before proceeding to Step 5, dispatch the claim-auditor agent to verify deep-dive outputs. This is the CRITICAL checkpoint — all 4 audit dimensions are active.
 
 1. Read deep-dive outputs: `4-deep-dives/platform_profiles.json`, `4-deep-dives/asset_class_analysis.json`
-2. Read evidence files: `3-analysis/correlations.json`, `3-analysis/driver_ranking.json`, `2-data/strategic_actions.json`, `2-data/strategy_profiles.json`
+2. Read evidence files: `3-analysis/correlations.json`, `3-analysis/driver_ranking.json`, `4-deep-dives/strategic_actions_final.json`, `4-deep-dives/strategy_profiles_final.json`
 3. Send to claim-auditor via SendMessage:
    - Checkpoint: CP-2
    - Stage audited: VD-D1, VD-D2
@@ -1097,7 +1172,7 @@ Instructions:
 > Read `data/processed/{TICKER}/{DATE}/4-deep-dives/platform_profiles.json`.
 > Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context_slim.json` if it exists — use it to explain WHY a theme matters now and WHY the market is moving in that direction. Do NOT let consulting sources replace peer evidence when describing what worked at a given firm.
 >
-> **CONSULTING RULE:** consulting_context.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
+> **CONSULTING RULE:** consulting_context_slim.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
 >
 > For each of the 5–6 stable value drivers:
 > - Restate the statistical finding in plain language, accompanied by the full statistical documentation (rho, CI, Bonferroni-corrected p-value, confidence class)
@@ -1163,6 +1238,42 @@ Instructions:
 > **Entries missing any mandatory field will be blocked at CP-3.**
 >
 > **Output B:** `data/processed/{TICKER}/{DATE}/5-playbook/platform_playbook.json`
+>
+> **Claim emission (REQUIRED):** Add a top-level `_claims` array to `platform_playbook.json`. For each PLAY-NNN and ANTI-NNN, emit 1-3 claims representing the key assertions:
+>
+> ```json
+> {
+>   "_claims": [
+>     {
+>       "id": "CLM-PLAY-{NNN}-01",
+>       "parent_id": "PLAY-{NNN}",
+>       "type": "factual",
+>       "evidence": ["PS-VD-{X}", "ACT-VD-{Y}"],
+>       "confidence": "grounded",
+>       "score": 3,
+>       "layer": "5-playbook"
+>     },
+>     {
+>       "id": "CLM-PLAY-{NNN}-02",
+>       "parent_id": "PLAY-{NNN}",
+>       "type": "causal",
+>       "evidence": ["CLM-PLAY-{NNN}-01", "CLM-DVR-{D}-01"],
+>       "confidence": "partial",
+>       "score": 2,
+>       "layer": "5-playbook"
+>     }
+>   ]
+> }
+> ```
+>
+> Claim decomposition per play:
+> 1. **Factual claim** (what the peer did): type=factual, evidence=[PS-VD-*, ACT-VD-*], score=3
+> 2. **Causal claim** (why it worked — metric impact): type=causal, evidence=[factual CLM + DVR CLM], score=2 max
+> 3. **Prescriptive claim** (generalizability — only if Transferability_Constraints allows): type=prescriptive, evidence=[causal CLM], score=2 max
+>
+> Anti-patterns (ANTI-NNN) follow the same structure with CLM-ANTI-{NNN}-{seq} IDs.
+>
+> Causal and prescriptive claims MUST use score <= 2. The claim_indexer enforces this ceiling.
 >
 > **Task C — Stage VD-P3: Asset Class Playbooks**
 >
@@ -1252,7 +1363,7 @@ Instructions:
 > - `5-playbook/action_source_lookup.json` — pre-built ACT-VD → PS-VD lookup (action_id, firm_id, source_citation only)
 > - `2-data/consulting_context_slim.json` — for Industry Context section (if it exists, top_snippets removed)
 >
-> **CONSULTING RULE:** Add a short "Industry Context" section using consulting_context.json. Keep it clearly labeled and separate from peer findings. Consulting sources (PS-VD-9xx) may only support market-level claims. Any firm-specific claim must cite peer PS-VD sources, not consulting sources.
+> **CONSULTING RULE:** Add a short "Industry Context" section using consulting_context_slim.json. Keep it clearly labeled and separate from peer findings. Consulting sources (PS-VD-9xx) may only support market-level claims. Any firm-specific claim must cite peer PS-VD sources, not consulting sources.
 >
 > Also read the writing reference: `docs/sigma-final-report-guide.md`
 >
@@ -1337,7 +1448,7 @@ Instructions:
 > - `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json`
 > - `data/processed/{TICKER}/{DATE}/2-data/consulting_context_slim.json` (if it exists) — for market timing and structural relevance
 >
-> **CONSULTING RULE:** Use consulting_context.json ONLY to strengthen `why_this_matters_for_pax`, market timing, and structural relevance. Do NOT use consulting evidence as the sole basis for a recommendation, implementation pathway, or claim that a peer has already validated a move. If consulting conflicts with peer evidence, peer evidence wins.
+> **CONSULTING RULE:** Use consulting_context_slim.json ONLY to strengthen `why_this_matters_for_pax`, market timing, and structural relevance. Do NOT use consulting evidence as the sole basis for a recommendation, implementation pathway, or claim that a peer has already validated a move. If consulting conflicts with peer evidence, peer evidence wins.
 >
 > For each PLAY-NNN in the platform and asset class playbooks, assess relevance to {COMPANY}.
 >
@@ -1385,6 +1496,31 @@ Instructions:
 > - Observed mechanisms and their prerequisites — framed as "patterns observed" not "launch this by Q3"
 >
 > **Output:** `data/processed/{TICKER}/{DATE}/5-playbook/target_company_lens.json`
+>
+> **Claim emission (REQUIRED):** Add a top-level `_claims` array to `target_company_lens.json`. For each play assessment, emit one claim:
+>
+> ```json
+> {
+>   "_claims": [
+>     {
+>       "id": "CLM-TL-{NNN}-01",
+>       "parent_id": "PLAY-{NNN}",
+>       "type": "comparative",
+>       "evidence": ["PS-VD-{target_co_source}", "CLM-PLAY-{NNN}-01"],
+>       "confidence": "partial",
+>       "score": 2,
+>       "layer": "5-playbook"
+>     }
+>   ]
+> }
+> ```
+>
+> Rules:
+> - One CLM per play assessment
+> - `evidence` includes (a) source for the target company data point and (b) the corresponding play's factual claim
+> - Type is `comparative` (comparing peer play to target company context)
+> - Score is max 2 (analogy-based, not direct evidence). Use score 1 if applicability is "not_applicable"
+> - Language reminder: "suggests", "appears to", "data is consistent with" — never imperative
 
 ### Quality Gate 5 (always shown, regardless of mode)
 
