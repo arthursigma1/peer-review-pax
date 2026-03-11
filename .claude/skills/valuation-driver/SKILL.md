@@ -1399,6 +1399,68 @@ Instructions:
 >    - Format: `[N] Title (Date). Bias: [tag]. URL`
 >    - Each footnote anchored with `id="fn-N"` for navigation
 >
+> **Claim evidence layer (REQUIRED if claim_index.json exists):**
+>
+> 1. Read `claim_index.json` from the run root directory.
+> 2. Embed it as `<script id="claim-data" type="application/json">` in the HTML `<head>`.
+> 3. For each key assertion in the report text that corresponds to a CLM-* in the index, wrap it:
+>    ```html
+>    <span class="claim" data-claim="CLM-DVR-010-01">assertion text here</span>
+>    ```
+> 4. Add this CSS to the report stylesheet:
+>    ```css
+>    .claim { cursor: pointer; position: relative; }
+>    .claim[data-score="2"] { text-decoration: underline; text-decoration-color: #d97706; text-underline-offset: 3px; }
+>    .claim[data-score="1"] { text-decoration: underline; text-decoration-color: #d97706; text-underline-offset: 3px; }
+>    .claim[data-score="1"]::after { content: " ⚠"; font-size: 0.7em; color: #d97706; }
+>    .claim-tooltip { position: fixed; right: 20px; top: 80px; width: 360px; max-height: 80vh; overflow-y: auto; background: #1a1a2e; color: #e0e0e0; padding: 16px; border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.3); z-index: 1000; display: none; }
+>    .claim-tooltip.visible { display: block; }
+>    ```
+> 5. Add this JavaScript at the end of `<body>`:
+>    ```javascript
+>    (function() {
+>      const data = JSON.parse(document.getElementById('claim-data').textContent);
+>      const tooltip = document.createElement('div');
+>      tooltip.className = 'claim-tooltip';
+>      document.body.appendChild(tooltip);
+>
+>      function renderChain(claimId, depth) {
+>        const claim = data.claims[claimId];
+>        if (!claim) return `<div style="padding-left:${depth*16}px">${claimId} (not found)</div>`;
+>        let html = `<div style="padding-left:${depth*16}px">`;
+>        html += `<strong>${claimId}</strong> · score ${claim.score}/3 · ${claim.type}<br>`;
+>        (claim.evidence || []).forEach(ev => {
+>          if (ev.startsWith('CLM-')) { html += renderChain(ev, depth+1); }
+>          else { html += `<div style="padding-left:${(depth+1)*16}px; color:#90cdf4">↳ ${ev}</div>`; }
+>        });
+>        html += '</div>';
+>        return html;
+>      }
+>
+>      document.querySelectorAll('.claim').forEach(el => {
+>        const cid = el.dataset.claim;
+>        const claim = data.claims[cid];
+>        if (claim) el.dataset.score = claim.score;
+>        el.addEventListener('click', () => {
+>          tooltip.innerHTML = renderChain(cid, 0);
+>          tooltip.classList.toggle('visible');
+>        });
+>      });
+>
+>      document.addEventListener('click', e => {
+>        if (!e.target.closest('.claim') && !e.target.closest('.claim-tooltip')) {
+>          tooltip.classList.remove('visible');
+>        }
+>      });
+>    })();
+>    ```
+>
+> **Claim annotation guidelines:**
+> - Annotate ALL statistical assertions (rho values, N counts, driver classifications)
+> - Annotate ALL causal claims (X led to Y, X improved Z)
+> - Annotate ALL prescriptive/comparative claims in the target company lens section
+> - Do NOT annotate: section headings, methodology descriptions, general definitions
+>
 > **Writing principles (mandatory — reference: docs/sigma-final-report-guide.md):**
 > - **Pyramid Principle:** Lead every section with the answer/conclusion, then support with evidence. The reader should understand the "so what" before seeing the proof.
 > - **Action titles:** Use the action titles from `ghost_report_skeleton.md` as H2 headers. Each title states a conclusion, not a topic label.
