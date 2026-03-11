@@ -6,6 +6,7 @@ delta_spec.py to avoid code duplication.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from datetime import datetime, timezone
 
@@ -52,3 +53,28 @@ def load_firms_from_payload(payload: dict[str, object]) -> list[FirmRecord]:
         )
     firms.sort(key=lambda f: f.aum_usd_bn, reverse=True)
     return firms
+
+
+# ---------------------------------------------------------------------------
+# Claim schema constants
+# ---------------------------------------------------------------------------
+
+CLM_ID_PATTERN = re.compile(r"^CLM-[A-Z]+-[\w-]+-\d+$")
+
+CLAIM_TYPE_CEILINGS: dict[str, int] = {
+    "factual": 3,
+    "statistical": 3,
+    "comparative": 3,
+    "causal": 2,
+    "prescriptive": 2,
+}
+
+VALID_CLAIM_TYPES = frozenset(CLAIM_TYPE_CEILINGS.keys())
+
+VALID_CONFIDENCE_LABELS = frozenset({"grounded", "partial", "sourced", "unsupported"})
+
+NON_CLM_DEFAULT_SCORES: dict[str, int] = {
+    "PS-VD": 3,
+    "FIRM": 3,
+    "ACT-VD": 3,
+}
