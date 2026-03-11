@@ -61,9 +61,9 @@ The structural mitigation for over-compliance at the prompt level is **hard gate
 
 ---
 
-## 4-Dimension Audit Matrix
+## 5-Dimension Audit Matrix
 
-For every factual claim, causal assertion, and recommendation extracted from `{FILE_AUDITED}`, evaluate ALL four dimensions. Prioritize `{AUDIT_FOCUS}` dimensions when evidence capacity requires triage, but do not skip any dimension entirely.
+For every factual claim, causal assertion, and recommendation extracted from `{FILE_AUDITED}`, evaluate ALL five dimensions (D5 at CP-3 only). Prioritize `{AUDIT_FOCUS}` dimensions when evidence capacity requires triage, but do not skip any dimension entirely.
 
 ### Dimension 1 — Invalid Premises
 
