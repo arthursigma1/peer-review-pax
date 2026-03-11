@@ -165,7 +165,7 @@ class TestCollectClaims:
         assert len(warnings) > 0
 
 
-from src.analyzer.claim_indexer import generate_matrix_claims, resolve_chains
+from src.analyzer.claim_indexer import apply_score_cascading, generate_matrix_claims, resolve_chains
 
 
 class TestGenerateMatrixClaims:
@@ -354,3 +354,92 @@ class TestResolveChains:
         chain = result["CLM-DVR-001-01"]["chain"]
         assert "CLM-MISSING-001-01" in chain  # included as leaf even though missing
         assert "PS-VD-001" in chain
+
+
+class TestScoreCascading:
+    def test_no_downgrade_when_evidence_strong(self):
+        claims = {
+            "CLM-COR-001-01": {
+                "id": "CLM-COR-001-01", "type": "statistical",
+                "evidence": ["PS-VD-001"], "score": 3, "confidence": "grounded",
+                "layer": "3-analysis",
+            },
+            "CLM-DVR-001-01": {
+                "id": "CLM-DVR-001-01", "type": "statistical",
+                "evidence": ["CLM-COR-001-01"], "score": 3, "confidence": "grounded",
+                "layer": "3-analysis",
+            },
+        }
+        result, downgrades = apply_score_cascading(claims)
+        assert result["CLM-DVR-001-01"]["score"] == 3
+        assert downgrades == 0
+
+    def test_downgrade_from_weak_evidence(self):
+        claims = {
+            "CLM-COR-001-01": {
+                "id": "CLM-COR-001-01", "type": "statistical",
+                "evidence": ["MET-VD-021"], "score": 1, "confidence": "sourced",
+                "layer": "3-analysis",
+            },
+            "CLM-DVR-001-01": {
+                "id": "CLM-DVR-001-01", "type": "statistical",
+                "evidence": ["CLM-COR-001-01"], "score": 3, "confidence": "grounded",
+                "layer": "3-analysis",
+            },
+        }
+        result, downgrades = apply_score_cascading(claims)
+        # Cascading: min(3, 1) = 1, but damping floor = max(1, 1) = 1
+        assert result["CLM-DVR-001-01"]["score"] <= 2
+        assert downgrades >= 1
+
+    def test_damping_floor_prevents_hard_block_from_weak_source(self):
+        claims = {
+            "CLM-MET-001-FIRM-001-01": {
+                "id": "CLM-MET-001-FIRM-001-01", "type": "factual",
+                "evidence": [], "score": 1, "confidence": "sourced",
+                "layer": "2-data",
+            },
+            "CLM-COR-001-01": {
+                "id": "CLM-COR-001-01", "type": "statistical",
+                "evidence": ["CLM-MET-001-FIRM-001-01"], "score": 3,
+                "confidence": "grounded", "layer": "3-analysis",
+            },
+        }
+        result, downgrades = apply_score_cascading(claims)
+        # Damping: floor is 1, not 0 — weak source doesn't hard-block
+        assert result["CLM-COR-001-01"]["score"] >= 1
+
+    def test_truly_unsupported_remains_zero(self):
+        claims = {
+            "CLM-PLAY-001-01": {
+                "id": "CLM-PLAY-001-01", "type": "factual",
+                "evidence": [], "score": 0, "confidence": "unsupported",
+                "layer": "5-playbook",
+            },
+        }
+        result, downgrades = apply_score_cascading(claims)
+        assert result["CLM-PLAY-001-01"]["score"] == 0
+
+    def test_non_clm_evidence_uses_default_scores(self):
+        claims = {
+            "CLM-PLAY-001-01": {
+                "id": "CLM-PLAY-001-01", "type": "factual",
+                "evidence": ["PS-VD-018", "ACT-VD-036"], "score": 3,
+                "confidence": "grounded", "layer": "5-playbook",
+            },
+        }
+        result, downgrades = apply_score_cascading(claims)
+        # PS-VD defaults to 3, ACT-VD defaults to 3 → min(3, min(3,3)) = 3
+        assert result["CLM-PLAY-001-01"]["score"] == 3
+
+    def test_type_ceiling_applied_after_cascade(self):
+        claims = {
+            "CLM-PLAY-001-02": {
+                "id": "CLM-PLAY-001-02", "type": "causal",
+                "evidence": ["PS-VD-018"], "score": 2, "confidence": "partial",
+                "layer": "5-playbook",
+            },
+        }
+        result, _ = apply_score_cascading(claims)
+        # Causal ceiling = 2; PS-VD default = 3; min(2, 3) = 2; ceiling = 2 → 2
+        assert result["CLM-PLAY-001-02"]["score"] == 2

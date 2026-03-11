@@ -222,3 +222,69 @@ def resolve_chains(claims: dict[str, dict]) -> dict[str, dict]:
         result[cid] = {**claim, "chain": cache.get(cid, [])}
 
     return result
+
+
+def _evidence_score(ev_id: str, claims: dict[str, dict]) -> int:
+    """Return the score of an evidence item. CLM-* returns claim score, others use defaults."""
+    if ev_id.startswith("CLM-") and ev_id in claims:
+        return claims[ev_id]["score"]
+    # Non-CLM: check prefix against defaults
+    for prefix, default in NON_CLM_DEFAULT_SCORES.items():
+        if ev_id.startswith(prefix):
+            return default
+    # MET-VD, COR, DVR without covering CLM → check if a CLM covers it
+    covering = [c for c in claims.values() if c.get("parent_id") == ev_id]
+    if covering:
+        return min(c["score"] for c in covering)
+    return 1  # uncovered non-CLM ID
+
+
+def apply_score_cascading(
+    claims: dict[str, dict],
+) -> tuple[dict[str, dict], int]:
+    """Apply score cascading with damping.
+
+    effective_score = max(1, min(own_score, min(evidence_scores)))
+    Exception: score 0 (unsupported) is not damped — stays 0.
+    Type ceilings are re-applied after cascading.
+
+    Returns (updated_claims, downgrade_count).
+    """
+    result = {cid: {**c} for cid, c in claims.items()}
+    downgrades = 0
+
+    # Iterate until stable (handles transitive dependencies)
+    changed = True
+    max_iterations = 50  # safety bound
+    iteration = 0
+    while changed and iteration < max_iterations:
+        changed = False
+        iteration += 1
+        for cid, claim in result.items():
+            if claim["score"] == 0:
+                continue  # unsupported stays 0, no damping
+
+            evidence = claim.get("evidence", [])
+            if not evidence:
+                continue
+
+            ev_scores = [_evidence_score(ev_id, result) for ev_id in evidence]
+            min_ev = min(ev_scores)
+            cascaded = min(claim["score"], min_ev)
+
+            # Damping: floor at 1 (weak source → warning, not hard block)
+            cascaded = max(1, cascaded)
+
+            # Re-apply type ceiling
+            ceiling = CLAIM_TYPE_CEILINGS.get(claim["type"], 3)
+            cascaded = min(cascaded, ceiling)
+
+            if cascaded != claim["score"]:
+                old = claim["score"]
+                claim["score"] = cascaded
+                claim["confidence"] = _SCORE_TO_CONFIDENCE.get(cascaded, "partial")
+                changed = True
+                if cascaded < old:
+                    downgrades += 1
+
+    return result, downgrades
