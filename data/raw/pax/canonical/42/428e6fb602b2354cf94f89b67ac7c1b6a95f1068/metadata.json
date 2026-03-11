@@ -1,0 +1,43 @@
+{
+  "normalized_url": "www.sec.gov/Archives/edgar/data/1527166/000152716626000009/cg2025123110k.pdf",
+  "canonical_url": "https://www.sec.gov/Archives/edgar/data/1527166/000152716626000009/cg2025123110k.pdf",
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl",
+  "priority_score": 32,
+  "preferred_source": {
+    "source_id": "PS-VD-025",
+    "firm": "Carlyle Group",
+    "title": "Carlyle Group 10-K FY2025 (SEC PDF)",
+    "date": "2026-02-28",
+    "document_type": "annual_report",
+    "bias_tag": "regulatory-filing",
+    "url": "https://www.sec.gov/Archives/edgar/data/1527166/000152716626000009/cg2025123110k.pdf",
+    "notes": "FY2025 10-K annual report \u2014 most recent full-year data on AUM, fundraising, realizations, and credit platform growth",
+    "catalog_path": "data/processed/pax/2026-03-09-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl",
+    "seed_url": "https://www.sec.gov/Archives/edgar/data/1527166/000152716626000009/cg2025123110k.pdf",
+    "loaded_url": "https://www.sec.gov/Archives/edgar/data/1527166/000152716626000009/cg2025123110k.pdf",
+    "title": "Carlyle Group 10-K FY2025 (SEC PDF)",
+    "document_type": "annual_report",
+    "bias_tag": "regulatory-filing",
+    "content_type": "application/pdf",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2/PS-VD-025_carlyle-group-10-k-fy2025-sec-pdf_b234fb72.txt",
+    "text_length": 972994,
+    "quality_score": 978494,
+    "quality_bucket": "good",
+    "quality_reason": "sufficient_text",
+    "relevant_snippets": [
+      "TOTAL GLOBAL CREDIT CARRY FUNDS $ 39,705  n/a $ 29,451 $ 22,081 1.3x 11% 7% $ 263",
+      "credit products. As of December 31, 2025, our total AUM and Fee-earning AUM included $115.4 billion and $110.9 billion,",
+      "\u2022 Our Global Credit (\u201cGC\u201d) AUM increased 10% year-over-year to $211 billion, driven by inflows of $28.3",
+      "Global Credit Carry Funds 12% 12% 16%  262.9",
+      "\u2022 Assets under management grew 8% to $477 billion as of December 31, 2025 from $441 billion as of"
+    ],
+    "extraction_modes": []
+  },
+  "canonical_text_path": "data/raw/pax/canonical/42/428e6fb602b2354cf94f89b67ac7c1b6a95f1068/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.459313Z"
+}

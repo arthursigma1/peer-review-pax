@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "generated_at": "2026-03-11T01:04:07.662587Z",
+    "baseline_run_dir": "data/processed/pax/2026-03-09-run2",
+    "candidate_run_dir": "data/processed/pax/2026-03-11-incremental-pilot",
+    "target_count": 5,
+    "material_difference_count": 0,
+    "missing_file_count": 0,
+    "both_missing_count": 2,
+    "acceptance_passed": true
+  },
+  "comparisons": [
+    {
+      "relative_path": "1-universe/source_catalog.json",
+      "status": "exact_match",
+      "baseline_exists": true,
+      "candidate_exists": true
+    },
+    {
+      "relative_path": "2-data/consulting_context.json",
+      "status": "exact_match",
+      "baseline_exists": true,
+      "candidate_exists": true
+    },
+    {
+      "relative_path": "2-data/crawl_vda_dataset.json",
+      "status": "exact_match",
+      "baseline_exists": true,
+      "candidate_exists": true
+    },
+    {
+      "relative_path": "5-playbook/target_company_lens.json",
+      "status": "both_missing",
+      "baseline_exists": false,
+      "candidate_exists": false
+    },
+    {
+      "relative_path": "5-playbook/report_metadata.json",
+      "status": "both_missing",
+      "baseline_exists": false,
+      "candidate_exists": false
+    }
+  ]
+}

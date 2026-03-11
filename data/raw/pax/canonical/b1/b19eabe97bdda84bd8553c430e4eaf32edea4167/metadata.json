@@ -1,0 +1,41 @@
+{
+  "normalized_url": "bam.brookfield.com/reports-sec-filings/letters-shareholders",
+  "canonical_url": "https://bam.brookfield.com/reports-sec-filings/letters-shareholders",
+  "carry_forward_status": "recrawl",
+  "carry_forward_reason": "artifact_exists_but_is_thin",
+  "priority_score": 51,
+  "preferred_source": {
+    "source_id": "PS-VD-017",
+    "firm": "Brookfield Asset Management",
+    "title": "BAM Letters to Shareholders",
+    "date": "2025-12-31",
+    "document_type": "shareholder_letter",
+    "bias_tag": "company-produced",
+    "url": "https://bam.brookfield.com/reports-sec-filings/letters-shareholders",
+    "notes": "Shareholder letters archive \u2014 strategic narrative on renewable energy transition, infrastructure buildout, and real asset focus",
+    "catalog_path": "data/processed/pax/2026-03-09-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl",
+    "seed_url": "https://bam.brookfield.com/reports-sec-filings/letters-shareholders",
+    "loaded_url": "https://bam.brookfield.com/reports-sec-filings/letters-shareholders",
+    "title": "Letters to Shareholders | Brookfield Asset Management (BAM)",
+    "document_type": "shareholder_letter",
+    "bias_tag": "company-produced",
+    "content_type": "text/html; charset=utf-8",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2/PS-VD-017_bam-letters-to-shareholders_4beb2ebb.txt",
+    "text_length": 694,
+    "quality_score": 1594,
+    "quality_bucket": "thin",
+    "quality_reason": "thin_text",
+    "relevant_snippets": [
+      "Listen to an audio version of Brookfield Asset Management's Q4 2025 Letter to Shareholders to learn about the firm\u2019s progress across renewable power & transition, infrastructure, private equity, real estate, and credit strategies.",
+      "Listen to an audio version of Brookfield Asset Management's Q3 2025 Letter to Shareholders to learn about the firm\u2019s progress across renewable power & transition, infrastructure, private equity, real estate, and credit strategies.",
+      "Listen to an audio version of Brookfield Asset Management's Q2 2025 Letter to Shareholders to learn about the firm\u2019s progress across renewable power & transition, infrastructure, private equity, real estate, and credit strategies."
+    ],
+    "extraction_modes": []
+  },
+  "canonical_text_path": "data/raw/pax/canonical/b1/b19eabe97bdda84bd8553c430e4eaf32edea4167/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.402325Z"
+}

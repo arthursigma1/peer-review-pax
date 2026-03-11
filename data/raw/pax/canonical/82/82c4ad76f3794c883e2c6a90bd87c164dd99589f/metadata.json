@@ -1,0 +1,45 @@
+{
+  "normalized_url": "shareholders.tpg.com/financial-information/sec-filings",
+  "canonical_url": "https://shareholders.tpg.com/financial-information/sec-filings",
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl",
+  "priority_score": 10,
+  "preferred_source": {
+    "source_id": "PS-VD-022",
+    "firm": "TPG",
+    "title": "TPG IR SEC Filings Page",
+    "date": "2025-12-31",
+    "document_type": "annual_report",
+    "bias_tag": "company-produced",
+    "url": "https://shareholders.tpg.com/financial-information/sec-filings",
+    "notes": "TPG investor relations SEC filing portal \u2014 annual and quarterly filings, proxy statements",
+    "catalog_path": "data/processed/pax/2026-03-09-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl",
+    "seed_url": "https://shareholders.tpg.com/financial-information/sec-filings",
+    "loaded_url": "https://shareholders.tpg.com/financial-information/sec-filings",
+    "title": "SEC Filings | TPG Inc.",
+    "document_type": "annual_report",
+    "bias_tag": "company-produced",
+    "content_type": "text/html; charset=utf-8",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2/PS-VD-022_tpg-ir-sec-filings-page_b85d1118.txt",
+    "text_length": 3249,
+    "quality_score": 5349,
+    "quality_bucket": "good",
+    "quality_reason": "sufficient_text",
+    "relevant_snippets": [
+      "Mar 9, 2026 SCHEDULE 13G SCHEDULE 13G - Description Other View HTML 0001104659-26-025255.pdf 0001104659-26-025255.rtf 0001104659-26-025255.xls",
+      "Mar 3, 2026 S-8 Securities offered to employees pursuant to employee benefit plans Registration Statements View HTML 0001880661-26-000015.pdf 0001880661-26-000015.rtf 0001880661-26-000015.xls XML - XBRL INSTANCE DOCUMENT",
+      "Feb 26, 2026 8-K Report of unscheduled material events or corporate event Current Reports View HTML 0001193125-26-076645.pdf 0001193125-26-076645.rtf 0001193125-26-076645.xls EX-101.SCH - XBRL TAXONOMY EXTENSION SCHEMA",
+      "Feb 23, 2026 424B5 Form of prospectus disclosing information, facts, events covered in both forms 424B2, 424B3 Registration Statements View HTML 0001193125-26-064030.pdf 0001193125-26-064030.rtf 0001193125-26-064030.xls XML - XBRL INSTANCE DOCUMENT",
+      "Feb 19, 2026 424B5 Form of prospectus disclosing information, facts, events covered in both forms 424B2, 424B3 Registration Statements View HTML 0001193125-26-058187.pdf 0001193125-26-058187.rtf 0001193125-26-058187.xls"
+    ],
+    "extraction_modes": [
+      "document_links"
+    ]
+  },
+  "canonical_text_path": "data/raw/pax/canonical/82/82c4ad76f3794c883e2c6a90bd87c164dd99589f/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.500846Z"
+}

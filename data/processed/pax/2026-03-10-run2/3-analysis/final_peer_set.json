@@ -1,0 +1,264 @@
+{
+  "stage": "VD-C1",
+  "title": "Convergence and Final Peer Set Selection",
+  "run_id": "2026-03-10-run2",
+  "base_run_id": "2026-03-09-run2",
+  "generated_at": "2026-03-10T00:00:00Z",
+  "selection_methodology": "Auto-include firms with Q1 position on 2+ stable or multiple-specific drivers (DVR-010, DVR-002, DVR-003, DVR-004, DVR-009). Exclude firms with <2 firm-specific sources in source_catalog.json or <60% metric coverage in standardized_matrix.json. Include cautionary cases (Q4 on efficiency drivers with well-documented actions) and diversity fills for under-represented business models.",
+  "final_set": [
+    {
+      "firm_id": "FIRM-003",
+      "firm_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "inclusion_rationale": "Auto-include: Q1 on 3 stable/multiple-specific drivers (DVR-010 G&A/FEAUM, DVR-002 FRE Growth, DVR-009 Comp&Ben/FEAUM). Highest driver strength in the universe. Credit-dominant model with insurance integration — represents the origination-at-scale archetype. 6 actions, all with high evidence quality.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 6,
+      "metric_coverage_pct": 91.7,
+      "action_count": 6,
+      "primary_driver_strength": "Q1 on DVR-010 + DVR-002 + DVR-009",
+      "primary_business_model": "credit_dominant_insurance_integration"
+    },
+    {
+      "firm_id": "FIRM-002",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "inclusion_rationale": "Auto-include: Q1 on 2 drivers (DVR-010 G&A/FEAUM, DVR-009 Comp&Ben/FEAUM). Lean cost structure relative to FEAUM despite >$1T total AUM. Infrastructure-dominant model with renewable energy and real assets. Provides scale comparison for infrastructure-focused managers like PAX.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 5,
+      "metric_coverage_pct": 88.5,
+      "action_count": 4,
+      "primary_driver_strength": "Q1 on DVR-010 + DVR-009",
+      "primary_business_model": "infrastructure_dominant"
+    },
+    {
+      "firm_id": "FIRM-004",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "inclusion_rationale": "Auto-include: Q1 on 2 drivers (DVR-010 G&A/FEAUM, DVR-009 Comp&Ben/FEAUM). Diversified PE-dominant model with credit and insurance (Global Atlantic). Demonstrates how operational efficiency at scale drives valuation premiums.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 6,
+      "metric_coverage_pct": 88.5,
+      "action_count": 5,
+      "primary_driver_strength": "Q1 on DVR-010 + DVR-009",
+      "primary_business_model": "pe_dominant_diversified"
+    },
+    {
+      "firm_id": "FIRM-006",
+      "firm_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "inclusion_rationale": "Auto-include: Q1 on 2 drivers (DVR-010 G&A/FEAUM, DVR-009 Comp&Ben/FEAUM). Also Q4 on DVR-002 (FRE Growth) and DVR-004 (FEAUM) — dual Q1/Q4 profile makes CG an instructive case: lean operations but lagging growth and scale metrics relative to peers.",
+      "cautionary_case": true,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 88.5,
+      "action_count": 4,
+      "primary_driver_strength": "Q1 on DVR-010 + DVR-009; Q4 on DVR-002 + DVR-004",
+      "primary_business_model": "pe_dominant"
+    },
+    {
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "inclusion_rationale": "Diversity include: credit-dominant model alongside APO for comparative depth. No Q1 positions but strong overall coverage (84.6%) and 4 well-documented strategic actions. Largest pure credit franchise ex-Apollo. Essential for credit-dominant model comparison relevant to PAX's growing credit platform.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 5,
+      "metric_coverage_pct": 84.6,
+      "action_count": 4,
+      "primary_driver_strength": "No Q1 positions; Q4 on DVR-003 (Total AUM, bottom of mega-managers)",
+      "primary_business_model": "credit_dominant"
+    },
+    {
+      "firm_id": "FIRM-008",
+      "firm_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "inclusion_rationale": "Auto-include: Q1 on 2 drivers (DVR-010 G&A/FEAUM, DVR-009 Comp&Ben/FEAUM). Non-obvious peer surfaced by quantitative analysis. Permanent capital-dominant model (~85% of fees from permanent capital) — the most fee-durable revenue base in the universe. Credit and GP strategic capital focus. No Q4 positions on any driver.",
+      "cautionary_case": false,
+      "non_obvious_peer": true,
+      "source_count": 5,
+      "metric_coverage_pct": 73.1,
+      "action_count": 4,
+      "primary_driver_strength": "Q1 on DVR-010 + DVR-009",
+      "primary_business_model": "credit_permanent_capital"
+    },
+    {
+      "firm_id": "FIRM-013",
+      "firm_name": "CVC Capital Partners plc",
+      "ticker": "CVC",
+      "inclusion_rationale": "Auto-include: Q1 on 2 drivers (DVR-002 FRE Growth, DVR-009 Comp&Ben/FEAUM). European PE/credit manager with highest metric coverage in the universe (95.8%). Recent IPO (Apr 2024) provides fresh disclosure. Adds European perspective on PE-to-credit diversification.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 3,
+      "metric_coverage_pct": 95.8,
+      "action_count": 4,
+      "primary_driver_strength": "Q1 on DVR-002 + DVR-009",
+      "primary_business_model": "pe_credit_european"
+    },
+    {
+      "firm_id": "FIRM-012",
+      "firm_name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "inclusion_rationale": "Diversity include for solutions/secondaries model. Q1 on DVR-010 (G&A/FEAUM) — lean cost structure. Advisory/solutions-oriented model with $709B+ total capital responsibility. Key comparator for fund-of-funds and secondaries business model relevant to PAX's investment solutions segment.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 5,
+      "metric_coverage_pct": 87.5,
+      "action_count": 4,
+      "primary_driver_strength": "Q1 on DVR-010",
+      "primary_business_model": "solutions_secondaries"
+    },
+    {
+      "firm_id": "FIRM-019",
+      "firm_name": "Patria Investments Limited",
+      "ticker": "PAX",
+      "inclusion_rationale": "TARGET COMPANY. Auto-include: Q1 on 2 drivers (DVR-003 Total AUM, DVR-004 FEAUM) reflecting strong AUM scale relative to peer set. Also Q4 on DVR-010 (G&A/FEAUM) and DVR-009 (Comp&Ben/FEAUM) — the efficiency gap between PAX's scale position and its cost structure is a core finding for the playbook.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 6,
+      "metric_coverage_pct": 77.8,
+      "action_count": 5,
+      "primary_driver_strength": "Q1 on DVR-003 + DVR-004; Q4 on DVR-010 + DVR-009",
+      "primary_business_model": "latam_multi_asset"
+    },
+    {
+      "firm_id": "FIRM-022",
+      "firm_name": "Ridgepost Capital, Inc.",
+      "ticker": "RPC",
+      "inclusion_rationale": "Auto-include: Q1 on 2 drivers (DVR-003 Total AUM, DVR-004 FEAUM). Non-obvious peer surfaced by quantitative analysis. Solutions/secondaries/venture model. Only 2 firm-specific sources (marginal) but 80.8% metric coverage. Included despite source concern for solutions/secondaries diversity — only alternative to STEP for this business model. Also Q4 on DVR-010 and DVR-009.",
+      "cautionary_case": true,
+      "non_obvious_peer": true,
+      "source_count": 2,
+      "metric_coverage_pct": 80.8,
+      "action_count": 3,
+      "primary_driver_strength": "Q1 on DVR-003 + DVR-004; Q4 on DVR-010 + DVR-009",
+      "primary_business_model": "solutions_secondaries_venture"
+    },
+    {
+      "firm_id": "FIRM-023",
+      "firm_name": "Eurazeo SE",
+      "ticker": "RF",
+      "inclusion_rationale": "Auto-include: Q1 on 2 drivers (DVR-003 Total AUM, DVR-004 FEAUM). Non-obvious peer surfaced by quantitative analysis. European hybrid model with significant proprietary balance sheet alongside third-party AUM. Provides cautionary perspective — Q4 on efficiency drivers (DVR-010, DVR-009) despite scale. 3 sources, 80% coverage.",
+      "cautionary_case": true,
+      "non_obvious_peer": true,
+      "source_count": 3,
+      "metric_coverage_pct": 80.0,
+      "action_count": 3,
+      "primary_driver_strength": "Q1 on DVR-003 + DVR-004; Q4 on DVR-010 + DVR-009",
+      "primary_business_model": "pe_hybrid_balance_sheet"
+    },
+    {
+      "firm_id": "FIRM-024",
+      "firm_name": "Antin Infrastructure Partners S.A.",
+      "ticker": "ANTIN",
+      "inclusion_rationale": "Auto-include: Q1 on 2 drivers (DVR-003 Total AUM, DVR-004 FEAUM). Non-obvious peer surfaced by quantitative analysis. Pure-play infrastructure specialist — the only single-asset-class specialist in the final set. Critical for assessing PAX's infrastructure franchise against a dedicated competitor. Also Q4 on DVR-010 and DVR-009. 3 sources, 85.2% coverage.",
+      "cautionary_case": false,
+      "non_obvious_peer": true,
+      "source_count": 3,
+      "metric_coverage_pct": 85.2,
+      "action_count": 4,
+      "primary_driver_strength": "Q1 on DVR-003 + DVR-004; Q4 on DVR-010 + DVR-009",
+      "primary_business_model": "infrastructure_specialist"
+    }
+  ],
+  "excluded_candidates": [
+    {
+      "firm_id": "FIRM-001",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "exclusion_rationale": "Q1 on only 1 driver (DVR-002 FRE Growth). Q4 on DVR-003 (Total AUM) and DVR-004 (FEAUM) — counterintuitive for the largest alt manager, but reflects AUM metric standardization that places BX at Q4 on these scale-adjusted multiples. Excluded from final set to stay within 12-firm target. Available for reference comparison but not deep-dived."
+    },
+    {
+      "firm_id": "FIRM-007",
+      "firm_name": "Victory Capital Holdings, Inc.",
+      "ticker": "VCTR",
+      "exclusion_rationale": "No Q1 or Q4 positions on any stable/multiple-specific driver. Partial-alt classification — majority of revenue from traditional asset management. Not relevant to PAX's pure-play alt model comparison."
+    },
+    {
+      "firm_id": "FIRM-009",
+      "firm_name": "TPG Inc.",
+      "ticker": "TPG",
+      "exclusion_rationale": "Q1 on only 1 driver (DVR-002 FRE Growth). Strong PE-dominant model with impact investing specialization, but limited differentiation from KKR and CG already included. Excluded to stay within 12-firm target."
+    },
+    {
+      "firm_id": "FIRM-010",
+      "firm_name": "EQT AB",
+      "ticker": "EQT",
+      "exclusion_rationale": "No Q1 positions on any stable/multiple-specific driver despite being the largest European alt platform. High coverage (91.7%) and 5 sources, but mid-quartile positioning across all drivers. European PE/infra model already represented by CVC, Eurazeo, and Antin."
+    },
+    {
+      "firm_id": "FIRM-011",
+      "firm_name": "Man Group plc",
+      "ticker": "MAN",
+      "exclusion_rationale": "Metric coverage 45.8% — below 60% threshold. Systematic/quant-dominant model not comparable to PAX's private markets model. Q4 on DVR-002 (FRE Growth)."
+    },
+    {
+      "firm_id": "FIRM-014",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "exclusion_rationale": "Metric coverage 50.0% — below 60% threshold. Swiss-listed evergreen specialist with strong qualitative profile (5 actions, 5 sources) but insufficient quantitative data for correlation-based peer set. Retained as qualitative reference only."
+    },
+    {
+      "firm_id": "FIRM-015",
+      "firm_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "exclusion_rationale": "No Q1 positions on any stable/multiple-specific driver. Solutions/secondaries model already represented by STEP and RPC. Good coverage (87.5%) but excluded to stay within 12-firm target."
+    },
+    {
+      "firm_id": "FIRM-016",
+      "firm_name": "ICG plc",
+      "ticker": "ICP",
+      "exclusion_rationale": "No Q1 positions on any stable/multiple-specific driver. London-listed credit/structured capital model. European credit already covered by CVC. 83.3% coverage but mid-quartile positioning."
+    },
+    {
+      "firm_id": "FIRM-017",
+      "firm_name": "Bridgepoint Group plc",
+      "ticker": "BPT",
+      "exclusion_rationale": "No Q1 positions. Q4 on DVR-002 (FRE Growth). AUM data stale (H1 2025 only). European mid-market PE model already partially represented by CVC. Only 3 sources."
+    },
+    {
+      "firm_id": "FIRM-018",
+      "firm_name": "Onex Corporation",
+      "ticker": "ONEX",
+      "exclusion_rationale": "Q1 on 2 drivers (DVR-003 Total AUM, DVR-004 FEAUM) meets auto-include threshold, but only 2 firm-specific sources (marginal). Also Q4 on 2 efficiency drivers (DVR-010, DVR-009). Majority-alt classification with significant balance-sheet co-investing. Excluded in favor of peers with stronger source coverage and clearer pure-play alt comparability. Available as supplementary reference."
+    },
+    {
+      "firm_id": "FIRM-020",
+      "firm_name": "Tikehau Capital SCA",
+      "ticker": "TKO",
+      "exclusion_rationale": "Zero firm-specific sources in source_catalog.json — below <2 source exclusion threshold. Added to universe this run but source cataloger did not yet index firm-specific filings. Q1 on DVR-003 and DVR-004. High metric coverage (85.2%) suggests data was collected from general industry sources. Recommend adding TKO sources in next run for re-evaluation."
+    },
+    {
+      "firm_id": "FIRM-021",
+      "firm_name": "Vinci Compass Investments Ltd.",
+      "ticker": "VINP",
+      "exclusion_rationale": "Metric coverage 40.7% — below 60% threshold. Excluded from correlation universe (n=23). Retained as qualitative-only LatAm comparator. No Q1 or Q4 positions. Direct PAX LatAm peer for narrative context but insufficient quantitative data."
+    }
+  ],
+  "non_obvious_peers_resolution": {
+    "FIRM-008": "INCLUDED — Blue Owl (OWL). Q1 on DVR-010 (G&A/FEAUM) and DVR-009 (Comp&Ben/FEAUM). 5 sources, 73.1% coverage (above 60% threshold). Permanent capital-dominant model (~85% of management fees) provides unique business model diversity. No Q4 positions on any driver — clean efficiency profile.",
+    "FIRM-018": "EXCLUDED — Onex (ONEX). Q1 on DVR-003 and DVR-004 (scale drivers) but only 2 firm-specific sources (marginal). Q4 on both efficiency drivers. Majority-alt classification with significant balance-sheet component reduces pure-play comparability. Excluded in favor of cleaner peers.",
+    "FIRM-020": "EXCLUDED — Tikehau (TKO). Zero firm-specific sources in source catalog, below the <2 source exclusion threshold. Despite Q1 on 2 drivers and 85.2% metric coverage, the absence of cataloged firm-specific sources makes deep-dive research unreliable. Recommend source indexing before next run.",
+    "FIRM-022": "INCLUDED — Ridgepost Capital (RPC). Q1 on DVR-003 and DVR-004. Only 2 sources (marginal) but 80.8% metric coverage. Included as cautionary case: Q4 on efficiency drivers with documented strategic actions. Critical for solutions/secondaries model diversity alongside STEP.",
+    "FIRM-023": "INCLUDED — Eurazeo (RF). Q1 on DVR-003 and DVR-004. 3 sources, 80% coverage. European hybrid model with balance-sheet component. Included as cautionary case: Q4 on both efficiency drivers despite scale. Instructive contrast to PAX — similar scale-vs-efficiency tension.",
+    "FIRM-024": "INCLUDED — Antin Infrastructure Partners (ANTIN). Q1 on DVR-003 and DVR-004. 3 sources, 85.2% coverage. Only pure-play infrastructure specialist in the universe. Critical for PAX's infrastructure franchise comparison. Q4 on efficiency drivers is informative — shows infra-specialist cost structure."
+  },
+  "diversity_check": {
+    "latam_peer": "FIRM-019 (PAX) is the target company. FIRM-021 (VINP) retained as qualitative-only LatAm comparator — excluded from final set due to 40.7% coverage. LatAm representation is limited to PAX itself in the quantitative peer set.",
+    "european_peer": "3 European peers included: FIRM-013 (CVC, Amsterdam), FIRM-023 (RF/Eurazeo, Paris), FIRM-024 (ANTIN, Paris). Goal met.",
+    "credit_dominant_peer": "2 credit-dominant peers: FIRM-003 (APO, credit + insurance), FIRM-005 (ARES, pure credit). FIRM-008 (OWL) also credit-focused with permanent capital overlay. Goal met.",
+    "solutions_secondaries_peer": "2 solutions peers: FIRM-012 (STEP, advisory/solutions), FIRM-022 (RPC, PE/VC solutions). Goal met.",
+    "infrastructure_specialist": "2 infrastructure-relevant peers: FIRM-024 (ANTIN, pure infra), FIRM-002 (BAM, infra-dominant multi-asset). Goal met."
+  },
+  "changes_from_prior_run": "No prior final_peer_set.json exists in base run (2026-03-09-run2). This is the first formal convergence run. The base run performed deep-dives on an ad hoc set without systematic convergence. Key differences from informal base run peer focus: (1) Blue Owl (OWL) elevated from background to core peer based on strong efficiency driver positions; (2) Antin (ANTIN) and Eurazeo (RF) added as new European peers; (3) Ridgepost/P10 (RPC) added for solutions diversity; (4) Tikehau (TKO) identified but excluded pending source indexing; (5) Partners Group (PGHN) and Man Group (MAN) dropped due to <60% metric coverage despite strong qualitative profiles; (6) Onex (ONEX) excluded despite Q1 on scale drivers due to marginal source coverage.",
+  "total_final_set_size": 12,
+  "flagged_gaps": [
+    "FIRM-020 (TKO/Tikehau): zero firm-specific sources — recommend source cataloger index Tikehau IR filings for next run. Similar scale to PAX with European credit/real-assets model.",
+    "FIRM-014 (PGHN/Partners Group): 50% metric coverage despite 5 sources. Swiss disclosure norms differ from US/EU peers. Consider targeted metric backfill for evergreen/perpetual capital metrics.",
+    "FIRM-021 (VINP/Vinci Compass): 40.7% coverage. Direct LatAm PAX comparator but first full year post-merger (Compass integration). Monitor Q1 2026 filings for improved disclosure.",
+    "FIRM-018 (ONEX): only 2 firm-specific sources. Canadian disclosure may warrant additional source research.",
+    "Efficiency vs. Scale paradox: firms Q1 on AUM/FEAUM scale drivers (DVR-003, DVR-004) are systematically Q4 on efficiency drivers (DVR-010, DVR-009), and vice versa. This is a structural feature of the alt-AM industry — larger firms dilute fee rates across more AUM. The playbook should address whether PAX's path is to grow into scale (accepting efficiency drag) or optimize cost structure (accepting slower AUM growth)."
+  ]
+}

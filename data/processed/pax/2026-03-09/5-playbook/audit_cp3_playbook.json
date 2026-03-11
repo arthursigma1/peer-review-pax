@@ -1,0 +1,139 @@
+{
+  "checkpoint": "CP-3",
+  "stages_audited": ["VD-P1", "VD-P2", "VD-P3"],
+  "files_audited": [
+    "data/processed/pax/2026-03-09/5-playbook/platform_playbook.json",
+    "data/processed/pax/2026-03-09/5-playbook/asset_class_playbooks.json",
+    "data/processed/pax/2026-03-09/5-playbook/value_principles.md"
+  ],
+  "evidence_files": [
+    "data/processed/pax/2026-03-08-run2/4-deep-dives/platform_profiles.json",
+    "data/processed/pax/2026-03-08-run2/4-deep-dives/asset_class_analysis.json",
+    "data/processed/pax/2026-03-08-run2/3-analysis/driver_ranking.json",
+    "data/processed/pax/2026-03-08-run2/2-data/strategic_actions.json"
+  ],
+  "timestamp": "2026-03-09T12:00:00Z",
+  "verdict": "PASSED",
+  "total_claims_audited": 147,
+  "claims_passed": 139,
+  "claims_blocked": 0,
+  "incomplete_fields_count": 0,
+  "blocked_claims": [],
+  "inferred_claims": [
+    {
+      "claim_id": "CLM-INF-001",
+      "source_file": "platform_playbook.json",
+      "entry_id": "PLAY-002",
+      "claim_text": "The insurance channel appears (INFERRED) to be the primary FEAUM scale accelerator for firms that have integrated it.",
+      "verdict": "INFERRED",
+      "reasoning": "Causal attribution from cross-sectional observation. Multiple firms with insurance integration (APO, KKR, BN) occupy Q1 FEAUM, but correlation does not establish that insurance caused the scale — reverse causation (only scale firms can afford insurance acquisitions) is equally plausible. The INFERRED tag is correctly applied by the playbook-synthesizer.",
+      "labeling_requirement": "Must use hedged language in final report: 'appears to', 'the evidence suggests', or 'is consistent with'. Must not use 'demonstrates', 'drives', or 'proves'."
+    },
+    {
+      "claim_id": "CLM-INF-002",
+      "source_file": "platform_playbook.json",
+      "entry_id": "PLAY-005",
+      "claim_text": "The JV model appears (INFERRED) to generate LP acquisition at lower cost and faster speed than wholly-owned geographic expansion.",
+      "verdict": "INFERRED",
+      "reasoning": "Inference from observing BAM/QIA, KKR/APAC, ICG/Amundi partnership outcomes. No controlled comparison of JV vs. wholly-owned geographic expansion cost exists in the evidence files. The INFERRED tag is correctly applied.",
+      "labeling_requirement": "Must use hedged language: 'appears to', 'the data suggests'. Must not present as established fact."
+    },
+    {
+      "claim_id": "CLM-INF-003",
+      "source_file": "platform_playbook.json",
+      "entry_id": "PLAY-009",
+      "claim_text": "Explicit multi-year targets backed by verifiable mechanism appear (INFERRED) to anchor a forward growth premium in the P/FRE multiple.",
+      "verdict": "INFERRED",
+      "reasoning": "DVR-004 (FRE_Growth_YoY) is classified moderate_signal with avg_abs_rho=0.476, confidence_class=Not_significant. The claim that the market assigns a forward growth premium to credible multi-year targets is a legitimate analytical inference but not directly observable in the cross-sectional correlation data. The INFERRED tag and 'appear to' hedging are correctly applied.",
+      "labeling_requirement": "Must use hedged language. DVR-004 moderate_signal classification prohibits causal language."
+    },
+    {
+      "claim_id": "CLM-INF-004",
+      "source_file": "value_principles.md",
+      "entry_id": "Principle 1, Section 1.4",
+      "claim_text": "Geographic concentration risk at scale: geographic diversification of the FEAUM base may be a necessary condition for the scale premium to fully materialize (marked INFERRED).",
+      "verdict": "INFERRED",
+      "reasoning": "Inference from ANTIN's European concentration and corresponding Q4 multiple. No direct evidence that geographic diversification independently affects the FEAUM-to-multiple relationship after controlling for absolute scale. Correctly tagged INFERRED in the source.",
+      "labeling_requirement": "Must use hedged language: 'suggests', 'may be'. Must not assert as established finding."
+    },
+    {
+      "claim_id": "CLM-INF-005",
+      "source_file": "asset_class_playbooks.json",
+      "entry_id": "PLAY-103",
+      "claim_text": "The insurance mandate pathway via third-party partnerships (TPG/Jackson model) appears more accessible for sub-scale managers than captive insurance ownership.",
+      "verdict": "INFERRED",
+      "reasoning": "Inference from observing TPG/Jackson (ACT-VD-027) capital requirements versus APO/Athene or KKR/GA full ownership models. The accessibility claim for sub-scale managers is analytically sound but not empirically tested. Only one third-party mandate example (TPG/Jackson) exists in the evidence.",
+      "labeling_requirement": "Must use hedged language. Single-exemplar inference should not be presented as a proven pathway."
+    },
+    {
+      "claim_id": "CLM-INF-006",
+      "source_file": "value_principles.md",
+      "entry_id": "Principle 3",
+      "claim_text": "FRE growth that is acquisition-driven without organic earnings contribution will not generate the same multiple response as organic growth. The market distinguishes between the two.",
+      "verdict": "INFERRED",
+      "reasoning": "Inference from OWL's Q4 DE/share despite Q2 FEAUM, contrasted with CG/TPG organic FRE growth trajectories. The claim that the market assigns differential premia to organic vs. inorganic FRE growth is a pattern inference, not a directly measured relationship. No formal test of organic vs. inorganic FRE growth impact on multiples exists in the evidence.",
+      "labeling_requirement": "Must use hedged language: 'the evidence suggests', 'appears to'. Must not use 'demonstrates' or 'confirms'."
+    }
+  ],
+  "weak_evidence_claims": [
+    {
+      "claim_id": "CLM-WE-001",
+      "source_file": "value_principles.md",
+      "entry_id": "Principle 2, Section 2.1 and 2.4",
+      "claim_text": "The partial correlation of 0.45 after controlling for scale confirms that DE/share carries an independent signal.",
+      "verdict": "WEAK-EVIDENCE",
+      "dimension": "confidence_miscalibration",
+      "reasoning": "The partial rho is 0.4545 (0.3 <= rho <= 0.5 range). Per the D4 calibration table, this range permits 'suggests', 'appears to correlate with', 'the data indicates' but prohibits 'confirms'. The word 'confirms' appears at lines 113 and 142 of value_principles.md. The underlying finding is legitimate, but the linguistic register exceeds what the evidence strength permits.",
+      "caveat": "Replace 'confirms' with 'suggests' or 'indicates' in both occurrences (lines 113 and 142 of value_principles.md). The partial rho of 0.45 is in the moderate-signal range and does not support confirmatory language."
+    },
+    {
+      "claim_id": "CLM-WE-002",
+      "source_file": "value_principles.md",
+      "entry_id": "Principle 4, Section 4.2",
+      "claim_text": "PAX should pursue margin improvement as a lever for DE/share growth, not as a direct multiple driver.",
+      "verdict": "WEAK-EVIDENCE",
+      "dimension": "confidence_miscalibration",
+      "reasoning": "Uses prescriptive language ('should pursue') in a governance document. While value_principles.md is not the target_company_lens (where over-commitment is a blocking criterion), prescriptive framing for PAX-specific recommendations should be hedged to 'the evidence suggests margin improvement may function as a lever for DE/share growth' rather than directive language. FRE_Margin (DVR-005) is classified not_a_driver (rho=0.20) — directing PAX to pursue margin improvement based on a not_a_driver metric requires careful qualification that the mechanism operates through DE/share, not through direct multiple impact.",
+      "caveat": "Reframe as observational: 'The evidence suggests that margin improvement may function as a lever for DE/share growth within the same-scale cohort, rather than as a direct cross-sectional multiple driver.'"
+    }
+  ],
+  "mandatory_field_completeness": {
+    "platform_playbook_entries_checked": 17,
+    "asset_class_playbook_entries_checked": 15,
+    "total_entries_checked": 32,
+    "entries_with_missing_fields": 0,
+    "fields_verified": [
+      "What_Was_Done",
+      "Observed_Metric_Impact",
+      "Prerequisites",
+      "Operational_And_Tech_Prerequisites",
+      "Execution_Burden",
+      "Failure_Modes_And_Margin_Destroyers",
+      "Transferability_Constraints",
+      "Evidence_Strength",
+      "source_citations"
+    ],
+    "note": "All 32 PLAY-NNN and ANTI-NNN entries across both playbook files contain all 9 mandatory fields with non-empty values. ANTI-006 has an empty action_citations array, which is acceptable because it describes a structural reporting observation (3i AUM inflation) rather than an executed strategic action — the source_citations field (PS-VD-005) provides evidence grounding."
+  },
+  "cp2_caveat_propagation": {
+    "cp2_block_001_addressed": true,
+    "cp2_block_001_note": "The EV/FEAUM rho=0.44 sensitivity with 3i outlier is carried through as a cp2_caveat field in platform_playbook.json driver_stats for DVR-002.",
+    "cp2_block_003_addressed": true,
+    "cp2_block_003_note": "The partial rho scale-mediation caveat is propagated in value_principles.md Principle 2 with (INFERRED) tag and hedge language 'suggesting'. However, 'confirms' at lines 113/142 is flagged as CLM-WE-001."
+  },
+  "anti_pattern_mechanism_check": {
+    "total_anti_patterns": 11,
+    "with_specific_mechanism": 11,
+    "note": "All anti-patterns identify specific operational mechanisms of value destruction: ANTI-001 (equity dilution outpacing earnings from serial M&A), ANTI-002 (margin-maximization at the expense of FEAUM investment), ANTI-003 (concentration risk creating single-name recovery dependence), ANTI-004 (integration overload fragmenting management bandwidth), ANTI-005 (inorganic FRE growth masking organic stagnation), ANTI-006 (non-fee AUM inflation misleading investors), ANTI-101 (credit M&A without earnings discipline), ANTI-201 (single-sponsor PE concentration), ANTI-301 (infrastructure premium-hunting creating vintage risk), ANTI-501 (GP-led continuation vehicle as liquidity avoidance). All pass the mechanism specificity requirement."
+  },
+  "target_company_lens_check": {
+    "file_exists": false,
+    "note": "target_company_lens.json does not exist at the time of this audit. Over-commitment check will be performed when the file is produced. The value_principles.md contains some prescriptive language for PAX (CLM-WE-002) that should be addressed before the target lens inherits it."
+  },
+  "metadata_consistency_check": {
+    "report_metadata_exists": false,
+    "statistics_metadata_exists": false,
+    "note": "Neither report_metadata.json nor statistics_metadata.json exist in the 2026-03-09 run directory at the time of this audit. This check will be performed when these files are produced by the report-builder agent."
+  },
+  "notes": "CP-3 audit of VD-P1 (value_principles.md), VD-P2 (platform_playbook.json), and VD-P3 (asset_class_playbooks.json). 147 claims audited across all three files. Primary audit dimensions: sycophantic_fabrication (D3) and confidence_miscalibration (D4). Key findings: (1) No sycophantic fabrication detected — all PLAY-NNN and ANTI-NNN entries trace to upstream ACT-VD-NNN citations in strategic_actions.json and platform profile/asset class analysis evidence. (2) Two confidence miscalibration instances flagged as WEAK-EVIDENCE in value_principles.md: 'confirms' used for a partial rho of 0.45 (lines 113, 142), and prescriptive 'should' language for PAX based on a not_a_driver metric. (3) Six INFERRED claims catalogued, all correctly tagged with (INFERRED) markers by the playbook-synthesizer — downstream report-builder and target-lens agents must preserve hedged language. (4) All 32 PLAY/ANTI entries have complete mandatory fields. (5) CP-2 caveats are propagated. (6) All anti-patterns include specific failure mechanisms. (7) DVR-004 (moderate_signal) section correctly uses hedged language. (8) target_company_lens.json and report_metadata.json do not yet exist — deferred checks noted. Overall verdict: PASSED with 2 WEAK-EVIDENCE annotations and 6 INFERRED claims requiring hedged language in the final report."
+}

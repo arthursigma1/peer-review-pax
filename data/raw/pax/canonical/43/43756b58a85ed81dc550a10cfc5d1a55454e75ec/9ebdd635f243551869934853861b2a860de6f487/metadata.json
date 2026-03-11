@@ -1,0 +1,37 @@
+{
+  "normalized_url": "ir.kkr.com/sec-filings-annual-letters/sec-filings",
+  "canonical_url": "https://ir.kkr.com/sec-filings-annual-letters/sec-filings",
+  "content_hash": "9ebdd635f243551869934853861b2a860de6f487",
+  "evidence_version_id": "506f3d18cafc7e363421516510012d1b380f400e",
+  "supersedes_version_id": null,
+  "captured_at": "2026-03-10T00:41:39.985770Z",
+  "verified_at": "2026-03-11T00:36:34.530662Z",
+  "derived_from_run": "2026-03-09-run2",
+  "crawl_run": "crawl",
+  "source_id_at_capture": "PS-VD-005",
+  "firm_at_capture": "KKR",
+  "quality_bucket": "thin",
+  "text_length": 1507,
+  "content_type": "text/html",
+  "freshness_class": "hub_or_archive_page",
+  "freshness_ttl_days": 14,
+  "material_change_policy": "dynamic_latest_auto_promote",
+  "extraction_modes": [
+    "eqs_sec_api"
+  ],
+  "carry_forward_status": "drop",
+  "carry_forward_reason": "hub_page_without_strong_downstream_artifact",
+  "priority_score": 53,
+  "pinned_sessions": [
+    "2026-03-07",
+    "2026-03-08-run2",
+    "2026-03-09-run2",
+    "2026-03-10-run2"
+  ],
+  "anomaly_flags": [
+    "artifact_quality:thin",
+    "source_id_collision"
+  ],
+  "canonical_text_path": "data/raw/pax/canonical/43/43756b58a85ed81dc550a10cfc5d1a55454e75ec/9ebdd635f243551869934853861b2a860de6f487/evidence.txt",
+  "metadata_path": "data/raw/pax/canonical/43/43756b58a85ed81dc550a10cfc5d1a55454e75ec/9ebdd635f243551869934853861b2a860de6f487/metadata.json"
+}

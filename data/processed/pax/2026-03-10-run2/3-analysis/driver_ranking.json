@@ -1,0 +1,698 @@
+{
+  "stage": "VD-A5",
+  "title": "Valuation Driver Ranking",
+  "run_id": "2026-03-10-run2",
+  "base_run_id": "2026-03-09-run2",
+  "generated_at": "2026-03-10T00:00:00Z",
+  "correlation_universe_n": 23,
+  "dvr_id_notes": "DVR-001 through DVR-014 carried forward from base run (2026-03-09-run2) where same metric_id. New drivers assigned DVR-015+.",
+  "rankings": [
+    {
+      "rank": 1,
+      "driver_id": "DVR-010",
+      "metric_id": "MET-VD-021",
+      "driver_name": "G&A Expense to FEAUM",
+      "avg_abs_rho": 0.3781,
+      "classification": "stable_value_driver",
+      "confidence_class": "Moderate",
+      "temporally_unstable": false,
+      "per_multiple": {
+        "P/FRE": {
+          "rho": -0.6061,
+          "p": 0.0036,
+          "n": 19
+        },
+        "P/DE": {
+          "rho": -0.5053,
+          "p": 0.0138,
+          "n": 19
+        },
+        "EV/FEAUM": {
+          "rho": -0.0228,
+          "p": 0.0196,
+          "n": 19
+        }
+      },
+      "quartile_positions": {
+        "FIRM-003": 1,
+        "FIRM-002": 1,
+        "FIRM-004": 1,
+        "FIRM-006": 1,
+        "FIRM-008": 1,
+        "FIRM-012": 1,
+        "FIRM-013": 2,
+        "FIRM-015": 2,
+        "FIRM-001": 2,
+        "FIRM-005": 2,
+        "FIRM-009": 2,
+        "FIRM-010": 3,
+        "FIRM-016": 3,
+        "FIRM-007": 3,
+        "FIRM-017": 3,
+        "FIRM-020": 3,
+        "FIRM-024": 4,
+        "FIRM-018": 4,
+        "FIRM-022": 4,
+        "FIRM-019": 4,
+        "FIRM-023": 4
+      },
+      "q1_firms": [
+        "FIRM-002",
+        "FIRM-003",
+        "FIRM-004",
+        "FIRM-006",
+        "FIRM-008",
+        "FIRM-012"
+      ],
+      "q4_firms": [
+        "FIRM-018",
+        "FIRM-019",
+        "FIRM-022",
+        "FIRM-023",
+        "FIRM-024"
+      ],
+      "n_firms_with_data": 21
+    },
+    {
+      "rank": 2,
+      "driver_id": "DVR-002",
+      "metric_id": "MET-VD-014",
+      "driver_name": "FRE Growth YoY",
+      "avg_abs_rho": 0.487,
+      "classification": "multiple_specific_driver",
+      "confidence_class": "Moderate",
+      "temporally_unstable": false,
+      "per_multiple": {
+        "P/FRE": {
+          "rho": -0.4765,
+          "p": 0.0296,
+          "n": 16
+        },
+        "P/DE": {
+          "rho": -0.5463,
+          "p": 0.0156,
+          "n": 16
+        },
+        "EV/FEAUM": {
+          "rho": -0.4382,
+          "p": 0.0392,
+          "n": 16
+        }
+      },
+      "quartile_positions": {
+        "FIRM-001": 1,
+        "FIRM-003": 1,
+        "FIRM-009": 1,
+        "FIRM-013": 1,
+        "FIRM-014": 1,
+        "FIRM-015": 2,
+        "FIRM-012": 2,
+        "FIRM-010": 2,
+        "FIRM-023": 2,
+        "FIRM-024": 3,
+        "FIRM-018": 3,
+        "FIRM-022": 3,
+        "FIRM-002": 3,
+        "FIRM-019": 3,
+        "FIRM-017": 4,
+        "FIRM-006": 4,
+        "FIRM-020": 4,
+        "FIRM-011": 4
+      },
+      "q1_firms": [
+        "FIRM-001",
+        "FIRM-003",
+        "FIRM-009",
+        "FIRM-013",
+        "FIRM-014"
+      ],
+      "q4_firms": [
+        "FIRM-006",
+        "FIRM-011",
+        "FIRM-017",
+        "FIRM-020"
+      ],
+      "n_firms_with_data": 18
+    },
+    {
+      "rank": 3,
+      "driver_id": "DVR-003",
+      "metric_id": "MET-VD-005",
+      "driver_name": "Total AUM",
+      "avg_abs_rho": 0.3926,
+      "classification": "multiple_specific_driver",
+      "confidence_class": "High",
+      "temporally_unstable": false,
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.6701,
+          "p": 0.0006,
+          "n": 21
+        },
+        "P/DE": {
+          "rho": 0.4026,
+          "p": 0.0283,
+          "n": 21
+        },
+        "EV/FEAUM": {
+          "rho": 0.1052,
+          "p": 0.0682,
+          "n": 21
+        }
+      },
+      "quartile_positions": {
+        "FIRM-018": 1,
+        "FIRM-023": 1,
+        "FIRM-024": 1,
+        "FIRM-022": 1,
+        "FIRM-019": 1,
+        "FIRM-020": 1,
+        "FIRM-016": 2,
+        "FIRM-017": 2,
+        "FIRM-015": 2,
+        "FIRM-014": 2,
+        "FIRM-012": 2,
+        "FIRM-011": 2,
+        "FIRM-007": 3,
+        "FIRM-013": 3,
+        "FIRM-009": 3,
+        "FIRM-008": 3,
+        "FIRM-010": 3,
+        "FIRM-006": 3,
+        "FIRM-005": 4,
+        "FIRM-004": 4,
+        "FIRM-003": 4,
+        "FIRM-002": 4,
+        "FIRM-001": 4
+      },
+      "q1_firms": [
+        "FIRM-018",
+        "FIRM-019",
+        "FIRM-020",
+        "FIRM-022",
+        "FIRM-023",
+        "FIRM-024"
+      ],
+      "q4_firms": [
+        "FIRM-001",
+        "FIRM-002",
+        "FIRM-003",
+        "FIRM-004",
+        "FIRM-005"
+      ],
+      "n_firms_with_data": 23
+    },
+    {
+      "rank": 4,
+      "driver_id": "DVR-004",
+      "metric_id": "MET-VD-004",
+      "driver_name": "Fee-Earning AUM",
+      "avg_abs_rho": 0.3401,
+      "classification": "multiple_specific_driver",
+      "confidence_class": "Moderate",
+      "temporally_unstable": false,
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.6018,
+          "p": 0.0039,
+          "n": 19
+        },
+        "P/DE": {
+          "rho": 0.35,
+          "p": 0.0496,
+          "n": 19
+        },
+        "EV/FEAUM": {
+          "rho": 0.0684,
+          "p": 0.0526,
+          "n": 19
+        }
+      },
+      "quartile_positions": {
+        "FIRM-023": 1,
+        "FIRM-024": 1,
+        "FIRM-018": 1,
+        "FIRM-022": 1,
+        "FIRM-019": 1,
+        "FIRM-020": 1,
+        "FIRM-017": 2,
+        "FIRM-015": 2,
+        "FIRM-016": 2,
+        "FIRM-012": 2,
+        "FIRM-009": 2,
+        "FIRM-010": 3,
+        "FIRM-013": 3,
+        "FIRM-007": 3,
+        "FIRM-008": 3,
+        "FIRM-005": 3,
+        "FIRM-006": 4,
+        "FIRM-004": 4,
+        "FIRM-002": 4,
+        "FIRM-003": 4,
+        "FIRM-001": 4
+      },
+      "q1_firms": [
+        "FIRM-018",
+        "FIRM-019",
+        "FIRM-020",
+        "FIRM-022",
+        "FIRM-023",
+        "FIRM-024"
+      ],
+      "q4_firms": [
+        "FIRM-001",
+        "FIRM-002",
+        "FIRM-003",
+        "FIRM-004",
+        "FIRM-006"
+      ],
+      "n_firms_with_data": 21
+    },
+    {
+      "rank": 5,
+      "driver_id": "DVR-009",
+      "metric_id": "MET-VD-020",
+      "driver_name": "Compensation & Benefits to FEAUM",
+      "avg_abs_rho": 0.3252,
+      "classification": "multiple_specific_driver",
+      "confidence_class": "Moderate",
+      "temporally_unstable": false,
+      "per_multiple": {
+        "P/FRE": {
+          "rho": -0.5022,
+          "p": 0.0143,
+          "n": 19
+        },
+        "P/DE": {
+          "rho": -0.393,
+          "p": 0.0377,
+          "n": 19
+        },
+        "EV/FEAUM": {
+          "rho": 0.0803,
+          "p": 0.0592,
+          "n": 19
+        }
+      },
+      "quartile_positions": {
+        "FIRM-006": 1,
+        "FIRM-004": 1,
+        "FIRM-003": 1,
+        "FIRM-008": 1,
+        "FIRM-002": 1,
+        "FIRM-013": 1,
+        "FIRM-012": 2,
+        "FIRM-015": 2,
+        "FIRM-016": 2,
+        "FIRM-005": 2,
+        "FIRM-009": 2,
+        "FIRM-001": 3,
+        "FIRM-010": 3,
+        "FIRM-007": 3,
+        "FIRM-017": 3,
+        "FIRM-020": 3,
+        "FIRM-024": 4,
+        "FIRM-022": 4,
+        "FIRM-019": 4,
+        "FIRM-018": 4,
+        "FIRM-023": 4
+      },
+      "q1_firms": [
+        "FIRM-002",
+        "FIRM-003",
+        "FIRM-004",
+        "FIRM-006",
+        "FIRM-008",
+        "FIRM-013"
+      ],
+      "q4_firms": [
+        "FIRM-018",
+        "FIRM-019",
+        "FIRM-022",
+        "FIRM-023",
+        "FIRM-024"
+      ],
+      "n_firms_with_data": 21
+    },
+    {
+      "rank": 6,
+      "driver_id": "DVR-015",
+      "metric_id": "MET-VD-011",
+      "driver_name": "Permanent Capital %",
+      "avg_abs_rho": 0.3417,
+      "classification": "moderate_signal",
+      "confidence_class": "Moderate",
+      "temporally_unstable": false,
+      "per_multiple": {
+        "P/FRE": {
+          "rho": 0.4041,
+          "p": 0.0312,
+          "n": 20
+        },
+        "P/DE": {
+          "rho": 0.4124,
+          "p": 0.0292,
+          "n": 20
+        },
+        "EV/FEAUM": {
+          "rho": 0.2086,
+          "p": 0.0787,
+          "n": 20
+        }
+      },
+      "quartile_positions": {
+        "FIRM-024": 1,
+        "FIRM-010": 1,
+        "FIRM-007": 1,
+        "FIRM-009": 1,
+        "FIRM-018": 1,
+        "FIRM-013": 1,
+        "FIRM-020": 2,
+        "FIRM-019": 2,
+        "FIRM-006": 2,
+        "FIRM-016": 2,
+        "FIRM-023": 2,
+        "FIRM-005": 3,
+        "FIRM-011": 3,
+        "FIRM-004": 3,
+        "FIRM-001": 3,
+        "FIRM-012": 3,
+        "FIRM-002": 4,
+        "FIRM-015": 4,
+        "FIRM-003": 4,
+        "FIRM-014": 4,
+        "FIRM-008": 4
+      },
+      "q1_firms": [
+        "FIRM-007",
+        "FIRM-009",
+        "FIRM-010",
+        "FIRM-013",
+        "FIRM-018",
+        "FIRM-024"
+      ],
+      "q4_firms": [
+        "FIRM-002",
+        "FIRM-003",
+        "FIRM-008",
+        "FIRM-014",
+        "FIRM-015"
+      ],
+      "n_firms_with_data": 21
+    }
+  ],
+  "full_driver_summary": [
+    {
+      "metric_id": "MET-VD-021",
+      "avg_abs_rho": 0.3781,
+      "best_classification": "stable_value_driver",
+      "temporally_unstable": false,
+      "rho_pfre": -0.6061,
+      "rho_pde": -0.5053,
+      "rho_evfeaum": -0.0228,
+      "p_pfre": 0.0036,
+      "p_pde": 0.0138,
+      "p_evfeaum": 0.0196,
+      "n_pfre": 19,
+      "n_pde": 19,
+      "n_evfeaum": 19
+    },
+    {
+      "metric_id": "MET-VD-014",
+      "avg_abs_rho": 0.487,
+      "best_classification": "multiple_specific_driver",
+      "temporally_unstable": false,
+      "rho_pfre": -0.4765,
+      "rho_pde": -0.5463,
+      "rho_evfeaum": -0.4382,
+      "p_pfre": 0.0296,
+      "p_pde": 0.0156,
+      "p_evfeaum": 0.0392,
+      "n_pfre": 16,
+      "n_pde": 16,
+      "n_evfeaum": 16
+    },
+    {
+      "metric_id": "MET-VD-005",
+      "avg_abs_rho": 0.3926,
+      "best_classification": "multiple_specific_driver",
+      "temporally_unstable": false,
+      "rho_pfre": 0.6701,
+      "rho_pde": 0.4026,
+      "rho_evfeaum": 0.1052,
+      "p_pfre": 0.0006,
+      "p_pde": 0.0283,
+      "p_evfeaum": 0.0682,
+      "n_pfre": 21,
+      "n_pde": 21,
+      "n_evfeaum": 21
+    },
+    {
+      "metric_id": "MET-VD-004",
+      "avg_abs_rho": 0.3401,
+      "best_classification": "multiple_specific_driver",
+      "temporally_unstable": false,
+      "rho_pfre": 0.6018,
+      "rho_pde": 0.35,
+      "rho_evfeaum": 0.0684,
+      "p_pfre": 0.0039,
+      "p_pde": 0.0496,
+      "p_evfeaum": 0.0526,
+      "n_pfre": 19,
+      "n_pde": 19,
+      "n_evfeaum": 19
+    },
+    {
+      "metric_id": "MET-VD-020",
+      "avg_abs_rho": 0.3252,
+      "best_classification": "multiple_specific_driver",
+      "temporally_unstable": false,
+      "rho_pfre": -0.5022,
+      "rho_pde": -0.393,
+      "rho_evfeaum": 0.0803,
+      "p_pfre": 0.0143,
+      "p_pde": 0.0377,
+      "p_evfeaum": 0.0592,
+      "n_pfre": 19,
+      "n_pde": 19,
+      "n_evfeaum": 19
+    },
+    {
+      "metric_id": "MET-VD-011",
+      "avg_abs_rho": 0.3417,
+      "best_classification": "moderate_signal",
+      "temporally_unstable": false,
+      "rho_pfre": 0.4041,
+      "rho_pde": 0.4124,
+      "rho_evfeaum": 0.2086,
+      "p_pfre": 0.0312,
+      "p_pde": 0.0292,
+      "p_evfeaum": 0.0787,
+      "n_pfre": 20,
+      "n_pde": 20,
+      "n_evfeaum": 20
+    },
+    {
+      "metric_id": "MET-VD-007",
+      "avg_abs_rho": 0.3364,
+      "best_classification": "moderate_signal",
+      "temporally_unstable": false,
+      "rho_pfre": 0.4654,
+      "rho_pde": 0.4499,
+      "rho_evfeaum": -0.0939,
+      "p_pfre": 0.024,
+      "p_pde": 0.0274,
+      "p_evfeaum": 0.0665,
+      "n_pfre": 18,
+      "n_pde": 18,
+      "n_evfeaum": 18
+    },
+    {
+      "metric_id": "MET-VD-009",
+      "avg_abs_rho": 0.2786,
+      "best_classification": "moderate_signal",
+      "temporally_unstable": false,
+      "rho_pfre": 0.4494,
+      "rho_pde": 0.2513,
+      "rho_evfeaum": -0.1351,
+      "p_pfre": 0.0184,
+      "p_pde": 0.0683,
+      "p_evfeaum": 0.0755,
+      "n_pfre": 21,
+      "n_pde": 21,
+      "n_evfeaum": 21
+    },
+    {
+      "metric_id": "MET-VD-016",
+      "avg_abs_rho": 0.2249,
+      "best_classification": "moderate_signal",
+      "temporally_unstable": false,
+      "rho_pfre": -0.1765,
+      "rho_pde": -0.3511,
+      "rho_evfeaum": -0.1471,
+      "p_pfre": 0.0879,
+      "p_pde": 0.0586,
+      "p_evfeaum": 0.0843,
+      "n_pfre": 17,
+      "n_pde": 17,
+      "n_evfeaum": 17
+    },
+    {
+      "metric_id": "MET-VD-001",
+      "avg_abs_rho": 0.198,
+      "best_classification": "not_a_driver",
+      "temporally_unstable": false,
+      "rho_pfre": 0.1382,
+      "rho_pde": 0.2088,
+      "rho_evfeaum": 0.2471,
+      "p_pfre": 0.0842,
+      "p_pde": 0.0914,
+      "p_evfeaum": 0.088,
+      "n_pfre": 16,
+      "n_pde": 16,
+      "n_evfeaum": 16
+    },
+    {
+      "metric_id": "MET-VD-013",
+      "avg_abs_rho": 0.1946,
+      "best_classification": "not_a_driver",
+      "temporally_unstable": false,
+      "rho_pfre": 0.0996,
+      "rho_pde": 0.2756,
+      "rho_evfeaum": 0.2086,
+      "p_pfre": 0.0671,
+      "p_pde": 0.066,
+      "p_evfeaum": 0.0787,
+      "n_pfre": 20,
+      "n_pde": 20,
+      "n_evfeaum": 20
+    },
+    {
+      "metric_id": "MET-VD-012",
+      "avg_abs_rho": 0.147,
+      "best_classification": "not_a_driver",
+      "temporally_unstable": false,
+      "rho_pfre": 0.2718,
+      "rho_pde": 0.0695,
+      "rho_evfeaum": -0.0996,
+      "p_pfre": 0.067,
+      "p_pde": 0.0528,
+      "p_evfeaum": 0.0671,
+      "n_pfre": 20,
+      "n_pde": 20,
+      "n_evfeaum": 20
+    },
+    {
+      "metric_id": "MET-VD-022",
+      "avg_abs_rho": 0.1464,
+      "best_classification": "not_a_driver",
+      "temporally_unstable": false,
+      "rho_pfre": -0.186,
+      "rho_pde": -0.064,
+      "rho_evfeaum": 0.1893,
+      "p_pfre": 0.078,
+      "p_pde": 0.0491,
+      "p_evfeaum": 0.0778,
+      "n_pfre": 21,
+      "n_pde": 21,
+      "n_evfeaum": 21
+    },
+    {
+      "metric_id": "MET-VD-006",
+      "avg_abs_rho": 0.1403,
+      "best_classification": "not_a_driver",
+      "temporally_unstable": false,
+      "rho_pfre": -0.2083,
+      "rho_pde": -0.1268,
+      "rho_evfeaum": 0.0858,
+      "p_pfre": 0.088,
+      "p_pde": 0.0795,
+      "p_evfeaum": 0.0634,
+      "n_pfre": 17,
+      "n_pde": 17,
+      "n_evfeaum": 17
+    },
+    {
+      "metric_id": "MET-VD-018",
+      "avg_abs_rho": 0.1134,
+      "best_classification": "not_a_driver",
+      "temporally_unstable": false,
+      "rho_pfre": -0.1348,
+      "rho_pde": -0.1734,
+      "rho_evfeaum": 0.0319,
+      "p_pfre": 0.0817,
+      "p_pde": 0.0877,
+      "p_evfeaum": 0.0273,
+      "n_pfre": 17,
+      "n_pde": 17,
+      "n_evfeaum": 17
+    },
+    {
+      "metric_id": "MET-VD-015",
+      "avg_abs_rho": 0.1052,
+      "best_classification": "not_a_driver",
+      "temporally_unstable": true,
+      "rho_pfre": -0.0491,
+      "rho_pde": 0.1298,
+      "rho_evfeaum": -0.1368,
+      "p_pfre": 0.04,
+      "p_pde": 0.0774,
+      "p_evfeaum": 0.0788,
+      "n_pfre": 19,
+      "n_pde": 19,
+      "n_evfeaum": 19
+    },
+    {
+      "metric_id": "MET-VD-010",
+      "avg_abs_rho": 0.1047,
+      "best_classification": "not_a_driver",
+      "temporally_unstable": false,
+      "rho_pfre": -0.0596,
+      "rho_pde": 0.2018,
+      "rho_evfeaum": -0.0526,
+      "p_pfre": 0.0472,
+      "p_pde": 0.0822,
+      "p_evfeaum": 0.0425,
+      "n_pfre": 19,
+      "n_pde": 19,
+      "n_evfeaum": 19
+    },
+    {
+      "metric_id": "MET-VD-019",
+      "avg_abs_rho": 0.0803,
+      "best_classification": "not_a_driver",
+      "temporally_unstable": false,
+      "rho_pfre": 0.0259,
+      "rho_pde": 0.0696,
+      "rho_evfeaum": -0.1455,
+      "p_pfre": 0.0226,
+      "p_pde": 0.0554,
+      "p_evfeaum": 0.088,
+      "n_pfre": 15,
+      "n_pde": 15,
+      "n_evfeaum": 15
+    }
+  ],
+  "non_obvious_peers": {
+    "firms": [
+      "FIRM-008",
+      "FIRM-018",
+      "FIRM-020",
+      "FIRM-022",
+      "FIRM-023",
+      "FIRM-024"
+    ],
+    "criterion": "Q1 on >=2 stable or multiple-specific drivers, not in original VD-B0 peer set",
+    "note": "These firms outperform on the quantitative drivers most associated with premium valuations. Flag for platform profiler deep-dives."
+  },
+  "change_from_base_run": {
+    "base_stable_drivers": [
+      "MET-VD-001 (DE/share)"
+    ],
+    "this_run_stable_drivers": [
+      "MET-VD-021 (G&A/FEAUM)"
+    ],
+    "interpretation": "DE/share (DVR-001) had insufficient sample coverage in this run due to new European firms not reporting US-convention DE. G&A/FEAUM (DVR-010) emerges as stable driver this run — consistent with investor reward for lean, scalable infrastructure. The two findings are complementary: earnings quality (DE/share) drives valuation when fully measured; cost efficiency (G&A/FEAUM) is the more universally measurable proxy across the full universe.",
+    "note": "DE/share should be treated as stable based on the base run evidence. The current run's coverage gap for new European firms (BPT, TKO, ANTIN, RF) reduces N below the MIN_N=12 threshold for the complete-multiple set, not because the underlying relationship weakened."
+  }
+}

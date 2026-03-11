@@ -1,0 +1,36 @@
+{
+  "normalized_url": "www.sec.gov/Archives/edgar/data/1433642/000143364225000066/hlne-2025annualreporttosec.pdf",
+  "canonical_url": "https://www.sec.gov/Archives/edgar/data/1433642/000143364225000066/hlne-2025annualreporttosec.pdf",
+  "content_hash": "aaf00a21fd99be64d70b453b6c48e47c3519c9a3",
+  "evidence_version_id": "e4f2f2d20dff6f3419be00af4b5ae44f452baf53",
+  "supersedes_version_id": null,
+  "captured_at": "2026-03-10T00:41:52.050563Z",
+  "verified_at": "2026-03-11T00:36:34.409643Z",
+  "derived_from_run": "2026-03-09-run2",
+  "crawl_run": "crawl",
+  "source_id_at_capture": "PS-VD-037",
+  "firm_at_capture": "Hamilton Lane",
+  "quality_bucket": "good",
+  "text_length": 526814,
+  "content_type": "application/pdf",
+  "freshness_class": "immutable_filing",
+  "freshness_ttl_days": null,
+  "material_change_policy": "immutable_requires_anomaly_review",
+  "extraction_modes": [],
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl",
+  "priority_score": 32,
+  "pinned_sessions": [
+    "2026-03-07",
+    "2026-03-07-run2",
+    "2026-03-08-run2",
+    "2026-03-09-run2",
+    "2026-03-10-run2",
+    "2026-03-11-incremental-pilot"
+  ],
+  "anomaly_flags": [
+    "source_id_collision"
+  ],
+  "canonical_text_path": "data/raw/pax/canonical/ef/ef5e7ee3ec461613d67a0f9095c258be3d9f4609/aaf00a21fd99be64d70b453b6c48e47c3519c9a3/evidence.txt",
+  "metadata_path": "data/raw/pax/canonical/ef/ef5e7ee3ec461613d67a0f9095c258be3d9f4609/aaf00a21fd99be64d70b453b6c48e47c3519c9a3/metadata.json"
+}

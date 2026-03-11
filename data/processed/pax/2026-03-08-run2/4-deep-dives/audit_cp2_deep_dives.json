@@ -1,0 +1,66 @@
+{
+  "checkpoint": "CP-2",
+  "stage_audited": ["VD-D1", "VD-D2"],
+  "verdict": "PASSED",
+  "total_claims_sampled": 78,
+  "passed_claims": 75,
+  "blocked_claims": [
+    {
+      "claim_id": "CP2-BLOCK-001",
+      "source_file": "platform_profiles.json",
+      "firm_or_vertical": "Blackstone Inc. (BX) — driver_performance narrative",
+      "claim_text": "FEAUM confirmed as the dominant valuation driver (rho=0.85 vs P/FRE)",
+      "dimension": "misleading_context",
+      "reason": "The rho=0.85 figure is accurate for the P/FRE multiple (COR-007: rho=0.8537, N=14). However, the narrative omits that: (1) FEAUM's EV/FEAUM correlation is rho=0.4444 with a confidence interval including zero (COR-008, ci_lower=-0.2525), and (2) the full stable_value_driver status is only reached after excluding the 3i structural outlier (leave-one-out rho=0.81). Citing rho=0.85 as confirmation of dominant driver status, without noting the EV/FEAUM sensitivity, is misleading given that EV/FEAUM is a primary valuation multiple in the methodology.",
+      "recommended_fix": "ADD_CAVEAT — append to the narrative: 'The rho=0.85 signal is specific to P/FRE (N=14); FEAUM vs EV/FEAUM yields rho=0.44 with CI including zero, driven by the 3i structural outlier. Excluding 3i raises this to rho=0.81. The dominant driver claim holds on P/FRE but is qualified on EV/FEAUM.'"
+    },
+    {
+      "claim_id": "CP2-BLOCK-002",
+      "source_file": "platform_profiles.json",
+      "firm_or_vertical": "The Carlyle Group (CG) — INS-016 enabling_conditions",
+      "claim_text": "External CEO with mandate for change (Schwartz was a former Goldman Sachs president) is the enabling governance condition.",
+      "dimension": "confidence_miscalibration",
+      "reason": "The biographical claim that Schwartz was a 'former Goldman Sachs president' is presented as established fact within the enabling_conditions field. No source citation in strategic_actions.json ACT-VD-066 or ACT-VD-028 supports this specific biographical claim — neither action cites a source that establishes this. ACT-VD-066 is tagged 'company-produced' and describes the transformation outcomes, not Schwartz's prior background. The Carlyle-related sources (PS-VD-025) are cited for ACT-VD-028 and ACT-VD-066 but do not appear in operational_prerequisites source citations for this biographical fact. The claim may be accurate but is not evidenced in any upstream evidence file.",
+      "recommended_fix": "DOWNGRADE_TO_INFERRED — revise to: 'An externally recruited CEO with a mandate for transformation (background details INFERRED from public sources, not corroborated in evidence files) is the enabling governance condition.'"
+    },
+    {
+      "claim_id": "CP2-BLOCK-003",
+      "source_file": "platform_profiles.json",
+      "firm_or_vertical": "Blackstone Inc. (BX) — value_creation_narrative",
+      "claim_text": "The partial Spearman rho controlling for scale drops from 0.78 to approximately 0.45, suggesting scale is the underlying cause.",
+      "dimension": "confidence_miscalibration",
+      "reason": "The direction of the claim is supported by correlations.json COR-001 (partial_rho_controlling_scale=0.4545). However, the narrative presents this partial correlation as if it definitively 'suggests scale is the underlying cause' of DE/share's correlation with multiples — a causal inference from a correlation-controlling exercise. The evidence supports only that DE/share's partial rho is materially lower when controlling for FEAUM (0.45 vs 0.78), not that scale is causally upstream. The claim should be hedged as consistent with scale mediation, not as proof of causality.",
+      "recommended_fix": "ADD_CAVEAT — revise to: 'The partial Spearman rho controlling for scale drops from 0.78 to approximately 0.45 (COR-001), suggesting (INFERRED) that a substantial portion of DE/share's multiple association may be mediated through scale — though the partial correlation does not establish causality.'"
+    }
+  ],
+  "inferred_claims_list": [
+    "INS-001 (BX BREIT/BCRED/BXPE): 'Converting flagship drawdown vehicles into evergreen structures creates a more durable, higher-velocity fee stream that the market re-rates at a material premium.' — evidence_class=inferred; hedge language required: 'appears to' or 'suggests' rather than 'demonstrates'.",
+    "INS-002 (BX AI data centers): 'Anchoring a thematic investment franchise around a structural demand megatrend allows a manager to command co-investment scale and new product format innovation simultaneously.' — evidence_class=inferred.",
+    "INS-003 (BX private wealth infrastructure): 'The 53% YoY growth in Blackstone's wealth fundraising reflects years of infrastructure investment, not a one-year pivot.' — evidence_class=inferred; underlying metric confirmed (ACT-VD-005) but causal attribution is inferred.",
+    "INS-006 (APO credit-first TAM): 'A credit-first strategy covering the full investment-grade spectrum captures a structurally larger TAM and attracts insurance and pension allocators who are excluded from high-yield-only managers.' — evidence_class=inferred.",
+    "INS-007 (BAM spin-out multiple re-rating): 'Carving out a pure fee-earning management company creates a substantial multiple re-rating — the market assigns a management company premium (30-40x FRE).' — evidence_class=inferred; the 30-40x range is presented without source citation for the range estimate itself.",
+    "INS-008 (BAM QIA JV): 'Structuring a dedicated joint venture with a sovereign wealth fund is an alternative to insurance platform acquisition for creating captive AUM without regulatory complexity.' — evidence_class=inferred.",
+    "INS-009 (BAM BAIIF thematic): 'Launching thematic fund families that align with structural megatrends enables expansion of total addressable product set.' — evidence_class=inferred.",
+    "INS-011 (KKR capital markets): '$309.7M in fees reached 2024.' — evidence_class=inferred; metric from ACT-VD-008 platform_profiles narrative but no regulatory-filing corroboration in strategic_actions.json for the specific $309.7M figure.",
+    "INS-012 (KKR sports/GP stakes): 'Launching differentiated alternative asset classes as a combined vertical creates a new product menu attracting LP types who do not typically allocate to traditional PE or credit.' — evidence_class=inferred.",
+    "INS-015 (ARES wealth distribution team): 'Scaling a dedicated wealth distribution team to 100+ professionals before the product suite is fully built is the operational precondition that enables a wealth channel to reach $20B+.' — evidence_class=inferred; team size confirmed in ACT-VD-016 operational_prerequisites but 18-24 month lead time claim is inferred.",
+    "INS-021 (TPG insurance mandate): 'Jackson's decision to award the mandate is anchored by Angelo Gordon's pre-acquisition track record — the mandate was likely in discussion before the TPG acquisition closed.' — evidence_class=inferred; marked INFERRED in how_they_did_it.",
+    "INS-022 (STEP STPEX co-investment): 'Translating an institutional co-investment advantage into a retail-accessible evergreen product creates a differentiated wealth offering that established direct-investing managers cannot easily replicate.' — evidence_class=inferred.",
+    "INS-023 (STEP thought leadership flywheel): 'Using proprietary data from a large advisory or solutions client base to publish thought leadership research creates a brand differentiation mechanism.' — evidence_class=inferred.",
+    "INS-024 (EQT thematic framework): 'Applying an explicit thematic investment framework across the entire portfolio attracts ESG-mandated and thematic-oriented institutional capital.' — evidence_class=inferred.",
+    "INS-025 (EQT BPEA brand unification): 'Acquiring and fully integrating an APAC-branded manager and then unifying it under the global brand accelerates LP recognition.' — evidence_class=inferred.",
+    "INS-026 (PGHN royalties 5th asset class): 'Launching a proprietary 5th asset class (private markets royalties) that is uncorrelated to economic cycles creates differentiated LP demand from insurance companies.' — evidence_class=inferred; uncorrelated claim is inferred from asset class characteristics, not empirically documented.",
+    "INS-027 (PGHN JV geographic expansion): 'Expanding into new geographies through joint ventures with local financial institutions dramatically accelerates LP acquisition.' — evidence_class=inferred.",
+    "INS-028 (PGHN evergreen factory): 'Launching seven new evergreen product vehicles in a single year requires a standardized fund formation playbook that can be replicated without per-vehicle innovation.' — evidence_class=inferred.",
+    "asset_class_analysis.json VERT-001 HLNE classification: 'INFERRED: their evergreen platform scale ($16B+) suggests wealth-channel credit access is replicable without full origination infrastructure.' — explicitly marked INFERRED in source.",
+    "asset_class_analysis.json VERT-001 ABF barriers: 'INFERRED: for a LatAm-focused manager, ABF infrastructure for Brazilian consumer credit (FIDC structures) is a plausible adjacency to RBR platform (ACT-VD-077).' — explicitly marked INFERRED.",
+    "asset_class_analysis.json VERT-001 Opportunistic Credit barriers: 'INFERRED: not a viable near-term pathway for PAX given LatAm credit market stage.' — explicitly marked INFERRED.",
+    "asset_class_analysis.json VERT-001 Insurance-Oriented Credit: 'INFERRED: for PAX, a direct insurance platform in LatAm faces additional regulatory complexity... A third-party insurance mandate strategy may be more accessible as a first step.' — explicitly marked INFERRED.",
+    "asset_class_analysis.json VERT-002 Sector-Specialist Growth Equity: 'INFERRED: LatAm growth equity in sectors like fintech, agritech, and climate technology is an emerging opportunity.' — explicitly marked INFERRED.",
+    "asset_class_analysis.json VERT-002 GP-Led Continuation Vehicles: 'INFERRED: PAX may selectively use GP-led continuation vehicles for high-conviction PE assets in future fund cycles.' — explicitly marked INFERRED.",
+    "asset_class_analysis.json VERT-003/VERT-004 (Infrastructure and Real Estate sections): All INFERRED-tagged claims within the vertical sub-type sections require hedged language in final report.",
+    "cross_vertical_synthesis claim: 'PAX's regional depth is a genuine competitive moat that global managers cannot efficiently replicate without a 10+ year commitment.' — no documentary evidence; inferred from structural analysis of PAX's 40-year operating history (cited in asset_class_analysis but not in a source-traceable ACT-VD citation)."
+  ],
+  "audit_notes": "Audit covered 11 full firm profiles in platform_profiles.json (BX, APO, BAM, KKR, ARES, CG, OWL, TPG, STEP, EQT, PGHN), all 5 verticals in asset_class_analysis.json with spot-checks on 2 sub-types per vertical as directed, and all 3 transferable insights tagged evidence_class='directly_documented' (INS-005, INS-016, INS-017). Key findings: (1) Quartile positions in platform_profiles.json are consistently supported by driver_ranking.json — all 22 quartile assignments verified passed. (2) Spearman rho values cited in narratives match correlations.json within acceptable rounding (rho=0.85 rounds correctly from 0.8537; rho=0.78 rounds from 0.7846; partial rho 'approximately 0.45' matches 0.4545). (3) All directly_documented ACT-VD citations (ACT-VD-010, ACT-VD-028, ACT-VD-031, ACT-VD-066) exist in strategic_actions.json with matching evidence_class='directly_documented'. (4) Three blocked claims were identified: CP2-BLOCK-001 is a misleading_context issue (EV/FEAUM 3i sensitivity omission in BX FEAUM dominant driver claim); CP2-BLOCK-002 is a confidence_miscalibration (unsourced Goldman Sachs biographical claim presented as fact); CP2-BLOCK-003 is a confidence_miscalibration (causal inference from partial correlation). All three blocks are resolvable with caveats or downgrade-to-inferred — none are invalid_premises or sycophantic_fabrication. No ACT-VD citations reference actions that do not exist in strategic_actions.json. No quartile positions contradict driver_ranking.json. No Spearman rho values are materially misrepresented. The OWL cautionary_case flag is correctly applied and supported by DVR-001 (Q4 DE/share) and DVR-002 (Q2 FEAUM). STEP FRE_Growth_YoY marked N/A is consistent with DVR-004 coverage gaps noted in driver_ranking.json. EQT and PGHN quartile N/A designations are consistent with IFRS incompatibility noted in methodology. The 26 inferred claims catalogued above require hedged language ('suggests', 'appears to', 'may', 'is consistent with') in the final report — none should use 'demonstrates', 'proves', or 'establishes'.",
+  "audited_at": "2026-03-08"
+}

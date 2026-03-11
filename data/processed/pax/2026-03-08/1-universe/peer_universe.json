@@ -1,0 +1,548 @@
+{
+  "metadata": {
+    "pipeline": "valuation-driver-analysis",
+    "step": "VD-A0",
+    "step_name": "Map the Industry — Peer Universe Identification",
+    "agent": "universe-scout",
+    "target_company": "Patria Investments Limited",
+    "target_ticker": "PAX",
+    "sector": "alt-asset-management",
+    "generated_at": "2026-03-08",
+    "run_id": "2026-03-08",
+    "base_run": "2026-03-07-run2",
+    "total_firms": 27,
+    "classification_counts": {
+      "pure-play-alt": 20,
+      "majority-alt": 5,
+      "partial-alt": 2
+    },
+    "notes": "Universe includes all major publicly listed alternative asset managers globally. AUM figures sourced from Q4 2025 / FY2025 earnings releases where available; H1 2025 figures used for European firms with fiscal years ending March or December whose FY2025 results are pending. EUR-to-USD conversions use approximate year-end 2025 rate of ~1.08 USD/EUR. CHF-to-USD conversions use ~1.10 USD/CHF. SEK-to-USD conversions use ~0.092 USD/SEK. BRL-to-USD conversions use approximate year-end 2025 rate of ~5.9-6.0 BRL/USD. Refreshed from 2026-03-07-run2 base run with latest available data. No new alt-manager IPOs since prior run. Pershing Square Capital Management has announced 2026 IPO plans but has not yet listed."
+  },
+  "firms": [
+    {
+      "firm_id": "FIRM-001",
+      "firm_name": "Patria Investments Limited",
+      "ticker": "PAX",
+      "exchange": "NASDAQ",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 52.6,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-equity",
+        "infrastructure",
+        "real-estate",
+        "credit",
+        "public-equities"
+      ],
+      "headquarters": "Grand Cayman (operations in Sao Paulo, Brazil)",
+      "geographic_focus": "Latin America",
+      "inclusion_rationale": "Target company. Leading Latin American alternative asset manager listed on NASDAQ. Pure-play alternative with AUM of $52.6B as of Q4 2025, up 26% YoY. Fee-earning AUM of $40.8B (pro forma $47.4B including pending acquisitions). Record $7.7B organic fundraising in 2025. Management fee revenue of $338.7M for FY2025. 2026 fundraising target of $7B and FRE target of $225-245M. Aims for $70B FEAUM by end of 2027."
+    },
+    {
+      "firm_id": "FIRM-002",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "exchange": "NYSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 1275.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "real-estate",
+        "private-equity",
+        "credit-and-insurance",
+        "multi-asset-investing"
+      ],
+      "headquarters": "New York, USA",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "World's largest alternative asset manager. Record AUM of ~$1.275T at year-end 2025 (up 13% YoY). Segments: Real Estate $319.3B, Private Equity $416.4B, Credit & Insurance $443.0B, Multi-Asset $96.2B. Defines the peer group ceiling."
+    },
+    {
+      "firm_id": "FIRM-003",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "exchange": "NYSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 744.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-equity",
+        "credit",
+        "real-assets",
+        "infrastructure"
+      ],
+      "headquarters": "New York, USA",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "Top-tier global alternative asset manager. Record AUM of $744B at year-end 2025 (up 17% YoY). Perpetual capital of $321B (43% of AUM). Deployed $95B during 2025. Strong management fee growth of 18%. Ranked as top alternative asset manager in Fortune 500."
+    },
+    {
+      "firm_id": "FIRM-004",
+      "firm_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "exchange": "NYSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 938.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "credit",
+        "private-equity",
+        "real-assets"
+      ],
+      "headquarters": "New York, USA",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "Second-largest pure-play alternative manager. AUM of $938B at year-end 2025 (up 25% YoY). Record $228B total inflows in 2025. On track to reach $1T AUM milestone in 2026. Dominant in credit/insurance."
+    },
+    {
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "exchange": "NYSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 622.5,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "credit",
+        "real-estate",
+        "private-equity",
+        "secondaries"
+      ],
+      "headquarters": "Los Angeles, USA",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "Leading credit-focused alternative manager. Record AUM of $622.5B at year-end 2025 (up 29% YoY, aided by GCP acquisition). Credit Group $407B, Real Estate $113.8B, Secondaries $42.1B, PE $25.3B. Over $113B raised in 2025."
+    },
+    {
+      "firm_id": "FIRM-006",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "exchange": "NYSE / TSX",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 1100.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "infrastructure",
+        "renewable-power-and-transition",
+        "private-equity",
+        "real-estate",
+        "credit"
+      ],
+      "headquarters": "Toronto, Canada",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "Asset-light manager spun off from Brookfield Corporation. Over $1T in total AUM, $603B fee-bearing capital (87% long-dated/perpetual). Raised $110B+ of new capital in 2025. Record $30B raised in Q3 2025 alone. Real assets-heavy allocation differentiates from US peers."
+    },
+    {
+      "firm_id": "FIRM-007",
+      "firm_name": "Brookfield Corporation",
+      "ticker": "BN",
+      "exchange": "NYSE / TSX",
+      "classification": "partial-alt",
+      "latest_aum_usd_bn": 1100.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "infrastructure",
+        "renewable-power-and-transition",
+        "private-equity",
+        "real-estate",
+        "credit",
+        "insurance"
+      ],
+      "headquarters": "Toronto, Canada",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "Parent holding company of BAM. Included as partial-alt because it holds both asset management operations (via BAM) and direct operating businesses (insurance, real estate services, infrastructure operations). Same underlying AUM as BAM but different corporate structure and investor exposure."
+    },
+    {
+      "firm_id": "FIRM-008",
+      "firm_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "exchange": "NYSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 307.4,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "direct-lending",
+        "gp-capital-solutions",
+        "real-estate",
+        "net-lease"
+      ],
+      "headquarters": "New York, USA",
+      "geographic_focus": "Global (primarily North America)",
+      "inclusion_rationale": "Fast-growing permanent capital specialist. AUM of $307.4B at year-end 2025 (crossed $300B milestone in Q4). Fee-paying AUM $187.7B. Record $56B new capital raised in 2025 ($42B equity fundraising, +50% YoY). 100% permanent capital model differentiates from traditional drawdown funds. FRE margins of 58.3%."
+    },
+    {
+      "firm_id": "FIRM-009",
+      "firm_name": "TPG Inc.",
+      "ticker": "TPG",
+      "exchange": "NASDAQ",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 303.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-equity",
+        "growth-equity",
+        "impact-investing",
+        "real-estate",
+        "credit"
+      ],
+      "headquarters": "Fort Worth, USA",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "Diversified alternative manager. AUM of $303B at year-end 2025 (up 23% YoY). $72B dry powder entering 2026. IPO in 2022; rapid platform diversification via acquisitions including Angelo Gordon (credit)."
+    },
+    {
+      "firm_id": "FIRM-010",
+      "firm_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "exchange": "NASDAQ",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 477.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-equity",
+        "credit",
+        "investment-solutions"
+      ],
+      "headquarters": "Washington, D.C., USA",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "Established global alternative manager. Record AUM of $477B at year-end 2025 (up 8% YoY). Global Credit $211.3B, AlpInvest $102B, Global PE $163.5B. Fee-earning AUM $332B. $53.7B inflows in 2025 (up 32%)."
+    },
+    {
+      "firm_id": "FIRM-011",
+      "firm_name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "exchange": "NASDAQ",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 220.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-equity",
+        "infrastructure",
+        "private-debt",
+        "real-estate"
+      ],
+      "headquarters": "New York, USA",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "Leading private markets specialist and solutions provider. $220B AUM and $811B total capital responsibility as of Dec 2025 (Q3 FY2026). Fee-earning AUM growing 27% YoY. Revenue of $1.54B LTM (up 92% YoY). Combines discretionary and advisory mandates — relevant comparable for PAX's advisory-adjacent model."
+    },
+    {
+      "firm_id": "FIRM-012",
+      "firm_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "exchange": "NASDAQ",
+      "classification": "majority-alt",
+      "latest_aum_usd_bn": 146.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-equity",
+        "private-credit",
+        "real-assets",
+        "secondaries",
+        "venture-capital"
+      ],
+      "headquarters": "Conshohocken, Pennsylvania, USA",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "Private markets investment management firm. $146B AUM and total asset footprint surpassing $1T as of Dec 2025 (Q3 FY2026). Fee-earning AUM $79.1B (up 11% YoY). Fee-related revenue $507M YTD (up 31%). Classified majority-alt due to large advisory/non-discretionary component. Strategic partnership with Guardian to oversee ~$5B PE portfolio. Relevant comp for fund-of-funds and solutions model."
+    },
+    {
+      "firm_id": "FIRM-013",
+      "firm_name": "GCM Grosvenor Inc.",
+      "ticker": "GCMG",
+      "exchange": "NASDAQ",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 91.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-equity",
+        "infrastructure",
+        "real-estate",
+        "absolute-return-strategies",
+        "credit"
+      ],
+      "headquarters": "Chicago, USA",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "Diversified alternatives specialist with $91B AUM (up 14% YoY). Fee-paying AUM $72B (up 12%), contracted not-yet-fee-paying AUM $10B (up 27%). Record $10.7B fundraising in 2025 (up 49% YoY). GAAP net income +143%. FRE margin 44%. Gross unrealized carried interest $949M. Mid-size peer relevant for comparison with PAX given similar AUM scale."
+    },
+    {
+      "firm_id": "FIRM-014",
+      "firm_name": "Ridgepost Capital, Inc. (formerly P10, Inc.)",
+      "ticker": "RPC",
+      "exchange": "NYSE",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 43.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-equity",
+        "venture-capital",
+        "private-credit",
+        "impact-investing"
+      ],
+      "headquarters": "Dallas, USA",
+      "geographic_focus": "North America",
+      "inclusion_rationale": "Mid-market private markets solutions provider. Over $43B AUM as of Dec 2025. Fee-paying AUM $29.4B (up 15% YoY). Revenue $297.3M for FY2025. Record $5.1B organic gross fundraising in 2025. Rebranded from P10 to Ridgepost Capital in Feb 2026 (NYSE: RPC). Announced acquisition of Stellus Capital Management ($3.8B FPAUM), expected to close mid-2026. Close in AUM scale to PAX — important direct comparable for valuation."
+    },
+    {
+      "firm_id": "FIRM-015",
+      "firm_name": "EQT AB",
+      "ticker": "EQT",
+      "exchange": "NASDAQ Stockholm (OMX)",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 291.6,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-equity",
+        "infrastructure",
+        "real-estate",
+        "credit",
+        "secondaries"
+      ],
+      "headquarters": "Stockholm, Sweden",
+      "geographic_focus": "Europe, Asia, North America",
+      "inclusion_rationale": "Largest European-headquartered pure-play alternative manager. EUR 270B AUM (~$291.6B at ~1.08 USD/EUR) at year-end 2025. Gross inflows of EUR 26B (>2x prior year). Pending acquisition of Coller Capital (EUR 28B FAUM) will expand secondaries."
+    },
+    {
+      "firm_id": "FIRM-016",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "exchange": "SIX Swiss Exchange",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 185.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-equity",
+        "private-infrastructure",
+        "private-real-estate",
+        "private-debt"
+      ],
+      "headquarters": "Baar, Switzerland",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "Swiss-listed pure-play private markets firm. $185B AUM at year-end 2025 (up 21% YoY). Received $30B new assets in 2025. Direct investing model across private equity, infrastructure, real estate, and debt. Key European comp."
+    },
+    {
+      "firm_id": "FIRM-017",
+      "firm_name": "ICG plc (formerly Intermediate Capital Group plc)",
+      "ticker": "ICP",
+      "exchange": "London Stock Exchange (LSE)",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 127.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "structured-and-private-equity",
+        "private-debt",
+        "real-assets",
+        "credit"
+      ],
+      "headquarters": "London, UK",
+      "geographic_focus": "Europe, Asia-Pacific, North America",
+      "inclusion_rationale": "UK-listed alternative manager focused on private debt and equity. ~$127B AUM as of Dec 2025 (up from $112B at March 2025). Fee-earning AUM ~$82B. Management fees up 19% to GBP 604M in FY25. Raised $24B from global client base in FY25. Renamed from Intermediate Capital Group to ICG plc in July 2025. Strategic equity partnership with Amundi announced November 2025."
+    },
+    {
+      "firm_id": "FIRM-018",
+      "firm_name": "Man Group plc",
+      "ticker": "EMG",
+      "exchange": "London Stock Exchange (LSE)",
+      "classification": "majority-alt",
+      "latest_aum_usd_bn": 228.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "systematic-strategies",
+        "discretionary-strategies",
+        "solutions",
+        "private-markets",
+        "credit"
+      ],
+      "headquarters": "London, UK",
+      "geographic_focus": "Global",
+      "inclusion_rationale": "World's largest listed hedge fund manager. Record AUM of ~$228B at year-end 2025 (up 35% YoY). $28.7B net inflows and $21.4B investment gains. Net revenue of ~$1.4B including $281M performance fees. Run-rate net management fees of $1,182M. Long-only AUM nearly doubled (+97% YoY, $34.5B net inflows). Credit platform grew from $28.3B to $53.1B. Classified majority-alt as traditional systematic/quant strategies dominate but private markets and credit growing rapidly."
+    },
+    {
+      "firm_id": "FIRM-019",
+      "firm_name": "CVC Capital Partners plc",
+      "ticker": "CVC",
+      "exchange": "Euronext Amsterdam",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 205.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-equity",
+        "secondaries",
+        "credit",
+        "infrastructure"
+      ],
+      "headquarters": "Luxembourg (operations across Europe)",
+      "geographic_focus": "Europe, Asia-Pacific, Americas",
+      "inclusion_rationale": "Major European PE firm listed on Euronext Amsterdam in April 2024. Fee-paying AUM of EUR 148B at Dec 2025 (up 12% YoY). Credit, Secondaries and Infrastructure now >50% of FPAUM. Deployed EUR 25.7B in 2025. PE realisations up 77%. Gross inflows of EUR 23B in 2025. Newest large-cap public alt manager. Provides European PE valuation benchmark."
+    },
+    {
+      "firm_id": "FIRM-020",
+      "firm_name": "Bridgepoint Group plc",
+      "ticker": "BPT",
+      "exchange": "London Stock Exchange (LSE)",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 86.6,
+      "aum_as_of": "2025-06-30",
+      "primary_asset_classes": [
+        "private-equity",
+        "credit",
+        "infrastructure"
+      ],
+      "headquarters": "London, UK",
+      "geographic_focus": "Europe",
+      "inclusion_rationale": "European mid-market focused alternative manager. AUM of EUR 73.7B ($86.6B) as of June 2025 (up 20% YoY). Fee-paying AUM EUR 37.5B. FRE of GBP 70.3M (ex catch-up fees, up 22%). EUR 2.6B returned to fund investors in H1 2025. Targeting EUR 24B cumulative fundraising by end of 2026. Full year 2025 results expected March 12, 2026."
+    },
+    {
+      "firm_id": "FIRM-021",
+      "firm_name": "Antin Infrastructure Partners S.A.",
+      "ticker": "ANTIN",
+      "exchange": "Euronext Paris",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 36.0,
+      "aum_as_of": "2025-06-30",
+      "primary_asset_classes": [
+        "infrastructure"
+      ],
+      "headquarters": "Paris, France",
+      "geographic_focus": "Europe, North America",
+      "inclusion_rationale": "Specialist infrastructure alternative manager listed on Euronext Paris. EUR 33.0B AUM (~$36B) as of H1 2025 (up 4.2% YoY). Fee-paying AUM EUR 21.8B (up 6.2%). Underlying EBITDA growth of 7.1%. All funds trending on or ahead of plan. Single-asset-class focus (infrastructure) contrasts with PAX's multi-asset model. Relevant for infrastructure vertical comparison."
+    },
+    {
+      "firm_id": "FIRM-022",
+      "firm_name": "Tikehau Capital S.C.A.",
+      "ticker": "TKO",
+      "exchange": "Euronext Paris",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 57.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-debt",
+        "real-assets",
+        "private-equity",
+        "capital-markets-strategies"
+      ],
+      "headquarters": "Paris, France",
+      "geographic_focus": "Europe, Asia",
+      "inclusion_rationale": "French-listed alternative asset manager and balance sheet investor. EUR 52.8B AUM (~$57B) at year-end 2025 (up 8% YoY). Fee-paying AUM EUR 42B (up 6%). Record EUR 10.5B gross inflows (fourth consecutive record year). EUR 7.6B deployed in 2025 (up 35%). Asset Management EBIT EUR 150M (up 18%, margin 39%). Multi-asset alternative platform with similar AUM scale to PAX — close comparable."
+    },
+    {
+      "firm_id": "FIRM-023",
+      "firm_name": "Vinci Compass Investments Ltd. (formerly Vinci Partners)",
+      "ticker": "VINP",
+      "exchange": "NASDAQ",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 59.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "private-equity",
+        "credit",
+        "real-estate",
+        "infrastructure",
+        "public-equities",
+        "hedge-funds"
+      ],
+      "headquarters": "Rio de Janeiro, Brazil",
+      "geographic_focus": "Latin America",
+      "inclusion_rationale": "Direct Latin American peer to PAX. AUM of R$354.1B (~$59B) at year-end 2025 (up 8% YoY, 12% QoQ). Verde acquisition closed December 2025, adding ~R$16B AUM. FRE of R$80.4M in Q4 (R$1.23/share), full-year FRE R$188.4M (margin 30.4%). Full-year ADE of R$292.4M. R$42B capital formation for FY2025 (13% YoY growth). NASDAQ-listed Brazilian alternative manager — closest geographic and business model comparable to PAX."
+    },
+    {
+      "firm_id": "FIRM-024",
+      "firm_name": "3i Group plc",
+      "ticker": "III",
+      "exchange": "London Stock Exchange (LSE)",
+      "classification": "majority-alt",
+      "latest_aum_usd_bn": 36.0,
+      "aum_as_of": "2025-09-30",
+      "primary_asset_classes": [
+        "private-equity",
+        "infrastructure"
+      ],
+      "headquarters": "London, UK",
+      "geographic_focus": "Europe, North America",
+      "inclusion_rationale": "FTSE 100-listed investment company. Total return of GBP 5,049M (25% on shareholders' funds) in FY2025 (to March 2025) — fifth consecutive year above 20%. NAV per share 2,542p. Action (discount retailer) comprises 76% of PE portfolio value. Classified majority-alt as it operates primarily as a balance-sheet investor (principal investing) with growing third-party AUM. Relevant for European PE/infra comparison and balance-sheet investor model."
+    },
+    {
+      "firm_id": "FIRM-025",
+      "firm_name": "Eurazeo SE",
+      "ticker": "RF",
+      "exchange": "Euronext Paris",
+      "classification": "majority-alt",
+      "latest_aum_usd_bn": 40.0,
+      "aum_as_of": "2025-06-30",
+      "primary_asset_classes": [
+        "private-equity",
+        "private-debt",
+        "real-assets"
+      ],
+      "headquarters": "Paris, France",
+      "geographic_focus": "Europe, North America",
+      "inclusion_rationale": "French-listed investment company transitioning to pure-play alternative asset management. EUR 36.8B AUM (~$40B) at H1 2025 (up 4% YoY). Third-party AUM EUR 27.5B (up 10%). Fee-paying AUM EUR 27.8B (up 8%). PE fundraising EUR 1.2B in H1 (nearly 3x H1 2024). Impact AUM EUR 5.7B (15% of total). Mix of balance-sheet and third-party capital. Full year 2025 results expected early March 2026. Relevant European mid-cap alt manager comp with similar AUM scale to PAX."
+    },
+    {
+      "firm_id": "FIRM-026",
+      "firm_name": "Petershill Partners plc",
+      "ticker": "PHLL",
+      "exchange": "Delisted (formerly LSE)",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": null,
+      "aum_as_of": null,
+      "primary_asset_classes": [
+        "gp-stakes"
+      ],
+      "headquarters": "London, UK (operated by Goldman Sachs Asset Management)",
+      "geographic_focus": "Global",
+      "missing_reason": "Delisted from London Stock Exchange on December 5, 2025 following board decision to return $900M+ to minority shareholders due to persistent trading discount to book value. Excluded from active peer universe but noted for completeness.",
+      "inclusion_rationale": "EXCLUDED — Delisted December 2025. Formerly a GP-stakes investor operated by Goldman Sachs. Delisted due to persistent discount to book value since 2021 IPO. Retained in file for historical reference only."
+    },
+    {
+      "firm_id": "FIRM-027",
+      "firm_name": "Sculptor Capital Management (Rithm Capital subsidiary)",
+      "ticker": "RITM",
+      "exchange": "NYSE (parent Rithm Capital)",
+      "classification": "pure-play-alt",
+      "latest_aum_usd_bn": 38.0,
+      "aum_as_of": "2025-12-31",
+      "primary_asset_classes": [
+        "multi-strategy",
+        "credit",
+        "real-estate"
+      ],
+      "headquarters": "New York, USA",
+      "geographic_focus": "Global",
+      "missing_reason": "No longer independently listed — acquired by Rithm Capital (NYSE: RITM) in November 2023 for ~$720M. AUM of ~$38B as of year-end 2025. Included as subsidiary exposure via RITM but not independently tradeable.",
+      "inclusion_rationale": "EXCLUDED from active universe — no longer independently publicly traded. Acquired by Rithm Capital in 2023. $38B AUM as of Dec 2025. Retained for reference as formerly significant public alt manager."
+    }
+  ],
+  "universe_summary": {
+    "active_firms": 25,
+    "excluded_firms": 2,
+    "exclusion_reasons": {
+      "FIRM-026": "Delisted from LSE December 2025",
+      "FIRM-027": "Acquired by Rithm Capital November 2023; no longer independently listed"
+    },
+    "notable_pending_ipos": {
+      "pershing_square": "Pershing Square Capital Management planning dual listing (management company + closed-end fund) as early as Q1 2026. ~$20B AUM. Not yet listed as of March 2026."
+    },
+    "aum_range_usd_bn": {
+      "minimum": 36.0,
+      "maximum": 1275.0,
+      "median_approx": 185.0,
+      "target_company_pax": 52.6
+    },
+    "geographic_distribution": {
+      "north_america": ["BX", "KKR", "APO", "ARES", "OWL", "TPG", "CG", "STEP", "HLNE", "GCMG", "RPC", "PAX", "VINP"],
+      "europe": ["EQT", "PGHN", "ICP", "EMG", "CVC", "BPT", "ANTIN", "TKO", "III", "RF"],
+      "canada": ["BAM", "BN"]
+    },
+    "classification_distribution": {
+      "pure-play-alt": "BX, KKR, APO, ARES, BAM, OWL, TPG, CG, STEP, GCMG, RPC, EQT, PGHN, ICP, CVC, BPT, ANTIN, TKO, PAX, VINP",
+      "majority-alt": "HLNE, EMG, III, RF",
+      "partial-alt": "BN"
+    },
+    "data_freshness": {
+      "q4_2025_reported": ["PAX", "BX", "KKR", "APO", "ARES", "BAM", "BN", "OWL", "TPG", "CG", "STEP", "HLNE", "GCMG", "RPC", "EQT", "PGHN", "EMG", "TKO", "VINP"],
+      "h1_2025_latest": ["BPT", "ANTIN", "RF"],
+      "mixed_fiscal_year": ["ICP", "III", "CVC"]
+    },
+    "data_sources": [
+      "Company Q4 2025 / FY2025 earnings press releases",
+      "SEC 10-K annual reports (February 2026 filings)",
+      "Company investor relations websites",
+      "Euronext, LSE, OMX Stockholm, SIX Swiss Exchange filings",
+      "H1 2025 interim reports (for firms with pending FY2025 results)"
+    ]
+  }
+}

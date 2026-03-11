@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "generated_at": "2026-03-11T01:04:01.302535Z",
+    "run_dir": "data/processed/pax/2026-03-11-incremental-pilot",
+    "reused_count": 50,
+    "recrawled_count": 4,
+    "manual_review_count": 0,
+    "new_version_count": 0,
+    "provenance_only_count": 4,
+    "material_change_count": 0,
+    "promotion_blocked_count": 0,
+    "pinned_metadata_updates": 51,
+    "queue_count": 3
+  },
+  "queues": [
+    {
+      "execution_group": "hub_harvest",
+      "seed_count": 0,
+      "result_count": 0,
+      "failure_count": 0,
+      "materialized_count": 0,
+      "created_new_version_count": 0,
+      "material_change_count": 0,
+      "promotion_blocked_count": 0,
+      "status": "skipped_empty_queue"
+    },
+    {
+      "execution_group": "direct_fetch",
+      "seed_count": 4,
+      "result_count": 4,
+      "failure_count": 0,
+      "materialized_count": 4,
+      "created_new_version_count": 0,
+      "material_change_count": 0,
+      "promotion_blocked_count": 0,
+      "crawl_summary": {
+        "catalog_path": "data/processed/pax/2026-03-11-incremental-pilot/1-universe/_incremental_work/direct_fetch/source_catalog.json",
+        "run_name": "_incremental_work",
+        "source_count": 4,
+        "result_count": 4,
+        "failure_count": 0,
+        "scrapling_fallback_count": 0,
+        "visited_url_count": 4,
+        "finished_at": "2026-03-11T01:03:55.908376Z",
+        "stats": {
+          "requests_finished": 4,
+          "requests_failed": 0,
+          "requests_total": 4,
+          "retry_histogram": [
+            4
+          ]
+        }
+      },
+      "status": "completed"
+    },
+    {
+      "execution_group": "browser_fallback",
+      "seed_count": 0,
+      "result_count": 0,
+      "failure_count": 0,
+      "materialized_count": 0,
+      "created_new_version_count": 0,
+      "material_change_count": 0,
+      "promotion_blocked_count": 0,
+      "status": "skipped_empty_queue"
+    }
+  ],
+  "materialization_events": [
+    {
+      "normalized_url": "bam.brookfield.com/reports-sec-filings/letters-shareholders",
+      "canonical_url": "https://bam.brookfield.com/reports-sec-filings/letters-shareholders",
+      "content_hash": "a8d7db44aefb53eaaf3649447a00ea58480a447c",
+      "evidence_version_id": "2cec625c5d9b5b16557925f238c08afabe29dec7",
+      "metadata_path": "data/raw/pax/canonical/b1/b19eabe97bdda84bd8553c430e4eaf32edea4167/a8d7db44aefb53eaaf3649447a00ea58480a447c/metadata.json",
+      "canonical_text_path": "data/raw/pax/canonical/b1/b19eabe97bdda84bd8553c430e4eaf32edea4167/a8d7db44aefb53eaaf3649447a00ea58480a447c/evidence.txt",
+      "latest_path": "data/raw/pax/canonical/b1/b19eabe97bdda84bd8553c430e4eaf32edea4167/latest.json",
+      "previous_latest_evidence_version_id": "2cec625c5d9b5b16557925f238c08afabe29dec7",
+      "created_new_version": false,
+      "material_change_detected": false,
+      "promotion_blocked": false,
+      "provenance_only_refresh": true,
+      "latest_after_write": true,
+      "anomaly_flags": [
+        "artifact_quality:thin",
+        "source_id_collision"
+      ],
+      "source_id": "PS-VD-017",
+      "execution_group": "direct_fetch"
+    },
+    {
+      "normalized_url": "www.calstrs.com/investment-portfolio",
+      "canonical_url": "https://www.calstrs.com/investment-portfolio",
+      "content_hash": "67afa3d2793345af529b32bdfd8ff30f093cae83",
+      "evidence_version_id": "c6d318baea5aea8974bd6e389b602a8f14335483",
+      "metadata_path": "data/raw/pax/canonical/a5/a5c499cc027ea61d21397abcc2be6b62c2740569/67afa3d2793345af529b32bdfd8ff30f093cae83/metadata.json",
+      "canonical_text_path": "data/raw/pax/canonical/a5/a5c499cc027ea61d21397abcc2be6b62c2740569/67afa3d2793345af529b32bdfd8ff30f093cae83/evidence.txt",
+      "latest_path": "data/raw/pax/canonical/a5/a5c499cc027ea61d21397abcc2be6b62c2740569/latest.json",
+      "previous_latest_evidence_version_id": "c6d318baea5aea8974bd6e389b602a8f14335483",
+      "created_new_version": false,
+      "material_change_detected": false,
+      "promotion_blocked": false,
+      "provenance_only_refresh": true,
+      "latest_after_write": true,
+      "anomaly_flags": [
+        "artifact_quality:thin",
+        "source_id_collision"
+      ],
+      "source_id": "PS-VD-055",
+      "execution_group": "direct_fetch"
+    },
+    {
+      "normalized_url": "ir.blackstone.com",
+      "canonical_url": "https://ir.blackstone.com/",
+      "content_hash": "07cd39249254ee2ccc9fc057084a88471ee9050a",
+      "evidence_version_id": "8152b8cb07738274d000559e5a1c6698017c6f8f",
+      "metadata_path": "data/raw/pax/canonical/2c/2c8fc5327597c0581c2cfdffc47314549d437063/07cd39249254ee2ccc9fc057084a88471ee9050a/metadata.json",
+      "canonical_text_path": "data/raw/pax/canonical/2c/2c8fc5327597c0581c2cfdffc47314549d437063/07cd39249254ee2ccc9fc057084a88471ee9050a/evidence.txt",
+      "latest_path": "data/raw/pax/canonical/2c/2c8fc5327597c0581c2cfdffc47314549d437063/latest.json",
+      "previous_latest_evidence_version_id": "8152b8cb07738274d000559e5a1c6698017c6f8f",
+      "created_new_version": false,
+      "material_change_detected": false,
+      "promotion_blocked": false,
+      "provenance_only_refresh": true,
+      "latest_after_write": true,
+      "anomaly_flags": [
+        "artifact_quality:missing",
+        "empty_text"
+      ],
+      "source_id": "PS-VD-061",
+      "execution_group": "direct_fetch"
+    },
+    {
+      "normalized_url": "ir.aresmgmt.com",
+      "canonical_url": "https://ir.aresmgmt.com/",
+      "content_hash": "87e2421fb541788c20376b09dde554ea13cc872e",
+      "evidence_version_id": "4fa78e07d692305279fef3b69a3dab8d1d194ea9",
+      "metadata_path": "data/raw/pax/canonical/81/81737800943ddc0be5c14983788e9a9c492bd0c6/87e2421fb541788c20376b09dde554ea13cc872e/metadata.json",
+      "canonical_text_path": "data/raw/pax/canonical/81/81737800943ddc0be5c14983788e9a9c492bd0c6/87e2421fb541788c20376b09dde554ea13cc872e/evidence.txt",
+      "latest_path": "data/raw/pax/canonical/81/81737800943ddc0be5c14983788e9a9c492bd0c6/latest.json",
+      "previous_latest_evidence_version_id": "4fa78e07d692305279fef3b69a3dab8d1d194ea9",
+      "created_new_version": false,
+      "material_change_detected": false,
+      "promotion_blocked": false,
+      "provenance_only_refresh": true,
+      "latest_after_write": true,
+      "anomaly_flags": [
+        "artifact_quality:missing",
+        "empty_text"
+      ],
+      "source_id": "PS-VD-070",
+      "execution_group": "direct_fetch"
+    }
+  ]
+}

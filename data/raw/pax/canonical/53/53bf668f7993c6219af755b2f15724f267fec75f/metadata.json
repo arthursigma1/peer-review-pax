@@ -1,0 +1,43 @@
+{
+  "normalized_url": "www.calpers.ca.gov/documents/202506-invest-agenda-item06c-01/download",
+  "canonical_url": "https://www.calpers.ca.gov/documents/202506-invest-agenda-item06c-01/download?inline=",
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl-backfill-selective",
+  "priority_score": 57,
+  "preferred_source": {
+    "source_id": "PS-VD-052",
+    "firm": "Industry-wide (Pension Allocators)",
+    "title": "CalPERS Private Equity Program Update \u2014 Board Presentation (June 2025)",
+    "date": "2025-06-16",
+    "document_type": "Board Document",
+    "bias_tag": "third-party-analyst",
+    "url": "https://www.calpers.ca.gov/documents/202506-invest-agenda-item06c-01/download?inline=",
+    "notes": "CalPERS PE allocation increased to 17% target (range 12-22%). Total Portfolio Approach adopted effective July 2026. PE portfolio at 18.3% of fund as of Jan 2026. Direct insight into LP allocation behavior and GP selection criteria.",
+    "catalog_path": "data/processed/pax/2026-03-08-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl-backfill-selective",
+    "seed_url": "https://www.calpers.ca.gov/documents/202506-invest-agenda-item06c-01/download?inline=",
+    "loaded_url": "https://www.calpers.ca.gov/documents/202506-invest-agenda-item06c-01/download?inline=",
+    "title": "CalPERS Private Equity Program Update \u2014 Board Presentation (June 2025)",
+    "document_type": "Board Document",
+    "bias_tag": "third-party-analyst",
+    "content_type": "application/pdf",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2-backfill-selective/PS-VD-052_calpers-private-equity-program-update-board-presentation-june-2025_0217ee28.txt",
+    "text_length": 22393,
+    "quality_score": 27893,
+    "quality_bucket": "good",
+    "quality_reason": "sufficient_text",
+    "relevant_snippets": [
+      "at $2.2bn (2.3%), and Credit at $0.9bn (1.0%)",
+      "\u2022 EDCI launched with 7 GPs and 9 LPs/IMs representing about $4 trillion in assets under management (AUM) and",
+      "\u2022 Buyout at $63.3bn (68.7%), Growth at $21.9bn (23.7%), Opportunistic at $3.9bn (4.3%), Venture",
+      "\u2022 U.S. portfolio at $62.9bn (67.3%), Europe at $20.9bn (22.4%), Emerging Markets at $6.0bn",
+      "now has over 350 GPs and 150 LPs/IMs representing about $38 trillion of AUM"
+    ],
+    "extraction_modes": []
+  },
+  "canonical_text_path": "data/raw/pax/canonical/53/53bf668f7993c6219af755b2f15724f267fec75f/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.414835Z"
+}

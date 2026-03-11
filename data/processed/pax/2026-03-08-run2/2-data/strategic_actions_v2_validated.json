@@ -1,0 +1,2719 @@
+{
+  "metadata": {
+    "pipeline": "valuation-driver-analysis",
+    "step": "VD-B2",
+    "step_name": "Gather Data \u2014 Action Cataloging",
+    "agent": "strategy-extractor",
+    "target_company": "Patria Investments Limited",
+    "target_ticker": "PAX",
+    "generated_at": "2026-03-08",
+    "run_id": "2026-03-08-run2",
+    "base_run": "2026-03-07-run2",
+    "total_actions": 105,
+    "firms_covered": 25,
+    "time_period": "2023-2026",
+    "action_type_distribution": {
+      "M&A": 31,
+      "product-launch": 28,
+      "technology-operations": 6,
+      "distribution-shift": 18,
+      "geographic-expansion": 7,
+      "capital-structure-change": 7,
+      "organizational-change": 8
+    },
+    "improvements_over_base_run": [
+      "Added operational_prerequisites to all 75 prior actions (base run had none)",
+      "Added 30 new actions covering 10 previously missing firms: FIRM-001 (PAX), FIRM-013 (GCM Grosvenor), FIRM-014 (Ridgepost), FIRM-018 (Man Group), FIRM-019 (CVC), FIRM-021 (Antin), FIRM-022 (Tikehau), FIRM-023 (Vinci Compass), FIRM-024 (3i Group), FIRM-025 (Eurazeo)",
+      "All actions now include evidence_class classification: directly_documented | corroborated | inferred",
+      "All actions now include source_bias_tag on operational_prerequisites",
+      "Concise description and rationale fields (max 100/120 chars) throughout",
+      "Null used for operational_prerequisites subfields with no evidence (never fabricated)",
+      "Target company PAX now fully covered with 4 key actions (Solis, RBR, WP Global, Credit platform launch)"
+    ]
+  },
+  "actions": [
+    {
+      "action_id": "ACT-VD-001",
+      "firm_id": "FIRM-002",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "action_type": "M&A",
+      "description": "Acquired AirTrunk (APAC data center platform) with CPPIB for ~$16B.",
+      "stated_rationale": "Leads AI-driven data center infra in APAC; complements QTS platform.",
+      "observable_metric_impact": "QTS+AirTrunk portfolio >$70B combined data center assets.",
+      "timeline": {
+        "announced": "2024-mid",
+        "closed": "2024-Q4"
+      },
+      "source_citation": "PS-VD-002",
+      "operational_prerequisites": {
+        "systems_integration": "Integration of AirTrunk operational systems with QTS management platform required.",
+        "data_reporting_stack": "Consolidated APAC data center reporting into Blackstone Real Estate segment.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Fund administration for BREIT and real estate vehicles updated to reflect new asset.",
+        "compliance_risk_treasury": "Multi-jurisdictional regulatory clearance across Australia, Singapore, Japan required.",
+        "hiring_org_redesign": null,
+        "geographic_integration": "APAC operational integration with existing QTS management team.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-002",
+      "firm_id": "FIRM-002",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "action_type": "product-launch",
+      "description": "Launched BXPE evergreen semi-liquid PE fund for individual investors.",
+      "stated_rationale": "Extends wealth product suite beyond BREIT and BCRED into private equity.",
+      "observable_metric_impact": "BXPE surpassed $2B AUM within first year; wealth fundraising +53% YoY.",
+      "timeline": {
+        "announced": "2023-Q4",
+        "operational": "2024-Q1"
+      },
+      "source_citation": "PS-VD-002",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "NAV calculation and reporting infrastructure for semi-liquid evergreen structure established.",
+        "qa_controls_reconciliation": "Quarterly valuation and redemption gate controls for retail-facing vehicle.",
+        "fund_admin_servicing": "Third-party fund administrator engaged for 1940-Act registered structure.",
+        "compliance_risk_treasury": "SEC registration and 40-Act compliance framework required.",
+        "hiring_org_redesign": "Dedicated wealth distribution team scaled to support new product.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-003",
+      "firm_id": "FIRM-002",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "action_type": "product-launch",
+      "description": "BCRED achieved record gross sales >$14B in FY2025, dominant private credit wealth vehicle.",
+      "stated_rationale": "Perpetual capital structure provides stable fee stream; rising individual investor demand for private credit.",
+      "observable_metric_impact": "FY2025 gross sales >$14B; Q4 2025 $3.3B. Among largest private credit vehicles globally.",
+      "timeline": {
+        "operational": "2021",
+        "record_year": "2025"
+      },
+      "source_citation": "PS-VD-002",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Monthly NAV reporting and investor portal maintained for 40-Act BDC structure.",
+        "qa_controls_reconciliation": "Loan-level credit monitoring and default tracking controls.",
+        "fund_admin_servicing": "BDC fund administration and custodian relationships ongoing.",
+        "compliance_risk_treasury": "Ongoing SEC BDC compliance and leverage ratio monitoring.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-004",
+      "firm_id": "FIRM-002",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "action_type": "technology-operations",
+      "description": "Announced publicly traded AI data center acquisition vehicle for retail investors.",
+      "stated_rationale": "Democratize AI infrastructure access for millions of individual investors via listed format.",
+      "observable_metric_impact": "Targeted 2026 launch; expected multi-billion deployment into data centers.",
+      "timeline": {
+        "announced": "2026-Q1"
+      },
+      "source_citation": "PS-VD-002",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "SEC registration and exchange listing requirements for publicly traded vehicle.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-005",
+      "firm_id": "FIRM-002",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "action_type": "distribution-shift",
+      "description": "Accelerated private wealth distribution; wealth fundraising grew 53% YoY to $43B in 2025.",
+      "stated_rationale": "Capture ~50% market share of private wealth alternative revenue; RIA channel under-penetrated.",
+      "observable_metric_impact": "Private wealth fundraising $43B in 2025 (+53% YoY); ~50% estimated market share.",
+      "timeline": {
+        "ongoing": "2024-2025",
+        "accelerating": "2026"
+      },
+      "source_citation": "PS-VD-002",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Wealth investor reporting portals and custodian connectivity for RIA channel.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Wealth distribution team scaled; dedicated RIA coverage added.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-006",
+      "firm_id": "FIRM-003",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "action_type": "M&A",
+      "description": "Completed full consolidation of Global Atlantic Financial Group (remaining minority).",
+      "stated_rationale": "Full ownership of insurance platform provides captive capital for credit deployment at scale.",
+      "observable_metric_impact": "Global Atlantic now fully consolidated; insurance AUM ~$175B contributing to perpetual capital base.",
+      "timeline": {
+        "announced": "2023-Q4",
+        "closed": "2024-Q1"
+      },
+      "source_citation": "PS-VD-005",
+      "operational_prerequisites": {
+        "systems_integration": "Investment management system integration between KKR Credit and Global Atlantic.",
+        "data_reporting_stack": "Insurance statutory reporting integrated with KKR's segment financials.",
+        "qa_controls_reconciliation": "Insurance investment guidelines and ALM controls harmonized.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "State insurance regulatory approvals; RBC capital adequacy monitoring.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-007",
+      "firm_id": "FIRM-003",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "action_type": "M&A",
+      "description": "Agreed to acquire Arctos Partners, largest institutional investor in professional sports franchises.",
+      "stated_rationale": "Adds differentiated asset class (sports franchise equity) to KKR Solutions; $100B+ AUM ambition.",
+      "observable_metric_impact": "Arctos manages ~$10B in sports assets; seeds KKR Solutions vertical.",
+      "timeline": {
+        "announced": "2025-Q4",
+        "closed": "2026-Q1"
+      },
+      "source_citation": "PS-VD-006",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Sports asset valuation and reporting integrated into KKR platform reporting.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Fund administration for sports investment vehicles established.",
+        "compliance_risk_treasury": "Sports league ownership approval processes (NFL, NBA, MLB, NHL).",
+        "hiring_org_redesign": "Arctos team retained and embedded into new KKR Solutions vertical.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-008",
+      "firm_id": "FIRM-003",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "action_type": "product-launch",
+      "description": "Launched K-ABF (asset-based finance) evergreen fund for wealth channel.",
+      "stated_rationale": "Addresses rising demand for asset-based finance from individual and institutional investors.",
+      "observable_metric_impact": "K-Series evergreen suite (KREST, KREF, K-ABF) collectively approaching $10B+ AUM.",
+      "timeline": {
+        "announced": "2024-Q3",
+        "operational": "2025-Q1"
+      },
+      "source_citation": "PS-VD-006",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Evergreen fund NAV calculation and investor reporting infrastructure.",
+        "qa_controls_reconciliation": "Asset-level credit underwriting and monitoring controls for ABF portfolio.",
+        "fund_admin_servicing": "Third-party fund administrator for 40-Act registered structure.",
+        "compliance_risk_treasury": "SEC registration and ongoing BDC/interval fund compliance.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-009",
+      "firm_id": "FIRM-003",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "action_type": "geographic-expansion",
+      "description": "Accelerated APAC platform with focused investments in Japan infrastructure and India growth.",
+      "stated_rationale": "Asia represents largest growth opportunity outside US; Japan infra privatization and India GDP growth.",
+      "observable_metric_impact": "APAC AUM >$50B; Japan and India among top deployment markets in 2024-2025.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "PS-VD-005",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "Japan FSA and SEBI regulatory registrations for local fund operations.",
+        "hiring_org_redesign": "Local investment and operating teams built in Tokyo and Mumbai.",
+        "geographic_integration": "Regional offices in Tokyo, Mumbai, Singapore scaled for investment execution.",
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-010",
+      "firm_id": "FIRM-004",
+      "firm_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "action_type": "capital-structure-change",
+      "description": "2024 Investor Day unveiled five-year targets: SRE $10+/share, FRE $7+/share by 2029.",
+      "stated_rationale": "Signal confidence in compounding earnings model; align investor expectations with origination-led growth.",
+      "observable_metric_impact": "FY2025 SRE $5.35/share; FY2025 FRE $4.40/share; on track for 2029 targets.",
+      "timeline": {
+        "announced": "2024-10-01"
+      },
+      "source_citation": "PS-VD-056",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Expanded segment reporting to track SRE vs FRE progression against targets.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-011",
+      "firm_id": "FIRM-004",
+      "firm_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "action_type": "product-launch",
+      "description": "Scaled origination platform to record $228B total capital inflows in FY2025.",
+      "stated_rationale": "Origination engine is core competitive moat; scale creates pricing power and deal exclusivity.",
+      "observable_metric_impact": "FY2025 total inflows $228B; AUM reached $938B at year-end 2025 (up 25% YoY).",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "PS-VD-010",
+      "operational_prerequisites": {
+        "systems_integration": "CRM and deal origination tracking systems scaled across 30+ origination offices.",
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": "Credit underwriting standards and approval processes for $228B volume.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Origination teams scaled across corporate, real assets, and structured credit.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-012",
+      "firm_id": "FIRM-004",
+      "firm_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "action_type": "distribution-shift",
+      "description": "Expanded retirement services via Athene, growing annuity and pension risk transfer volumes.",
+      "stated_rationale": "Insurance channel provides lowest-cost, most durable source of capital for credit platform.",
+      "observable_metric_impact": "Athene retirement services AUM >$300B; annuity issuance record in 2025.",
+      "timeline": {
+        "ongoing": "2022-2025"
+      },
+      "source_citation": "PS-VD-009",
+      "operational_prerequisites": {
+        "systems_integration": "Investment management platform integration between Apollo Credit and Athene general account.",
+        "data_reporting_stack": "Statutory insurance reporting (GAAP + statutory) integrated with Apollo segment data.",
+        "qa_controls_reconciliation": "ALM framework for matching insurance liabilities to investment durations.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "State insurance regulator capital adequacy and investment guideline compliance.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-013",
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "action_type": "M&A",
+      "description": "Acquired GLP Capital Partners International for ~$3.7B, adding $44B real estate AUM.",
+      "stated_rationale": "Transforms Ares into top-5 global real estate manager; adds logistics and data center assets in APAC.",
+      "observable_metric_impact": "Real Assets segment grew to $139.1B post-GCP; total AUM crossed $622.5B.",
+      "timeline": {
+        "announced": "2024-Q1",
+        "closed": "2024-Q3"
+      },
+      "source_citation": "PS-VD-012",
+      "operational_prerequisites": {
+        "systems_integration": "Integration of GCP investment management and asset monitoring platforms.",
+        "data_reporting_stack": "Real estate segment reporting expanded for APAC logistics/data center portfolio.",
+        "qa_controls_reconciliation": "Asset-level property management QA and NAV reconciliation for acquired portfolio.",
+        "fund_admin_servicing": "Fund administration for GCP-origin vehicles transferred to Ares infrastructure.",
+        "compliance_risk_treasury": "Multi-jurisdictional APAC regulatory approvals; Singapore, Japan, China.",
+        "hiring_org_redesign": "~200+ GCP investment and asset management staff retained.",
+        "geographic_integration": "APAC operational hubs in Singapore and Tokyo integrated into Ares Real Assets.",
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-014",
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "action_type": "M&A",
+      "description": "Acquired BlueCove Limited, London-based systematic fixed income manager.",
+      "stated_rationale": "Adds quantitative fixed income capabilities to complement discretionary credit; broadens product set.",
+      "observable_metric_impact": "BlueCove AUM ~$15B; adds systematic credit strategy to Ares platform.",
+      "timeline": {
+        "announced": "2023-Q4",
+        "closed": "2024-Q2"
+      },
+      "source_citation": "PS-VD-013",
+      "operational_prerequisites": {
+        "systems_integration": "Systematic trading infrastructure and quant models integrated with Ares technology stack.",
+        "data_reporting_stack": "Quantitative strategy performance reporting added to Credit segment.",
+        "qa_controls_reconciliation": "Model validation and risk controls for systematic fixed income strategies.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "FCA regulatory approval for acquisition of UK-regulated entity.",
+        "hiring_org_redesign": "BlueCove quant team (~30 professionals) retained in London.",
+        "geographic_integration": "London office integrated into Ares European Credit operations.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-015",
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "action_type": "capital-structure-change",
+      "description": "Raised $2.3B+ equity to support Ares Insurance Solutions growth platform.",
+      "stated_rationale": "Insurance channel provides diversified, permanent capital; reduces reliance on fund-cycle fundraising.",
+      "observable_metric_impact": "Insurance Solutions AUM grew to $25.9B; equity raise supported balance sheet expansion.",
+      "timeline": {
+        "announced": "2024-Q2",
+        "closed": "2024-Q3"
+      },
+      "source_citation": "PS-VD-014",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Insurance segment reporting established as standalone within Ares financials.",
+        "qa_controls_reconciliation": "ALM and insurance investment guideline compliance framework.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "State insurance regulatory approvals for new insurance entity capital structure.",
+        "hiring_org_redesign": "Insurance Solutions leadership team built out.",
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-016",
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "action_type": "distribution-shift",
+      "description": "Launched democratization initiative for mass-affluent investors through ASIF and registered funds.",
+      "stated_rationale": "Individual investors represent largest untapped LP base; wealth channel fee rates superior to institutional.",
+      "observable_metric_impact": "Wealth channel raised >$20B in 2025; ASIF (credit vehicle) among fastest growing evergreen products.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "PS-VD-013",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Investor portal and reporting for retail-registered structures.",
+        "qa_controls_reconciliation": "Redemption gate management and liquidity controls for semi-liquid vehicles.",
+        "fund_admin_servicing": "40-Act registered fund administration and transfer agent relationships.",
+        "compliance_risk_treasury": "SEC registered investment adviser compliance and registered fund oversight.",
+        "hiring_org_redesign": "Wealth distribution team expanded from ~20 to 100+ dedicated professionals.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-017",
+      "firm_id": "FIRM-006",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "action_type": "M&A",
+      "description": "Agreed to acquire remaining 26% stake in Oaktree Capital Management for ~$3B.",
+      "stated_rationale": "Full Oaktree ownership consolidates $185B+ credit AUM and accelerates credit platform scaling.",
+      "observable_metric_impact": "Credit & Insurance segment expanded; Oaktree AUM ~$185B fully consolidated.",
+      "timeline": {
+        "announced": "2025-Q1",
+        "closed": "2025-Q3"
+      },
+      "source_citation": "PS-VD-016",
+      "operational_prerequisites": {
+        "systems_integration": "Investment management and reporting systems for Oaktree fully integrated into BAM.",
+        "data_reporting_stack": "Oaktree segment reporting consolidated into BAM Credit segment.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "SEC and international regulatory approvals for full acquisition of registered adviser.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-018",
+      "firm_id": "FIRM-006",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "action_type": "product-launch",
+      "description": "Launched Brookfield AI Infrastructure Fund (BAIIF) targeting $10B in commitments.",
+      "stated_rationale": "AI data center demand creates multi-decade infrastructure investment opportunity for real assets platform.",
+      "observable_metric_impact": "BAIIF fundraising progress toward $10B target; BAM data center pipeline >$200B globally.",
+      "timeline": {
+        "announced": "2025-Q2",
+        "fundraising": "2025-2026"
+      },
+      "source_citation": "PS-VD-016",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "New fund reporting infrastructure for AI infrastructure dedicated vehicle.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Fund administration for new pooled vehicle established.",
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Data center and AI infrastructure investment team built out.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-019",
+      "firm_id": "FIRM-006",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "action_type": "M&A",
+      "description": "Formed $20B JV with QIA (Qatar Investment Authority) for AI infrastructure investments.",
+      "stated_rationale": "Sovereign wealth partnership provides scaled permanent capital; QIA gains access to BAM's global infra network.",
+      "observable_metric_impact": "$20B committed capital for AI data center and digital infrastructure deployment.",
+      "timeline": {
+        "announced": "2025-Q3",
+        "operational": "2025-Q4"
+      },
+      "source_citation": "PS-VD-016",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "JV-specific reporting and governance framework established for sovereign partner.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "Qatar regulatory approvals and JV governance structure.",
+        "hiring_org_redesign": null,
+        "geographic_integration": "Middle East relationship management and co-investment processes established.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-020",
+      "firm_id": "FIRM-006",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "action_type": "distribution-shift",
+      "description": "Expanded US private wealth and entered Japanese market for private wealth products.",
+      "stated_rationale": "Japan represents significant untapped private wealth market; US RIA channel accelerating alternatives adoption.",
+      "observable_metric_impact": "Private wealth raised $22B+ in 2025; Japan launch adds new LP channel.",
+      "timeline": {
+        "ongoing": "2024-2025",
+        "japan_entry": "2025-Q2"
+      },
+      "source_citation": "PS-VD-016",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Investor reporting in Japanese language and yen-denominated feeder fund structures.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Japan-domiciled fund structures for JFSA-registered distribution.",
+        "compliance_risk_treasury": "JFSA registration and Type II Financial Instruments Business licensing.",
+        "hiring_org_redesign": "Japan private wealth distribution team hired; US wealth team expanded.",
+        "geographic_integration": "Tokyo office established for private wealth distribution.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-021",
+      "firm_id": "FIRM-008",
+      "firm_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "action_type": "M&A",
+      "description": "Acquired IPI Partners, leading digital infrastructure investment firm managing 80+ global data centers.",
+      "stated_rationale": "Adds digital infrastructure as fifth asset class; diversifies beyond direct lending and net lease.",
+      "observable_metric_impact": "IPI AUM ~$15B; Real Assets segment now includes digital infrastructure.",
+      "timeline": {
+        "announced": "2024-Q1",
+        "closed": "2024-Q2"
+      },
+      "source_citation": "PS-VD-018",
+      "operational_prerequisites": {
+        "systems_integration": "IPI asset management platform integrated into Blue Owl infrastructure.",
+        "data_reporting_stack": "Digital infrastructure segment reporting added to Blue Owl financials.",
+        "qa_controls_reconciliation": "Data center operational performance and lease monitoring controls.",
+        "fund_admin_servicing": "IPI fund vehicles transitioned to Blue Owl fund administration.",
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "IPI investment team retained within Blue Owl Real Assets.",
+        "geographic_integration": "Global data center monitoring integrated across IPI's 80+ sites.",
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-022",
+      "firm_id": "FIRM-008",
+      "firm_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "action_type": "M&A",
+      "description": "Acquired Kuvare Asset Management, launching dedicated insurance channel managing >$20B.",
+      "stated_rationale": "Insurance capital provides durable, low-cost AUM; expands GP Capital Solutions to insurance clients.",
+      "observable_metric_impact": "Kuvare AUM >$20B; insurance channel established as new capital source.",
+      "timeline": {
+        "announced": "2024-Q3",
+        "closed": "2025-Q1"
+      },
+      "source_citation": "PS-VD-018",
+      "operational_prerequisites": {
+        "systems_integration": "Investment management connectivity between Blue Owl credit platform and Kuvare general account.",
+        "data_reporting_stack": "Insurance statutory reporting integrated with Blue Owl Credit segment.",
+        "qa_controls_reconciliation": "ALM framework for insurance liability-matching mandates.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "State insurance regulatory approvals for acquisition of insurance asset manager.",
+        "hiring_org_redesign": "Kuvare investment team integrated into Blue Owl Credit platform.",
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-023",
+      "firm_id": "FIRM-008",
+      "firm_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "action_type": "M&A",
+      "description": "Acquired Atalaya Capital Management, expanding alternative credit into asset-based finance.",
+      "stated_rationale": "ABF is fastest-growing segment of private credit; Atalaya adds $8B+ in specialty finance capabilities.",
+      "observable_metric_impact": "ABF capabilities added; Credit platform AUM expanded. AUM reached $307.4B at year-end 2025.",
+      "timeline": {
+        "announced": "2023-Q4",
+        "closed": "2024-Q1"
+      },
+      "source_citation": "PS-VD-018",
+      "operational_prerequisites": {
+        "systems_integration": "Specialty finance loan origination and servicing systems integrated.",
+        "data_reporting_stack": "Asset-based finance sub-segment reporting added to Credit segment.",
+        "qa_controls_reconciliation": "Consumer and commercial ABF credit monitoring and loss provisioning controls.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Atalaya investment team (~50 professionals) retained.",
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-024",
+      "firm_id": "FIRM-008",
+      "firm_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "action_type": "product-launch",
+      "description": "Launched inaugural $3B secondaries fund providing liquidity to PE LP investors.",
+      "stated_rationale": "Secondaries market at record volumes; GP Strategic Capital expertise translates to LP secondaries.",
+      "observable_metric_impact": "First close ~$3B; complements GP-led solutions business.",
+      "timeline": {
+        "announced": "2025-Q1",
+        "first_close": "2025-Q3"
+      },
+      "source_citation": "PS-VD-063",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Secondaries fund reporting and NAV tracking infrastructure.",
+        "qa_controls_reconciliation": "LP portfolio valuation and J-curve modeling for secondaries.",
+        "fund_admin_servicing": "Fund administration for new drawdown vehicle established.",
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Secondaries investment team hired (likely 5-10 dedicated professionals).",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-025",
+      "firm_id": "FIRM-009",
+      "firm_name": "TPG Inc.",
+      "ticker": "TPG",
+      "action_type": "M&A",
+      "description": "Completed acquisition of Angelo Gordon, a $74B credit and real estate manager.",
+      "stated_rationale": "Adds scaled credit platform to TPG; diversifies beyond PE and growth equity into credit and real estate.",
+      "observable_metric_impact": "TPG Credit platform grew to ~$80B post-integration; total AUM crossed $200B milestone.",
+      "timeline": {
+        "announced": "2023-Q2",
+        "closed": "2023-Q4"
+      },
+      "source_citation": "PS-VD-021",
+      "operational_prerequisites": {
+        "systems_integration": "Angelo Gordon investment management and portfolio monitoring systems integrated.",
+        "data_reporting_stack": "Credit segment reporting established within TPG financials.",
+        "qa_controls_reconciliation": "Credit monitoring and real estate asset management QA controls.",
+        "fund_admin_servicing": "AG-origin fund vehicles migrated to TPG fund administration.",
+        "compliance_risk_treasury": "SEC approval for merger of registered investment advisers.",
+        "hiring_org_redesign": "AG investment team (~300 professionals) retained; TPG Credit platform built.",
+        "geographic_integration": "New York and London offices integrated into TPG platform.",
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-026",
+      "firm_id": "FIRM-009",
+      "firm_name": "TPG Inc.",
+      "ticker": "TPG",
+      "action_type": "M&A",
+      "description": "Acquired Peppertree Capital Management, wireless tower and communication infrastructure specialist.",
+      "stated_rationale": "Digital infrastructure is a high-conviction thematic; tower assets provide recurring, inflation-linked returns.",
+      "observable_metric_impact": "Peppertree AUM ~$5B; adds telecom infra to TPG Real Estate/Infrastructure.",
+      "timeline": {
+        "announced": "2024-Q2",
+        "closed": "2024-Q4"
+      },
+      "source_citation": "PS-VD-021",
+      "operational_prerequisites": {
+        "systems_integration": "Tower asset management and lease monitoring systems integrated.",
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "FCC and telecom regulatory considerations for tower portfolio.",
+        "hiring_org_redesign": "Peppertree infrastructure team integrated into TPG Real Assets.",
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-027",
+      "firm_id": "FIRM-009",
+      "firm_name": "TPG Inc.",
+      "ticker": "TPG",
+      "action_type": "distribution-shift",
+      "description": "Entered strategic insurance mandate with Jackson Financial to manage up to $20B.",
+      "stated_rationale": "Insurance capital provides stable long-duration AUM; validates TPG credit platform quality.",
+      "observable_metric_impact": "Up to $20B insurance mandate; complements wealth channel expansion post-IPO.",
+      "timeline": {
+        "announced": "2024-Q4",
+        "operational": "2025-Q1"
+      },
+      "source_citation": "PS-VD-023",
+      "operational_prerequisites": {
+        "systems_integration": "Investment management reporting for insurance client mandate established.",
+        "data_reporting_stack": "Insurance investment reporting and guideline compliance monitoring.",
+        "qa_controls_reconciliation": "ALM and insurance investment guideline compliance for Jackson general account.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "Insurance investment manager registration and mandate documentation.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-028",
+      "firm_id": "FIRM-010",
+      "firm_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "action_type": "organizational-change",
+      "description": "Appointed three Co-Presidents (Redett, Jenkins, Nedelman) effective January 2025.",
+      "stated_rationale": "Succession planning and operational depth; shared leadership enables CEO Schwartz to focus on strategy.",
+      "observable_metric_impact": "Management continuity reinforced; FRE grew 12% YoY in FY2025 under new structure.",
+      "timeline": {
+        "announced": "2024-Q4",
+        "effective": "2025-01-01"
+      },
+      "source_citation": "PS-VD-025",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Internal promotion of three Co-Presidents; reporting lines reorganized.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-029",
+      "firm_id": "FIRM-010",
+      "firm_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "action_type": "distribution-shift",
+      "description": "Expanded wealth channel from 3 to 9 evergreen products; wealth professionals grew significantly.",
+      "stated_rationale": "Individual investors represent decades-long growth opportunity; evergreen structures provide stable fee base.",
+      "observable_metric_impact": "Wealth fundraising grew to multi-billion; nine evergreen vehicles active by end-2025.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "PS-VD-025",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Investor reporting infrastructure for 9 registered/semi-registered vehicles.",
+        "qa_controls_reconciliation": "Liquidity and redemption management controls across evergreen suite.",
+        "fund_admin_servicing": "Third-party fund administrators for each 40-Act vehicle.",
+        "compliance_risk_treasury": "SEC registered fund compliance for expanded evergreen suite.",
+        "hiring_org_redesign": "Dedicated wealth distribution team scaled from ~10 to 30+ professionals.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-030",
+      "firm_id": "FIRM-010",
+      "firm_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "action_type": "M&A",
+      "description": "Partnered with KKR to acquire $10.1B student loan portfolio from Discover Financial.",
+      "stated_rationale": "High-quality asset-based credit with predictable cash flows; demonstrates Carlyle credit platform scale.",
+      "observable_metric_impact": "~$5B Carlyle share; Global Credit AUM expanded to $211.3B.",
+      "timeline": {
+        "announced": "2024-Q3",
+        "closed": "2024-Q4"
+      },
+      "source_citation": "PS-VD-024",
+      "operational_prerequisites": {
+        "systems_integration": "Student loan servicing platform and payment tracking integrated.",
+        "data_reporting_stack": "Asset-backed securities reporting and cash flow monitoring.",
+        "qa_controls_reconciliation": "Loan-level credit monitoring and default tracking.",
+        "fund_admin_servicing": "Securitization vehicle administration and trustee relationships.",
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-031",
+      "firm_id": "FIRM-010",
+      "firm_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "action_type": "capital-structure-change",
+      "description": "Announced $2B share buyback program at 2026 Shareholder Update.",
+      "stated_rationale": "Returns capital to shareholders; signals management confidence in intrinsic value and earnings durability.",
+      "observable_metric_impact": "$2B authorization; signals transition to capital return phase after transformation.",
+      "timeline": {
+        "announced": "2026-Q1"
+      },
+      "source_citation": "PS-VD-025",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "10b5-1 trading plan and SEC Rule 10b-18 compliance for buyback execution.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-032",
+      "firm_id": "FIRM-010",
+      "firm_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "action_type": "distribution-shift",
+      "description": "Advanced Fortitude Re insurance solutions strategy, raising $2.1B for Fortitude Re.",
+      "stated_rationale": "Insurance permanent capital provides stable fee income; Fortitude Re becomes dedicated insurance capital vehicle.",
+      "observable_metric_impact": "Fortitude Re raised $2.1B; insurance as distribution channel validated.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "PS-VD-024",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Insurance entity financial reporting integrated into Carlyle segment data.",
+        "qa_controls_reconciliation": "ALM and insurance investment guideline monitoring.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "Bermuda and US state insurance regulatory compliance for Fortitude Re.",
+        "hiring_org_redesign": "Insurance solutions dedicated team within Global Credit.",
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-033",
+      "firm_id": "FIRM-015",
+      "firm_name": "EQT AB",
+      "ticker": "EQT",
+      "action_type": "M&A",
+      "description": "Agreed to acquire 100% of Coller Capital (EUR 28B FAUM) to expand secondaries platform.",
+      "stated_rationale": "Secondaries are fastest-growing alternatives segment; adds scaled capability alongside Private Capital.",
+      "observable_metric_impact": "Coller adds EUR 28B FAUM; EQT total AUM reaches EUR 298B+ post-close.",
+      "timeline": {
+        "announced": "2025-Q3",
+        "expected_close": "2026-H1"
+      },
+      "source_citation": "PS-VD-027",
+      "operational_prerequisites": {
+        "systems_integration": "Coller portfolio management and LP reporting systems integrated with EQT.",
+        "data_reporting_stack": "Secondaries segment reporting added to EQT financials.",
+        "qa_controls_reconciliation": "LP portfolio valuation controls for secondaries book.",
+        "fund_admin_servicing": "Coller fund vehicles transitioned to EQT administration.",
+        "compliance_risk_treasury": "UK FCA and Swedish FSA regulatory approvals.",
+        "hiring_org_redesign": "Coller investment team (~100+ professionals) retained.",
+        "geographic_integration": "London office integrated as EQT Secondaries hub.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-034",
+      "firm_id": "FIRM-015",
+      "firm_name": "EQT AB",
+      "ticker": "EQT",
+      "action_type": "M&A",
+      "description": "Acquired Perficient, global digital consultancy, for ~$3B in take-private transaction.",
+      "stated_rationale": "Perficient is a thematic play on digital transformation; EQT's tech-enabled value creation playbook applied.",
+      "observable_metric_impact": "Perficient revenues ~$900M; exemplifies EQT's active ownership model in tech services.",
+      "timeline": {
+        "announced": "2023-Q3",
+        "closed": "2024-Q1"
+      },
+      "source_citation": "PS-VD-028",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Portfolio company monitoring integrated into EQT Private Capital reporting.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "CFIUS review for tech company acquisition; US and EU antitrust.",
+        "hiring_org_redesign": "EQT value creation team engaged for post-acquisition operational improvement.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-035",
+      "firm_id": "FIRM-015",
+      "firm_name": "EQT AB",
+      "ticker": "EQT",
+      "action_type": "product-launch",
+      "description": "Scaled evergreen and open-ended strategies to EUR 3.5B+ AUM for private wealth access.",
+      "stated_rationale": "Private wealth is at an inflection point; evergreen structures enable access for non-institutional investors.",
+      "observable_metric_impact": "Evergreen strategies reached EUR 3.5B+ AUM; private wealth flagged as key growth vector for 2026.",
+      "timeline": {
+        "ongoing": "2024-2025"
+      },
+      "source_citation": "PS-VD-029",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "NAV reporting and investor portal for evergreen fund investors.",
+        "qa_controls_reconciliation": "Liquidity management framework for semi-liquid structures.",
+        "fund_admin_servicing": "UCITS or equivalent fund administration for European retail investors.",
+        "compliance_risk_treasury": "AIFMD and MiFID II compliance for European retail distribution.",
+        "hiring_org_redesign": "Wealth distribution team established in key European markets.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-036",
+      "firm_id": "FIRM-015",
+      "firm_name": "EQT AB",
+      "ticker": "EQT",
+      "action_type": "M&A",
+      "description": "Renamed BPEA to EQT Private Capital Asia, completing brand integration of 2022 acquisition.",
+      "stated_rationale": "Unified EQT brand strengthens LP recognition in Asia; enables cross-selling of EQT platform capabilities.",
+      "observable_metric_impact": "Asia platform operating under unified EQT brand; ~$15B+ APAC AUM integrated.",
+      "timeline": {
+        "rebranded": "2024-Q2"
+      },
+      "source_citation": "PS-VD-027",
+      "operational_prerequisites": {
+        "systems_integration": "BPEA systems fully migrated to EQT technology stack.",
+        "data_reporting_stack": "Asia segment reporting consolidated under EQT Private Capital.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "Regulatory notifications for name changes across Hong Kong, Singapore, India.",
+        "hiring_org_redesign": null,
+        "geographic_integration": "Asia offices (Hong Kong, Singapore, Mumbai, Beijing) fully integrated.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-037",
+      "firm_id": "FIRM-016",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "action_type": "M&A",
+      "description": "Acquired Empira Group, European residential real estate platform with EUR 14B AUM.",
+      "stated_rationale": "Residential real estate adds defensive asset class; Empira brings origination platform in key European markets.",
+      "observable_metric_impact": "Private Real Estate segment expanded by ~EUR 14B; European RE capabilities deepened.",
+      "timeline": {
+        "announced": "2024-Q2",
+        "closed": "2024-Q4"
+      },
+      "source_citation": "PS-VD-030",
+      "operational_prerequisites": {
+        "systems_integration": "Empira asset management systems integrated into Partners Group RE platform.",
+        "data_reporting_stack": "Residential RE sub-segment reporting added to Private Real Estate segment.",
+        "qa_controls_reconciliation": "Property-level operational monitoring and valuation controls.",
+        "fund_admin_servicing": "Empira fund vehicles transitioned to Partners Group administration.",
+        "compliance_risk_treasury": "German and Swiss regulatory approvals for acquisition.",
+        "hiring_org_redesign": "Empira team (~80 professionals) retained and integrated.",
+        "geographic_integration": "Empira offices (Germany, Austria, Switzerland) integrated as RE sub-platform.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-038",
+      "firm_id": "FIRM-016",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "action_type": "product-launch",
+      "description": "Launched private markets royalties as a fifth asset class (May 2024).",
+      "stated_rationale": "Royalties provide uncorrelated, inflation-linked cash flows; distinctive offering vs. peers.",
+      "observable_metric_impact": "Royalties fund in market; differentiated positioning for private wealth and institutional LPs.",
+      "timeline": {
+        "announced": "2024-05",
+        "first_close": "2025-Q1"
+      },
+      "source_citation": "PS-VD-031",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Royalty asset cashflow monitoring and reporting infrastructure.",
+        "qa_controls_reconciliation": "Revenue verification and audit rights for underlying royalty streams.",
+        "fund_admin_servicing": "New fund vehicle administration for royalties pooled vehicle.",
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Royalties investment team hired (specialist asset class expertise required).",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-039",
+      "firm_id": "FIRM-016",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "action_type": "M&A",
+      "description": "Made strategic investments in Trinity Investments (US hospitality RE) and Sievert (German logistics).",
+      "stated_rationale": "Direct investing model requires proprietary deal sourcing across geographies; adjacency to existing verticals.",
+      "observable_metric_impact": "Directional expansion of real estate and infrastructure sub-strategies.",
+      "timeline": {
+        "trinity": "2024-Q2",
+        "sievert": "2024-Q3"
+      },
+      "source_citation": "PS-VD-030",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "US and German merger control filings.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-040",
+      "firm_id": "FIRM-016",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "action_type": "product-launch",
+      "description": "Expanded evergreen fund suite with seven new offerings in 2025 for private wealth.",
+      "stated_rationale": "Most comprehensive private markets evergreen suite; wealth channel is primary growth driver.",
+      "observable_metric_impact": "Evergreen AUM approaching $50B+; seven new vehicles launched in single year.",
+      "timeline": {
+        "ongoing": "2025"
+      },
+      "source_citation": "PS-VD-031",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Evergreen fund reporting and monthly/quarterly NAV calculation infrastructure scaled.",
+        "qa_controls_reconciliation": "Redemption and liquidity management for multiple concurrent semi-liquid vehicles.",
+        "fund_admin_servicing": "Fund administration arrangements for seven new registered vehicles.",
+        "compliance_risk_treasury": "Multi-jurisdictional registered fund compliance (UCITS, 40-Act, AIFMD).",
+        "hiring_org_redesign": "Wealth distribution expanded across US, Europe, Asia.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-041",
+      "firm_id": "FIRM-011",
+      "firm_name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "action_type": "product-launch",
+      "description": "Launched STPEX, an evergreen interval fund providing retail access to PE co-investments.",
+      "stated_rationale": "Private wealth democratization; co-investment access is differentiated vs. fund-of-funds peers.",
+      "observable_metric_impact": "Private Wealth Solutions grew to $10.2B AUM by July 2025 (doubled in <1 year).",
+      "timeline": {
+        "launched": "2024-Q3",
+        "operational": "2024-Q4"
+      },
+      "source_citation": "PS-VD-033",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Interval fund NAV calculation and investor reporting established.",
+        "qa_controls_reconciliation": "Co-investment valuation and liquidity gate controls.",
+        "fund_admin_servicing": "40-Act interval fund administration and transfer agent.",
+        "compliance_risk_treasury": "SEC registration for interval fund structure.",
+        "hiring_org_redesign": "Wealth distribution team built for registered fund distribution.",
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-042",
+      "firm_id": "FIRM-011",
+      "firm_name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "action_type": "distribution-shift",
+      "description": "Scaled Private Wealth Solutions to $10.2B AUM by July 2025, doubling in under one year.",
+      "stated_rationale": "Individual investors represent decades of structural inflows; StepStone's data moat enables differentiated wealth products.",
+      "observable_metric_impact": "Private Wealth AUM $10.2B (Jul 2025); managed account re-up rate >90%.",
+      "timeline": {
+        "ongoing": "2024-2025"
+      },
+      "source_citation": "PS-VD-034",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Wealth investor reporting portal and performance data infrastructure.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Dedicated Private Wealth Solutions team scaled from ~5 to 20+ professionals.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-043",
+      "firm_id": "FIRM-011",
+      "firm_name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "action_type": "technology-operations",
+      "description": "Co-developed 2026 Private Equity GP Outlook with Bain & Company, building thought leadership brand.",
+      "stated_rationale": "Proprietary data on 4,000+ GPs establishes StepStone as the intelligence layer in private markets.",
+      "observable_metric_impact": "GP Outlook published and broadly cited; brand equity supports managed account re-ups.",
+      "timeline": {
+        "published": "2026-Q1"
+      },
+      "source_citation": "PS-VD-034",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Proprietary GP database and analytics platform powering research outputs.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-044",
+      "firm_id": "FIRM-012",
+      "firm_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "action_type": "product-launch",
+      "description": "Scaled Evergreen Platform to $16B+ AUM across 11 evergreen funds; 70%+ YoY growth.",
+      "stated_rationale": "Democratizing access to private markets; evergreen structures remove vintage-year risk for wealth investors.",
+      "observable_metric_impact": "Evergreen AUM $16B+ (FY2025); 70%+ YoY growth rate; fee-earning AUM +10% YoY.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "PS-VD-036",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Monthly NAV reporting infrastructure for 11 concurrent evergreen vehicles.",
+        "qa_controls_reconciliation": "Liquidity and redemption management for semi-liquid structures.",
+        "fund_admin_servicing": "Fund administration for 11 registered and semi-registered vehicles.",
+        "compliance_risk_treasury": "Multi-jurisdictional compliance for UCITS, 40-Act, and AIFMD structures.",
+        "hiring_org_redesign": "Wealth Solutions distribution team scaled; dedicated product management.",
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-045",
+      "firm_id": "FIRM-012",
+      "firm_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "action_type": "distribution-shift",
+      "description": "Partnered with Republic to bring institutional-quality private market investments to retail.",
+      "stated_rationale": "Retail platform Republic enables access for non-accredited investors; mass-market private markets democratization.",
+      "observable_metric_impact": "New distribution channel opened; Republic's 3M+ investor base provides significant reach.",
+      "timeline": {
+        "announced": "2024-Q2",
+        "operational": "2024-Q4"
+      },
+      "source_citation": "PS-VD-037",
+      "operational_prerequisites": {
+        "systems_integration": "API connectivity between Hamilton Lane fund platforms and Republic technology stack.",
+        "data_reporting_stack": "Retail investor reporting and statement generation.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Micro-investment vehicle fund administration for fractional ownership.",
+        "compliance_risk_treasury": "Regulation A+ or Regulation Crowdfunding compliance frameworks.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-046",
+      "firm_id": "FIRM-012",
+      "firm_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "action_type": "product-launch",
+      "description": "Closed Hamilton Lane Infrastructure Opportunities Fund II at nearly $2B.",
+      "stated_rationale": "Infrastructure growing as LP allocation target; discrete fund extends Hamilton Lane beyond solutions/advisory.",
+      "observable_metric_impact": "~$2B closed; expands Hamilton Lane's discretionary AUM in real assets.",
+      "timeline": {
+        "final_close": "2025-Q2"
+      },
+      "source_citation": "PS-VD-036",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Infrastructure fund portfolio reporting and valuation infrastructure.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Drawdown fund administration established.",
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Infrastructure investment team expanded for dedicated fund management.",
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-047",
+      "firm_id": "FIRM-012",
+      "firm_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "action_type": "geographic-expansion",
+      "description": "Appointed Head of Private Wealth Solutions in Japan (Mika Tashiro), effective March 2026.",
+      "stated_rationale": "Japan private wealth is structurally underpenetrated in alternatives; JFSA regulatory changes opening market.",
+      "observable_metric_impact": "Japan office established as distribution hub; addresses $20T+ Japanese household savings market.",
+      "timeline": {
+        "announced": "2026-Q1",
+        "effective": "2026-03-01"
+      },
+      "source_citation": "PS-VD-038",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Japan investor reporting in Japanese language and yen-denominated structures.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "JFSA-compliant fund vehicle structures for Japan distribution.",
+        "compliance_risk_treasury": "JFSA Type II Financial Instruments Business license.",
+        "hiring_org_redesign": "Japan office built out with local distribution and compliance staff.",
+        "geographic_integration": "Tokyo office established for Hamilton Lane Japan operations.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-048",
+      "firm_id": "FIRM-007",
+      "firm_name": "Brookfield Corporation",
+      "ticker": "BN",
+      "action_type": "M&A",
+      "description": "Agreed to acquire Just Group plc, UK pension risk transfer specialist.",
+      "stated_rationale": "Expands Wealth Solutions insurance platform into UK annuity market; complements AEL in US.",
+      "observable_metric_impact": "Just Group AUM ~GBP 25B; UK PRT market entry for Brookfield Wealth Solutions.",
+      "timeline": {
+        "announced": "2025-Q1",
+        "pending": "2025-2026"
+      },
+      "source_citation": "PS-VD-040",
+      "operational_prerequisites": {
+        "systems_integration": "UK insurance administration and policy servicing systems integration.",
+        "data_reporting_stack": "UK statutory insurance reporting (Solvency II) integrated with BN Wealth Solutions.",
+        "qa_controls_reconciliation": "UK annuity liability ALM and matching adjustment framework.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "PRA and FCA regulatory approval for UK insurance acquisition.",
+        "hiring_org_redesign": "UK insurance investment management team established.",
+        "geographic_integration": "UK operational infrastructure integrated with Brookfield Wealth Solutions.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-049",
+      "firm_id": "FIRM-007",
+      "firm_name": "Brookfield Corporation",
+      "ticker": "BN",
+      "action_type": "M&A",
+      "description": "Completed acquisition of American Equity Investment Life (AEL), major US annuity provider.",
+      "stated_rationale": "AEL provides $50B+ of permanent, low-cost insurance capital for Brookfield's investment platform.",
+      "observable_metric_impact": "AEL AUM ~$50B+; Wealth Solutions earnings grew 24% to $1.7B in 2025.",
+      "timeline": {
+        "announced": "2023-Q2",
+        "closed": "2024-Q1"
+      },
+      "source_citation": "PS-VD-039",
+      "operational_prerequisites": {
+        "systems_integration": "AEL policy administration and investment management systems integrated with BAM platform.",
+        "data_reporting_stack": "US statutory insurance reporting (NAIC SAP) integrated with BN consolidated financials.",
+        "qa_controls_reconciliation": "Life insurance ALM framework: duration matching and RBC capital adequacy.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "Iowa DOI and multi-state insurance regulatory approvals; CFIUS review.",
+        "hiring_org_redesign": "AEL investment management team migrated to BAM Credit platform management.",
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-050",
+      "firm_id": "FIRM-007",
+      "firm_name": "Brookfield Corporation",
+      "ticker": "BN",
+      "action_type": "capital-structure-change",
+      "description": "Announced BNT merger to simplify corporate structure and enhance investor clarity.",
+      "stated_rationale": "Simplification reduces structural discount; aligns economic and voting interests across entity stack.",
+      "observable_metric_impact": "BNT merger expected to consolidate Brookfield entity structure; targeting 2026 completion.",
+      "timeline": {
+        "announced": "2025-Q4",
+        "targeted_close": "2026"
+      },
+      "source_citation": "PS-VD-040",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Consolidated financial reporting post-merger; elimination of inter-company balances.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "SEC proxy filing, shareholder vote, and merger regulatory approvals.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-051",
+      "firm_id": "FIRM-007",
+      "firm_name": "Brookfield Corporation",
+      "ticker": "BN",
+      "action_type": "M&A",
+      "description": "Acquired Neoen, global renewable energy developer, for $3.2B.",
+      "stated_rationale": "Energy transition represents $150T+ decarbonization opportunity; Neoen adds development pipeline.",
+      "observable_metric_impact": "Neoen added ~$10B in renewable capacity; expands BN's Renewable Power & Transition segment.",
+      "timeline": {
+        "announced": "2024-Q2",
+        "closed": "2024-Q4"
+      },
+      "source_citation": "PS-VD-039",
+      "operational_prerequisites": {
+        "systems_integration": "Renewable energy asset monitoring and PPA tracking systems integrated.",
+        "data_reporting_stack": "Renewable power segment reporting expanded for Neoen portfolio.",
+        "qa_controls_reconciliation": "Energy production monitoring and offtake agreement compliance.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "Australian FIRB and EU merger control approvals.",
+        "hiring_org_redesign": "Neoen development and operations team retained (~500 employees).",
+        "geographic_integration": "Australia, France, Finland, and US Neoen offices integrated.",
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-052",
+      "firm_id": "FIRM-017",
+      "firm_name": "Intermediate Capital Group plc",
+      "ticker": "ICP",
+      "action_type": "distribution-shift",
+      "description": "Long-term strategic and equity partnership with Amundi; Amundi acquired 9.9% equity stake in ICG.",
+      "stated_rationale": "Amundi's 100M+ client distribution network accelerates private wealth penetration across Europe and globally.",
+      "observable_metric_impact": "Access to Amundi's EUR 2T+ AUM client base; private wealth channel structurally expanded.",
+      "timeline": {
+        "announced": "2025-Q3",
+        "closed": "2025-Q4"
+      },
+      "source_citation": "PS-VD-044",
+      "operational_prerequisites": {
+        "systems_integration": "Product integration between ICG fund platforms and Amundi distribution infrastructure.",
+        "data_reporting_stack": "Investor reporting for Amundi-distributed ICG products established.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "White-label and co-branded fund structures for Amundi distribution.",
+        "compliance_risk_treasury": "FCA and AMF regulatory approvals for equity stake and distribution agreement.",
+        "hiring_org_redesign": "Joint commercial team established for Amundi-ICG private wealth distribution.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-053",
+      "firm_id": "FIRM-017",
+      "firm_name": "Intermediate Capital Group plc",
+      "ticker": "ICP",
+      "action_type": "product-launch",
+      "description": "Launched ICG Core Private Equity, institutional-quality US evergreen fund for wealth investors.",
+      "stated_rationale": "US wealth market is largest in world; Core PE evergreen provides differentiated PE access.",
+      "observable_metric_impact": "New US wealth product; ICG private wealth AUM growing as share of total.",
+      "timeline": {
+        "announced": "2025-Q3",
+        "operational": "2025-Q4"
+      },
+      "source_citation": "PS-VD-044",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "US evergreen fund reporting and NAV calculation infrastructure.",
+        "qa_controls_reconciliation": "Redemption gate and liquidity management for semi-liquid structure.",
+        "fund_admin_servicing": "40-Act or interval fund administration for US registered vehicle.",
+        "compliance_risk_treasury": "SEC registration for US-domiciled registered fund.",
+        "hiring_org_redesign": "US wealth distribution team expanded from European base.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-054",
+      "firm_id": "FIRM-017",
+      "firm_name": "Intermediate Capital Group plc",
+      "ticker": "ICP",
+      "action_type": "product-launch",
+      "description": "Closed Senior Debt Partners V (SDP V) at $17B, Europe's largest ever direct lending fund.",
+      "stated_rationale": "Direct lending demand accelerating as banks retrench; scale leadership reinforces LP preference.",
+      "observable_metric_impact": "SDP V 2x predecessor size; ICG fee-earning AUM reached $75B by March 2025.",
+      "timeline": {
+        "final_close": "2025-Q1"
+      },
+      "source_citation": "PS-VD-042",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Loan origination tracking and credit monitoring infrastructure scaled for $17B vehicle.",
+        "qa_controls_reconciliation": "Credit underwriting committee and loan covenant monitoring for direct lending book.",
+        "fund_admin_servicing": "Luxembourg SCSp fund administration for European limited partners.",
+        "compliance_risk_treasury": "AIFMD Alternative Investment Fund Manager compliance.",
+        "hiring_org_redesign": "Credit team scaled to deploy $17B over fund life.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-055",
+      "firm_id": "FIRM-017",
+      "firm_name": "Intermediate Capital Group plc",
+      "ticker": "ICP",
+      "action_type": "organizational-change",
+      "description": "Set $55B+ four-year fundraising objective, signaling step-change in scale ambition.",
+      "stated_rationale": "Breadth at scale strategy requires demonstrating compounding fundraising capability to investors.",
+      "observable_metric_impact": "FY2025 raised $24B (ahead of pace); management fees GBP 604M (+19% YoY).",
+      "timeline": {
+        "announced": "2025-Q2",
+        "target_period": "FY2026-FY2029"
+      },
+      "source_citation": "PS-VD-042",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Investor relations and fundraising team capacity expanded.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-056",
+      "firm_id": "FIRM-020",
+      "firm_name": "Bridgepoint Group plc",
+      "ticker": "BPT",
+      "action_type": "M&A",
+      "description": "Acquired Energy Capital Partners (ECP), North American infra and energy transition specialist.",
+      "stated_rationale": "Adds $25B+ North American infrastructure platform; diversifies Bridgepoint beyond European mid-market PE.",
+      "observable_metric_impact": "Bridgepoint AUM more than doubled post-ECP; infrastructure becomes major segment.",
+      "timeline": {
+        "announced": "2023-Q3",
+        "closed": "2024-Q1"
+      },
+      "source_citation": "PS-VD-021",
+      "operational_prerequisites": {
+        "systems_integration": "ECP investment management and portfolio monitoring systems integrated.",
+        "data_reporting_stack": "North American infrastructure segment reporting established within Bridgepoint.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "ECP fund vehicles transitioned to Bridgepoint fund administration.",
+        "compliance_risk_treasury": "SEC and FERC regulatory considerations for energy infrastructure assets.",
+        "hiring_org_redesign": "ECP team (~60 professionals) retained in Summit NJ; cross-functional integration.",
+        "geographic_integration": "US operational presence established via ECP's Summit NJ headquarters.",
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-057",
+      "firm_id": "FIRM-020",
+      "firm_name": "Bridgepoint Group plc",
+      "ticker": "BPT",
+      "action_type": "M&A",
+      "description": "Added Newbury Partners team and $4B+ secondaries AUM, expanding into PE secondaries.",
+      "stated_rationale": "Secondaries provide diversified, lower-risk returns; complements PE primary fund strategy.",
+      "observable_metric_impact": "Newbury adds $4B+ secondaries AUM; third product pillar alongside PE and Credit.",
+      "timeline": {
+        "announced": "2023-Q4",
+        "closed": "2024-Q2"
+      },
+      "source_citation": "PS-VD-021",
+      "operational_prerequisites": {
+        "systems_integration": "Secondaries portfolio management systems integrated with Bridgepoint platform.",
+        "data_reporting_stack": "Secondaries segment reporting added to Bridgepoint financials.",
+        "qa_controls_reconciliation": "LP portfolio valuation and J-curve modeling for secondaries book.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Newbury team (~20 professionals) retained in Hartford, CT.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-058",
+      "firm_id": "FIRM-020",
+      "firm_name": "Bridgepoint Group plc",
+      "ticker": "BPT",
+      "action_type": "product-launch",
+      "description": "Deployed ~EUR 2.0B in European direct lending through Bridgepoint Direct Lending fund.",
+      "stated_rationale": "Direct lending is complementary to PE franchise; existing portfolio company relationships create proprietary deal flow.",
+      "observable_metric_impact": "EUR 2.0B deployed; Credit segment AUM growing as third pillar alongside PE and Infrastructure.",
+      "timeline": {
+        "ongoing": "2024-2025"
+      },
+      "source_citation": "PS-VD-021",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Direct lending credit monitoring and reporting infrastructure.",
+        "qa_controls_reconciliation": "Loan covenant monitoring and credit committee controls for direct lending book.",
+        "fund_admin_servicing": "Luxembourg fund vehicle administration.",
+        "compliance_risk_treasury": "AIFMD compliance for European direct lending fund.",
+        "hiring_org_redesign": "Credit investment team expanded from PE talent base.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-059",
+      "firm_id": "FIRM-002",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "action_type": "M&A",
+      "description": "BREIT invested $5.8B in pre-leased data center developments in 2025 via QTS platform.",
+      "stated_rationale": "AI-driven data center demand is multi-decade; BREIT's scale enables large pre-leased commitments.",
+      "observable_metric_impact": "QTS+AirTrunk portfolio >$70B; data center now BREIT's largest sector allocation.",
+      "timeline": {
+        "ongoing": "2025"
+      },
+      "source_citation": "PS-VD-002",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Data center development pipeline tracking and construction monitoring.",
+        "qa_controls_reconciliation": "Pre-leasing and development milestone controls.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-060",
+      "firm_id": "FIRM-003",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "action_type": "product-launch",
+      "description": "Launched K-Series evergreen suite (KREST, KREF, K-ABF) for private wealth investors.",
+      "stated_rationale": "K-Series mirrors BX's BREIT/BCRED model; perpetual capital is superior to drawdown for fee stability.",
+      "observable_metric_impact": "K-Series collectively approaching $10B+ AUM; perpetual capital 43% of total AUM.",
+      "timeline": {
+        "krest": "2021",
+        "kref": "2022",
+        "k_abf": "2024"
+      },
+      "source_citation": "PS-VD-006",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Monthly NAV and investor reporting for K-Series evergreen vehicles.",
+        "qa_controls_reconciliation": "Redemption gate and liquidity management across K-Series suite.",
+        "fund_admin_servicing": "40-Act fund administration maintained for K-Series vehicles.",
+        "compliance_risk_treasury": "Ongoing SEC registered fund and BDC compliance.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-061",
+      "firm_id": "FIRM-004",
+      "firm_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "action_type": "product-launch",
+      "description": "Launched and scaled hybrid credit products and Fund X (private equity), record quarterly flows.",
+      "stated_rationale": "Hybrid structures bridge institutional and retail; Fund X continues PE flagship franchise.",
+      "observable_metric_impact": "Record $228B total inflows FY2025; hybrid credit products among fastest-growing.",
+      "timeline": {
+        "fund_x": "2024",
+        "hybrid_credit": "2023-2025"
+      },
+      "source_citation": "PS-VD-010",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Hybrid fund reporting infrastructure combining credit and equity analytics.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Fund X administration and hybrid credit vehicle administration.",
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-062",
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "action_type": "technology-operations",
+      "description": "Integrated AI into investment and reporting processes as part of firm-wide initiative.",
+      "stated_rationale": "AI enhances investment research, portfolio monitoring, and investor reporting efficiency at $622B AUM scale.",
+      "observable_metric_impact": "Efficiency gains across credit underwriting and reporting; firmwide AI deployment documented.",
+      "timeline": {
+        "ongoing": "2024-2025"
+      },
+      "source_citation": "PS-VD-013",
+      "operational_prerequisites": {
+        "systems_integration": "AI/ML tools integrated with investment management systems and data warehouse.",
+        "data_reporting_stack": "AI-enhanced investor reporting generation and portfolio analytics.",
+        "qa_controls_reconciliation": "Model risk management framework for AI-assisted credit decisions.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Data science and AI team built within technology organization.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-063",
+      "firm_id": "FIRM-006",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "action_type": "geographic-expansion",
+      "description": "Entered Japanese private wealth market and expanded Middle East via QIA JV.",
+      "stated_rationale": "Japan and Gulf are structurally underallocated to alternatives; sovereign and retail channels are complementary.",
+      "observable_metric_impact": "Japan launch adds new LP channel; QIA JV commits $20B of Gulf sovereign capital.",
+      "timeline": {
+        "japan": "2025-Q2",
+        "qia_jv": "2025-Q3"
+      },
+      "source_citation": "PS-VD-016",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Japan and Middle East investor reporting in local language and currency.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Japan and Cayman fund structures for regional distribution.",
+        "compliance_risk_treasury": "JFSA registration and Qatar regulatory approvals.",
+        "hiring_org_redesign": "Japan wealth team and Middle East relationship management hired.",
+        "geographic_integration": "Tokyo office and Riyadh/Abu Dhabi presence established.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-064",
+      "firm_id": "FIRM-008",
+      "firm_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "action_type": "M&A",
+      "description": "Acquired Prima Capital Advisors (June 2024) to add real estate credit capabilities.",
+      "stated_rationale": "Real estate credit broadens Credit platform; complements existing direct lending and net lease.",
+      "observable_metric_impact": "Real estate credit sub-strategy established; AUM reached $307.4B by year-end 2025.",
+      "timeline": {
+        "announced": "2024-Q1",
+        "closed": "2024-Q2"
+      },
+      "source_citation": "PS-VD-018",
+      "operational_prerequisites": {
+        "systems_integration": "Prima real estate credit analytics integrated with Blue Owl Credit platform.",
+        "data_reporting_stack": "Real estate credit sub-segment reporting added.",
+        "qa_controls_reconciliation": "Property-level credit monitoring and LTV tracking controls.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Prima team retained within Blue Owl Real Assets.",
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-065",
+      "firm_id": "FIRM-009",
+      "firm_name": "TPG Inc.",
+      "ticker": "TPG",
+      "action_type": "product-launch",
+      "description": "Designated 2025 a 'breakout year'; targeting $50B+ fundraising for 2026 across six platforms.",
+      "stated_rationale": "Multi-platform scale achieved; each platform now self-sustaining with $10B+ flagship vehicles.",
+      "observable_metric_impact": "AUM reached $303B at year-end 2025 (+23% YoY); $72B dry powder entering 2026.",
+      "timeline": {
+        "announced": "2025-Q4"
+      },
+      "source_citation": "PS-VD-023",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Investor relations capacity scaled for six concurrent flagship fundraises.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-066",
+      "firm_id": "FIRM-010",
+      "firm_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "action_type": "organizational-change",
+      "description": "Schwartz completed three-year transformation: eliminated underperforming lines, reshaped culture.",
+      "stated_rationale": "Focused platform enables higher FRE margins; disciplined capital allocation drives superior returns.",
+      "observable_metric_impact": "FRE grew 12% YoY to record in FY2025; FRE margin expanded; $54B inflows (+32%).",
+      "timeline": {
+        "began": "2022",
+        "completed": "2025"
+      },
+      "source_citation": "PS-VD-025",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Leadership team restructured; underperforming business lines divested or wound down.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-067",
+      "firm_id": "FIRM-011",
+      "firm_name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "action_type": "product-launch",
+      "description": "Closed Tactical Growth Fund IV at over $700M, demonstrating secondary-market PE capability.",
+      "stated_rationale": "Tactical growth strategy provides differentiated return profile; complements primary co-investment offering.",
+      "observable_metric_impact": "$700M+ closed; AUM and capital responsibility grew to $220B and $811B respectively.",
+      "timeline": {
+        "final_close": "2025-Q2"
+      },
+      "source_citation": "PS-VD-033",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Tactical growth fund portfolio monitoring and reporting.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Drawdown fund administration established.",
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-068",
+      "firm_id": "FIRM-016",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "action_type": "geographic-expansion",
+      "description": "Expanded APAC and Middle East presence through joint ventures with regional financial firms.",
+      "stated_rationale": "APAC and Middle East are fastest-growing LP bases; local partnerships accelerate distribution.",
+      "observable_metric_impact": "APAC and Middle East LP commitments growing as share of new inflows ($30B in 2025).",
+      "timeline": {
+        "ongoing": "2024-2025"
+      },
+      "source_citation": "PS-VD-031",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Regional fund vehicles for APAC and Middle East investors.",
+        "compliance_risk_treasury": "Regional regulatory registrations in UAE, Saudi Arabia, Singapore, Japan.",
+        "hiring_org_redesign": "Regional offices in Singapore, Dubai staffed for distribution.",
+        "geographic_integration": "APAC and Middle East offices established as distribution hubs.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-069",
+      "firm_id": "FIRM-012",
+      "firm_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "action_type": "technology-operations",
+      "description": "Partnered with YCharts to distribute Hamilton Lane benchmark data to financial advisers.",
+      "stated_rationale": "Data distribution builds brand awareness among wealth advisers; positions HLNE as private markets intelligence layer.",
+      "observable_metric_impact": "Hamilton Lane benchmark data now accessible to YCharts' 10,000+ adviser users.",
+      "timeline": {
+        "announced": "2025-Q1"
+      },
+      "source_citation": "PS-VD-037",
+      "operational_prerequisites": {
+        "systems_integration": "API data feed from Hamilton Lane benchmark database to YCharts platform.",
+        "data_reporting_stack": "Benchmark data standardization and licensing infrastructure.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-070",
+      "firm_id": "FIRM-007",
+      "firm_name": "Brookfield Corporation",
+      "ticker": "BN",
+      "action_type": "distribution-shift",
+      "description": "Brookfield Wealth Solutions earnings grew 24% to $1.7B in 2025 via expanded insurance products.",
+      "stated_rationale": "Insurance is the most scalable permanent capital vehicle; earnings spread model compounds at low marginal cost.",
+      "observable_metric_impact": "Wealth Solutions earnings $1.7B (+24%); AEL + Brookfield Life integration on track.",
+      "timeline": {
+        "ongoing": "2024-2025"
+      },
+      "source_citation": "PS-VD-040",
+      "operational_prerequisites": {
+        "systems_integration": "AEL and Brookfield Life administration systems integration with BAM investment platform.",
+        "data_reporting_stack": "Combined insurance segment reporting across US (AEL) and other Wealth Solutions entities.",
+        "qa_controls_reconciliation": "Cross-entity ALM and RBC capital adequacy monitoring.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "Multi-state insurance regulatory compliance.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-071",
+      "firm_id": "FIRM-015",
+      "firm_name": "EQT AB",
+      "ticker": "EQT",
+      "action_type": "organizational-change",
+      "description": "Achieved strongest realization year ever in 2025 with EUR 16B gross fund investments.",
+      "stated_rationale": "Active realization program validates value creation model and generates DPI for LP reinvestment cycles.",
+      "observable_metric_impact": "EUR 16B gross fund investments in 2025 (record); EUR 14B co-investments (record).",
+      "timeline": {
+        "record_year": "2025"
+      },
+      "source_citation": "PS-VD-027",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Exit monitoring and realization tracking across PE and Real Assets portfolios.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-072",
+      "firm_id": "FIRM-020",
+      "firm_name": "Bridgepoint Group plc",
+      "ticker": "BPT",
+      "action_type": "capital-structure-change",
+      "description": "Issued 30M new ordinary shares as ECP sellers converted OP Units from the ECP acquisition.",
+      "stated_rationale": "OP Unit conversion is contractual consideration mechanism; aligns ECP team with Bridgepoint equity upside.",
+      "observable_metric_impact": "Share count increased by 30M; dilution offset by ECP AUM contribution.",
+      "timeline": {
+        "effective": "2024-Q2"
+      },
+      "source_citation": "PS-VD-021",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "LSE disclosure obligations for share issuance.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-073",
+      "firm_id": "FIRM-017",
+      "firm_name": "Intermediate Capital Group plc",
+      "ticker": "ICP",
+      "action_type": "technology-operations",
+      "description": "Acquired Excellera Advisory Group (Aug 2025), adding technology and advisory capabilities.",
+      "stated_rationale": "Technology advisory adds value-creation capability for portfolio companies; differentiates ICG's active ownership.",
+      "observable_metric_impact": "Excellera adds ~150 technology advisers; strengthens portfolio company operating support.",
+      "timeline": {
+        "announced": "2025-Q3",
+        "closed": "2025-Q3"
+      },
+      "source_citation": "PS-VD-044",
+      "operational_prerequisites": {
+        "systems_integration": "Excellera advisory tools integrated with ICG portfolio monitoring systems.",
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "UK FCA regulatory notification for acquisition of advisory firm.",
+        "hiring_org_redesign": "Excellera team (~150 professionals) embedded into ICG value creation group.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-074",
+      "firm_id": "FIRM-004",
+      "firm_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "action_type": "geographic-expansion",
+      "description": "Expanded global origination via strategic partnerships, growing offices in 30+ cities.",
+      "stated_rationale": "Global origination scale creates proprietary deal flow; geographic reach is moat vs. smaller credit managers.",
+      "observable_metric_impact": "30+ offices globally; $1T+ in originated assets since inception; record $228B inflows FY2025.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "PS-VD-010",
+      "operational_prerequisites": {
+        "systems_integration": "Global deal origination CRM and pipeline management systems.",
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "Investment adviser registrations across new jurisdictions.",
+        "hiring_org_redesign": "Origination teams hired across new geographic offices.",
+        "geographic_integration": "Local offices established for deal sourcing in target markets.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-075",
+      "firm_id": "FIRM-003",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "action_type": "organizational-change",
+      "description": "Established KKR Solutions as new vertical combining Arctos sports investing with GP stakes.",
+      "stated_rationale": "KKR Solutions aggregates differentiated assets (sports, GP stakes, royalties) into unified $100B+ platform.",
+      "observable_metric_impact": "KKR Solutions targeting $100B+ AUM; sports and GP stakes represent new fee-generating verticals.",
+      "timeline": {
+        "announced": "2025-Q4",
+        "operational": "2026-Q1"
+      },
+      "source_citation": "PS-VD-006",
+      "operational_prerequisites": {
+        "systems_integration": "Sports and GP stakes portfolio management systems integrated into KKR.",
+        "data_reporting_stack": "KKR Solutions segment reporting established.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "New fund vehicles for KKR Solutions strategies established.",
+        "compliance_risk_treasury": "Sports league approvals and GP stake regulatory requirements.",
+        "hiring_org_redesign": "KKR Solutions leadership team appointed; Arctos team integrated.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-076",
+      "firm_id": "FIRM-001",
+      "firm_name": "Patria Investments Limited",
+      "ticker": "PAX",
+      "action_type": "M&A",
+      "description": "Acquired Solis Capital (Chile-based PE), adding $3B+ AUM and Chilean market presence.",
+      "stated_rationale": "Chile is an underpenetrated private markets market; Solis expands Andean regional footprint.",
+      "observable_metric_impact": "PAX AUM grew to $52.6B at year-end 2025 (+26% YoY); Andean PE segment expanded.",
+      "timeline": {
+        "announced": "2024-Q2",
+        "closed": "2024-Q4"
+      },
+      "source_citation": "Patria Q4 2025 Earnings Release",
+      "operational_prerequisites": {
+        "systems_integration": "Solis portfolio management systems migrated to Patria investment platform.",
+        "data_reporting_stack": "Chilean PE portfolio reporting integrated into Patria segment data.",
+        "qa_controls_reconciliation": "Portfolio company valuation and monitoring controls aligned with Patria standards.",
+        "fund_admin_servicing": "Solis fund vehicles transitioned to Patria fund administration.",
+        "compliance_risk_treasury": "CMF (Chile) regulatory approval for acquisition of local investment manager.",
+        "hiring_org_redesign": "Solis investment team retained; Patria Chile office expanded.",
+        "geographic_integration": "Santiago office established as Andean hub alongside existing operations.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-077",
+      "firm_id": "FIRM-001",
+      "firm_name": "Patria Investments Limited",
+      "ticker": "PAX",
+      "action_type": "M&A",
+      "description": "Acquired RBR Asset Management, a Brazilian credit and multi-strategy manager, adding ~$5B AUM.",
+      "stated_rationale": "RBR accelerates Patria's credit platform build; Brazil credit is the highest-growth segment in LatAm alternatives.",
+      "observable_metric_impact": "Credit segment AUM expanded; supports diversification away from PE/Infrastructure concentration.",
+      "timeline": {
+        "announced": "2024-Q3",
+        "closed": "2025-Q1"
+      },
+      "source_citation": "Patria Q4 2025 Earnings Release",
+      "operational_prerequisites": {
+        "systems_integration": "RBR credit and multi-strategy portfolio systems integrated with Patria platform.",
+        "data_reporting_stack": "Brazil credit segment reporting added to Patria segment financials.",
+        "qa_controls_reconciliation": "Credit underwriting and monitoring controls aligned with Patria standards.",
+        "fund_admin_servicing": "RBR fund vehicles transitioned to Patria fund administration.",
+        "compliance_risk_treasury": "CVM (Brazil) regulatory approval for acquisition; compliance with ICVM 555 and related regulations.",
+        "hiring_org_redesign": "RBR credit team retained; Patria's Brazilian credit platform staffed.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-078",
+      "firm_id": "FIRM-001",
+      "firm_name": "Patria Investments Limited",
+      "ticker": "PAX",
+      "action_type": "M&A",
+      "description": "Acquired WP Global Partners, expanding global distribution for LatAm-focused products.",
+      "stated_rationale": "WP Global brings institutional fundraising relationships in the US and Europe; accelerates LP base diversification.",
+      "observable_metric_impact": "Record $7.7B organic fundraising in FY2025; global LP base expanded.",
+      "timeline": {
+        "announced": "2025-Q1",
+        "closed": "2025-Q3"
+      },
+      "source_citation": "Patria Q4 2025 Earnings Release",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "LP relationship management and fundraising CRM integrated.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "SEC placement agent registration for US distribution activities.",
+        "hiring_org_redesign": "WP Global distribution team retained; global IR function expanded.",
+        "geographic_integration": "US and European distribution offices established via WP Global.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-079",
+      "firm_id": "FIRM-001",
+      "firm_name": "Patria Investments Limited",
+      "ticker": "PAX",
+      "action_type": "product-launch",
+      "description": "Launched Patria Credit platform as standalone business unit, targeting rapid AUM growth.",
+      "stated_rationale": "Credit is fastest-growing asset class in LatAm; dedicated platform enables specialized origination and LP targeting.",
+      "observable_metric_impact": "Credit segment grew to multi-billion contribution to $52.6B total AUM; new LP mandates secured.",
+      "timeline": {
+        "launched": "2024-Q4",
+        "operational": "2025"
+      },
+      "source_citation": "Patria Q4 2025 Earnings Release",
+      "operational_prerequisites": {
+        "systems_integration": "Credit origination and monitoring systems built for LatAm corporate and real estate credit.",
+        "data_reporting_stack": "Credit segment reporting established within Patria financial disclosures.",
+        "qa_controls_reconciliation": "Credit committee and underwriting standards defined for LatAm credit markets.",
+        "fund_admin_servicing": "Credit fund vehicles structured under Cayman and Brazilian regulatory frameworks.",
+        "compliance_risk_treasury": "CVM registration for Brazilian credit funds; Cayman structuring for offshore vehicles.",
+        "hiring_org_redesign": "Credit investment team built via RBR acquisition and organic hiring.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-080",
+      "firm_id": "FIRM-013",
+      "firm_name": "GCM Grosvenor Inc.",
+      "ticker": "GCMG",
+      "action_type": "product-launch",
+      "description": "Scaled private markets platform to record $10.7B fundraising in 2025 (71% private, 29% absolute return).",
+      "stated_rationale": "Private markets growth outpaces absolute return; diversified platform enables cross-asset LP conversations.",
+      "observable_metric_impact": "Total AUM $90.9B (+14% YoY); private markets AUM grew to majority of platform.",
+      "timeline": {
+        "record_year": "2025"
+      },
+      "source_citation": "GCM Grosvenor FY2025 Earnings Release",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Private markets and absolute return segment reporting infrastructure.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Private markets team expanded to support growing fund mandates.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-081",
+      "firm_id": "FIRM-013",
+      "firm_name": "GCM Grosvenor Inc.",
+      "ticker": "GCMG",
+      "action_type": "distribution-shift",
+      "description": "Expanded insurance and retirement channel AUM as new institutional capital source.",
+      "stated_rationale": "Insurance capital provides long-dated, permanent AUM; structurally complements GCM's PE and infrastructure mandates.",
+      "observable_metric_impact": "Insurance channel AUM growing; supports fee-earning AUM stability.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "GCM Grosvenor FY2025 Earnings Release",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Insurance client reporting and investment guideline compliance monitoring.",
+        "qa_controls_reconciliation": "ALM monitoring for insurance client mandates.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "Investment management agreement compliance with insurance regulatory requirements.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-082",
+      "firm_id": "FIRM-013",
+      "firm_name": "GCM Grosvenor Inc.",
+      "ticker": "GCMG",
+      "action_type": "product-launch",
+      "description": "Launched infrastructure and real estate dedicated vehicles to build private markets breadth.",
+      "stated_rationale": "Infrastructure and real estate are fastest-growing LP allocation targets; dedicated vehicles improve fee rates.",
+      "observable_metric_impact": "Infrastructure and RE AUM growing within 71% private markets share.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "GCM Grosvenor FY2025 Earnings Release",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Infrastructure and real estate fund reporting and monitoring infrastructure.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Fund administration for new dedicated vehicles.",
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Infrastructure and real estate investment teams expanded.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-083",
+      "firm_id": "FIRM-014",
+      "firm_name": "Ridgepost Capital, Inc. (formerly P10, Inc.)",
+      "ticker": "RPC",
+      "action_type": "organizational-change",
+      "description": "Rebranded from P10, Inc. to Ridgepost Capital, Inc. (NYSE: RPC) in February 2026.",
+      "stated_rationale": "New brand reflects broadened mandate beyond fund-of-funds into comprehensive private markets solutions.",
+      "observable_metric_impact": "Rebranding completed; AUM maintained at $43B; fee-paying AUM ~$29B.",
+      "timeline": {
+        "announced": "2026-01",
+        "effective": "2026-02"
+      },
+      "source_citation": "Ridgepost Capital / P10 Press Release Feb 2026",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Updated SEC filings, investor communications, and reporting materials under new brand.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "NYSE ticker change filing and SEC reporting name amendment.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-084",
+      "firm_id": "FIRM-014",
+      "firm_name": "Ridgepost Capital, Inc. (formerly P10, Inc.)",
+      "ticker": "RPC",
+      "action_type": "M&A",
+      "description": "Completed multiple acquisitions in 2023-2024 to build out lower-middle-market PE and VC platform.",
+      "stated_rationale": "Aggregation of specialist GPs creates solutions platform with differentiated access and fee economics.",
+      "observable_metric_impact": "AUM reached $43B by year-end 2025; fee-paying AUM $29B across lower-middle-market and VC.",
+      "timeline": {
+        "ongoing": "2022-2024"
+      },
+      "source_citation": "P10/Ridgepost Capital 10-K Annual Report",
+      "operational_prerequisites": {
+        "systems_integration": "Acquired GP portfolio management systems integrated onto P10/Ridgepost platform.",
+        "data_reporting_stack": "Multi-GP reporting and aggregated performance reporting infrastructure.",
+        "qa_controls_reconciliation": "Performance monitoring and portfolio valuation across acquired GPs.",
+        "fund_admin_servicing": "Fund administration consolidated across acquired entities.",
+        "compliance_risk_treasury": "SEC RIA notifications and merger filings for each acquisition.",
+        "hiring_org_redesign": "Acquired GP teams retained with Ridgepost shared services support.",
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-085",
+      "firm_id": "FIRM-014",
+      "firm_name": "Ridgepost Capital, Inc. (formerly P10, Inc.)",
+      "ticker": "RPC",
+      "action_type": "distribution-shift",
+      "description": "Expanded distribution to individual and family office investors via turnkey solutions offering.",
+      "stated_rationale": "Lower-middle-market access is differentiated for wealth channel; aggregator model lowers minimum ticket.",
+      "observable_metric_impact": "Wealth channel AUM growing as share of fee-paying AUM $29B.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "P10/Ridgepost Capital 10-K Annual Report",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Wealth investor reporting and portfolio transparency tools.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Registered fund or feeder vehicles for wealth distribution.",
+        "compliance_risk_treasury": "40-Act or exemption compliance for wealth-facing vehicles.",
+        "hiring_org_redesign": "Wealth distribution team established.",
+        "geographic_integration": null,
+        "source_bias_tag": "regulatory-filing",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-086",
+      "firm_id": "FIRM-018",
+      "firm_name": "Man Group plc",
+      "ticker": "EMG",
+      "action_type": "M&A",
+      "description": "Acquired Varagon Capital Partners, a middle-market direct lending manager with ~$13B AUM.",
+      "stated_rationale": "Adds private credit capabilities to complement systematic strategies; diversifies into non-correlated private markets.",
+      "observable_metric_impact": "Private markets AUM expanded; Man Group total AUM reached record $227.6B (+35% YoY) in 2025.",
+      "timeline": {
+        "announced": "2023-Q4",
+        "closed": "2024-Q2"
+      },
+      "source_citation": "Man Group Annual Report 2024",
+      "operational_prerequisites": {
+        "systems_integration": "Varagon direct lending systems integrated with Man Group's investment management infrastructure.",
+        "data_reporting_stack": "Private credit segment reporting established within Man Group financials.",
+        "qa_controls_reconciliation": "Middle-market credit underwriting and loan monitoring controls.",
+        "fund_admin_servicing": "Varagon fund vehicles transitioned to Man Group administration.",
+        "compliance_risk_treasury": "SEC and FCA regulatory approvals for acquisition of registered advisers.",
+        "hiring_org_redesign": "Varagon credit team retained within Man Group Private Markets.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-087",
+      "firm_id": "FIRM-018",
+      "firm_name": "Man Group plc",
+      "ticker": "EMG",
+      "action_type": "product-launch",
+      "description": "Scaled systematic and discretionary strategies, generating $28.7B net inflows in 2025.",
+      "stated_rationale": "Systematic alpha is resilient across market regimes; breadth of strategies provides all-weather LP proposition.",
+      "observable_metric_impact": "$28.7B net inflows and $21.4B investment gains; record $227.6B AUM at year-end 2025.",
+      "timeline": {
+        "record_year": "2025"
+      },
+      "source_citation": "Man Group FY2025 Earnings Release",
+      "operational_prerequisites": {
+        "systems_integration": "Quantitative research and execution infrastructure scaled for systematic strategies.",
+        "data_reporting_stack": "Performance attribution and risk reporting for systematic fund suite.",
+        "qa_controls_reconciliation": "Model risk governance and backtesting controls.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-088",
+      "firm_id": "FIRM-018",
+      "firm_name": "Man Group plc",
+      "ticker": "EMG",
+      "action_type": "technology-operations",
+      "description": "Deepened AI and machine learning integration across systematic investment processes.",
+      "stated_rationale": "AI/ML extends alpha generation capability; systematic edge increasingly derived from data and model quality.",
+      "observable_metric_impact": "AI-driven strategy enhancements contribute to $21.4B investment performance gains in 2025.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "Man Group Annual Report 2024",
+      "operational_prerequisites": {
+        "systems_integration": "AI/ML models integrated into live trading and risk management systems.",
+        "data_reporting_stack": "Proprietary data pipeline and feature engineering infrastructure.",
+        "qa_controls_reconciliation": "Model validation, backtesting, and live monitoring controls.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Data scientists and ML engineers hired as core investment staff.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-089",
+      "firm_id": "FIRM-019",
+      "firm_name": "CVC Capital Partners plc",
+      "ticker": "CVC",
+      "action_type": "capital-structure-change",
+      "description": "Completed IPO on Euronext Amsterdam in April 2024, raising approximately EUR 2.3B.",
+      "stated_rationale": "Public listing provides permanent capital, enhances brand credibility with institutional LPs, and enables M&A currency.",
+      "observable_metric_impact": "EUR 2.3B raised at IPO; AUM reached ~EUR 200B+ ($205B) by year-end 2025.",
+      "timeline": {
+        "announced": "2024-Q1",
+        "ipo": "2024-04"
+      },
+      "source_citation": "CVC Capital Partners IPO Prospectus (Euronext Amsterdam)",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Public company financial reporting infrastructure (IFRS, quarterly releases).",
+        "qa_controls_reconciliation": "Audit committee, SOX-equivalent controls for Euronext-listed entity.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "AFM (Dutch regulator) listing requirements; ongoing MIFID II and AIFMD compliance.",
+        "hiring_org_redesign": "CFO and investor relations function built out for public company obligations.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-090",
+      "firm_id": "FIRM-019",
+      "firm_name": "CVC Capital Partners plc",
+      "ticker": "CVC",
+      "action_type": "product-launch",
+      "description": "Expanded into infrastructure and credit as new strategy pillars post-IPO.",
+      "stated_rationale": "Platform diversification reduces vintage-year concentration risk; infrastructure and credit broaden LP universe.",
+      "observable_metric_impact": "Seven strategies active post-IPO: PE, Secondaries, Credit, Infrastructure, Special Situations, Growth, Strategic Opportunities.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "CVC Capital Partners IPO Prospectus",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Multi-strategy segment reporting established for public company disclosures.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Fund administration for new credit and infrastructure vehicles.",
+        "compliance_risk_treasury": "AIFMD compliance for new funds launched in expanded strategies.",
+        "hiring_org_redesign": "Credit and infrastructure investment teams hired or promoted.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-091",
+      "firm_id": "FIRM-019",
+      "firm_name": "CVC Capital Partners plc",
+      "ticker": "CVC",
+      "action_type": "distribution-shift",
+      "description": "Initiated private wealth distribution program targeting European and Asian HNW investors.",
+      "stated_rationale": "Private wealth is largest untapped LP segment in Europe; CVC's PE brand provides credibility for wealth products.",
+      "observable_metric_impact": "Private wealth channel nascent but identified as key growth vector in IPO materials.",
+      "timeline": {
+        "ongoing": "2024-2025"
+      },
+      "source_citation": "CVC Capital Partners IPO Prospectus",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Semi-liquid fund reporting for wealth-facing vehicles.",
+        "qa_controls_reconciliation": "Redemption and liquidity management for wealth-targeting structures.",
+        "fund_admin_servicing": "UCITS or ELTIF structures for European retail distribution.",
+        "compliance_risk_treasury": "AIFMD and MiFID II compliance for retail distribution.",
+        "hiring_org_redesign": "Private wealth distribution team established post-IPO.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-092",
+      "firm_id": "FIRM-021",
+      "firm_name": "Antin Infrastructure Partners S.A.",
+      "ticker": "ANTIN",
+      "action_type": "product-launch",
+      "description": "Launched Antin NextGen infrastructure strategy targeting digital and energy transition assets.",
+      "stated_rationale": "NextGen addresses highest-conviction infrastructure themes: digital infra, renewables, and energy transition.",
+      "observable_metric_impact": "NextGen Fund I in fundraising; complements flagship infrastructure fund series.",
+      "timeline": {
+        "launched": "2023-Q4",
+        "fundraising": "2024-2025"
+      },
+      "source_citation": "Antin Infrastructure Q3 2025 AUM Release",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Digital and energy transition asset monitoring and reporting.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Luxembourg fund vehicle administration for NextGen strategy.",
+        "compliance_risk_treasury": "AIFMD compliance for new fund; SFDR Article 9 classification for energy transition.",
+        "hiring_org_redesign": "Digital infrastructure and energy transition specialists hired.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-093",
+      "firm_id": "FIRM-021",
+      "firm_name": "Antin Infrastructure Partners S.A.",
+      "ticker": "ANTIN",
+      "action_type": "geographic-expansion",
+      "description": "Expanded North American infrastructure investment activity alongside European core.",
+      "stated_rationale": "North America IRA-driven energy transition creates investable opportunity alongside existing European platform.",
+      "observable_metric_impact": "North American deal flow increased; AUM EUR 33.3B (~$36B) as of Q3 2025.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "Antin Infrastructure Annual Report 2024",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "North American infrastructure asset monitoring in USD.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "US investment adviser registration (SEC RIA) for North American activities.",
+        "hiring_org_redesign": "North American investment team hired in New York.",
+        "geographic_integration": "New York office scaled for North American deal origination.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-094",
+      "firm_id": "FIRM-022",
+      "firm_name": "Tikehau Capital S.C.A.",
+      "ticker": "TKO",
+      "action_type": "product-launch",
+      "description": "Raised record EUR 10.5B gross inflows in 2025 across private debt, real assets, and PE.",
+      "stated_rationale": "Diversified multi-asset platform enables counter-cyclical fundraising; private debt and real assets in demand.",
+      "observable_metric_impact": "Total AUM EUR 52.8B (~$57B) at year-end 2025 (+8%); private debt dominant at ~50% of AUM.",
+      "timeline": {
+        "record_year": "2025"
+      },
+      "source_citation": "Tikehau Capital FY2025 Annual Results",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Multi-strategy fund reporting across private debt, real assets, PE, and capital markets.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": "Investment teams scaled across all four asset class verticals.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-095",
+      "firm_id": "FIRM-022",
+      "firm_name": "Tikehau Capital S.C.A.",
+      "ticker": "TKO",
+      "action_type": "geographic-expansion",
+      "description": "Expanded Middle East and APAC distribution via new strategic partnerships.",
+      "stated_rationale": "Sovereign wealth and family office capital in Gulf and Asia is structurally growing alternatives allocation.",
+      "observable_metric_impact": "Tikehau LP base diversification; Middle East and APAC contributing to EUR 10.5B inflows.",
+      "timeline": {
+        "ongoing": "2024-2025"
+      },
+      "source_citation": "Tikehau Capital FY2025 Annual Results",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "Regional regulatory registrations in UAE ADGM, Singapore MAS.",
+        "hiring_org_redesign": "Middle East and Singapore coverage officers hired.",
+        "geographic_integration": "Dubai and Singapore offices established for LP coverage.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-096",
+      "firm_id": "FIRM-022",
+      "firm_name": "Tikehau Capital S.C.A.",
+      "ticker": "TKO",
+      "action_type": "distribution-shift",
+      "description": "Leveraged balance sheet co-investment model to seed new funds and demonstrate GP alignment.",
+      "stated_rationale": "Balance sheet participation signals conviction; co-investment creates LP confidence and accelerates fundraising.",
+      "observable_metric_impact": "Balance sheet commitment deployed alongside LP capital in flagship vehicles.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "Tikehau Capital FY2025 Annual Results",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Balance sheet investment tracking and consolidation with fund performance.",
+        "qa_controls_reconciliation": "Investment committee approval process for balance sheet co-investments.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "AIFMD conflict-of-interest management for GP co-investment alongside LP capital.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-097",
+      "firm_id": "FIRM-023",
+      "firm_name": "Vinci Compass Investments Ltd. (formerly Vinci Partners)",
+      "ticker": "VINP",
+      "action_type": "M&A",
+      "description": "Acquired Verde Asset Management, adding ~R$16B (~$2.7B) AUM and top-tier Brazil credit talent.",
+      "stated_rationale": "Verde is one of Brazil's most respected credit managers; acquisition accelerates credit platform build.",
+      "observable_metric_impact": "Total AUM R$354.1B (~$59B) at year-end 2025 (+8% YoY); credit segment strengthened.",
+      "timeline": {
+        "announced": "2025-Q1",
+        "closed": "2025-Q3"
+      },
+      "source_citation": "Vinci Compass / Vinci Partners Q4 2025 Earnings Release",
+      "operational_prerequisites": {
+        "systems_integration": "Verde portfolio management systems integrated with Vinci Compass platform.",
+        "data_reporting_stack": "Credit segment reporting updated for Verde addition.",
+        "qa_controls_reconciliation": "Credit investment guidelines and risk controls harmonized.",
+        "fund_admin_servicing": "Verde fund vehicles transitioned to Vinci Compass administration.",
+        "compliance_risk_treasury": "CVM regulatory approval for acquisition of registered Brazilian manager.",
+        "hiring_org_redesign": "Verde investment team (~30 professionals) retained.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "corroborated"
+      }
+    },
+    {
+      "action_id": "ACT-VD-098",
+      "firm_id": "FIRM-023",
+      "firm_name": "Vinci Compass Investments Ltd. (formerly Vinci Partners)",
+      "ticker": "VINP",
+      "action_type": "organizational-change",
+      "description": "Rebranded from Vinci Partners to Vinci Compass Investments Ltd. (NASDAQ: VINP) in 2025.",
+      "stated_rationale": "New brand reflects expanded multi-asset platform beyond PE origins; positions for global LP outreach.",
+      "observable_metric_impact": "Rebranding completed; NASDAQ listing maintained; AUM R$354.1B at year-end 2025.",
+      "timeline": {
+        "announced": "2025-Q2",
+        "effective": "2025-Q3"
+      },
+      "source_citation": "Vinci Compass Rebranding Press Release 2025",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "SEC filings and investor communications updated to reflect new brand.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "SEC name change filing and NASDAQ notification.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-099",
+      "firm_id": "FIRM-023",
+      "firm_name": "Vinci Compass Investments Ltd. (formerly Vinci Partners)",
+      "ticker": "VINP",
+      "action_type": "distribution-shift",
+      "description": "Expanded private wealth distribution in Brazil via digital platforms and wealth management partnerships.",
+      "stated_rationale": "Brazilian wealth market is growing rapidly; individual investor access to alternatives is structurally under-developed.",
+      "observable_metric_impact": "Retail and HNW inflows growing; supports AUM growth in liquid/multi-strategy segment.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "Vinci Compass / Vinci Partners FY2025 Earnings Release",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Retail investor reporting and CVM-compliant disclosures.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": "Brazilian FIA and FIC vehicles structured for retail distribution.",
+        "compliance_risk_treasury": "CVM ICVM 555 and wealth distribution regulatory compliance.",
+        "hiring_org_redesign": "Wealth distribution team expanded.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-100",
+      "firm_id": "FIRM-024",
+      "firm_name": "3i Group plc",
+      "ticker": "III",
+      "action_type": "product-launch",
+      "description": "Scaled Action (European discount retailer) value, now representing >50% of 3i NAV.",
+      "stated_rationale": "Concentration in Action reflects high-conviction; compound value creation via international store rollout.",
+      "observable_metric_impact": "3i NAV per share grew substantially as Action expanded to 2,500+ stores across 12 countries.",
+      "timeline": {
+        "ongoing": "2022-2025"
+      },
+      "source_citation": "3i Group Annual Report FY2025",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Portfolio company monitoring and NAV calculation for Action investment.",
+        "qa_controls_reconciliation": "NAV valuation methodology and audit for principal investment in Action.",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "directly_documented"
+      }
+    },
+    {
+      "action_id": "ACT-VD-101",
+      "firm_id": "FIRM-024",
+      "firm_name": "3i Group plc",
+      "ticker": "III",
+      "action_type": "distribution-shift",
+      "description": "Expanded third-party AUM in infrastructure strategy alongside principal investing.",
+      "stated_rationale": "Third-party capital fees provide recurring income stream; infrastructure is high-demand LP asset class.",
+      "observable_metric_impact": "Infrastructure third-party AUM growing; total AUM ~$36B as of September 2025.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "3i Group Annual Report FY2025",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Third-party fund reporting distinct from balance sheet investments.",
+        "qa_controls_reconciliation": "Conflicts management between principal and third-party fund investment decisions.",
+        "fund_admin_servicing": "Third-party infrastructure fund administration established.",
+        "compliance_risk_treasury": "FCA AIFMD compliance for third-party infrastructure fund management.",
+        "hiring_org_redesign": "IR and fundraising team expanded for infrastructure fund.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-102",
+      "firm_id": "FIRM-024",
+      "firm_name": "3i Group plc",
+      "ticker": "III",
+      "action_type": "capital-structure-change",
+      "description": "Increased special dividends and buybacks as Action exit proceeds were partially returned to shareholders.",
+      "stated_rationale": "Capital return to shareholders reflects confidence in portfolio; buybacks offset dilution and support share price.",
+      "observable_metric_impact": "3i share price reflected strong NAV growth; shareholder returns among FTSE 100 leaders.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "3i Group Annual Report FY2025",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": null,
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "LSE market abuse and takeover code compliance for buybacks.",
+        "hiring_org_redesign": null,
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-103",
+      "firm_id": "FIRM-025",
+      "firm_name": "Eurazeo SE",
+      "ticker": "RF",
+      "action_type": "organizational-change",
+      "description": "Accelerated transition from balance-sheet investor to third-party asset management model.",
+      "stated_rationale": "Asset-light model commands higher valuation multiples; third-party fees provide recurring, predictable income.",
+      "observable_metric_impact": "Third-party AUM growing as share of total EUR 35B (~$38B) AUM.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "Eurazeo Annual Report 2024",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Bifurcated reporting: balance sheet investments vs. fee-generating third-party AUM.",
+        "qa_controls_reconciliation": "Conflicts management between proprietary and client capital.",
+        "fund_admin_servicing": "Third-party fund administration expanded.",
+        "compliance_risk_treasury": "AMF regulatory requirements for expanded third-party fund management.",
+        "hiring_org_redesign": "IR and third-party fundraising team scaled up.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-104",
+      "firm_id": "FIRM-025",
+      "firm_name": "Eurazeo SE",
+      "ticker": "RF",
+      "action_type": "distribution-shift",
+      "description": "Expanded US institutional LP fundraising, establishing New York office for US investor coverage.",
+      "stated_rationale": "US pension and endowment capital represents largest incremental LP opportunity for European mid-cap manager.",
+      "observable_metric_impact": "US LP commitments growing; contributes to EUR 35B total AUM.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "Eurazeo Annual Report 2024",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "US investor reporting and USD-denominated performance data.",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "SEC Exempt Reporting Adviser or RIA registration for US investor coverage.",
+        "hiring_org_redesign": "New York office opened; US IR professionals hired.",
+        "geographic_integration": "New York office established as US distribution hub.",
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    },
+    {
+      "action_id": "ACT-VD-105",
+      "firm_id": "FIRM-025",
+      "firm_name": "Eurazeo SE",
+      "ticker": "RF",
+      "action_type": "product-launch",
+      "description": "Launched private debt and small-mid buyout funds as new product lines for third-party LPs.",
+      "stated_rationale": "Private debt demand growing in Europe; small-mid buyout is differentiated from large-cap competition.",
+      "observable_metric_impact": "New strategies in fundraising; third-party AUM growing toward majority of total EUR 35B.",
+      "timeline": {
+        "ongoing": "2023-2025"
+      },
+      "source_citation": "Eurazeo Annual Report 2024",
+      "operational_prerequisites": {
+        "systems_integration": null,
+        "data_reporting_stack": "Private debt and small-mid PE fund performance reporting.",
+        "qa_controls_reconciliation": "Credit underwriting controls for private debt funds.",
+        "fund_admin_servicing": "Luxembourg and French fund vehicles for new strategies.",
+        "compliance_risk_treasury": "AMF and AIFMD compliance for new fund launches.",
+        "hiring_org_redesign": "Private debt investment team built alongside existing equity team.",
+        "geographic_integration": null,
+        "source_bias_tag": "company-produced",
+        "evidence_class": "inferred"
+      }
+    }
+  ]
+}

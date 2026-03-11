@@ -1,0 +1,43 @@
+{
+  "normalized_url": "www.sec.gov/Archives/edgar/data/1433642/000143364225000066/hlne-2025annualreporttosec.pdf",
+  "canonical_url": "https://www.sec.gov/Archives/edgar/data/1433642/000143364225000066/hlne-2025annualreporttosec.pdf",
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl",
+  "priority_score": 32,
+  "preferred_source": {
+    "source_id": "PS-VD-037",
+    "firm": "Hamilton Lane",
+    "title": "Hamilton Lane Annual Report FY2025 (SEC PDF)",
+    "date": "2025-06-30",
+    "document_type": "annual_report",
+    "bias_tag": "regulatory-filing",
+    "url": "https://www.sec.gov/Archives/edgar/data/1433642/000143364225000066/hlne-2025annualreporttosec.pdf",
+    "notes": "Annual report FY2025 (March year-end) \u2014 AUM/AUA breakdown, technology platform revenue, co-investment activity, and fee structure",
+    "catalog_path": "data/processed/pax/2026-03-09-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl",
+    "seed_url": "https://www.sec.gov/Archives/edgar/data/1433642/000143364225000066/hlne-2025annualreporttosec.pdf",
+    "loaded_url": "https://www.sec.gov/Archives/edgar/data/1433642/000143364225000066/hlne-2025annualreporttosec.pdf",
+    "title": "Hamilton Lane Annual Report FY2025 (SEC PDF)",
+    "document_type": "annual_report",
+    "bias_tag": "regulatory-filing",
+    "content_type": "application/pdf",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2/PS-VD-037_hamilton-lane-annual-report-fy2025-sec-pdf_867ae474.txt",
+    "text_length": 526446,
+    "quality_score": 531946,
+    "quality_bucket": "good",
+    "quality_reason": "sufficient_text",
+    "relevant_snippets": [
+      "March 31, 2025, our top 10 clients generated approximately 12% of management and advisory fee revenues,",
+      "As of March 31, 2025, we had total AUA and AUM of approximately $958 billion, of which $138 billion",
+      "As of March 31, 2025, our fee-earning AUM was approximately $72 billion compared to $138 billion in",
+      "quarter of fiscal 2025. On May 29, 2025, we declared a quarterly dividend of $0.54 per share of Class A",
+      "Our AUM has grown from approximately $88 billion as of March 31, 2021 to approximately $138 billion"
+    ],
+    "extraction_modes": []
+  },
+  "canonical_text_path": "data/raw/pax/canonical/ef/ef5e7ee3ec461613d67a0f9095c258be3d9f4609/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.456369Z"
+}

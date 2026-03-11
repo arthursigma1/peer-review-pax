@@ -1,0 +1,43 @@
+{
+  "normalized_url": "ir.patria.com/financials-filings/sec-filings",
+  "canonical_url": "https://ir.patria.com/financials-filings/sec-filings",
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl-backfill-selective",
+  "priority_score": 57,
+  "preferred_source": {
+    "source_id": "PS-VD-071",
+    "firm": "Patria Investments (PAX)",
+    "title": "Patria Investments SEC Filings \u2014 6-K Series (Quarterly Results and Material Events)",
+    "date": "2025-04-04",
+    "document_type": "6-K Current Report",
+    "bias_tag": "regulatory-filing",
+    "url": "https://ir.patria.com/financials-filings/sec-filings",
+    "notes": "Series of 6-K filings covering quarterly earnings releases, material acquisitions (Solis, RBR), and AGM proxy materials. As a Cayman Islands-incorporated foreign private issuer, Patria files 20-F (annual) and 6-K (current reports) rather than 10-K/10-Q/DEF 14A.",
+    "catalog_path": "data/processed/pax/2026-03-07/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl-backfill-selective",
+    "seed_url": "https://ir.patria.com/financials-filings/sec-filings",
+    "loaded_url": "https://ir.patria.com/static-files/ee90d123-0703-4045-851e-e7037be39233",
+    "title": "Patria Investments SEC Filings \u2014 6-K Series (Quarterly Results and Material Events)",
+    "document_type": "6-K Current Report",
+    "bias_tag": "regulatory-filing",
+    "content_type": "application/pdf",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2-backfill-selective/PS-VD-071_patria-investments-sec-filings-6-k-series-quarterly-results-and-material-events_f1098a90.txt",
+    "text_length": 21140,
+    "quality_score": 25740,
+    "quality_bucket": "good",
+    "quality_reason": "sufficient_text",
+    "relevant_snippets": [
+      "Dear Addressees PATRIA INVESTMENTS LIMITED We have acted as Cayman Islands legal advisers to P\u00e1tria Investments Limited (the \"Company\"), and we have examined the RegistrationStatement on Form S-8 to be filed by the Company with the United States Securities and Exchange Commission (including all supplementsand amendments thereto, the \"Registration Statement\"), relating to the registration under the U.S. Securities Act of 1933, as amended (the\"Securities Act\"), of up to an aggregate of an additional 3,640,000 Class A Common Shares with a par value of US$0.0001 per share in thecapital of the Company (the \"Shares\") for issuance pursuant to the Company's Long-Term Incentive Plan (the \"Plan\"). For the purposes of giving this opinion, we have examined and relied upon the originals or copies of the documents listed in Schedule 1. In giving this opinion we have relied upon the assumptions set out in Schedule 2, which we have not independently verified. We are Cayman Islands Attorneys at Law and express no opinion as to any laws other than the laws of the Cayman Islands in force and asinterpreted at the date of this opinion.  We have not, for the purposes of this opinion, made any investigation of the laws, rules or regulationsof any other jurisdiction.   Based upon the foregoing examinations and assumptions and upon such searches as we have conducted and having regard to legalconsiderations which we consider relevant, and under the laws of the Cayman Islands, we give the following opinions in relation to thematters set out below. 1. The Company is an exempted company duly incorporated with limited liability, validly existing under the laws of the Cayman Islandswith full corporate power and authority to issue the Shares and in good standing with the Registrar of Companies in the CaymanIslands (the \"Registrar\").   Walkers",
+      "(1)  Other  3,640,000 $ 13.35 $ 48,594,000.00 0.0001381 $ 6,710.83",
+      "(1) This Registration Statement on Form S-8 (this \u201cRegistration Statement\u201d) covers 3,640,000 Class A common shares, par value US $0.0001 per share",
+      "268577), February 26, 2024 (Registration No. 333-277375) and February 20, 2025 (Registration No. 333-285091).",
+      "(a) 20-F Annual Report of the Registrant for the year ended December 31, 2024 (Registration No. 001-39911), filed with the Commission on May 15,"
+    ],
+    "extraction_modes": []
+  },
+  "canonical_text_path": "data/raw/pax/canonical/79/79bba59f81e6651074caa927300debecc3b2f2e1/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.413828Z"
+}

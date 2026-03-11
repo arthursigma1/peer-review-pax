@@ -1,0 +1,72 @@
+{
+  "checkpoint": "CP-1",
+  "stage": "VD-A2",
+  "verdict": "PASSED",
+  "claims_audited": 42,
+  "claims_passed": 37,
+  "claims_flagged": 5,
+  "blocked_claims": [],
+  "warnings": [
+    {
+      "id": "W-001",
+      "severity": "high",
+      "type": "unit_inconsistency",
+      "description": "MET-VD-007 (FEAUM 3-Year CAGR) has 5 firms with values expressed as decimals instead of percentages. FIRM-010 (EQT): 0.096 should be 9.6%, FIRM-012 (STEP): 0.264 should be 26.4%, FIRM-013 (CVC): 0.138 should be 13.8%, FIRM-015 (BLUE OWL): 0.184 should be 18.4%, FIRM-016 (MAN): 0.127 should be 12.7%. All from tier2 collection. Remaining 17 firms use percentage convention (e.g., 9.2, 17.9, 26.7). This will distort correlation analysis in step 3 if not normalized.",
+      "remediation": "Standardize all MET-VD-007 values to percentage convention before step 3. Multiply decimal values by 100.",
+      "affected_firms": ["FIRM-010", "FIRM-012", "FIRM-013", "FIRM-015", "FIRM-016"]
+    },
+    {
+      "id": "W-002",
+      "severity": "medium",
+      "type": "duplicate_in_raw",
+      "description": "quantitative_tier2.json contains two entries for FIRM-009 (TPG) MET-VD-007 with conflicting values: 0.88 and 0.093. The merged file correctly resolved to 9.3% (the 0.093 decimal * 100). The 0.88 value appears to be a calculation error in the first attempt.",
+      "remediation": "No action needed — merge resolved correctly. Noted for provenance."
+    },
+    {
+      "id": "W-003",
+      "severity": "medium",
+      "type": "duplicate_in_raw",
+      "description": "quantitative_tier3.json contains two entries for FIRM-017 (BPT) MET-VD-007 with values 14.8% and 16.5%. The merged file uses 16.5%. Both derivations are documented but arrive at different results due to base year interpretation.",
+      "remediation": "No action needed — merge resolved. The 16.5% value (FY2021->FY2024 base) is consistent with the 3-year CAGR convention used across other firms."
+    },
+    {
+      "id": "W-004",
+      "severity": "low",
+      "type": "proxy_metric_documentation",
+      "description": "Three firms use proxy metrics for DE/share (MET-VD-001) with appropriate low/medium confidence flags: EQT (FIRM-010) uses ANI proxy at $0.56, confidence=low; Man Group (FIRM-011) uses Adjusted Diluted EPS at $0.323, confidence=medium; Partners Group (FIRM-014) uses adjusted IFRS EPS at $81.6/share (CHF converted), confidence=low. All properly documented with comparability caveats.",
+      "remediation": "No action needed — proxy flags and confidence levels are appropriate."
+    },
+    {
+      "id": "W-005",
+      "severity": "low",
+      "type": "fx_documentation",
+      "description": "Non-USD firms have FX conversions documented: PGHN (CHF/USD 1.11), EQT (SEK/USD 0.092), BPT (GBP/USD 1.2520 eoy / 1.2813 avg), ONEX (CAD/USD 0.731 avg), VINP (BRL/USD 0.168 eoy / 0.1863 avg), RF/Eurazeo (EUR/USD 1.08). Tier3 metadata includes comprehensive FX rate table with period-end and period-average rates for FY2020-FY2024. Rate type (period-end vs period-average) is documented per data point.",
+      "remediation": "No action needed — FX documentation meets requirements."
+    }
+  ],
+  "audit_notes": "CP-1 audit sampled 42 data points across 15 firms and 18 metrics. Key findings: (1) No PS-VD-9xx consulting sources cited in any quantitative data file — Dimension 3 clean. (2) No logical violations found: no negative FEAUM, no FRE margin >100%, no negative P/FRE. (3) All 78 null values have documented missing_reason fields. (4) Firm IDs correctly matched to companies across all 24 firms. (5) One HIGH-severity warning: MET-VD-007 unit inconsistency (5 firms in decimal, rest in percentage) must be fixed before step 3 standardization. This is a data quality issue, not a fabrication issue, so it does not trigger a BLOCK. The metric-architect in step 3 should normalize these during standardization. (6) 160 carry-forward data points from base run use 'source' field instead of 'source_id' — this is a schema format difference between base run and new collection, not a data quality issue. Verdict: PASSED with remediation required for W-001 before step 3.",
+  "dimension_summary": {
+    "D1_invalid_premises": "CLEAN — No impossible values, no firm ID mismatches, no fabricated data detected in 42 sampled claims",
+    "D2_misleading_context": "CLEAN with warnings — Proxy metrics (EQT ANI, MAN Adjusted EPS, PGHN adjusted IFRS EPS) properly flagged with low/medium confidence. FX conversions documented. Unit inconsistency in MET-VD-007 (W-001) is the primary concern.",
+    "D3_consulting_source": "CLEAN — Zero PS-VD-9xx citations in quantitative_data.json, quantitative_tier1.json, quantitative_tier2.json, or quantitative_tier3.json",
+    "D4_coverage_accuracy": "CLEAN — All 78 null values have missing_reason (not_disclosed, not_applicable). Reasons are plausible (e.g., BX/KKR/APO do not report constant currency growth; BPT does not report DE/share; ONEX does not report DE/share due to hybrid balance-sheet model)."
+  },
+  "sample_checks": [
+    {"firm": "FIRM-001 (BX)", "metric": "MET-VD-001", "value": 4.64, "check": "DE/share $4.64 — consistent with BX Q4 2024 earnings. PASS"},
+    {"firm": "FIRM-001 (BX)", "metric": "MET-VD-013", "value": 56.8, "check": "FRE margin 56.8% — $4,464M FRE / $7,861M fees. Math checks. PASS"},
+    {"firm": "FIRM-001 (BX)", "metric": "MET-VD-010", "value": 2318, "check": "HHI 2318 — derivation shows sub-segment adjustment. Plausible. PASS"},
+    {"firm": "FIRM-002 (BAM)", "metric": "MET-VD-007", "value": 17.9, "check": "FEAUM CAGR 17.9% — (539/325)^(1/3)-1. Math checks. PASS"},
+    {"firm": "FIRM-003 (APO)", "metric": "MET-VD-012", "value": 70.0, "check": "Credit % 70% — APO is known credit-heavy. Consistent. PASS"},
+    {"firm": "FIRM-004 (KKR)", "metric": "MET-VD-001", "value": 4.7, "check": "DE/share $4.70 — consistent with KKR FY2024 earnings. PASS"},
+    {"firm": "FIRM-005 (ARES)", "metric": "MET-VD-016", "value": 127, "check": "Mgmt fee rate 127bps — $3,718M / avg $261.95B. Plausible for credit-focused manager. PASS"},
+    {"firm": "FIRM-007 (VCTR)", "metric": "MET-VD-016", "value": 578, "check": "Mgmt fee rate 578bps — traditional active manager, much higher than alts. Correctly noted. PASS"},
+    {"firm": "FIRM-009 (TPG)", "metric": "MET-VD-001", "value": 2.48, "check": "DE/share $2.48 — FY2024 after-tax DE per Class A share. Plausible. PASS"},
+    {"firm": "FIRM-010 (EQT)", "metric": "MET-VD-001", "value": 0.56, "check": "ANI proxy $0.56 — SEK 6.10 * 0.092. Properly flagged as low confidence proxy. PASS"},
+    {"firm": "FIRM-010 (EQT)", "metric": "MET-VD-007", "value": 0.096, "check": "FEAUM CAGR 0.096 — should be 9.6%. UNIT INCONSISTENCY (W-001). FLAGGED"},
+    {"firm": "FIRM-011 (MAN)", "metric": "MET-VD-001", "value": 0.323, "check": "Adjusted EPS proxy $0.323 — $471M / 1,460M shares. Math checks. PASS"},
+    {"firm": "FIRM-014 (PGHN)", "metric": "MET-VD-001", "value": 81.6, "check": "CHF 73.50 * 1.11 = $81.6. Very few shares (6.6M) — noted as non-comparable. PASS"},
+    {"firm": "FIRM-017 (BPT)", "metric": "MET-VD-004", "value": 47.8, "check": "FEAUM $47.8B — GBP 38.2B * 1.2520. FX conversion documented. PASS"},
+    {"firm": "FIRM-019 (PAX)", "metric": "MET-VD-003", "value": 11.7, "check": "DE CAGR 11.7% — (1.24/0.89)^(1/3)-1. Math checks. PASS"},
+    {"firm": "FIRM-019 (PAX)", "metric": "MET-VD-009", "value": 21.2, "check": "Fundraising ratio 21.2% — $7.0B / $33.0B. Consistent with earnings release. PASS"}
+  ]
+}

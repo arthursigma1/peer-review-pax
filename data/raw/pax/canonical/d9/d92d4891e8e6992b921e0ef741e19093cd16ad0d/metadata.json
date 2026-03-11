@@ -1,0 +1,43 @@
+{
+  "normalized_url": "ir.apollo.com/news-events/presentations",
+  "canonical_url": "https://ir.apollo.com/news-events/presentations",
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl",
+  "priority_score": 22,
+  "preferred_source": {
+    "source_id": "PS-VD-011",
+    "firm": "Apollo Global Management",
+    "title": "Apollo Presentations and Events Page",
+    "date": "2025-12-31",
+    "document_type": "investor_presentation",
+    "bias_tag": "company-produced",
+    "url": "https://ir.apollo.com/news-events/presentations",
+    "notes": "Apollo presentations archive \u2014 investor day materials, strategic updates, and conference presentations",
+    "catalog_path": "data/processed/pax/2026-03-09-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl",
+    "seed_url": "https://ir.apollo.com/news-events/presentations",
+    "loaded_url": "https://ir.apollo.com/_assets/_9d229425011f8161e75a7d4ea62ed11d/apollo/db/2224/22852/pdf/Private+Credit+-+Fact+vs.+Fiction.pdf",
+    "title": "Apollo Presentations and Events Page",
+    "document_type": "investor_presentation",
+    "bias_tag": "company-produced",
+    "content_type": "application/pdf",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2/PS-VD-011_apollo-presentations-and-events-page_9f5193d2.txt",
+    "text_length": 85715,
+    "quality_score": 91215,
+    "quality_bucket": "good",
+    "quality_reason": "sufficient_text",
+    "relevant_snippets": [
+      "Reflects the views and opinions of Apollo Analysts. 1. Based on LTM Q3 2025 Apollo credit originations. 2. 97% of $219B of AFS securities designated NAIC 1 or 2.",
+      "\u2022 \u201cAssets Under Management \u201d or \u201cAUM.\u201d For the definition of Assets Under Management, refer to page 5 of Apollo\u2019s quarterly report on Form 10-Q for the quarterly period ended September 30, 2025, filed with the SEC on November 10, 2025 (the \u201cApollo 10-Q\u201d).",
+      "~$300B2 of bank lending to private credit providers (~1% of regulated bank balance sheet assets3)",
+      "Private credit contribution to US economy in 2024 was ~2.5M jobs and ~$370B of GDP2",
+      "1. S&P CapIQ. 2. Includes total bonds & loans to industrial insurers includes Industrial Bonds, Hybrid Securities, Credit Tenant Loans, SVO Identified Funds, Bank Loans, Unaffiliated Bank Loans, and Unaffiliated Certificates of Deposit: Bonds. 3. AUM of private credit"
+    ],
+    "extraction_modes": []
+  },
+  "canonical_text_path": "data/raw/pax/canonical/d9/d92d4891e8e6992b921e0ef741e19093cd16ad0d/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.473600Z"
+}

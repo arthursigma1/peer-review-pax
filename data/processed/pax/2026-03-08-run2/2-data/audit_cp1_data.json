@@ -1,0 +1,216 @@
+{
+  "checkpoint": "CP-1",
+  "stage": "VD-A2",
+  "timestamp": "2026-03-08",
+  "verdict": "PASSED",
+  "total_claims_sampled": 87,
+  "passed_claims": 84,
+  "blocked_claims": [],
+  "inferred_claims": [
+    {
+      "firm_id": "FIRM-007",
+      "metric_id": "MET-VD-001",
+      "period": "FY2023",
+      "recommended_hedging": "BN FY2023 DE/share ($1.67) is internally inconsistent: extraction_notes state '$1.87/sh' but recorded value is 1.67. The note attribution reads 'est from prior Q4 PR' — downstream text should hedge with 'approximately' or 'estimated at' rather than citing a precise figure. Use 'approximately $1.7–1.9/share' range."
+    },
+    {
+      "firm_id": "FIRM-007",
+      "metric_id": "MET-VD-013",
+      "period": "FY2024",
+      "recommended_hedging": "BN FRE margin (59%) is labeled 'company-produced' but extraction note says 'BN FRE margin ~same as BAM; reflects BAM AM subsidiary' — this is a cross-entity assumption, not a directly disclosed BN figure. Downstream text should state 'BN's fee-related earnings margin, which approximates BAM's 59% margin given full consolidation of the asset management subsidiary'."
+    },
+    {
+      "firm_id": "FIRM-003",
+      "metric_id": "MET-VD-001",
+      "period": "FY2025",
+      "recommended_hedging": "KKR DE proxy uses FRE/share ($4.15) as a substitute for traditional Distributable Earnings, with confidence 'medium'. KKR's full ANI ($4.70/sh) includes insurance income not comparable to pure alt-manager DE. Downstream text should state 'KKR's fee-related earnings per share of $4.15 (FY2025), used as the closest comparable to the distributable earnings metric reported by peers'."
+    },
+    {
+      "firm_id": "FIRM-RITM",
+      "metric_id": "MET-VD-004",
+      "period": "FY2024",
+      "recommended_hedging": "RITM/Sculptor FEAUM of $28.5bn is derived as 82% of total AUM per acquisition disclosure, not directly reported. Should be hedged as 'estimated fee-earning AUM of approximately $28–29bn, derived from acquisition-period disclosure ratios'."
+    },
+    {
+      "firm_id": "FIRM-005",
+      "metric_id": "MET-VD-018",
+      "period": "FY2025",
+      "recommended_hedging": "ARES P/FRE of 33.0x is flagged derivation_confidence 'low' — FRE total was itself derived from margin * estimated mgmt fees. Any downstream citation should note 'estimated at approximately 30–35x based on derived FRE figure'."
+    }
+  ],
+  "audit_notes": "Audit sampled 87 data points across all 5 audit dimensions, spanning Tier 1A (BX, APO, BAM, BN), Tier 1B (KKR, ARES, CG), Tier 2 (EQT, PGHN, HLNE, ICP, CVC, GCMG), Tier 3A (PAX, VINP, TKO, RPC), and Tier 3B (Eurazeo, RITM, ANTIN). The dataset covers 27 firms across 648 records. Three material findings were identified and downgraded to INFERRED status rather than BLOCKED: (1) a value-vs-note discrepancy in FIRM-007 BN FY2023 DE/share; (2) a cross-entity assumption in BN's FRE margin; (3) a non-standard source ID namespace in Tier 1B. None constitute fabricated values or order-of-magnitude violations. The valuation multiples (MET-VD-018/019/020) are consistently marked medium confidence and source PS-VD-210 (MacroTrends) or tier-local market data aggregators — appropriate for third-party analyst data. RITM has exactly 3 records, each limited to AUM metrics with plausible values. FIRM-007 BN has 9 records. No zero-record or implausible-magnitude fabrications were detected across sparse firms. All core PAX metrics (FIRM-001) are high/medium confidence sourced from official earnings releases (PS-VD-T3A-001 through T3A-003). Derived metrics (CAGR, YoY growth, management fee rate) correctly carry medium confidence and include transparent derivation formulas in extraction_notes. One source namespace deviation noted: Tier 1B uses informal source IDs ('KKR-Q4-2025-ER', 'ARES-Q4-2025-ER', 'CG-Q4-2025-ER') not registered in the master source_catalog.json — these are plausible and the underlying sources are real public earnings releases, but the ID mismatch creates a cross-file consistency gap that should be remediated before Step 3 correlation analysis.",
+  "dimension_results": {
+    "invalid_premises": {
+      "verdict": "PASSED",
+      "claims_sampled": 25,
+      "findings": [
+        {
+          "severity": "minor",
+          "firm_id": "FIRM-003",
+          "metric_id": "multiple",
+          "period": "FY2020–FY2025",
+          "issue": "Source IDs in the merged quantitative_data.json for KKR (FIRM-003), ARES (FIRM-005), and CG (FIRM-010) use an informal namespace ('KKR-Q4-2025-ER', 'ARES-Q4-2025-ER', 'CG-Q4-2025-ER') that does not appear in the master source_catalog.json (which lists PS-VD-001 through PS-VD-065). These sources are traceable to real earnings releases and the underlying values are plausible, but the IDs cannot be verified against the catalog. Recommendation: standardize to PS-VD-T1B-NNN namespace before downstream correlation.",
+          "disposition": "minor — values plausible, sources real, ID namespace non-standard"
+        },
+        {
+          "severity": "note",
+          "firm_id": "FIRM-002",
+          "metric_id": "MET-VD-003",
+          "period": "FY2024",
+          "issue": "BX DE/share 3-year CAGR of -0.7% uses FY2021 base of $5.00/unit, but extraction_notes state '(est)' — the base year value is itself marked as '~$5.00' with medium confidence. The CAGR is therefore doubly uncertain. Value is plausible given reported FY2024 $4.64 DE/unit. No premise violation — documented uncertainty is appropriate.",
+          "disposition": "acceptable — correctly carries medium confidence"
+        },
+        {
+          "severity": "note",
+          "firm_id": "FIRM-007",
+          "metric_id": "MET-VD-001",
+          "period": "FY2023",
+          "issue": "BN DE/share FY2023: recorded value is 1.67 but extraction_notes state '$1.87/sh; est from prior Q4 PR'. The note and value conflict by $0.20/share (~12%). This is an internal inconsistency, not an order-of-magnitude error. The note appears to reflect a different calculation ($4,450M / 2,376M = $1.87) while the recorded value may use a different share count or DE total. Values are order-of-magnitude plausible. Classified as INFERRED pending reconciliation.",
+          "disposition": "note discrepancy — value in plausible range, inconsistency flagged"
+        }
+      ]
+    },
+    "misleading_context": {
+      "verdict": "PASSED",
+      "claims_sampled": 18,
+      "findings": [
+        {
+          "severity": "minor",
+          "firm_id": "FIRM-007",
+          "metric_id": "MET-VD-013",
+          "period": "FY2024",
+          "issue": "BN FRE margin (59%) is labeled bias_tag 'company-produced' and confidence 'medium', but extraction notes state 'BN FRE margin ~same as BAM; reflects BAM AM subsidiary.' This is a cross-entity assumption (imputing BAM's reported margin to BN's consolidated entity) rather than a directly extracted BN figure. BN and BAM are separate listed entities. The figure may understate BN's true margin which includes Wealth Solutions and operating businesses not captured in BAM's pure asset management FRE. Classified as INFERRED — should be presented as an approximation in downstream analysis.",
+          "disposition": "misleading_context: cross-entity imputation presented without hedging"
+        },
+        {
+          "severity": "minor",
+          "firm_id": "FIRM-019",
+          "metric_id": "MET-VD-013",
+          "period": "H1-FY2025",
+          "issue": "CVC FRE margin (56%) correctly references period 'H1-FY2025' and is annotated as 'H1 2025'. However, the merged dataset does not flag this as a partial-year figure anywhere other than the period field. Any downstream tool consuming only period_end_date (2025-06-30) without reading the period label 'H1-FY2025' could misclassify this as a full-year figure. The data is not wrong, but labeling warrants care.",
+          "disposition": "minor — period correctly labeled, recommend explicit note in Step 3 cross-firm comparison"
+        },
+        {
+          "severity": "minor",
+          "firm_id": "FIRM-016",
+          "metric_id": "MET-VD-016",
+          "period": "H1-FY2025-annualized",
+          "issue": "Partners Group management fee rate (98 bps) is based on H1 2025 management fees annualized, labeled 'H1-FY2025-annualized'. This is a derived/annualized figure. Confidence is correctly marked 'medium'. No period misrepresentation — appropriately disclosed in extraction_notes.",
+          "disposition": "acceptable — derivation transparent, confidence appropriately medium"
+        },
+        {
+          "severity": "note",
+          "firm_id": "FIRM-015",
+          "metric_id": "MET-VD-007",
+          "period": "FY2022-FY2025",
+          "issue": "EQT FEAUM 3-year CAGR (7.7%) uses FY2022 as base year, but extraction notes explicitly state that BPEA acquisition closed November 2022, creating a step-change in that year's FAUM. The CAGR is therefore inflated relative to organic growth. This is acknowledged in the extraction_notes and derivation_confidence is 'medium'. Downstream text should present as 'post-acquisition CAGR' not 'organic growth'.",
+          "disposition": "context note — acquisition impact acknowledged in notes, confidence correctly medium"
+        }
+      ]
+    },
+    "sycophantic_fabrication": {
+      "verdict": "PASSED",
+      "claims_sampled": 12,
+      "findings": [
+        {
+          "severity": "none",
+          "firm_id": "FIRM-027",
+          "firm_ticker": "RITM",
+          "note": "FIRM-027 (Sculptor/RITM) has exactly 3 records: MET-VD-005 Total AUM FY2024 ($34.0bn), MET-VD-004 FEAUM FY2024 ($28.5bn), and MET-VD-005 Total AUM FY2023 ($32.8bn). All values are sourced to PS-VD-T3B-002 (Rithm Capital Q3 2024 10-Q, regulatory filing). Sculptor's AUM was ~$34bn at acquisition close (publicly disclosed), and the $32.8bn Nov 2023 close figure is consistent with deal disclosures. Values are order-of-magnitude plausible for a mid-size hedge fund/alt manager. FEAUM of $28.5bn as 82% of AUM is a disclosed ratio from acquisition documents. No fabrication evidence.",
+          "disposition": "no fabrication — sparse records justified by private/non-reporting subsidiary status"
+        },
+        {
+          "severity": "none",
+          "firm_id": "FIRM-007",
+          "firm_ticker": "BN",
+          "note": "FIRM-007 (Brookfield Corporation BN) has 9 records. All are sourced to PS-VD-209 (Brookfield Corporation Q4 2024 Results Press Release) or PS-VD-210 (MacroTrends market data). BN total AUM ~$1T and DE $6,274M are publicly disclosed. DE/share $2.64 = $6,274M / ~2,377M shares is arithmetically verifiable. FRE margin 59% is an estimate tied to BAM (acknowledged). Valuation multiples use market cap ~$79B, consistent with BN's reported price range (~$51/share × 1,551M shares = $79B). No fabrication.",
+          "disposition": "no fabrication — all values traceable, sparse records reflect deliberate scope-limiting for holding company"
+        }
+      ]
+    },
+    "confidence_miscalibration": {
+      "verdict": "PASSED",
+      "claims_sampled": 22,
+      "findings": [
+        {
+          "severity": "minor",
+          "firm_id": "FIRM-005",
+          "metric_id": "MET-VD-018",
+          "period": "FY2025",
+          "issue": "ARES P/FRE (33.0x) is tagged confidence 'medium' and source ARES-Q4-2025-ER (company-produced), but derivation_confidence is 'low' and extraction_notes acknowledge FRE total was itself derived from margin × estimated management fees. A two-layer derivation with a low-confidence inner step should carry 'low' overall confidence, not 'medium'. Confidence label is overcalibrated by one notch.",
+          "disposition": "minor miscalibration — recommend downgrading to 'low'; downstream use should apply INFERRED hedging"
+        },
+        {
+          "severity": "minor",
+          "firm_id": "FIRM-003",
+          "metric_id": "MET-VD-020",
+          "period": "FY2025",
+          "issue": "KKR EV/FEAUM (16.2%) is tagged confidence 'low' — correctly flagged given complex balance sheet including Global Atlantic. The derivation_confidence is also 'low'. This is appropriately calibrated. No issue.",
+          "disposition": "appropriately low confidence — no action needed"
+        },
+        {
+          "severity": "note",
+          "firm_id": "FIRM-002",
+          "metric_id": "MET-VD-016",
+          "period": "FY2024",
+          "issue": "BX management fee rate (67 bps) is tagged 'medium' confidence, but extraction_notes are internally confusing: they first compute 119 bps (mgmt fees/avg FEAUM) then state BX supplement shows 67 bps 'base' rate. The recorded value 67 bps appears to be a base rate from supplemental disclosure, not the all-in effective rate. This creates potential misinterpretation if cross-firm comparison assumes all records use the same fee rate definition. Confidence 'medium' is appropriate, but the definition mismatch should be noted in Step 3 cross-firm analysis.",
+          "disposition": "definition heterogeneity — not a calibration error, flagged for Step 3 attention"
+        },
+        {
+          "severity": "note",
+          "firm_id": "FIRM-RF",
+          "metric_id": "MET-VD-018",
+          "period": "FY2024",
+          "issue": "Eurazeo P/FRE (17.0x) has market_cap_reference_date '2026-03-06' while the FRE is FY2024. This creates a period mismatch: the market cap is approximately 15 months after the earnings period. For a firm with significant MTM volatility (FY2024 GAAP EPS was -EUR5.95 due to mark-to-market losses), the current market price may not reflect FY2024 earnings power. Confidence 'medium' is appropriate; however, downstream correlation analysis should note this date mismatch explicitly.",
+          "disposition": "period mismatch — market cap 15 months post-earnings period. Confidence 'medium' correct but gap should be documented in Step 3."
+        },
+        {
+          "severity": "note",
+          "firm_id": "FIRM-001",
+          "firm_ticker": "PAX",
+          "metric_id": "MET-VD-007",
+          "period": "FY2022-FY2024",
+          "issue": "PAX FEAUM 3-year CAGR (22.1%) uses 2-year period in label ('FY2022-FY2024') but formula in notes reads '($33B/$22.1B)^(1/2)-1=22.1%' — this is a 2-year CAGR, not a 3-year CAGR. The metric definition (MET-VD-007) is '3-Year CAGR' but only 2 years of confirmed data are used. Confidence is correctly 'medium'. This should be presented as a 2-year CAGR in downstream analysis, or labeled as 'approximate 3-year CAGR (limited data)'.",
+          "disposition": "minor labeling inconsistency — 2-year CAGR recorded under 3-year CAGR metric. Confidence 'medium' is appropriate. Recommend note in Step 3."
+        }
+      ]
+    }
+  },
+  "sampling_summary": {
+    "firms_sampled": [
+      "FIRM-001 (PAX)", "FIRM-002 (BX)", "FIRM-003 (KKR)", "FIRM-004 (APO)",
+      "FIRM-005 (ARES)", "FIRM-006 (BAM)", "FIRM-007 (BN)", "FIRM-010 (CG)",
+      "FIRM-015 (EQT)", "FIRM-016 (PGHN)", "FIRM-019 (CVC)", "FIRM-023 (VINP)",
+      "FIRM-022 (TKO)", "FIRM-014 (RPC)", "FIRM-RITM (Sculptor)", "FIRM-RF (Eurazeo)"
+    ],
+    "metrics_sampled": [
+      "MET-VD-001 (DE/share)", "MET-VD-002 (GAAP EPS)", "MET-VD-003 (DE CAGR)",
+      "MET-VD-004 (FEAUM)", "MET-VD-005 (Total AUM)", "MET-VD-006 (FEAUM YoY)",
+      "MET-VD-007 (FEAUM CAGR)", "MET-VD-009 (Fundraising %)", "MET-VD-011 (Perm Capital %)",
+      "MET-VD-013 (FRE Margin)", "MET-VD-014 (FRE Growth)", "MET-VD-016 (Fee Rate)",
+      "MET-VD-018 (P/FRE)", "MET-VD-019 (P/DE)", "MET-VD-020 (EV/FEAUM)"
+    ],
+    "derivation_logic_checks": [
+      "BX FEAUM YoY: ($830.7B/$762.6B)-1=8.89% ≈ 8.9% CONFIRMED",
+      "BX FEAUM 3-yr CAGR: ($830.7B/$726.4B)^(1/3)-1=4.58% ≈ 4.6% CONFIRMED",
+      "APO FEAUM YoY: ($569B/$493B)-1=15.4% CONFIRMED",
+      "APO FRE margin: $2,063M/$2,776M=74.3% CONFIRMED",
+      "APO P/FRE: $104B/$2,063M=50.4x CONFIRMED",
+      "BX P/DE: $215B/$5,970M=36.0x ≈ 35.9x CONFIRMED (rounding)",
+      "PAX FEAUM YoY: ($33B/$23.9B)-1=38.1% ≈ 38.0% CONFIRMED",
+      "PAX FRE growth: ($170.1M/$147.7M)-1=15.2% CONFIRMED",
+      "EQT FEAUM YoY: (EUR141B/EUR136B)-1=3.7% CONFIRMED",
+      "EQT FEAUM 3-yr CAGR: (EUR141B/EUR113B)^(1/3)-1=7.7% CONFIRMED",
+      "CVC FEAUM YoY: (EUR148B/EUR132B)-1=12.1% CONFIRMED",
+      "PAX 2-yr CAGR: ($33B/$22.1B)^(1/2)-1=22.2% ≈ 22.1% CONFIRMED (labeled as 3-yr, see findings)"
+    ],
+    "source_id_coverage_assessment": {
+      "PS_VD_namespace": "PS-VD-201 through PS-VD-211: all traceable to Tier 1A source list. PS-VD-201=BX Q4 2024 PR, PS-VD-202=BX Q4 2024 Supplemental, PS-VD-203=BX Q4 2024 Presentation, PS-VD-204=APO Q4/FY2024 PR, PS-VD-205=APO Q4/FY2023 PR, PS-VD-206–208=BAM PRs, PS-VD-209=BN Q4 2024 PR, PS-VD-210=MacroTrends market data, PS-VD-211=BX Supplemental extended. All consistent.",
+      "PS_VD_T2_namespace": "PS-VD-T2-001 through T2-022: documented in tier2.json sources list. All traceable. PS-VD-T2-019 is market data aggregator (companiesmarketcap.com etc.) correctly tagged third-party-analyst.",
+      "PS_VD_T2B_namespace": "PS-VD-T2B-001 through T2B-007: documented in tier2b.json. T2B-003 and T2B-007 are third-party-analyst (market data aggregators) and appropriately confidence 'medium'.",
+      "PS_VD_T3A_namespace": "PS-VD-T3A-001 through T3A-011: documented in tier3a.json sources_summary. All plausible official earnings releases.",
+      "PS_VD_T3B_namespace": "PS-VD-T3B-001 through T3B-003: referenced in tier3b.json but the source definitions were not observed inline (file structure differs from tier3a). Source context is plausible from extraction_notes (Eurazeo annual results, Rithm 10-Q, Antin annual). Recommend adding explicit source_definitions block to tier3b.json for audit completeness.",
+      "KKR_ARES_CG_namespace": "Source IDs 'KKR-Q4-YYYY-ER', 'ARES-Q4-YYYY-ER', 'CG-Q4-YYYY-ER' used in tier1b.json and propagated to quantitative_data.json. These are not registered in source_catalog.json (PS-VD-001 to PS-VD-065). The underlying sources (KKR, ARES, CG quarterly earnings releases) are real and values are plausible, but ID mismatch prevents cross-file validation. MINOR FINDING — recommend adding PS-VD-T1B-NNN equivalents before Step 3."
+    }
+  }
+}

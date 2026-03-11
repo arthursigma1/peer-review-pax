@@ -1,0 +1,43 @@
+{
+  "normalized_url": "www.icgam.com/shareholders-and-debtholders/results-centre",
+  "canonical_url": "https://www.icgam.com/shareholders-and-debtholders/results-centre/",
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl",
+  "priority_score": 32,
+  "preferred_source": {
+    "source_id": "PS-VD-045",
+    "firm": "Intermediate Capital Group",
+    "title": "ICG Results Centre",
+    "date": "2025-12-31",
+    "document_type": "earnings_supplement",
+    "bias_tag": "company-produced",
+    "url": "https://www.icgam.com/shareholders-and-debtholders/results-centre/",
+    "notes": "ICG results centre \u2014 presentations, annual reports, and interim results archive",
+    "catalog_path": "data/processed/pax/2026-03-09-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl",
+    "seed_url": "https://www.icgam.com/shareholders-and-debtholders/results-centre/",
+    "loaded_url": "https://www.icgam.com/wp-content/uploads/2022/02/results-presentation-year-end-fy17-final.pdf",
+    "title": "ICG Results Centre",
+    "document_type": "earnings_supplement",
+    "bias_tag": "company-produced",
+    "content_type": "application/pdf",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2/PS-VD-045_icg-results-centre_fb44c476.txt",
+    "text_length": 26892,
+    "quality_score": 32392,
+    "quality_bucket": "good",
+    "quality_reason": "sufficient_text",
+    "relevant_snippets": [
+      "\uf0a7 Total AUM up 10% to \u20ac23.8bn, with \u20ac4.0bn of new money raised; third party fee earning AUM up 19% to",
+      "(FY17: \u00a31.3m; FY16: \u00a317.3m). Internally reported numbers exclude the impact of the consolidation of 12 credit funds following the adoption of IFRS 10",
+      "Fundraising of \u20ac4bn increases AUM to \u20ac21.8bn",
+      "\uf0a7 Third party AUM up 13% and fee earning AUM",
+      "1 Lone Star Funds 42.5 US 16 Bain Capital Credit 10.7 US"
+    ],
+    "extraction_modes": []
+  },
+  "canonical_text_path": "data/raw/pax/canonical/30/30bc7b17823fb6f5d137a339576ab84957f48c65/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.443682Z"
+}

@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "stage": "VD-A2",
+    "title": "Quantitative Data Collection — Tier 3",
+    "tier": 3,
+    "firms_covered": ["PAX", "VINP", "PX", "RF", "ANTIN"],
+    "firm_ids": {
+      "PAX": "FIRM-019",
+      "VINP": "FIRM-020",
+      "PX": "FIRM-021",
+      "RF": "FIRM-022",
+      "ANTIN": "FIRM-023"
+    },
+    "generated_at": "2026-03-09T12:00:00Z",
+    "panel_years": ["FY2020", "FY2021", "FY2022", "FY2023", "FY2024"],
+    "fx_rates_used": {
+      "EUR_USD": {
+        "2020_avg": 1.1382,
+        "2021_avg": 1.1828,
+        "2022_avg": 1.0535,
+        "2023_avg": 1.0821,
+        "2024_avg": 1.0822,
+        "2024_eoy": 1.035
+      },
+      "BRL_USD": {
+        "2020_avg": 0.1923,
+        "2021_avg": 0.1854,
+        "2022_avg": 0.1930,
+        "2023_avg": 0.2004,
+        "2024_avg": 0.1863
+      }
+    },
+    "data_quality_notes": [
+      "PAX reports in USD. FEAUM 2020 estimated from IPO prospectus (Sep-2020 figure used as proxy for FY2020).",
+      "VINP reports in BRL. Converted to USD using annual average FX rates. Pre-merger (Vinci Partners) data used for FY2020-FY2023. BRL327bn AUM includes advisory assets; FEAUM sub-total not separately disclosed for FY2024.",
+      "PX reports in USD. FRE definition includes fee-related revenues minus fee-related expenses. IPO in Oct 2021; FY2020 data limited.",
+      "RF (Eurazeo) reports in EUR. Converted to USD using annual average FX rates. FRE definition: net recurring income from asset management. Balance sheet AUM included in total but excluded from third-party fee-paying AUM.",
+      "ANTIN reports in EUR. Converted to USD using annual average FX rates. Infrastructure-only specialist — 100% infrastructure AUM. IPO Sep 2021; FY2020 data from 2021 annual report comparatives."
+    ]
+  },
+  "data_points": [
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-004", "metric": "FEAUM", "unit": "USD bn", "fy2020": 6.9, "fy2021": 17.9, "fy2022": 19.2, "fy2023": 23.9, "fy2024": 33.0, "source": "PAX 20-F, earnings releases", "notes": "FY2020 from IPO prospectus (Sep 30 2020 figure). FY2021 includes Moneda acquisition (132% YoY incl. M&A, 20% organic). FY2024 = $33B per Q4 2024 earnings."},
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-005", "metric": "AUM", "unit": "USD bn", "fy2020": 14.7, "fy2021": null, "fy2022": null, "fy2023": 34.0, "fy2024": 41.9, "source": "PAX 20-F, earnings releases", "notes": "FY2020 from IPO prospectus (Dec 2019 figure ~$14.7B, used as proxy). FY2023 and FY2024 from earnings calls. FY2021-2022 not separately confirmed."},
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-001", "metric": "DE/share", "unit": "USD", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": 1.26, "fy2024": 1.24, "source": "PAX earnings releases", "notes": "FY2023: $187.8M total DE, $1.26/sh. FY2024: $189M total DE, $1.24/sh (some sources report $1.27/sh for a slightly different calculation). Pre-2023 DE/share not confirmed at per-share level."},
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-002", "metric": "EPS (GAAP)", "unit": "USD", "fy2020": null, "fy2021": null, "fy2022": 0.63, "fy2023": 0.80, "fy2024": 0.48, "source": "PAX 20-F", "notes": "GAAP diluted EPS. FY2024 decline reflects non-cash items and acquisition integration costs."},
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-013", "metric": "FRE margin", "unit": "%", "fy2020": null, "fy2021": 59.0, "fy2022": null, "fy2023": 60.0, "fy2024": 57.0, "source": "PAX earnings releases", "notes": "FRE/management fee revenue. FY2021: 59% ($86M FRE). FY2023: 60% ($147.7M FRE). FY2024: 57% ($170.1M FRE / $292.4M mgmt fees)."},
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-026", "metric": "P/FRE", "unit": "x", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 14.9, "source": "Calculated", "notes": "Market cap $2.54B (Dec 2024) / FRE $170.1M = 14.9x."},
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-027", "metric": "P/DE", "unit": "x", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 13.4, "source": "Calculated", "notes": "Market cap $2.54B (Dec 2024) / DE $189M = 13.4x."},
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-028", "metric": "EV/FEAUM", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 7.7, "source": "Calculated", "notes": "Estimated EV ~$2.54B (market cap, debt/cash details not separately confirmed) / FEAUM $33B = 7.7%. Approximate."},
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-006", "metric": "FEAUM YoY", "unit": "%", "fy2020": null, "fy2021": 159.4, "fy2022": 7.3, "fy2023": 24.5, "fy2024": 38.1, "source": "Calculated from FEAUM panel", "notes": "FY2021 includes Moneda acquisition. Organic FY2021 growth was ~20%."},
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-007", "metric": "FEAUM CAGR 3yr", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": 51.4, "fy2024": 22.6, "source": "Calculated", "notes": "FY2023: (23.9/6.9)^(1/3)-1 = 51.4% (distorted by Moneda). FY2024: (33.0/17.9)^(1/3)-1 = 22.6%."},
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-014", "metric": "FRE growth YoY", "unit": "%", "fy2020": null, "fy2021": 21.0, "fy2022": 51.2, "fy2023": 13.6, "fy2024": 15.2, "source": "PAX earnings releases", "notes": "FY2020→2021: 21% ($71M→$86M). FY2021→2022: ~51% ($86M→$130M). FY2022→2023: 14% ($130M→$147.7M). FY2023→2024: 15% ($147.7M→$170.1M)."},
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-016", "metric": "Mgmt fee rate", "unit": "bps", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 103, "source": "Calculated", "notes": "$292.4M mgmt fees / avg FEAUM ~$28.5B ((23.9+33.0)/2) = ~103 bps."},
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-011", "metric": "Perm capital %", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 20.0, "source": "PAX guidance/earnings call", "notes": "Permanent capital comprises about 20% of FEAUM per management guidance. Over 60% of FEAUM is NAV-based (up from <10% at IPO)."},
+
+    {"firm_id": "FIRM-020", "ticker": "VINP", "metric_id": "MET-VD-004", "metric": "FEAUM", "unit": "USD bn", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": null, "source": "VINP earnings releases", "notes": "VINP does not separately disclose FEAUM. Total AUM & advisory = BRL327B ($60.9B at avg FX) at FY2024 year-end includes advisory assets. Compass sub brought ~$41B AUM. Fee-earning sub-total not breakable from available data."},
+    {"firm_id": "FIRM-020", "ticker": "VINP", "metric_id": "MET-VD-005", "metric": "AUM", "unit": "USD bn", "fy2020": 9.6, "fy2021": 10.6, "fy2022": 12.2, "fy2023": null, "fy2024": 60.9, "source": "VINP earnings releases, IPO prospectus", "notes": "FY2020: BRL49.7B (~$9.6B). FY2021: BRL57.2B (~$10.6B). FY2022: BRL63B (~$12.2B). FY2024: BRL327B (~$60.9B at 2024 avg FX) — includes advisory; massive jump due to Compass merger + MAV + Lacan acquisitions in 2024."},
+    {"firm_id": "FIRM-020", "ticker": "VINP", "metric_id": "MET-VD-001", "metric": "DE/share", "unit": "USD", "fy2020": null, "fy2021": null, "fy2022": 0.86, "fy2023": null, "fy2024": 0.79, "source": "VINP earnings releases", "notes": "FY2022: Adjusted DE BRL4.47/sh * 0.193 = ~$0.86/sh. FY2024: BRL4.26/sh * 0.1863 = ~$0.79/sh. Pre-2022 and FY2023 not confirmed at per-share USD level."},
+    {"firm_id": "FIRM-020", "ticker": "VINP", "metric_id": "MET-VD-013", "metric": "FRE margin", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": 50.0, "fy2024": 52.0, "source": "VINP earnings releases", "notes": "FY2023: ~50% margin. FY2024: 52% ex-VRS (management-reported). BRL248.4M FRE in FY2024."},
+    {"firm_id": "FIRM-020", "ticker": "VINP", "metric_id": "MET-VD-026", "metric": "P/FRE", "unit": "x", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 13.7, "source": "Calculated", "notes": "Market cap ~$634M (Dec 2024, share price ~$9.78) / FRE BRL248.4M (~$46.3M at avg FX) = ~13.7x."},
+    {"firm_id": "FIRM-020", "ticker": "VINP", "metric_id": "MET-VD-027", "metric": "P/DE", "unit": "x", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 14.2, "source": "Calculated", "notes": "Market cap ~$634M / DE BRL239.1M (~$44.5M) = ~14.2x."},
+
+    {"firm_id": "FIRM-021", "ticker": "PX", "metric_id": "MET-VD-004", "metric": "FEAUM", "unit": "USD bn", "fy2020": null, "fy2021": 17.3, "fy2022": 21.2, "fy2023": 23.3, "fy2024": 25.7, "source": "PX 10-K, earnings releases", "notes": "PX reports 'Fee-Paying AUM' which is equivalent to FEAUM. IPO Oct 2021. FY2020 not available as public company."},
+    {"firm_id": "FIRM-021", "ticker": "PX", "metric_id": "MET-VD-002", "metric": "EPS (GAAP)", "unit": "USD", "fy2020": null, "fy2021": null, "fy2022": 0.24, "fy2023": -0.06, "fy2024": 0.16, "source": "PX earnings releases", "notes": "GAAP diluted EPS. FY2023 loss driven by non-cash charges. FY2024 recovery."},
+    {"firm_id": "FIRM-021", "ticker": "PX", "metric_id": "MET-VD-013", "metric": "FRE margin", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 14.4, "source": "Calculated", "notes": "FRE $42.7M / Revenue $296.4M = 14.4%. PX uses a broader revenue base including catch-up and transaction fees, resulting in lower apparent FRE margin. Adjusted EBITDA margin is 48.7%."},
+    {"firm_id": "FIRM-021", "ticker": "PX", "metric_id": "MET-VD-006", "metric": "FEAUM YoY", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": 22.5, "fy2023": 9.9, "fy2024": 10.3, "source": "Calculated from FEAUM panel", "notes": "Steady ~10% organic growth post-acquisition integration."},
+    {"firm_id": "FIRM-021", "ticker": "PX", "metric_id": "MET-VD-007", "metric": "FEAUM CAGR 3yr", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 14.1, "source": "Calculated", "notes": "(25.7/17.3)^(1/3)-1 = 14.1% (FY2021→FY2024)."},
+    {"firm_id": "FIRM-021", "ticker": "PX", "metric_id": "MET-VD-014", "metric": "FRE growth YoY", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 39.0, "source": "PX earnings release", "notes": "FRE $42.7M in FY2024, up 39% YoY. Prior-year FRE ~$30.7M."},
+    {"firm_id": "FIRM-021", "ticker": "PX", "metric_id": "MET-VD-026", "metric": "P/FRE", "unit": "x", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 36.1, "source": "Calculated", "notes": "Market cap $1.54B (Dec 2024) / FRE $42.7M = 36.1x."},
+    {"firm_id": "FIRM-021", "ticker": "PX", "metric_id": "MET-VD-028", "metric": "EV/FEAUM", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 5.7, "source": "Calculated", "notes": "EV $1.47B / FEAUM $25.7B = 5.7%."},
+
+    {"firm_id": "FIRM-022", "ticker": "RF", "metric_id": "MET-VD-004", "metric": "FEAUM", "unit": "USD bn", "fy2020": null, "fy2021": null, "fy2022": 25.6, "fy2023": 27.9, "fy2024": 27.9, "source": "Eurazeo annual results", "notes": "Fee-Paying AUM. FY2022: EUR24.3B * 1.0535. FY2023: EUR25.8B * 1.0821. FY2024: EUR27.0B * 1.035 (eoy rate) = $27.9B. Third-party FPAUM growing faster than balance sheet component."},
+    {"firm_id": "FIRM-022", "ticker": "RF", "metric_id": "MET-VD-005", "metric": "AUM", "unit": "USD bn", "fy2020": null, "fy2021": 36.7, "fy2022": 35.9, "fy2023": 37.9, "fy2024": 37.4, "source": "Eurazeo annual results", "notes": "Total AUM incl. balance sheet. FY2021: EUR31B * 1.1828. FY2022: EUR34.1B * 1.0535. FY2023: EUR35B * 1.0821. FY2024: EUR36.1B * 1.035."},
+    {"firm_id": "FIRM-022", "ticker": "RF", "metric_id": "MET-VD-013", "metric": "FRE margin", "unit": "%", "fy2020": 28.7, "fy2021": 30.1, "fy2022": 31.6, "fy2023": 34.8, "fy2024": 35.5, "source": "Eurazeo annual results", "notes": "FRE/management fees. Consistent upward trajectory. FY2024 reached mid-term target range (35-40%) in first year of 4-year plan."},
+    {"firm_id": "FIRM-022", "ticker": "RF", "metric_id": "MET-VD-014", "metric": "FRE growth YoY", "unit": "%", "fy2020": 18.0, "fy2021": 30.0, "fy2022": 26.0, "fy2023": 22.0, "fy2024": 11.0, "source": "Eurazeo annual results", "notes": "FY2020: EUR70M (+18%). FY2021: EUR93M (+30%). FY2022: EUR120M (+26%). FY2023: EUR138M (+22% reported). FY2024: EUR150M (+11% reported, reached in one year the CMD target)."},
+    {"firm_id": "FIRM-022", "ticker": "RF", "metric_id": "MET-VD-026", "metric": "P/FRE", "unit": "x", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 23.1, "source": "Calculated", "notes": "Market cap EUR3.47B ($3.59B at eoy rate) / FRE EUR150M ($155.2M at avg rate) = ~23.1x."},
+    {"firm_id": "FIRM-022", "ticker": "RF", "metric_id": "MET-VD-028", "metric": "EV/FEAUM", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 25.3, "source": "Calculated", "notes": "EV ~$7.07B / FEAUM $27.9B = 25.3%. Note: Eurazeo's EV includes significant balance sheet portfolio (~EUR7.9B NAV), inflating EV/FEAUM relative to pure-play managers. This metric is less comparable for Eurazeo."},
+    {"firm_id": "FIRM-022", "ticker": "RF", "metric_id": "MET-VD-006", "metric": "FEAUM YoY", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": 12.0, "fy2024": 8.0, "source": "Eurazeo annual results", "notes": "FY2023: +12% (pro forma Rhone). FY2024: +8% total, +12% third-party."},
+    {"firm_id": "FIRM-022", "ticker": "RF", "metric_id": "MET-VD-018", "metric": "Headcount/FEAUM", "unit": "per USD bn", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 15.2, "source": "Calculated", "notes": "424 employees (excl. IMGP) / FEAUM $27.9B = 15.2 per $B."},
+    {"firm_id": "FIRM-022", "ticker": "RF", "metric_id": "MET-VD-016", "metric": "Mgmt fee rate", "unit": "bps", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 162, "source": "Calculated", "notes": "EUR421M mgmt fees / avg FPAUM ~EUR26B = ~162 bps. Note: Eurazeo's mgmt fee base includes balance sheet assets, inflating the rate calculation relative to pure third-party managers."},
+
+    {"firm_id": "FIRM-023", "ticker": "ANTIN", "metric_id": "MET-VD-004", "metric": "FEAUM", "unit": "USD bn", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": 21.7, "fy2024": 22.4, "source": "Antin annual results", "notes": "Fee-Paying AUM. FY2023: ~EUR20.1B * 1.0821 = $21.7B (estimated from FY2024 +7.3% growth). FY2024: EUR21.6B * 1.035 = $22.4B."},
+    {"firm_id": "FIRM-023", "ticker": "ANTIN", "metric_id": "MET-VD-005", "metric": "AUM", "unit": "USD bn", "fy2020": null, "fy2021": 26.9, "fy2022": 32.2, "fy2023": 33.6, "fy2024": 34.5, "source": "Antin annual results", "notes": "FY2021: EUR22.7B * 1.1828. FY2022: EUR30.6B * 1.0535. FY2023: EUR31.1B * 1.0821. FY2024: EUR33.3B * 1.035."},
+    {"firm_id": "FIRM-023", "ticker": "ANTIN", "metric_id": "MET-VD-013", "metric": "FRE margin", "unit": "%", "fy2020": 73.0, "fy2021": 60.0, "fy2022": null, "fy2023": 62.0, "fy2024": 59.0, "source": "Antin annual results", "notes": "Uses underlying EBITDA margin as proxy for FRE margin (>95% revenue from management fees). FY2020: 73% (included catch-up fees). FY2021: 60%. FY2023: 62%. FY2024: 59%."},
+    {"firm_id": "FIRM-023", "ticker": "ANTIN", "metric_id": "MET-VD-014", "metric": "FRE growth YoY", "unit": "%", "fy2020": null, "fy2021": -17.9, "fy2022": 9.3, "fy2023": 48.4, "fy2024": 6.5, "source": "Antin annual results", "notes": "Underlying EBITDA: FY2020 EUR132M. FY2021 EUR108.4M (-17.9%, catch-up effect). FY2022 EUR118.5M (+9.3%). FY2023 EUR175.4M (~+48%). FY2024 EUR186.9M (+6.5%)."},
+    {"firm_id": "FIRM-023", "ticker": "ANTIN", "metric_id": "MET-VD-002", "metric": "EPS (GAAP)", "unit": "USD", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": 0.79, "fy2024": 0.79, "source": "Antin annual results", "notes": "Underlying EPS after dilution: FY2023 EUR0.73 * 1.0821 = $0.79. FY2024 EUR0.76 * 1.035 = $0.79."},
+    {"firm_id": "FIRM-023", "ticker": "ANTIN", "metric_id": "MET-VD-026", "metric": "P/FRE", "unit": "x", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 10.3, "source": "Calculated", "notes": "Market cap EUR1.86B ($1.93B) / Underlying EBITDA EUR186.9M ($193.4M) = 10.3x. Uses EBITDA as FRE proxy."},
+    {"firm_id": "FIRM-023", "ticker": "ANTIN", "metric_id": "MET-VD-028", "metric": "EV/FEAUM", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 8.6, "source": "Calculated", "notes": "Estimated EV ~$1.93B (market cap, minimal net debt) / FEAUM $22.4B = 8.6%."},
+    {"firm_id": "FIRM-023", "ticker": "ANTIN", "metric_id": "MET-VD-006", "metric": "FEAUM YoY", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 7.3, "source": "Antin annual results", "notes": "Fee-Paying AUM +7.3% in FY2024."},
+    {"firm_id": "FIRM-023", "ticker": "ANTIN", "metric_id": "MET-VD-018", "metric": "Headcount/FEAUM", "unit": "per USD bn", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 10.7, "source": "Calculated", "notes": "~240 professionals / FEAUM $22.4B = 10.7 per $B. Infrastructure-only model is more headcount-efficient."},
+    {"firm_id": "FIRM-023", "ticker": "ANTIN", "metric_id": "MET-VD-016", "metric": "Mgmt fee rate", "unit": "bps", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 149, "source": "Calculated", "notes": "Revenue EUR318.4M (>95% mgmt fees) / avg FPAUM ~EUR20.9B = ~152 bps in EUR terms. USD-adjusted ~149 bps."},
+
+    {"firm_id": "FIRM-019", "ticker": "PAX", "metric_id": "MET-VD-010", "metric": "Asset class HHI", "unit": "index (0-10000)", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": null, "source": "N/A", "notes": "PAX operates across PE, infrastructure, credit, real estate, public equities, and global private markets solutions. Detailed % breakdown not available from public sources to compute HHI."},
+    {"firm_id": "FIRM-023", "ticker": "ANTIN", "metric_id": "MET-VD-010", "metric": "Asset class HHI", "unit": "index (0-10000)", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 10000, "source": "Antin annual results", "notes": "100% infrastructure — single asset class = HHI of 10,000. Recently launched Mid Cap and NextGen strategies but all within infrastructure."},
+    {"firm_id": "FIRM-022", "ticker": "RF", "metric_id": "MET-VD-012", "metric": "Credit %", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": null, "source": "Eurazeo annual results", "notes": "Private Debt is a major growth area (EUR2.5B raised in 2024, +86% YoY). Exact AUM % not separately confirmed."},
+
+    {"firm_id": "FIRM-020", "ticker": "VINP", "metric_id": "MET-VD-014", "metric": "FRE growth YoY", "unit": "%", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": null, "source": "N/A", "notes": "YoY FRE growth not calculable due to Compass merger making FY2023→FY2024 non-comparable (transformational M&A year)."},
+
+    {"firm_id": "FIRM-021", "ticker": "PX", "metric_id": "MET-VD-001", "metric": "DE/share", "unit": "USD", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": 0.82, "fy2024": 1.00, "source": "PX earnings releases", "notes": "PX reports 'Adjusted Net Income per diluted share' as closest DE proxy. FY2023: $0.82/sh. FY2024: $1.00/sh (+22% YoY). Does not report traditional DE."},
+    {"firm_id": "FIRM-021", "ticker": "PX", "metric_id": "MET-VD-027", "metric": "P/DE", "unit": "x", "fy2020": null, "fy2021": null, "fy2022": null, "fy2023": null, "fy2024": 12.8, "source": "Calculated", "notes": "Market cap $1.54B / ANI $120.2M = 12.8x. Uses Adjusted Net Income as DE proxy."}
+  ]
+}

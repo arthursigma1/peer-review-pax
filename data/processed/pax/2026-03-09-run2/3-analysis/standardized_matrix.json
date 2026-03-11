@@ -1,0 +1,3906 @@
+{
+  "metadata": {
+    "pipeline": "VDA",
+    "stage": "VD-A3",
+    "generated_at": "2026-03-09",
+    "firms": 23,
+    "metrics": 31,
+    "metrics_with_data": 16,
+    "notes": "Merged from tier1, tier2, tier3 quantitative data. Derived metrics (YoY growth, CAGR, fee rates, valuation multiples) computed where raw inputs available. FY2024 is the primary reference period. For firms with non-calendar fiscal years (HLNE, STEP, ICG), the most recent comparable annual period is used."
+  },
+  "matrix": [
+    {
+      "firm_id": "FIRM-001",
+      "ticker": "BX",
+      "metrics": {
+        "MET-VD-001": {
+          "value": 4.64,
+          "unit": "USD",
+          "source": "BX Q4/FY2024 Earnings Press Release (Jan 2025)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 830.7,
+          "unit": "USD bn",
+          "source": "BX Q4/FY2024 Earnings Press Release (Jan 2025)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 1127.2,
+          "unit": "USD bn",
+          "source": "BX Q4/FY2024 Earnings Press Release (Jan 2025)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 9.0,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE margin not available"
+        },
+        "MET-VD-014": {
+          "value": 0.0,
+          "unit": "%",
+          "source": "Calculated from FRE panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 5.9,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.169,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 25.6,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": 22.6,
+          "unit": "x",
+          "source": "Calculated from market cap / DE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-028": {
+          "value": 16.3,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-002",
+      "ticker": "BAM",
+      "metrics": {
+        "MET-VD-001": {
+          "value": 1.45,
+          "unit": "USD",
+          "source": "BAM Q4/FY2024 Earnings (Feb 2025)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 539.0,
+          "unit": "USD bn",
+          "source": "BAM Q4/FY2024 Earnings (Feb 2025)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 1000.0,
+          "unit": "USD bn",
+          "source": "BAM Q4/FY2024 Earnings (Feb 2025)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 17.9,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE margin not available"
+        },
+        "MET-VD-014": {
+          "value": 13.6,
+          "unit": "%",
+          "source": "Calculated from FRE panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": null,
+          "unit": "per USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-019": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 29.6,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": 30.9,
+          "unit": "x",
+          "source": "Calculated from market cap / DE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-028": {
+          "value": 13.7,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-003",
+      "ticker": "APO",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 569.0,
+          "unit": "USD bn",
+          "source": "APO Q4/FY2024 Earnings Press Release",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 751.0,
+          "unit": "USD bn",
+          "source": "APO Q4/FY2024 Earnings Press Release",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 0.0,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE margin not available"
+        },
+        "MET-VD-014": {
+          "value": 0.0,
+          "unit": "%",
+          "source": "Calculated from FRE panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 7.3,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.137,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 30.6,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": 11.3,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-004",
+      "ticker": "KKR",
+      "metrics": {
+        "MET-VD-001": {
+          "value": 4.7,
+          "unit": "USD",
+          "source": "KKR FY2024 Earnings",
+          "as_of": "FY2024"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 512.0,
+          "unit": "USD bn",
+          "source": "KKR Q4/FY2024 Earnings Press Release",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 638.0,
+          "unit": "USD bn",
+          "source": "KKR Q4/FY2024 Earnings Press Release",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 15.1,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE margin not available"
+        },
+        "MET-VD-014": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE growth not calculable"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 9.8,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.102,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": 15.9,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-005",
+      "ticker": "ARES",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 292.6,
+          "unit": "USD bn",
+          "source": "ARES Q4/FY2024 Earnings",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 484.0,
+          "unit": "USD bn",
+          "source": "ARES Q4/FY2024 Earnings Press Release",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 0.0,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 40.9,
+          "unit": "%",
+          "source": "ARES Q4 2024 Earnings",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE growth not calculable"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 10.9,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.092,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": 8.3,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-006",
+      "ticker": "CG",
+      "metrics": {
+        "MET-VD-001": {
+          "value": 3.66,
+          "unit": "USD",
+          "source": "CG FY2024 Earnings",
+          "as_of": "FY2024"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 304.0,
+          "unit": "USD bn",
+          "source": "CG Q4/FY2024 Earnings",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 441.0,
+          "unit": "USD bn",
+          "source": "CG Q4/FY2024 Earnings Press Release",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": -1.1,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 46.0,
+          "unit": "%",
+          "source": "CG FY2024 Earnings Press Release",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 28.1,
+          "unit": "%",
+          "source": "Calculated from FRE panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 7.6,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.132,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 16.8,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": 12.3,
+          "unit": "x",
+          "source": "Calculated from market cap / DE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-028": {
+          "value": 6.1,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-007",
+      "ticker": "VCTR",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "FEAUM not separately disclosed"
+        },
+        "MET-VD-005": {
+          "value": 171.9,
+          "unit": "USD bn",
+          "source": "VCTR Q4/FY2024 Earnings Press Release",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM data for YoY calculation"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE margin not available"
+        },
+        "MET-VD-014": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE growth not calculable"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": null,
+          "unit": "per USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-019": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-008",
+      "ticker": "OWL",
+      "metrics": {
+        "MET-VD-001": {
+          "value": 0.84,
+          "unit": "USD",
+          "source": "OWL FY2024 Earnings",
+          "as_of": "FY2024"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "FEAUM not separately disclosed"
+        },
+        "MET-VD-005": {
+          "value": 251.1,
+          "unit": "USD bn",
+          "source": "OWL Q4/FY2024 Earnings Press Release",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM data for YoY calculation"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 59.0,
+          "unit": "%",
+          "source": "OWL FY2024 Earnings",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE growth not calculable"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": null,
+          "unit": "per USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-019": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-009",
+      "ticker": "TPG",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 141.0,
+          "unit": "USD bn",
+          "source": "TPG Q4/FY2024 Earnings",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 245.9,
+          "unit": "USD bn",
+          "source": "TPG Q4/FY2024 Earnings Press Release",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 2.9,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 42.0,
+          "unit": "%",
+          "source": "TPG FY2024 Earnings",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 0.0,
+          "unit": "%",
+          "source": "Calculated from FRE panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 13.5,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.074,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 21.7,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": 19.8,
+          "unit": "x",
+          "source": "Calculated from market cap / DE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-028": {
+          "value": 11.7,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-010",
+      "ticker": "EQT",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 146.9,
+          "unit": "USD bn",
+          "source": "EQT AB Annual Report 2024",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 290.5,
+          "unit": "USD bn",
+          "source": "EQT AB Annual Report 2024",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 2.7,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 53.0,
+          "unit": "%",
+          "source": "EQT AB Annual Report 2024",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 2.4,
+          "unit": "%",
+          "source": "Calculated from FRE panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": 175.0,
+          "unit": "bps",
+          "source": "Calculated from mgmt fees / avg FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 13.2,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.076,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 32.3,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": 26.3,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "FEAUM not separately disclosed"
+        },
+        "MET-VD-005": {
+          "value": 168.6,
+          "unit": "USD bn",
+          "source": "Man Group Annual Report 2024",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM data for YoY calculation"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 43.1,
+          "unit": "%",
+          "source": "Calculated from FRE / management fee revenue",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 39.1,
+          "unit": "%",
+          "source": "Calculated from FRE panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": null,
+          "unit": "per USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-019": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 8.7,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-012",
+      "ticker": "STEP",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 127.2,
+          "unit": "USD bn",
+          "source": "StepStone Group FY2024 results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 157.0,
+          "unit": "USD bn",
+          "source": "StepStone Group FY2024 results (Mar 2024)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 0.0,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 40.0,
+          "unit": "%",
+          "source": "Calculated from FRE / management fee revenue",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 0.0,
+          "unit": "%",
+          "source": "Calculated from FRE panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": 63.0,
+          "unit": "bps",
+          "source": "Calculated from mgmt fees / avg FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 7.8,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.128,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 17.7,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": 4.5,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-013",
+      "ticker": "CVC",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 159.1,
+          "unit": "USD bn",
+          "source": "CVC Capital Partners Annual Report 2024",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 216.0,
+          "unit": "USD bn",
+          "source": "CVC Capital Partners Annual Report 2024",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 35.2,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 59.0,
+          "unit": "%",
+          "source": "CVC Capital Partners Annual Report 2024",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 0.0,
+          "unit": "%",
+          "source": "Calculated from FRE panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": 104.0,
+          "unit": "bps",
+          "source": "Calculated from mgmt fees / avg FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 5.3,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.189,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 19.3,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": 10.2,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "FEAUM not separately disclosed"
+        },
+        "MET-VD-005": {
+          "value": 152.0,
+          "unit": "USD bn",
+          "source": "Partners Group Annual Report 2024",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM data for YoY calculation"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 63.6,
+          "unit": "%",
+          "source": "Partners Group Annual Report 2024",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 0.0,
+          "unit": "%",
+          "source": "Calculated from FRE panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": null,
+          "unit": "per USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-019": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 15.9,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-015",
+      "ticker": "HLNE",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 66.0,
+          "unit": "USD bn",
+          "source": "Hamilton Lane FY2024 results (Mar 2024)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 124.0,
+          "unit": "USD bn",
+          "source": "Hamilton Lane FY2024 results (Mar 2024)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 15.2,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 61.2,
+          "unit": "%",
+          "source": "Calculated from FRE / management fee revenue",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE growth not calculable"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": 73.0,
+          "unit": "bps",
+          "source": "Calculated from mgmt fees / avg FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 11.7,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.085,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 28.6,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": 12.0,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-016",
+      "ticker": "ICP",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 70.0,
+          "unit": "USD bn",
+          "source": "ICG Annual Report FY2024",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 98.0,
+          "unit": "USD bn",
+          "source": "ICG Annual Report FY2024 (Mar 2024)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 11.5,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE margin not available"
+        },
+        "MET-VD-014": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE growth not calculable"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": 96.0,
+          "unit": "bps",
+          "source": "Calculated from mgmt fees / avg FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 10.8,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.093,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": 10.7,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-017",
+      "ticker": "BPT",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 41.8,
+          "unit": "USD bn",
+          "source": "Bridgepoint Annual Report 2024",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 75.6,
+          "unit": "USD bn",
+          "source": "Bridgepoint Annual Report 2024",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 46.2,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 38.4,
+          "unit": "%",
+          "source": "Calculated from FRE / management fee revenue",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 62.1,
+          "unit": "%",
+          "source": "Calculated from FRE panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": 145.0,
+          "unit": "bps",
+          "source": "Calculated from mgmt fees / avg FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 12.3,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.081,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 20.7,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": 9.7,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-018",
+      "ticker": "ONEX",
+      "metrics": {
+        "MET-VD-001": {
+          "value": 113.7,
+          "unit": "USD",
+          "source": "Onex Q4 2024 results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 35.2,
+          "unit": "USD bn",
+          "source": "Onex Q4 2024 results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 51.1,
+          "unit": "USD bn",
+          "source": "Onex Q4 2024 results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 4.5,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 13.8,
+          "unit": "%",
+          "source": "Calculated from FRE / management fee revenue",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 0.0,
+          "unit": "%",
+          "source": "Calculated from FRE panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": 57.0,
+          "unit": "bps",
+          "source": "Calculated from mgmt fees / avg FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 8.2,
+          "unit": "per USD bn",
+          "source": "Calculated from headcount / FEAUM",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.122,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 220.7,
+          "unit": "x",
+          "source": "Calculated from market cap / FRE",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": 16.9,
+          "unit": "%",
+          "source": "Calculated from market cap / FEAUM (approx EV)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-019",
+      "ticker": "PAX",
+      "metrics": {
+        "MET-VD-001": {
+          "value": 1.24,
+          "unit": "USD",
+          "source": "PAX earnings releases",
+          "as_of": "FY2024"
+        },
+        "MET-VD-002": {
+          "value": 0.48,
+          "unit": "USD",
+          "source": "PAX 20-F",
+          "as_of": "FY2024"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 33.0,
+          "unit": "USD bn",
+          "source": "PAX 20-F, earnings releases",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 41.9,
+          "unit": "USD bn",
+          "source": "PAX 20-F, earnings releases",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 38.1,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": 22.6,
+          "unit": "%",
+          "source": "Calculated",
+          "as_of": "FY2021-FY2024"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": 20.0,
+          "unit": "%",
+          "source": "PAX guidance/earnings call",
+          "as_of": "FY2024"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 57.0,
+          "unit": "%",
+          "source": "PAX earnings releases",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 15.2,
+          "unit": "%",
+          "source": "PAX earnings releases",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": 103,
+          "unit": "bps",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": null,
+          "unit": "per USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-019": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 14.9,
+          "unit": "x",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": 13.4,
+          "unit": "x",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-028": {
+          "value": 7.7,
+          "unit": "%",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-020",
+      "ticker": "VINP",
+      "metrics": {
+        "MET-VD-001": {
+          "value": 0.79,
+          "unit": "USD",
+          "source": "VINP earnings releases",
+          "as_of": "FY2024"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "FEAUM not separately disclosed"
+        },
+        "MET-VD-005": {
+          "value": 60.9,
+          "unit": "USD bn",
+          "source": "VINP earnings releases, IPO prospectus",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM data for YoY calculation"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 52.0,
+          "unit": "%",
+          "source": "VINP earnings releases",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "FRE growth not calculable"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": null,
+          "unit": "per USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-019": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 13.7,
+          "unit": "x",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": 14.2,
+          "unit": "x",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-028": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "PX",
+      "metrics": {
+        "MET-VD-001": {
+          "value": 1.0,
+          "unit": "USD",
+          "source": "PX earnings releases",
+          "as_of": "FY2024"
+        },
+        "MET-VD-002": {
+          "value": 0.16,
+          "unit": "USD",
+          "source": "PX earnings releases",
+          "as_of": "FY2024"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 25.7,
+          "unit": "USD bn",
+          "source": "PX 10-K, earnings releases",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "AUM not available"
+        },
+        "MET-VD-006": {
+          "value": 10.3,
+          "unit": "%",
+          "source": "Calculated from FEAUM panel",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": 14.1,
+          "unit": "%",
+          "source": "Calculated",
+          "as_of": "FY2021-FY2024"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 14.4,
+          "unit": "%",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 39.0,
+          "unit": "%",
+          "source": "PX earnings release",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "insufficient data for fee rate calculation"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": null,
+          "unit": "per USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-019": {
+          "value": null,
+          "unit": "USD bn",
+          "missing_reason": "headcount or FEAUM not available"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 36.1,
+          "unit": "x",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": 12.8,
+          "unit": "x",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-028": {
+          "value": 5.7,
+          "unit": "%",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-022",
+      "ticker": "RF",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "GAAP EPS not collected or not applicable"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 27.9,
+          "unit": "USD bn",
+          "source": "Eurazeo annual results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 37.4,
+          "unit": "USD bn",
+          "source": "Eurazeo annual results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 8.0,
+          "unit": "%",
+          "source": "Eurazeo annual results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": null,
+          "unit": "index (0-10000)",
+          "missing_reason": "asset class breakdown not available for HHI computation"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 35.5,
+          "unit": "%",
+          "source": "Eurazeo annual results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 11.0,
+          "unit": "%",
+          "source": "Eurazeo annual results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": 162,
+          "unit": "bps",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 15.2,
+          "unit": "per USD bn",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.066,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 23.1,
+          "unit": "x",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": 25.3,
+          "unit": "%",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-023",
+      "ticker": "ANTIN",
+      "metrics": {
+        "MET-VD-001": {
+          "value": null,
+          "unit": "USD",
+          "missing_reason": "not disclosed or not calculable"
+        },
+        "MET-VD-002": {
+          "value": 0.79,
+          "unit": "USD",
+          "source": "Antin annual results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-003": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient DE/share history for 3-year CAGR"
+        },
+        "MET-VD-004": {
+          "value": 22.4,
+          "unit": "USD bn",
+          "source": "Antin annual results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-005": {
+          "value": 34.5,
+          "unit": "USD bn",
+          "source": "Antin annual results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-006": {
+          "value": 7.3,
+          "unit": "%",
+          "source": "Antin annual results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-007": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "insufficient FEAUM history for 3-year CAGR"
+        },
+        "MET-VD-008": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "organic growth decomposition not available from public sources for most firms"
+        },
+        "MET-VD-009": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "fundraising as % of AUM not standardized across universe"
+        },
+        "MET-VD-010": {
+          "value": 10000,
+          "unit": "index (0-10000)",
+          "source": "Antin annual results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-011": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "permanent capital percentage not disclosed or not collected"
+        },
+        "MET-VD-012": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "credit AUM percentage not separately confirmed"
+        },
+        "MET-VD-013": {
+          "value": 59.0,
+          "unit": "%",
+          "source": "Antin annual results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-014": {
+          "value": 6.5,
+          "unit": "%",
+          "source": "Antin annual results",
+          "as_of": "FY2024"
+        },
+        "MET-VD-015": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "comp-to-revenue not collected at standardized level"
+        },
+        "MET-VD-016": {
+          "value": 149,
+          "unit": "bps",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-017": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "performance fee share not standardized across universe"
+        },
+        "MET-VD-018": {
+          "value": 10.7,
+          "unit": "per USD bn",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-019": {
+          "value": 0.093,
+          "unit": "USD bn",
+          "source": "Calculated (inverse of Headcount/FEAUM)",
+          "as_of": "FY2024"
+        },
+        "MET-VD-020": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-021": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-022": {
+          "value": null,
+          "unit": "pp",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-023": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-024": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-025": {
+          "value": null,
+          "unit": "bps",
+          "missing_reason": "not collected or not disclosed"
+        },
+        "MET-VD-026": {
+          "value": 10.3,
+          "unit": "x",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-027": {
+          "value": null,
+          "unit": "x",
+          "missing_reason": "not calculated"
+        },
+        "MET-VD-028": {
+          "value": 8.6,
+          "unit": "%",
+          "source": "Calculated",
+          "as_of": "FY2024"
+        },
+        "MET-VD-029": {
+          "value": null,
+          "unit": "shares",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-030": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        },
+        "MET-VD-031": {
+          "value": null,
+          "unit": "%",
+          "missing_reason": "contextual metric not collected"
+        }
+      }
+    }
+  ]
+}

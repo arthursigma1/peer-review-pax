@@ -1,0 +1,1339 @@
+{
+  "metadata": {
+    "pipeline": "valuation-driver-analysis",
+    "step": "VD-B1",
+    "step_name": "Gather Data — Strategy Extraction",
+    "agent": "strategy-extractor",
+    "target_company": "Patria Investments Limited",
+    "target_ticker": "PAX",
+    "generated_at": "2026-03-08",
+    "run_id": "2026-03-08-run2",
+    "base_run": "2026-03-07-run2",
+    "total_profiles": 15,
+    "improvements_over_base_run": [
+      "Added 7 missing ontology dimensions across all profiles: business_focus, sector_orientation, origination_engine, fund_type, growth_agenda, share_class, contextual_market_factors",
+      "Renamed origination_model -> origination_engine and fund_type_emphasis -> fund_type to match ontology spec",
+      "Renamed growth_model -> growth_agenda to match ontology spec",
+      "Added sub-strategy granularity per asset class vertical (PE, Credit, Infra, RE, NatRes) per ontology",
+      "Added contextual_market_factors as separate section (TAM, market_share, governance, regulation) distinct from business-model grid",
+      "Strengthened stated_strategic_priorities with verbatim / closely-paraphrased language from most recent filings",
+      "Profiles are fully self-contained — no PAX references or cross-firm comparisons"
+    ],
+    "dimensions": [
+      "geographic_reach",
+      "business_focus",
+      "asset_focus",
+      "asset_class_mix",
+      "asset_class_sub_strategies",
+      "sector_orientation",
+      "origination_engine",
+      "fund_type",
+      "capital_source",
+      "distribution_strategy",
+      "client_segment",
+      "growth_agenda",
+      "share_class",
+      "stated_strategic_priorities",
+      "contextual_market_factors"
+    ]
+  },
+  "profiles": [
+    {
+      "firm_id": "FIRM-002",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["United States", "Europe", "Asia-Pacific", "Middle East"],
+          "notes": "Headquartered in New York with 30+ offices worldwide. Investment operations span North America, Europe, Asia-Pacific, and the Middle East. Private wealth distribution actively expanding across Japan, Australia, and the Gulf."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Pure asset-light manager. Revenue is overwhelmingly fee-based (management fees, performance fees, advisory fees). No material balance-sheet principal investing; limited co-investment on GP account."
+        },
+        "asset_focus": {
+          "classification": ["large_caps", "mid_market"],
+          "notes": "Flagship strategies target large-cap and upper-mid-market transactions. BXG (growth equity) and life sciences operate in growth/mid-market. BREIT and BCRED access retail-sized ticket sizes but underlying assets are institutional-quality large-cap."
+        },
+        "asset_class_mix": {
+          "real_estate_pct": 25,
+          "private_equity_pct": 31,
+          "credit_insurance_pct": 35,
+          "multi_asset_pct": 9,
+          "notes": "As of Q4 2025: RE $319.3B, PE $395.6B (incl. growth equity and life sciences), Credit & Insurance $443.0B (largest segment), Multi-Asset $117.0B. Total AUM $1,274.9B."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["buyout", "growth", "secondaries", "co_investments"],
+          "infrastructure": null,
+          "missing_reason_infrastructure": "Infrastructure is managed within the Real Estate and PE segments; no standalone Infrastructure segment is reported.",
+          "private_credit": ["direct_lending", "asset_backed", "clo", "special_situations"],
+          "real_estate": ["pere", "core_plus", "credit", "co_investments"],
+          "natural_resources": null,
+          "missing_reason_natural_resources": "No dedicated natural resources strategy disclosed.",
+          "notes": "Credit & Insurance covers direct lending (BCRED), CLOs, insurance-linked capital (BXCI), and asset-backed finance. Real Estate spans opportunistic (BREP), core-plus (BPP), and credit (BXMT)."
+        },
+        "sector_orientation": {
+          "classification": "sector_agnostic",
+          "notes": "Sector-agnostic across PE and credit. Real estate has thematic concentration in logistics, data centers, and rental housing. Not locked to any single sector."
+        },
+        "origination_engine": {
+          "classification": ["captive_origination", "primary_originator"],
+          "notes": "Insurance channel via BXCI provides captive credit origination. Operating platform model in real estate and infrastructure-adjacent assets. Proprietary deal sourcing at scale; limited reliance on syndicated markets for flagship strategies."
+        },
+        "fund_type": {
+          "primary": "evergreen",
+          "secondary": "drawdown",
+          "notes": "Perpetual/evergreen capital reached $523.6B (48% of fee-earning AUM) at year-end 2025, up 18% YoY. Includes BREIT, BCRED, BXPE. Traditional closed-end drawdown funds (BCP X, BREP X) remain core institutional products."
+        },
+        "capital_source": {
+          "primary": "non_captive_capital_pool",
+          "secondary": "captive_capital_pool",
+          "notes": "Third-party LP capital (institutional pensions, sovereigns) remains primary. Insurance/corporate balance sheet capital growing rapidly via BXCI partnerships. Retail/wealth channel contributed $43B in 2025 (up 53% YoY)."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "Direct institutional relationships for flagship drawdown funds. Wirehouse, RIA, and private bank channels for retail evergreen products. Moving deeper into sub-advisory RIA channel in 2026."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "endowments_foundations", "insurance"],
+          "individual": ["family_offices", "hnwi", "retail"],
+          "notes": "Largest institutional allocators globally are core clients. Private wealth channel growing via BREIT, BCRED, BXPE. Targeting defined-contribution (DC) market as next frontier."
+        },
+        "growth_agenda": {
+          "classification": ["organic", "inorganic"],
+          "primary": "organic",
+          "notes": "Primarily organic through fundraising scale and product innovation. 2026 expected to be busiest product launch year ever. Limited M&A historically. Credit & Insurance and Multi-Asset are primary organic growth engines."
+        },
+        "share_class": {
+          "classification": "single_class",
+          "notes": "Single share class structure following 2019 conversion from partnership to C-corp. Standard NYSE-listed common stock."
+        },
+        "stated_strategic_priorities": [
+          "Scale perpetual capital vehicles to 50%+ of fee-earning AUM, with BREIT, BCRED, and BXPE as flagship evergreen vehicles",
+          "Expand private wealth distribution globally — deepen penetration in RIA channel and international markets (Japan, Australia, Gulf)",
+          "Grow Credit & Insurance as the primary AUM growth engine, leveraging BXCI for captive credit origination at insurance scale",
+          "Drive product innovation at accelerating pace — 2026 targeting highest-ever number of new product launches across all segments",
+          "Lead in real estate recovery — concentrate on logistics, data centers, and rental housing as the three structural demand themes"
+        ],
+        "source_citations": ["PS-VD-001", "PS-VD-002", "PS-VD-003", "PS-VD-055"],
+        "contextual_market_factors": {
+          "tam": "Global private alternatives AUM estimated at $14T+ (McKinsey 2026); Blackstone operates across multiple sub-TAMs in RE, PE, credit, and infrastructure.",
+          "market_share": "Largest single manager globally by AUM at $1.275T; estimated 8-10% share of total addressable private alternatives market.",
+          "governance": "C-corp since 2019; CEO Stephen Schwarzman controls significant voting power through retained partnership interests. No dual-class equity but founder concentration in economic interests.",
+          "regulation": "SEC-registered investment adviser; BXCI operates under insurance regulations; BREIT subject to FINRA distribution rules and semi-liquid redemption caps."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-003",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["United States", "Europe", "Asia-Pacific", "Middle East"],
+          "notes": "Global footprint with dedicated teams in Americas, Europe, and Asia-Pacific. Accelerating Japan infrastructure build-out and APAC private wealth expansion. Global Atlantic (insurance) operates primarily in the US and UK."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Asset-light fee stream supplemented by balance-sheet co-investment (Strategic Holdings). Global Atlantic insurance subsidiary is a principal capital vehicle, not a fee-earning AUM source. KKR reports three segments: Asset Management, Strategic Holdings, and Insurance."
+        },
+        "asset_focus": {
+          "classification": ["large_caps", "mid_market"],
+          "notes": "Flagship PE strategies target large-cap buyouts. Credit and infrastructure span mid-market to large-cap. K-Series retail products access institutional-quality assets at lower minimums."
+        },
+        "asset_class_mix": {
+          "private_equity_pct": 33,
+          "credit_pct": 33,
+          "real_assets_pct": 18,
+          "other_pct": 16,
+          "notes": "As of Q4 2025: PE ~$243B, Credit ~$243B, Real Assets (infra + RE) ~$135B. Total AUM $744B. Insurance AUM (Global Atlantic) included within credit-adjacent reporting."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["buyout", "growth", "co_investments", "secondaries"],
+          "infrastructure": ["core_plus", "value_added", "credit"],
+          "private_credit": ["direct_lending", "asset_backed", "clo", "special_situations", "mezzanine"],
+          "real_estate": ["pere", "core_plus", "credit"],
+          "natural_resources": null,
+          "missing_reason_natural_resources": "No dedicated natural resources strategy reported.",
+          "notes": "Asset-based finance (K-ABF) is a growing credit sub-strategy. KKR Solutions combines sports/media/entertainment GP stakes with Arctos capabilities. Real estate operates primarily through KREST (evergreen) and institutional opportunistic funds."
+        },
+        "sector_orientation": {
+          "classification": "sector_agnostic",
+          "notes": "Sector-agnostic across PE and credit. Infrastructure has thematic exposure to energy transition and digital infrastructure. Not locked to any sector vertically."
+        },
+        "origination_engine": {
+          "classification": ["captive_origination", "primary_originator"],
+          "notes": "Global Atlantic provides captive insurance origination for credit assets. Proprietary deal sourcing anchored by operating companies in portfolio. Capital markets arm generates $309.7M in transaction fees (2024) from origination and syndication."
+        },
+        "fund_type": {
+          "primary": "drawdown",
+          "secondary": "evergreen",
+          "notes": "Flagship PE, credit, and infra funds remain closed-end drawdown. Perpetual capital is $321B (43% of AUM) driven by Global Atlantic, open-ended infrastructure funds, and K-Series retail evergreens (KREST, KREF, K-ABF)."
+        },
+        "capital_source": {
+          "primary": "non_captive_capital_pool",
+          "secondary": "captive_capital_pool",
+          "notes": "Third-party LP capital is primary. Global Atlantic insurance float provides large captive pool for credit deployment. Raised nearly double the capital in 2025 vs. two years prior across all channels."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "Direct institutional for flagship strategies. K-Series products distributed via wealth platforms (wirehouses, RIAs, private banks). Expanding APAC private wealth distribution partnerships."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "insurance", "endowments_foundations"],
+          "individual": ["family_offices", "hnwi", "retail"],
+          "notes": "Core base of large institutional allocators. Growing K-Series retail wealth channel. KKR Solutions targets sports team owners and media/entertainment professionals as a specialized new segment."
+        },
+        "growth_agenda": {
+          "classification": ["organic", "inorganic"],
+          "primary": "organic",
+          "notes": "Fundraising organically exceeds targets. Arctos acquisition (2026, pending) represents material inorganic addition via GP stakes and sports-focused strategies. KKR Solutions launch is partly inorganic-enabled."
+        },
+        "share_class": {
+          "classification": "single_class",
+          "notes": "Single share class. C-corp structure since 2018 conversion. KKR & Co. Inc. listed on NYSE."
+        },
+        "stated_strategic_priorities": [
+          "Build perpetual capital to 50%+ of total AUM, anchored by Global Atlantic, open-ended infrastructure, and K-Series retail evergreens",
+          "Scale KKR Solutions as a new vertical combining GP stakes (via Arctos) with $100B+ AUM ambitions in sports, media, and entertainment",
+          "Expand asset-based finance (K-ABF) as a structural credit growth engine leveraging Global Atlantic balance sheet",
+          "Drive capital markets revenue as a recurring fee stream, targeting continued growth beyond 2024's $309.7M",
+          "Deepen APAC platform — Japan infrastructure buildout and Asia-Pacific private wealth distribution as near-term priorities"
+        ],
+        "source_citations": ["PS-VD-005", "PS-VD-006", "PS-VD-007", "PS-VD-008", "PS-VD-064"],
+        "contextual_market_factors": {
+          "tam": "Global alternatives TAM $14T+; KKR's credit + PE + infrastructure sub-TAMs are among the largest segments.",
+          "market_share": "~5% of total global alternatives AUM at $744B. Top 3 manager globally by AUM.",
+          "governance": "C-corp since 2018. Founders Henry Kravis and George Roberts retired; Scott Nuttall and Joseph Bae as co-CEOs. No dual-class structure.",
+          "regulation": "SEC-registered adviser. Global Atlantic is regulated by multiple state insurance departments. European operations subject to AIFMD."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-004",
+      "firm_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["United States", "Europe", "Asia-Pacific"],
+          "notes": "Headquartered in New York. Athene (insurance) operations concentrated in the US and reinsurance jurisdictions. Asset management with European and APAC origination platforms. Record $228B inflows in 2025 reflects global capital deployment."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Two reportable segments: Asset Management and Retirement Services (Athene). Asset Management is fee-earning; Retirement Services is a principal capital vehicle (spread-based). Apollo increasingly treats the integrated model as the defining strategic differentiator."
+        },
+        "asset_focus": {
+          "classification": ["large_caps", "mid_market"],
+          "notes": "PE flagship (Fund X) targets large-cap buyouts. Credit origination platform spans investment-grade to high-yield across corporate and asset-backed. Hybrid credit strategies bridge public and private markets."
+        },
+        "asset_class_mix": {
+          "credit_pct": 70,
+          "private_equity_pct": 20,
+          "real_assets_pct": 10,
+          "notes": "As of Q4 2025: Credit dominates at ~70% of AUM (~$657B of $938B). PE $190B. Real assets ~$91B. Apollo is the most credit-heavy manager among large-cap peers."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["buyout", "growth", "co_investments"],
+          "infrastructure": ["value_added", "credit"],
+          "private_credit": ["direct_lending", "asset_backed", "clo", "mezzanine", "special_situations"],
+          "real_estate": ["pere", "credit"],
+          "natural_resources": null,
+          "missing_reason_natural_resources": "No dedicated natural resources strategy disclosed.",
+          "notes": "Hybrid credit (investment-grade private credit) is the fastest-growing sub-strategy. Athene AUM (~$350B+) is deployed primarily into investment-grade credit and asset-backed securities. Asset-backed finance (ABF) is a structural growth pillar."
+        },
+        "sector_orientation": {
+          "classification": "sector_agnostic",
+          "notes": "Sector-agnostic across credit and PE. No significant sector concentration in disclosed strategies."
+        },
+        "origination_engine": {
+          "classification": ["captive_origination", "primary_originator", "structuring"],
+          "notes": "Athene provides the largest captive origination channel in the industry ($220B+ total origination in 2025). Investment-grade origination platform (MidCap Financial, Atlas, etc.) creates proprietary credit flow. Apollo is distinguished from peers by its direct origination model rather than syndicated market reliance."
+        },
+        "fund_type": {
+          "primary": "drawdown",
+          "secondary": "evergreen",
+          "notes": "PE flagships (Fund X) are closed-end drawdown. Athene creates effectively perpetual/captive AUM. Evergreen hybrid credit products growing for wealth channel. Insurance AUM is the de facto permanent capital base."
+        },
+        "capital_source": {
+          "primary": "captive_capital_pool",
+          "secondary": "non_captive_capital_pool",
+          "notes": "Athene/retirement services is the dominant capital source (~40%+ of AUM), making captive insurance capital primary. Third-party institutional LP capital is significant but secondary to the insurance base."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "Athene distributes through independent marketing organizations (IMOs) and captive channels for annuity products. Asset management distributes institutional flagships directly. Wealth products increasingly through third-party platforms."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "insurance", "endowments_foundations"],
+          "individual": ["family_offices", "hnwi", "retail"],
+          "notes": "Retirement savers (via Athene annuities) are the largest single end-client base. Institutional LPs for PE and alternatives. Growing HNW/retail via hybrid credit products."
+        },
+        "growth_agenda": {
+          "classification": ["organic", "inorganic"],
+          "primary": "organic",
+          "notes": "Growth driven organically through origination platform scaling. Athene and MidCap Financial are organic origination engines. Limited large-scale M&A; growth comes from increasing origination volume and new fund strategies."
+        },
+        "share_class": {
+          "classification": "single_class",
+          "notes": "Single class C-corp structure. NYSE-listed. Previously complex partnership structure; converted to C-corp 2019."
+        },
+        "stated_strategic_priorities": [
+          "Execute the integrated asset management and retirement services model — 'create and manufacture' investment-grade credit at scale via origination platform",
+          "Scale total AUM to $1.5T by 2029 with $150B+ in annual organic inflows, driven by origination platform breadth",
+          "Grow Retirement Services (Athene) AUM through spread compression and new product launches in fixed annuities and pension risk transfer",
+          "Expand hybrid credit (public-private) strategy to capture investment-grade capital allocators previously outside private credit",
+          "Deepen global origination footprint through platform partnerships and direct lending subsidiaries in Europe and APAC"
+        ],
+        "source_citations": ["PS-VD-009", "PS-VD-010", "PS-VD-011", "PS-VD-056"],
+        "contextual_market_factors": {
+          "tam": "Private credit TAM projected to reach $4.5T by 2030 (Preqin); Apollo is uniquely positioned in investment-grade private credit with limited direct competition.",
+          "market_share": "~6.7% of total global alternatives AUM at $938B. Dominant in investment-grade private credit origination.",
+          "governance": "C-corp. Marc Rowan as CEO and founding partner. Scott Kleinman co-President. No dual-class; founder influence through retained economic interests.",
+          "regulation": "SEC-registered adviser. Athene regulated by Iowa insurance department and Bermuda Monetary Authority for reinsurance. Subject to NAIC capital standards."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["United States", "Europe", "Asia-Pacific"],
+          "notes": "Headquartered in Los Angeles with 55+ offices globally. 4,250+ employees. GCP acquisition added Asian real estate and infrastructure footprint. European credit platform (SDP V) is one of the largest direct lending operations on the continent."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Pure asset-light manager across four segments: Credit, Real Estate, Private Equity, and Secondaries. ARIS (Ares Insurance Solutions) is a growing insurance solutions platform but remains fee-generating rather than a principal capital vehicle."
+        },
+        "asset_focus": {
+          "classification": ["mid_market", "large_caps"],
+          "notes": "Credit strategies span investment-grade through leveraged. PE (ACOF) focused on upper-mid-market to large-cap buyouts. Secondaries operate across fund sizes. Real estate spans opportunistic to value-add."
+        },
+        "asset_class_mix": {
+          "credit_pct": 65,
+          "real_estate_pct": 18,
+          "secondaries_pct": 7,
+          "private_equity_pct": 4,
+          "insurance_solutions_pct": 6,
+          "notes": "As of Q4 2025: Credit Group $406.9B, Real Estate $113.8B, Secondaries $42.1B, PE $25.3B. Total AUM $622.5B. Credit dominance is defining characteristic. 5-year AUM CAGR of 26%."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["buyout", "co_investments"],
+          "infrastructure": ["value_added", "credit", "primaries"],
+          "private_credit": ["direct_lending", "clo", "asset_backed", "mezzanine", "special_situations", "secondaries"],
+          "real_estate": ["pere", "core_plus", "credit", "primaries", "secondaries", "co_investments"],
+          "natural_resources": null,
+          "missing_reason_natural_resources": "No dedicated natural resources strategy. Some infrastructure exposure to energy transition assets via GCP-acquired strategies.",
+          "notes": "Direct lending is the largest sub-strategy by AUM. CLO management is a significant and growing business. Secondaries platform (expanded via GCP) covers PE, credit, and real estate secondaries."
+        },
+        "sector_orientation": {
+          "classification": "sector_agnostic",
+          "notes": "Sector-agnostic across credit. Some sector concentration in real estate (logistics, housing). PE is diversified across industrials, services, healthcare, and technology."
+        },
+        "origination_engine": {
+          "classification": ["primary_originator", "captive_origination"],
+          "notes": "Market-leading direct lending origination across US and Europe. ARIS insurance solutions channel provides growing captive origination. CLO structuring adds a syndication and capital recycling dimension."
+        },
+        "fund_type": {
+          "primary": "drawdown",
+          "secondary": "evergreen",
+          "notes": "Institutional drawdown funds dominate by count. ARCC (NYSE-listed BDC) and AIREIT are perpetual/listed vehicles. Private wealth evergreen products launched via wealth channel expansion. Insurance solutions add semi-perpetual capital."
+        },
+        "capital_source": {
+          "primary": "non_captive_capital_pool",
+          "secondary": "captive_capital_pool",
+          "notes": "Third-party LP capital is primary. ARIS insurance mandates create growing captive pool. Raised over $113B in 2025 across channels."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "Direct institutional sales for flagship products. Democratization initiative expands mass-affluent access through third-party platforms and wealth intermediaries."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "insurance", "endowments_foundations", "asset_managers"],
+          "individual": ["family_offices", "hnwi", "retail"],
+          "notes": "Core institutional base in credit. Growing wealth and insurance client channels. Mass-affluent democratization initiative targets new client segments below traditional HNW minimums."
+        },
+        "growth_agenda": {
+          "classification": ["organic", "inorganic"],
+          "primary": "inorganic",
+          "notes": "GCP International acquisition added $55B+ AUM in 2025. BlueCove added systematic fixed income. ARIS equity raise supports insurance expansion. Inorganic has been the primary recent growth driver, supplemented by strong organic fundraising."
+        },
+        "share_class": {
+          "classification": "dual_class",
+          "notes": "Non-economic voting units held by founders. Complex partnership structure; publicly listed Class A shares on NYSE. Founders Michael Arougheti, David Kaplan, Antony Ressler retain significant governance control."
+        },
+        "stated_strategic_priorities": [
+          "Maintain credit platform leadership — grow Credit Group beyond $400B through direct lending, CLOs, and insurance solutions",
+          "Scale Real Estate platform via GCP-acquired capabilities in Asia-Pacific logistics and data infrastructure",
+          "Expand Secondaries (ASOF) as a fourth major segment following integration of GCP's secondaries capabilities",
+          "Drive democratization initiative — expand private market access to mass-affluent investors through lower-minimum products and third-party distribution",
+          "Build ARIS insurance solutions into a standalone capital formation engine with dedicated insurance client mandates"
+        ],
+        "source_citations": ["PS-VD-012", "PS-VD-013", "PS-VD-014", "PS-VD-060"],
+        "contextual_market_factors": {
+          "tam": "Direct lending TAM is the fastest-growing segment of private credit; European direct lending market projected to double by 2028.",
+          "market_share": "~4.5% of total alternatives AUM. Top 3 in direct lending globally alongside Blackstone Credit and Apollo.",
+          "governance": "Founders retain governance control through non-economic voting units. NYSE-listed Class A shares. Michael Arougheti as CEO.",
+          "regulation": "SEC-registered adviser. ARCC regulated as a BDC. European direct lending regulated under AIFMD. ARIS subject to insurance regulations."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-006",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["North America", "Europe", "Asia-Pacific", "Middle East", "Brazil"],
+          "notes": "Listed asset-light management company spun out of Brookfield Corporation in 2022. Manages capital globally across all major markets. AI infrastructure (BAIIF) has global scope. Japan private wealth entry announced 2026."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Pure asset-light listed manager. BAM earns fee-related earnings and carried interest; does not hold principal assets. Parent BN retains the balance-sheet operating businesses. BAM manages capital across RE, infrastructure, renewable power, PE, and credit."
+        },
+        "asset_focus": {
+          "classification": ["large_caps", "mid_market"],
+          "notes": "Large-cap infrastructure and real estate are primary focus. PE (Oaktree) spans mid-market to large. Credit spans investment-grade through distressed."
+        },
+        "asset_class_mix": {
+          "infrastructure_renewable_pct": 35,
+          "real_estate_pct": 20,
+          "private_equity_pct": 15,
+          "credit_pct": 25,
+          "other_pct": 5,
+          "notes": "Fee-bearing capital of $603B (87% long-dated or perpetual). Infrastructure and renewable power account for the largest single portion. Credit includes Oaktree (~$200B AUM) as a distinct platform."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["buyout", "growth", "co_investments"],
+          "infrastructure": ["core", "core_plus", "value_added", "credit", "co_investments"],
+          "private_credit": ["direct_lending", "special_situations", "mezzanine", "asset_backed"],
+          "real_estate": ["pere", "core_plus", "credit", "co_investments"],
+          "natural_resources": ["climate", "reforest"],
+          "notes": "Renewable power and energy transition are BAM-specific categories beyond the ontology baseline. Oaktree (credit) spans the full spectrum from investment-grade through distressed. AI infrastructure (data centers, power) is a new thematic sub-strategy."
+        },
+        "sector_orientation": {
+          "classification": "sector_focused",
+          "notes": "Infrastructure (including renewable power and energy transition) is the dominant thematic lens. AI infrastructure and data centers are a growing sector focus. Not a purely sector-agnostic manager."
+        },
+        "origination_engine": {
+          "classification": ["captive_origination", "primary_originator"],
+          "notes": "Brookfield Corporation's operating portfolio provides proprietary deal sourcing and co-investment access. QIA joint venture ($20B) provides Middle East captive origination. Insurance capital (via BN's Wealth Solutions) provides credit origination flow."
+        },
+        "fund_type": {
+          "primary": "drawdown",
+          "secondary": "evergreen",
+          "notes": "87% of fee-bearing capital is long-dated or perpetual, driven by large infrastructure and renewable energy funds with long commitment periods. Open-ended core+ strategies supplement. Retail wealth products are evergreen."
+        },
+        "capital_source": {
+          "primary": "non_captive_capital_pool",
+          "secondary": "captive_capital_pool",
+          "notes": "Third-party institutional capital dominates. BN's Wealth Solutions provides growing captive insurance capital for credit. $110B+ new capital raised in 2025."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "Direct institutional relationships for flagship infra and RE funds. Expanding US private wealth distribution through wirehouses and RIAs. Japan and Middle East market entries are new distribution geographies."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "insurance", "endowments_foundations"],
+          "individual": ["family_offices", "hnwi", "retail"],
+          "notes": "Large sovereign wealth funds and infrastructure-focused pension funds are core. Growing private wealth and retail access products. Middle East SWF relationships via QIA joint venture."
+        },
+        "growth_agenda": {
+          "classification": ["organic", "inorganic"],
+          "primary": "organic",
+          "notes": "FRE grew 22% organically to $3.0B in 2025. Oaktree remaining stake acquisition adds inorganic component. AI infrastructure fund (BAIIF) is organic new product launch. Growth anchored by fee-bearing capital expansion."
+        },
+        "share_class": {
+          "classification": "single_class",
+          "notes": "BAM Ltd. has a single class of listed shares on NYSE/TSX. Controlled by Brookfield Corporation which retains ~75% economic interest."
+        },
+        "stated_strategic_priorities": [
+          "Grow fee-bearing capital to $1T+ through product launches in credit, infrastructure, and AI infrastructure",
+          "Scale AI and data infrastructure strategy (BAIIF) as the next major fund family — $10B+ target for inaugural fund",
+          "Consolidate Oaktree ownership (acquiring remaining 26% stake) to fully integrate credit platform and simplify capital structure",
+          "Expand private wealth distribution — enter Japan and deepen US RIA/wirehouse penetration",
+          "Grow Middle East presence through the $20B QIA joint venture platform"
+        ],
+        "source_citations": ["PS-VD-015", "PS-VD-016", "PS-VD-017", "PS-VD-062"],
+        "contextual_market_factors": {
+          "tam": "Infrastructure and renewable power represent the fastest-growing institutional allocation categories; AI infrastructure demand adds new TAM dimension.",
+          "market_share": "Largest infrastructure-focused manager globally when Brookfield's full infrastructure AUM is considered.",
+          "governance": "BAM is 75%+ controlled by Brookfield Corporation (BN). Bruce Flatt is CEO of both BAM and BN. Listed minority shareholders have limited governance influence.",
+          "regulation": "SEC-registered adviser (filed as foreign private issuer). AIFMD compliance for European vehicles. Renewable energy funds subject to energy sector regulation."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-007",
+      "firm_name": "Brookfield Corporation",
+      "ticker": "BN",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["North America", "Europe", "Asia-Pacific", "Middle East", "Brazil"],
+          "notes": "Parent holding company of BAM. Operates across all major global markets through operating subsidiaries (Brookfield Renewable, Brookfield Infrastructure, Brookfield Business Partners) and the BAM management platform."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Hybrid entity: asset management (via BAM, ~25% of intrinsic value) plus principal investments in operating businesses (infrastructure, renewable power, real estate, private equity, insurance). Not a pure asset-light manager."
+        },
+        "asset_focus": {
+          "classification": ["large_caps"],
+          "notes": "Principal investments are large-scale infrastructure, power generation, and real estate assets. BAM sub-segment manages across large-cap to mid-market."
+        },
+        "asset_class_mix": {
+          "infrastructure_renewable_pct": 40,
+          "real_estate_pct": 20,
+          "private_equity_pct": 15,
+          "credit_insurance_pct": 15,
+          "asset_management_pct": 10,
+          "notes": "BN holds direct interests in listed subsidiaries (BEP, BIP, BBU) and owns ~75% of BAM. Wealth Solutions (insurance) generated $1.7B earnings in 2025 (+24%). Total managed AUM same as BAM at ~$1.1T."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["buyout", "growth", "co_investments"],
+          "infrastructure": ["core", "core_plus", "value_added", "credit"],
+          "private_credit": ["direct_lending", "special_situations", "asset_backed"],
+          "real_estate": ["pere", "core_plus", "credit"],
+          "natural_resources": ["climate", "reforest"],
+          "notes": "BN holds principal infrastructure and renewable assets on balance sheet, unlike pure asset-light peers. Wealth Solutions provides spread-based insurance earnings alongside fee-based asset management."
+        },
+        "sector_orientation": {
+          "classification": "sector_focused",
+          "notes": "Infrastructure (power, utilities, transport, data) and renewable energy are defining sector concentrations. AI data centers and energy transition assets are strategic themes."
+        },
+        "origination_engine": {
+          "classification": ["captive_origination", "primary_originator"],
+          "notes": "Operating portfolio generates proprietary deal flow. Insurance subsidiary (Wealth Solutions) provides captive credit origination. QIA JV provides Middle East origination. BN balance sheet enables large-scale principal transactions."
+        },
+        "fund_type": {
+          "primary": "listed",
+          "secondary": "drawdown",
+          "notes": "BN itself is a listed holding company. Subsidiaries (BEP, BIP, BBU) are also listed. BAM manages drawdown and evergreen funds for third-party LPs. BNT merger (planned) will simplify the listed structure."
+        },
+        "capital_source": {
+          "primary": "proprietary_capital",
+          "secondary": "non_captive_capital_pool",
+          "notes": "BN's balance sheet (principal capital) is the primary capital source for operating investments. Third-party capital managed via BAM. Insurance float (Wealth Solutions) ~$50B+ in managed assets."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "BAM distributes to institutional LPs directly. Wealth Solutions distributes through insurance intermediaries. Private wealth expansion through BAM's wirehouse/RIA channels."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "insurance", "endowments_foundations"],
+          "individual": ["family_offices", "hnwi", "retail"],
+          "notes": "Full spectrum from retirement savers (via insurance) through large pensions and sovereign wealth funds."
+        },
+        "growth_agenda": {
+          "classification": ["organic", "inorganic"],
+          "primary": "inorganic",
+          "notes": "AEL acquisition (American Equity Investment Life), Just Group (UK annuities), and Neoen (renewable energy) are recent large inorganic additions. BNT merger is a structural corporate action. Organic growth via BAM FRE expansion."
+        },
+        "share_class": {
+          "classification": "single_class",
+          "notes": "Single class NYSE/TSX-listed common shares. Bruce Flatt and senior partners retain significant economic interest through partnership units."
+        },
+        "stated_strategic_priorities": [
+          "Complete BNT merger to simplify corporate structure and create a single holding company with $188B deployable capital",
+          "Scale Wealth Solutions (insurance) earnings to $2B+ through AEL integration and Just Group UK acquisition",
+          "Deploy $188B of available capital into high-return infrastructure, renewable energy, and real estate investments",
+          "Grow BAM FRE to $4B+ through fee-bearing capital expansion in AI infrastructure, credit, and private wealth",
+          "Accelerate Japan and Middle East market entry through BAM distribution partnerships and direct investment"
+        ],
+        "source_citations": ["PS-VD-039", "PS-VD-040", "PS-VD-041"],
+        "contextual_market_factors": {
+          "tam": "Global infrastructure investment gap estimated at $15T through 2040; renewable energy transition adds incremental demand. AI data center power demand creates new institutional investment category.",
+          "market_share": "Largest infrastructure and renewable energy manager globally when including principal and third-party capital.",
+          "governance": "Bruce Flatt maintains strategic control as CEO of both BN and BAM. Dual-listed on NYSE and TSX. BNT merger will further concentrate governance.",
+          "regulation": "Filed as foreign private issuer on 40-F. Subsidiaries regulated as operating companies (utilities, power generation) in multiple jurisdictions. Insurance regulated in Iowa, Bermuda, UK."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-008",
+      "firm_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["United States", "Europe"],
+          "notes": "Primarily North America-focused across direct lending and net lease. IPI Partners acquisition added global digital infrastructure (data centers, fiber, cell towers). European credit expanding. Management headquartered in New York."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Pure asset-light permanent capital specialist. Three segments: Credit (direct lending, asset-based), GP Strategic Capital (GP stakes, professional sports), Real Assets (net lease, digital infrastructure). 100% of AUM in permanent or long-dated vehicles."
+        },
+        "asset_focus": {
+          "classification": ["mid_market", "lower_mid_market"],
+          "notes": "Direct lending focuses on upper-middle-market borrowers. Net lease targets single-tenant commercial real estate. GP strategic capital targets mid-size alternative managers for stakes."
+        },
+        "asset_class_mix": {
+          "credit_pct": 55,
+          "real_assets_net_lease_pct": 30,
+          "gp_strategic_capital_pct": 15,
+          "notes": "As of Q4 2025: AUM $307.4B, FPAUM $187.7B. Credit (direct lending + ABF) ~$170B. Real Assets (net lease + digital infra) ~$92B. GP Strategic Capital ~$46B."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": null,
+          "missing_reason_private_equity": "No traditional PE buyout strategy. GP stakes (GP Strategic Capital) is not a buyout strategy.",
+          "infrastructure": ["core", "value_added"],
+          "private_credit": ["direct_lending", "asset_backed"],
+          "real_estate": ["core", "credit"],
+          "natural_resources": null,
+          "missing_reason_natural_resources": "No natural resources strategy disclosed.",
+          "notes": "GP Strategic Capital (GP stakes + sports team investing via Arctos partnership) is a proprietary sub-strategy not captured by the standard ontology. Digital infrastructure (IPI) spans data centers, fiber, and towers — spans credit and real assets."
+        },
+        "sector_orientation": {
+          "classification": "sector_focused",
+          "notes": "Net lease is highly sector-focused (single-tenant commercial, healthcare, gaming). Direct lending is more sector-agnostic. Digital infrastructure is a thematic sector focus."
+        },
+        "origination_engine": {
+          "classification": ["captive_origination", "primary_originator"],
+          "notes": "Insurance channel (KAM — Kuvare Asset Management) provides captive origination for direct lending products. GP stakes relationships generate proprietary co-investment and deal flow. 85% of management fees from permanent capital vehicles."
+        },
+        "fund_type": {
+          "primary": "evergreen",
+          "secondary": "listed",
+          "notes": "100% permanent capital model — all funds are evergreen, perpetual, or permanent. ORCA (listed) and unlisted non-traded REITs/BDCs. No traditional drawdown fund model. This is Blue Owl's core differentiator."
+        },
+        "capital_source": {
+          "primary": "captive_capital_pool",
+          "secondary": "non_captive_capital_pool",
+          "notes": "Insurance mandates (KAM/Kuvare) are a growing captive capital pool. Retail wealth channel (non-traded BDCs/REITs) is a significant third-party permanent capital source. $56B new commitments in 2025 across channels."
+        },
+        "distribution_strategy": {
+          "primary": "distributors",
+          "secondary": "direct",
+          "notes": "Heavy reliance on wealth management distributors (wirehouses, RIAs, independent broker-dealers) for retail permanent capital vehicles. Insurance channel direct. Institutional direct for GP stakes."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "insurance", "endowments_foundations"],
+          "individual": ["family_offices", "hnwi", "retail"],
+          "notes": "Retail/wealth channel is a primary driver given non-traded BDC and REIT products. Insurance (Kuvare) provides a distinct institutional permanent capital client. GP stakes clients are alternative managers themselves."
+        },
+        "growth_agenda": {
+          "classification": ["organic", "inorganic"],
+          "primary": "inorganic",
+          "notes": "KAM, Atalaya, IPI, and Prima Capital acquisitions were all completed in 2023-2025. Inorganic has driven AUM from sub-$100B at formation to $307B. Organic fundraising also strong but acquisitions have been the primary growth engine."
+        },
+        "share_class": {
+          "classification": "dual_class",
+          "notes": "Class A and Class B shares. Class B held by co-founders (Doug Ostrover, Marc Lipschultz, Craig Packer) with enhanced voting rights. NYSE-listed Class A."
+        },
+        "stated_strategic_priorities": [
+          "Maintain 100% permanent capital model — scale to $500B+ AUM without introducing drawdown fund complexity",
+          "Grow insurance channel via KAM to create captive credit origination pipeline at scale",
+          "Expand digital infrastructure (IPI) into the largest alternative digital infrastructure manager",
+          "Build GP Strategic Capital beyond GP stakes into sports, media, and entertainment (competing with KKR Solutions and Arctos)",
+          "Drive international distribution growth in Europe and APAC for direct lending and real assets products"
+        ],
+        "source_citations": ["PS-VD-018", "PS-VD-019", "PS-VD-020", "PS-VD-063"],
+        "contextual_market_factors": {
+          "tam": "Middle-market direct lending TAM estimated $500B+; net lease real estate a distinct sub-TAM. Digital infrastructure investment demand ($1T+ through 2030) is a new structural TAM.",
+          "market_share": "Leading GP stakes manager globally. Top 5 in middle-market direct lending.",
+          "governance": "Founders retain Class B voting control. Co-CEO structure (Ostrover, Lipschultz). Partnership formed through 2021 SPAC merger of Owl Rock and Dyal Capital.",
+          "regulation": "SEC-registered adviser. Non-traded BDCs subject to FINRA distribution regulations. European expansion requires AIFMD compliance."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-009",
+      "firm_name": "TPG Inc.",
+      "ticker": "TPG",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["United States", "Europe", "Asia-Pacific"],
+          "notes": "Headquartered in Fort Worth (operational base in San Francisco). Six platforms with global reach. Asia-Pacific historical roots (co-founded in Hong Kong). Credit (Angelo Gordon) has US and European operations."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Pure asset-light alternative manager since 2022 IPO. Six platforms: Capital (PE), Growth, Impact, Credit (Angelo Gordon), Real Estate, Market Solutions. Revenue from management fees and performance fees."
+        },
+        "asset_focus": {
+          "classification": ["large_caps", "mid_market"],
+          "notes": "TPG Capital targets large-cap buyouts. TPG Growth targets growth equity in technology and media. Angelo Gordon spans mid-market credit. Impact targets mid-market companies with ESG mandates."
+        },
+        "asset_class_mix": {
+          "private_equity_growth_pct": 45,
+          "credit_pct": 30,
+          "real_estate_pct": 10,
+          "impact_pct": 8,
+          "market_solutions_pct": 7,
+          "notes": "As of Q4 2025: AUM $303B (up 23% YoY). PE and Growth equity dominate at ~45%. Credit (Angelo Gordon) at ~30% following 2023 acquisition. Impact and Real Estate are growing platforms."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["buyout", "growth", "co_investments"],
+          "infrastructure": ["value_added"],
+          "private_credit": ["direct_lending", "mezzanine", "special_situations", "asset_backed"],
+          "real_estate": ["pere", "core_plus"],
+          "natural_resources": null,
+          "missing_reason_natural_resources": "No dedicated natural resources strategy disclosed.",
+          "notes": "Market Solutions provides insurance mandates and capital markets activities. Peppertree acquisition adds wireless infrastructure. Rise (impact) targets technology-enabled companies with measurable social outcomes."
+        },
+        "sector_orientation": {
+          "classification": "sector_focused",
+          "notes": "Technology and media are historic sector concentrations for TPG Capital and Growth. Healthcare and life sciences prominent in Impact. Angelo Gordon is more sector-agnostic in credit."
+        },
+        "origination_engine": {
+          "classification": ["syndicated_deals", "primary_originator"],
+          "notes": "TPG Capital sources large-cap deal flow through proprietary and syndicated processes. Angelo Gordon is a primary originator in middle-market credit. Jackson Financial (insurance mandate) provides captive insurance origination channel."
+        },
+        "fund_type": {
+          "primary": "drawdown",
+          "secondary": "evergreen",
+          "notes": "Flagship PE and credit strategies are closed-end drawdown. Market Solutions and insurance mandates create more perpetual/recurring capital. Evergreen products nascent but growing."
+        },
+        "capital_source": {
+          "primary": "non_captive_capital_pool",
+          "secondary": "captive_capital_pool",
+          "notes": "Third-party institutional LP capital is primary. Jackson Financial mandate creates a growing captive pool. $72B dry powder entering 2026. $50B+ fundraising target for 2025 (declared 'breakout year')."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "Direct institutional for flagship PE and credit. Angelo Gordon has broker-dealer and direct channels. Expanding wealth/retail distribution for evergreen products."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "insurance", "endowments_foundations"],
+          "individual": ["family_offices", "hnwi"],
+          "notes": "Institutional pensions and endowments are core for TPG Capital. Angelo Gordon has broader credit-focused LP base. Insurance (Jackson) as a growing non-traditional institutional channel."
+        },
+        "growth_agenda": {
+          "classification": ["organic", "inorganic"],
+          "primary": "inorganic",
+          "notes": "Angelo Gordon ($74B credit) and Peppertree (wireless infrastructure) acquisitions in 2023 represent the primary AUM growth drivers since IPO. 166% AUM growth since 2021 is substantially acquisition-driven. Organic fundraising accelerating post-integration."
+        },
+        "share_class": {
+          "classification": "dual_class",
+          "notes": "Founders Jim Coulter and David Bonderman retain special voting interests via partnership units. Class A publicly traded on NASDAQ. Dual governance structure typical for founder-led alternative managers post-IPO."
+        },
+        "stated_strategic_priorities": [
+          "Declare 2025 a 'breakout year' with $50B+ in fundraising — demonstrate organic fundraising capacity post-Angelo Gordon integration",
+          "Scale Angelo Gordon credit platform to $100B+ AUM through expanded direct lending, structured credit, and asset-based finance",
+          "Build Market Solutions into a recurring insurance capital management and capital markets revenue engine",
+          "Grow TPG Rise (impact) as a differentiated platform attracting ESG-mandated institutional capital",
+          "Expand private wealth and evergreen product offerings to diversify beyond institutional drawdown"
+        ],
+        "source_citations": ["PS-VD-021", "PS-VD-022", "PS-VD-023"],
+        "contextual_market_factors": {
+          "tam": "Technology-sector PE and growth equity represent a large and growing TAM; impact investing projected to reach $35T by 2025 (GIIN).",
+          "market_share": "~2% of total global alternatives AUM. Top 10 globally; dominant in tech-focused PE and impact investing.",
+          "governance": "Founders Bonderman and Coulter retain governance influence post-IPO. NASDAQ-listed. 2022 IPO completed; still transitioning from private partnership to public company norms.",
+          "regulation": "SEC-registered adviser. Angelo Gordon credit products subject to standard credit regulatory frameworks. Impact strategies increasingly subject to ESG disclosure requirements."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-010",
+      "firm_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["United States", "Europe", "Asia-Pacific", "Middle East"],
+          "notes": "Headquartered in Washington D.C. with global offices. Three global segments with geographic diversification across Americas, Europe, APAC. #1 PE sponsor globally by IPO proceeds (~$10B over the past two years)."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Pure asset-light alternative manager with three segments: Global Private Equity ($163.5B), Global Credit ($211.3B), and Global Investment Solutions (AlpInvest, $102B). Fortitude Re is an insurance solutions platform."
+        },
+        "asset_focus": {
+          "classification": ["large_caps", "mid_market"],
+          "notes": "PE flagships target large-cap corporate buyouts and growth. Credit spans investment-grade to leveraged. AlpInvest (fund of funds/solutions) operates across market caps."
+        },
+        "asset_class_mix": {
+          "private_equity_pct": 34,
+          "credit_pct": 44,
+          "investment_solutions_pct": 21,
+          "notes": "As of Q4 2025: Global PE $163.5B, Global Credit $211.3B, Investment Solutions (AlpInvest) $102B. Total AUM $477B (+8% YoY). Fee-earning AUM $332B."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["buyout", "growth", "co_investments", "secondaries"],
+          "infrastructure": ["value_added", "core_plus"],
+          "private_credit": ["direct_lending", "clo", "asset_backed", "mezzanine", "special_situations"],
+          "real_estate": ["pere", "credit"],
+          "natural_resources": null,
+          "missing_reason_natural_resources": "No dedicated natural resources strategy. Some energy exposure in PE flagship.",
+          "notes": "AlpInvest is a fund-of-funds and solutions platform (primaries, secondaries, co-investments across PE). Fortitude Re manages ~$50B of insurance assets. Credit spans corporate through structured."
+        },
+        "sector_orientation": {
+          "classification": "sector_agnostic",
+          "notes": "Sector-agnostic across PE and credit. Defense and aerospace are historic PE sector strengths given Washington D.C. network. No locked sector orientation."
+        },
+        "origination_engine": {
+          "classification": ["primary_originator", "captive_origination"],
+          "notes": "Proprietary deal sourcing anchored by global investment network. Fortitude Re provides insurance captive origination. Capital markets arm generated record $225M in transaction fees in 2024 (+40% YoY), indicating strong origination and structuring capabilities."
+        },
+        "fund_type": {
+          "primary": "drawdown",
+          "secondary": "evergreen",
+          "notes": "PE and credit flagships are closed-end drawdown. Wealth channel expanded from 3 to 9 evergreen products in 2024-2025. AlpInvest manages both drawdown and evergreen/open-ended solutions."
+        },
+        "capital_source": {
+          "primary": "non_captive_capital_pool",
+          "secondary": "captive_capital_pool",
+          "notes": "Third-party LP capital is primary. Fortitude Re insurance float provides captive credit channel. $53.7B inflows in 2024 (+32%), achieving $40B annual target. Wealth channel growing."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "Direct institutional for PE and credit flagships. Wealth channel expanded via third-party platforms. AlpInvest serves as a distribution channel for smaller institutional clients through solutions mandate."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "insurance", "endowments_foundations", "asset_managers"],
+          "individual": ["family_offices", "hnwi", "retail"],
+          "notes": "Global institutional base across PE and credit. AlpInvest serves smaller institutions via solutions mandates. Wealth channel growing to 9 products. Fortitude Re serves insurance companies."
+        },
+        "growth_agenda": {
+          "classification": ["organic", "inorganic"],
+          "primary": "organic",
+          "notes": "Primarily organic: 32% inflow growth, record FRE in 2024, $40B annual inflow target exceeded. Three-year transformation under Harvey Schwartz focused on organic execution. $2B buyback signals capital return capacity."
+        },
+        "share_class": {
+          "classification": "single_class",
+          "notes": "Single class common shares since 2020 simplification of governance structure. Previously complex partnership/voting arrangements. NASDAQ-listed."
+        },
+        "stated_strategic_priorities": [
+          "Sustain $40B+ annual inflow run rate, building toward $50B+ — organic fundraising discipline as core KPI",
+          "Grow Global Credit to $250B+ as the primary AUM growth engine, with CLOs, direct lending, and asset-backed as sub-drivers",
+          "Scale wealth channel from 9 to 15+ evergreen products — making retail a material and diversified capital channel",
+          "Deploy capital markets capabilities as a recurring revenue driver — maintain momentum beyond record $225M in 2024",
+          "Complete leadership transition following Schwartz three-year transformation — cement three Co-Presidents structure for next growth phase"
+        ],
+        "source_citations": ["PS-VD-024", "PS-VD-025", "PS-VD-026", "PS-VD-057"],
+        "contextual_market_factors": {
+          "tam": "Global alternatives TAM $14T+. Carlyle competes across PE, credit, and solutions — three distinct sub-TAMs.",
+          "market_share": "~3.4% of total global alternatives AUM at $477B. Top 5 globally; historically strongest brand in Washington D.C. and government-adjacent sectors.",
+          "governance": "C-corp since 2020. Three Co-Presidents (Redett, Jenkins, Nedelman) post-Schwartz reorganization. No dual-class equity. Founders Rubenstein, Conway, D'Aniello reduced day-to-day role.",
+          "regulation": "SEC-registered adviser. AlpInvest subject to Netherlands financial regulations. European credit vehicles under AIFMD."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-011",
+      "firm_name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["United States", "Europe", "Asia-Pacific", "Middle East"],
+          "notes": "Headquartered in New York with operations across 25+ offices globally. 108 partners averaging 20+ years experience. Japanese private wealth entry (Mika Tashiro hire, 2025) signals APAC distribution expansion."
+        },
+        "business_focus": {
+          "classification": ["asset_management", "advisory"],
+          "notes": "Operates both discretionary AUM ($220B) and non-discretionary advisory/supervision ($591B+ additional). Solutions provider model combines direct investment, fund-of-funds, secondaries, and advisory mandates — distinguishing it from pure asset managers."
+        },
+        "asset_focus": {
+          "classification": ["mid_market", "large_caps"],
+          "notes": "Underlying portfolio spans market caps through fund-of-funds and co-investment strategies. Direct co-investments access large-cap and mid-market. Solutions mandates are market-cap-agnostic."
+        },
+        "asset_class_mix": {
+          "private_equity_pct": 50,
+          "private_debt_pct": 20,
+          "real_estate_pct": 15,
+          "infrastructure_pct": 15,
+          "notes": "As of Dec 2025: AUM $220B, total capital responsibility $811B. PE solutions (primaries, secondaries, co-investments) is the largest segment. Infrastructure and debt are growing segments. Fiscal year ends March."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["primaries", "secondaries", "co_investments", "vc", "growth", "buyout"],
+          "infrastructure": ["primaries", "secondaries", "co_investments", "core_plus"],
+          "private_credit": ["primaries", "secondaries", "co_investments", "direct_lending"],
+          "real_estate": ["primaries", "secondaries", "co_investments", "pere"],
+          "natural_resources": ["primaries", "secondaries", "co_investments"],
+          "notes": "Comprehensive coverage across all four asset classes and three access modes (primaries, secondaries, co-investments). This breadth is StepStone's core product proposition for solutions-seeking LPs."
+        },
+        "sector_orientation": {
+          "classification": "sector_agnostic",
+          "notes": "Sector-agnostic by construction — solutions model accesses underlying managers' sector choices. Tactical Growth Fund adds a sector-concentrated layer in specific opportunistic themes."
+        },
+        "origination_engine": {
+          "classification": ["syndicated_deals", "primary_originator"],
+          "notes": "Solutions model sources from fund primaries (allocation to GPs), secondaries market (buying existing LP interests), and direct co-investments alongside GPs. Not a primary originator of underlying company/asset deals — proprietary access is through relationships with GP managers."
+        },
+        "fund_type": {
+          "primary": "sma",
+          "secondary": "evergreen",
+          "notes": "Separately Managed Accounts (SMAs) dominate at 90%+ of managed mandates. Re-up rate above 90% with 30% average growth on re-ups. STPEX (evergreen interval) and SPRIM launched for private wealth. SMAs have strong stickiness."
+        },
+        "capital_source": {
+          "primary": "non_captive_capital_pool",
+          "notes": "100% third-party capital. No insurance or proprietary capital base. Institutional LP capital (pensions, endowments, SWFs) is the overwhelming source."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "Direct relationship-driven SMA mandates for institutional clients. Private Wealth Solutions distributed via wirehouse and RIA channels. Japan expansion through local distribution partnerships."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "endowments_foundations", "insurance"],
+          "individual": ["family_offices", "hnwi"],
+          "notes": "Core base is institutional pensions and endowments via SMA mandates. Growing private wealth via STPEX and SPRIM. Family offices as a bridge segment."
+        },
+        "growth_agenda": {
+          "classification": ["organic"],
+          "primary": "organic",
+          "notes": "Primarily organic via fundraising. Record $31B raised in FY2025, 29% organic FEAUM growth. SMAs show strong re-up rates. Limited M&A — Tactical Growth Fund addition is internally launched."
+        },
+        "share_class": {
+          "classification": "dual_class",
+          "notes": "Class A (publicly traded NASDAQ) and Class B (held by founders/employees with economic and voting rights). Founder-controlled governance structure."
+        },
+        "stated_strategic_priorities": [
+          "Deepen SMA penetration — maintain 90%+ re-up rate and 30%+ average growth on re-ups as the anchor of the business model",
+          "Scale Private Wealth Solutions to $20B+ AUM through STPEX, SPRIM, and new product launches targeting HNW and mass-affluent investors",
+          "Expand APAC private wealth distribution — Japan entry (Tashiro hire) signals near-term geographic expansion priority",
+          "Grow infrastructure and private debt platforms to balance PE dominance in AUM mix",
+          "Leverage $811B total capital responsibility as a data and sourcing advantage — deepen GP relationships to improve co-investment access"
+        ],
+        "source_citations": ["PS-VD-033", "PS-VD-034", "PS-VD-035"],
+        "contextual_market_factors": {
+          "tam": "Private markets solutions/advisory TAM is the fastest-growing allocation category for mid-size institutional investors seeking outsourced investment management.",
+          "market_share": "Top 3 global private markets solutions provider alongside Hamilton Lane and Mercer.",
+          "governance": "Founder-controlled Class B structure. Monte Brem as co-CEO. NASDAQ-listed Class A.",
+          "regulation": "SEC-registered investment adviser. Advisory/non-discretionary mandates subject to standard fiduciary regulations."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-012",
+      "firm_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["United States", "Europe", "Asia-Pacific", "Middle East"],
+          "notes": "Headquartered in Conshohocken, Pennsylvania with 23 offices globally. 30+ years of PE-focused private markets history. Japan private wealth entry in 2025 (Tashiro hire). Fiscal year ends March."
+        },
+        "business_focus": {
+          "classification": ["asset_management", "advisory"],
+          "notes": "Dual model: discretionary AUM ($146.1B) and non-discretionary advisory/supervision ($725.4B). Revenue from management and advisory fees, performance fees (carried interest). Technology (Cobalt data platform) supplements investment management."
+        },
+        "asset_focus": {
+          "classification": ["mid_market", "large_caps"],
+          "notes": "Fund-of-funds, secondaries, and co-investments span market caps. Infrastructure Opportunities Fund (IOF II) targets infrastructure mid-market. Evergreen platform products are market-cap-agnostic."
+        },
+        "asset_class_mix": {
+          "private_equity_pct": 60,
+          "private_credit_pct": 15,
+          "real_assets_pct": 15,
+          "venture_capital_pct": 10,
+          "notes": "As of Dec 2025: total AUM+supervision $871.5B ($146.1B discretionary). PE solutions dominate discretionary AUM. Infrastructure growing via IOF II. Evergreen platform $16B+ AUM."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["primaries", "secondaries", "co_investments", "vc", "buyout", "growth"],
+          "infrastructure": ["primaries", "secondaries", "co_investments", "core_plus"],
+          "private_credit": ["primaries", "secondaries", "co_investments", "direct_lending"],
+          "real_estate": ["primaries", "secondaries", "co_investments"],
+          "natural_resources": ["primaries", "secondaries"],
+          "notes": "Comprehensive multi-asset, multi-access-mode product suite. Cobalt data platform enables systematic factor analysis. Evergreen suite (11 funds, 70%+ in perpetual capital) is the fastest-growing product category."
+        },
+        "sector_orientation": {
+          "classification": "sector_agnostic",
+          "notes": "Sector-agnostic by construction — solutions/advisory model reflects underlying GP sector choices rather than top-down sector allocation."
+        },
+        "origination_engine": {
+          "classification": ["syndicated_deals"],
+          "notes": "Origination through GP primaries, secondaries market transactions, and co-investment allocations from manager relationships. Not a primary originator of company or asset deals. Cobalt data platform provides proprietary deal screening edge."
+        },
+        "fund_type": {
+          "primary": "sma",
+          "secondary": "evergreen",
+          "notes": "Separately Managed Accounts are core institutional product. Evergreen platform ($16B+, 11 funds) is the fastest-growing category at 70%+ in perpetual structures. Partnership with Republic (retail) adds new fund type exposure."
+        },
+        "capital_source": {
+          "primary": "non_captive_capital_pool",
+          "notes": "100% third-party capital. No proprietary or insurance capital base. Institutional pensions and endowments dominate, with growing wealth and retail channels."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "Direct institutional for SMA mandates. Third-party distributors (Republic, YCharts integration) for retail access. Japan distribution partnership for private wealth expansion."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "endowments_foundations", "insurance"],
+          "individual": ["family_offices", "hnwi", "retail"],
+          "notes": "30+ year institutional relationship base. Growing retail/mass-market via Republic partnership. Family offices as bridge segment. Japan expansion targets HNWI."
+        },
+        "growth_agenda": {
+          "classification": ["organic"],
+          "primary": "organic",
+          "notes": "Primarily organic. Discretionary AUM grew +11% YoY, fee-earning AUM +10%. Evergreen platform organic growth 70%+. Republic partnership and Japan hire are distribution extensions, not acquisitions."
+        },
+        "share_class": {
+          "classification": "dual_class",
+          "notes": "Class A (NASDAQ-traded) and Class B (held by founders/employees). Governance weighted toward founding partners."
+        },
+        "stated_strategic_priorities": [
+          "Scale Evergreen Platform to $30B+ AUM through product launches across PE, infrastructure, and private credit",
+          "Expand retail and mass-affluent access via Republic partnership and lower-minimum evergreen structures",
+          "Grow Japan and APAC private wealth distribution as a multi-year international expansion priority",
+          "Leverage Cobalt data platform to deepen institutional client relationships and differentiate via systematic factor analysis",
+          "Grow Infrastructure Opportunities Fund (IOF) to $3B+ — establish infrastructure as a second major asset class alongside PE"
+        ],
+        "source_citations": ["PS-VD-036", "PS-VD-037", "PS-VD-038"],
+        "contextual_market_factors": {
+          "tam": "Private markets solutions/advisory TAM growing rapidly; retail/mass-affluent access to alternatives is a structural megatrend.",
+          "market_share": "Top 3 private markets solutions provider. Largest in advisory/supervision by total capital responsibility.",
+          "governance": "Founder-influenced governance via Class B shares. Mario Giannini as Chairman. Erik Hirsch as co-CEO. NASDAQ-listed.",
+          "regulation": "SEC-registered investment adviser. Non-discretionary advisory subject to fiduciary standards. Cobalt platform subject to data privacy regulations."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-015",
+      "firm_name": "EQT AB",
+      "ticker": "EQT",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["Europe", "Asia-Pacific", "North America"],
+          "notes": "Largest European-headquartered pure-play alternative manager by AUM. Headquartered in Stockholm. European home market with significant Asia-Pacific capabilities (BPEA-branded, renamed EQT Private Capital Asia in 2024). North American expansion ongoing."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Pure asset-light listed manager. Two segments: Private Capital (PE, growth, Asia PE) and Real Assets (infrastructure, real estate). Revenue from management fees (EUR 2.6B in 2025) and carried interest."
+        },
+        "asset_focus": {
+          "classification": ["mid_market", "large_caps"],
+          "notes": "PE flagships target mid-cap to upper-mid-market companies. EQT Infrastructure targets large-scale infrastructure assets. BPEA covers APAC mid-market. Growth equity (EQT Growth) targets late-stage technology companies."
+        },
+        "asset_class_mix": {
+          "private_capital_pct": 65,
+          "real_assets_pct": 35,
+          "notes": "As of Q4 2025: Total AUM EUR 270B (~$291.6B). Private Capital EUR ~175B, Real Assets EUR ~95B. Fee-generating AUM EUR 141B. Coller Capital acquisition will add secondaries to Private Capital."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["buyout", "growth", "co_investments", "secondaries"],
+          "infrastructure": ["core", "core_plus", "value_added", "co_investments"],
+          "private_credit": null,
+          "missing_reason_private_credit": "No standalone credit platform. Some credit exposure within infrastructure (EQT Infrastructure Credit). Coller Capital brings secondaries but not direct lending.",
+          "real_estate": ["pere", "core_plus"],
+          "natural_resources": null,
+          "missing_reason_natural_resources": "No dedicated natural resources strategy disclosed. Some renewable energy exposure within Real Assets.",
+          "notes": "Thematic investing approach ('Future' themes: digitalization, automation, healthier living) applied across PE portfolio. Coller Capital acquisition adds secondaries as a distinct sub-strategy (~EUR 28B FAUM)."
+        },
+        "sector_orientation": {
+          "classification": "sector_focused",
+          "notes": "Explicit thematic orientation ('Future' themes) applied across PE and growth. Technology, healthcare, and sustainability are dominant sector lenses. Infrastructure focuses on digitalization and energy transition."
+        },
+        "origination_engine": {
+          "classification": ["primary_originator", "captive_origination"],
+          "notes": "Proprietary deal origination through thematic sourcing (not reactive auction-driven). EQT Ventures provides an early-stage funnel for growth equity deal flow. Perficient acquisition adds consultancy-sourced deal flow."
+        },
+        "fund_type": {
+          "primary": "drawdown",
+          "secondary": "evergreen",
+          "notes": "Flagship PE and infrastructure funds are closed-end drawdown with long hold periods. EUR 1.9B raised in evergreen/open-ended strategies in 2025. Evergreen at 'inflection point' per Capital Markets Day commentary."
+        },
+        "capital_source": {
+          "primary": "non_captive_capital_pool",
+          "notes": "100% third-party LP capital. No insurance or proprietary capital base. EUR 26B+ gross inflows in 2025 (more than 2x prior year). Strong institutional and co-investment flows."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "Direct institutional distribution for flagships. Evergreen products target private wealth through third-party channels. Stockholm and London-based IR teams. APAC distribution through regional offices."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "endowments_foundations", "insurance"],
+          "individual": ["family_offices", "hnwi"],
+          "notes": "European pension funds and sovereign wealth are core. APAC institutional growing via BPEA platform. Private wealth through evergreen suite at early stage."
+        },
+        "growth_agenda": {
+          "classification": ["organic", "inorganic"],
+          "primary": "organic",
+          "notes": "EUR 26B+ gross inflows in 2025 is substantially organic. Coller Capital acquisition adds secondaries inorganically. Perficient (digital consultancy) is an adjacent acquisition into portfolio value creation capabilities."
+        },
+        "share_class": {
+          "classification": "single_class",
+          "notes": "Single class of shares listed on NASDAQ Stockholm. Co-founders Conni Jonsson and Thomas von Koch retain significant ownership but no enhanced voting rights."
+        },
+        "stated_strategic_priorities": [
+          "Scale fee-generating AUM to EUR 200B+ through continued fundraising across Private Capital and Real Assets",
+          "Integrate Coller Capital to establish secondaries as a major third pillar alongside PE and infrastructure",
+          "Expand evergreen and open-ended strategies for private wealth — 'inflection point' declared at Capital Markets Day",
+          "Deepen EQT Private Capital Asia as a standalone brand covering China, India, Japan, and Southeast Asia",
+          "Accelerate portfolio value creation through digital and AI-powered transformation of portfolio companies"
+        ],
+        "source_citations": ["PS-VD-027", "PS-VD-028", "PS-VD-029", "PS-VD-058"],
+        "contextual_market_factors": {
+          "tam": "European PE and infrastructure TAM is the second-largest globally after the US; EQT has structural home market advantage.",
+          "market_share": "Largest European-headquartered alternative manager. ~2% of total global alternatives AUM.",
+          "governance": "Swedish listed company. Supervisory Board oversight. Co-founders have economic but not enhanced voting control. Christian Sinding as CEO.",
+          "regulation": "Regulated as Swedish financial institution (FI). AIFMD compliance for all European funds. APAC funds subject to local regulations. SIX-listed for reporting."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-016",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["Europe", "North America", "Asia-Pacific", "Middle East"],
+          "notes": "Headquartered in Baar, Switzerland. 1,500+ professionals across 20 offices globally. Global investing with European institutional base. APAC and Middle East JVs expanding reach. Swiss francs used for reporting."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Pure direct investing alternative manager. Revenue from management fees and performance fees (carried interest). No advisory/non-discretionary component — all AUM is discretionary direct investment."
+        },
+        "asset_focus": {
+          "classification": ["large_caps", "mid_market"],
+          "notes": "Direct investment across private equity, infrastructure, real estate, and debt. No fund-of-funds or solutions layer — Partners Group co-invests directly in underlying companies/assets alongside GPs or as lead investor."
+        },
+        "asset_class_mix": {
+          "private_equity_pct": 50,
+          "private_infrastructure_pct": 20,
+          "private_debt_pct": 20,
+          "private_real_estate_pct": 10,
+          "notes": "As of Q4 2025: AUM $185B ($30B new assets received in 2025). PE dominant. Infrastructure and debt are growing. Private markets royalties launched as 5th asset class (May 2024). Annual results 2024 showed $3.7B direct PE, $1.4B direct RE, $3.6B direct infra, $4.2B direct debt activity."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["buyout", "growth", "co_investments", "secondaries"],
+          "infrastructure": ["core", "core_plus", "value_added", "credit", "co_investments"],
+          "private_credit": ["direct_lending", "mezzanine", "asset_backed", "co_investments"],
+          "real_estate": ["pere", "core_plus", "credit", "co_investments"],
+          "natural_resources": ["primaries"],
+          "notes": "Private markets royalties is a proprietary 5th asset class — royalty streams from music, patents, natural resources, and infrastructure — not captured in the standard ontology. This is a differentiating innovation."
+        },
+        "sector_orientation": {
+          "classification": "sector_focused",
+          "notes": "Technology, healthcare, and services are PE sector concentrations. Infrastructure focuses on energy transition, digital, and transport. Not purely sector-agnostic — thematic investment approach applied at asset class level."
+        },
+        "origination_engine": {
+          "classification": ["primary_originator", "captive_origination"],
+          "notes": "Direct investing model means Partners Group originates investments itself rather than allocating to GPs. APAC and Middle East JVs create captive origination channels. Empira acquisition added European residential RE origination."
+        },
+        "fund_type": {
+          "primary": "evergreen",
+          "secondary": "drawdown",
+          "notes": "Evergreen open-ended funds dominate at Partners Group — PG LIFE (listed), PGPE (US evergreen), and seven new evergreen offerings launched in 2025. Partners Group has been the longest-running proponent of the evergreen model among large-cap managers."
+        },
+        "capital_source": {
+          "primary": "non_captive_capital_pool",
+          "notes": "100% third-party client capital. No insurance or proprietary capital base. $30B new assets received in 2025. Mix of institutional (SMAs) and wealth (evergreen products)."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "Direct institutional relationships for SMAs and institutional evergreens. Third-party private bank and wealth platform distribution for retail evergreens. APAC and Middle East JVs provide local distribution infrastructure."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "endowments_foundations", "insurance"],
+          "individual": ["family_offices", "private_banks", "hnwi"],
+          "notes": "Swiss/European pension funds and insurance companies are core. Private banks are a significant distribution channel for evergreen products. APAC and Middle East institutional growing."
+        },
+        "growth_agenda": {
+          "classification": ["organic", "inorganic"],
+          "primary": "organic",
+          "notes": "Primarily organic through new fund launches and client growth. Empira Group acquisition added European residential RE. Trinity Investments stake added US hospitality. Primarily organic with selective strategic acquisitions."
+        },
+        "share_class": {
+          "classification": "single_class",
+          "notes": "Single class of registered shares listed on SIX Swiss Exchange. Founder ownership concentration (André Frei and Steffen Meister as co-CEOs hold economic interests) without dual-class voting structure."
+        },
+        "stated_strategic_priorities": [
+          "Scale evergreen platform to 50%+ of AUM — seven new evergreen offerings in 2025; become the leading evergreen direct investing platform globally",
+          "Grow private markets royalties as a differentiated 5th asset class with $10B+ AUM target",
+          "Expand APAC and Middle East distribution through JV partnerships with local financial institutions",
+          "Scale direct debt platform to $50B+ through direct lending, infrastructure credit, and real estate credit",
+          "Integrate Empira Group to establish European residential real estate as a meaningful direct investing capability"
+        ],
+        "source_citations": ["PS-VD-030", "PS-VD-031", "PS-VD-032", "PS-VD-059"],
+        "contextual_market_factors": {
+          "tam": "European and global private markets TAM. Evergreen/perpetual capital structures represent the fastest-growing fund format globally.",
+          "market_share": "Top 15 globally by AUM. Distinguished as the leading practitioner of direct investing and evergreen structures among mid-to-large-cap managers.",
+          "governance": "Swiss AG listed on SIX. Co-CEO structure. No regulatory pressure equivalent to SEC. Swiss Financial Market Supervisory Authority (FINMA) oversight.",
+          "regulation": "FINMA-regulated. AIFMD compliance for European funds. US-marketed products subject to SEC and FINRA rules."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-017",
+      "firm_name": "Intermediate Capital Group plc",
+      "ticker": "ICP",
+      "profile": {
+        "geographic_reach": {
+          "classification": "global",
+          "primary_markets": ["Europe", "Asia-Pacific", "North America"],
+          "notes": "London-headquartered with offices across Europe, APAC, and North America. European mid-market and large-cap PE credit is the historical core. SDP V is Europe's largest direct lending fund, reflecting European market leadership."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Pure asset-light alternative manager. Manages capital across structured/private equity (ICG Strategic Equity), private debt (SDP, SEN), real assets (infrastructure equity and debt), and credit (LP/GP co-investments). Amundi partnership adds distribution scale."
+        },
+        "asset_focus": {
+          "classification": ["mid_market", "large_caps"],
+          "notes": "SDP targets European upper mid-market to large-cap leveraged lending. Strategic Equity V targets global PE across market caps. Infrastructure spans core to value-add."
+        },
+        "asset_class_mix": {
+          "structured_private_equity_pct": 25,
+          "private_debt_pct": 45,
+          "real_assets_pct": 20,
+          "credit_pct": 10,
+          "notes": "As of Sept 2025: Total AUM ~$127B. FY2025 (March): fee-earning AUM $75B (+8%), total AUM $112B (+14%). SDP V ($17B) is the single largest fundraise. Strategic Equity V closed at $11B (2x predecessor)."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["buyout", "co_investments", "secondaries"],
+          "infrastructure": ["core", "core_plus", "value_added", "credit"],
+          "private_credit": ["direct_lending", "mezzanine", "special_situations", "asset_backed"],
+          "real_estate": null,
+          "missing_reason_real_estate": "No standalone real estate strategy. Some real estate exposure within real assets/infrastructure.",
+          "natural_resources": null,
+          "missing_reason_natural_resources": "No dedicated natural resources strategy.",
+          "notes": "Strategic Equity (mezzanine + equity hybrid) is a proprietary ICG invention — not a standard buyout or credit strategy. ICG Core Private Equity is a new evergreen product for US wealth investors. SDP V at $17B is the largest European direct lending fund ever raised."
+        },
+        "sector_orientation": {
+          "classification": "sector_agnostic",
+          "notes": "Sector-agnostic across private debt and structured equity. Infrastructure has some energy transition concentration. 'Breadth at scale' is the stated strategy — diversification across geographies and asset classes."
+        },
+        "origination_engine": {
+          "classification": ["primary_originator", "captive_origination"],
+          "notes": "European direct lending origination through Excellera Advisory Group acquisition (technology/business advisory facilitating deal access). Amundi partnership creates captive distribution pipeline for wealth products. Global corporate network from 30+ years of mid-market lending."
+        },
+        "fund_type": {
+          "primary": "drawdown",
+          "secondary": "evergreen",
+          "notes": "Flagship SDP and Strategic Equity funds are closed-end drawdown. ICG Core Private Equity is a new US evergreen product for wealth channel. Evolution toward evergreen is nascent."
+        },
+        "capital_source": {
+          "primary": "non_captive_capital_pool",
+          "notes": "100% third-party LP capital. $24B raised in FY2025. Amundi partnership provides access to European retail and private bank capital distribution channels."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "secondary": "distributors",
+          "notes": "Direct institutional relationships for SDP and Strategic Equity flagships. Amundi partnership enables distribution through Amundi's network of 400+ institutional and retail clients in Europe. ICG Core PE distributed through US wealth platforms."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "swf", "endowments_foundations", "insurance"],
+          "individual": ["family_offices", "hnwi", "retail"],
+          "notes": "European and Asian institutional base for drawdown funds. Amundi partnership opens European private bank and retail distribution. US wealth investors via ICG Core PE."
+        },
+        "growth_agenda": {
+          "classification": ["organic", "inorganic"],
+          "primary": "organic",
+          "notes": "Primarily organic through fund size growth (SDP V at 2x predecessor = $17B; Strategic Equity V at 2x predecessor = $11B). Excellera acquisition is a small tactical inorganic. £55B four-year fundraising target is primarily organic."
+        },
+        "share_class": {
+          "classification": "single_class",
+          "notes": "Single class LSE-listed shares. No dual-class voting structure. Benoît Durteste as CEO. 15th consecutive annual dividend increase announced."
+        },
+        "stated_strategic_priorities": [
+          "Execute 'breadth at scale' — raise £55B+ over the next four years across direct lending, structured equity, and real assets",
+          "Grow SDP (direct lending) beyond $17B per vintage — establish as the pre-eminent European direct lending franchise globally",
+          "Build US wealth distribution via ICG Core Private Equity evergreen and Amundi partnership channels",
+          "Expand infrastructure equity and credit to complement PE and debt — target $25B+ real assets AUM",
+          "Deepen APAC presence through Singapore and Tokyo offices as a complement to European core"
+        ],
+        "source_citations": ["PS-VD-042", "PS-VD-043", "PS-VD-044"],
+        "contextual_market_factors": {
+          "tam": "European direct lending TAM is the fastest-growing private credit sub-segment; estimated to reach $500B+ by 2028.",
+          "market_share": "Top 5 European alternative manager. Leading position in European upper-mid-market direct lending via SDP franchise.",
+          "governance": "LSE Premium Listed. Standard UK governance code compliance. Benoît Durteste as CEO with institutional board oversight.",
+          "regulation": "FCA-regulated in the UK. AIFMD compliance for European AIFs. US products subject to SEC and FINRA rules. Singapore MAS for APAC operations."
+        }
+      }
+    },
+    {
+      "firm_id": "FIRM-020",
+      "firm_name": "Bridgepoint Group plc",
+      "ticker": "BPT",
+      "profile": {
+        "geographic_reach": {
+          "classification": "regional",
+          "primary_markets": ["Europe"],
+          "notes": "London-headquartered, primarily European mid-market alternative manager. Energy Capital Partners (ECP) acquisition adds North American energy infrastructure capabilities. Core competence remains European PE and credit."
+        },
+        "business_focus": {
+          "classification": "asset_management",
+          "notes": "Pure asset-light alternative manager. Three core platforms: Bridgepoint Private Equity (European mid-market buyouts), Bridgepoint Credit (direct lending), and Bridgepoint Infrastructure (via ECP acquisition). Revenue from management fees and carried interest."
+        },
+        "asset_focus": {
+          "classification": ["mid_market"],
+          "notes": "Defined mid-market specialist in European PE. Direct lending targets European mid-market borrowers. ECP targets mid-to-large North American energy infrastructure. Not a large-cap or lower-mid-market manager."
+        },
+        "asset_class_mix": {
+          "private_equity_pct": 55,
+          "credit_pct": 25,
+          "infrastructure_pct": 15,
+          "secondaries_pct": 5,
+          "notes": "As of June 2025: AUM EUR 73.7B ($86.6B), fee-paying AUM EUR 37.5B. PE dominates but Credit and Infrastructure growing via acquisitions. Newbury Partners adds secondaries capability."
+        },
+        "asset_class_sub_strategies": {
+          "private_equity": ["buyout", "co_investments"],
+          "infrastructure": ["value_added", "core_plus"],
+          "private_credit": ["direct_lending"],
+          "real_estate": null,
+          "missing_reason_real_estate": "No dedicated real estate strategy at Bridgepoint (unlike most large-cap peers).",
+          "natural_resources": null,
+          "missing_reason_natural_resources": "No dedicated natural resources strategy.",
+          "notes": "Bridgepoint Credit provides European mid-market direct lending. ECP focuses on North American energy infrastructure (power generation, midstream, utilities). Newbury Partners adds GP-led secondaries and co-investments."
+        },
+        "sector_orientation": {
+          "classification": "sector_focused",
+          "notes": "PE has defined sector concentrations: technology-enabled services, healthcare, financial and business services, and consumer. Energy infrastructure focus via ECP. Mid-market sector expertise is a core differentiation."
+        },
+        "origination_engine": {
+          "classification": ["primary_originator"],
+          "notes": "Proprietary deal sourcing in European mid-market through 30+ year relationships. ECP provides energy sector origination in North America. Direct lending originates through lending officer network. No insurance or captive origination."
+        },
+        "fund_type": {
+          "primary": "drawdown",
+          "secondary": "evergreen",
+          "notes": "Flagship PE funds are closed-end drawdown (BEF VII in market). Direct lending is semi-open-ended via commingled vehicles. EUR 2.0B deployed in European direct lending in 2025."
+        },
+        "capital_source": {
+          "primary": "non_captive_capital_pool",
+          "notes": "100% third-party LP capital. ECP sellers converted to shares (30M new shares) as part of consideration structure — some alignment but not captive. Core institutional European LP base."
+        },
+        "distribution_strategy": {
+          "primary": "direct",
+          "notes": "Direct institutional distribution through UK/European investor relations team. No significant retail or wealth channel."
+        },
+        "client_segment": {
+          "institutional": ["pension_funds", "endowments_foundations", "insurance"],
+          "individual": ["family_offices"],
+          "notes": "Core base of European institutional investors (pensions, endowments). US institutional expanding via ECP's established North American LP relationships."
+        },
+        "growth_agenda": {
+          "classification": ["inorganic", "organic"],
+          "primary": "inorganic",
+          "notes": "AUM growth from EUR 61.5B to EUR 73.7B YoY driven primarily by ECP ($6.7B+ AUM) and Newbury Partners ($4B+) acquisitions. Organic fundraising for PE and credit complements inorganic platform build-out."
+        },
+        "share_class": {
+          "classification": "single_class",
+          "notes": "Single class LSE Premium Listed shares. No dual-class voting. William Jackson as CEO. IPO completed July 2021."
+        },
+        "stated_strategic_priorities": [
+          "Integrate Energy Capital Partners (ECP) to establish North American energy infrastructure as a third standalone platform",
+          "Scale Bridgepoint Credit to EUR 15B+ through continued European mid-market direct lending and Newbury secondaries build-out",
+          "Grow AUM to EUR 100B by 2027 through combination of PE fundraising, ECP growth, and credit expansion",
+          "Expand North American LP base via ECP institutional relationships to complement European-concentrated capital sources",
+          "Leverage Newbury Partners to build GP-led secondaries as a recurring liquidity solutions business"
+        ],
+        "source_citations": ["PS-VD-056", "PS-VD-057", "PS-VD-058"],
+        "contextual_market_factors": {
+          "tam": "European mid-market PE is a defined sub-TAM of ~EUR 150B deployable capital per year; direct lending adds incremental TAM.",
+          "market_share": "Top 5 European mid-market PE manager. Leading position in European technology-enabled services and healthcare mid-market.",
+          "governance": "LSE Premium Listed. UK Corporate Governance Code compliance. No founder dual-class structure post-IPO.",
+          "regulation": "FCA-regulated. AIFMD compliance for all EU AIFs. ECP subject to US SEC and FERC regulations for energy infrastructure."
+        }
+      }
+    }
+  ]
+}

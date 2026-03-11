@@ -1,0 +1,36 @@
+{
+  "normalized_url": "www.sec.gov/Archives/edgar/data/1880661/000188066125000014/tpg-20241231.htm",
+  "canonical_url": "https://www.sec.gov/Archives/edgar/data/1880661/000188066125000014/tpg-20241231.htm",
+  "content_hash": "06a23c949f2ef3164298f1f31592d955ab3838cd",
+  "evidence_version_id": "f7a4cc3ed40c624de220d7612458dc97c6dfed35",
+  "supersedes_version_id": null,
+  "captured_at": "2026-03-10T00:41:09.785128Z",
+  "verified_at": "2026-03-11T00:36:34.424949Z",
+  "derived_from_run": "2026-03-09-run2",
+  "crawl_run": "crawl",
+  "source_id_at_capture": "PS-VD-021",
+  "firm_at_capture": "TPG",
+  "quality_bucket": "good",
+  "text_length": 85834,
+  "content_type": "text/html",
+  "freshness_class": "immutable_filing",
+  "freshness_ttl_days": null,
+  "material_change_policy": "immutable_requires_anomaly_review",
+  "extraction_modes": [
+    "document_links"
+  ],
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl",
+  "priority_score": 32,
+  "pinned_sessions": [
+    "2026-03-07",
+    "2026-03-07-run2",
+    "2026-03-08-run2",
+    "2026-03-09-run2",
+    "2026-03-10-run2",
+    "2026-03-11-incremental-pilot"
+  ],
+  "anomaly_flags": [],
+  "canonical_text_path": "data/raw/pax/canonical/17/17c20266b64b3365f16c700722038cc6ad89bd4c/06a23c949f2ef3164298f1f31592d955ab3838cd/evidence.txt",
+  "metadata_path": "data/raw/pax/canonical/17/17c20266b64b3365f16c700722038cc6ad89bd4c/06a23c949f2ef3164298f1f31592d955ab3838cd/metadata.json"
+}

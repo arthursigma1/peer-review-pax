@@ -1,0 +1,45 @@
+{
+  "normalized_url": "www.sec.gov/Archives/edgar/data/1957845/000195784525000061/kkr-20250630.htm",
+  "canonical_url": "https://www.sec.gov/Archives/edgar/data/1957845/000195784525000061/kkr-20250630.htm",
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl-backfill-selective",
+  "priority_score": 67,
+  "preferred_source": {
+    "source_id": "PS-VD-064",
+    "firm": "KKR (KKR)",
+    "title": "KKR 10-Q (Q2 2025, period ended June 30, 2025)",
+    "date": "2025-08-06",
+    "document_type": "10-Q Quarterly Report",
+    "bias_tag": "regulatory-filing",
+    "url": "https://www.sec.gov/Archives/edgar/data/1957845/000195784525000061/kkr-20250630.htm",
+    "notes": "Interim financials for KKR including insurance segment (Global Atlantic), strategic holdings, and capital markets activity. Provides mid-year AUM trajectory data.",
+    "catalog_path": "data/processed/pax/2026-03-08-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl-backfill-selective",
+    "seed_url": "https://www.sec.gov/Archives/edgar/data/1957845/000195784525000061/kkr-20250630.htm",
+    "loaded_url": "https://www.sec.gov/Archives/edgar/data/1957845/000195784525000061/kkr-20250630.htm",
+    "title": "kkr-20250630",
+    "document_type": "10-Q Quarterly Report",
+    "bias_tag": "regulatory-filing",
+    "content_type": "text/html",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2-backfill-selective/PS-VD-064_kkr-10-q-q2-2025-period-ended-june-30-2025_584ea9b3.txt",
+    "text_length": 49362,
+    "quality_score": 52362,
+    "quality_bucket": "good",
+    "quality_reason": "sufficient_text",
+    "relevant_snippets": [
+      "On December 23, 2024 and April 4, 2025, the Company remitted $ 1,000 and $ 750 , respectively, to the Dealer-Manager for arranger fees related to the Credit Agreement, as defined in Note 6. Credit Facility . Additionally, during both the three and six months ended June 30, 2025, the Company remitted $ 2,492 to the Dealer-Manager for its services in sourcing, organizing, and executing a tender offer for the acquisition of certain stakes in a portfolio company.",
+      "On December 20, 2023, certain wholly-owned subsidiaries of the Company entered into the Line of Credit (as defined in \u201c Note 5. Related Party Transactions \u201d to our consolidated financial statements found elsewhere in this Quarterly Report on Form 10-Q) to provide for up to a maximum aggregate principal amount of $300,000 with KKR Alternative Assets LLC, an affiliate of the Company. As of June 30, 2025, the Line of Credit Borrowers did not have an outstanding balance under the Line of Credit.",
+      "Dividend income $ 21,569 $ 12,837 $ 35,755 $ 16,688",
+      "Revenues $ 10,882,611 $ 1,933,505 $ 23,908,462 $ 4,600,377",
+      "Dividend income $ 21,569 $ 12,837 $ 8,732 $ 35,755 $ 16,688 $ 19,067"
+    ],
+    "extraction_modes": [
+      "document_links"
+    ]
+  },
+  "canonical_text_path": "data/raw/pax/canonical/c9/c970f8172122aaf8ee71a759491e4c48704226f6/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.412957Z"
+}

@@ -1,0 +1,85 @@
+{
+  "gate": "Quality Gate 2",
+  "timestamp": "2026-03-08",
+  "run_id": "2026-03-08-run2",
+  "decision": "PROCEED",
+  "criteria": {
+    "1_metric_coverage": {
+      "status": "PASS",
+      "eligible_driver_metrics": 10,
+      "contextual_only_reclassified": 7,
+      "contextual_only_ids": [
+        "MET-VD-003",
+        "MET-VD-008",
+        "MET-VD-010",
+        "MET-VD-011",
+        "MET-VD-012",
+        "MET-VD-015",
+        "MET-VD-017"
+      ],
+      "firms_above_60pct": 24,
+      "total_firms": 27,
+      "pct_passing": "89%",
+      "threshold": "80%"
+    },
+    "2_n_effective": {
+      "status": "PASS",
+      "n_effective": 26,
+      "excluded": [
+        {
+          "firm_id": "FIRM-027",
+          "ticker": "RITM",
+          "reason": "12% metric coverage; private subsidiary since Nov 2023 Rithm acquisition; no valuation multiples extractable"
+        }
+      ],
+      "threshold": 15
+    },
+    "3_valuation_multiples": {
+      "status": "PARTIAL",
+      "P_FRE_coverage": "24/27",
+      "P_DE_coverage": "19/27",
+      "EV_FEAUM_coverage": "25/27",
+      "firms_all_3": 19,
+      "note": "P/FRE and EV/FEAUM are primary multiples for correlation analysis. P/DE is supplementary (European/non-US firms do not report DE framework). Missing P/DE: EQT, CVC, BPT, TKO, RF. Missing all: VINP (BRL reporting, P/FRE not computed). III missing P/FRE (no FRE metric reported)."
+    },
+    "4_actions_per_firm": {
+      "status": "PARTIAL",
+      "total_actions": 105,
+      "gap": {
+        "firm_id": "FIRM-026",
+        "ticker": "PHLL",
+        "actions": 0,
+        "reason": "Petershill Partners delisted December 2025; limited post-delisting strategic action data available"
+      },
+      "decision": "Log gap, retain PHLL in qualitative set with caveat"
+    },
+    "5_operational_metrics": {
+      "status": "PASS",
+      "reclassified_contextual_only": [
+        "MET-VD-003",
+        "MET-VD-008",
+        "MET-VD-010",
+        "MET-VD-011",
+        "MET-VD-012",
+        "MET-VD-015",
+        "MET-VD-017"
+      ],
+      "note": "All 7 reclassified metrics excluded from VD-A4 correlation analysis; eligible for context tables and deep-dives"
+    },
+    "6_fx_methodology": {
+      "status": "PASS",
+      "note": "Period-end FX rates used for stock metrics (AUM, market cap); period-average rates used for flow metrics (revenue, FRE). FX_MATERIAL flags embedded in extraction_notes where applicable. EQT SEK/USD rate updated to 0.0928 in tier2."
+    }
+  },
+  "merge_log": {
+    "total_records": 648,
+    "firms_covered": 27,
+    "deduplicates_removed": 10,
+    "format_normalizations": [
+      "tier1a: extracted from data_points[] inside dict wrapper",
+      "tier2: extracted from firms[].data_points[] nested structure",
+      "tier3a: flattened from per-firm observations[] arrays; firm_id propagated to each observation",
+      "tier3b: remapped non-standard firm IDs (FIRM-ANTIN\u2192FIRM-021, FIRM-III\u2192FIRM-024, FIRM-PHLL\u2192FIRM-026, FIRM-RF\u2192FIRM-025, FIRM-RITM\u2192FIRM-027)"
+    ]
+  }
+}

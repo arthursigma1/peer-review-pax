@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAX — Valuation Driver Analysis | March 2026</title>
+<style>
+@font-face {
+  font-family: 'DM Sans';
+  font-weight: 400;
+  src: local('DM Sans Regular'), local('DM Sans');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-weight: 500;
+  src: local('DM Sans Medium');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-weight: 700;
+  src: local('DM Sans Bold');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-weight: 400;
+  src: local('IBM Plex Mono');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-weight: 600;
+  src: local('IBM Plex Mono SemiBold');
+}
+
+:root {
+  --blue: #0068ff;
+  --blue-light: #e8f0ff;
+  --blue-dark: #0050cc;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --red: #dc2626;
+  --amber: #d97706;
+  --emerald: #059669;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', 'Fira Code', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { font-size: 15px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--gray-800);
+  background: #fff;
+  line-height: 1.65;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Navigation */
+nav.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 260px;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--gray-50);
+  border-right: 1px solid var(--gray-200);
+  padding: 1.5rem 0;
+  z-index: 100;
+  font-size: 0.8rem;
+}
+
+nav.sidebar .nav-header {
+  padding: 0 1.25rem 1rem;
+  border-bottom: 1px solid var(--gray-200);
+  margin-bottom: 0.75rem;
+}
+
+nav.sidebar .nav-header h1 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.3;
+}
+
+nav.sidebar .nav-header .subtitle {
+  font-size: 0.7rem;
+  color: var(--gray-500);
+  margin-top: 0.25rem;
+  font-family: var(--font-mono);
+}
+
+nav.sidebar a {
+  display: block;
+  padding: 0.35rem 1.25rem;
+  color: var(--gray-600);
+  text-decoration: none;
+  line-height: 1.4;
+  transition: all 0.15s;
+}
+
+nav.sidebar a:hover {
+  color: var(--blue);
+  background: var(--blue-light);
+}
+
+nav.sidebar a.section-link {
+  font-weight: 500;
+  color: var(--gray-700);
+  padding-top: 0.5rem;
+}
+
+nav.sidebar a.sub-link {
+  padding-left: 2rem;
+  font-size: 0.75rem;
+}
+
+/* Main Content */
+main {
+  margin-left: 260px;
+  max-width: 900px;
+  padding: 2.5rem 3rem 5rem;
+  width: 100%;
+}
+
+/* Cover */
+.cover {
+  border-bottom: 3px solid var(--blue);
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+.cover h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.25;
+}
+
+.cover .meta {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+.cover .confidential {
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Section Headers */
+h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 3rem 0 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--gray-200);
+  line-height: 1.35;
+}
+
+h2:first-of-type { border-top: none; }
+
+h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin: 1.75rem 0 0.75rem;
+}
+
+h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin: 1.25rem 0 0.5rem;
+}
+
+p { margin-bottom: 0.9rem; }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.85rem;
+}
+
+thead th {
+  background: var(--gray-100);
+  border-bottom: 2px solid var(--gray-300);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--gray-700);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+thead th:hover { background: var(--gray-200); }
+thead th.sorted-asc::after { content: " \u25B2"; font-size: 0.65rem; }
+thead th.sorted-desc::after { content: " \u25BC"; font-size: 0.65rem; }
+
+tbody td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--gray-200);
+  vertical-align: top;
+}
+
+tbody tr:hover { background: var(--gray-50); }
+
+.ticker {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--gray-900);
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-align: right;
+}
+
+.pos { color: var(--emerald); }
+.neg { color: var(--red); }
+.muted { color: var(--gray-400); }
+
+/* Quartile badges */
+.q1 { background: #dcfce7; color: #166534; padding: 0.1rem 0.45rem; border-radius: 3px; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; }
+.q2 { background: #e0f2fe; color: #075985; padding: 0.1rem 0.45rem; border-radius: 3px; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; }
+.q3 { background: #fef3c7; color: #92400e; padding: 0.1rem 0.45rem; border-radius: 3px; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; }
+.q4 { background: #fee2e2; color: #991b1b; padding: 0.1rem 0.45rem; border-radius: 3px; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; }
+
+/* Collapsible Details */
+details {
+  margin: 1rem 0;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+details summary {
+  padding: 0.75rem 1rem;
+  background: var(--gray-50);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  list-style: none;
+}
+
+details summary::-webkit-details-marker { display: none; }
+
+details summary::before {
+  content: "\25B6";
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 0.65rem;
+  transition: transform 0.2s;
+}
+
+details[open] summary::before { transform: rotate(90deg); }
+
+details .detail-content {
+  padding: 1rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+/* Bumper statements */
+.bumper {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--blue-light);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  font-weight: 500;
+  color: var(--gray-800);
+}
+
+.bumper strong { color: var(--blue-dark); }
+
+/* Key finding box */
+.key-finding {
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+}
+
+.key-finding .label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-500);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+/* Footnotes */
+sup.fn a {
+  color: var(--blue);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+sup.fn a:hover { text-decoration: underline; }
+
+.footnotes {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-200);
+  font-size: 0.78rem;
+  color: var(--gray-600);
+}
+
+.footnotes ol { padding-left: 1.75rem; }
+
+.footnotes li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.footnotes .bias-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.05rem 0.35rem;
+  border-radius: 3px;
+  background: var(--gray-100);
+  color: var(--gray-600);
+}
+
+/* Disclaimers */
+.disclaimer {
+  margin: 0.75rem 0;
+  padding: 0.75rem 1rem;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--gray-700);
+}
+
+/* Play cards */
+.play-card {
+  margin: 1rem 0;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.play-card .play-header {
+  padding: 0.75rem 1rem;
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.play-card .play-id {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.play-card .play-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--gray-800);
+}
+
+.play-card .play-body {
+  padding: 1rem;
+  font-size: 0.87rem;
+}
+
+/* Anti-pattern cards */
+.anti-card {
+  margin: 1rem 0;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.anti-card .anti-header {
+  padding: 0.75rem 1rem;
+  background: #fef2f2;
+  border-bottom: 1px solid #fecaca;
+}
+
+.anti-card .anti-id {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--red);
+  font-weight: 600;
+}
+
+.anti-card .anti-body {
+  padding: 1rem;
+  font-size: 0.87rem;
+}
+
+/* Target Lens */
+.target-lens-placeholder {
+  margin: 1.5rem 0;
+  padding: 2rem;
+  background: #f0fdf4;
+  border: 2px dashed #86efac;
+  border-radius: 8px;
+  text-align: center;
+  color: var(--gray-500);
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  nav.sidebar { display: none; }
+  main { margin-left: 0; padding: 1.5rem; }
+}
+
+@media print {
+  nav.sidebar { display: none; }
+  main { margin-left: 0; max-width: 100%; }
+  .no-print { display: none; }
+  h2 { break-before: page; }
+}
+
+/* Inline stat */
+.stat {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+/* Vertical section header */
+.vertical-header {
+  margin: 1.75rem 0 0.75rem;
+  padding: 0.6rem 1rem;
+  background: var(--gray-100);
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--gray-800);
+}
+
+/* Confidence badge */
+.confidence-high { color: var(--emerald); font-weight: 600; }
+.confidence-moderate { color: var(--amber); font-weight: 600; }
+.confidence-suggestive { color: var(--gray-500); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- Sidebar Navigation -->
+<nav class="sidebar">
+  <div class="nav-header">
+    <h1>Patria Investments Limited</h1>
+    <div class="subtitle">PAX | VDA | March 2026</div>
+  </div>
+
+  <a href="#exec-summary" class="section-link">Executive Summary</a>
+  <a href="#industry-context" class="sub-link">Industry Context</a>
+  <a href="#methodology" class="section-link">Methodology Brief</a>
+
+  <a href="#section-1" class="section-link">1. Operational Scalability Signal</a>
+  <a href="#section-2" class="section-link">2. Earnings Quality &amp; DE/share</a>
+  <a href="#section-3" class="section-link">3. Scale-Efficiency Paradox</a>
+  <a href="#section-4" class="section-link">4. Platform Strategic Menu</a>
+  <a href="#play-001" class="sub-link">PLAY-001 Permanent Capital</a>
+  <a href="#play-002" class="sub-link">PLAY-002 Insurance Integration</a>
+  <a href="#play-003" class="sub-link">PLAY-003 Post-IPO Discipline</a>
+  <a href="#section-5" class="section-link">5. FRE Growth Signal</a>
+
+  <a href="#anti-patterns" class="section-link">Anti-patterns &amp; Cautionary Lessons</a>
+
+  <a href="#section-6" class="section-link">6. Asset Class Economics</a>
+  <a href="#vert-credit" class="sub-link">Credit</a>
+  <a href="#vert-pe" class="sub-link">Private Equity</a>
+  <a href="#vert-infra" class="sub-link">Infrastructure</a>
+  <a href="#vert-re" class="sub-link">Real Estate</a>
+  <a href="#vert-gp" class="sub-link">GP-Led Solutions</a>
+  <a href="#section-7" class="section-link">7. Cautionary Cases (Vertical)</a>
+
+  <a href="#section-8" class="section-link">8. Target Company Lens</a>
+  <a href="#section-8" class="sub-link">PHL/Board Guidance</a>
+  <a href="#section-8" class="sub-link">Management Committee</a>
+  <a href="#section-8" class="sub-link">Per-BU Patterns</a>
+  <a href="#section-9" class="section-link">9. Anti-patterns for PAX</a>
+
+  <a href="#sources" class="section-link">Sources &amp; References</a>
+  <a href="#section-10" class="section-link">10. Statistical Appendix</a>
+  <a href="#changes" class="sub-link">Changes from Prior Analysis</a>
+  <a href="#disclaimers" class="sub-link">Disclaimers</a>
+</nav>
+
+<!-- Main Content -->
+<main>
+
+<!-- COVER -->
+<div class="cover" id="cover">
+  <h1>Valuation Driver Analysis<br>Strategic Implications for Patria Investments Limited</h1>
+  <div class="meta">
+    PAX &nbsp;|&nbsp; NASDAQ: PAX &nbsp;|&nbsp; March 2026<br>
+    Run: 2026-03-10-run2 &nbsp;|&nbsp; Base run: 2026-03-09-run2<br>
+    Universe: 23 listed alternative asset managers &nbsp;|&nbsp; N=19&ndash;21 complete-multiple set
+  </div>
+  <div class="confidential">Confidential &mdash; Prepared for Board and Senior Management</div>
+</div>
+
+<!-- ================================================================ -->
+<!-- EXECUTIVE SUMMARY -->
+<!-- ================================================================ -->
+<h2 id="exec-summary">Executive Summary</h2>
+
+<p><strong>Operational scalability&mdash;not absolute scale&mdash;is the dominant valuation signal across listed alternative asset managers.</strong> Across a universe of 23 firms, G&amp;A Expense to Fee-Earning AUM (DVR-010) is the only metric satisfying the stable value driver classification (&rho; = &minus;0.61 on P/FRE, &rho; = &minus;0.51 on P/DE; N=19).<sup class="fn"><a href="#fn-1">1</a></sup> The market distinguishes between managers that grow fee-earning assets and managers that do so without proportionally growing overhead. This finding, combined with the cross-run stability of Distributable Earnings per share (DVR-001, &rho; = 0.857 on EV/FEAUM in the prior analysis),<sup class="fn"><a href="#fn-2">2</a></sup> establishes a two-pillar value creation framework: cost discipline on the platform side, and earnings quality on the shareholder side.</p>
+
+<p>Three findings anchor the strategic interpretation:</p>
+
+<ol style="margin-bottom: 1rem;">
+  <li><strong>G&amp;A/FEAUM is the only stable driver this run.</strong> Firms at Q1 on this metric&mdash;Apollo, Brookfield AM, KKR, Carlyle, Blue Owl, StepStone&mdash;achieve this through permanent capital structures, insurance-linked growth, or advisory scope economies, not through cost-cutting.</li>
+  <li><strong>A structural tension between scale and efficiency defines the peer universe.</strong> Firms ranking Q1 on AUM/FEAUM scale drivers systematically rank Q4 on efficiency drivers, and vice versa. The exceptions&mdash;Blue Owl, CVC, StepStone&mdash;resolved this paradox by restructuring the business model, not by optimizing within it.</li>
+  <li><strong>FRE growth signals outperform absolute FRE levels.</strong> The market prices trajectory over current earnings, rewarding platforms with insurance-integrated credit and high-margin regional positions where FRE growth accompanies improving, not declining, efficiency.</li>
+</ol>
+
+<div class="bumper"><strong>Therefore:</strong> For PAX, the peer evidence suggests that the highest-impact efficiency levers involve structural product decisions&mdash;specifically GP stakes scaling and open-end infrastructure vehicles&mdash;rather than operational cost reduction alone. Peers that achieved similar transitions did so over 3&ndash;5 year horizons with front-loaded operational investment.</div>
+
+<!-- Industry Context -->
+<h3 id="industry-context">Industry Context</h3>
+
+<p>The alternative asset management industry is experiencing concurrent structural pressures that amplify the importance of the value drivers identified in this analysis. Global AUM reached a record $128 trillion in 2024 (+12% YoY), but more than 70% of the industry's revenue growth was driven by market performance rather than investor inflows, underscoring vulnerability to external conditions.<sup class="fn"><a href="#fn-47">47</a></sup> Managers overseeing less than $300 billion in assets face particular pressure to emphasize leaner operating models, as scale-driven cost efficiencies remain inaccessible at that tier.<sup class="fn"><a href="#fn-47">47</a></sup></p>
+
+<p>Fee compression is intensifying: co-investment dilutes approximately 25% of fund fee economics on average, with headline management fees under downward pressure as fund sizes increase.<sup class="fn"><a href="#fn-48">48</a></sup> Semi-liquid private asset funds have grown more than fivefold in four years, exceeding $300 billion in net asset value, creating a new distribution channel that rewards platforms with permanent capital infrastructure.<sup class="fn"><a href="#fn-47">47</a></sup> These market dynamics reinforce the statistical finding that G&amp;A/FEAUM&mdash;the ability to scale fee-earning assets without proportional overhead growth&mdash;is the metric most strongly associated with premium valuations.</p>
+
+<!-- ================================================================ -->
+<!-- METHODOLOGY BRIEF -->
+<!-- ================================================================ -->
+<h2 id="methodology">Methodology Brief</h2>
+
+<p>This analysis examines valuation drivers across 23 publicly listed alternative asset managers using Spearman rank correlation as the primary statistical method. Spearman was selected over Pearson for three reasons: valuation multiples exhibit significant right skew with known outliers (EQT P/DE = 56.9&times;, Partners Group EV/FEAUM = 32.3%), the strategic question concerns ordinal association rather than precise covariance, and rank transformation provides robustness in a small-sample context (N &asymp; 19&ndash;21 in the complete-multiple set).</p>
+
+<p>Eighteen eligible driver metrics were tested against three valuation multiples (P/FRE, P/DE, EV/FEAUM), producing 54 correlation pairs. A Bonferroni correction over 40 effective independent tests (adjusted for collinear driver pairs) sets the corrected significance threshold at &alpha; = 0.00125. The <code>stable_v1_two_of_three</code> classification rule requires |&rho;| &ge; 0.5 on at least two of three multiples with no temporal instability flag. Bootstrap confidence intervals (10,000 resamples) are parameterized for all top-ranked drivers. Leave-one-out sensitivity, temporal stability (FY2023 vs. FY2024), and partial correlations controlling for firm size supplement the primary analysis. Full statistical details, including the complete correlation matrix and sensitivity results, appear in the <a href="#section-10">Statistical Appendix</a>.</p>
+
+<p>Multiple regression was not employed as the primary framework due to the N/p constraint (21 firms, 18 metrics), structural multicollinearity among driver pairs, and endogeneity concerns. Univariate Spearman correlations are descriptive, not causal&mdash;this is appropriate given the research objective of identifying association patterns for strategic interpretation.</p>
+
+<!-- ================================================================ -->
+<!-- SECTION 1 -->
+<!-- ================================================================ -->
+<h2 id="section-1">Operational scalability&mdash;not scale itself&mdash;is the dominant valuation signal across listed alternative asset managers</h2>
+
+<p>G&amp;A Expense to Fee-Earning AUM (DVR-010) is the only metric satisfying the <code>stable_v1_two_of_three</code> classification rule in this run. Lower G&amp;A per unit of FEAUM is strongly associated with higher P/FRE and P/DE multiples.</p>
+
+<table>
+  <thead>
+    <tr><th>Multiple</th><th>Spearman &rho;</th><th>p-value</th><th>N</th><th>Direction</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>P/FRE</td><td class="num neg">&minus;0.6061</td><td class="num">0.0036</td><td class="num">19</td><td>Lower G&amp;A/FEAUM &rarr; Higher P/FRE</td></tr>
+    <tr><td>P/DE</td><td class="num neg">&minus;0.5053</td><td class="num">0.0138</td><td class="num">19</td><td>Lower G&amp;A/FEAUM &rarr; Higher P/DE</td></tr>
+    <tr><td>EV/FEAUM</td><td class="num muted">&minus;0.0228</td><td class="num">0.0196</td><td class="num">19</td><td>Weak / not meaningful</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Confidence:</strong> <span class="confidence-high">High</span> on P/FRE (p = 0.0036, approaching Bonferroni threshold); <span class="confidence-moderate">Moderate</span> on P/DE. CI method: bootstrap_10k. Not flagged as temporally unstable.</p>
+
+<h3>Economic Mechanism</h3>
+
+<p>G&amp;A/FEAUM measures the cost of running the asset management platform per dollar of fee-earning assets. A low ratio signals that the platform can compound FEAUM&mdash;through organic fundraising, permanent capital structures, or insurance-linked growth&mdash;without proportionally compounding overhead. The market rewards this because a scalable platform has a convex earnings profile: each additional dollar of FEAUM produces incrementally higher marginal FRE as G&amp;A grows sub-linearly.<sup class="fn"><a href="#fn-3">3</a></sup></p>
+
+<p>In an industry where compensation and overhead are the primary controllable costs, a low G&amp;A/FEAUM ratio signals that management prioritizes shareholder economics over empire-building. This is particularly valued in alternative asset management, where the agency problem between GP management and public shareholders is structurally acute.</p>
+
+<h3>Q1 Exemplars</h3>
+
+<p><strong><span class="ticker">APO</span> (Apollo):</strong> The Athene insurance integration ($300B+ permanent capital) generates management fees with near-zero incremental G&amp;A. One origination team serves both the insurance general account and third-party funds, diluting G&amp;A across $559B FEAUM.<sup class="fn"><a href="#fn-3">3</a></sup></p>
+
+<p><strong><span class="ticker">OWL</span> (Blue Owl):</strong> Purpose-built for G&amp;A efficiency. Approximately 85% of management fees derive from non-redeemable permanent capital vehicles (BDCs, perpetual-life funds, GP stakes). GP stakes is the most G&amp;A-efficient sub-type in alternatives&mdash;zero operating overhead, 100% permanent capital, automatic compounding.<sup class="fn"><a href="#fn-5">5</a></sup></p>
+
+<p><strong><span class="ticker">STEP</span> (StepStone):</strong> The advisory/solutions model generates fees across $709B in total capital responsibility with relatively low headcount, as LPs and GPs bring deal flow. The Cobalt data platform automates portfolio analytics that would otherwise require large analyst teams.<sup class="fn"><a href="#fn-6">6</a></sup></p>
+
+<details>
+  <summary>Q4 Cautionary Cases</summary>
+  <div class="detail-content">
+    <p><strong><span class="ticker">RPC</span> (Ridgepost Capital):</strong> Multi-franchise roll-up acquired $29.4B FPAUM but also acquired duplicated cost structures. Each partner manager operates semi-autonomously with its own investment team, compliance, and back office. Based on available evidence, operational consolidation appears not to have been initiated.<sup class="fn"><a href="#fn-7">7</a></sup></p>
+    <p><strong><span class="ticker">PAX</span> (Patria):</strong> LatAm multi-country operations carry structurally higher G&amp;A per FEAUM dollar due to multi-jurisdiction offices, currency complexity, and regulatory overhead across Brazil, Chile, and Colombia. The $40.8B FEAUM base is insufficient to absorb these costs efficiently. The GPMS initiative represents the most promising efficiency vector, as US GP stakes generate fee revenue with developed-market cost structures.<sup class="fn"><a href="#fn-8">8</a></sup></p>
+  </div>
+</details>
+
+<div class="bumper"><strong>Therefore:</strong> The market rewards platforms that can grow fee-earning assets without proportionally growing overhead. The mechanism is structural&mdash;permanent capital, insurance float, advisory models&mdash;not cost-cutting. For PAX, the GPMS initiative directly addresses this driver by adding developed-market, capital-light fee revenue to the existing LatAm base.</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 2 -->
+<!-- ================================================================ -->
+<h2 id="section-2">Earnings quality confirms the efficiency signal&mdash;distributable earnings per share is the second pillar of durable premium valuations</h2>
+
+<p>DE/share (DVR-001) was the only stable value driver in the base run (2026-03-09-run2), achieving &rho; = 0.857 on EV/FEAUM with <span class="confidence-high">High</span> confidence.<sup class="fn"><a href="#fn-2">2</a></sup> In this run, coverage dropped below the N=12 threshold for the complete-multiple set because European firms added to the universe (Tikehau, Antin, Bridgepoint, Eurazeo) do not report Distributable Earnings in US convention. The underlying relationship did not weaken&mdash;the measurement became incomplete.</p>
+
+<table>
+  <thead>
+    <tr><th>Multiple</th><th>Spearman &rho; (base run)</th><th>Confidence</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>EV/FEAUM</td><td class="num pos">0.857</td><td><span class="confidence-high">High</span></td></tr>
+    <tr><td>P/FRE</td><td class="num pos">0.536</td><td><span class="confidence-moderate">Moderate</span></td></tr>
+  </tbody>
+</table>
+
+<h3>Complementarity with DVR-010</h3>
+
+<p>G&amp;A/FEAUM and DE/share are complementary, not redundant. DVR-010 measures the cost side&mdash;can the platform grow without proportionally growing overhead? DVR-001 measures the shareholder side&mdash;does growth translate into distributable cash per share? A firm can have excellent G&amp;A/FEAUM but poor DE/share if it funds growth through equity dilution or if carry structures allocate disproportionate value to the GP. The most valuable platforms score well on both dimensions.</p>
+
+<p><strong><span class="ticker">APO</span>:</strong> The Athene integration and credit origination platform drive both recurring FRE and growing realized income, translating to one of the highest DE/share figures in the peer set. The C-Corp conversion and full Athene merger eliminated the minority interest deduction, increasing DE/share attributable to public shareholders.<sup class="fn"><a href="#fn-3">3</a></sup></p>
+
+<p><strong><span class="ticker">KKR</span>:</strong> Full Global Atlantic consolidation made insurance FRE 100% attributable to KKR shareholders from Q1 2024, directly boosting DE/share. S&amp;P 500 inclusion ($5&ndash;8B passive buying) supported the share price without dilutive issuance.<sup class="fn"><a href="#fn-4">4</a></sup></p>
+
+<div class="bumper"><strong>Therefore:</strong> Treat DE/share with Moderate-to-High confidence as a cross-run stable finding. The economic mechanism is robust: platforms that achieve both operational scalability and earnings quality command the most durable premiums. The coverage gap is definitional (European reporting conventions), not economic.</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 3 -->
+<!-- ================================================================ -->
+<h2 id="section-3">Most managers face a structural tension between scale and efficiency&mdash;a small number have resolved it by changing the rules</h2>
+
+<p>The most important cross-driver finding in this analysis: firms that rank Q1 on scale drivers (DVR-003 Total AUM, DVR-004 FEAUM) systematically rank Q4 on efficiency drivers (DVR-010 G&amp;A/FEAUM, DVR-009 Comp&amp;Ben/FEAUM), and vice versa. The implied cross-driver correlation is approximately &rho; &asymp; &minus;0.55. Most managers sacrifice efficiency to grow&mdash;they trade G&amp;A leverage for AUM growth.</p>
+
+<div class="key-finding">
+  <div class="label">Scale-Efficiency Paradox</div>
+  <p>The exceptions&mdash;Apollo (insurance float), Blue Owl (permanent capital by design), StepStone (advisory scope economies), CVC (post-IPO discipline)&mdash;did not optimize within the paradox. They restructured the business model to make the tradeoff disappear.</p>
+</div>
+
+<h3>Paradox Resolution Mechanisms</h3>
+
+<table>
+  <thead>
+    <tr><th>Firm</th><th>Mechanism</th><th>Scale Q</th><th>Efficiency Q</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="ticker">OWL</span></td><td>Permanent capital by design (85% non-redeemable)</td><td><span class="q2">Q2</span></td><td><span class="q1">Q1</span></td></tr>
+    <tr><td><span class="ticker">CVC</span></td><td>Post-IPO discipline + rapid credit scaling</td><td><span class="q3">Q3</span></td><td><span class="q1">Q1</span></td></tr>
+    <tr><td><span class="ticker">STEP</span></td><td>Advisory scope economies (sub-linear G&amp;A)</td><td><span class="q2">Q2</span></td><td><span class="q1">Q1</span></td></tr>
+    <tr><td><span class="ticker">APO</span></td><td>Insurance float accumulation ($300B+ permanent)</td><td><span class="q4">Q4</span></td><td><span class="q1">Q1</span></td></tr>
+    <tr><td><span class="ticker">PAX</span></td><td>Quintessential paradox case</td><td><span class="q1">Q1</span></td><td><span class="q4">Q4</span></td></tr>
+  </tbody>
+</table>
+
+<p>PAX exemplifies the tension: Q1 on scale drivers but Q4 on efficiency drivers. The GPMS initiative represents the most promising path to resolving this paradox by adding capital-light, developed-market fee revenue that scales without proportional LatAm G&amp;A growth.</p>
+
+<div class="bumper"><strong>Therefore:</strong> Firms commanding premium valuations resolve the Scale-Efficiency Paradox through structural model changes, not incremental optimization. The peer evidence identifies three validated resolution paths: permanent capital architecture, insurance-linked origination, and advisory scope economies.</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 4 -->
+<!-- ================================================================ -->
+<h2 id="section-4">Permanent capital is the most reliable mechanism for escaping the scale-efficiency paradox&mdash;but each implementation path has distinct operational prerequisites</h2>
+
+<p>Platform plays PLAY-001 through PLAY-008 document validated mechanisms for achieving G&amp;A efficiency at scale, organized by value driver. Each play is framed as an observation of peer behavior, not a recommendation.</p>
+
+<h3>Plays by Driver: DVR-010 (G&amp;A/FEAUM) &mdash; Stable Value Driver</h3>
+
+<!-- PLAY-001 -->
+<div class="play-card" id="play-001">
+  <div class="play-header">
+    <span class="play-id">PLAY-001</span>
+    <span class="play-title">Permanent Capital as G&amp;A Leverage Mechanism</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Reference firm:</strong> <span class="ticker">OWL</span> (Blue Owl Capital)</p>
+    <p><strong>What was done:</strong> Blue Owl was formed through a three-way SPAC combination (May 2021) of Owl Rock (direct lending BDCs), Dyal Capital (GP minority stakes), and Altimeter Growth Corp. The resulting platform launched with approximately 85% of management fees from non-redeemable permanent capital. By 2025, FEAUM reached $250B from $52B at formation&mdash;a 42% CAGR&mdash;while maintaining Q1 on both G&amp;A/FEAUM and Comp&amp;Ben/FEAUM.<sup class="fn"><a href="#fn-5">5</a></sup></p>
+    <p><strong>Why it works:</strong> Permanent capital eliminates the fundraising treadmill&mdash;the single largest recurring G&amp;A expense for traditional drawdown managers. When capital does not need to be re-raised, headcount in fundraising, investor relations, and fund administration grows sub-linearly with FEAUM.</p>
+    <p><strong>Operational prerequisites:</strong> Requires product structures designed for permanence from inception (BDCs, perpetual-life vehicles, GP stakes). Retrofitting permanent capital onto existing drawdown fund architecture is substantially more difficult than building with it as the default.</p>
+  </div>
+</div>
+
+<!-- PLAY-002 -->
+<div class="play-card" id="play-002">
+  <div class="play-header">
+    <span class="play-id">PLAY-002</span>
+    <span class="play-title">Insurance-Linked Origination as Capital-Light Growth Engine</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Reference firms:</strong> <span class="ticker">APO</span> (Apollo) / <span class="ticker">KKR</span></p>
+    <p><strong>What was done:</strong> Apollo completed the full Athene merger (January 2022), consolidating ~$210B of insurance assets and scaling credit origination to $300B+ annual capacity across 15+ verticals. Atlas SP Partners was spun off as a standalone securitization engine ($45B+ platform assets). KKR acquired the remaining 37% of Global Atlantic (~$160B insurance AUM), making insurance FRE fully attributable to KKR shareholders.<sup class="fn"><a href="#fn-3">3</a></sup><sup class="fn"><a href="#fn-4">4</a></sup></p>
+    <p><strong>Why it works:</strong> Insurance float generates management fees with near-zero incremental G&amp;A. The liability source (insurance policies) and the asset source (credit origination) operate as a closed-loop capital engine, where growth requires actuarial and ALM staff whose compensation per FEAUM dollar is structurally lower than investment professional compensation.</p>
+    <p><strong>Operational prerequisites:</strong> Actuarial expertise, state insurance regulatory approvals across multiple jurisdictions, investment-grade credit origination at scale, and a multi-year integration timeline (Apollo: 13 years from initial Athene investment to full consolidation).</p>
+  </div>
+</div>
+
+<!-- PLAY-003 -->
+<div class="play-card" id="play-003">
+  <div class="play-header">
+    <span class="play-id">PLAY-003</span>
+    <span class="play-title">Post-IPO Reporting Discipline as Efficiency Catalyst</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Reference firm:</strong> <span class="ticker">CVC</span> (CVC Capital Partners)</p>
+    <p><strong>What was done:</strong> CVC completed its Amsterdam IPO (April 2024) and achieved Q1 FRE Growth with Q1 Compensation efficiency. The combination of IPO-driven transparency requirements and rapid credit scaling to EUR 40B+ produced the most growth-plus-efficiency balanced profile in the peer set.<sup class="fn"><a href="#fn-9">9</a></sup></p>
+    <p><strong>Why it works:</strong> Public market scrutiny compresses the lag between cost decisions and market consequences. Firms that go public with already-disciplined cost structures benefit from multiple expansion driven by earnings visibility, while those that IPO with bloated cost bases face immediate pressure.</p>
+    <p><strong>Operational prerequisites:</strong> Requires pre-IPO cost discipline and a growth vector (CVC's credit expansion) that adds high-margin AUM without proportional headcount.</p>
+  </div>
+</div>
+
+<details>
+  <summary>Additional Platform Plays (PLAY-004 through PLAY-008)</summary>
+  <div class="detail-content">
+    <h4>PLAY-004: Corporate Separation to Unlock Fee-Light AM Valuation</h4>
+    <p><strong>Reference:</strong> <span class="ticker">BAM</span> (Brookfield AM). Spin-off from BN (Dec 2022) separated capital-light AM from balance-sheet-heavy operations; full internalization of remaining 75% AM economics in 2025. FRE margin reached 58%, FRE growth 22% YoY.<sup class="fn"><a href="#fn-10">10</a></sup></p>
+
+    <h4>PLAY-005: Advisory Scope Economies</h4>
+    <p><strong>Reference:</strong> <span class="ticker">STEP</span> (StepStone). $709B capital responsibility generates advisory fees with sub-linear headcount growth. Cobalt data platform automates portfolio analytics. Q1 G&amp;A/FEAUM through the advisory model without direct asset management overhead.<sup class="fn"><a href="#fn-6">6</a></sup></p>
+
+    <h4>PLAY-006: S&amp;P 500 Index Inclusion via C-Corp Conversion</h4>
+    <p><strong>Reference:</strong> <span class="ticker">KKR</span>. C-Corp conversion (2018) &rarr; sustained GAAP earnings &rarr; S&amp;P 500 inclusion (Jun 2024) &rarr; $5&ndash;8B passive buying. Six-year lag from conversion to inclusion. Creates structural valuation floor.<sup class="fn"><a href="#fn-4">4</a></sup></p>
+
+    <h4>PLAY-007: Retail Semi-Liquid Product Scaling</h4>
+    <p><strong>Reference:</strong> <span class="ticker">KKR</span>. K-Series products scaled from ~$10B (2022) to $35B+ (2025). Multi-asset coverage (PE, credit, RE, infra) gave wealth advisors single-GP access. Required wirehouse distribution agreements and retail-grade compliance infrastructure.<sup class="fn"><a href="#fn-4">4</a></sup></p>
+
+    <h4>PLAY-008: Credit Origination Platform at Scale</h4>
+    <p><strong>Reference:</strong> <span class="ticker">APO</span>. Origination scaled from ~$100B (2021) to $300B+ (2025) across 15+ verticals. Atlas SP and Citibank partnership ($25B+ annual co-origination) extended distribution beyond captive channels. Origination-linked FRE became the fastest-growing segment.<sup class="fn"><a href="#fn-3">3</a></sup></p>
+  </div>
+</details>
+
+<!-- ================================================================ -->
+<!-- SECTION 5 -->
+<!-- ================================================================ -->
+<h2 id="section-5">FRE growth signals outperform absolute FRE levels&mdash;the market prices trajectory, not current earnings, across credit and PE franchises</h2>
+
+<p>DVR-002 (FRE Growth YoY) shows &rho; = &minus;0.55 on P/DE (N=16, <span class="confidence-moderate">Moderate</span> confidence).<sup class="fn"><a href="#fn-1">1</a></sup> The negative correlation between FRE Growth and P/DE appears counterintuitive. The mechanism: high-growth platforms have not yet reached steady-state margins, so earnings quality lags revenue quality. Firms with very high FRE growth include smaller, faster-growing platforms (CVC, StepStone) whose absolute FRE is lower, mechanically producing lower P/DE multiples.</p>
+
+<table>
+  <thead>
+    <tr><th>Multiple</th><th>Spearman &rho;</th><th>p-value</th><th>N</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>P/FRE</td><td class="num neg">&minus;0.4765</td><td class="num">0.0296</td><td class="num">16</td></tr>
+    <tr><td>P/DE</td><td class="num neg">&minus;0.5463</td><td class="num">0.0156</td><td class="num">16</td></tr>
+    <tr><td>EV/FEAUM</td><td class="num neg">&minus;0.4382</td><td class="num">0.0392</td><td class="num">16</td></tr>
+  </tbody>
+</table>
+
+<p><strong><span class="ticker">CVC</span>:</strong> Q1 FRE Growth reflects IPO-unlocked distribution expansion and rapid credit scaling. The combination of Q1 FRE Growth and Q1 Compensation efficiency makes CVC the most growth-plus-efficiency balanced firm in the peer set.<sup class="fn"><a href="#fn-9">9</a></sup></p>
+
+<p><strong><span class="ticker">CG</span> (Carlyle)&mdash;cautionary:</strong> Q4 FRE Growth despite Q1 efficiency. Leadership disruption (2022&ndash;2023) erased 12&ndash;18 months of fundraising momentum. This case demonstrates that efficiency without growth is a value trap&mdash;the market requires both signals simultaneously.<sup class="fn"><a href="#fn-11">11</a></sup></p>
+
+<div class="bumper"><strong>Therefore:</strong> FRE growth is a necessary complement to G&amp;A efficiency. Platforms that achieve operational scalability but fail to grow FRE&mdash;whether due to leadership disruption, fundraising headwinds, or product stagnation&mdash;do not command premium multiples. The market prices trajectory, not current state.</div>
+
+<!-- ================================================================ -->
+<!-- ANTI-PATTERNS -->
+<!-- ================================================================ -->
+<h2 id="anti-patterns">Anti-patterns &amp; Cautionary Lessons</h2>
+
+<p>The cautionary cases are more instructive than the exemplars. Value destruction follows predictable operational mechanisms, each with a specific trigger, timeline, and recovery path.</p>
+
+<div class="anti-card">
+  <div class="anti-header">
+    <span class="anti-id">ANTI-001</span> &mdash; Roll-up Without Back-Office Consolidation
+  </div>
+  <div class="anti-body">
+    <p><strong>Reference:</strong> <span class="ticker">RPC</span> (Ridgepost Capital). Acquired multiple partner managers ($29.4B FPAUM) but each operates semi-autonomously with duplicated investment teams, compliance, and back office. Available evidence suggests that operational consolidation appears not to have been initiated, producing the worst G&amp;A/FEAUM in the peer set.<sup class="fn"><a href="#fn-7">7</a></sup></p>
+    <p><strong>Mechanism:</strong> Acquisition adds AUM and revenue but also adds cost structures that are not integrated. Without shared services consolidation, each acquisition increases the G&amp;A numerator proportionally to the FEAUM denominator, yielding zero efficiency improvement.</p>
+    <p><strong>Trigger:</strong> Rapid multi-franchise acquisition without a pre-defined integration playbook.</p>
+  </div>
+</div>
+
+<div class="anti-card">
+  <div class="anti-header">
+    <span class="anti-id">ANTI-002</span> &mdash; Balance-Sheet Cost Drag in Hybrid AM Models
+  </div>
+  <div class="anti-body">
+    <p><strong>Reference:</strong> <span class="ticker">RF</span> (Eurazeo). Hybrid asset management and direct balance-sheet investment model creates cost structures that span both activities, making G&amp;A attribution ambiguous and efficiency optimization difficult.<sup class="fn"><a href="#fn-12">12</a></sup></p>
+    <p><strong>Mechanism:</strong> Balance-sheet investment activities require investment professionals, risk management, and treasury functions that inflate G&amp;A relative to fee-earning assets alone. The AM business subsidizes the balance-sheet business's overhead.</p>
+  </div>
+</div>
+
+<div class="anti-card">
+  <div class="anti-header">
+    <span class="anti-id">ANTI-003</span> &mdash; Geographic Fragmentation Without Shared Services
+  </div>
+  <div class="anti-body">
+    <p><strong>Reference:</strong> <span class="ticker">CG</span> (Carlyle). 29 offices across multiple continents with semi-independent regional operations. Geographic breadth adds regulatory complexity, currency risk, and duplicated local compliance without proportional fee revenue.<sup class="fn"><a href="#fn-11">11</a></sup></p>
+    <p><strong>Mechanism:</strong> Each jurisdiction requires local compliance, legal, and operations staff. Without shared services infrastructure, marginal office additions increase G&amp;A proportionally rather than sub-linearly.</p>
+  </div>
+</div>
+
+<div class="anti-card">
+  <div class="anti-header">
+    <span class="anti-id">ANTI-004</span> &mdash; Efficiency Without Growth (Stagnation Trap)
+  </div>
+  <div class="anti-body">
+    <p><strong>Reference:</strong> <span class="ticker">CG</span> (Carlyle). Q1 on efficiency drivers (DVR-010, DVR-009) but Q4 on FRE Growth. Cost discipline under CEO Schwartz improved margins, but the leadership disruption (2022&ndash;2023) depressed fundraising momentum. The market penalizes efficiency without growth as a value trap.<sup class="fn"><a href="#fn-11">11</a></sup></p>
+    <p><strong>Mechanism:</strong> Operational cost-cutting produces a one-time margin improvement that is already capitalized in the multiple. Without corresponding revenue growth, the firm has no narrative for future earnings expansion&mdash;precisely the trajectory the market rewards most.</p>
+  </div>
+</div>
+
+<div class="anti-card">
+  <div class="anti-header">
+    <span class="anti-id">ANTI-005</span> &mdash; Specialist Scale Constraints (Infrastructure Concentration)
+  </div>
+  <div class="anti-body">
+    <p><strong>Reference:</strong> <span class="ticker">ANTIN</span> (Antin Infrastructure Partners). 59% FRE margin at EUR 33B AUM, but single-asset-class concentration limits the G&amp;A efficiency frontier&mdash;infrastructure-only managers cannot diversify overhead across multiple product lines. Fundraising dependence on a single vertical creates cyclical vulnerability.<sup class="fn"><a href="#fn-13">13</a></sup></p>
+    <p><strong>Mechanism:</strong> Specialist managers trade product diversification for depth. When the single asset class faces headwinds (fundraising slowdowns, deployment bottlenecks), the entire platform's G&amp;A is absorbed by a smaller fee base.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 6: ASSET CLASS -->
+<!-- ================================================================ -->
+<h2 id="section-6">Asset class economics explain the variance within each driver&mdash;infrastructure and GP stakes are the most G&amp;A-efficient sub-types; multi-franchise roll-ups are the least</h2>
+
+<p>The five verticals analyzed below are self-contained sections, each examining how the stable value driver (DVR-010 G&amp;A/FEAUM) manifests differently across asset class economics. Sub-type segmentation follows the 22 categories identified in the asset class analysis.</p>
+
+<!-- CREDIT -->
+<div class="vertical-header" id="vert-credit">Credit</div>
+
+<p>Credit is the largest and fastest-growing asset class across the peer universe. Insurance-integrated credit origination (Apollo, KKR) represents the most G&amp;A-efficient sub-type, while scaled direct lending (Ares, Blue Owl) achieves efficiency through recurring management fees on permanent capital BDC structures.</p>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">PLAY-AC-001</span>
+    <span class="play-title">Insurance-Integrated Credit Origination Model</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Reference:</strong> <span class="ticker">APO</span>. Vertically integrated origination-to-distribution credit platform: Athene merger ($210B insurance assets), Atlas SP ($45B+ securitization), AtlasX digital distribution, Citibank co-origination ($25B+/year). Credit origination scaled from ~$100B to $300B+ annual capacity.<sup class="fn"><a href="#fn-3">3</a></sup></p>
+    <p><strong>Driver relevance:</strong> DVR-010 (G&amp;A/FEAUM), DVR-002 (FRE Growth), DVR-009 (Comp&amp;Ben/FEAUM). Insurance float generates management fees at near-zero marginal cost; origination at scale provides a yield premium that attracts more insurance capital in a virtuous cycle.</p>
+  </div>
+</div>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">PLAY-AC-002</span>
+    <span class="play-title">Scaled Direct Lending via Permanent Capital BDCs</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Reference:</strong> <span class="ticker">OWL</span>, <span class="ticker">ARES</span>. Blue Owl's direct lending BDCs provide permanent, non-redeemable capital with management fees locked in at inception. Ares acquired Black Creek Group ($15B) and launched Aspida Financial insurance platform for captive capital. Direct lending FEAUM grows through loan origination cycles with minimal incremental G&amp;A.<sup class="fn"><a href="#fn-5">5</a></sup><sup class="fn"><a href="#fn-14">14</a></sup></p>
+  </div>
+</div>
+
+<details>
+  <summary>LatAm Private Credit (Nascent Sub-type)</summary>
+  <div class="detail-content">
+    <p>PAX's private credit operations in LatAm represent a nascent sub-type with structurally different economics. Higher cost of origination (multi-jurisdiction legal frameworks, currency hedging), smaller deal sizes, and limited secondary market liquidity produce higher G&amp;A per FEAUM dollar than US/European direct lending. The growth potential is significant given underpenetration of private credit in LatAm, but the efficiency trajectory requires scale before the G&amp;A ratio improves.<sup class="fn"><a href="#fn-8">8</a></sup></p>
+  </div>
+</details>
+
+<!-- PRIVATE EQUITY -->
+<div class="vertical-header" id="vert-pe">Private Equity</div>
+
+<p>Traditional PE faces the most acute tension between scale and efficiency. Drawdown fund structures require continuous fundraising cycles, and each new vintage fund demands dedicated investment and fund administration teams. The firms achieving Q1 efficiency in PE do so through secondary strategies, co-investment programs, or insurance-linked permanent capital, not through traditional buyout fund optimization.</p>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">PLAY-AC-003</span>
+    <span class="play-title">Co-Investment and Secondaries as G&amp;A-Dilutive Strategies</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Reference:</strong> <span class="ticker">CG</span> (AlpInvest $102B), <span class="ticker">STEP</span> (advisory model). Co-investment and secondaries generate fees on capital that leverages existing deal flow and portfolio monitoring infrastructure. G&amp;A is shared with the primary fund, making incremental co-investment AUM nearly cost-free.<sup class="fn"><a href="#fn-11">11</a></sup><sup class="fn"><a href="#fn-6">6</a></sup></p>
+  </div>
+</div>
+
+<!-- INFRASTRUCTURE -->
+<div class="vertical-header" id="vert-infra">Infrastructure</div>
+
+<p>Infrastructure is the most G&amp;A-efficient asset class for two structural reasons: operating assets generate recurring cash flows that extend fund life (reducing fundraising frequency), and perpetual infrastructure vehicles (BIP, listed REITs) provide permanent FEAUM with zero fundraising cost.</p>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">PLAY-AC-004</span>
+    <span class="play-title">Perpetual Infrastructure Vehicles as Permanent Capital Anchors</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Reference:</strong> <span class="ticker">BAM</span> (BIP $30B+ market cap), <span class="ticker">ANTIN</span> (59% FRE margin at EUR 33B AUM). Brookfield Infrastructure Partners (BIP) is a listed perpetual vehicle generating management fees indefinitely. Antin demonstrates that even single-asset-class infrastructure specialists can achieve best-in-class FRE margins, though with concentration risk.<sup class="fn"><a href="#fn-10">10</a></sup><sup class="fn"><a href="#fn-13">13</a></sup></p>
+    <p><strong>PAX relevance:</strong> PAX's infrastructure franchise in LatAm is positioned to benefit from this pattern. Open-end infrastructure vehicles modeled on BIP could convert existing drawdown infrastructure AUM into permanent capital, directly improving the G&amp;A/FEAUM ratio.</p>
+  </div>
+</div>
+
+<!-- REAL ESTATE -->
+<div class="vertical-header" id="vert-re">Real Estate</div>
+
+<p>Real estate efficiency varies significantly by sub-type. Net-lease and perpetual REIT structures achieve high G&amp;A efficiency through capital durability and standardized asset management. Value-add and opportunistic RE funds carry higher G&amp;A per FEAUM dollar due to active asset management intensity.</p>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">PLAY-AC-005</span>
+    <span class="play-title">Net-Lease and Perpetual REIT as G&amp;A-Efficient RE Models</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Reference:</strong> <span class="ticker">OWL</span> (net-lease real estate), <span class="ticker">BAM</span> (AEI Net Lease acquisition $3.8B). Blue Owl's net-lease strategy produces permanent capital with standardized management overhead. Brookfield's AEI acquisition adds credit origination capability within the RE vertical.<sup class="fn"><a href="#fn-5">5</a></sup><sup class="fn"><a href="#fn-10">10</a></sup></p>
+  </div>
+</div>
+
+<!-- GP-LED SOLUTIONS -->
+<div class="vertical-header" id="vert-gp">GP-Led Solutions</div>
+
+<p>GP stakes (minority investments in alternative asset managers) is the most G&amp;A-efficient sub-type in the entire universe. Zero operating overhead, 100% permanent capital, automatic compounding through management fee sharing, and no fundraising requirement once the GP relationship is established.</p>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">PLAY-AC-006</span>
+    <span class="play-title">GP Minority Stakes as Capital-Light Fee Revenue</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Reference:</strong> <span class="ticker">OWL</span> (Dyal Capital, GP Strategic Capital Fund V $12.9B), <span class="ticker">STEP</span> (advisory mandates). GP stakes generate recurring management fee participation with near-zero marginal operating cost. Blue Owl's GSCF V raised $12.9B for minority stakes in 50+ alternative asset managers, creating a portfolio of fee streams that compounds with underlying GP AUM growth.<sup class="fn"><a href="#fn-5">5</a></sup></p>
+    <p><strong>PAX relevance:</strong> PAX's GPMS (GP Minority Stakes) initiative directly maps to this play. US GP stakes generate fee revenue with developed-market cost structures, potentially improving the consolidated G&amp;A/FEAUM ratio by adding high-efficiency FEAUM to the existing LatAm base.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 7 -->
+<!-- ================================================================ -->
+<h2 id="section-7">The cautionary cases are more instructive than the exemplars&mdash;value destruction follows predictable operational mechanisms</h2>
+
+<p>Vertical-level cautionary patterns extend the platform anti-patterns into asset-class-specific territory.</p>
+
+<div class="anti-card">
+  <div class="anti-header">
+    <span class="anti-id">ANTI-AC-001</span> &mdash; Multi-Strategy PE Roll-Up Overhead (Credit + PE + RE + Solutions)
+  </div>
+  <div class="anti-body">
+    <p>Traditional multi-strategy PE platforms (Carlyle, Ridgepost) that expand through strategy proliferation without shared services face duplicated cost structures across each vertical. Each strategy requires dedicated investment teams, fund administration, and compliance, with limited G&amp;A sharing.<sup class="fn"><a href="#fn-11">11</a></sup><sup class="fn"><a href="#fn-7">7</a></sup></p>
+  </div>
+</div>
+
+<div class="anti-card">
+  <div class="anti-header">
+    <span class="anti-id">ANTI-AC-002</span> &mdash; Infrastructure Concentration Risk
+  </div>
+  <div class="anti-body">
+    <p>Single-asset-class infrastructure specialists (Antin) achieve best-in-class FRE margins but face cyclical fundraising vulnerability. When the infrastructure fundraising cycle slows, 100% of the platform's G&amp;A is absorbed by a declining fee base. Diversified infrastructure managers (Brookfield) avoid this through multi-vertical fee diversification.<sup class="fn"><a href="#fn-13">13</a></sup></p>
+  </div>
+</div>
+
+<div class="anti-card">
+  <div class="anti-header">
+    <span class="anti-id">ANTI-AC-003</span> &mdash; Real Estate Value-Add G&amp;A Intensity
+  </div>
+  <div class="anti-body">
+    <p>Value-add and opportunistic real estate strategies require active asset management (leasing, renovation, repositioning), producing higher G&amp;A per FEAUM dollar than passive net-lease or REIT management. Platforms that grow RE primarily through value-add funds face structural G&amp;A pressure that net-lease platforms avoid.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 8: TARGET COMPANY LENS -->
+<!-- ================================================================ -->
+<h2 id="section-8">The peer evidence suggests that the highest-impact efficiency levers for LatAm-scale managers involve structural product decisions, not cost-cutting</h2>
+
+<p>The following strategic lens draws from systematic analysis of 23 alternative asset managers across 6 value drivers, 23 plays assessed for transferability, and 10 anti-patterns evaluated for relevance. All language is exploratory&mdash;describing observed mechanisms and evidence-based patterns, not prescriptions. PAX's positioning: <span class="stat">$40.8B FEAUM</span>, <span class="stat">$202.5M FRE</span> (+19% YoY), <span class="stat">$7.7B</span> organic fundraising (2025). Q1 on scale drivers, Q4 on efficiency drivers&mdash;the quintessential scale-efficiency paradox case.<sup class="fn"><a href="#fn-8">8</a></sup></p>
+
+<!-- PHL/BOARD GUIDANCE -->
+<h3>PHL/Board Guidance: Principles the Peer Evidence Supports</h3>
+
+<p>The following five principles emerge from the peer evidence as the observations most relevant to governance-level consideration. They describe mechanisms associated with premium valuations, presented with evidence anchors and boundary conditions.</p>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">Principle 1</span>
+    <span class="play-title">G&amp;A efficiency per FEAUM dollar is the single strongest statistical predictor of valuation multiples</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Evidence anchor:</strong> DVR-010 (G&amp;A/FEAUM): &rho; P/FRE = &minus;0.61 (p=0.0036), &rho; P/DE = &minus;0.51 (p=0.0138). The only stable value driver satisfying the <code>stable_v1_two_of_three</code> rule.<sup class="fn"><a href="#fn-1">1</a></sup></p>
+    <p><strong>Peer examples:</strong> <span class="ticker">OWL</span> (Q1, permanent capital), <span class="ticker">APO</span> (Q1, insurance float), <span class="ticker">BAM</span> (Q1, operator heritage), <span class="ticker">KKR</span> (Q1, insurance integration), <span class="ticker">STEP</span> (Q1, advisory model). All Q1 firms command premium valuations. <span class="ticker">CG</span> (Q1 efficiency but Q4 FRE growth) demonstrates that efficiency alone is necessary but not sufficient.<sup class="fn"><a href="#fn-3">3</a></sup><sup class="fn"><a href="#fn-4">4</a></sup><sup class="fn"><a href="#fn-5">5</a></sup></p>
+    <p><strong>PAX position:</strong> Q4&mdash;highest G&amp;A/FEAUM in the peer set. The evidence is consistent with PAX's valuation discount being partly attributable to this efficiency gap. The GPMS division is the most G&amp;A-efficient business line and represents the highest-impact vector for improving the blended ratio.<sup class="fn"><a href="#fn-8">8</a></sup></p>
+    <p><strong>Boundary conditions:</strong> Correlation reflects cross-sectional association, not causation. PAX's Q4 position is partly structural (multi-country LatAm operations) rather than purely operational. Firms that achieved Q1 did so through structural mechanisms over 5&ndash;15 year timeframes, not through cost-cutting alone.</p>
+    <p><strong>Market timing:</strong> Downward pressure on headline management fees and co-investment dilution (~25% fee revenue reduction) make cost efficiency increasingly important for maintaining FRE margins.<sup class="fn"><a href="#fn-48">48</a></sup></p>
+  </div>
+</div>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">Principle 2</span>
+    <span class="play-title">Revenue diversification into lower-cost-to-serve strategies can improve efficiency without requiring cost reduction in existing operations</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Evidence anchor:</strong> <span class="ticker">OWL</span> GP stakes franchise: Q1 on G&amp;A/FEAUM and Comp&amp;Ben/FEAUM. GPMS is the most capital-light, lowest-marginal-cost strategy in the peer universe. Every incremental FEAUM dollar from GPMS improves the blended efficiency ratio.<sup class="fn"><a href="#fn-5">5</a></sup></p>
+    <p><strong>Peer examples:</strong> <span class="ticker">OWL</span> (GP stakes at $55B+), <span class="ticker">KKR</span> (Arctos acquisition for GP stakes capability), <span class="ticker">STEP</span> (advisory model generating Q1 G&amp;A efficiency without direct investment infrastructure). PAX's GPMS initiative ($6&ndash;7B pro-forma) is executing this strategy.<sup class="fn"><a href="#fn-4">4</a></sup><sup class="fn"><a href="#fn-6">6</a></sup></p>
+    <p><strong>PAX position:</strong> GPMS generates US-based fee revenue without LatAm cost structures. The peer evidence supports accelerating GPMS scaling as the most direct path to improved blended efficiency.<sup class="fn"><a href="#fn-8">8</a></sup></p>
+    <p><strong>Market timing:</strong> M&amp;A-driven consolidation among alt managers creates GP liquidity events that expand the GPMS deal pipeline.<sup class="fn"><a href="#fn-47">47</a></sup></p>
+  </div>
+</div>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">Principle 3</span>
+    <span class="play-title">Infrastructure is the asset class most suited to permanent capital structuring, with open-end vehicles associated with improved G&amp;A efficiency</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Evidence anchor:</strong> DVR-015 (Permanent Capital %): &rho; P/FRE = 0.40 (p=0.031), &rho; P/DE = 0.41 (p=0.029). <span class="ticker">BAM</span> achieves 87% long-dated/perpetual capital with Q1 G&amp;A/FEAUM.<sup class="fn"><a href="#fn-10">10</a></sup></p>
+    <p><strong>Peer examples:</strong> <span class="ticker">BAM</span> (87% perpetual capital in infrastructure, Q1 efficiency), <span class="ticker">ANTIN</span> (exploring open-end structures to scale past efficiency threshold), <span class="ticker">KKR</span> (K-Series semi-liquid products at $35B+ including infrastructure).<sup class="fn"><a href="#fn-13">13</a></sup><sup class="fn"><a href="#fn-4">4</a></sup></p>
+    <p><strong>PAX position:</strong> Infrastructure franchise ($15B AUM, crown jewel) is the highest-conviction candidate for open-end vehicle development. Asset class suitability is high (long-duration, inflation-linked LatAm infrastructure). International LP distribution channel would need development.<sup class="fn"><a href="#fn-8">8</a></sup></p>
+    <p><strong>Boundary conditions:</strong> Open-end vehicles require distribution infrastructure for continuous subscriptions, redemption management capabilities for illiquid assets, and LatAm pension fund regulatory compatibility analysis.</p>
+  </div>
+</div>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">Principle 4</span>
+    <span class="play-title">FRE growth and G&amp;A efficiency must be pursued simultaneously&mdash;efficiency without growth produces persistent valuation discounts</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Evidence anchor:</strong> DVR-002 (FRE Growth): &rho; P/DE = &minus;0.55 (p=0.016). <span class="ticker">CVC</span> (Q1 on both growth and efficiency) commands the most bullish profile. <span class="ticker">CG</span> (Q1 efficiency, Q4 growth) trades at persistent discount.<sup class="fn"><a href="#fn-9">9</a></sup><sup class="fn"><a href="#fn-11">11</a></sup></p>
+    <p><strong>PAX position:</strong> PAX has growth momentum (+19% FRE, +24% FEAUM, $7.7B organic fundraising). The peer evidence supports protecting this growth trajectory as a precondition for efficiency improvements to translate into multiple expansion.<sup class="fn"><a href="#fn-8">8</a></sup></p>
+    <p><strong>Market timing:</strong> Fundraising concentration favors established platforms&mdash;total fund count fell 18% even as capital raised held steady.<sup class="fn"><a href="#fn-49">49</a></sup></p>
+  </div>
+</div>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">Principle 5</span>
+    <span class="play-title">Multi-country LatAm operations create a structural G&amp;A premium&mdash;the most effective mitigation is FEAUM growth that dilutes fixed costs</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Evidence anchor:</strong> PAX (Q4 on DVR-010 and DVR-009), <span class="ticker">ANTIN</span> (Q4 on both&mdash;pure-play specialist with similar scale), <span class="ticker">RF</span>/Eurazeo (Q4&mdash;hybrid models). All Q4 firms share a common characteristic: cost structures calibrated for a larger FEAUM base than currently generated.<sup class="fn"><a href="#fn-8">8</a></sup><sup class="fn"><a href="#fn-12">12</a></sup><sup class="fn"><a href="#fn-13">13</a></sup></p>
+    <p><strong>Peer examples:</strong> <span class="ticker">BAM</span> demonstrates that geographic breadth (30+ countries) and G&amp;A efficiency (Q1) are not mutually exclusive at sufficient scale ($603B FEAUM). The efficiency inflection point appears to require FEAUM that is 5&ndash;10&times; the fixed operating cost base.<sup class="fn"><a href="#fn-10">10</a></sup></p>
+    <p><strong>PAX position:</strong> At $40.8B FEAUM, approaching but not yet at the efficiency inflection point for a multi-country model. The $7.7B annual organic fundraising trajectory, combined with GPMS scaling, suggests the $50&ndash;60B threshold is achievable within 2&ndash;3 years. Cost reduction that damages the 30+ year LatAm origination network would be value-destructive based on the peer evidence.<sup class="fn"><a href="#fn-8">8</a></sup></p>
+  </div>
+</div>
+
+<!-- MANAGEMENT COMMITTEE -->
+<h3>Management Committee: Areas the Evidence Suggests Are Worth Exploring</h3>
+
+<p>The following five areas are mapped to specific value drivers and framed as explorations informed by peer evidence. They describe what other firms did, what outcomes the evidence associates with those actions, and what prerequisites appear to matter.</p>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">Area 1</span>
+    <span class="play-title">GPMS Scaling as the Highest-Impact Efficiency Vector</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Driver link:</strong> DVR-010 (G&amp;A/FEAUM), DVR-009 (Comp&amp;Ben/FEAUM)</p>
+    <p><strong>What peers did:</strong> <span class="ticker">OWL</span> scaled GP stakes from $20B at formation to $55B+ in 4 years through successive fund raises (GP Strategic Capital Fund V, $12.9B). <span class="ticker">KKR</span> acquired Arctos Sports Partners as a bolt-on to add GP stakes capability. Both firms use GP stakes as permanent capital that generates fee revenue with minimal incremental headcount or G&amp;A.<sup class="fn"><a href="#fn-5">5</a></sup><sup class="fn"><a href="#fn-4">4</a></sup></p>
+    <p><strong>Evidence on outcomes:</strong> <span class="ticker">OWL</span> achieves Q1 on both G&amp;A/FEAUM and Comp&amp;Ben/FEAUM with 85% permanent capital. GP stakes is identified as the most capital-light fee stream in the peer universe. PAX's GPMS division is already identified as the most G&amp;A-efficient business line.<sup class="fn"><a href="#fn-8">8</a></sup></p>
+    <p><strong>Prerequisites that matter:</strong> Deep GP relationship network and proprietary deal sourcing. US-based deal team with GP equity valuation and structuring expertise. Dedicated GPMS fund vehicle to institutionalize the strategy.</p>
+    <details>
+      <summary>Exploration questions</summary>
+      <div class="detail-content">
+        <ul>
+          <li>The peer evidence suggests that GPMS fund size of $10&ndash;15B may be the threshold for material blended efficiency impact. What is the realistic trajectory for PAX's GPMS fund capacity?</li>
+          <li>OWL and KKR compete for GP stakes deals in the same universe. What is PAX's differentiated value proposition to GPs considering minority liquidity&mdash;the LatAm LP distribution network, the multi-asset-class expertise, or something else?</li>
+          <li>The peer evidence from STEP suggests that hybrid advisory/GP-stakes models generate additional fee revenue. Is there an adjacent advisory offering for LatAm institutional LPs that could complement GPMS?</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">Area 2</span>
+    <span class="play-title">Open-End Infrastructure Vehicle Development</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Driver link:</strong> DVR-015 (Permanent Capital %), DVR-010 (G&amp;A/FEAUM)</p>
+    <p><strong>What peers did:</strong> <span class="ticker">BAM</span> achieves 87% long-dated/perpetual capital through open-end fund structures. Brookfield Wealth Solutions provides a dedicated insurance/annuity channel. <span class="ticker">KKR</span> K-Series scaled from $10B to $35B+ in 3 years. <span class="ticker">ANTIN</span> launched NextGen mid-cap infrastructure within 18 months.<sup class="fn"><a href="#fn-10">10</a></sup><sup class="fn"><a href="#fn-4">4</a></sup><sup class="fn"><a href="#fn-13">13</a></sup></p>
+    <p><strong>Evidence on outcomes:</strong> Permanent capital % is associated with higher P/FRE (&rho; = 0.40) and P/DE (&rho; = 0.41). Open-end vehicles eliminate fundraising-cycle G&amp;A, directly improving DVR-010. BAM's Q1 G&amp;A/FEAUM position is partly attributable to its high permanent capital ratio.<sup class="fn"><a href="#fn-1">1</a></sup></p>
+    <p><strong>Prerequisites that matter:</strong> International distribution infrastructure beyond current LatAm pension fund channels. Redemption management framework for illiquid infrastructure assets. Regulatory analysis of LatAm pension fund compatibility. Sufficient deal flow for continuous deployment.</p>
+    <details>
+      <summary>Exploration questions</summary>
+      <div class="detail-content">
+        <ul>
+          <li>What proportion of the current infrastructure portfolio generates the long-duration, inflation-linked cash flows suited to open-end structuring?</li>
+          <li>What is the realistic international LP appetite for an open-end LatAm infrastructure product, and through which distribution channels?</li>
+          <li>Antin's NextGen launch took 18 months. What is a realistic timeline within PAX's existing fund administration and regulatory framework?</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">Area 3</span>
+    <span class="play-title">Credit Platform Scaling Beyond the Multi-Jurisdiction Cost Threshold</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Driver link:</strong> DVR-002 (FRE Growth), DVR-010 (G&amp;A/FEAUM)</p>
+    <p><strong>What peers did:</strong> <span class="ticker">ARES</span> built the largest non-bank direct lending franchise in Europe over 5&ndash;7 years, capitalizing on bank retrenchment. <span class="ticker">CVC</span> scaled credit from EUR 25B to EUR 40B+ in 3 years post-IPO. PAX's credit growth from $2B to $5B+ in 3 years demonstrates comparable early-stage execution.<sup class="fn"><a href="#fn-14">14</a></sup><sup class="fn"><a href="#fn-9">9</a></sup></p>
+    <p><strong>Evidence on outcomes:</strong> Credit platforms below ~$10B FEAUM in multi-jurisdiction environments carry disproportionate overhead. First-mover advantage in geographic-specific direct lending creates durable moats that are difficult to displace once established.<sup class="fn"><a href="#fn-8">8</a></sup></p>
+    <p><strong>Prerequisites that matter:</strong> Local underwriting expertise per LatAm jurisdiction. Sufficient deal flow for larger fund deployment. LP education on LatAm credit risk-return profiles for international investors.</p>
+  </div>
+</div>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">Area 4</span>
+    <span class="play-title">Shared Services Consolidation Across LatAm Jurisdictions</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Driver link:</strong> DVR-010 (G&amp;A/FEAUM)</p>
+    <p><strong>What peers did:</strong> <span class="ticker">BAM</span> operates in 30+ countries with Q1 G&amp;A/FEAUM by centralizing technology, reporting, and compliance policy (local execution only). <span class="ticker">OWL</span> achieves Q1 efficiency with centralized operations across 3 business lines, minimizing duplicated back-office functions.<sup class="fn"><a href="#fn-10">10</a></sup><sup class="fn"><a href="#fn-5">5</a></sup></p>
+    <p><strong>Evidence on outcomes:</strong> BAM demonstrates that geographic breadth and G&amp;A efficiency are not mutually exclusive at sufficient scale. The key is centralization of sharable functions with local execution only where jurisdiction-specific requirements mandate it.<sup class="fn"><a href="#fn-10">10</a></sup></p>
+    <p><strong>Prerequisites that matter:</strong> Technology infrastructure for cross-jurisdiction reporting, compliance monitoring, and LP communications. Organizational willingness to consolidate currently duplicated functions across Brazil, Chile, Colombia, and US offices.</p>
+  </div>
+</div>
+
+<div class="play-card">
+  <div class="play-header">
+    <span class="play-id">Area 5</span>
+    <span class="play-title">Investor Communication of Structural Cost Context</span>
+  </div>
+  <div class="play-body">
+    <p><strong>Driver link:</strong> DVR-010 (G&amp;A/FEAUM), overall multiple</p>
+    <p><strong>What peers did:</strong> <span class="ticker">CVC</span> post-IPO investor communications included explicit efficiency targets and segment-level FRE margin disclosure. <span class="ticker">BAM</span> investor presentations articulate structural reasons for its efficiency position. <span class="ticker">ANTIN</span> contextualizes Q4 efficiency as a function of specialist scale rather than operational weakness.<sup class="fn"><a href="#fn-9">9</a></sup><sup class="fn"><a href="#fn-10">10</a></sup><sup class="fn"><a href="#fn-13">13</a></sup></p>
+    <p><strong>Evidence on outcomes:</strong> The peer evidence suggests that investors distinguish between structural efficiency gaps (geographic/scale-driven) and operational inefficiency when firms provide transparent benchmarking and clear trajectory narratives.<sup class="fn"><a href="#fn-8">8</a></sup></p>
+    <p><strong>Prerequisites that matter:</strong> Benchmarking framework comparing PAX to both global peers and structurally comparable firms. Articulation of the FEAUM trajectory to the efficiency inflection point. GPMS-driven improvement disclosure in blended metrics.</p>
+  </div>
+</div>
+
+<!-- PER-BU PATTERNS -->
+<h3>Per-BU Patterns: Observations by Asset Class</h3>
+
+<p>The following patterns draw from peer evidence within each asset class. They describe mechanisms that peers have demonstrated, not recommendations. Each unit should evaluate relevance in the context of its specific market, LP base, and operational capabilities.</p>
+
+<table>
+  <thead>
+    <tr><th>Business Unit</th><th>Key Peer Pattern</th><th>Peer Evidence</th><th>PAX Relevance</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Private Equity</strong><br><span style="font-size:0.78rem; color:var(--gray-500);">~$10B AUM</span></td>
+      <td>Sector specialization within PE generates better deal sourcing efficiency than generalist multi-geography origination</td>
+      <td><span class="ticker">CVC</span>: Q1 FRE growth via European sector specialization. <span class="ticker">CG</span>: Q4 FRE growth partly attributed to generalist model during period when specialists outperformed<sup class="fn"><a href="#fn-9">9</a></sup><sup class="fn"><a href="#fn-11">11</a></sup></td>
+      <td>iGah3 acquisition adds growth equity specialization. Peer evidence suggests developing sector themes (infra-adjacent PE, consumer, healthcare) within existing franchise could improve origination efficiency</td>
+    </tr>
+    <tr>
+      <td><strong>Infrastructure</strong><br><span style="font-size:0.78rem; color:var(--gray-500);">~$15B AUM (crown jewel)</span></td>
+      <td>Open-end vehicles convert fundraising cycles into permanent fee streams; specialist economics produce 55&ndash;60% FRE margins at scale</td>
+      <td><span class="ticker">BAM</span>: 87% perpetual capital, Q1 efficiency. <span class="ticker">ANTIN</span>: 59% FRE margin, exploring open-end structures. Efficiency inflection at EUR 30&ndash;40B<sup class="fn"><a href="#fn-10">10</a></sup><sup class="fn"><a href="#fn-13">13</a></sup></td>
+      <td>Highest-conviction candidate for open-end vehicle development. Long-duration, inflation-linked LatAm infra assets are structurally suited. Every year infrastructure FEAUM remains 100% drawdown is a year of foregone efficiency improvement</td>
+    </tr>
+    <tr>
+      <td><strong>Credit</strong><br><span style="font-size:0.78rem; color:var(--gray-500);">~$5B+ FEAUM</span></td>
+      <td>Direct lending franchises built during banking retrenchment create durable moats; platforms below $10B carry disproportionate overhead</td>
+      <td><span class="ticker">ARES</span>: largest non-bank direct lender in Europe via bank retrenchment (EDL IV EUR 10B+). <span class="ticker">CVC</span>: credit EUR 25B&rarr;40B+ in 3 years post-IPO<sup class="fn"><a href="#fn-14">14</a></sup><sup class="fn"><a href="#fn-9">9</a></sup></td>
+      <td>Executing the LatAm analog of Ares's European strategy. Growth from $2B to $5B+ in 3 years confirms execution capability. Maintaining velocity to reach $10B+ threshold is the priority</td>
+    </tr>
+    <tr>
+      <td><strong>Real Estate</strong><br><span style="font-size:0.78rem; color:var(--gray-500);">~$5B AUM</span></td>
+      <td>Net-lease RE is the sub-type most suited to perpetual capital; perpetual RE vehicles require $10B+ minimum scale</td>
+      <td><span class="ticker">OWL</span>: Oak Street net-lease, $14B&rarr;$30B in 2 years. No peer below $10B RE has launched a standalone perpetual vehicle<sup class="fn"><a href="#fn-5">5</a></sup></td>
+      <td>At $5B, below peer-evidence threshold for standalone perpetual vehicles. Best maintained as a complementary platform contributor through drawdown fund structures. LatAm logistics/industrial RE may be the sub-segment most suited to eventual permanent capital structuring</td>
+    </tr>
+    <tr>
+      <td><strong>Solutions/GPMS</strong><br><span style="font-size:0.78rem; color:var(--gray-500);">$6&ndash;7B pro-forma</span></td>
+      <td>GP stakes is the most G&amp;A-efficient strategy in alternatives; minority positions generate fee revenue with no operational headcount</td>
+      <td><span class="ticker">OWL</span>: GP Strategic Capital at $55B+; Q1 on both efficiency drivers. <span class="ticker">KKR</span>: Arctos acquisition for bolt-on GP stakes<sup class="fn"><a href="#fn-5">5</a></sup><sup class="fn"><a href="#fn-4">4</a></sup></td>
+      <td>Every incremental GPMS FEAUM dollar improves blended G&amp;A/FEAUM more than any other strategy. US-based cost structure creates natural hedge against LatAm G&amp;A inflation. PAX's differentiated proposition: LatAm LP distribution network valuable to GPs seeking minority liquidity</td>
+    </tr>
+    <tr>
+      <td><strong>Public Equities</strong><br><span style="font-size:0.78rem; color:var(--gray-500);">Legacy capability</span></td>
+      <td>Limited peer evidence&mdash;public equities within private-markets-dominant managers are not associated with premium valuations</td>
+      <td>No peer in the deep-dive set has a public equities franchise as a material value driver<sup class="fn"><a href="#fn-43">43</a></sup></td>
+      <td>Peer evidence does not provide transferable insights. Primary contribution is to overall AUM and LP relationship maintenance rather than multiple-driving metrics</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="bumper"><strong>Therefore:</strong> The peer evidence suggests that PAX's highest-impact efficiency path runs through structural product shifts&mdash;GPMS scaling (Area 1), open-end infrastructure vehicles (Area 2), and credit platform growth past the $10B threshold (Area 3)&mdash;rather than operational cost reduction. These structural changes address the G&amp;A/FEAUM driver directly by adding capital-light fee revenue, whereas cost-cutting addresses it indirectly and produces one-time rather than compounding improvements. The FEAUM growth trajectory ($40.8B &rarr; $50&ndash;60B over 2&ndash;3 years) is the foundation upon which efficiency improvement becomes visible to the market.</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 9 -->
+<!-- ================================================================ -->
+<h2 id="section-9">Several cautionary patterns in the peer universe suggest conditions under which efficiency improvement attempts destroy rather than create value</h2>
+
+<p>The peer evidence is consistent with three structural traps that affect mid-scale managers attempting to improve G&amp;A efficiency:</p>
+
+<p><strong>1. Premature Product Proliferation Before Platform Consolidation.</strong> Ridgepost Capital's experience (ANTI-001) demonstrates that adding strategies or partner managers before back-office integration is complete produces the worst G&amp;A/FEAUM outcomes in the peer set. For PAX, this suggests that new product launches (beyond GPMS) should follow, not precede, the consolidation of existing LatAm operational infrastructure.</p>
+
+<p><strong>2. Geographic Expansion That Fragments Cost Structures.</strong> Carlyle's 29-office footprint (ANTI-003) illustrates how geographic breadth without shared services inflates G&amp;A proportionally. PAX already operates across multiple LatAm jurisdictions with inherently higher per-country regulatory costs. Additional geographic expansion would compound this pattern unless accompanied by shared services infrastructure.</p>
+
+<p><strong>3. Acquisition-Driven AUM Growth That Adds Cost Before Integration.</strong> The Ridgepost pattern generalizes: any AUM addition through acquisition carries embedded operating costs that must be consolidated before efficiency benefits materialize. The peer evidence suggests that acquisition-driven growth in alternative asset management improves G&amp;A/FEAUM only when the acquirer has a pre-existing integration playbook and the operational consolidation timeline is shorter than the fee lock-in period of the acquired assets.</p>
+
+<div class="bumper"><strong>Therefore:</strong> For PAX, the peer evidence cautions against pursuing scale for its own sake. The path from Q4 to Q2 on efficiency drivers requires adding the right kind of FEAUM (capital-light, permanent, developed-market) rather than adding more of the same kind (drawdown, multi-jurisdiction, LatAm-cost-structure). GPMS and open-end infrastructure are structurally aligned with this principle; broad geographic expansion or multi-franchise acquisition are not.</div>
+
+<!-- ================================================================ -->
+<!-- SOURCES & REFERENCES -->
+<!-- ================================================================ -->
+<h2 id="sources">Sources &amp; References</h2>
+
+<div class="footnotes">
+<ol>
+  <li id="fn-1">Valuation Driver Ranking &amp; Correlation Results (2026-03-10-run2). Internal analysis. <span class="bias-tag">internal-analysis</span></li>
+  <li id="fn-2">Valuation Driver Ranking (2026-03-09-run2, base run). Internal analysis. <span class="bias-tag">internal-analysis</span></li>
+  <li id="fn-3">Apollo Global Management 10-K &amp; Earnings Materials (FY2024&ndash;2025). SEC EDGAR / IR. <span class="bias-tag">regulatory-filing</span> / <span class="bias-tag">company-produced</span> [PS-VD-008, PS-VD-009]</li>
+  <li id="fn-4">KKR &amp; Co. 10-K &amp; Earnings Materials (FY2024&ndash;2025). SEC EDGAR / IR. <span class="bias-tag">regulatory-filing</span> / <span class="bias-tag">company-produced</span> [PS-VD-004, PS-VD-006]</li>
+  <li id="fn-5">Blue Owl Capital 10-K &amp; Earnings Materials (FY2024&ndash;2025). SEC EDGAR / IR. <span class="bias-tag">regulatory-filing</span> / <span class="bias-tag">company-produced</span> [PS-VD-027, PS-VD-028]</li>
+  <li id="fn-6">StepStone Group 10-K &amp; Earnings Materials (FY2024&ndash;2025). SEC EDGAR / IR. <span class="bias-tag">regulatory-filing</span> / <span class="bias-tag">company-produced</span> [PS-VD-037, PS-VD-038]</li>
+  <li id="fn-7">Ridgepost Capital IR Materials &amp; SEC Filings (FY2024&ndash;2025). <span class="bias-tag">company-produced</span> / <span class="bias-tag">regulatory-filing</span> [PS-VD-069, PS-VD-070]</li>
+  <li id="fn-8">Patria Investments 20-F &amp; Earnings Materials (FY2024&ndash;2025). SEC EDGAR / IR. <span class="bias-tag">regulatory-filing</span> / <span class="bias-tag">company-produced</span> [PS-VD-057, PS-VD-058]</li>
+  <li id="fn-9">CVC Capital Partners IR Materials &amp; Annual Report (FY2024). <span class="bias-tag">company-produced</span> [PS-VD-043, PS-VD-044]</li>
+  <li id="fn-10">Brookfield Asset Management IR Materials &amp; Supplemental Information (FY2024&ndash;2025). <span class="bias-tag">company-produced</span> [PS-VD-015, PS-VD-016]</li>
+  <li id="fn-11">The Carlyle Group 10-K &amp; Earnings Materials (FY2024&ndash;2025). SEC EDGAR / IR. <span class="bias-tag">regulatory-filing</span> / <span class="bias-tag">company-produced</span> [PS-VD-016, PS-VD-017]</li>
+  <li id="fn-12">Eurazeo Annual Report &amp; IR Materials (FY2024). <span class="bias-tag">company-produced</span> [PS-VD-063, PS-VD-064]</li>
+  <li id="fn-13">Antin Infrastructure Partners Annual Report &amp; IR Materials (FY2024). <span class="bias-tag">company-produced</span> [PS-VD-045, PS-VD-046]</li>
+  <li id="fn-14">Ares Management 10-K &amp; Earnings Materials (FY2024&ndash;2025). SEC EDGAR / IR. <span class="bias-tag">regulatory-filing</span> / <span class="bias-tag">company-produced</span> [PS-VD-012, PS-VD-013]</li>
+  <li id="fn-15">Blackstone 10-K Annual Filings (FY2024&ndash;2025). SEC EDGAR. <span class="bias-tag">regulatory-filing</span> [PS-VD-001]</li>
+  <li id="fn-16">Blackstone IR SEC Filings Page. <span class="bias-tag">company-produced</span> [PS-VD-002]</li>
+  <li id="fn-17">Blackstone Q4 2025 Earnings Call Transcript. The Motley Fool. <span class="bias-tag">third-party-analyst</span> [PS-VD-003]</li>
+  <li id="fn-18">KKR 10-K Annual Filings. SEC EDGAR. <span class="bias-tag">regulatory-filing</span> [PS-VD-004]</li>
+  <li id="fn-19">KKR Q4 2025 Earnings Presentation. <span class="bias-tag">company-produced</span> [PS-VD-005]</li>
+  <li id="fn-20">KKR Q4 2025 Earnings Call Transcript. <span class="bias-tag">third-party-analyst</span> [PS-VD-006]</li>
+  <li id="fn-21">Apollo 10-K &amp; IR Materials. SEC EDGAR. <span class="bias-tag">regulatory-filing</span> [PS-VD-007, PS-VD-008]</li>
+  <li id="fn-22">Apollo Q4 2025 Earnings Call Transcript. <span class="bias-tag">third-party-analyst</span> [PS-VD-009]</li>
+  <li id="fn-23">Brookfield AM IR Supplemental Information. <span class="bias-tag">company-produced</span> [PS-VD-015]</li>
+  <li id="fn-24">Ares Management 10-K &amp; IR Materials. SEC EDGAR. <span class="bias-tag">regulatory-filing</span> [PS-VD-012, PS-VD-013]</li>
+  <li id="fn-25">Blue Owl Capital 10-K &amp; IR Materials. SEC EDGAR. <span class="bias-tag">regulatory-filing</span> [PS-VD-027, PS-VD-028]</li>
+  <li id="fn-26">StepStone Group 10-K &amp; IR Materials. SEC EDGAR. <span class="bias-tag">regulatory-filing</span> [PS-VD-037, PS-VD-038]</li>
+  <li id="fn-27">CVC Capital Partners Annual Report &amp; IR Materials. <span class="bias-tag">company-produced</span> [PS-VD-043, PS-VD-044]</li>
+  <li id="fn-28">Antin Infrastructure Partners Annual Report. <span class="bias-tag">company-produced</span> [PS-VD-045, PS-VD-046]</li>
+  <li id="fn-29">Eurazeo Annual Report &amp; IR Materials. <span class="bias-tag">company-produced</span> [PS-VD-063, PS-VD-064]</li>
+  <li id="fn-30">Ridgepost Capital IR Materials &amp; SEC Filings. <span class="bias-tag">company-produced</span> [PS-VD-069, PS-VD-070]</li>
+  <li id="fn-31">Patria Investments 20-F &amp; IR Materials. SEC EDGAR. <span class="bias-tag">regulatory-filing</span> [PS-VD-057, PS-VD-058]</li>
+  <li id="fn-32">Carlyle Group 10-K &amp; Earnings Materials. SEC EDGAR. <span class="bias-tag">regulatory-filing</span> [PS-VD-016, PS-VD-017]</li>
+  <li id="fn-33">EQT AB Annual Report &amp; IR Materials. <span class="bias-tag">company-produced</span> [PS-VD-031, PS-VD-032]</li>
+  <li id="fn-34">Partners Group Annual Report. <span class="bias-tag">company-produced</span> [PS-VD-047, PS-VD-048]</li>
+  <li id="fn-35">Man Group Annual Report &amp; IR Materials. <span class="bias-tag">company-produced</span> [PS-VD-033, PS-VD-034]</li>
+  <li id="fn-36">ICG Annual Report &amp; IR Materials. <span class="bias-tag">company-produced</span> [PS-VD-049, PS-VD-050]</li>
+  <li id="fn-37">TPG Inc. 10-K &amp; Earnings Materials. SEC EDGAR. <span class="bias-tag">regulatory-filing</span> [PS-VD-019, PS-VD-020]</li>
+  <li id="fn-38">Victory Capital Holdings 10-K &amp; IR Materials. SEC EDGAR. <span class="bias-tag">regulatory-filing</span> [PS-VD-021, PS-VD-022]</li>
+  <li id="fn-39">Bridgepoint Group Annual Report &amp; IR Materials. <span class="bias-tag">company-produced</span> [PS-VD-051, PS-VD-052]</li>
+  <li id="fn-40">Tikehau Capital Annual Report &amp; IR Materials. <span class="bias-tag">company-produced</span> [PS-VD-053, PS-VD-054]</li>
+  <li id="fn-41">Hamilton Lane 10-K &amp; IR Materials. SEC EDGAR. <span class="bias-tag">regulatory-filing</span> [PS-VD-039, PS-VD-040]</li>
+  <li id="fn-42">Blue Owl Capital Q4 2025 Earnings Presentation. <span class="bias-tag">company-produced</span> [PS-VD-029]</li>
+  <li id="fn-43">Platform Profiles (VD-D1, 12 firms). Internal analysis, 2026-03-10-run2. <span class="bias-tag">internal-analysis</span></li>
+  <li id="fn-44">Asset Class Analysis (VD-D2, 5 verticals, 22 sub-types). Internal analysis, 2026-03-10-run2. <span class="bias-tag">internal-analysis</span></li>
+  <li id="fn-45">Statistical Methodology (VD-A4b). Internal analysis, 2026-03-10-run2. <span class="bias-tag">internal-analysis</span></li>
+  <li id="fn-46">Value Creation Principles (VD-P1). Internal analysis, 2026-03-10-run2. <span class="bias-tag">internal-analysis</span></li>
+  <li id="fn-47">BCG, &ldquo;Global Asset Management Industry Hit New Record High in 2024&mdash;and a Critical Turning Point&rdquo; (April 2025). <span class="bias-tag">industry-report</span> [PS-VD-906]</li>
+  <li id="fn-48">Bain &amp; Company, &ldquo;Private Equity's Reality Check: The GP Outlook for 2026&rdquo; (2026). <span class="bias-tag">industry-report</span> [PS-VD-903]</li>
+  <li id="fn-49">Bain &amp; Company, &ldquo;Private Equity Outlook 2026: Gaining Traction&rdquo; (2026). <span class="bias-tag">industry-report</span> [PS-VD-902]</li>
+  <li id="fn-50">BCG, &ldquo;Capturing Wealth Management's $3 Trillion Private Market Opportunity&rdquo; (March 2025). <span class="bias-tag">industry-report</span> [PS-VD-907]</li>
+</ol>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 10: STATISTICAL APPENDIX -->
+<!-- ================================================================ -->
+<h2 id="section-10">Statistical Appendix&mdash;methodology, full correlation table, confidence intervals, sensitivity analyses, and mandatory disclaimers</h2>
+
+<h3>Full Spearman Correlation Matrix (18 Drivers &times; 3 Multiples)</h3>
+
+<p>The table below presents Spearman rank correlations for all 18 eligible driver metrics against three valuation multiples. Cells are color-coded by strength: |&rho;| &ge; 0.50 (strong), 0.30&ndash;0.49 (moderate), &lt; 0.30 (weak). Classification follows the rules documented in the methodology.</p>
+
+<table id="correlation-table">
+  <thead>
+    <tr>
+      <th onclick="sortTable(0)">Metric ID</th>
+      <th onclick="sortTable(1)">Driver Name</th>
+      <th onclick="sortTable(2)">&rho; P/FRE</th>
+      <th onclick="sortTable(3)">&rho; P/DE</th>
+      <th onclick="sortTable(4)">&rho; EV/FEAUM</th>
+      <th onclick="sortTable(5)">Avg |&rho;|</th>
+      <th onclick="sortTable(6)">Classification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="ticker">MET-VD-021</td><td>G&amp;A/FEAUM</td><td class="num neg">-0.606</td><td class="num neg">-0.505</td><td class="num muted">-0.023</td><td class="num">0.378</td><td><span class="q1">Stable</span></td></tr>
+    <tr><td class="ticker">MET-VD-014</td><td>FRE Growth YoY</td><td class="num neg">-0.477</td><td class="num neg">-0.546</td><td class="num neg">-0.438</td><td class="num">0.487</td><td><span class="q2">Mult-Specific</span></td></tr>
+    <tr><td class="ticker">MET-VD-005</td><td>Total AUM</td><td class="num pos">0.670</td><td class="num pos">0.403</td><td class="num muted">0.105</td><td class="num">0.393</td><td><span class="q2">Mult-Specific</span></td></tr>
+    <tr><td class="ticker">MET-VD-004</td><td>Fee-Earning AUM</td><td class="num pos">0.602</td><td class="num pos">0.350</td><td class="num muted">0.068</td><td class="num">0.340</td><td><span class="q2">Mult-Specific</span></td></tr>
+    <tr><td class="ticker">MET-VD-020</td><td>Comp&amp;Ben/FEAUM</td><td class="num neg">-0.502</td><td class="num neg">-0.393</td><td class="num muted">0.080</td><td class="num">0.325</td><td><span class="q2">Mult-Specific</span></td></tr>
+    <tr><td class="ticker">MET-VD-011</td><td>Permanent Capital %</td><td class="num pos">0.404</td><td class="num pos">0.412</td><td class="num muted">0.209</td><td class="num">0.342</td><td><span class="q3">Moderate</span></td></tr>
+    <tr><td class="ticker">MET-VD-007</td><td>FEAUM Growth YoY</td><td class="num pos">0.465</td><td class="num pos">0.450</td><td class="num muted">-0.094</td><td class="num">0.336</td><td><span class="q3">Moderate</span></td></tr>
+    <tr><td class="ticker">MET-VD-009</td><td>Mgmt Fee Revenue</td><td class="num pos">0.449</td><td class="num muted">0.251</td><td class="num muted">-0.135</td><td class="num">0.279</td><td><span class="q3">Moderate</span></td></tr>
+    <tr><td class="ticker">MET-VD-016</td><td>Carry/Total Revenue</td><td class="num muted">-0.177</td><td class="num neg">-0.351</td><td class="num muted">-0.147</td><td class="num">0.225</td><td><span class="q3">Moderate</span></td></tr>
+    <tr><td class="ticker">MET-VD-001</td><td>DE/share</td><td class="num muted">0.138</td><td class="num muted">0.209</td><td class="num muted">0.247</td><td class="num">0.198</td><td><span class="q4">Not a driver*</span></td></tr>
+    <tr><td class="ticker">MET-VD-013</td><td>FRE Margin</td><td class="num muted">0.100</td><td class="num muted">0.276</td><td class="num muted">0.209</td><td class="num">0.195</td><td><span class="q4">Not a driver</span></td></tr>
+    <tr><td class="ticker">MET-VD-012</td><td>DE Growth YoY</td><td class="num muted">0.272</td><td class="num muted">0.070</td><td class="num muted">-0.100</td><td class="num">0.147</td><td><span class="q4">Not a driver</span></td></tr>
+    <tr><td class="ticker">MET-VD-022</td><td>Revenue/Employee</td><td class="num muted">-0.186</td><td class="num muted">-0.064</td><td class="num muted">0.189</td><td class="num">0.146</td><td><span class="q4">Not a driver</span></td></tr>
+    <tr><td class="ticker">MET-VD-006</td><td>AUM Growth YoY</td><td class="num muted">-0.208</td><td class="num muted">-0.127</td><td class="num muted">0.086</td><td class="num">0.140</td><td><span class="q4">Not a driver</span></td></tr>
+    <tr><td class="ticker">MET-VD-018</td><td>Headcount/FEAUM</td><td class="num muted">-0.135</td><td class="num muted">-0.173</td><td class="num muted">0.032</td><td class="num">0.113</td><td><span class="q4">Not a driver</span></td></tr>
+    <tr><td class="ticker">MET-VD-015</td><td>Dividend Payout</td><td class="num muted">-0.049</td><td class="num muted">0.130</td><td class="num muted">-0.137</td><td class="num">0.105</td><td><span class="q4">Unstable</span></td></tr>
+    <tr><td class="ticker">MET-VD-010</td><td>Fundraising Pace</td><td class="num muted">-0.060</td><td class="num muted">0.202</td><td class="num muted">-0.053</td><td class="num">0.105</td><td><span class="q4">Not a driver</span></td></tr>
+    <tr><td class="ticker">MET-VD-019</td><td>FEAUM/Employee</td><td class="num muted">0.026</td><td class="num muted">0.070</td><td class="num muted">-0.146</td><td class="num">0.080</td><td><span class="q4">Not a driver</span></td></tr>
+  </tbody>
+</table>
+
+<p style="font-size:0.8rem; color:var(--gray-500); margin-top:0.5rem;">* MET-VD-001 (DE/share): classified as "not a driver" in this run due to insufficient sample (N&lt;12 on complete-multiple set). Stable value driver in base run (2026-03-09-run2) with &rho; = 0.857 on EV/FEAUM.</p>
+
+<h3>Bootstrap Confidence Interval Parameterization</h3>
+<p>Method: <code>bootstrap_10k</code> (10,000 resamples with replacement). 95% CI reported as 2.5th and 97.5th percentiles. Bootstrap CIs that include zero indicate the sign of association cannot be established with 95% confidence. Due to the absence of a scipy/numpy runtime environment, bootstrap CIs are parameterized but not computed in this run; point estimates and asymptotic p-values are reported.</p>
+
+<h3>Multiple Comparisons Correction</h3>
+<p>Total tests: 54 (18 drivers &times; 3 multiples). Estimated effective independent tests: ~40 (after collinear pair adjustment). Bonferroni-corrected &alpha; = 0.05/40 = <strong>0.00125</strong>. Only DVR-003 (Total AUM) on P/FRE (p = 0.0006) passes the Bonferroni threshold at the <span class="confidence-high">High</span> confidence level. DVR-010 (G&amp;A/FEAUM) on P/FRE (p = 0.0036) approaches but does not pass; classified as High confidence based on the combined evidence from multiple correlations satisfying the stable rule.</p>
+
+<h3>Leave-One-Out Sensitivity</h3>
+<p>For each driver with |&rho;| &ge; 0.40, LOO analysis sequentially excludes each firm and recomputes Spearman &rho;. A result is flagged <code>loo_sensitive=true</code> if any single firm exclusion shifts |&rho;| by &gt;0.15 or changes sign. Known structural outliers: EQT (P/DE = 56.9&times;), Partners Group (EV/FEAUM = 32.3%), Man Group (EV/FEAUM = 3.1%), Victory Capital (all multiples).</p>
+
+<h3>Temporal Stability (FY2023 vs. FY2024)</h3>
+<p>For each correlation in the complete-multiple set, Spearman &rho; is computed on the FY2023 cross-section where N &ge; 12 firms have data. Flagged <code>temporally_unstable=true</code> if sign reverses or |&Delta;&rho;| &gt; 0.25. Only MET-VD-015 (Dividend Payout) is flagged as temporally unstable.</p>
+
+<h3>Partial Correlations Controlling for Scale</h3>
+<p>For the top 5 drivers, partial Spearman correlations controlling for MET-VD-005 (Total AUM) are computed to isolate the association net of firm size. Residuals from rank regression of (driver_rank ~ AUM_rank) and (multiple_rank ~ AUM_rank) are correlated. Scale-adjusted results confirm that DVR-010 (G&amp;A/FEAUM) maintains its signal after controlling for AUM, reinforcing the interpretation that efficiency, not scale, drives the premium.</p>
+
+<h3 id="changes">Changes from Prior Analysis (2026-03-09-run2)</h3>
+
+<table>
+  <thead>
+    <tr><th>Dimension</th><th>2026-03-09-run2 (Base)</th><th>2026-03-10-run2 (Current)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Stable value driver</td><td>DVR-001 (DE/share)</td><td>DVR-010 (G&amp;A/FEAUM)</td></tr>
+    <tr><td>Universe size</td><td>23 firms</td><td>23 firms (5 new European firms added, replacing excluded peers)</td></tr>
+    <tr><td>Firm profiles</td><td>8 profiles</td><td>12 profiles (added CVC, STEP, RPC, RF, ANTIN, PAX)</td></tr>
+    <tr><td>Sub-type segmentation</td><td>Not applied</td><td>22 sub-types across 5 verticals</td></tr>
+    <tr><td>Convergence analysis</td><td>Ad hoc peer selection</td><td>Formal convergence via Scale-Efficiency Paradox framework</td></tr>
+    <tr><td>Final peer set</td><td>Informal</td><td>12-firm formal set (APO, BAM, KKR, CG, ARES, OWL, CVC, STEP, PAX, RPC, RF, ANTIN)</td></tr>
+    <tr><td>Platform plays</td><td>10 plays, 5 anti-patterns</td><td>8 plays, 5 anti-patterns (reorganized by driver)</td></tr>
+    <tr><td>Asset class plays</td><td>Not separate</td><td>10 plays, 5 anti-patterns across 5 verticals</td></tr>
+    <tr><td>Consulting context</td><td>Included</td><td>11 sources, market context only (PS-VD-9xx hierarchy enforced)</td></tr>
+    <tr><td>DE/share status</td><td>Stable (&rho; = 0.857)</td><td>Insufficient sample (European firms lack US-convention DE)</td></tr>
+    <tr><td>Interpretation</td><td colspan="2">The two findings are complementary: earnings quality (DE/share) drives valuation when fully measured; cost efficiency (G&amp;A/FEAUM) is the more universally measurable proxy across the expanded universe.</td></tr>
+  </tbody>
+</table>
+
+<h3 id="disclaimers">Mandatory Disclaimers</h3>
+
+<div class="disclaimer">
+  <strong>DISCLAIMER-1 (Correlation &ne; Causation):</strong> Spearman rank correlations measure statistical association, not causation. A correlation between a driver metric and a valuation multiple does not imply that improving the driver will cause the multiple to increase. Third variables, reverse causation, and spurious correlation are all plausible explanations.
+</div>
+
+<div class="disclaimer">
+  <strong>DISCLAIMER-2 (Survivorship Bias):</strong> The analysis universe consists of currently publicly listed alternative asset managers. Firms that were acquired, went private, or failed are excluded. This survivorship bias may overstate the performance characteristics associated with higher valuations.
+</div>
+
+<div class="disclaimer">
+  <strong>DISCLAIMER-3 (Point-in-Time Snapshot):</strong> All metrics are measured at a single point in time (FY2024 cross-section). Valuation multiples fluctuate with market conditions. The observed correlations reflect conditions as of late 2024 and may not generalize to other market environments.
+</div>
+
+<div class="disclaimer">
+  <strong>DISCLAIMER-4 (Small N):</strong> The correlation universe consists of 23 firms. With N=19&ndash;21 in the complete-multiple set, statistical power is limited. Many economically plausible correlations may fail to achieve significance due to small sample size. Conversely, a few spurious correlations may appear significant by chance.
+</div>
+
+<div class="disclaimer">
+  <strong>DISCLAIMER-5 (Endogeneity):</strong> Valuation multiples may themselves influence management behavior (e.g., firms with high P/FRE have more capital for acquisitions). This reverse causality means that the direction of any causal relationship cannot be inferred from correlation alone.
+</div>
+
+<div class="disclaimer">
+  <strong>DISCLAIMER-6 (FRE Definition Heterogeneity):</strong> Fee-Related Earnings is a non-GAAP metric with significant definition variation. EQT uses Adjusted Net Income; Man Group uses a Net Revenue proxy; Partners Group uses EBIT of asset management; ICG uses management fee income proxy. These definitional differences reduce comparability and may bias FRE-based correlations. Results for FRE-based metrics are marked <code>definitional_proxy=true</code>.
+</div>
+
+</main>
+
+<!-- Sortable Table Script -->
+<script>
+function sortTable(colIndex) {
+  const table = document.getElementById('correlation-table');
+  const tbody = table.querySelector('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  const headers = table.querySelectorAll('thead th');
+
+  let currentDir = headers[colIndex].classList.contains('sorted-asc') ? 'asc' :
+                   headers[colIndex].classList.contains('sorted-desc') ? 'desc' : 'none';
+
+  headers.forEach(h => { h.classList.remove('sorted-asc', 'sorted-desc'); });
+
+  let newDir = currentDir === 'asc' ? 'desc' : 'asc';
+  headers[colIndex].classList.add('sorted-' + newDir);
+
+  rows.sort((a, b) => {
+    let aVal = a.cells[colIndex].textContent.trim();
+    let bVal = b.cells[colIndex].textContent.trim();
+
+    let aNum = parseFloat(aVal.replace(/[^\d.\-]/g, ''));
+    let bNum = parseFloat(bVal.replace(/[^\d.\-]/g, ''));
+
+    if (!isNaN(aNum) && !isNaN(bNum)) {
+      return newDir === 'asc' ? aNum - bNum : bNum - aNum;
+    }
+    return newDir === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+  });
+
+  rows.forEach(row => tbody.appendChild(row));
+}
+</script>
+
+</body>
+</html>

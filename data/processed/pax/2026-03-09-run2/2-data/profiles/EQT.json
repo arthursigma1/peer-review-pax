@@ -1,0 +1,36 @@
+{
+  "firm_id": "FIRM-010",
+  "firm_name": "EQT AB",
+  "ticker": "EQT",
+  "profile": {
+    "geographical_reach": "global",
+    "business_focus": "asset_management",
+    "asset_focus": "large_caps",
+    "asset_classes_strategies": {
+      "PE": ["buyout", "growth", "co_investments"],
+      "Credit": null,
+      "Infrastructure": ["value_added", "core_plus", "core"],
+      "Real_Estate": ["pere", "core_plus"],
+      "Natural_Resources": null
+    },
+    "sector_orientation": "sector_agnostic",
+    "origination_engine": "captive_origination",
+    "fund_type": ["drawdown", "evergreen"],
+    "capital_source": "non_captive_capital_pool",
+    "distribution_strategy": ["direct", "consultants"],
+    "client_segment": ["pension_funds", "swf", "insurance", "endowments_foundations", "family_offices", "hnwi"],
+    "growth_agenda": ["organic", "inorganic"],
+    "share_class": "single_class",
+    "stated_strategic_priorities": [
+      "Scale the platform through transformative M&A to build a full-spectrum private markets franchise across PE, infrastructure, and real estate",
+      "Expand semi-liquid and evergreen product offerings to access private-wealth and retail capital channels (EQT Active Core Infrastructure strategy)",
+      "Industrialize value creation capabilities through proprietary digital tools (EQT Motherbrain AI platform) and operational improvement playbooks across portfolio companies"
+    ]
+  },
+  "contextual_market_factors": {
+    "tam_notes": "European alternative AUM projected at ~$8T by 2028 (Preqin). EQT's ~$285B AUM makes it the largest European-headquartered pure-play alt manager. Second-largest PE firm globally by capital raised (after Blackstone). Fee-paying AUM of ~EUR 136B as of mid-2025.",
+    "governance_notes": "Founded in 1994 by Wallenberg family sphere (Investor AB). Listed on Nasdaq Stockholm in 2019 (one of earliest European alt manager IPOs). Single share class. Wallenberg sphere retains significant ownership (~17%) through Investor AB. CEO Christian Sinding has led since 2018. Partnership model with ~130 equity partners alongside public shareholders.",
+    "regulatory_notes": "Regulated under Swedish FSA and subject to EU AIFMD II (effective 2026). Global operations span 25+ offices across Europe, Americas, and Asia-Pacific. Luxembourg and other EU fund domiciles subject to evolving SFDR sustainability disclosure requirements. BPEA acquisition required multi-jurisdictional regulatory clearances across Asia-Pacific."
+  },
+  "evidence_sources": ["PS-VD-028", "PS-VD-029", "PS-VD-030"]
+}

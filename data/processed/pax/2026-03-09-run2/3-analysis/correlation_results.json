@@ -1,0 +1,267 @@
+{
+  "metadata": {
+    "pipeline": "VDA",
+    "stage": "VD-A4",
+    "generated_at": "2026-03-09",
+    "method": "Spearman rank correlation",
+    "min_firms_required": 5,
+    "total_correlations": 22,
+    "coverage_rule_applied": true,
+    "contextual_only_metrics": [
+      "MET-VD-023",
+      "MET-VD-021",
+      "MET-VD-020",
+      "MET-VD-025",
+      "MET-VD-022",
+      "MET-VD-024"
+    ],
+    "collinear_excluded": [
+      "MET-VD-019"
+    ],
+    "notes": "Correlations computed between each driver metric and each valuation multiple (P/FRE, P/DE, EV/FEAUM). Only firms with non-null values for both metrics included. Minimum 5 firms required. Operational feasibility metrics below 60% coverage threshold excluded. MET-VD-019 excluded as mathematical inverse of MET-VD-018."
+  },
+  "correlations": [
+    {
+      "correlation_id": "COR-001",
+      "driver_metric_id": "MET-VD-001",
+      "driver_metric_name": "DE/share",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "spearman_rho": 0.8571,
+      "p_value": 0.013697,
+      "n_firms": 7,
+      "interpretation": "Strong positive"
+    },
+    {
+      "correlation_id": "COR-002",
+      "driver_metric_id": "MET-VD-014",
+      "driver_metric_name": "FRE growth YoY",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "spearman_rho": -0.7537,
+      "p_value": 0.083523,
+      "n_firms": 6,
+      "interpretation": "Strong negative"
+    },
+    {
+      "correlation_id": "COR-003",
+      "driver_metric_id": "MET-VD-004",
+      "driver_metric_name": "FEAUM",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "spearman_rho": 0.6,
+      "p_value": 0.208,
+      "n_firms": 6,
+      "interpretation": "Moderate positive"
+    },
+    {
+      "correlation_id": "COR-004",
+      "driver_metric_id": "MET-VD-005",
+      "driver_metric_name": "AUM",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "spearman_rho": 0.6,
+      "p_value": 0.208,
+      "n_firms": 6,
+      "interpretation": "Moderate positive"
+    },
+    {
+      "correlation_id": "COR-005",
+      "driver_metric_id": "MET-VD-001",
+      "driver_metric_name": "DE/share",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "spearman_rho": 0.5357,
+      "p_value": 0.215217,
+      "n_firms": 7,
+      "interpretation": "Moderate positive"
+    },
+    {
+      "correlation_id": "COR-006",
+      "driver_metric_id": "MET-VD-013",
+      "driver_metric_name": "FRE margin",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "spearman_rho": -0.4611,
+      "p_value": 0.083621,
+      "n_firms": 15,
+      "interpretation": "Weak negative"
+    },
+    {
+      "correlation_id": "COR-007",
+      "driver_metric_id": "MET-VD-005",
+      "driver_metric_name": "AUM",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "spearman_rho": 0.375,
+      "p_value": 0.138035,
+      "n_firms": 17,
+      "interpretation": "Weak positive"
+    },
+    {
+      "correlation_id": "COR-008",
+      "driver_metric_id": "MET-VD-006",
+      "driver_metric_name": "FEAUM YoY",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "spearman_rho": 0.3714,
+      "p_value": 0.468478,
+      "n_firms": 6,
+      "interpretation": "Weak positive"
+    },
+    {
+      "correlation_id": "COR-009",
+      "driver_metric_id": "MET-VD-014",
+      "driver_metric_name": "FRE growth YoY",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "spearman_rho": -0.3408,
+      "p_value": 0.233046,
+      "n_firms": 14,
+      "interpretation": "Weak negative"
+    },
+    {
+      "correlation_id": "COR-010",
+      "driver_metric_id": "MET-VD-018",
+      "driver_metric_name": "Headcount/FEAUM",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "spearman_rho": 0.3143,
+      "p_value": 0.25394,
+      "n_firms": 15,
+      "interpretation": "Weak positive"
+    },
+    {
+      "correlation_id": "COR-011",
+      "driver_metric_id": "MET-VD-016",
+      "driver_metric_name": "Mgmt fee rate",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "spearman_rho": 0.3091,
+      "p_value": 0.384841,
+      "n_firms": 10,
+      "interpretation": "Weak positive"
+    },
+    {
+      "correlation_id": "COR-012",
+      "driver_metric_id": "MET-VD-014",
+      "driver_metric_name": "FRE growth YoY",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "spearman_rho": -0.2333,
+      "p_value": 0.384431,
+      "n_firms": 16,
+      "interpretation": "Negligible negative"
+    },
+    {
+      "correlation_id": "COR-013",
+      "driver_metric_id": "MET-VD-004",
+      "driver_metric_name": "FEAUM",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "spearman_rho": 0.2239,
+      "p_value": 0.371686,
+      "n_firms": 18,
+      "interpretation": "Negligible positive"
+    },
+    {
+      "correlation_id": "COR-014",
+      "driver_metric_id": "MET-VD-005",
+      "driver_metric_name": "AUM",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "spearman_rho": 0.1593,
+      "p_value": 0.541362,
+      "n_firms": 17,
+      "interpretation": "Negligible positive"
+    },
+    {
+      "correlation_id": "COR-015",
+      "driver_metric_id": "MET-VD-004",
+      "driver_metric_name": "FEAUM",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "spearman_rho": 0.1571,
+      "p_value": 0.575953,
+      "n_firms": 15,
+      "interpretation": "Negligible positive"
+    },
+    {
+      "correlation_id": "COR-016",
+      "driver_metric_id": "MET-VD-018",
+      "driver_metric_name": "Headcount/FEAUM",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "spearman_rho": 0.1538,
+      "p_value": 0.633091,
+      "n_firms": 12,
+      "interpretation": "Negligible positive"
+    },
+    {
+      "correlation_id": "COR-017",
+      "driver_metric_id": "MET-VD-001",
+      "driver_metric_name": "DE/share",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "spearman_rho": 0.1429,
+      "p_value": 0.787172,
+      "n_firms": 6,
+      "interpretation": "Negligible positive"
+    },
+    {
+      "correlation_id": "COR-018",
+      "driver_metric_id": "MET-VD-013",
+      "driver_metric_name": "FRE margin",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "spearman_rho": 0.1,
+      "p_value": 0.872889,
+      "n_firms": 5,
+      "interpretation": "Negligible positive"
+    },
+    {
+      "correlation_id": "COR-019",
+      "driver_metric_id": "MET-VD-006",
+      "driver_metric_name": "FEAUM YoY",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "spearman_rho": 0.0879,
+      "p_value": 0.728718,
+      "n_firms": 18,
+      "interpretation": "Negligible positive"
+    },
+    {
+      "correlation_id": "COR-020",
+      "driver_metric_id": "MET-VD-006",
+      "driver_metric_name": "FEAUM YoY",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "spearman_rho": -0.0822,
+      "p_value": 0.770829,
+      "n_firms": 15,
+      "interpretation": "Negligible negative"
+    },
+    {
+      "correlation_id": "COR-021",
+      "driver_metric_id": "MET-VD-016",
+      "driver_metric_name": "Mgmt fee rate",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "spearman_rho": -0.0667,
+      "p_value": 0.86469,
+      "n_firms": 9,
+      "interpretation": "Negligible negative"
+    },
+    {
+      "correlation_id": "COR-022",
+      "driver_metric_id": "MET-VD-013",
+      "driver_metric_name": "FRE margin",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "spearman_rho": 0.066,
+      "p_value": 0.830312,
+      "n_firms": 13,
+      "interpretation": "Negligible positive"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "normalized_url": "www.sec.gov/Archives/edgar/data/1825570/000162828025025640/0001628280-25-025640-index.htm",
+  "canonical_url": "https://www.sec.gov/Archives/edgar/data/1825570/000162828025025640/0001628280-25-025640-index.htm",
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl-backfill-selective",
+  "priority_score": 67,
+  "preferred_source": {
+    "source_id": "PS-VD-066",
+    "firm": "Patria Investments (PAX)",
+    "title": "Patria Investments Limited Form 20-F Annual Report (FY2024)",
+    "date": "2025-05-14",
+    "document_type": "20-F Annual Report",
+    "bias_tag": "regulatory-filing",
+    "url": "https://www.sec.gov/Archives/edgar/data/1825570/000162828025025640/0001628280-25-025640-index.htm",
+    "notes": "Comprehensive audited financial statements for FY2024, AUM breakdown by strategy (PE, infrastructure, credit, public equities, advisory), fee structure, fundraising history, LatAm geographic concentration, risk factors, and regulatory disclosures. Filed as foreign private issuer (20-F).",
+    "catalog_path": "data/processed/pax/2026-03-07/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl-backfill-selective",
+    "seed_url": "https://www.sec.gov/Archives/edgar/data/1825570/000162828025025640/0001628280-25-025640-index.htm",
+    "loaded_url": "https://www.sec.gov/Archives/edgar/data/1825570/000162828025025640/0001628280-25-025640-index.htm",
+    "title": "EDGAR Filing Documents for 0001628280-25-025640",
+    "document_type": "20-F Annual Report",
+    "bias_tag": "regulatory-filing",
+    "content_type": "text/html",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2-backfill-selective/PS-VD-066_patria-investments-limited-form-20-f-annual-report-fy2024_e9cabafc.txt",
+    "text_length": 2505,
+    "quality_score": 5505,
+    "quality_bucket": "good",
+    "quality_reason": "sufficient_text",
+    "relevant_snippets": [
+      "1 20-F pax-20241231.htm iXBRL 20-F 7008271",
+      "2 XBRL TAXONOMY EXTENSION SCHEMA DOCUMENT pax-20241231.xsd EX-101.SCH 285718",
+      "3 XBRL TAXONOMY EXTENSION CALCULATION LINKBASE DOCUMENT pax-20241231_cal.xml EX-101.CAL 154659",
+      "4 XBRL TAXONOMY EXTENSION DEFINITION LINKBASE DOCUMENT pax-20241231_def.xml EX-101.DEF 1141559",
+      "5 XBRL TAXONOMY EXTENSION LABEL LINKBASE DOCUMENT pax-20241231_lab.xml EX-101.LAB 1825080"
+    ],
+    "extraction_modes": [
+      "document_links"
+    ]
+  },
+  "canonical_text_path": "data/raw/pax/canonical/c5/c529a17976ebd5e4aaa6503106811366a4d3d7ab/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.411889Z"
+}

@@ -561,6 +561,75 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 /* === APPENDIX TABLE === */
 .appendix-table thead th { font-size: 10px; }
 .appendix-table td { font-size: 12px; font-family: var(--font-mono); }
+
+/* INFO TOOLTIP — hover/focus methodology explainers */
+.info-tip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-primary-dim, #e8f0ff);
+  color: var(--color-primary, #0068ff);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: help;
+  vertical-align: middle;
+  margin-left: 4px;
+  border: 1px solid rgba(0, 104, 255, 0.2);
+  transition: background 0.15s, border-color 0.15s;
+  outline: none;
+}
+.info-tip:hover, .info-tip:focus {
+  background: var(--color-primary, #0068ff);
+  color: #fff;
+  border-color: var(--color-primary, #0068ff);
+}
+.info-tip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 320px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.info-tip::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #1a1a1a;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 101;
+}
+.info-tip:hover::after, .info-tip:focus::after,
+.info-tip:hover::before, .info-tip:focus::before {
+  opacity: 1;
+}
+.info-tip.tip-right::after { left: 0; transform: none; }
+.info-tip.tip-right::before { left: 8px; transform: none; }
+.info-tip.tip-left::after { left: auto; right: 0; transform: none; }
+.info-tip.tip-left::before { left: auto; right: 8px; transform: none; }
 </style>
 </head>
 <body>
@@ -1303,7 +1372,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <section class="section scroll-anchor" data-alias="executive-summary" id="executive-summary">
 <div class="section-label">Executive Summary</div>
 <h2 id="executive-summary">Scale is the dominant valuation lever in alternative asset management, but no single metric qualifies as a statistically stable driver across all multiples</h2>
-<p><strong>The central finding:</strong> In a 23-firm cross-section of listed alternative asset managers (FY2024), <span class="claim" data-claim="CLM-DVR-001-01">Total AUM is the strongest and most robustly supported value driver, with a Spearman correlation of ρ=+0.73 with P/FRE multiples (p=0.0001, Bonferroni-surviving)<span class="claim-tooltip">CLM-DVR-001-01 · Score: 3/3 · Multiple-specific driver (BH-significant on P/FRE only)</span></span>. However, no driver achieves the stability threshold (avg|ρ|≥0.50 across two or more multiples simultaneously) in this broader, more heterogeneous sample. The two statistically confirmed findings are both scale-related and both operate on P/FRE only.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
+<p><strong>The central finding:</strong> In a 23-firm cross-section of listed alternative asset managers (FY2024), <span class="claim" data-claim="CLM-DVR-001-01">Total AUM<span class="info-tip" tabindex="0" data-tip="Total Assets Under Management — the aggregate market value of assets managed on behalf of clients. Includes both fee-earning and non-fee-earning capital.">i</span> is the strongest and most robustly supported value driver, with a Spearman rank correlation<span class="info-tip" tabindex="0" data-tip="Spearman's rho measures monotonic relationships between ranked variables. Unlike Pearson, it doesn't assume linearity and is robust to outliers. Range: &minus;1 (perfect inverse) to +1 (perfect direct).">i</span> of &rho;=+0.73 with P/FRE<span class="info-tip" tabindex="0" data-tip="Price-to-Fee-Related Earnings — share price divided by FRE per share. Isolates the recurring, high-quality fee stream and excludes volatile performance fees.">i</span> multiples (p=0.0001, Bonferroni-surviving)<span class="claim-tooltip">CLM-DVR-001-01 · Score: 3/3 · Multiple-specific driver (BH-significant on P/FRE only)</span></span>. However, no driver achieves the stability threshold (avg|&rho;|&ge;0.50 across two or more multiples simultaneously) in this broader, more heterogeneous sample — no driver qualifies as a stable driver.<span class="info-tip" tabindex="0" data-tip="A metric with |rho| &ge; 0.5 on at least 2 of 3 eligible multiples (P/E, P/DE, P/FRE). The strictest classification — rules out metrics that only explain a single multiple.">i</span> The two statistically confirmed findings are both scale-related and both operate on P/FRE only.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
 <div class="stat-row">
 <div class="stat-card negative">
 <div class="label">P/FRE Discount to Peers</div>
@@ -1321,8 +1390,8 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <div class="sub">PAX 7.7x vs peer median 10.7x</div>
 </div>
 </div>
-<p><strong>What the evidence shows:</strong> PAX's structural discount is primarily a scale phenomenon. PAX ranks 18th of 22 on both Total AUM (DVR-001) and Fee-Earning AUM (DVR-003) — the two BH-confirmed drivers. The P/FRE discount of −15.8% is explicable by this scale gap. The larger P/DE discount (−47%) reflects an earnings quality dimension; however, <strong>DE/share does not qualify as a confirmed statistical driver in this cross-section</strong> (max|ρ|=0.28, fails all significance thresholds) due to structural currency and per-share comparability issues. References to DE/share as a driver use hedged language throughout this report.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
-<p><strong>What the evidence does not show:</strong> No single metric reliably predicts valuations across all three multiples (P/FRE, P/DE, EV/FEAUM) simultaneously. The scale premium is real but operates specifically on P/FRE. Efficiency metrics (G&amp;A/FEAUM, DVR-005) and permanent capital (DVR-004) show directionally correct but statistically non-confirmed associations.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
+<p><strong>What the evidence shows:</strong> PAX's structural discount is primarily a scale phenomenon. PAX ranks 18th of 22 on both Total AUM (DVR-001) and Fee-Earning AUM (FEAUM<span class="info-tip" tabindex="0" data-tip="Fee-Earning Assets Under Management — the subset of total AUM that generates management fees. Excludes committed but uninvested capital and assets in fee holidays.">i</span>, DVR-003) — the two BH-confirmed drivers. The P/FRE discount of −15.8% is explicable by this scale gap. The larger P/DE<span class="info-tip" tabindex="0" data-tip="Price-to-Distributable Earnings — share price divided by DE per share. The preferred valuation multiple for alt-asset managers as it reflects actual cash available for distribution.">i</span> discount (−47%) reflects an earnings quality dimension; however, <strong>DE/share<span class="info-tip" tabindex="0" data-tip="Distributable Earnings per share — net income available for distribution to unitholders after all operating expenses and debt service. The primary profitability metric for alternative asset managers.">i</span> does not qualify as a confirmed statistical driver in this cross-section</strong> (max|&rho;|=0.28, fails all significance thresholds) due to structural currency and per-share comparability issues. References to DE/share as a driver use hedged language throughout this report.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
+<p><strong>What the evidence does not show:</strong> No single metric reliably predicts valuations across all three multiples (P/FRE, P/DE, EV/FEAUM<span class="info-tip" tabindex="0" data-tip="Enterprise Value divided by Fee-Earning AUM — measures how much investors pay per dollar of contracted fee revenue base. Useful for cross-firm scale comparisons independent of capital structure.">i</span>) simultaneously. The scale premium is real but operates specifically on P/FRE. Efficiency metrics (G&amp;A/FEAUM, DVR-005) and permanent capital (DVR-004) show directionally correct but statistically non-confirmed associations.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
 <p><strong>The firms that convert moderate scale into premium valuations</strong> share a common pattern: capital-light, high-margin fee streams with permanent capital anchors. The peer evidence from PLAY-003 (Apollo insurance integration), PLAY-005 (BAM perpetual vehicles), and PLAY-007 (Blue Owl GP stakes) demonstrates that structural transformation of AUM quality — not incremental AUM accumulation — is the observed mechanism for mid-scale re-rating.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
 <div class="bumper">
 <strong>Therefore:</strong> PAX's most actionable path toward multiple compression, as suggested by the peer evidence, centers on FEAUM and AUM growth (the two BH-confirmed levers), with GPMS scaling and selective credit expansion as the mechanisms most consistent with the observed peer re-rating patterns. Technology infrastructure appears as a prerequisite enabler rather than an independent catalyst.
@@ -1333,12 +1402,12 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <div class="section-label">Strategic Lens · PAX</div>
 <h2 id="target-company-lens">Patria's structural discount is primarily a scale phenomenon, but its earnings quality position suggests the discount overstates fundamental weakness</h2>
 <div class="callout info">
-<strong>Note on language posture:</strong> The observations in this chapter are drawn from peer evidence and presented in exploratory terms. They reflect what firms in analogous structural positions have done — not directives for PAX governance. Language throughout uses "the evidence suggests," "firms that achieved X typically," and "an area worth exploring." PAX governance is best positioned to assess applicability and sequencing.
+<strong>Note on language posture:</strong> The observations in this chapter are drawn from peer evidence and presented in exploratory terms. They reflect what firms in analogous structural positions have done — not directives for PAX governance.<span class="info-tip" tabindex="0" data-tip="Governance cascade: a structured framework for translating peer-derived insights into actionable recommendations at three levels: Board/PHL (strategic oversight), Management (execution priorities), and Business Unit (operational initiatives).">i</span> Language throughout uses "the evidence suggests," "firms that achieved X typically," and "an area worth exploring." PAX governance is best positioned to assess applicability and sequencing.
   </div>
 <h3>Board / PHL-Level Principles</h3>
 <div class="pax-lens-card">
 <div class="lens-id">PHL-P1 · DVR-001, DVR-003, DVR-004</div>
-<div class="lens-text">The evidence suggests that permanent capital conversion — not organic AUM growth — is the primary mechanism through which mid-scale alt managers have improved P/FRE multiples in the cross-section. PAX's 100% closed-end AUM base is the most consequential structural gap relative to Q1 peers. GPMS is the nearest-term lever already in execution.</div>
+<div class="lens-text">The evidence suggests that permanent capital conversion<span class="info-tip" tabindex="0" data-tip="Converting closed-end fund AUM (which expires at fund termination) into perpetual capital (open-end, insurance, or listed perpetual entities) that generates management fees indefinitely without re-fundraising.">i</span> — not organic AUM growth — is the primary mechanism through which mid-scale alt managers have improved P/FRE multiples in the cross-section. PAX's 100% closed-end AUM base is the most consequential structural gap relative to Q1 peers. GPMS is the nearest-term lever already in execution.</div>
 </div>
 <div class="pax-lens-card">
 <div class="lens-id">PHL-P2 · DVR-001 ρ=+0.73, DVR-003 ρ=+0.60</div>
@@ -1415,7 +1484,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <h3>Consolidation and M&amp;A Dynamics</h3>
 <p>M&amp;A in asset management is expected to accelerate in 2026, primarily driven by GP stake sales and non-alternative financial institutions seeking alternatives exposure. Oliver Wyman identifies four priority areas for leading wealth managers: winning the $1M–$10M HNW segment, scaling private markets allocations toward a projected $8–10 trillion market by 2029, equipping relationship managers, and building a durable cost base.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-906</a></sup></p>
 <h3>Co-Investment Dynamics and Fee Pressure</h3>
-<p>For funds that offer co-investment, the median is 33 cents of co-investment per $1 of commingled fund commitment, translating to approximately 25% reduction in fee revenue per fund. This structural trend reinforces the importance of FEAUM quality over raw AUM scale — a distinction directly relevant to PAX's platform strategy (see ANTI-PE-001).<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-906</a></sup></p>
+<p>For funds that offer co-investment,<span class="info-tip" tabindex="0" data-tip="Co-investment: LP right to invest alongside the fund in specific deals at zero (or reduced) management fee and carry. Increases LP total exposure but dilutes the GP's fee revenue per dollar of total AUM deployed.">i</span> the median is 33 cents of co-investment per $1 of commingled fund commitment, translating to approximately 25% reduction in fee revenue per fund. This structural trend reinforces the importance of FEAUM quality over raw AUM scale — a distinction directly relevant to PAX's platform strategy (see ANTI-PE-001).<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-906</a></sup></p>
 <div class="bumper">
 <strong>Therefore:</strong> The structural tailwinds from wealth channel democratization and LatAm banking retrenchment create a favorable window for PAX's credit and GP solutions expansion. The consolidation dynamic rewards scale platforms — consistent with the BH-confirmed DVR-001 and DVR-003 findings.
   </div>
@@ -1424,8 +1493,8 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <section class="section scroll-anchor" id="methodology">
 <div class="section-label">Methodology</div>
 <h2 id="methodology">Earnings quality and operational efficiency send consistent directional signals that fall short of statistical thresholds in a heterogeneous 23-firm universe</h2>
-<p>This analysis employs Spearman rank correlation to identify statistical associations between 17 candidate driver metrics and three valuation multiples (P/FRE, P/DE, EV/FEAUM) across a 23-firm universe of listed alternative asset managers. Spearman was selected over Pearson due to non-normal distributions, outlier presence (BX AUM=$1,127B vs universe mean ~$195B), and the likely monotone-but-non-linear relationship between scale and valuation.</p>
-<p>Multiple testing was controlled using the Benjamini-Hochberg false discovery rate procedure at q=0.10. Across 51 tests (17 drivers × 3 multiples), only two correlations survive BH correction: AUM × P/FRE (ρ=+0.73, p=0.0001, Bonferroni-surviving) and FEAUM × P/FRE (ρ=+0.60, p=0.0029, BH-significant). All other findings are exploratory and communicated with explicit hedging.</p>
+<p>This analysis employs Spearman rank correlation<span class="info-tip" tabindex="0" data-tip="Spearman's &rho; measures monotonic relationships between ranked variables. Unlike Pearson, it doesn't assume linearity and is robust to outliers. Range: &minus;1 (perfect inverse) to +1 (perfect direct).">i</span> to identify statistical associations between 17 candidate driver metrics and three valuation multiples (P/FRE, P/DE, EV/FEAUM) across a 23-firm universe of listed alternative asset managers. Spearman was selected over Pearson due to non-normal distributions, outlier presence (BX AUM=$1,127B vs universe mean ~$195B), and the likely monotone-but-non-linear relationship between scale and valuation.</p>
+<p>Multiple testing was controlled using the Benjamini-Hochberg false discovery rate procedure at q=0.10. Across 51 tests (17 drivers × 3 multiples), only two correlations survive BH correction: AUM × P/FRE (&rho;=+0.73, p=0.0001, Bonferroni-surviving) and FEAUM × P/FRE (&rho;=+0.60, p=0.0029, BH-significant). All other findings are exploratory and communicated with explicit hedging.</p>
 <p><em>Full statistical details, confidence intervals, sensitivity analyses, and mandatory disclaimers are provided in the Statistical Appendix.</em></p>
 </section>
 <!-- VALUE DRIVER FINDINGS -->
@@ -1516,7 +1585,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 </tr>
 </tbody>
 </table>
-<div class="method-note">Classifications: Multiple-Specific = avg|ρ| ≥ 0.50 on exactly one multiple; Moderate = 0.30 ≤ max|ρ| &lt; 0.50; Unsupported = max|ρ| &lt; 0.30. No Stable driver (avg|ρ| ≥ 0.50 on ≥ 2 multiples) identified in this cross-section. DE/share is not a ranked driver; it appears in the table for transparency.</div>
+<div class="method-note">Classifications: Multiple-Specific<span class="info-tip" tabindex="0" data-tip="A metric with |rho| &ge; 0.5 on exactly one eligible multiple. Useful but less robust than a stable driver — the relationship may not generalize across valuation lenses.">i</span> = avg|&rho;| &ge; 0.50 on exactly one multiple; Moderate = 0.30 &le; max|&rho;| &lt; 0.50; Unsupported = max|&rho;| &lt; 0.30. No Stable driver<span class="info-tip" tabindex="0" data-tip="A metric with |rho| &ge; 0.5 on at least 2 of 3 eligible multiples (P/E, P/DE, P/FRE). The strictest classification — rules out metrics that only explain a single multiple.">i</span> (avg|&rho;| &ge; 0.50 on &ge; 2 multiples) identified in this cross-section. DE/share is not a ranked driver; it appears in the table for transparency.</div>
 </section>
 <!-- DVR-001 -->
 <section class="section scroll-anchor" id="correlation-analysis">
@@ -1532,7 +1601,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <tr><td>EV/FEAUM</td><td class="mono">+0.1661</td><td class="mono">[−0.25, +0.55]</td><td class="mono">0.460</td><td><span class="badge badge-unsupported">NO</span></td><td class="mono">22</td></tr>
 </tbody>
 </table>
-<p><strong>Economic mechanism:</strong> <span class="claim" data-claim="CLM-DVR-001-01">Scale in alternative asset management operates through three compounding effects: platform durability signaling (investors assign lower AUM attrition probability to $300B+ managers), fee diversification across strategies and vintages, and G&amp;A efficiency through infrastructure amortization across a large FEAUM base.<span class="claim-tooltip">CLM-DVR-001-01 · Score: 3/3 · BH-significant (P/FRE)</span></span><sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-107</a></sup></p>
+<p><strong>Economic mechanism:</strong> <span class="claim" data-claim="CLM-DVR-001-01">Scale in alternative asset management operates through three compounding effects: platform durability signaling (investors assign lower AUM attrition probability to $300B+ managers), fee diversification across strategies and vintages<span class="info-tip" tabindex="0" data-tip="Fundraising vintage: the year a private fund closed and began deploying capital. Multiple concurrent vintages reduce dependence on any single fund's realization cycle for management fee continuity.">i</span>, and G&amp;A efficiency through infrastructure amortization across a large FEAUM base. The rho&sup2;<span class="info-tip" tabindex="0" data-tip="Rho-squared (coefficient of determination) — the proportion of variation in one variable explained by another. A rho of 0.73 means rho&sup2; &asymp; 0.53, so ~53% of the variation is statistically explained.">i</span> of +0.73 implies approximately 53% of P/FRE variation is explained by AUM scale alone.<span class="claim-tooltip">CLM-DVR-001-01 · Score: 3/3 · BH-significant (P/FRE)</span></span><sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-107</a></sup></p>
 <p><strong>Top quartile:</strong> BX ($1,127B), BAM ($1,050B), APO ($751B) — all trade at 20–28x P/FRE. <strong>Mid-scale ($100–500B):</strong> ARES, TPG, CG, EQT at 15–22x P/FRE. <strong>PAX position:</strong> Q4 (18/22) at $52.6B AUM — P/FRE discount to peer median −15.8% is partly attributable to this gap.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-107</a></sup></p>
 <p><strong>LOO sensitivity:</strong> Removing BX reduces ρ from +0.73 to ~+0.62. The relationship survives; BX amplifies but does not manufacture the pattern.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-107</a></sup></p>
 <div class="method-note">Causation caveat: Endogeneity is plausible — firms trading at high P/FRE can raise capital more easily, mechanically expanding AUM. EV/FEAUM is uncorrelated with AUM (ρ=+0.17), indicating the market does not consistently reward scale on an AUM-normalized basis.</div>
@@ -1552,7 +1621,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 </tbody>
 </table>
 <div class="callout warn">This correlation fails BH correction. It is an exploratory finding only — hypothesis-generating, not confirmed. Language in this section is hedged accordingly.</div>
-<p><strong>Counterintuitive direction:</strong> High FRE growth appears to suppress trailing EV/FEAUM. The most likely explanation: high-FRE-growth firms are typically smaller platforms with lower FEAUM bases, and smaller platforms trade at lower EV/FEAUM regardless of growth rate. The negative correlation may capture platform maturity rather than a growth penalty per se.</p>
+<p><strong>Counterintuitive direction:</strong> High FRE growth<span class="info-tip" tabindex="0" data-tip="Fee-Related Earnings growth year-over-year — measures how quickly the recurring management fee revenue base is expanding, independent of performance fees and carried interest.">i</span> appears to suppress trailing EV/FEAUM. The most likely explanation: high-FRE-growth firms are typically smaller platforms with lower FEAUM bases, and smaller platforms trade at lower EV/FEAUM regardless of growth rate. The negative correlation may capture platform maturity rather than a growth penalty per se.</p>
 <p><strong>PAX position:</strong> Q3 at ~23% FRE growth (USD). This is above the peer median — a positive forward signal — but the negative correlation suggests it may currently suppress PAX's EV/FEAUM on a trailing basis while priming for forward re-rating as FEAUM base expands.</p>
 <div class="method-note">CP-1 correction: Four sentinel 0.0 values for BX, APO, TPG, and CVC were removed before correlation computation (fiscal year timing misalignment). Corrected N=18.</div>
 </section>
@@ -1570,7 +1639,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <tr><td>EV/FEAUM</td><td class="mono">+0.0853</td><td class="mono">[−0.31, +0.50]</td><td class="mono">0.706</td><td><span class="badge badge-unsupported">NO</span></td><td class="mono">22</td></tr>
 </tbody>
 </table>
-<p>FEAUM and AUM are highly correlated (inter-driver ρ≈0.90). AUM is ranked first due to higher statistical significance; the two drivers capture overlapping information. <span class="claim" data-claim="CLM-PLAY-005-01">Apollo's permanent capital exceeds 62% of total AUM (driven by Athene); BAM's is 87% long-dated or perpetual.<span class="claim-tooltip">CLM-PLAY-005-01 · Score: 3/3 · Factual</span></span> These permanent capital forms generate the highest P/FRE premiums because they create non-redeemable FEAUM.</p>
+<p>FEAUM and AUM are highly correlated (inter-driver &rho;&asymp;0.90). AUM is ranked first due to higher statistical significance; the two drivers capture overlapping information. <span class="claim" data-claim="CLM-PLAY-005-01">Apollo's permanent capital<span class="info-tip" tabindex="0" data-tip="Capital committed to open-ended, evergreen, or perpetual vehicles (e.g. insurance general accounts, listed perpetual entities, open-end infrastructure funds) with no defined fund expiration or LP redemption cycle.">i</span> exceeds 62% of total AUM (driven by Athene); BAM's is 87% long-dated or perpetual.<span class="claim-tooltip">CLM-PLAY-005-01 · Score: 3/3 · Factual</span></span> These permanent capital forms generate the highest P/FRE premiums because they create non-redeemable FEAUM.</p>
 <p><strong>PAX position:</strong> Q4 (18/22) on FEAUM. Pro-forma FEAUM $47.4B (including announced acquisitions). LOO removing BX reduces ρ from +0.60 to ~+0.52 — still above the 0.50 threshold, confirming the result is robust.</p>
 </section>
 <!-- DVR-004 -->
@@ -1587,7 +1656,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <tr><td>EV/FEAUM</td><td class="mono">+0.1480</td><td class="mono">[−0.34, +0.59]</td><td class="mono">0.511</td><td><span class="badge badge-unsupported">NO</span></td><td class="mono">22</td></tr>
 </tbody>
 </table>
-<p>All correlations fail BH correction and have 95% CIs crossing zero. This is a directional hypothesis with plausible economic rationale but insufficient statistical confirmation in this sample. <strong>Illustrative firms:</strong> OWL (90% permanent capital), PGHN (72%), APO (62% including insurance float). <strong>PAX position:</strong> Q3 (13/22) — above median but not in the premium cohort. GPMS is PAX's primary mechanism for improvement.</p>
+<p>All correlations fail BH correction and have 95% CIs crossing zero. This is a directional hypothesis with plausible economic rationale but insufficient statistical confirmation in this sample. <strong>Illustrative firms:</strong> OWL (90% permanent capital), PGHN (72%), APO (62% including insurance float<span class="info-tip" tabindex="0" data-tip="Insurance float — policyholder premiums held by an insurer and invested before claims are paid. For alt managers with insurance subsidiaries, float constitutes permanent AUM generating management fees at near-zero marginal cost.">i</span>). <strong>PAX position:</strong> Q3 (13/22) — above median but not in the premium cohort. GPMS is PAX's primary mechanism for improvement.</p>
 </section>
 <!-- DVR-005 -->
 <section class="section scroll-anchor" id="dvr-005">
@@ -1603,7 +1672,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <tr><td>EV/FEAUM</td><td class="mono">−0.0633</td><td class="mono">[−0.50, +0.38]</td><td class="mono">0.780</td><td><span class="badge badge-unsupported">NO</span></td><td class="mono">22</td></tr>
 </tbody>
 </table>
-<p><strong>Q1 efficiency firms:</strong> APO (~28bps), KKR (~19bps), BAM (~12bps). <strong>PAX position:</strong> Q4 (22/23) at ~214bps. High G&amp;A/FEAUM reflects scale deficit, not operational mismanagement — the structural improvement path is mechanical. Each $10B of FEAUM growth reduces G&amp;A/FEAUM by approximately 30–40bps at current absolute G&amp;A levels.</p>
+<p><strong>Q1 efficiency firms:</strong> APO (~28bps), KKR (~19bps), BAM (~12bps). <strong>PAX position:</strong> Q4 (22/23) at ~214bps. High G&amp;A/FEAUM<span class="info-tip" tabindex="0" data-tip="General & Administrative expense divided by Fee-Earning AUM — measures overhead cost efficiency. Lower is better: a lean platform spreads fixed infrastructure costs across a larger fee base.">i</span> reflects scale deficit, not operational mismanagement — the structural improvement path is mechanical. Each $10B of FEAUM growth reduces G&amp;A/FEAUM by approximately 30–40bps at current absolute G&amp;A levels.</p>
 <div class="method-note">Insurance float conflation: Q1 efficiency at mega-managers is structurally driven by insurance float (APO, KKR), which generates fee revenue at near-zero marginal G&amp;A cost. This structural advantage is not replicable through operational improvement at smaller scales.</div>
 </section>
 <!-- DE/SHARE NOTE -->
@@ -1623,7 +1692,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 </tbody>
 </table>
 <p><strong>Why DE/share fails as a cross-sectional driver:</strong> Two structural issues: (1) PGHN DE/share of CHF 81.6/share reflects a very low share count in CHF, placing PGHN rank-1 on DE/share despite a moderate P/FRE of ~15.9x, distorting the expected positive correlation; (2) ONEX DE/share ($13.32) is a low-confidence proxy from Canadian GAAP adjusted diluted EPS, not a like-for-like distributable earnings measure.</p>
-<p><strong>What DE/share may capture (hedged):</strong> While not confirmed as a statistical driver, DE/share appears to represent an analytically relevant signal of earnings quality that the current sample is insufficient to confirm. The economic intuition is sound. STEP and HLNE — both Q1 DE/share — trade at premium valuations consistent with this intuition. The absence of statistical confirmation reflects sample heterogeneity rather than a negative finding about DE/share economics.</p>
+<p><strong>What DE/share may capture (hedged):</strong> While not confirmed as a statistical driver, DE/share<span class="info-tip" tabindex="0" data-tip="Distributable Earnings per share — net income available for distribution to unitholders after all operating expenses and debt service. The primary profitability metric for alternative asset managers.">i</span> appears to represent an analytically relevant signal of earnings quality that the current sample is insufficient to confirm. The economic intuition is sound. STEP and HLNE — both Q1 DE/share — trade at premium valuations consistent with this intuition. The absence of statistical confirmation reflects sample heterogeneity rather than a negative finding about DE/share economics.</p>
 </section>
 <section class="section scroll-anchor" id="peer-deep-dives">
 <div class="section-label">Platform Deep-Dives</div>
@@ -1656,7 +1725,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 </div>
 <div class="play-body-row">
 <div class="play-body-label">Value Creation Narrative</div>
-<div class="play-body-text">Apollo commands a premium valuation because it has constructed the only fully vertically integrated origination-to-distribution credit platform among listed alt managers. The Athene merger (ACT-VD-001) unified the liability source (insurance float) with the asset source (credit origination), creating a closed-loop capital engine. Atlas SP (ACT-VD-002) demonstrates that Apollo manufactures credit assets at scale rather than sourcing them in secondary markets. This produces three compounding valuation effects: (1) insurance float generates management fees at near-zero marginal cost, supporting Q...</div>
+<div class="play-body-text">Apollo commands a premium valuation because it has constructed the only fully vertically integrated origination-to-distribution credit platform among listed alt managers. The Athene merger (ACT-VD-001) unified the liability source (insurance float) with the asset source (credit origination<span class="info-tip" tabindex="0" data-tip="Credit origination: the direct sourcing and structuring of loans to borrowers, bypassing the secondary market. Gives the originator control over terms, pricing, and information rights — driving higher yields than secondary purchases.">i</span>), creating a closed-loop capital engine. Atlas SP (ACT-VD-002) demonstrates that Apollo manufactures credit assets at scale rather than sourcing them in secondary markets. This produces three compounding valuation effects: (1) insurance float generates management fees at near-zero marginal cost, supporting Q...</div>
 </div>
 <div class="play-body-row"><div class="play-body-label">Insight</div><div class="play-body-text">Insurance float as a capital-light AUM growth engine scales fee revenue without proportional operating cost growth</div></div>
 <div class="play-body-row"><div class="play-body-label">Insight</div><div class="play-body-text">Spinning off a standalone origination entity from a parent balance sheet creates a separately capitalized credit engine with autonomous growth trajectory</div></div>
@@ -2018,7 +2087,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <section class="section scroll-anchor" id="strategic-playbook">
 <div class="section-label">Platform · Strategic Menu</div>
 <h2 id="strategic-playbook">Credit platform acquisitions have emerged as the dominant mid-scale strategy for improving earnings quality without requiring organic AUM doubling</h2>
-<p>Eight plays organized by value driver. Plays are documented as "observed mechanisms" from peer evidence — not recommendations for PAX governance. Each play follows Variant B structure: Reference firm / What was done / Why it works / Operational prerequisites.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-021</a></sup></p>
+<p>Eight plays organized by value driver. Plays are documented as "observed mechanisms" from peer evidence — not recommendations for PAX governance.<span class="info-tip" tabindex="0" data-tip="Governance cascade: a structured framework for translating peer-derived insights into actionable recommendations at three levels: Board/PHL (strategic oversight), Management (execution priorities), and Business Unit (operational initiatives).">i</span> Each play follows Variant B structure: Reference firm / What was done / Why it works / Operational prerequisites.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-021</a></sup></p>
 <h3>DVR-001: Total AUM   <span class="badge badge-bh">MULTIPLE SPECIFIC DRIVER</span></h3>
 <div class="play-card">
 <div class="play-header" onclick="toggleCard(this)">
@@ -2067,7 +2136,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <div class="play-body">
 <div class="play-body-row">
 <div class="play-body-label">What Was Done</div>
-<div class="play-body-text">Brookfield Asset Management was spun off from parent Brookfield Corporation (BN) in December 2022 as a standalone fee-based AM entity (25% stake to public), separating capital-light AM economics from BN's balance-sheet-heavy operations. In December 2025, BAM completed the full internalization of the remaining 75% AM economic interest from BN, approximately quadrupling BAM's directly attributable FRE.</div>
+<div class="play-body-text">Brookfield Asset Management was spun off from parent Brookfield Corporation (BN) in December 2022 as a standalone fee-based AM entity (25% stake to public), separating capital-light AM economics from BN's balance-sheet-heavy operations. In December 2025, BAM completed the full internalization of the remaining 75% AM economic interest from BN, approximately quadrupling BAM's directly attributable FRE<span class="info-tip" tabindex="0" data-tip="Fee-Related Earnings — recurring management fee revenue minus operating expenses, excluding performance fees and investment income. Measures the quality and predictability of the earnings base.">i</span>.</div>
 </div>
 <div class="play-body-row">
 <div class="play-body-label">Why It Works</div>
@@ -2109,7 +2178,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 </div>
 <div class="play-body-row">
 <div class="play-body-label">Why It Works</div>
-<div class="play-body-text">Insurance float creates a permanent AUM base that grows organically through new annuity inflows without requiring LP fundraising cycles. Each new annuity sold to a retail customer automatically converts to AUM in Apollo's investment management system, generating management fees at ~50-75bps. This bypasses the 18-24 month institutional fundraising cycle that constrains traditional alt managers' AUM growth speed. The resulting AUM scale (Q4 in DVR-001) positions Apollo in the premium P/FRE cohort.</div>
+<div class="play-body-text">Insurance float<span class="info-tip" tabindex="0" data-tip="Policyholder premiums held by an insurer and invested before claims are paid. For alt managers with insurance subsidiaries, float constitutes permanent AUM generating management fees at near-zero marginal cost.">i</span> creates a permanent AUM base that grows organically through new annuity inflows without requiring LP fundraising cycles. Each new annuity sold to a retail customer automatically converts to AUM in Apollo's investment management system, generating management fees at ~50-75bps. This bypasses the 18-24 month institutional fundraising cycle that constrains traditional alt managers' AUM growth speed. The resulting AUM scale (Q4 in DVR-001) positions Apollo in the premium P/FRE cohort.</div>
 </div>
 <div class="play-body-row">
 <div class="play-body-label">Operational Prerequisites</div>
@@ -2225,7 +2294,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 </div>
 <div class="play-body-row">
 <div class="play-body-label">Why It Works</div>
-<div class="play-body-text">Retail and HNW investors represent a substantially larger capital pool than institutional investors but have historically lacked access to private markets products. Wealth-channel products (interval funds, non-traded REITs, semi-liquid BDCs) provide periodic liquidity and lower minimums that make private markets accessible. Each dollar of wealth-channel FEAUM is incrementally additive to total FEAUM, improving DVR-003 positioning without requiring new institutional LP relationships. Wealth-channel management fee rates are 40-60bps above institutional SMA rates (STEP data), creating margin-accretive FEAUM growth.</div>
+<div class="play-body-text">Retail and HNW investors represent a substantially larger capital pool than institutional investors but have historically lacked access to private markets products. Wealth-channel products (interval funds, non-traded REITs, semi-liquid BDCs) provide periodic liquidity and lower minimums that make private markets accessible. Each dollar of wealth-channel FEAUM is incrementally additive to total FEAUM, improving DVR-003 positioning without requiring new institutional LP relationships. Wealth-channel management fee rates are 40-60bps above institutional SMA rates<span class="info-tip" tabindex="0" data-tip="Separately Managed Account — a direct investment portfolio managed on behalf of a single institutional investor. Lower fee rates than pooled funds; institutional standard for large pension and endowment mandates.">i</span> (STEP data), creating margin-accretive FEAUM growth.</div>
 </div>
 <div class="play-body-row">
 <div class="play-body-label">Operational Prerequisites</div>
@@ -2260,11 +2329,11 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <div class="play-body">
 <div class="play-body-row">
 <div class="play-body-label">What Was Done</div>
-<div class="play-body-text">Blue Owl (Dyal Capital heritage) built a GP minority stakes platform acquiring 5-30% equity stakes in 50+ alternative asset management companies. GP Strategic Capital Fund V closed at $12.9B. 85% of Blue Owl's AUM is permanent capital. PAX launched GPMS (US GP Minority Stakes, ACT-VD-050) in 2024, acquiring non-controlling equity positions in mid-sized US alt managers.</div>
+<div class="play-body-text">Blue Owl (Dyal Capital heritage) built a GP minority stakes<span class="info-tip" tabindex="0" data-tip="GP stakes: minority equity investments (typically 5–30%) in the management companies of alternative asset managers, acquiring a share of their management fee and carried interest streams in perpetuity.">i</span> platform acquiring 5-30% equity stakes in 50+ alternative asset management companies. GP Strategic Capital Fund V closed at $12.9B. 85% of Blue Owl's AUM is permanent capital. PAX launched GPMS (US GP Minority Stakes, ACT-VD-050) in 2024, acquiring non-controlling equity positions in mid-sized US alt managers.</div>
 </div>
 <div class="play-body-row">
 <div class="play-body-label">Why It Works</div>
-<div class="play-body-text">GP minority stakes vehicles are permanent capital by structural definition — once a stake is acquired in a management company, the position is not callable or redeemable on a standard fund timeline. The investment is in the ongoing revenue stream (management fee participation + carry participation) of the target manager, which compounds as the target manager grows. Each dollar of GP stakes AUM is higher-quality permanent capital than closed-end FEAUM: it generates management fees indefinitely and with compounding characteristics as target managers grow their own AUM.</div>
+<div class="play-body-text">GP minority stakes vehicles are permanent capital by structural definition — once a stake is acquired in a management company, the position is not callable or redeemable on a standard fund timeline. The investment is in the ongoing revenue stream (management fee participation + carry<span class="info-tip" tabindex="0" data-tip="Carried interest (carry) — the GP's share of investment profits, typically 20% of gains above a hurdle rate. Carry is performance-contingent and recognized upon fund realization, making it more volatile than management fee income.">i</span> participation) of the target manager, which compounds as the target manager grows. Each dollar of GP stakes AUM is higher-quality permanent capital than closed-end FEAUM: it generates management fees indefinitely and with compounding characteristics as target managers grow their own AUM.</div>
 </div>
 <div class="play-body-row">
 <div class="play-body-label">Operational Prerequisites</div>
@@ -2335,7 +2404,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <section class="section scroll-anchor" id="anti-patterns">
 <div class="section-label">Platform · Cautionary Lessons</div>
 <h2>Anti-patterns cluster around two failure modes: conglomerate discount from unintegrated acquisitions, and fee-rate dilution from undifferentiated channel expansion</h2>
-<p>Four platform-level anti-patterns drawn from peer evidence. Anti-patterns are as informative as proven plays — they define the failure modes that have prevented mid-scale managers from achieving multiple re-rating despite apparent scale or efficiency improvements.</p>
+<p>Four platform-level anti-patterns<span class="info-tip" tabindex="0" data-tip="A practice observed among peers that correlates with value destruction or underperformance. Documented as ANTI-NNN to explicitly warn against replication.">i</span> drawn from peer evidence. Anti-patterns are as informative as proven plays — they define the failure modes that have prevented mid-scale managers from achieving multiple re-rating despite apparent scale or efficiency improvements.</p>
 <div class="anti-card">
 <div class="anti-header" onclick="toggleCard(this)">
 <span class="anti-id">ANTI-001</span>
@@ -2480,7 +2549,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <span class="play-firm">ARES</span>
 </div>
 <div class="play-body">
-<div class="play-body-row"><div class="play-body-label">What Was Done</div><div class="play-body-text">Ares Capital Corporation (ARCC) is the world's largest publicly traded BDC at $22B+ NAV. ARCC provides a permanent capital base for Ares's direct lending strategy — the BDC structure continuously reinvests repaid capital, creating a self-perpetuating FEAUM pool. ARCC pays quarterly dividends funded by interest income, providing regular DE crystallization.</div></div>
+<div class="play-body-row"><div class="play-body-label">What Was Done</div><div class="play-body-text">Ares Capital Corporation (ARCC) is the world's largest publicly traded BDC<span class="info-tip" tabindex="0" data-tip="Business Development Company — a registered closed-end fund that lends to or invests in small and mid-sized businesses. BDCs trade on exchanges and must distribute 90%+ of income, creating a permanent capital pool for direct lending.">i</span> at $22B+ NAV.<span class="info-tip" tabindex="0" data-tip="Net Asset Value — total assets minus total liabilities. For BDCs and open-end vehicles, NAV is the basis for management fee calculation and the standard measure of fund size.">i</span> ARCC provides a permanent capital base for Ares's direct lending strategy — the BDC structure continuously reinvests repaid capital, creating a self-perpetuating FEAUM pool. ARCC pays quarterly dividends funded by interest income, providing regular DE crystallization.</div></div>
 <div class="play-body-row"><div class="play-body-label">Why It Works</div><div class="play-body-text">BDC structures convert direct lending assets into permanent capital — management fees are charged on ARCC's NAV indefinitely, without re-fundraising cycles. This addresses the closed-end fund limitation where management fee income terminates at fund expiration. The quarterly dividend structure also creates predictable DE streams that are less volatile than PE carry, supporting higher-quality earnings per share (consistent with the directional DVR-004 evidence for permanent capital to P/DE association).</div></div>
 </div>
 </div>
@@ -2648,7 +2717,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 </div>
 <div class="play-body">
 <div class="play-body-row"><div class="play-body-label">What Was Done</div><div class="play-body-text">BAM developed perpetual/open-end RE vehicles targeting NAV-based fee income that compounds with property appreciation. Black Creek acquisition by ARES (ACT-VD-005) added a non-traded REIT distribution capability, providing retail wealth-channel access to real estate.</div></div>
-<div class="play-body-row"><div class="play-body-label">Why It Works</div><div class="play-body-text">Brazilian FII (Fundo de Investimento Imobiliário) market has $60B+ in listed real estate funds with 2M+ retail investors. FII structures provide BRL-denominated permanent capital: management fees are charged on NAV indefinitely as properties appreciate and distributions are made quarterly. Domestic BRL denomination eliminates FX risk for Brazilian retail and institutional investors — a structural advantage over USD-denominated PAX closed-end funds. Developing a PAX-managed FII converts a portion of RE FEAUM to permanent capital, improving DVR-004 positioning.</div></div>
+<div class="play-body-row"><div class="play-body-label">Why It Works</div><div class="play-body-text">Brazilian FII<span class="info-tip" tabindex="0" data-tip="Fundo de Investimento Imobili&aacute;rio — Brazil's listed real estate investment fund structure, regulated by CVM. FIIs trade on B3, distribute 95%+ of income tax-free to individual investors, and provide open-end or closed-end RE exposure in BRL.">i</span> (Fundo de Investimento Imobili&aacute;rio) market has $60B+ in listed real estate funds with 2M+ retail investors. FII structures provide BRL-denominated permanent capital: management fees are charged on NAV indefinitely as properties appreciate and distributions are made quarterly. Domestic BRL denomination eliminates FX risk for Brazilian retail and institutional investors — a structural advantage over USD-denominated PAX closed-end funds. Developing a PAX-managed FII converts a portion of RE FEAUM to permanent capital, improving DVR-004 positioning.</div></div>
 </div>
 </div>
 <div class="play-card" style="margin-bottom:10px">
@@ -2774,7 +2843,7 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <div class="section-label">Statistical Appendix</div>
 <h2 id="appendix">Methodology details, confidence intervals, sensitivity analyses, and mandatory disclaimers</h2>
 <h3>1. Methods Justification</h3>
-<p><strong>Why Spearman rank correlation:</strong> Selected over Pearson for four reasons: (1) non-normal distributions — valuation multiples and driver metrics exhibit positive skew in cross-sectional samples; (2) outlier robustness — scale outliers (BX AUM=$1,127B vs peer mean ~$195B; PGHN DE/share=CHF 81.6 vs USD-equivalent peers) would distort Pearson correlations; (3) monotone but non-linear relationships — the AUM-to-P/FRE relationship is likely logarithmic; (4) standard practice in cross-sectional VDA studies with N&lt;30.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
+<p><strong>Why Spearman rank correlation:</strong> Selected over Pearson<span class="info-tip" tabindex="0" data-tip="Pearson correlation measures linear relationships between raw values, assuming normally distributed data. Sensitive to outliers — a single extreme value can dominate the coefficient, making it unsuitable for skewed financial cross-sections.">i</span> for four reasons: (1) non-normal distributions — valuation multiples and driver metrics exhibit positive skew in cross-sectional samples; (2) outlier robustness — scale outliers (BX AUM=$1,127B vs peer mean ~$195B; PGHN DE/share=CHF 81.6 vs USD-equivalent peers) would distort Pearson correlations; (3) monotone but non-linear relationships — the AUM-to-P/FRE relationship is likely logarithmic; (4) standard practice in cross-sectional VDA studies with N&lt;30.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
 <p><strong>Why not regression:</strong> With N=20–23 and 17 driver candidates, OLS regression cannot be used without severe overfitting risk (p/n ratio = 0.74–0.85). Spearman bivariate correlations with multiple testing correction are the appropriate method for this sample size.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
 <h3>2. Bootstrap Confidence Intervals</h3>
 <p>Bootstrap 95% CIs computed using percentile method with 10,000 resamples (seed=42). BCa method was not used due to small-N instability of the acceleration parameter estimate.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
@@ -2797,10 +2866,10 @@ td.mono, th.mono { font-family: var(--font-mono); font-size: 12px; }
 <ul style="font-size:13px;padding-left:20px;margin-bottom:12px">
 <li>Tests run: 51 (17 driver candidates × 3 valuation multiples)</li>
 <li>FDR level: q = 0.10</li>
-<li>BH threshold: p ≤ 0.002882 — 2 tests pass</li>
-<li>Bonferroni threshold: p ≤ 0.000980 — 1 test: AUM × P/FRE (p=0.0001)</li>
+<li>BH threshold: p &le; 0.002882 — 2 tests pass</li>
+<li>Bonferroni threshold: p &le; 0.000980 — 1 test: AUM × P/FRE (p=0.0001)</li>
 </ul>
-<p>All other correlations fail BH correction at q=0.10. Only AUM × P/FRE and FEAUM × P/FRE survive false discovery rate control.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
+<p>All other correlations fail BH correction<span class="info-tip" tabindex="0" data-tip="Benjamini-Hochberg FDR (False Discovery Rate) correction: controls the expected proportion of false positives among all rejected hypotheses when running many tests simultaneously. Less conservative than Bonferroni; standard for exploratory cross-sectional studies.">i</span> at q=0.10. Only AUM × P/FRE and FEAUM × P/FRE survive false discovery rate control.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
 <h3>4. Sensitivity Analysis</h3>
 <p><strong>Leave-One-Out (AUM × P/FRE):</strong> Removing BX reduces ρ from +0.73 to ~+0.62. Relationship survives; BX amplifies but does not manufacture the pattern. <strong>LOO (FEAUM × P/FRE):</strong> Removing BX reduces ρ from +0.60 to ~+0.52 — still above threshold. <strong>LOO (FRE growth × EV/FEAUM):</strong> Removing HLNE (FRE growth outlier) shifts ρ from −0.61 to ~−0.54. Sign and magnitude preserved.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>
 <p><strong>DE/share structural outlier:</strong> Excluding PGHN (CHF 81.6/share, structural per-share outlier) shifts DE/share × P/FRE ρ from +0.17 to ~+0.30–0.35. Still well below the +0.50 threshold. DE/share remains unsupported.<sup class="fn"><a style="font-size:9px;color:#0068ff;font-family:monospace">PS-VD-093</a></sup></p>

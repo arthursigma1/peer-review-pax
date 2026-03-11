@@ -1,0 +1,111 @@
+{
+  "stage": "VD-A4b",
+  "generated_date": "2026-03-08",
+  "run_id": "2026-03-08-run2",
+  "company": "Patria Investments Limited",
+  "ticker": "PAX",
+  "n_effective": 25,
+  "n_active_for_analysis": 25,
+  "excluded_firms": [
+    "FIRM-026 (PHLL \u2014 delisted Dec 2025)",
+    "FIRM-027 (RITM/Sculptor \u2014 acquired 2023)"
+  ],
+  "primary_analysis_period": "FY2024",
+  "temporal_depth": {
+    "target_range": "FY2020-FY2024",
+    "actual_years": [
+      "FY2020",
+      "FY2021",
+      "FY2022",
+      "FY2023",
+      "FY2024"
+    ],
+    "firms_with_multi_year": 18,
+    "temporal_stability_comparison": "FY2024 vs FY2023"
+  },
+  "valuation_multiples": {
+    "primary": [
+      "P/FRE",
+      "EV/FEAUM"
+    ],
+    "supplementary": [
+      "P/DE"
+    ],
+    "supplementary_note": "P/DE computed for ~11/25 firms; European firms without US-style DE framework excluded"
+  },
+  "eligible_driver_metrics": [
+    "MET-VD-001",
+    "MET-VD-002",
+    "MET-VD-004",
+    "MET-VD-005",
+    "MET-VD-006",
+    "MET-VD-007",
+    "MET-VD-009",
+    "MET-VD-013",
+    "MET-VD-014",
+    "MET-VD-016"
+  ],
+  "ci_method": "bootstrap_10k",
+  "ci_confidence_level": 0.95,
+  "n_bootstrap_resamples": 10000,
+  "minimum_sample_rule": "N>=12 for formal ranking; N<8 not reported; N 8-11 reported with insufficient_sample flag",
+  "n_correlations_tested": 30,
+  "n_driver_metrics": 10,
+  "n_valuation_multiples": 3,
+  "bonferroni_correction_applied": true,
+  "effective_independent_tests": 15,
+  "bonferroni_alpha_corrected": 0.0033,
+  "confidence_classification_thresholds": {
+    "High": "p_corrected < 0.01",
+    "Moderate": "p_corrected < 0.05",
+    "Suggestive": "p_corrected < 0.10",
+    "Not_significant": "p_corrected >= 0.10"
+  },
+  "contextual_only_metrics": [
+    "MET-VD-003",
+    "MET-VD-008",
+    "MET-VD-010",
+    "MET-VD-011",
+    "MET-VD-012",
+    "MET-VD-015",
+    "MET-VD-017"
+  ],
+  "key_methodological_decisions": {
+    "spearman_vs_pearson": "Spearman rank correlation used throughout; robust to outliers and non-normality; appropriate for N~25 cross-sectional sample",
+    "no_regression_model": "Multiple regression not employed \u2014 N~25 is insufficient to support 10 predictor variables without severe overfitting and multicollinearity",
+    "outlier_treatment": "Structural outlier 3i Group (FIRM-024) with EV/FEAUM=571% included in primary analysis; reported separately in leave-one-out sensitivity. Not excluded from primary analysis \u2014 exclusion rules must be pre-specified",
+    "fy_alignment": "All analysis uses FY2024 values as primary period. Non-calendar FY firms (STEP, HLNE, EQT, ICP, BPT, III) mapped to most recent full fiscal year ending in 2024 or closest proxy",
+    "fre_definition_heterogeneity": "Material across the universe. 7 distinct FRE definitions identified. FRE_Margin correlations subject to systematic measurement error. See FRE definition table."
+  },
+  "multicollinearity_flags": [
+    {
+      "metrics": [
+        "MET-VD-004",
+        "MET-VD-005"
+      ],
+      "spearman_rho": 0.9824,
+      "flag": "extreme_multicollinearity"
+    },
+    {
+      "metrics": [
+        "MET-VD-004",
+        "MET-VD-001"
+      ],
+      "spearman_rho": 0.804,
+      "flag": "high_multicollinearity"
+    },
+    {
+      "metrics": [
+        "MET-VD-005",
+        "MET-VD-001"
+      ],
+      "spearman_rho": 0.7195,
+      "flag": "high_multicollinearity"
+    }
+  ],
+  "sensitivity_analyses_conducted": [
+    "leave_one_out_3i_for_ev_feaum",
+    "temporal_stability_fy2024_vs_fy2023",
+    "partial_correlation_controlling_feaum_scale"
+  ]
+}

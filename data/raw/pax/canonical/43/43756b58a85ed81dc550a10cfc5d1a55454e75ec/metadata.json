@@ -1,0 +1,45 @@
+{
+  "normalized_url": "ir.kkr.com/sec-filings-annual-letters/sec-filings",
+  "canonical_url": "https://ir.kkr.com/sec-filings-annual-letters/sec-filings",
+  "carry_forward_status": "drop",
+  "carry_forward_reason": "hub_page_without_strong_downstream_artifact",
+  "priority_score": 41,
+  "preferred_source": {
+    "source_id": "PS-VD-005",
+    "firm": "KKR",
+    "title": "KKR IR SEC Filings Page",
+    "date": "2025-12-31",
+    "document_type": "annual_report",
+    "bias_tag": "company-produced",
+    "url": "https://ir.kkr.com/sec-filings-annual-letters/sec-filings",
+    "notes": "KKR investor relations SEC filing portal \u2014 annual reports, letters to unitholders, and regulatory filings",
+    "catalog_path": "data/processed/pax/2026-03-09-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl",
+    "seed_url": "https://ir.kkr.com/sec-filings-annual-letters/sec-filings",
+    "loaded_url": "https://ir.kkr.com/sec-filings-annual-letters/sec-filings",
+    "title": "KKR IR SEC Filings Page",
+    "document_type": "annual_report",
+    "bias_tag": "company-produced",
+    "content_type": "text/html",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2/PS-VD-005_kkr-ir-sec-filings-page_03c0d6c3.txt",
+    "text_length": 1251,
+    "quality_score": 3351,
+    "quality_bucket": "thin",
+    "quality_reason": "thin_text",
+    "relevant_snippets": [
+      "(1) Includes intersegment management fees of $673.9 million , $537.2 million , and $445.9 million earned by the Asset Management segment from the Insurance segment for the years ended December 31, 2025 , 2024 , and 2023, respectively.",
+      "of investment experience across Credit and Liquid Strategies ($322 bn), Private Equity ($229 bn) & Real Assets ($192 bn) ~2,700 Asset Management ~1,500 Insurance across credit, private equity and real assets across 4 continents serving local markets",
+      "New Capital Raised (AUM) $ 44 $ 18 $ 7 $ 18 $ 27",
+      "New Capital Raised (AUM) $ 39 $ 29 $ 16 $ 40 $ 34",
+      "New Capital Raised (AUM) $ 37 $ 34 $ 47 $ 56 $ 68"
+    ],
+    "extraction_modes": [
+      "eqs_sec_api"
+    ]
+  },
+  "canonical_text_path": "data/raw/pax/canonical/43/43756b58a85ed81dc550a10cfc5d1a55454e75ec/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.514953Z"
+}

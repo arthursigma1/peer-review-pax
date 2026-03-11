@@ -1,0 +1,43 @@
+{
+  "normalized_url": "bn.brookfield.com/reports-filings/annual-reports",
+  "canonical_url": "https://bn.brookfield.com/reports-filings/annual-reports",
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl",
+  "priority_score": 32,
+  "preferred_source": {
+    "source_id": "PS-VD-040",
+    "firm": "Brookfield Corporation",
+    "title": "Brookfield Corporation Annual Reports Page",
+    "date": "2025-12-31",
+    "document_type": "annual_report",
+    "bias_tag": "company-produced",
+    "url": "https://bn.brookfield.com/reports-filings/annual-reports",
+    "notes": "Brookfield Corporation annual reports archive \u2014 parent entity financials covering BAM, BIP, BEP, and insurance operations",
+    "catalog_path": "data/processed/pax/2026-03-09-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl",
+    "seed_url": "https://bn.brookfield.com/reports-filings/annual-reports",
+    "loaded_url": "https://bn.brookfield.com/sites/brookfield-bn-v2/files/brookfield-bn/reports-filings/quarterly-reports/2024-bn-annual-report-0.pdf",
+    "title": "Brookfield Corporation Annual Reports Page",
+    "document_type": "annual_report",
+    "bias_tag": "company-produced",
+    "content_type": "application/pdf",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2/PS-VD-040_brookfield-corporation-annual-reports-page_5daf4df5.txt",
+    "text_length": 898252,
+    "quality_score": 903752,
+    "quality_bucket": "good",
+    "quality_reason": "sufficient_text",
+    "relevant_snippets": [
+      "Revenues for the year were $86.0\u00a0billion, a decrease of $9.9 billion or 10% compared to 2023, primarily due to:",
+      "our perpetual strategies and long-term credit funds, resulting in a $82 billion or 18%  increase in fee-bearing capital",
+      "The margin on our fee-related earnings was 57% in the\u00a0current period (2023 \u2013 56%), benefitting from the growth in",
+      "1. Includes $10 million (2023 \u2013 $10 million) of dividends paid on perpetual subordinated notes for the year ended December 31, 2024.",
+      "As at December 31, 2024, $167.1 billion of carry eligible capital was deployed (December 31, 2023 \u2013 $165.8 billion)."
+    ],
+    "extraction_modes": []
+  },
+  "canonical_text_path": "data/raw/pax/canonical/53/5330848fd3ce197fbeb4199e3c507e4695e86f2a/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.431971Z"
+}

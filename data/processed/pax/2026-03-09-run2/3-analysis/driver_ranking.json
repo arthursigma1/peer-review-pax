@@ -1,0 +1,258 @@
+{
+  "metadata": {
+    "pipeline": "VDA",
+    "stage": "VD-A5",
+    "generated_at": "2026-03-09",
+    "classification_rules": {
+      "stable_value_driver": "satisfies stable_v1_two_of_three rule (|rho| >= 0.5 on at least 2 of 3 multiples)",
+      "multiple_specific_driver": "|rho| >= 0.5 on exactly 1 multiple and fails stable rule",
+      "contextual_driver": "useful for interpretation but |rho| < 0.5 on all multiples, or below 60% coverage",
+      "unsupported": "not defensible for strategic interpretation"
+    },
+    "total_drivers_ranked": 14,
+    "by_classification": {
+      "stable_value_driver": 1,
+      "multiple_specific_driver": 3,
+      "contextual_driver": 10,
+      "unsupported": 0
+    }
+  },
+  "rankings": [
+    {
+      "metric_id": "MET-VD-001",
+      "metric_name": "DE/share",
+      "classification": "stable_value_driver",
+      "classification_reason": "|rho| >= 0.5 on 2 of 3 multiples (stable_v1_two_of_three rule)",
+      "avg_abs_rho": 0.5119,
+      "correlations_by_multiple": {
+        "EV/FEAUM": {
+          "rho": 0.8571,
+          "p": 0.013697
+        },
+        "P/FRE": {
+          "rho": 0.5357,
+          "p": 0.215217
+        },
+        "P/DE": {
+          "rho": 0.1429,
+          "p": 0.787172
+        }
+      },
+      "driver_id": "DVR-001",
+      "rank": 1
+    },
+    {
+      "metric_id": "MET-VD-014",
+      "metric_name": "FRE growth YoY",
+      "classification": "multiple_specific_driver",
+      "classification_reason": "|rho| >= 0.5 on P/DE only; fails stable rule",
+      "avg_abs_rho": 0.4426,
+      "correlations_by_multiple": {
+        "P/DE": {
+          "rho": -0.7537,
+          "p": 0.083523
+        },
+        "EV/FEAUM": {
+          "rho": -0.3408,
+          "p": 0.233046
+        },
+        "P/FRE": {
+          "rho": -0.2333,
+          "p": 0.384431
+        }
+      },
+      "driver_id": "DVR-002",
+      "rank": 2
+    },
+    {
+      "metric_id": "MET-VD-005",
+      "metric_name": "AUM",
+      "classification": "multiple_specific_driver",
+      "classification_reason": "|rho| >= 0.5 on P/DE only; fails stable rule",
+      "avg_abs_rho": 0.3781,
+      "correlations_by_multiple": {
+        "P/DE": {
+          "rho": 0.6,
+          "p": 0.208
+        },
+        "P/FRE": {
+          "rho": 0.375,
+          "p": 0.138035
+        },
+        "EV/FEAUM": {
+          "rho": 0.1593,
+          "p": 0.541362
+        }
+      },
+      "driver_id": "DVR-003",
+      "rank": 3
+    },
+    {
+      "metric_id": "MET-VD-004",
+      "metric_name": "FEAUM",
+      "classification": "multiple_specific_driver",
+      "classification_reason": "|rho| >= 0.5 on P/DE only; fails stable rule",
+      "avg_abs_rho": 0.327,
+      "correlations_by_multiple": {
+        "P/DE": {
+          "rho": 0.6,
+          "p": 0.208
+        },
+        "EV/FEAUM": {
+          "rho": 0.2239,
+          "p": 0.371686
+        },
+        "P/FRE": {
+          "rho": 0.1571,
+          "p": 0.575953
+        }
+      },
+      "driver_id": "DVR-004",
+      "rank": 4
+    },
+    {
+      "metric_id": "MET-VD-018",
+      "metric_name": "Headcount/FEAUM",
+      "classification": "contextual_driver",
+      "classification_reason": "no multiple with |rho| >= 0.5; useful for interpretation",
+      "avg_abs_rho": 0.234,
+      "correlations_by_multiple": {
+        "EV/FEAUM": {
+          "rho": 0.3143,
+          "p": 0.25394
+        },
+        "P/FRE": {
+          "rho": 0.1538,
+          "p": 0.633091
+        }
+      },
+      "driver_id": "DVR-005",
+      "rank": 5
+    },
+    {
+      "metric_id": "MET-VD-013",
+      "metric_name": "FRE margin",
+      "classification": "contextual_driver",
+      "classification_reason": "no multiple with |rho| >= 0.5; useful for interpretation",
+      "avg_abs_rho": 0.209,
+      "correlations_by_multiple": {
+        "P/FRE": {
+          "rho": -0.4611,
+          "p": 0.083621
+        },
+        "P/DE": {
+          "rho": 0.1,
+          "p": 0.872889
+        },
+        "EV/FEAUM": {
+          "rho": 0.066,
+          "p": 0.830312
+        }
+      },
+      "driver_id": "DVR-006",
+      "rank": 6
+    },
+    {
+      "metric_id": "MET-VD-016",
+      "metric_name": "Mgmt fee rate",
+      "classification": "contextual_driver",
+      "classification_reason": "no multiple with |rho| >= 0.5; useful for interpretation",
+      "avg_abs_rho": 0.1879,
+      "correlations_by_multiple": {
+        "EV/FEAUM": {
+          "rho": 0.3091,
+          "p": 0.384841
+        },
+        "P/FRE": {
+          "rho": -0.0667,
+          "p": 0.86469
+        }
+      },
+      "driver_id": "DVR-007",
+      "rank": 7
+    },
+    {
+      "metric_id": "MET-VD-006",
+      "metric_name": "FEAUM YoY",
+      "classification": "contextual_driver",
+      "classification_reason": "no multiple with |rho| >= 0.5; useful for interpretation",
+      "avg_abs_rho": 0.1805,
+      "correlations_by_multiple": {
+        "P/DE": {
+          "rho": 0.3714,
+          "p": 0.468478
+        },
+        "EV/FEAUM": {
+          "rho": 0.0879,
+          "p": 0.728718
+        },
+        "P/FRE": {
+          "rho": -0.0822,
+          "p": 0.770829
+        }
+      },
+      "driver_id": "DVR-008",
+      "rank": 8
+    },
+    {
+      "metric_id": "MET-VD-020",
+      "metric_name": "Comp&Ben/FEAUM",
+      "classification": "contextual_driver",
+      "classification_reason": "below 60% universe coverage threshold",
+      "avg_abs_rho": null,
+      "correlations_by_multiple": {},
+      "driver_id": "DVR-009",
+      "rank": 9
+    },
+    {
+      "metric_id": "MET-VD-021",
+      "metric_name": "G&A/FEAUM",
+      "classification": "contextual_driver",
+      "classification_reason": "below 60% universe coverage threshold",
+      "avg_abs_rho": null,
+      "correlations_by_multiple": {},
+      "driver_id": "DVR-010",
+      "rank": 10
+    },
+    {
+      "metric_id": "MET-VD-022",
+      "metric_name": "OpEx-Rev growth gap",
+      "classification": "contextual_driver",
+      "classification_reason": "below 60% universe coverage threshold",
+      "avg_abs_rho": null,
+      "correlations_by_multiple": {},
+      "driver_id": "DVR-011",
+      "rank": 11
+    },
+    {
+      "metric_id": "MET-VD-023",
+      "metric_name": "CC rev growth",
+      "classification": "contextual_driver",
+      "classification_reason": "below 60% universe coverage threshold",
+      "avg_abs_rho": null,
+      "correlations_by_multiple": {},
+      "driver_id": "DVR-012",
+      "rank": 12
+    },
+    {
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration/Rev",
+      "classification": "contextual_driver",
+      "classification_reason": "below 60% universe coverage threshold",
+      "avg_abs_rho": null,
+      "correlations_by_multiple": {},
+      "driver_id": "DVR-013",
+      "rank": 13
+    },
+    {
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx/FEAUM",
+      "classification": "contextual_driver",
+      "classification_reason": "below 60% universe coverage threshold",
+      "avg_abs_rho": null,
+      "correlations_by_multiple": {},
+      "driver_id": "DVR-014",
+      "rank": 14
+    }
+  ]
+}

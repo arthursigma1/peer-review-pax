@@ -1,0 +1,37 @@
+{
+  "normalized_url": "bam.brookfield.com/reports-sec-filings/sec-filings",
+  "canonical_url": "https://bam.brookfield.com/reports-sec-filings/sec-filings",
+  "content_hash": "a250b3888f9456cceadbf2f323e73b0dbb8727f7",
+  "evidence_version_id": "39c9d603e16257ed5fd12e9c7e34d86a7c7e5f89",
+  "supersedes_version_id": null,
+  "captured_at": "2026-03-10T00:43:31.786250Z",
+  "verified_at": "2026-03-11T00:36:34.524421Z",
+  "derived_from_run": "2026-03-09-run2",
+  "crawl_run": "crawl",
+  "source_id_at_capture": "PS-VD-015",
+  "firm_at_capture": "Brookfield Asset Management",
+  "quality_bucket": "poor",
+  "text_length": 493,
+  "content_type": "text/html;charset=utf-8",
+  "freshness_class": "hub_or_archive_page",
+  "freshness_ttl_days": 14,
+  "material_change_policy": "dynamic_latest_auto_promote",
+  "extraction_modes": [
+    "document_links"
+  ],
+  "carry_forward_status": "drop",
+  "carry_forward_reason": "hub_page_without_strong_downstream_artifact",
+  "priority_score": 57,
+  "pinned_sessions": [
+    "2026-03-07",
+    "2026-03-07-run2",
+    "2026-03-08-run2",
+    "2026-03-09-run2",
+    "2026-03-10-run2"
+  ],
+  "anomaly_flags": [
+    "artifact_quality:poor"
+  ],
+  "canonical_text_path": "data/raw/pax/canonical/66/66bdc5f84b297e815477950687011a5c09c77e4c/a250b3888f9456cceadbf2f323e73b0dbb8727f7/evidence.txt",
+  "metadata_path": "data/raw/pax/canonical/66/66bdc5f84b297e815477950687011a5c09c77e4c/a250b3888f9456cceadbf2f323e73b0dbb8727f7/metadata.json"
+}

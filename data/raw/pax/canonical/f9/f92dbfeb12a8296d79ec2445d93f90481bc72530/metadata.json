@@ -1,0 +1,45 @@
+{
+  "normalized_url": "www.sec.gov/cgi-bin/browse-edgar",
+  "canonical_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1393818&type=10-K",
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl",
+  "priority_score": 32,
+  "preferred_source": {
+    "source_id": "PS-VD-001",
+    "firm": "Blackstone",
+    "title": "Blackstone 10-K Annual Filings (SEC EDGAR)",
+    "date": "2025-12-31",
+    "document_type": "annual_report",
+    "bias_tag": "regulatory-filing",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1393818&type=10-K",
+    "notes": "SEC EDGAR 10-K filing index for Blackstone \u2014 primary source for AUM, fee revenue, FRE, and fund performance data",
+    "catalog_path": "data/processed/pax/2026-03-09-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl",
+    "seed_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1393818&type=10-K",
+    "loaded_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1393818&type=10-K",
+    "title": "EDGAR Search Results",
+    "document_type": "annual_report",
+    "bias_tag": "regulatory-filing",
+    "content_type": "text/html",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2/PS-VD-001_blackstone-10-k-annual-filings-sec-edgar_ad13d313.txt",
+    "text_length": 5842,
+    "quality_score": 10342,
+    "quality_bucket": "good",
+    "quality_reason": "sufficient_text",
+    "relevant_snippets": [
+      "10-K Documents Interactive Data Annual report [Section 13 and 15(d), not S-K Item 405] Acc-no: 0001193125-26-082531 (34 Act) Size: 36 MB 2026-02-27 001-33551 26699647",
+      "10-K Documents Interactive Data Annual report [Section 13 and 15(d), not S-K Item 405] Acc-no: 0001193125-25-042469 (34 Act) Size: 37 MB 2025-02-28 001-33551 25690042",
+      "10-K Documents Interactive Data Annual report [Section 13 and 15(d), not S-K Item 405] Acc-no: 0001193125-24-044485 (34 Act) Size: 36 MB 2024-02-23 001-33551 24671070",
+      "SIC : 6282 - INVESTMENT ADVICE State location: NY | State of Inc.: DE | Fiscal Year End: 1231 formerly: Blackstone Group Inc (filings through 2021-08-05) formerly: Blackstone Group L.P. (filings through 2019-06-28) formerly: Blackstone Inc (filings through 2022-04-07) (CF Office: 02 Finance) Get insider transactions for this issuer . Get insider transactions for this reporting owner .",
+      "Filing Type: Prior to: (YYYYMMDD) Ownership? include exclude only Limit Results Per Page 10 Entries 20 Entries 40 Entries 80 Entries 100 Entries Enter keywords Search"
+    ],
+    "extraction_modes": [
+      "document_links"
+    ]
+  },
+  "canonical_text_path": "data/raw/pax/canonical/f9/f92dbfeb12a8296d79ec2445d93f90481bc72530/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.467624Z"
+}

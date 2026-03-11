@@ -1,0 +1,86 @@
+{
+  "checkpoint": "CP-2",
+  "checkpoint_name": "Deep-Dive Verification",
+  "run_id": "2026-03-10-run2",
+  "audited_at": "2026-03-10T10:38:04Z",
+  "verdict": "PASSED",
+  "files_audited": [
+    "data/processed/pax/2026-03-10-run2/4-deep-dives/platform_profiles.json",
+    "data/processed/pax/2026-03-10-run2/4-deep-dives/asset_class_analysis.json"
+  ],
+  "evidence_files_referenced": [
+    "data/processed/pax/2026-03-10-run2/3-analysis/driver_ranking.json",
+    "data/processed/pax/2026-03-10-run2/3-analysis/correlation_results.json",
+    "data/processed/pax/2026-03-10-run2/2-data/strategic_actions.json",
+    "data/processed/pax/2026-03-10-run2/2-data/strategy_profiles.json",
+    "data/processed/pax/2026-03-10-run2/1-universe/source_catalog.json"
+  ],
+  "summary": {
+    "total_claims_audited": 120,
+    "passed": 120,
+    "blocked": 0,
+    "warnings": 0,
+    "inferred_claims": 1
+  },
+  "dimension_summary": {
+    "D1_invalid_premises": {
+      "description": "Quartile positions, driver classifications, and correlation values checked against driver_ranking.json",
+      "claims_checked": 32,
+      "issues_found": 0,
+      "detail": "All 32 quartile claims in asset_class_analysis.json (ga_feaum_quartile fields and rationale text) match driver_ranking.json quartile_positions. DVR-010 correctly identified as stable_value_driver. No other driver misclassified as stable."
+    },
+    "D2_misleading_context": {
+      "description": "Stable value driver language, hedging on INFERRED claims, and correlation magnitude claims verified",
+      "claims_checked": 8,
+      "issues_found": 0,
+      "detail": "All \"stable value driver\" references (4 instances across both files) correctly attribute to DVR-010 only. The 1 INFERRED label in platform_profiles.json (RPC operational consolidation, line ~964) is properly tagged with bracketed disclosure. DVR-015 Permanent Capital correctly described as \"moderate signal\" (rho 0.40-0.41), not stable."
+    },
+    "D3_consulting_source_enforcement": {
+      "description": "PS-VD-9xx source usage verified for market-context-only compliance and sycophantic fabrication check on transferable insights",
+      "claims_checked": 58,
+      "issues_found": 0,
+      "detail": "PS-VD-9xx references: 7 in asset_class_analysis.json (PS-VD-902: 4 refs, PS-VD-903: 3 refs), 0 in platform_profiles.json. All 7 are explicitly labeled \"market context\" in parenthetical annotations. No PS-VD-9xx source used as sole basis for firm-specific claims. Sycophantic fabrication check: all 30 transferable insights across 12 platform profiles verified \u2014 every ACT-VD-NNN citation (51 unique IDs) maps to a valid action in strategic_actions.json. Zero fabricated citations."
+    },
+    "D4_confidence_miscalibration": {
+      "description": "Confidence language calibration, \"stable value driver\" restriction, and operational prerequisite evidence quality",
+      "claims_checked": 22,
+      "issues_found": 0,
+      "detail": "Confidence miscalibration check: \"stable value driver\" language restricted to DVR-010 (correct). No driver other than DVR-010 described as \"stable\". \"Scale and efficiency\" paradox claims appropriately hedged (\"appear to have\"). Operational prerequisite claims reference observable strategic actions (ACT-VD-NNN) rather than unverifiable job postings or vendor PR. Cross-asset synthesis ranking (14 sub-types) is internally consistent with per-vertical analysis."
+    }
+  },
+  "sycophantic_fabrication_audit": {
+    "description": "Verified all 30 transferable insights across 12 platform profiles for citation validity",
+    "method": "Python script extracted all ACT-VD-NNN citations from transferable_insights fields and cross-referenced against strategic_actions.json action_id registry",
+    "total_insights_checked": 30,
+    "total_unique_citations": 51,
+    "fabricated_citations": 0,
+    "result": "PASSED \u2014 zero fabricated or hallucinated ACT-VD citations"
+  },
+  "consulting_source_audit": {
+    "description": "Verified PS-VD-9xx usage complies with consulting evidence hierarchy",
+    "platform_profiles_ps_vd_9xx_count": 0,
+    "asset_class_analysis_ps_vd_9xx_count": 7,
+    "all_labeled_market_context": true,
+    "firm_specific_claims_with_sole_ps_vd_9xx": 0,
+    "result": "PASSED \u2014 all consulting sources used as market context only"
+  },
+  "quartile_verification": {
+    "description": "Cross-referenced ga_feaum_quartile fields and rationale Q-claims against driver_ranking.json quartile_positions",
+    "claims_checked": 32,
+    "mismatches": 0,
+    "result": "PASSED \u2014 all quartile positions match upstream evidence"
+  },
+  "inferred_claims": [
+    {
+      "file": "platform_profiles.json",
+      "firm": "RPC (Ridgepost Capital)",
+      "firm_id": "FIRM-022",
+      "claim": "No evidence that operational consolidation has been initiated",
+      "label": "INFERRED",
+      "hedging_present": true,
+      "action_required": "Final report must use hedged language (\"suggests\", \"appears to\") if referencing this claim"
+    }
+  ],
+  "blocked_claims": [],
+  "warnings": []
+}

@@ -1,0 +1,706 @@
+{
+  "sources": [
+    {
+      "source_id": "PS-VD-001",
+      "firm": "Blackstone (BX)",
+      "title": "Blackstone Inc. Form 10-K Annual Report (FY2024)",
+      "date": "2025-02-28",
+      "document_type": "10-K Annual Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://www.sec.gov/Archives/edgar/data/1393818/000119312525042469/0001193125-25-042469-index.htm",
+      "relevance_notes": "Comprehensive financial statements, AUM breakdown, fee structure, segment performance, and risk factors for the world's largest alternative asset manager."
+    },
+    {
+      "source_id": "PS-VD-002",
+      "firm": "Blackstone (BX)",
+      "title": "Blackstone Q4 2025 Earnings Call Transcript",
+      "date": "2026-01-29",
+      "document_type": "Earnings Call Transcript",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://www.fool.com/earnings/call-transcripts/2026/01/29/blackstone-bx-q4-2025-earnings-call-transcript/",
+      "relevance_notes": "Management commentary on record quarterly results, $71B inflows in Q4, perpetual capital at 48% of fee-earning AUM, and 2026 growth outlook across PE, credit, insurance, and multi-asset."
+    },
+    {
+      "source_id": "PS-VD-003",
+      "firm": "Blackstone (BX)",
+      "title": "Blackstone Q4 2025 Earnings Supplement",
+      "date": "2026-01-29",
+      "document_type": "Earnings Supplement",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://ir.blackstone.com/sec-filings/default.aspx",
+      "relevance_notes": "Detailed segment-level AUM, fee-earning AUM, management fees ($8B for FY2025), FRE ($5.7B), distributable earnings ($7.1B), and perpetual capital vehicle metrics."
+    },
+    {
+      "source_id": "PS-VD-004",
+      "firm": "Blackstone (BX)",
+      "title": "Blackstone DEF 14A Proxy Statement 2025",
+      "date": "2025-04-15",
+      "document_type": "Proxy Statement",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://ir.blackstone.com/sec-filings/default.aspx",
+      "relevance_notes": "Executive compensation structure, governance framework, incentive alignment between management and LPs."
+    },
+    {
+      "source_id": "PS-VD-005",
+      "firm": "KKR (KKR)",
+      "title": "KKR & Co. Inc. Form 10-K Annual Report (FY2024)",
+      "date": "2025-02-28",
+      "document_type": "10-K Annual Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://www.sec.gov/Archives/edgar/data/1404912/000140491225000015/0001404912-25-000015-index.htm",
+      "relevance_notes": "Full financial statements, multi-platform AUM breakdown, balance sheet investments, insurance segment (Global Atlantic), and strategic capital deployment data."
+    },
+    {
+      "source_id": "PS-VD-006",
+      "firm": "KKR (KKR)",
+      "title": "KKR Q4 2025 Earnings Call Transcript",
+      "date": "2026-02-05",
+      "document_type": "Earnings Call Transcript",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://seekingalpha.com/article/4866532-kkr-and-co-inc-kkr-q4-2025-earnings-call-transcript",
+      "relevance_notes": "Record fundraising nearly double two years prior, 80%+ of $300B fundraising target achieved, embedded gains at all-time high of $19B, new KKR Solutions vertical with $100B+ AUM ambitions, Arctos acquisition."
+    },
+    {
+      "source_id": "PS-VD-007",
+      "firm": "KKR (KKR)",
+      "title": "KKR Q4 2025 Earnings Call Presentation",
+      "date": "2026-02-05",
+      "document_type": "Earnings Presentation",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://seekingalpha.com/article/4867007-kkr-and-co-inc-2025-q4-results-earnings-call-presentation",
+      "relevance_notes": "Detailed segment metrics, AUM of $303B, capital markets revenue ($309.7M), fundraising progress vs. targets, FRE per share trajectory."
+    },
+    {
+      "source_id": "PS-VD-008",
+      "firm": "KKR (KKR)",
+      "title": "KKR DEF 14A Proxy Statement 2025",
+      "date": "2025-04-10",
+      "document_type": "Proxy Statement",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://ir.kkr.com/sec-filings-annual-letters/sec-filings",
+      "relevance_notes": "Governance structure, compensation design, alignment mechanisms including balance sheet co-investment approach."
+    },
+    {
+      "source_id": "PS-VD-009",
+      "firm": "Apollo Global Management (APO)",
+      "title": "Apollo Global Management Form 10-K Annual Report (FY2024)",
+      "date": "2025-02-24",
+      "document_type": "10-K Annual Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://ir.apollo.com/sec-filings",
+      "relevance_notes": "Financial statements covering record origination ($220B+), inflows ($150B+), AUM surpassing $750B by end-2024, with Athene insurance integration details."
+    },
+    {
+      "source_id": "PS-VD-010",
+      "firm": "Apollo Global Management (APO)",
+      "title": "Apollo Investor Presentation — February 2026",
+      "date": "2026-02-11",
+      "document_type": "Investor Presentation",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://ir.apollo.com/_assets/_1330c9952814458ddb36d7b8cbfb7499/apollo/db/2224/22861/pdf/Apollo+Investor+Presentation+%E2%80%93+February+2026.pdf",
+      "relevance_notes": "Strategic positioning across asset management and retirement services, AUM reaching $938.4B by Dec 2025, financial targets from October 2024 Investor Day, origination platform scale."
+    },
+    {
+      "source_id": "PS-VD-011",
+      "firm": "Apollo Global Management (APO)",
+      "title": "Apollo Q4 2025 Earnings Release and Supplement",
+      "date": "2026-02-09",
+      "document_type": "Earnings Release",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://ir.apollo.com/financial-results",
+      "relevance_notes": "Quarterly segment financials, management fee growth, retirement services spread, fee-related earnings, and distributable earnings breakdown."
+    },
+    {
+      "source_id": "PS-VD-012",
+      "firm": "Ares Management (ARES)",
+      "title": "Ares Management Form 10-K Annual Report (FY2025)",
+      "date": "2026-02-20",
+      "document_type": "10-K Annual Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://www.sec.gov/Archives/edgar/data/1176948/000162828025008665/ares-20241231.htm",
+      "relevance_notes": "AUM of $622.5B, Credit Group dominance ($406.9B), Real Assets ($139.1B), Secondaries ($42.1B), PE ($25.3B). 5-year AUM CAGR of 26%. Over 4,250 employees in 55+ offices."
+    },
+    {
+      "source_id": "PS-VD-013",
+      "firm": "Ares Management (ARES)",
+      "title": "Ares Management Q4 2025 Earnings Call Transcript",
+      "date": "2026-02-05",
+      "document_type": "Earnings Call Transcript",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://seekingalpha.com/article/4866631-ares-management-corporation-ares-q4-2025-earnings-call-transcript",
+      "relevance_notes": "Record management fees ($994M in Q4, +27% YoY), crossed $600B AUM, exceeded $100B in fundraising and investing for the year, 33% FRE growth in Q4, 20% dividend increase."
+    },
+    {
+      "source_id": "PS-VD-014",
+      "firm": "Ares Management (ARES)",
+      "title": "Ares Management DEF 14A Proxy Statement 2025",
+      "date": "2025-04-10",
+      "document_type": "Proxy Statement",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://ir.aresmgmt.com/sec-filings",
+      "relevance_notes": "Executive compensation, governance framework, insurance solutions platform ($25.9B), and alignment between fee structure and LP outcomes."
+    },
+    {
+      "source_id": "PS-VD-015",
+      "firm": "Brookfield Asset Management (BAM)",
+      "title": "Brookfield Asset Management Form 10-K Annual Report (FY2024)",
+      "date": "2025-03-18",
+      "document_type": "10-K Annual Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://bam.brookfield.com/reports-sec-filings/sec-filings",
+      "relevance_notes": "Scale-driven growth, fundraising strength, fee-bearing capital, credit and AI infrastructure push. BAM is the listed asset management subsidiary of Brookfield Corporation."
+    },
+    {
+      "source_id": "PS-VD-016",
+      "firm": "Brookfield Asset Management (BAM)",
+      "title": "BAM Record 2025 Results and 15% Dividend Increase Announcement",
+      "date": "2026-02-13",
+      "document_type": "Press Release",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://bam.brookfield.com/press-releases/brookfield-asset-management-announces-record-2025-results-and-15-dividend-increase",
+      "relevance_notes": "Record 2025 results, FRE growth, fee-related earnings up 22% to $3.0B, fee-bearing capital rising to $603B, 15% dividend increase signaling capital return confidence."
+    },
+    {
+      "source_id": "PS-VD-017",
+      "firm": "Brookfield Asset Management (BAM)",
+      "title": "BAM Q4 2024 10-K Annual Report (PDF)",
+      "date": "2025-03-18",
+      "document_type": "10-K Annual Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://bam.brookfield.com/sites/brookfield-bam-v2/files/brookfield-bam-v2/report-fillings/annual-quarterly-reports/2024-q4-bam-ltd-10-k-english.pdf",
+      "relevance_notes": "Full financial statements and MD&A for Brookfield Asset Management Ltd., detailing fee revenues, carried interest, and operating expenses."
+    },
+    {
+      "source_id": "PS-VD-018",
+      "firm": "Blue Owl Capital (OWL)",
+      "title": "Blue Owl Capital Form 10-K Annual Report (FY2025)",
+      "date": "2026-02-21",
+      "document_type": "10-K Annual Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://www.stocktitan.net/sec-filings/OWL/10-k-blue-owl-capital-inc-files-annual-report-3e6e1f4c9194.html",
+      "relevance_notes": "AUM of $307.4B, FPAUM of $187.7B, total revenues of $2.87B (+$575M YoY), 85% of management fees from permanent capital vehicles. KAM, Atalaya, IPI acquisitions broadening platform."
+    },
+    {
+      "source_id": "PS-VD-019",
+      "firm": "Blue Owl Capital (OWL)",
+      "title": "Blue Owl Capital DEF 14A Proxy Statement 2025",
+      "date": "2025-04-03",
+      "document_type": "Proxy Statement",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://last10k.com/sec-filings/owl/0001823945-25-000024.htm",
+      "relevance_notes": "Governance structure, executive compensation, permanent capital model alignment, and shareholder voting matters."
+    },
+    {
+      "source_id": "PS-VD-020",
+      "firm": "Blue Owl Capital (OWL)",
+      "title": "Blue Owl Capital Q3 2025 Form 10-Q",
+      "date": "2025-11-05",
+      "document_type": "10-Q Quarterly Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://s202.q4cdn.com/477831904/files/doc_financials/2025/q3/4b515d00-d128-4fb1-82ab-922b0f899f67.pdf",
+      "relevance_notes": "Interim financial data, quarterly AUM trends, management fee trajectory, and integration progress of acquisitions."
+    },
+    {
+      "source_id": "PS-VD-021",
+      "firm": "TPG Inc. (TPG)",
+      "title": "TPG Inc. Form 10-K Annual Report (FY2024)",
+      "date": "2025-02-18",
+      "document_type": "10-K Annual Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://www.sec.gov/Archives/edgar/data/1880661/000188066125000014/tpg-20241231.htm",
+      "relevance_notes": "AUM of $303B, six multi-strategy platforms (Capital, Growth, Impact, Credit, Real Estate, Market Solutions), 166.4% AUM growth since 2021, Angelo Gordon and Peppertree acquisitions."
+    },
+    {
+      "source_id": "PS-VD-022",
+      "firm": "TPG Inc. (TPG)",
+      "title": "TPG DEF 14A Proxy Statement 2025",
+      "date": "2025-04-10",
+      "document_type": "Proxy Statement",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://last10k.com/sec-filings/tpg/0001193125-25-091415.htm",
+      "relevance_notes": "Executive compensation, governance framework, post-IPO transition, capital markets arm generating $309.7M transaction revenue."
+    },
+    {
+      "source_id": "PS-VD-023",
+      "firm": "TPG Inc. (TPG)",
+      "title": "TPG Q4 2025 Earnings Release and Financial Supplement",
+      "date": "2026-02-10",
+      "document_type": "Earnings Release",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://shareholders.tpg.com/financial-information/sec-filings",
+      "relevance_notes": "Quarterly and annual segment-level detail on AUM, fundraising, deployment, FRE, and distributable earnings across all six platforms."
+    },
+    {
+      "source_id": "PS-VD-024",
+      "firm": "Carlyle Group (CG)",
+      "title": "Carlyle Group Form 10-K Annual Report (FY2024)",
+      "date": "2025-02-27",
+      "document_type": "10-K Annual Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://last10k.com/sec-filings/cg/0001527166-25-000006.htm",
+      "relevance_notes": "AUM of $477B (+8% YoY), three segments (Global PE, Global Credit, Global Investment Solutions), $53.7B inflows (+32%), $54.5B deployed, $34.1B realizations, record FRE and FRE margin."
+    },
+    {
+      "source_id": "PS-VD-025",
+      "firm": "Carlyle Group (CG)",
+      "title": "Carlyle Group Q4 2025 Earnings Call Transcript",
+      "date": "2026-02-06",
+      "document_type": "Earnings Call Transcript",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://www.fool.com/earnings/call-transcripts/2026/02/06/carlyle-cg-q4-2025-earnings-call-transcript/",
+      "relevance_notes": "Record year: FRE up 12% YoY, $54B inflows exceeding $40B target, record transaction fees of $225M (+40% YoY), #1 PE sponsor globally by IPO proceeds (~$10B over two years)."
+    },
+    {
+      "source_id": "PS-VD-026",
+      "firm": "Carlyle Group (CG)",
+      "title": "Carlyle Full-Year 2025 Financial Results Press Release",
+      "date": "2026-02-06",
+      "document_type": "Press Release",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://ir.carlyle.com/static-files/22add2f9-9883-446e-8415-b8673afb5e28",
+      "relevance_notes": "Summary financial data, AUM and segment breakdowns, capital deployment and realization metrics, dividend announcements."
+    },
+    {
+      "source_id": "PS-VD-027",
+      "firm": "EQT AB (EQT)",
+      "title": "EQT AB Year-end Report 2025",
+      "date": "2026-01-22",
+      "document_type": "Annual Financial Report",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://eqtgroup.com/news/eqt-ab-publ-year-end-report-2025-2026-01-22",
+      "relevance_notes": "Total AUM of EUR 270B (EUR 141B fee-generating). Two segments: Private Capital and Real Assets. EUR 16B gross fund investments, EUR 14B co-investments (record year). 1,863 FTEs. Coller Capital acquisition announced."
+    },
+    {
+      "source_id": "PS-VD-028",
+      "firm": "EQT AB (EQT)",
+      "title": "EQT AB Annual and Sustainability Report 2024",
+      "date": "2025-03-13",
+      "document_type": "Annual Report",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://eqtgroup.com/news/eqt-ab-publishes-annual-and-sustainability-report-for-2024-2025-03-13",
+      "relevance_notes": "Comprehensive annual report covering strategy, governance, ESG integration, and financial performance with full-year audited statements."
+    },
+    {
+      "source_id": "PS-VD-029",
+      "firm": "EQT AB (EQT)",
+      "title": "EQT Capital Markets Event — London (Value Creation Lens)",
+      "date": "2025-05-22",
+      "document_type": "Investor Day Presentation",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://eqtgroup.com/news/invitation-to-eqts-capital-markets-event-in-london-on-22-may-2025-value-creation-through-the-lens-of-eqts-portfolio-companies-2025-03-17",
+      "relevance_notes": "Strategic deep dive on value creation through portfolio companies, thematic investing approach, evergreen offering for private wealth at inflection point."
+    },
+    {
+      "source_id": "PS-VD-030",
+      "firm": "Partners Group (PGHN)",
+      "title": "Partners Group Annual Results 2024 Presentation",
+      "date": "2025-03-11",
+      "document_type": "Results Presentation",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://www.partnersgroup.com/~/media/Files/P/Partnersgroup/Universal/shareholders/reports-and-presentations/2025/annual-results-2024-presentation.pdf",
+      "relevance_notes": "USD 96B AUM, 1,500+ professionals across 20 offices. Investment activity: $3.7B direct PE, $1.4B direct RE, $3.6B direct infrastructure, $4.2B direct debt. Empira acquisition."
+    },
+    {
+      "source_id": "PS-VD-031",
+      "firm": "Partners Group (PGHN)",
+      "title": "Partners Group IR Presentation — May 2025",
+      "date": "2025-05-27",
+      "document_type": "Investor Presentation",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://www.partnersgroup.com/~/media/files/p/partnersgroup/universal/shareholders/reports-and-presentations/2025/20250527-ir-presentation-pghn.pdf",
+      "relevance_notes": "Updated strategic positioning, AUM growth trajectory, private markets royalties as 5th asset class, direct investing model differentiation."
+    },
+    {
+      "source_id": "PS-VD-032",
+      "firm": "Partners Group (PGHN)",
+      "title": "Partners Group Interim Report H1 2025",
+      "date": "2025-09-15",
+      "document_type": "Interim Report",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://www.partnersgroup.com/~/media/files/p/partnersgroup/universal/shareholders/reports-and-presentations/2025/pghn-interim-report-2025.pdf",
+      "relevance_notes": "H1 2025 financial statements, AUM trends, fee income evolution, and interim investment activity data."
+    },
+    {
+      "source_id": "PS-VD-033",
+      "firm": "StepStone Group (STEP)",
+      "title": "StepStone Group Form 10-K Annual Report (FY2025, ended March 2025)",
+      "date": "2025-05-23",
+      "document_type": "10-K Annual Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://www.sec.gov/Archives/edgar/data/1796022/000179602225000041/step-20250331.htm",
+      "relevance_notes": "Total capital responsibility of ~$709B, AUM of $189B. Total revenues of $1.175B (+65%). 108 partners averaging 20+ years experience. Private markets solutions and advisory focus."
+    },
+    {
+      "source_id": "PS-VD-034",
+      "firm": "StepStone Group (STEP)",
+      "title": "StepStone Group Q4 FY2025 Earnings Call Transcript",
+      "date": "2025-05-22",
+      "document_type": "Earnings Call Transcript",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://seekingalpha.com/article/4789324-stepstone-group-inc-step-q4-2025-earnings-call-transcript",
+      "relevance_notes": "Record $31B raised, $27.5B fee-earning AUM growth (29% organic growth rate). Managed account re-up rate above 90% with 30% average growth on re-ups. Record FRE margin."
+    },
+    {
+      "source_id": "PS-VD-035",
+      "firm": "StepStone Group (STEP)",
+      "title": "StepStone Group FY2025 Q4 and Full Year Earnings Presentation",
+      "date": "2025-05-29",
+      "document_type": "Earnings Presentation",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://filecache.investorroom.com/mr5ir_hamiltonlane/309/HLNE_Fiscal_2025_Q4_and_Full_Year_2025_Earnings_Presentation.pdf",
+      "relevance_notes": "Detailed segment performance, fee-earning AUM breakdown, SME inflows by channel, private wealth penetration metrics."
+    },
+    {
+      "source_id": "PS-VD-036",
+      "firm": "Hamilton Lane (HLNE)",
+      "title": "Hamilton Lane Form 10-K Annual Report (FY2025, ended March 2025)",
+      "date": "2025-05-30",
+      "document_type": "10-K Annual Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://www.sec.gov/Archives/edgar/data/1433642/000143364225000066/hlne-2025annualreporttosec.pdf",
+      "relevance_notes": "AUM and supervision of $957.8B ($138.3B discretionary, $819.5B non-discretionary). Management and advisory fees of $513.9M (+14%). 760 professionals across global offices. 30+ years PE-focused."
+    },
+    {
+      "source_id": "PS-VD-037",
+      "firm": "Hamilton Lane (HLNE)",
+      "title": "Hamilton Lane Q4 FY2025 Results and Earnings Presentation",
+      "date": "2025-05-29",
+      "document_type": "Earnings Presentation",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://shareholders.hamiltonlane.com/financial-information/financial-results",
+      "relevance_notes": "Quarterly and full-year detail on discretionary AUM growth (+11%), fee-earning AUM (+10%), GAAP EPS of $5.41, and strategic positioning as a private markets specialist."
+    },
+    {
+      "source_id": "PS-VD-038",
+      "firm": "Hamilton Lane (HLNE)",
+      "title": "Hamilton Lane Q2 FY2026 Results",
+      "date": "2025-11-04",
+      "document_type": "Earnings Release",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://www.hamiltonlane.com/en-us/news/hlne-reports-q2-fiscal-2026-results",
+      "relevance_notes": "Most recent quarterly data providing updated AUM trajectory, fee income trends, and forward-looking management commentary."
+    },
+    {
+      "source_id": "PS-VD-039",
+      "firm": "Brookfield Corporation (BN)",
+      "title": "Brookfield Corporation Form 40-F Annual Report (FY2024)",
+      "date": "2025-03-21",
+      "document_type": "40-F Annual Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://bn.brookfield.com/reports-filings/annual-reports",
+      "relevance_notes": "Comprehensive parent-level financials covering asset management, insurance (Wealth Solutions), operating businesses, and real estate. Filed as foreign private issuer (40-F)."
+    },
+    {
+      "source_id": "PS-VD-040",
+      "firm": "Brookfield Corporation (BN)",
+      "title": "Brookfield Corporation 2025 Letter to Shareholders",
+      "date": "2026-02-12",
+      "document_type": "Letter to Shareholders",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://bn.brookfield.com/sites/brookfield-bn-v2/files/BN-IR-Master/Letter-to-Shareholders/2026/Q4-25%20BN%20Letter%20to%20Shareholders_vF.pdf",
+      "relevance_notes": "Record distributable earnings ($5.4B before realizations, +11% per share), $188B deployable capital, BAM FRE up 22% to $3.0B, Wealth Solutions earnings +24% to $1.7B, BNT merger plans."
+    },
+    {
+      "source_id": "PS-VD-041",
+      "firm": "Brookfield Corporation (BN)",
+      "title": "Brookfield Corporation Q4 2025 Earnings Call Transcript",
+      "date": "2026-02-12",
+      "document_type": "Earnings Call Transcript",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://www.fool.com/earnings/call-transcripts/2026/02/12/brookfield-bn-q4-2025-earnings-call-transcript/",
+      "relevance_notes": "Management discussion of record results, insurance entity merger timeline, $603B fee-bearing capital, Japan market entry, US private wealth distribution progress."
+    },
+    {
+      "source_id": "PS-VD-042",
+      "firm": "Intermediate Capital Group (ICP)",
+      "title": "ICG Annual Report and Accounts FY2025 (Year Ended March 2025)",
+      "date": "2025-06-15",
+      "document_type": "Annual Report",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://www.icgam.com/wp-content/uploads/2025/06/ICG_AR2025_Interactive_Final.pdf",
+      "relevance_notes": "Total AUM of $112B (+14% YoY). Management fees of GBP 604M (+19%). Performance fees of GBP 86M. $24B raised. Strategic Equity V closed at $11B (2x predecessor). SDP V raised $17B (Europe's largest direct lending fund)."
+    },
+    {
+      "source_id": "PS-VD-043",
+      "firm": "Intermediate Capital Group (ICP)",
+      "title": "ICG FY2025 Final Results Announcement",
+      "date": "2025-05-21",
+      "document_type": "Results Announcement",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://www.icgam.com/2025/05/21/icg-final-results-for-the-financial-year-ended-31-march-2025/",
+      "relevance_notes": "Milestone year: fee-earning AUM of $75B (+8%), 5-year annualised FEAUM growth of 14%. 15th consecutive dividend increase to 83p/share. Breadth at scale strategy execution."
+    },
+    {
+      "source_id": "PS-VD-044",
+      "firm": "Intermediate Capital Group (ICP)",
+      "title": "ICG H1 FY2026 Interim Results (Sept 2025)",
+      "date": "2025-11-15",
+      "document_type": "Interim Report",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://www.icgam.com/shareholders-and-debtholders/results-centre/",
+      "relevance_notes": "Updated AUM trends, Amundi strategic partnership for wealth distribution, ICG Core Private Equity evergreen product launch for US wealth investors, fee-earning AUM of $84B."
+    },
+    {
+      "source_id": "PS-VD-045",
+      "firm": "Ashmore Group (AMK)",
+      "title": "Ashmore Group Annual Report and Accounts FY2025 (Year Ended June 2025)",
+      "date": "2025-09-15",
+      "document_type": "Annual Report",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://ir.ashmoregroup.com/sites/ir/files/2025-09/Ashmore-FY2025-ARA-website.pdf",
+      "relevance_notes": "AUM of US$47.6B. Emerging markets specialist. Investment performance of US$4.1B offset by US$5.8B net outflows. Revenue GBP 142.4M (-24% YoY). 38% of AUM from EM-domiciled clients. Local businesses growing (Colombia, India)."
+    },
+    {
+      "source_id": "PS-VD-046",
+      "firm": "Ashmore Group (AMK)",
+      "title": "Ashmore Group Investor Presentation — October 2025",
+      "date": "2025-10-15",
+      "document_type": "Investor Presentation",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://ir.ashmoregroup.com/sites/ir/files/2025-10/Ashmore_investor_presentation_Oct2025.pdf",
+      "relevance_notes": "Three-phase growth strategy, investment performance track record, emerging markets opportunity thesis, asset class breakdown, and local business expansion plans."
+    },
+    {
+      "source_id": "PS-VD-047",
+      "firm": "Ashmore Group (AMK)",
+      "title": "Ashmore 2026 Emerging Markets Outlook",
+      "date": "2025-12-15",
+      "document_type": "Research Report",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://www.ashmoregroup.com/en-us/insights/2026-emerging-markets-outlook",
+      "relevance_notes": "Forward-looking market thesis underpinning Ashmore's strategic positioning, EM investment rationale, and macro outlook."
+    },
+    {
+      "source_id": "PS-VD-048",
+      "firm": "Industry-wide",
+      "title": "Bain & Company Global Private Equity Report 2026",
+      "date": "2026-02-25",
+      "document_type": "Industry Report",
+      "bias_tag": "industry-report",
+      "url_or_reference": "https://www.bain.com/insights/topics/global-private-equity-report/",
+      "relevance_notes": "Authoritative annual industry benchmark. Key findings: '12 is the new 5' (faster EBITDA growth required), deal/exit values surging but rebound narrow, GP-led continuation vehicles +62% YoY, secondaries expanding as exit channel (+41% YoY). Hyper-competitive era thesis."
+    },
+    {
+      "source_id": "PS-VD-049",
+      "firm": "Industry-wide",
+      "title": "McKinsey Global Private Markets Report 2026",
+      "date": "2026-02-19",
+      "document_type": "Industry Report",
+      "bias_tag": "industry-report",
+      "url_or_reference": "https://www.mckinsey.com/industries/private-capital/our-insights/global-private-markets-report",
+      "relevance_notes": "PE deal value up 19% to $2.6T. Secondaries hit record $240B (+48%). 'Alpha must now be made, not found.' Multiple expansion and cheap debt era over. Structural shift to operational value creation."
+    },
+    {
+      "source_id": "PS-VD-050",
+      "firm": "Industry-wide",
+      "title": "Preqin Global Reports 2026 — Private Equity and Private Credit",
+      "date": "2025-12-17",
+      "document_type": "Industry Report",
+      "bias_tag": "industry-report",
+      "url_or_reference": "https://www.preqin.com/global-report",
+      "relevance_notes": "Global PE fundraising $507B in Q1-Q3 2025. 80% of investors cite exits as top concern. 81% plan to maintain/increase private credit allocation. Private credit projected to reach $4.5T by 2030. Bank disintermediation driving direct lending demand."
+    },
+    {
+      "source_id": "PS-VD-051",
+      "firm": "Industry-wide",
+      "title": "Preqin Private Markets in 2030 Report",
+      "date": "2025-10-16",
+      "document_type": "Industry Report",
+      "bias_tag": "industry-report",
+      "url_or_reference": "https://www.preqin.com/future",
+      "relevance_notes": "Long-term AUM and fundraising projections to 2030, asset class growth forecasts, structural trends in alternatives including democratization and insurance capital."
+    },
+    {
+      "source_id": "PS-VD-052",
+      "firm": "Industry-wide (Pension Allocators)",
+      "title": "CalPERS Private Equity Program Update — Board Presentation (June 2025)",
+      "date": "2025-06-16",
+      "document_type": "Board Document",
+      "bias_tag": "third-party-analyst",
+      "url_or_reference": "https://www.calpers.ca.gov/documents/202506-invest-agenda-item06c-01/download?inline=",
+      "relevance_notes": "CalPERS PE allocation increased to 17% target (range 12-22%). Total Portfolio Approach adopted effective July 2026. PE portfolio at 18.3% of fund as of Jan 2026. Direct insight into LP allocation behavior and GP selection criteria."
+    },
+    {
+      "source_id": "PS-VD-053",
+      "firm": "Industry-wide (Pension Allocators)",
+      "title": "CalPERS 'The Private Equity Turnaround' Board Presentation (Jan 2026)",
+      "date": "2026-01-15",
+      "document_type": "Board Document",
+      "bias_tag": "third-party-analyst",
+      "url_or_reference": "https://www.calpers.ca.gov/documents/202601-full-private-equity-turnaround-powerpoint/download?inline=",
+      "relevance_notes": "CalPERS PE program evolution, GP selection criteria, co-investment strategy, and benchmark framework. Provides LP perspective on what drives allocation decisions across alternative asset managers."
+    },
+    {
+      "source_id": "PS-VD-054",
+      "firm": "Industry-wide (Pension Allocators)",
+      "title": "CalSTRS Investment Portfolio — Private Equity Allocation Report",
+      "date": "2025-09-30",
+      "document_type": "Board Document",
+      "bias_tag": "third-party-analyst",
+      "url_or_reference": "https://www.calstrs.com/investment-portfolio",
+      "relevance_notes": "CalSTRS PE NAV of $44.5B (14.5% of fund vs 13% target). $5.1B committed across 38 investments in H1. LP allocation behavior and over-allocation dynamics relevant to understanding GP fundraising environment."
+    },
+    {
+      "source_id": "PS-VD-055",
+      "firm": "Blackstone (BX)",
+      "title": "Blackstone Investor Day Presentation (2024)",
+      "date": "2024-10-10",
+      "document_type": "Investor Day Presentation",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://ir.blackstone.com/sec-filings/default.aspx",
+      "relevance_notes": "Long-term strategic roadmap, perpetual capital vehicle growth targets, insurance capital strategy, private wealth penetration plans, and segment-level growth ambitions."
+    },
+    {
+      "source_id": "PS-VD-056",
+      "firm": "Apollo Global Management (APO)",
+      "title": "Apollo Investor Day Presentation (October 2024)",
+      "date": "2024-10-01",
+      "document_type": "Investor Day Presentation",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://ir.apollo.com/news-events/presentations",
+      "relevance_notes": "Financial targets, origination platform scale, Athene integration roadmap, retirement services strategy, and asset management growth framework that underpins 2025-2026 results."
+    },
+    {
+      "source_id": "PS-VD-057",
+      "firm": "Carlyle Group (CG)",
+      "title": "Carlyle Q3 2025 Financial Results",
+      "date": "2025-10-31",
+      "document_type": "Earnings Release",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://ir.carlyle.com/static-files/8678704d-1a1d-42ee-994a-ab9858cd4151",
+      "relevance_notes": "Quarterly progression data showing trajectory toward record FY2025 results, segment-level fundraising and deployment trends."
+    },
+    {
+      "source_id": "PS-VD-058",
+      "firm": "EQT AB (EQT)",
+      "title": "EQT AB Q3 2025 Announcement",
+      "date": "2025-10-16",
+      "document_type": "Quarterly Report",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://eqtgroup.com/news/eqt-ab-publ-q3-announcement-2025-2025-10-16",
+      "relevance_notes": "Quarterly AUM and fee data, fundraising progress, Coller Capital acquisition integration update, thematic investment pipeline."
+    },
+    {
+      "source_id": "PS-VD-059",
+      "firm": "Partners Group (PGHN)",
+      "title": "Partners Group Corporate Governance Report 2024",
+      "date": "2025-03-15",
+      "document_type": "Governance Report",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://www.partnersgroup.com/~/media/Files/P/Partnersgroup/Universal/shareholders/reports-and-presentations/2025/pghn-corporate-governance-report-2024.pdf",
+      "relevance_notes": "Board composition, executive compensation, ownership structure, and governance framework for a Swiss-listed direct investing specialist."
+    },
+    {
+      "source_id": "PS-VD-060",
+      "firm": "Ares Management (ARES)",
+      "title": "Ares Management 10-Q (Q1 2025)",
+      "date": "2025-05-08",
+      "document_type": "10-Q Quarterly Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://www.sec.gov/Archives/edgar/data/1176948/000162828025024412/ares-20250331.htm",
+      "relevance_notes": "Interim financials covering Credit Group dominance, real assets expansion, secondaries platform buildout, and insurance solutions trajectory."
+    },
+    {
+      "source_id": "PS-VD-061",
+      "firm": "Industry-wide",
+      "title": "Bain & Company Global M&A Report 2025-26 Lookback",
+      "date": "2026-01-15",
+      "document_type": "Industry Report",
+      "bias_tag": "industry-report",
+      "url_or_reference": "https://allnews.ch/sites/default/files/ckfinder/userfiles/Bain%20Study%20M&A%202025-26.pdf",
+      "relevance_notes": "M&A market context for alternative asset managers as deal sponsors, take-private trends, carve-out activity, and PE-driven transaction volumes."
+    },
+    {
+      "source_id": "PS-VD-062",
+      "firm": "Brookfield Asset Management (BAM)",
+      "title": "BAM Letters to Shareholders Archive",
+      "date": "2026-02-13",
+      "document_type": "Letter to Shareholders",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://bam.brookfield.com/reports-sec-filings/letters-shareholders",
+      "relevance_notes": "Bruce Flatt's strategic narrative on fee-related earnings growth, fundraising momentum, AI infrastructure investments, and global platform scaling."
+    },
+    {
+      "source_id": "PS-VD-063",
+      "firm": "Blue Owl Capital (OWL)",
+      "title": "Blue Owl Capital Q4 2025 Earnings Release",
+      "date": "2026-02-06",
+      "document_type": "Earnings Release",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://ir.blueowl.com/Investors/financials/quarterly-results/default.aspx",
+      "relevance_notes": "Quarterly detail on permanent capital vehicle growth, Credit platform, Real Assets, GP Strategic Capital segment metrics, and integration of recent acquisitions."
+    },
+    {
+      "source_id": "PS-VD-064",
+      "firm": "KKR (KKR)",
+      "title": "KKR 10-Q (Q2 2025, period ended June 30, 2025)",
+      "date": "2025-08-06",
+      "document_type": "10-Q Quarterly Report",
+      "bias_tag": "regulatory-filing",
+      "url_or_reference": "https://www.sec.gov/Archives/edgar/data/1957845/000195784525000061/kkr-20250630.htm",
+      "relevance_notes": "Interim financials for KKR including insurance segment (Global Atlantic), strategic holdings, and capital markets activity. Provides mid-year AUM trajectory data."
+    },
+    {
+      "source_id": "PS-VD-065",
+      "firm": "Ashmore Group (AMK)",
+      "title": "Ashmore Group Investor Presentation — March 2025",
+      "date": "2025-03-15",
+      "document_type": "Investor Presentation",
+      "bias_tag": "company-produced",
+      "url_or_reference": "https://ir.ashmoregroup.com/sites/ir/files/2025-03/Ashmore%20investor%20presentation%20-%20Mar%202025.pdf",
+      "relevance_notes": "EM investment thesis, AUM by theme, performance track record, local business scale, and client base composition. Provides comparative baseline for H2 2025 evolution."
+    }
+  ],
+  "coverage_summary": {
+    "total_sources": 65,
+    "firms_covered": 15,
+    "firms_list": [
+      "Blackstone (BX)",
+      "KKR (KKR)",
+      "Apollo Global Management (APO)",
+      "Ares Management (ARES)",
+      "Brookfield Asset Management (BAM)",
+      "Blue Owl Capital (OWL)",
+      "TPG Inc. (TPG)",
+      "Carlyle Group (CG)",
+      "EQT AB (EQT)",
+      "Partners Group (PGHN)",
+      "StepStone Group (STEP)",
+      "Hamilton Lane (HLNE)",
+      "Brookfield Corporation (BN)",
+      "Intermediate Capital Group (ICP)",
+      "Ashmore Group (AMK)"
+    ],
+    "min_sources_per_firm": 3,
+    "max_sources_per_firm": 5,
+    "avg_sources_per_firm": 4.3,
+    "industry_wide_sources": 7,
+    "source_type_distribution": {
+      "10-K_or_annual_report": 15,
+      "earnings_call_transcript": 7,
+      "earnings_release_or_supplement": 7,
+      "investor_presentation": 6,
+      "proxy_statement": 4,
+      "quarterly_report_10Q": 4,
+      "industry_report": 5,
+      "press_release": 2,
+      "board_document_pension": 3,
+      "letter_to_shareholders": 2,
+      "interim_report": 2,
+      "governance_report": 1,
+      "investor_day_presentation": 3,
+      "research_report": 1,
+      "results_announcement": 2,
+      "other": 1
+    },
+    "bias_tag_distribution": {
+      "regulatory-filing": 19,
+      "company-produced": 31,
+      "industry-report": 5,
+      "third-party-analyst": 3,
+      "peer-disclosure": 0,
+      "journalist": 0
+    },
+    "notes": "HLN in the original peer list has been mapped to Hamilton Lane (HLNE), a publicly listed private markets specialist, as Hellman & Friedman is a private firm with no public filings. All 15 firms have at least 3 sources covering annual filings, management commentary, and either earnings transcripts or investor presentations. Industry-wide sources include Bain PE Report 2026, McKinsey Global Private Markets Report 2026, Preqin reports, and CalPERS/CalSTRS board documents providing LP allocation perspective."
+  }
+}

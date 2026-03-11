@@ -1,0 +1,1602 @@
+{
+  "stage": "data_gaps",
+  "run_id": "2026-03-10-run2",
+  "generated_at": "2026-03-10T12:00:00Z",
+  "summary": {
+    "total_firms": 24,
+    "total_driver_metrics": 25,
+    "total_cells": 600,
+    "filled_cells": 418,
+    "fill_rate_pct": 69.7,
+    "coverage_threshold_firms": 14,
+    "metrics_above_threshold": 19,
+    "metrics_below_threshold": 6,
+    "zero_coverage_count": 0,
+    "recommended_action": "proceed_with_warning"
+  },
+  "gaps": [
+    {
+      "firm_id": "FIRM-001",
+      "ticker": "BX",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-001",
+      "ticker": "BX",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-001",
+      "ticker": "BX",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-001",
+      "ticker": "BX",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-002",
+      "ticker": "BAM",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-002",
+      "ticker": "BAM",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-002",
+      "ticker": "BAM",
+      "metric_id": "MET-VD-019",
+      "metric_name": "FEAUM per Employee",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-002",
+      "ticker": "BAM",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-002",
+      "ticker": "BAM",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-003",
+      "ticker": "APO",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-003",
+      "ticker": "APO",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-003",
+      "ticker": "APO",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-003",
+      "ticker": "APO",
+      "metric_id": "MET-VD-017",
+      "metric_name": "Performance Fee Share of Total Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-003",
+      "ticker": "APO",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-003",
+      "ticker": "APO",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-004",
+      "ticker": "KKR",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-004",
+      "ticker": "KKR",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-004",
+      "ticker": "KKR",
+      "metric_id": "MET-VD-014",
+      "metric_name": "FRE Growth, Year-over-Year",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-004",
+      "ticker": "KKR",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-004",
+      "ticker": "KKR",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-005",
+      "ticker": "ARES",
+      "metric_id": "MET-VD-001",
+      "metric_name": "Distributable Earnings per Share",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-005",
+      "ticker": "ARES",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-005",
+      "ticker": "ARES",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-005",
+      "ticker": "ARES",
+      "metric_id": "MET-VD-014",
+      "metric_name": "FRE Growth, Year-over-Year",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-005",
+      "ticker": "ARES",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-005",
+      "ticker": "ARES",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-006",
+      "ticker": "CG",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-006",
+      "ticker": "CG",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-006",
+      "ticker": "CG",
+      "metric_id": "MET-VD-016",
+      "metric_name": "Management Fee Rate",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-006",
+      "ticker": "CG",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-006",
+      "ticker": "CG",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-007",
+      "ticker": "VCTR",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-007",
+      "ticker": "VCTR",
+      "metric_id": "MET-VD-006",
+      "metric_name": "FEAUM Growth, Year-over-Year",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-007",
+      "ticker": "VCTR",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-007",
+      "ticker": "VCTR",
+      "metric_id": "MET-VD-014",
+      "metric_name": "FRE Growth, Year-over-Year",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-007",
+      "ticker": "VCTR",
+      "metric_id": "MET-VD-018",
+      "metric_name": "Headcount to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-007",
+      "ticker": "VCTR",
+      "metric_id": "MET-VD-019",
+      "metric_name": "FEAUM per Employee",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-007",
+      "ticker": "VCTR",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-007",
+      "ticker": "VCTR",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-008",
+      "ticker": "OWL",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-008",
+      "ticker": "OWL",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_applicable"
+    },
+    {
+      "firm_id": "FIRM-008",
+      "ticker": "OWL",
+      "metric_id": "MET-VD-006",
+      "metric_name": "FEAUM Growth, Year-over-Year",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-008",
+      "ticker": "OWL",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-008",
+      "ticker": "OWL",
+      "metric_id": "MET-VD-014",
+      "metric_name": "FRE Growth, Year-over-Year",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-008",
+      "ticker": "OWL",
+      "metric_id": "MET-VD-018",
+      "metric_name": "Headcount to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-008",
+      "ticker": "OWL",
+      "metric_id": "MET-VD-019",
+      "metric_name": "FEAUM per Employee",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-008",
+      "ticker": "OWL",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-008",
+      "ticker": "OWL",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-009",
+      "ticker": "TPG",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-009",
+      "ticker": "TPG",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-009",
+      "ticker": "TPG",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-009",
+      "ticker": "TPG",
+      "metric_id": "MET-VD-016",
+      "metric_name": "Management Fee Rate",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-009",
+      "ticker": "TPG",
+      "metric_id": "MET-VD-017",
+      "metric_name": "Performance Fee Share of Total Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-009",
+      "ticker": "TPG",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-009",
+      "ticker": "TPG",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-010",
+      "ticker": "EQT",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-010",
+      "ticker": "EQT",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-010",
+      "ticker": "EQT",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-010",
+      "ticker": "EQT",
+      "metric_id": "MET-VD-017",
+      "metric_name": "Performance Fee Share of Total Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-010",
+      "ticker": "EQT",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_applicable"
+    },
+    {
+      "firm_id": "FIRM-010",
+      "ticker": "EQT",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-004",
+      "metric_name": "Fee-Earning AUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-006",
+      "metric_name": "FEAUM Growth, Year-over-Year",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-007",
+      "metric_name": "FEAUM Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-010",
+      "metric_name": "Asset Class Herfindahl-Hirschman Index",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-015",
+      "metric_name": "Compensation-to-Revenue Ratio",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-016",
+      "metric_name": "Management Fee Rate",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-017",
+      "metric_name": "Performance Fee Share of Total Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-018",
+      "metric_name": "Headcount to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-019",
+      "metric_name": "FEAUM per Employee",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-020",
+      "metric_name": "Compensation and Benefits to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_applicable"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-021",
+      "metric_name": "G&A Expense to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_applicable"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_applicable"
+    },
+    {
+      "firm_id": "FIRM-011",
+      "ticker": "MAN",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-012",
+      "ticker": "STEP",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-012",
+      "ticker": "STEP",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-012",
+      "ticker": "STEP",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-012",
+      "ticker": "STEP",
+      "metric_id": "MET-VD-017",
+      "metric_name": "Performance Fee Share of Total Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-012",
+      "ticker": "STEP",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-012",
+      "ticker": "STEP",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_applicable"
+    },
+    {
+      "firm_id": "FIRM-012",
+      "ticker": "STEP",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-013",
+      "ticker": "CVC",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-013",
+      "ticker": "CVC",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-013",
+      "ticker": "CVC",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-013",
+      "ticker": "CVC",
+      "metric_id": "MET-VD-017",
+      "metric_name": "Performance Fee Share of Total Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-013",
+      "ticker": "CVC",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-004",
+      "metric_name": "Fee-Earning AUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-006",
+      "metric_name": "FEAUM Growth, Year-over-Year",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-007",
+      "metric_name": "FEAUM Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-010",
+      "metric_name": "Asset Class Herfindahl-Hirschman Index",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-015",
+      "metric_name": "Compensation-to-Revenue Ratio",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-016",
+      "metric_name": "Management Fee Rate",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-017",
+      "metric_name": "Performance Fee Share of Total Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-018",
+      "metric_name": "Headcount to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-019",
+      "metric_name": "FEAUM per Employee",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-020",
+      "metric_name": "Compensation and Benefits to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-021",
+      "metric_name": "G&A Expense to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_applicable"
+    },
+    {
+      "firm_id": "FIRM-014",
+      "ticker": "PGHN",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-015",
+      "ticker": "HLNE",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-015",
+      "ticker": "HLNE",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-015",
+      "ticker": "HLNE",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-015",
+      "ticker": "HLNE",
+      "metric_id": "MET-VD-017",
+      "metric_name": "Performance Fee Share of Total Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-015",
+      "ticker": "HLNE",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-015",
+      "ticker": "HLNE",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_applicable"
+    },
+    {
+      "firm_id": "FIRM-015",
+      "ticker": "HLNE",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-016",
+      "ticker": "ICP",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-016",
+      "ticker": "ICP",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-016",
+      "ticker": "ICP",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-016",
+      "ticker": "ICP",
+      "metric_id": "MET-VD-013",
+      "metric_name": "Fee-Related Earnings Margin",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-016",
+      "ticker": "ICP",
+      "metric_id": "MET-VD-014",
+      "metric_name": "FRE Growth, Year-over-Year",
+      "gap_type": "never_attempted",
+      "missing_reason": "derivation_requires_prior_year_FRE"
+    },
+    {
+      "firm_id": "FIRM-016",
+      "ticker": "ICP",
+      "metric_id": "MET-VD-017",
+      "metric_name": "Performance Fee Share of Total Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-016",
+      "ticker": "ICP",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_applicable"
+    },
+    {
+      "firm_id": "FIRM-016",
+      "ticker": "ICP",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-017",
+      "ticker": "BPT",
+      "metric_id": "MET-VD-001",
+      "metric_name": "Distributable Earnings per Share",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-017",
+      "ticker": "BPT",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-017",
+      "ticker": "BPT",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-017",
+      "ticker": "BPT",
+      "metric_id": "MET-VD-011",
+      "metric_name": "Permanent Capital Percentage",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-017",
+      "ticker": "BPT",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-017",
+      "ticker": "BPT",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-017",
+      "ticker": "BPT",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-018",
+      "ticker": "ONEX",
+      "metric_id": "MET-VD-001",
+      "metric_name": "Distributable Earnings per Share",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-018",
+      "ticker": "ONEX",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-018",
+      "ticker": "ONEX",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-018",
+      "ticker": "ONEX",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-018",
+      "ticker": "ONEX",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-018",
+      "ticker": "ONEX",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-019",
+      "ticker": "PAX",
+      "metric_id": "MET-VD-001",
+      "metric_name": "Distributable Earnings per Share",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-019",
+      "ticker": "PAX",
+      "metric_id": "MET-VD-007",
+      "metric_name": "FEAUM Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-019",
+      "ticker": "PAX",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-019",
+      "ticker": "PAX",
+      "metric_id": "MET-VD-019",
+      "metric_name": "FEAUM per Employee",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-019",
+      "ticker": "PAX",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-019",
+      "ticker": "PAX",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-019",
+      "ticker": "PAX",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-020",
+      "ticker": "TKO",
+      "metric_id": "MET-VD-001",
+      "metric_name": "Distributable Earnings per Share",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-020",
+      "ticker": "TKO",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-020",
+      "ticker": "TKO",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-020",
+      "ticker": "TKO",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-020",
+      "ticker": "TKO",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_calculable"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-004",
+      "metric_name": "Fee-Earning AUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-005",
+      "metric_name": "Total AUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-007",
+      "metric_name": "FEAUM Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-009",
+      "metric_name": "Fundraising as Percentage of AUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_comparable"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-010",
+      "metric_name": "Asset Class Herfindahl-Hirschman Index",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-015",
+      "metric_name": "Compensation-to-Revenue Ratio",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-016",
+      "metric_name": "Management Fee Rate",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-018",
+      "metric_name": "Headcount to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-019",
+      "metric_name": "FEAUM per Employee",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-020",
+      "metric_name": "Compensation and Benefits to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_calculable"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-021",
+      "metric_name": "G&A Expense to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_calculable"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-022",
+      "metric_name": "OpEx Growth minus Fee Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_comparable"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-021",
+      "ticker": "VINP",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-022",
+      "ticker": "RPC",
+      "metric_id": "MET-VD-002",
+      "metric_name": "Earnings per Share (GAAP)",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-022",
+      "ticker": "RPC",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-022",
+      "ticker": "RPC",
+      "metric_id": "MET-VD-011",
+      "metric_name": "Permanent Capital Percentage",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-022",
+      "ticker": "RPC",
+      "metric_id": "MET-VD-012",
+      "metric_name": "Credit Percentage of AUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_collected"
+    },
+    {
+      "firm_id": "FIRM-022",
+      "ticker": "RPC",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-022",
+      "ticker": "RPC",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-022",
+      "ticker": "RPC",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-023",
+      "ticker": "RF",
+      "metric_id": "MET-VD-001",
+      "metric_name": "Distributable Earnings per Share",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-023",
+      "ticker": "RF",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-023",
+      "ticker": "RF",
+      "metric_id": "MET-VD-008",
+      "metric_name": "Net Organic FEAUM Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-023",
+      "ticker": "RF",
+      "metric_id": "MET-VD-017",
+      "metric_name": "Performance Fee Share of Total Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-023",
+      "ticker": "RF",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-023",
+      "ticker": "RF",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-023",
+      "ticker": "RF",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-024",
+      "ticker": "ANTIN",
+      "metric_id": "MET-VD-001",
+      "metric_name": "Distributable Earnings per Share",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-024",
+      "ticker": "ANTIN",
+      "metric_id": "MET-VD-003",
+      "metric_name": "DE/Share Growth, 3-Year CAGR",
+      "gap_type": "never_attempted",
+      "missing_reason": ""
+    },
+    {
+      "firm_id": "FIRM-024",
+      "ticker": "ANTIN",
+      "metric_id": "MET-VD-023",
+      "metric_name": "Constant Currency Revenue Growth",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    },
+    {
+      "firm_id": "FIRM-024",
+      "ticker": "ANTIN",
+      "metric_id": "MET-VD-024",
+      "metric_name": "Integration Costs to Revenue",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_applicable"
+    },
+    {
+      "firm_id": "FIRM-024",
+      "ticker": "ANTIN",
+      "metric_id": "MET-VD-025",
+      "metric_name": "CapEx to FEAUM",
+      "gap_type": "never_attempted",
+      "missing_reason": "not_disclosed"
+    }
+  ],
+  "per_metric_coverage": {
+    "MET-VD-001": {
+      "filled": 17,
+      "total": 24,
+      "pct": 70.8
+    },
+    "MET-VD-002": {
+      "filled": 7,
+      "total": 24,
+      "pct": 29.2
+    },
+    "MET-VD-003": {
+      "filled": 8,
+      "total": 24,
+      "pct": 33.3
+    },
+    "MET-VD-004": {
+      "filled": 21,
+      "total": 24,
+      "pct": 87.5
+    },
+    "MET-VD-005": {
+      "filled": 23,
+      "total": 24,
+      "pct": 95.8
+    },
+    "MET-VD-006": {
+      "filled": 20,
+      "total": 24,
+      "pct": 83.3
+    },
+    "MET-VD-007": {
+      "filled": 20,
+      "total": 24,
+      "pct": 83.3
+    },
+    "MET-VD-008": {
+      "filled": 2,
+      "total": 24,
+      "pct": 8.3
+    },
+    "MET-VD-009": {
+      "filled": 23,
+      "total": 24,
+      "pct": 95.8
+    },
+    "MET-VD-010": {
+      "filled": 21,
+      "total": 24,
+      "pct": 87.5
+    },
+    "MET-VD-011": {
+      "filled": 22,
+      "total": 24,
+      "pct": 91.7
+    },
+    "MET-VD-012": {
+      "filled": 23,
+      "total": 24,
+      "pct": 95.8
+    },
+    "MET-VD-013": {
+      "filled": 23,
+      "total": 24,
+      "pct": 95.8
+    },
+    "MET-VD-014": {
+      "filled": 19,
+      "total": 24,
+      "pct": 79.2
+    },
+    "MET-VD-015": {
+      "filled": 21,
+      "total": 24,
+      "pct": 87.5
+    },
+    "MET-VD-016": {
+      "filled": 19,
+      "total": 24,
+      "pct": 79.2
+    },
+    "MET-VD-017": {
+      "filled": 14,
+      "total": 24,
+      "pct": 58.3
+    },
+    "MET-VD-018": {
+      "filled": 19,
+      "total": 24,
+      "pct": 79.2
+    },
+    "MET-VD-019": {
+      "filled": 17,
+      "total": 24,
+      "pct": 70.8
+    },
+    "MET-VD-020": {
+      "filled": 21,
+      "total": 24,
+      "pct": 87.5
+    },
+    "MET-VD-021": {
+      "filled": 21,
+      "total": 24,
+      "pct": 87.5
+    },
+    "MET-VD-022": {
+      "filled": 23,
+      "total": 24,
+      "pct": 95.8
+    },
+    "MET-VD-023": {
+      "filled": 4,
+      "total": 24,
+      "pct": 16.7
+    },
+    "MET-VD-024": {
+      "filled": 2,
+      "total": 24,
+      "pct": 8.3
+    },
+    "MET-VD-025": {
+      "filled": 8,
+      "total": 24,
+      "pct": 33.3
+    }
+  }
+}

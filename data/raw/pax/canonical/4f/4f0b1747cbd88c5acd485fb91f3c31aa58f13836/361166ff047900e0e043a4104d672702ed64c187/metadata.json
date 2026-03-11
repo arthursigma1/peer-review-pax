@@ -1,0 +1,38 @@
+{
+  "normalized_url": "last10k.com/sec-filings/tpg/0001193125-25-091415.htm",
+  "canonical_url": "https://last10k.com/sec-filings/tpg/0001193125-25-091415.htm",
+  "content_hash": "361166ff047900e0e043a4104d672702ed64c187",
+  "evidence_version_id": "64507e4218e1550611adde48457fe404c293c725",
+  "supersedes_version_id": null,
+  "captured_at": "2026-03-10T00:43:32.788028Z",
+  "verified_at": "2026-03-11T00:36:34.483735Z",
+  "derived_from_run": "2026-03-09-run2",
+  "crawl_run": "crawl",
+  "source_id_at_capture": "PS-VD-023",
+  "firm_at_capture": "TPG",
+  "quality_bucket": "good",
+  "text_length": 4914,
+  "content_type": "text/html; charset=utf-8",
+  "freshness_class": "hub_or_archive_page",
+  "freshness_ttl_days": 14,
+  "material_change_policy": "dynamic_latest_auto_promote",
+  "extraction_modes": [
+    "document_links"
+  ],
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl",
+  "priority_score": 22,
+  "pinned_sessions": [
+    "2026-03-07",
+    "2026-03-07-run2",
+    "2026-03-08-run2",
+    "2026-03-09-run2",
+    "2026-03-10-run2",
+    "2026-03-11-incremental-pilot"
+  ],
+  "anomaly_flags": [
+    "source_id_collision"
+  ],
+  "canonical_text_path": "data/raw/pax/canonical/4f/4f0b1747cbd88c5acd485fb91f3c31aa58f13836/361166ff047900e0e043a4104d672702ed64c187/evidence.txt",
+  "metadata_path": "data/raw/pax/canonical/4f/4f0b1747cbd88c5acd485fb91f3c31aa58f13836/361166ff047900e0e043a4104d672702ed64c187/metadata.json"
+}

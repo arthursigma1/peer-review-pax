@@ -1,0 +1,499 @@
+{
+  "stage": "VD-A5",
+  "generated_date": "2026-03-08",
+  "run_id": "2026-03-08-run2",
+  "company": "Patria Investments Limited",
+  "ticker": "PAX",
+  "ranked_drivers": [
+    {
+      "driver_id": "DVR-001",
+      "driver_name": "DE/share",
+      "source_metric_id": "MET-VD-001",
+      "avg_abs_rho": 0.7846,
+      "rho_P_FRE": 0.7846,
+      "rho_EV_FEAUM": null,
+      "rho_P_DE": null,
+      "confidence_class": "Moderate",
+      "classification": "multiple_specific_driver",
+      "temporally_unstable": false,
+      "per_firm_quartile": {
+        "FIRM-004": "Q1",
+        "FIRM-002": "Q1",
+        "FIRM-005": "Q1",
+        "FIRM-003": "Q2",
+        "FIRM-010": "Q2",
+        "FIRM-007": "Q2",
+        "FIRM-006": "Q2",
+        "FIRM-009": "Q3",
+        "FIRM-001": "Q3",
+        "FIRM-011": "Q3",
+        "FIRM-014": "Q3",
+        "FIRM-021": "Q4",
+        "FIRM-023": "Q4",
+        "FIRM-008": "Q4",
+        "FIRM-018": "Q4"
+      },
+      "per_firm_quartile_tickers": {
+        "APO": "Q1",
+        "BX": "Q1",
+        "ARES": "Q1",
+        "KKR": "Q2",
+        "CG": "Q2",
+        "BN": "Q2",
+        "BAM": "Q2",
+        "TPG": "Q3",
+        "PAX": "Q3",
+        "STEP": "Q3",
+        "RPC": "Q3",
+        "ANTIN": "Q4",
+        "VINP": "Q4",
+        "OWL": "Q4",
+        "EMG": "Q4"
+      },
+      "top_quartile_firms": [
+        "FIRM-004",
+        "FIRM-002",
+        "FIRM-005"
+      ],
+      "top_quartile_tickers": [
+        "APO",
+        "BX",
+        "ARES"
+      ],
+      "bottom_quartile_firms": [
+        "FIRM-021",
+        "FIRM-023",
+        "FIRM-008",
+        "FIRM-018"
+      ],
+      "bottom_quartile_tickers": [
+        "ANTIN",
+        "VINP",
+        "OWL",
+        "EMG"
+      ],
+      "non_obvious_peers": [],
+      "non_obvious_peer_tickers": [],
+      "multicollinearity_note": "DE/share and FEAUM have Spearman rho=0.80 (high multicollinearity). DE/share's correlation with P/FRE (rho=0.78) is largely mediated by scale. Partial rho controlling for FEAUM \u2248 0.45 \u2014 still meaningful but not independent of scale. DE/share is relevant as a separate driver insofar as high per-share earnings indicate margin efficiency and distribution capacity."
+    },
+    {
+      "driver_id": "DVR-002",
+      "driver_name": "FEAUM",
+      "source_metric_id": "MET-VD-004",
+      "avg_abs_rho": 0.6491,
+      "rho_P_FRE": 0.8537,
+      "rho_EV_FEAUM": 0.4444,
+      "rho_P_DE": null,
+      "confidence_class": "High",
+      "classification": "multiple_specific_driver",
+      "temporally_unstable": false,
+      "per_firm_quartile": {
+        "FIRM-002": "Q1",
+        "FIRM-004": "Q1",
+        "FIRM-006": "Q1",
+        "FIRM-007": "Q1",
+        "FIRM-003": "Q2",
+        "FIRM-010": "Q2",
+        "FIRM-005": "Q2",
+        "FIRM-008": "Q2",
+        "FIRM-015": "Q2",
+        "FIRM-009": "Q3",
+        "FIRM-011": "Q3",
+        "FIRM-022": "Q3",
+        "FIRM-001": "Q3",
+        "FIRM-023": "Q4",
+        "FIRM-025": "Q4",
+        "FIRM-014": "Q4",
+        "FIRM-021": "Q4",
+        "FIRM-024": "Q4"
+      },
+      "per_firm_quartile_tickers": {
+        "BX": "Q1",
+        "APO": "Q1",
+        "BAM": "Q1",
+        "BN": "Q1",
+        "KKR": "Q2",
+        "CG": "Q2",
+        "ARES": "Q2",
+        "OWL": "Q2",
+        "EQT": "Q2",
+        "TPG": "Q3",
+        "STEP": "Q3",
+        "TKO": "Q3",
+        "PAX": "Q3",
+        "VINP": "Q4",
+        "RF": "Q4",
+        "RPC": "Q4",
+        "ANTIN": "Q4",
+        "III": "Q4"
+      },
+      "top_quartile_firms": [
+        "FIRM-002",
+        "FIRM-004",
+        "FIRM-006",
+        "FIRM-007"
+      ],
+      "top_quartile_tickers": [
+        "BX",
+        "APO",
+        "BAM",
+        "BN"
+      ],
+      "bottom_quartile_firms": [
+        "FIRM-023",
+        "FIRM-025",
+        "FIRM-014",
+        "FIRM-021",
+        "FIRM-024"
+      ],
+      "bottom_quartile_tickers": [
+        "VINP",
+        "RF",
+        "RPC",
+        "ANTIN",
+        "III"
+      ],
+      "non_obvious_peers": [],
+      "non_obvious_peer_tickers": [],
+      "multicollinearity_note": "FEAUM and Total_AUM are nearly collinear (Spearman rho=0.98). Prefer FEAUM as definitionally cleaner for alt managers. Total_AUM is included separately as it captures a slightly different population (19 firms with Total_AUM vs 18 with FEAUM). For strategic purposes, FEAUM is the actionable metric."
+    },
+    {
+      "driver_id": "DVR-003",
+      "driver_name": "Total_AUM",
+      "source_metric_id": "MET-VD-005",
+      "avg_abs_rho": 0.6071,
+      "rho_P_FRE": 0.8187,
+      "rho_EV_FEAUM": 0.3956,
+      "rho_P_DE": null,
+      "confidence_class": "High",
+      "classification": "multiple_specific_driver",
+      "temporally_unstable": false,
+      "per_firm_quartile": {
+        "FIRM-002": "Q1",
+        "FIRM-007": "Q1",
+        "FIRM-004": "Q1",
+        "FIRM-003": "Q1",
+        "FIRM-005": "Q2",
+        "FIRM-010": "Q2",
+        "FIRM-008": "Q2",
+        "FIRM-009": "Q2",
+        "FIRM-018": "Q3",
+        "FIRM-011": "Q3",
+        "FIRM-023": "Q3",
+        "FIRM-022": "Q3",
+        "FIRM-001": "Q4",
+        "FIRM-025": "Q4",
+        "FIRM-021": "Q4",
+        "FIRM-014": "Q4",
+        "FIRM-024": "Q4"
+      },
+      "per_firm_quartile_tickers": {
+        "BX": "Q1",
+        "BN": "Q1",
+        "APO": "Q1",
+        "KKR": "Q1",
+        "ARES": "Q2",
+        "CG": "Q2",
+        "OWL": "Q2",
+        "TPG": "Q2",
+        "EMG": "Q3",
+        "STEP": "Q3",
+        "VINP": "Q3",
+        "TKO": "Q3",
+        "PAX": "Q4",
+        "RF": "Q4",
+        "ANTIN": "Q4",
+        "RPC": "Q4",
+        "III": "Q4"
+      },
+      "top_quartile_firms": [
+        "FIRM-002",
+        "FIRM-007",
+        "FIRM-004",
+        "FIRM-003"
+      ],
+      "top_quartile_tickers": [
+        "BX",
+        "BN",
+        "APO",
+        "KKR"
+      ],
+      "bottom_quartile_firms": [
+        "FIRM-001",
+        "FIRM-025",
+        "FIRM-021",
+        "FIRM-014",
+        "FIRM-024"
+      ],
+      "bottom_quartile_tickers": [
+        "PAX",
+        "RF",
+        "ANTIN",
+        "RPC",
+        "III"
+      ],
+      "non_obvious_peers": [],
+      "non_obvious_peer_tickers": [],
+      "multicollinearity_note": "Total_AUM and FEAUM are nearly collinear (Spearman rho=0.98). Total_AUM is a noisier definition (includes non-fee assets, dry powder, co-investment). The FEAUM signal is preferred for strategy; Total_AUM included for completeness."
+    },
+    {
+      "driver_id": "DVR-004",
+      "driver_name": "FRE_Growth_YoY",
+      "source_metric_id": "MET-VD-014",
+      "avg_abs_rho": 0.476,
+      "rho_P_FRE": 0.4835,
+      "rho_EV_FEAUM": 0.4685,
+      "rho_P_DE": null,
+      "confidence_class": "Not_significant",
+      "classification": "moderate_signal",
+      "temporally_unstable": false,
+      "per_firm_quartile": {
+        "FIRM-003": "Q1",
+        "FIRM-010": "Q1",
+        "FIRM-009": "Q1",
+        "FIRM-008": "Q2",
+        "FIRM-006": "Q2",
+        "FIRM-002": "Q2",
+        "FIRM-005": "Q2",
+        "FIRM-004": "Q3",
+        "FIRM-014": "Q3",
+        "FIRM-001": "Q3",
+        "FIRM-025": "Q4",
+        "FIRM-022": "Q4",
+        "FIRM-021": "Q4",
+        "FIRM-023": "Q4"
+      },
+      "per_firm_quartile_tickers": {
+        "KKR": "Q1",
+        "CG": "Q1",
+        "TPG": "Q1",
+        "OWL": "Q2",
+        "BAM": "Q2",
+        "BX": "Q2",
+        "ARES": "Q2",
+        "APO": "Q3",
+        "RPC": "Q3",
+        "PAX": "Q3",
+        "RF": "Q4",
+        "TKO": "Q4",
+        "ANTIN": "Q4",
+        "VINP": "Q4"
+      },
+      "top_quartile_firms": [
+        "FIRM-003",
+        "FIRM-010",
+        "FIRM-009"
+      ],
+      "top_quartile_tickers": [
+        "KKR",
+        "CG",
+        "TPG"
+      ],
+      "bottom_quartile_firms": [
+        "FIRM-025",
+        "FIRM-022",
+        "FIRM-021",
+        "FIRM-023"
+      ],
+      "bottom_quartile_tickers": [
+        "RF",
+        "TKO",
+        "ANTIN",
+        "VINP"
+      ],
+      "non_obvious_peers": [],
+      "non_obvious_peer_tickers": []
+    },
+    {
+      "driver_id": "DVR-005",
+      "driver_name": "FRE_Margin",
+      "source_metric_id": "MET-VD-013",
+      "avg_abs_rho": 0.1769,
+      "rho_P_FRE": 0.2024,
+      "rho_EV_FEAUM": 0.1513,
+      "rho_P_DE": null,
+      "confidence_class": "Not_significant",
+      "classification": "not_a_driver",
+      "temporally_unstable": false,
+      "per_firm_quartile": {
+        "FIRM-004": "Q1",
+        "FIRM-003": "Q1",
+        "FIRM-021": "Q1",
+        "FIRM-008": "Q1",
+        "FIRM-006": "Q2",
+        "FIRM-007": "Q2",
+        "FIRM-001": "Q2",
+        "FIRM-002": "Q2",
+        "FIRM-015": "Q3",
+        "FIRM-014": "Q3",
+        "FIRM-010": "Q3",
+        "FIRM-022": "Q3",
+        "FIRM-009": "Q4",
+        "FIRM-005": "Q4",
+        "FIRM-025": "Q4",
+        "FIRM-011": "Q4",
+        "FIRM-023": "Q4"
+      },
+      "per_firm_quartile_tickers": {
+        "APO": "Q1",
+        "KKR": "Q1",
+        "ANTIN": "Q1",
+        "OWL": "Q1",
+        "BAM": "Q2",
+        "BN": "Q2",
+        "PAX": "Q2",
+        "BX": "Q2",
+        "EQT": "Q3",
+        "RPC": "Q3",
+        "CG": "Q3",
+        "TKO": "Q3",
+        "TPG": "Q4",
+        "ARES": "Q4",
+        "RF": "Q4",
+        "STEP": "Q4",
+        "VINP": "Q4"
+      },
+      "top_quartile_firms": [
+        "FIRM-004",
+        "FIRM-003",
+        "FIRM-021",
+        "FIRM-008"
+      ],
+      "top_quartile_tickers": [
+        "APO",
+        "KKR",
+        "ANTIN",
+        "OWL"
+      ],
+      "bottom_quartile_firms": [
+        "FIRM-009",
+        "FIRM-005",
+        "FIRM-025",
+        "FIRM-011",
+        "FIRM-023"
+      ],
+      "bottom_quartile_tickers": [
+        "TPG",
+        "ARES",
+        "RF",
+        "STEP",
+        "VINP"
+      ],
+      "non_obvious_peers": [
+        "FIRM-021"
+      ],
+      "non_obvious_peer_tickers": [
+        "ANTIN"
+      ],
+      "interpretation_note": "FRE_Margin is classified not_a_driver at the cross-sectional level (rho=0.20). This does not mean margins are irrelevant \u2014 it means that scale (FEAUM) dominates cross-sectional multiple variation, and margin differences across the universe are not independently priced. Within same-scale cohorts (e.g., PAX/ANTIN/RPC tier), margin improvement remains strategically important for DE/share growth which does correlate with multiples."
+    },
+    {
+      "driver_id": "DVR-006",
+      "driver_name": "FEAUM_YoY_Growth",
+      "source_metric_id": "MET-VD-006",
+      "avg_abs_rho": 0.1208,
+      "rho_P_FRE": 0.1813,
+      "rho_EV_FEAUM": 0.0604,
+      "rho_P_DE": null,
+      "confidence_class": "Not_significant",
+      "classification": "not_a_driver",
+      "temporally_unstable": false,
+      "per_firm_quartile": {
+        "FIRM-008": "Q1",
+        "FIRM-001": "Q1",
+        "FIRM-009": "Q1",
+        "FIRM-023": "Q2",
+        "FIRM-006": "Q2",
+        "FIRM-005": "Q2",
+        "FIRM-004": "Q2",
+        "FIRM-022": "Q3",
+        "FIRM-003": "Q3",
+        "FIRM-014": "Q3",
+        "FIRM-002": "Q3",
+        "FIRM-025": "Q4",
+        "FIRM-021": "Q4",
+        "FIRM-024": "Q4",
+        "FIRM-010": "Q4"
+      },
+      "per_firm_quartile_tickers": {
+        "OWL": "Q1",
+        "PAX": "Q1",
+        "TPG": "Q1",
+        "VINP": "Q2",
+        "BAM": "Q2",
+        "ARES": "Q2",
+        "APO": "Q2",
+        "TKO": "Q3",
+        "KKR": "Q3",
+        "RPC": "Q3",
+        "BX": "Q3",
+        "RF": "Q4",
+        "ANTIN": "Q4",
+        "III": "Q4",
+        "CG": "Q4"
+      },
+      "top_quartile_firms": [
+        "FIRM-008",
+        "FIRM-001",
+        "FIRM-009"
+      ],
+      "top_quartile_tickers": [
+        "OWL",
+        "PAX",
+        "TPG"
+      ],
+      "bottom_quartile_firms": [
+        "FIRM-025",
+        "FIRM-021",
+        "FIRM-024",
+        "FIRM-010"
+      ],
+      "bottom_quartile_tickers": [
+        "RF",
+        "ANTIN",
+        "III",
+        "CG"
+      ],
+      "non_obvious_peers": [
+        "FIRM-001"
+      ],
+      "non_obvious_peer_tickers": [
+        "PAX"
+      ],
+      "interpretation_note": "FEAUM_YoY_Growth is classified not_a_driver (rho=0.18). The 3-year CAGR (MET-VD-007) could not be evaluated due to insufficient coverage (N=6). Year-over-year growth is too volatile (BX: 8.9%, OWL: 41.0%, TPG: 36.3%) to show a stable cross-sectional correlation. The market appears to discount short-term growth spikes and rewards sustainable compounding trajectories \u2014 captured better by DE/share trends."
+    }
+  ],
+  "total_drivers_evaluated": 10,
+  "drivers_with_n_gte_12": 6,
+  "stable_drivers_count": 0,
+  "multiple_specific_count": 3,
+  "moderate_signal_count": 1,
+  "contextual_only_excluded": [
+    "MET-VD-015",
+    "MET-VD-011",
+    "MET-VD-012",
+    "MET-VD-017",
+    "MET-VD-010",
+    "MET-VD-003",
+    "MET-VD-008"
+  ],
+  "vdb0_qualitative_peer_set": [
+    "BX",
+    "HLN",
+    "BAM",
+    "KKR",
+    "CG",
+    "APO",
+    "BN",
+    "EQT",
+    "ARES",
+    "PGHN",
+    "AMK",
+    "OWL",
+    "ICP",
+    "TPG",
+    "STEP"
+  ],
+  "ranking_method": "Average absolute Spearman rho across primary valuation multiples (P/FRE, EV/FEAUM); N>=12 required for formal ranking",
+  "key_finding": "Scale (FEAUM) is the dominant valuation driver in the alt-asset-management universe (rho=0.85 vs P/FRE, N=14). No metric achieves stable_value_driver status in primary analysis; FEAUM qualifies under leave-one-out sensitivity excluding 3i Group structural outlier. FRE growth trajectory is a moderate cross-multiple signal. FRE margins are not correlated with multiples at the cross-sectional level \u2014 scale confounds the margin premium."
+}

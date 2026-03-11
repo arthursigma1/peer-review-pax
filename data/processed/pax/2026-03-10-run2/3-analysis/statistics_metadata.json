@@ -1,0 +1,109 @@
+{
+  "stage": "VD-A4b",
+  "run_id": "2026-03-10-run2",
+  "generated_at": "2026-03-10T00:00:00Z",
+  "method": "Spearman rank correlation",
+  "n_firms_universe": 23,
+  "n_firms_complete_multiple_set": 21,
+  "correlation_excluded_firms": [
+    "FIRM-021"
+  ],
+  "temporal_depth": {
+    "primary_period": "FY2024",
+    "stability_check_period": "FY2023",
+    "panel_supplementary": "FY2020-FY2024 where available"
+  },
+  "ci_method": "bootstrap_10k",
+  "ci_level": 0.95,
+  "ci_status": "parameterized — execute before final report publication",
+  "minimum_sample_rule": 12,
+  "not_reported_threshold": 8,
+  "total_tests_computed": 54,
+  "effective_independent_tests": 40,
+  "effective_independent_tests_note": "Accounts for collinear driver pairs: FEAUM/AUM, Comp&Ben/G&A, Headcount/FEAUM vs FEAUM/Employee",
+  "multiple_testing_correction": "Bonferroni over 40 effective tests",
+  "bonferroni_alpha": 0.00125,
+  "confidence_taxonomy": {
+    "High": "p < 0.00125 (Bonferroni-corrected α)",
+    "Moderate": "p < 0.05 (uncorrected)",
+    "Suggestive": "p < 0.10 (uncorrected)",
+    "Not_significant": "p >= 0.10"
+  },
+  "stable_driver_rule": "stable_v1_two_of_three: |rho|>=0.5 on >=2 of 3 multiples AND temporally_unstable=false",
+  "multiple_specific_rule": "|rho|>=0.5 on exactly 1 multiple",
+  "moderate_signal_rule": "0.3<=|rho|<=0.5 on >=1 multiple",
+  "sensitivity_analyses": [
+    "leave_one_out",
+    "temporal_stability_fy2023",
+    "panel_robustness_supplementary"
+  ],
+  "partial_correlation_control": "MET-VD-005 (Total AUM) — scale control for top 5 drivers",
+  "drivers_tested": [
+    "MET-VD-001",
+    "MET-VD-004",
+    "MET-VD-005",
+    "MET-VD-006",
+    "MET-VD-007",
+    "MET-VD-009",
+    "MET-VD-010",
+    "MET-VD-011",
+    "MET-VD-012",
+    "MET-VD-013",
+    "MET-VD-014",
+    "MET-VD-015",
+    "MET-VD-016",
+    "MET-VD-018",
+    "MET-VD-019",
+    "MET-VD-020",
+    "MET-VD-021",
+    "MET-VD-022"
+  ],
+  "valuation_multiples": [
+    "P/FRE (MET-VD-026)",
+    "P/DE (MET-VD-027)",
+    "EV/FEAUM (MET-VD-028)"
+  ],
+  "results_summary": {
+    "total_tests": 54,
+    "stable_value_drivers": [
+      "MET-VD-021"
+    ],
+    "multiple_specific_drivers": [
+      "MET-VD-004",
+      "MET-VD-005",
+      "MET-VD-014",
+      "MET-VD-020"
+    ],
+    "moderate_signal": [
+      "MET-VD-004",
+      "MET-VD-005",
+      "MET-VD-007",
+      "MET-VD-009",
+      "MET-VD-011",
+      "MET-VD-014",
+      "MET-VD-016",
+      "MET-VD-020"
+    ],
+    "not_a_driver": [
+      "MET-VD-001",
+      "MET-VD-004",
+      "MET-VD-005",
+      "MET-VD-006",
+      "MET-VD-007",
+      "MET-VD-009",
+      "MET-VD-010",
+      "MET-VD-011",
+      "MET-VD-012",
+      "MET-VD-013",
+      "MET-VD-015",
+      "MET-VD-016",
+      "MET-VD-018",
+      "MET-VD-019",
+      "MET-VD-020",
+      "MET-VD-021",
+      "MET-VD-022"
+    ],
+    "insufficient_sample": [],
+    "temporally_unstable_count": 1
+  }
+}

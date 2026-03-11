@@ -1,0 +1,43 @@
+{
+  "normalized_url": "ir.apollo.com/financial-results",
+  "canonical_url": "https://ir.apollo.com/financial-results",
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl",
+  "priority_score": 22,
+  "preferred_source": {
+    "source_id": "PS-VD-010",
+    "firm": "Apollo Global Management",
+    "title": "Apollo Financial Results Page",
+    "date": "2025-12-31",
+    "document_type": "earnings_supplement",
+    "bias_tag": "company-produced",
+    "url": "https://ir.apollo.com/financial-results",
+    "notes": "Apollo financial results hub \u2014 quarterly earnings releases, supplements, and historical financial data",
+    "catalog_path": "data/processed/pax/2026-03-09-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl",
+    "seed_url": "https://ir.apollo.com/financial-results",
+    "loaded_url": "https://ir.apollo.com/_assets/_9d229425011f8161e75a7d4ea62ed11d/apollo/db/2247/22854/webcast_transcript/CORRECTED+TRANSCRIPT_+Apollo+Global+Management%2C+Inc.%28APO-US%29%2C+Q4+2025+Earnings+Call%2C+9-February-2026+8_30+AM+ET.pdf",
+    "title": "Apollo Financial Results Page",
+    "document_type": "earnings_supplement",
+    "bias_tag": "company-produced",
+    "content_type": "application/pdf",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2/PS-VD-010_apollo-financial-results-page_a4d85c06.txt",
+    "text_length": 94002,
+    "quality_score": 99502,
+    "quality_bucket": "good",
+    "quality_reason": "sufficient_text",
+    "relevant_snippets": [
+      "Our global wealth business had an excellent year with fundraising totaling $18 billion, up nearly 50% year-over-",
+      "strategies in excess of $500 million of annual fundraising, insurance, more than $15 billion of third party insurance",
+      "gen AUM of 25% year-over-year to $938 billion and $709 billion, respectively. This helps drive record fee related",
+      "For SRE, we anticipate 10% growth and assuming an 11% alts return or approximately $3.85 billion in 2026. This",
+      "related earnings of $5.9 billion, which drove adjusted net income of $5.2 billion, up 14% year-over-year, or $8.38"
+    ],
+    "extraction_modes": []
+  },
+  "canonical_text_path": "data/raw/pax/canonical/01/015d4bf8b1dae90139cd6c8412d6da5bb42265a0/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.472312Z"
+}

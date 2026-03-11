@@ -1,0 +1,1087 @@
+{
+  "stage": "VD-D1",
+  "stage_name": "Platform-Level Deep-Dives",
+  "agent": "platform-analyst",
+  "generated_at": "2026-03-08",
+  "run_id": "2026-03-08-run2",
+  "profiles": [
+    {
+      "firm_id": "FIRM-002",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "sections": {
+        "identity_and_scale": {
+          "total_aum_bn": 1274.9,
+          "feaum_bn": 521.0,
+          "feaum_note": "Fee-earning AUM approximately $521B at Q4 2025 (perpetual capital $523.6B, 48% of FEAUM). Exact FEAUM figure from PS-VD-002; perpetual capital metric from PS-VD-055.",
+          "geography": "Global — 30+ offices. Primary: United States, Europe, Asia-Pacific, Middle East. Private wealth expansion actively underway in Japan, Australia, and the Gulf.",
+          "asset_class_mix": "Credit & Insurance 35% (~$443B), Private Equity 31% (~$395B), Real Estate 25% (~$319B), Multi-Asset 9% (~$117B).",
+          "listing_history": "NYSE-listed. Converted from limited partnership to C-corp in 2019. Ticker BX.",
+          "ownership_structure": "Single share class since 2019 C-corp conversion. CEO Stephen Schwarzman retains significant economic interest through partnership units. No dual-class voting equity."
+        },
+        "strategic_agenda": {
+          "priorities": [
+            "Scale perpetual capital vehicles to 50%+ of fee-earning AUM, with BREIT, BCRED, and BXPE as flagship evergreen vehicles — perpetual capital reached $523.6B (48% of FEAUM) at Q4 2025.",
+            "Expand private wealth distribution globally — deepen RIA channel penetration and enter new markets (Japan, Australia, Gulf). Wealth fundraising grew 53% YoY to $43B in 2025.",
+            "Grow Credit & Insurance as the primary AUM growth engine, leveraging BXCI for captive credit origination at insurance scale. Credit & Insurance is now the largest segment at $443B.",
+            "Drive product innovation at accelerating pace — 2026 targeting highest-ever number of new product launches across all segments.",
+            "Lead in real estate recovery — concentrate on logistics, data centers, and rental housing as the three structural demand themes."
+          ],
+          "source_citations": ["PS-VD-001", "PS-VD-002", "PS-VD-003", "PS-VD-055"]
+        },
+        "key_actions": [
+          {
+            "action_id": "ACT-VD-001",
+            "action_type": "M&A",
+            "description": "Acquired AirTrunk (APAC data center platform) with CPPIB for approximately $16B, positioning Blackstone as the dominant AI-driven data center owner in APAC.",
+            "timeline": "Announced mid-2024; closed Q4 2024.",
+            "source_citation": "PS-VD-002"
+          },
+          {
+            "action_id": "ACT-VD-002",
+            "action_type": "product-launch",
+            "description": "Launched BXPE evergreen semi-liquid PE fund for individual investors, surpassing $2B AUM within its first year.",
+            "timeline": "Announced Q4 2023; operational Q1 2024.",
+            "source_citation": "PS-VD-002"
+          },
+          {
+            "action_id": "ACT-VD-003",
+            "action_type": "product-launch",
+            "description": "BCRED achieved record gross sales exceeding $14B in FY2025, cementing it as the dominant private credit wealth vehicle globally.",
+            "timeline": "Product launched 2021; record year 2025.",
+            "source_citation": "PS-VD-002"
+          },
+          {
+            "action_id": "ACT-VD-004",
+            "action_type": "technology-operations",
+            "description": "Announced publicly traded AI data center acquisition vehicle for retail investors, targeting a 2026 launch.",
+            "timeline": "Announced Q1 2026.",
+            "source_citation": "PS-VD-002"
+          },
+          {
+            "action_id": "ACT-VD-005",
+            "action_type": "distribution-shift",
+            "description": "Accelerated private wealth distribution across RIA, wirehouse, and private bank channels; wealth fundraising grew 53% YoY to $43B in 2025.",
+            "timeline": "Ongoing 2024-2025; accelerating 2026.",
+            "source_citation": "PS-VD-002"
+          },
+          {
+            "action_id": "ACT-VD-059",
+            "action_type": "M&A",
+            "description": "BREIT invested $5.8B in pre-leased data center developments in 2025 via QTS platform, making data centers BREIT's largest sector allocation.",
+            "timeline": "Ongoing 2025.",
+            "source_citation": "PS-VD-002"
+          }
+        ],
+        "driver_performance": {
+          "FEAUM_quartile": "Q1",
+          "DE_share_quartile": "Q1",
+          "FRE_Growth_quartile": "Q2",
+          "FRE_Margin_quartile": "Q2",
+          "narrative": "Blackstone is the apex scale benchmark in the peer universe — Q1 on FEAUM and Q1 on DE/share, with FEAUM confirmed as the dominant valuation driver (rho=0.85 vs P/FRE). The Q2 FRE_Growth position reflects base effects from the firm's sheer scale; $1.275T AUM makes percentage growth harder to achieve yet total absolute fundraising ($43B+ from wealth alone in 2025) dwarfs smaller peers. P/FRE of approximately 40.7x (FY2024 data in quantitative_data.json) reflects the premium the market assigns to the scale-perpetual capital combination. FRE_Margin of approximately 51% positions BX in Q2 — not the highest-margin operator (APO and KKR score higher) but still among the most efficient at scale."
+        },
+        "value_creation_narrative": "Blackstone commands the highest absolute valuation in the alt-asset management sector primarily because it has solved the scale problem at a level no competitor has replicated: $1.275T AUM creates a self-reinforcing moat through brand recognition with allocators, ability to write larger checks (reducing deal competition), and network density that generates proprietary deal flow. The perpetual capital pivot — $523.6B (48% of FEAUM) in evergreen structures — eliminates the J-curve and fundraising-cycle risk that discount traditional drawdown managers. The result is a fee stream that approximates a utility: highly visible, durable, and scalable. BCRED's $14B+ FY2025 gross sales illustrate how the private wealth channel has added a second demand engine alongside institutional LPs. The BXCI insurance channel and AI infrastructure investments (AirTrunk + QTS pipeline exceeding $70B) represent forward options on the two fastest-growing capital pools globally — insurance float and AI capex. The cautionary element for understanding BX's premium is the DE/share quartile: Q1 DE/share is partly a function of scale efficiency, not independently of it — the partial Spearman rho controlling for scale drops from 0.78 to approximately 0.45, suggesting scale is the underlying cause. Investors are effectively paying 40x+ FRE for scale and franchise durability, not margin superiority in isolation. Source citations: PS-VD-001, PS-VD-002, PS-VD-003, PS-VD-055.",
+        "transferable_insights": [
+          {
+            "insight_id": "INS-001",
+            "insight": "Converting flagship drawdown vehicles into evergreen structures creates a more durable, higher-velocity fee stream that the market re-rates at a material premium. At 48% of FEAUM in perpetual vehicles, Blackstone has demonstrated the viability of this structural shift at scale.",
+            "how_they_did_it": "Launched BREIT (real estate), BCRED (credit), and BXPE (PE) as SEC-registered semi-liquid interval or tender-offer funds. Built dedicated wealth distribution infrastructure (wirehouse, RIA, and private bank coverage). Established monthly NAV reporting, redemption gate management, and 40-Act fund administration — all prerequisite to retail distribution at scale.",
+            "timeline": "BREIT launched 2017; BCRED 2021; BXPE Q4 2023. Perpetual capital reached 48% of FEAUM by Q4 2025 — approximately 7-year transition from drawdown-dominant to near-parity.",
+            "enabling_conditions": "Existing institutional brand (LP trust) provides retail halo effect. Scale enables investment in distribution infrastructure (50+ dedicated wealth professionals) that smaller managers cannot justify. SEC-compliant fund administration and transfer agent relationships must be established before launch.",
+            "action_citations": ["ACT-VD-002", "ACT-VD-003"],
+            "evidence_class": "inferred"
+          },
+          {
+            "insight_id": "INS-002",
+            "insight": "Anchoring a thematic investment franchise around a structural demand megatrend (AI data centers) allows a manager to command co-investment scale and new product format innovation (listed retail vehicles) simultaneously, expanding both the LP base and the product menu.",
+            "how_they_did_it": "Built QTS Realty Trust data center platform through 2021 take-private. Added AirTrunk ($16B) for APAC coverage in 2024. In 2026, announced a publicly listed retail acquisition vehicle for AI infrastructure — combining the thematic with democratization. Prerequisite: existing real estate investment and operations infrastructure, multi-jurisdictional regulatory clearance.",
+            "timeline": "QTS take-private 2021; AirTrunk Q4 2024; listed retail vehicle announced Q1 2026. Full build-out approximately 5 years.",
+            "enabling_conditions": "Existing BREIT vehicle ($319B real estate AUM) provides co-investor relationships and asset management credibility. CPPIB co-investment on AirTrunk signals institutional validation. AI-specific thematic requires data center expertise that must be built or acquired before the vehicle can credibly launch.",
+            "action_citations": ["ACT-VD-001", "ACT-VD-004", "ACT-VD-059"],
+            "evidence_class": "inferred"
+          },
+          {
+            "insight_id": "INS-003",
+            "insight": "Private wealth distribution at scale requires a parallel infrastructure investment (distribution personnel, investor portals, custodian connectivity) that must be in place before the product is launched, not after. The 53% YoY growth in Blackstone's wealth fundraising reflects years of infrastructure investment, not a one-year pivot.",
+            "how_they_did_it": "Scaled dedicated wealth distribution team covering wirehouses, RIAs, and private banks. Established investor portal and monthly reporting for retail-facing vehicles. Built sub-advisory RIA coverage in 2026 as the next channel. Investor-facing monthly NAV calculation and transfer agent relationships are operational prerequisites.",
+            "timeline": "Distribution infrastructure built from approximately 2017 (BREIT launch) through 2025. Wealth fundraising reached $43B in 2025 — approximately 8-year runway investment.",
+            "enabling_conditions": "Fee income from institutional vehicles must be sufficient to fund distribution team build-out before wealth revenue materializes. SEC registration and 40-Act compliance require legal infrastructure not typically present at smaller managers.",
+            "action_citations": ["ACT-VD-005"],
+            "evidence_class": "inferred"
+          }
+        ]
+      }
+    },
+    {
+      "firm_id": "FIRM-004",
+      "firm_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "sections": {
+        "identity_and_scale": {
+          "total_aum_bn": 938.0,
+          "feaum_bn": 565.0,
+          "feaum_note": "FEAUM estimated from Q4 2025 total AUM of $938B with credit comprising approximately 70% ($657B) — fee-earning subset estimated at $565B based on Athene inclusion in reported FEAUM. Figures from PS-VD-009, PS-VD-010, PS-VD-056.",
+          "geography": "Global — primary markets United States, Europe, Asia-Pacific. Athene operations concentrated in US and reinsurance jurisdictions. Record $228B inflows in 2025 reflect global capital deployment.",
+          "asset_class_mix": "Credit 70% (~$657B), Private Equity 20% (~$190B), Real Assets 10% (~$91B). Most credit-heavy manager among large-cap peers.",
+          "listing_history": "NYSE-listed. C-corp structure since 2019. Previously complex partnership structure.",
+          "ownership_structure": "Single class. CEO Marc Rowan and co-President Scott Kleinman are founding partners with retained economic interests but no dual-class voting. Standard NYSE C-corp governance."
+        },
+        "strategic_agenda": {
+          "priorities": [
+            "Execute the integrated asset management and retirement services model — 'create and manufacture' investment-grade credit at scale via origination platform.",
+            "Scale total AUM to $1.5T by 2029 with $150B+ in annual organic inflows, driven by origination platform breadth. FY2025 SRE $5.35/share and FRE $4.40/share are tracking toward 2029 targets of $10+/share SRE and $7+/share FRE.",
+            "Grow Retirement Services (Athene) AUM through spread compression and new product launches in fixed annuities and pension risk transfer.",
+            "Expand hybrid credit (public-private) strategy to capture investment-grade capital allocators previously outside private credit.",
+            "Deepen global origination footprint through platform partnerships and direct lending subsidiaries in Europe and APAC."
+          ],
+          "source_citations": ["PS-VD-009", "PS-VD-010", "PS-VD-011", "PS-VD-056"]
+        },
+        "key_actions": [
+          {
+            "action_id": "ACT-VD-010",
+            "action_type": "capital-structure-change",
+            "description": "2024 Investor Day unveiled five-year earnings targets: SRE $10+/share and FRE $7+/share by 2029, signaling confidence in the origination-led compounding model.",
+            "timeline": "Announced October 2024.",
+            "source_citation": "PS-VD-056"
+          },
+          {
+            "action_id": "ACT-VD-011",
+            "action_type": "product-launch",
+            "description": "Scaled origination platform to record $228B total capital inflows in FY2025, driving AUM to $938B (up 25% YoY).",
+            "timeline": "Ongoing 2023-2025.",
+            "source_citation": "PS-VD-010"
+          },
+          {
+            "action_id": "ACT-VD-012",
+            "action_type": "distribution-shift",
+            "description": "Expanded retirement services via Athene, growing annuity and pension risk transfer volumes; Athene AUM exceeded $300B in 2025.",
+            "timeline": "Ongoing 2022-2025.",
+            "source_citation": "PS-VD-009"
+          },
+          {
+            "action_id": "ACT-VD-061",
+            "action_type": "product-launch",
+            "description": "Launched and scaled hybrid credit products and Fund X (private equity flagship), generating record quarterly flows.",
+            "timeline": "Fund X 2024; hybrid credit 2023-2025.",
+            "source_citation": "PS-VD-010"
+          },
+          {
+            "action_id": "ACT-VD-074",
+            "action_type": "geographic-expansion",
+            "description": "Expanded global origination via strategic partnerships, growing to 30+ offices and over $1T in originated assets since inception.",
+            "timeline": "Ongoing 2023-2025.",
+            "source_citation": "PS-VD-010"
+          }
+        ],
+        "driver_performance": {
+          "FEAUM_quartile": "Q1",
+          "DE_share_quartile": "Q1",
+          "FRE_Growth_quartile": "Q3",
+          "FRE_Margin_quartile": "Q1",
+          "narrative": "Apollo is the highest-margin operator in the universe (Q1 FRE_Margin at approximately 66%) and shares Q1 status on both FEAUM and DE/share with Blackstone. However, it sits in Q3 on FRE_Growth — a counterintuitive result explained by the denominator: at $938B AUM, percentage growth is harder to sustain, yet 2029 targets imply $150B+ annual organic inflows, which if achieved would represent an extraordinary growth rate. The P/FRE multiple of approximately 50x (FY2024, quantitative_data.json) is the highest in the universe and reflects investor confidence in the origination platform's compounding ability and the durability of Athene as a captive capital flywheel. The integrated model (originate credit → place into Athene → recycle into new origination) is the most capital-efficient structure in the peer set."
+        },
+        "value_creation_narrative": "Apollo's premium valuation derives from its structural differentiation within the credit industry: it is both the underwriter (origination platform) and the capital source (Athene insurance float). This vertical integration eliminates the spread compression that affects managers dependent on syndicated markets for both deal sourcing and capital raising. The $228B FY2025 inflow record reflects this advantage — Apollo can manufacture its own deal flow through MidCap Financial and Atlas platforms rather than competing in crowded sponsor-to-sponsor markets. The 2029 earnings targets ($10+/share SRE, $7+/share FRE) function as a compounding commitment that the market prices in advance — investors effectively buy a visible earnings trajectory, not a trailing multiple. This forward-pricing mechanism explains how P/FRE reaches approximately 50x despite Q3 FRE_Growth — the market is not paying for last year's growth, it is pricing the origination engine's embedded economics. The risk that Apollo's premium embeds is Athene-concentration: if insurance regulation changes (NAIC capital standards, AM Best methodology) or spread compression accelerates, the captive capital advantage could narrow, creating downside to the integrated model assumption. Source citations: PS-VD-009, PS-VD-010, PS-VD-011, PS-VD-056.",
+        "transferable_insights": [
+          {
+            "insight_id": "INS-004",
+            "insight": "Building a proprietary origination platform (not relying on syndicated markets) creates a structural cost-of-capital and deal-exclusivity advantage that the market prices at a sustained premium — even when near-term growth rates appear moderate by percentage.",
+            "how_they_did_it": "Acquired and built direct lending platforms (MidCap Financial, Atlas SP Partners) that originate corporate and asset-backed credit directly. Integrated Athene as the captive capital consumer of this origination, removing spread compression risk. Prerequisite: insurance subsidiary to absorb originated assets; deep credit expertise across corporate and structured credit; multi-jurisdictional regulatory registrations for origination offices.",
+            "timeline": "Athene integration began 2013; full consolidation and origination platform build-out 2013-2025. Twelve-year investment before $228B annual inflows were achieved.",
+            "enabling_conditions": "Insurance platform must be acquired or built before the integrated model works — insurance float is the consumption engine. Regulatory capital adequacy (NAIC RBC) constrains deployment pace and requires active ALM management. The origination-to-insurance loop requires multi-year track record before institutional allocators trust the structure.",
+            "action_citations": ["ACT-VD-011", "ACT-VD-012", "ACT-VD-074"],
+            "evidence_class": "corroborated"
+          },
+          {
+            "insight_id": "INS-005",
+            "insight": "Publishing explicit multi-year earnings targets with specific per-share metrics ($10+/share SRE, $7+/share FRE by 2029) functions as a valuation anchor that the market prices forward — converting a growth narrative into a visible compounding commitment and re-rating the P/FRE multiple.",
+            "how_they_did_it": "Apollo's 2024 Investor Day disclosed specific five-year SRE and FRE targets with the origination platform throughput ($150B+ annual inflows) as the mechanistic bridge. Expanded segment reporting to track SRE vs. FRE progression against disclosed targets. Prerequisite: underlying earnings trajectory must be sufficiently visible and durable to make the targets credible — management cannot commit to targets if the origination platform lacks a track record.",
+            "timeline": "2024 Investor Day announcement; progress will be reported quarterly through 2029.",
+            "enabling_conditions": "Credibility of long-dated earnings targets requires institutional LP validation and track record of FRE growth. Origination platform must already be at scale before targets can be credibly committed to publicly.",
+            "action_citations": ["ACT-VD-010"],
+            "evidence_class": "directly_documented"
+          },
+          {
+            "insight_id": "INS-006",
+            "insight": "A credit-first strategy that covers the full investment-grade spectrum (not just high-yield or leveraged credit) captures a structurally larger TAM and attracts insurance and pension allocators who are excluded from high-yield-only managers — substantially expanding the addressable LP universe.",
+            "how_they_did_it": "Developed hybrid credit products bridging public investment-grade and private credit. Athene's general account invests across investment-grade through structured credit. Private credit markets are projected to reach $4.5T by 2030 (Preqin) with investment-grade sub-segment as the fastest growing. Prerequisite: investment-grade origination infrastructure and credit expertise across CLOs, asset-backed, and structured products — not just leveraged lending.",
+            "timeline": "Hybrid credit products scaled 2023-2025; contribution to record $228B inflows in FY2025.",
+            "enabling_conditions": "Investment-grade credit origination requires different underwriting expertise than leveraged credit. Insurance regulatory framework (eligible investment criteria) must be satisfied for Athene deployment. Hybrid products require different SEC registration treatment than pure private credit.",
+            "action_citations": ["ACT-VD-061"],
+            "evidence_class": "inferred"
+          }
+        ]
+      }
+    },
+    {
+      "firm_id": "FIRM-006",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "sections": {
+        "identity_and_scale": {
+          "total_aum_bn": 1100.0,
+          "feaum_bn": 603.0,
+          "feaum_note": "Fee-bearing capital of $603B (87% long-dated or perpetual) at Q4 2025. Parent BN reports total managed AUM of approximately $1.1T. Figures from PS-VD-015, PS-VD-016, PS-VD-017.",
+          "geography": "Global — primary markets North America, Europe, Asia-Pacific, Middle East, and Brazil. Asset-light carve-out from Brookfield Corporation, spun out 2022. Japan private wealth entry announced 2026.",
+          "asset_class_mix": "Infrastructure & Renewable Power 35%, Credit (Oaktree) 25%, Real Estate 20%, Private Equity 15%, Other 5%.",
+          "listing_history": "NYSE and TSX dual-listed since December 2022 spin-out from Brookfield Corporation. Single share class.",
+          "ownership_structure": "Brookfield Corporation (BN) retains approximately 75% economic interest. BAM Ltd. listed minority shareholders have limited governance influence. Single share class."
+        },
+        "strategic_agenda": {
+          "priorities": [
+            "Grow fee-bearing capital to $1T+ through product launches in credit, infrastructure, and AI infrastructure.",
+            "Scale AI and data infrastructure strategy (BAIIF) as the next major fund family — $10B+ target for inaugural fund.",
+            "Consolidate Oaktree ownership (acquiring remaining 26% stake for approximately $3B) to fully integrate credit platform and simplify capital structure.",
+            "Expand private wealth distribution — enter Japan and deepen US RIA and wirehouse penetration.",
+            "Grow Middle East presence through the $20B QIA joint venture platform."
+          ],
+          "source_citations": ["PS-VD-015", "PS-VD-016", "PS-VD-017", "PS-VD-062"]
+        },
+        "key_actions": [
+          {
+            "action_id": "ACT-VD-017",
+            "action_type": "M&A",
+            "description": "Agreed to acquire remaining 26% stake in Oaktree Capital Management for approximately $3B, consolidating $185B+ credit AUM into BAM's platform.",
+            "timeline": "Announced Q1 2025; closed Q3 2025.",
+            "source_citation": "PS-VD-016"
+          },
+          {
+            "action_id": "ACT-VD-018",
+            "action_type": "product-launch",
+            "description": "Launched Brookfield AI Infrastructure Fund (BAIIF) targeting $10B in commitments, positioning BAM as a leader in AI-driven real assets.",
+            "timeline": "Announced Q2 2025; fundraising 2025-2026.",
+            "source_citation": "PS-VD-016"
+          },
+          {
+            "action_id": "ACT-VD-019",
+            "action_type": "M&A",
+            "description": "Formed $20B joint venture with QIA (Qatar Investment Authority) for AI infrastructure investments, providing sovereign permanent capital at scale.",
+            "timeline": "Announced Q3 2025; operational Q4 2025.",
+            "source_citation": "PS-VD-016"
+          },
+          {
+            "action_id": "ACT-VD-020",
+            "action_type": "distribution-shift",
+            "description": "Expanded US private wealth distribution and entered Japanese market; private wealth raised $22B+ in 2025.",
+            "timeline": "Ongoing 2024-2025; Japan entry Q2 2025.",
+            "source_citation": "PS-VD-016"
+          },
+          {
+            "action_id": "ACT-VD-063",
+            "action_type": "geographic-expansion",
+            "description": "Entered Japanese private wealth market and expanded Middle East presence via QIA JV — Japan launch adds new LP channel, QIA commits $20B of Gulf sovereign capital.",
+            "timeline": "Japan Q2 2025; QIA JV Q3 2025.",
+            "source_citation": "PS-VD-016"
+          }
+        ],
+        "driver_performance": {
+          "FEAUM_quartile": "Q1",
+          "DE_share_quartile": "Q2",
+          "FRE_Growth_quartile": "Q2",
+          "FRE_Margin_quartile": "Q2",
+          "narrative": "BAM is the capital-light fee-stream model most directly comparable to its peers: unlike parent BN, BAM holds no principal assets and earns only management and performance fees on $603B fee-bearing capital. Q1 FEAUM reflects Brookfield's combined infrastructure, credit, real estate, and PE AUM at scale. The Q2 DE/share position (versus Q1 for BX and APO) reflects BAM's lower fee rate mix (infrastructure and renewable energy mandates command lower management fees than credit) and the fact that BAM's FRE grew 22% organically in 2025 — still Q2, not Q1. EQT data from quantitative_data.json corroborates the FY2022 FEAUM base at $364B; current figures are from strategy profiles. The P/FRE of approximately 36.5x (quantitative_data.json FY2024) reflects market recognition of BAM's asset-light model but at a discount to BX and APO, consistent with its Q2 DE/share and lower-fee-rate asset mix."
+        },
+        "value_creation_narrative": "BAM's valuation reflects the market's application of a management company multiple to a fee stream that is 87% long-dated or perpetual — the lowest capital-at-risk and most durable fee base in the peer set. The 2022 spin-out from Brookfield Corporation was itself a multiple-creation event: by separating the asset-light fee entity from BN's balance-sheet businesses, Brookfield gave public market investors access to a clean management company at a premium multiple (infrastructure-adjacent managers historically command 30-40x+ FRE). The Oaktree full consolidation adds $185B+ of credit AUM with superior fee rates to BAM's infrastructure-heavy mix — a strategic upgrade to fee rate quality. The QIA JV ($20B) exemplifies BAM's ability to use sovereign relationships (anchored by Brookfield Corporation's operating portfolio) to create captive capital at scale, without the insurance regulatory complexity that Apollo or Athene carry. The primary discount factor versus BX is geography: Brookfield's institutional base skews toward infrastructure-heavy pensions (lower fee rates) and BAM's performance fee realization is lumpy relative to BX's more diversified stream. Source citations: PS-VD-015, PS-VD-016, PS-VD-017, PS-VD-062.",
+        "transferable_insights": [
+          {
+            "insight_id": "INS-007",
+            "insight": "Carving out a pure fee-earning management company from a balance-sheet parent and separately listing it creates a substantial multiple re-rating — the market assigns a management company premium (30-40x FRE) to a stream it previously discounted as embedded within a conglomerate.",
+            "how_they_did_it": "BAM Ltd. was spun out of Brookfield Corporation in December 2022, receiving management rights over the full $1T+ infrastructure, renewable, real estate, PE, and credit AUM. The spin required: (1) transfer of management contracts from BN to BAM, (2) separate SEC registration as an investment adviser, (3) NYSE/TSX dual listing, and (4) BAM FRE disclosures distinct from BN's consolidated earnings.",
+            "timeline": "Spin-out December 2022; FRE growth 22% organically to $3.0B by 2025 — approximately 3-year public market track record.",
+            "enabling_conditions": "The parent (BN) must retain the operating businesses to create the separation. Management contracts must be assignable and long-dated to support the BAM standalone multiple. Parent cooperation and LP consent to the governance restructuring are prerequisites.",
+            "action_citations": ["ACT-VD-017"],
+            "evidence_class": "inferred"
+          },
+          {
+            "insight_id": "INS-008",
+            "insight": "Structuring a dedicated joint venture with a sovereign wealth fund — where the sovereign provides permanent capital and the manager provides deal access — is an alternative to insurance platform acquisition for creating captive AUM without the regulatory complexity of insurance.",
+            "how_they_did_it": "Formed a $20B committed-capital JV with QIA for AI infrastructure deployment. JV-specific governance and reporting framework established for sovereign partner. Required: QIA regulatory clearance, JV governance documentation, Middle East relationship management infrastructure, and co-investment processes. JV capital supplements BAM's BAIIF fundraising rather than replacing institutional LP capital.",
+            "timeline": "QIA JV announced Q3 2025; operational Q4 2025.",
+            "enabling_conditions": "Sovereign partnership requires existing diplomatic and investment relationships — BAM's QIA relationship appears built over years of Brookfield's global infrastructure activity. AI infrastructure thematic credibility (anchored by QTS portfolio and BAIIF strategy) is prerequisite. Absence of an existing operating relationship with the sovereign makes cold outreach insufficient.",
+            "action_citations": ["ACT-VD-019", "ACT-VD-063"],
+            "evidence_class": "inferred"
+          },
+          {
+            "insight_id": "INS-009",
+            "insight": "Launching thematic fund families that align with structural megatrends (AI infrastructure, energy transition) enables a manager to expand its total addressable product set and attract new LP pools (technology companies, sovereigns with AI mandates) that institutional PE or credit products do not reach.",
+            "how_they_did_it": "BAIIF targets $10B+ in inaugural commitments by positioning AI data center and power infrastructure as a direct claim on AI capital expenditure growth. Prerequisite: existing real assets infrastructure team, data center management expertise (via QTS operating platform), and demonstrated capability to underwrite large-scale infrastructure transactions.",
+            "timeline": "BAIIF announced Q2 2025; fundraising 2025-2026. Full capital deployment anticipated 2027+.",
+            "enabling_conditions": "Existing infrastructure investment platform with data center exposure is required before a credible AI-infrastructure-themed product can be launched. LP comfort with thematic mandate concentration (different risk profile than diversified infra funds) requires investor education investment.",
+            "action_citations": ["ACT-VD-018"],
+            "evidence_class": "inferred"
+          }
+        ]
+      }
+    },
+    {
+      "firm_id": "FIRM-003",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "sections": {
+        "identity_and_scale": {
+          "total_aum_bn": 744.0,
+          "feaum_bn": 480.0,
+          "feaum_note": "Total AUM $744B at Q4 2025; FEAUM estimated at approximately $480B (perpetual capital $321B, 43% of total AUM). Figures from PS-VD-005, PS-VD-006, PS-VD-007, PS-VD-064.",
+          "geography": "Global — United States, Europe, Asia-Pacific, Middle East. Dedicated Japan infrastructure build-out and APAC private wealth expansion as near-term priorities. Global Atlantic operating primarily US and UK.",
+          "asset_class_mix": "Private Equity approximately 33% (~$243B), Credit approximately 33% (~$243B), Real Assets approximately 18% (~$135B), Other approximately 16%.",
+          "listing_history": "NYSE-listed. C-corp since 2018 conversion. Founders Henry Kravis and George Roberts retired; Scott Nuttall and Joseph Bae as co-CEOs.",
+          "ownership_structure": "Single share class. No dual-class structure. Co-CEOs Nuttall and Bae replaced founding partners who retired."
+        },
+        "strategic_agenda": {
+          "priorities": [
+            "Build perpetual capital to 50%+ of total AUM, anchored by Global Atlantic insurance, open-ended infrastructure, and K-Series retail evergreens.",
+            "Scale KKR Solutions as a new vertical combining GP stakes (via Arctos) with $100B+ AUM ambitions in sports, media, and entertainment.",
+            "Expand asset-based finance (K-ABF) as a structural credit growth engine leveraging Global Atlantic balance sheet.",
+            "Drive capital markets revenue as a recurring fee stream, targeting continued growth beyond 2024's $309.7M.",
+            "Deepen APAC platform — Japan infrastructure build-out and Asia-Pacific private wealth distribution as near-term priorities."
+          ],
+          "source_citations": ["PS-VD-005", "PS-VD-006", "PS-VD-007", "PS-VD-008", "PS-VD-064"]
+        },
+        "key_actions": [
+          {
+            "action_id": "ACT-VD-006",
+            "action_type": "M&A",
+            "description": "Completed full consolidation of Global Atlantic Financial Group (remaining minority), fully integrating approximately $175B in insurance AUM as captive credit capital.",
+            "timeline": "Announced Q4 2023; closed Q1 2024.",
+            "source_citation": "PS-VD-005"
+          },
+          {
+            "action_id": "ACT-VD-007",
+            "action_type": "M&A",
+            "description": "Agreed to acquire Arctos Partners — largest institutional investor in professional sports franchises — seeding the new KKR Solutions vertical with approximately $10B in sports assets.",
+            "timeline": "Announced Q4 2025; closed Q1 2026.",
+            "source_citation": "PS-VD-006"
+          },
+          {
+            "action_id": "ACT-VD-008",
+            "action_type": "product-launch",
+            "description": "Launched K-ABF (asset-based finance) evergreen fund for wealth channel, contributing to K-Series suite approaching $10B+ total AUM.",
+            "timeline": "Announced Q3 2024; operational Q1 2025.",
+            "source_citation": "PS-VD-006"
+          },
+          {
+            "action_id": "ACT-VD-009",
+            "action_type": "geographic-expansion",
+            "description": "Accelerated APAC platform with focused investments in Japan infrastructure and India growth equity; APAC AUM exceeded $50B.",
+            "timeline": "Ongoing 2023-2025.",
+            "source_citation": "PS-VD-005"
+          },
+          {
+            "action_id": "ACT-VD-060",
+            "action_type": "product-launch",
+            "description": "Built out K-Series evergreen suite (KREST, KREF, K-ABF) for private wealth investors; perpetual capital reached 43% of total AUM.",
+            "timeline": "KREST 2021; KREF 2022; K-ABF 2024.",
+            "source_citation": "PS-VD-006"
+          },
+          {
+            "action_id": "ACT-VD-075",
+            "action_type": "organizational-change",
+            "description": "Established KKR Solutions as new vertical combining Arctos sports investing with GP stakes, targeting $100B+ AUM.",
+            "timeline": "Announced Q4 2025; operational Q1 2026.",
+            "source_citation": "PS-VD-006"
+          }
+        ],
+        "driver_performance": {
+          "FEAUM_quartile": "Q2",
+          "DE_share_quartile": "Q2",
+          "FRE_Growth_quartile": "Q1",
+          "FRE_Margin_quartile": "Q1",
+          "narrative": "KKR is the aspirational growth benchmark in the peer universe — Q1 on FRE_Growth, the strongest growth rate among all 11 peers, combined with Q1 FRE_Margin. At Q2 FEAUM and Q2 DE/share, KKR has not yet achieved the full scale premium that BX and APO command, but it is growing into that tier faster than any competitor. The compound effect of Q1 FRE_Growth and Q1 FRE_Margin produces rapidly expanding earnings that should drive DE/share toward Q1 over the next 2-3 years if sustained. The Global Atlantic full consolidation in Q1 2024 removed a structural discount (minority interest in insurance platform) that previously suppressed the market's trust in the perpetual capital narrative — a governance clean-up that preceded the valuation re-rating."
+        },
+        "value_creation_narrative": "KKR's valuation trajectory reflects the market pricing in the compounding effect of its fastest-among-peers FRE growth against a platform that nearly doubled fundraising in 2025 versus two years prior. The Global Atlantic acquisition is the foundational structural move: at $175B+ in insurance AUM, KKR now has the same captive credit origination loop as Apollo — but deployed it 10 years later, meaning the compounding benefit is still early and the market assigns a growth premium for the runway remaining. The KKR Solutions vertical (sports, GP stakes, royalties targeting $100B+ AUM) represents an optionality bet on a new asset class that no single peer has fully occupied — if successful, it differentiates KKR's product menu in a way that commands a strategic premium beyond the conventional PE-credit-infra mix. The capital markets fee revenue ($309.7M in 2024, +growing) is a unique recurring income stream that most peers lack, further reducing the dependence on performance fee timing. Source citations: PS-VD-005, PS-VD-006, PS-VD-007, PS-VD-064.",
+        "transferable_insights": [
+          {
+            "insight_id": "INS-010",
+            "insight": "Full consolidation of a previously minority-owned insurance platform — rather than maintaining a partial stake — eliminates a structural governance discount and gives the market full credit for the captive capital contribution to perpetual AUM.",
+            "how_they_did_it": "KKR acquired the remaining minority of Global Atlantic in Q1 2024. Full ownership required: investment management system integration between KKR Credit and Global Atlantic, insurance statutory reporting integration, ALM controls harmonization, and multi-state insurance regulatory approvals (RBC capital adequacy monitoring). The operational integration preceded the full multiple recognition by the market.",
+            "timeline": "Initial Global Atlantic majority acquisition 2021; full consolidation Q1 2024. Three-year transition from majority to full ownership.",
+            "enabling_conditions": "Insurance regulatory approval requires demonstrated compliance with RBC capital standards. Existing majority stake means integration infrastructure was partially built before the final acquisition. Founders or key insurance management must be incentivized to remain post-consolidation.",
+            "action_citations": ["ACT-VD-006"],
+            "evidence_class": "corroborated"
+          },
+          {
+            "insight_id": "INS-011",
+            "insight": "Building a capital markets revenue stream (origination, syndication, and transaction fees) alongside the traditional management fee model creates a recurring income source that decorrelates from performance fee timing and increases the fee-per-dollar-of-AUM ratio without requiring additional FEAUM growth.",
+            "how_they_did_it": "KKR's capital markets arm generated $309.7M in transaction fees in 2024 (+growing). The business originates deals, syndicates co-investment, and structures transactions across KKR's portfolio, generating fees at point of transaction rather than deferring to performance fee crystallization. Prerequisites: existing large deal flow (from PE and credit franchises) to originate; infrastructure for syndication and documentation; investment bank relationship equivalents without a balance sheet.",
+            "timeline": "Capital markets capabilities built over approximately 10 years; $309.7M in fees reached 2024.",
+            "enabling_conditions": "Capital markets fee income requires existing large deal flow — a sub-scale manager cannot generate sufficient transaction volume. Regulatory separation between advisory and distribution functions requires compliance infrastructure. Proprietary LP co-investment relationships are the distribution channel for syndicated co-investment.",
+            "action_citations": ["ACT-VD-008"],
+            "evidence_class": "inferred"
+          },
+          {
+            "insight_id": "INS-012",
+            "insight": "Launching differentiated alternative asset classes (GP stakes, sports franchise equity) as a combined vertical creates a new product menu that attracts LP types (endowments, family offices, sports team owners) who do not typically allocate to traditional PE or credit funds — expanding total addressable LP universe beyond the existing institutional client base.",
+            "how_they_did_it": "KKR Solutions combines Arctos (sports equity) with GP stakes capabilities. Arctos acquisition required sports league ownership approvals (NFL, NBA, MLB, NHL) — a regulatory process unique to sports franchise investing. The Arctos team was retained and embedded into a newly established KKR Solutions vertical with dedicated fund vehicles, reporting infrastructure, and compliance framework.",
+            "timeline": "Arctos acquisition announced Q4 2025; KKR Solutions operational Q1 2026. Full AUM build-out to $100B+ is a 5-7 year ambition.",
+            "enabling_conditions": "Sports league approvals are non-transferable from Arctos — acquiring Arctos is the prerequisite (building a competing sports franchise investor from scratch would require separate league approval processes). GP stakes expertise requires existing relationships with alternative managers willing to sell minority stakes.",
+            "action_citations": ["ACT-VD-007", "ACT-VD-075"],
+            "evidence_class": "inferred"
+          }
+        ]
+      }
+    },
+    {
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "sections": {
+        "identity_and_scale": {
+          "total_aum_bn": 622.5,
+          "feaum_bn": 406.9,
+          "feaum_note": "Credit Group $406.9B is the primary FEAUM contributor. Total AUM $622.5B at Q4 2025, 5-year CAGR of 26%. Real Estate $113.8B, Secondaries $42.1B, PE $25.3B. Figures from PS-VD-012, PS-VD-013, PS-VD-014.",
+          "geography": "Global — United States, Europe, Asia-Pacific. 55+ offices globally, 4,250+ employees. GCP acquisition added APAC logistics and data infrastructure footprint.",
+          "asset_class_mix": "Credit 65% (~$406B), Real Estate 18% (~$114B), Insurance Solutions 6%, Secondaries 7% (~$42B), Private Equity 4% (~$25B).",
+          "listing_history": "NYSE-listed Class A shares. Dual-class structure — founders retain non-economic voting units.",
+          "ownership_structure": "Dual-class: Non-economic voting units held by founders Michael Arougheti, David Kaplan, Antony Ressler. NYSE-listed Class A shares have economic rights but limited governance control."
+        },
+        "strategic_agenda": {
+          "priorities": [
+            "Maintain credit platform leadership — grow Credit Group beyond $400B through direct lending, CLOs, and insurance solutions.",
+            "Scale Real Estate platform via GCP-acquired capabilities in Asia-Pacific logistics and data infrastructure.",
+            "Expand Secondaries (ASOF) as a fourth major segment following integration of GCP's secondaries capabilities.",
+            "Drive democratization initiative — expand private market access to mass-affluent investors through lower-minimum products and third-party distribution.",
+            "Build ARIS insurance solutions into a standalone capital formation engine with dedicated insurance client mandates."
+          ],
+          "source_citations": ["PS-VD-012", "PS-VD-013", "PS-VD-014", "PS-VD-060"]
+        },
+        "key_actions": [
+          {
+            "action_id": "ACT-VD-013",
+            "action_type": "M&A",
+            "description": "Acquired GLP Capital Partners International for approximately $3.7B, adding $44B real estate AUM and transforming Ares into a top-5 global real estate manager with APAC logistics and data center capabilities.",
+            "timeline": "Announced Q1 2024; closed Q3 2024.",
+            "source_citation": "PS-VD-012"
+          },
+          {
+            "action_id": "ACT-VD-014",
+            "action_type": "M&A",
+            "description": "Acquired BlueCove Limited, London-based systematic fixed income manager, adding approximately $15B in quantitative credit strategies.",
+            "timeline": "Announced Q4 2023; closed Q2 2024.",
+            "source_citation": "PS-VD-013"
+          },
+          {
+            "action_id": "ACT-VD-015",
+            "action_type": "capital-structure-change",
+            "description": "Raised $2.3B+ equity to support Ares Insurance Solutions growth platform; insurance solutions AUM grew to $25.9B.",
+            "timeline": "Announced Q2 2024; closed Q3 2024.",
+            "source_citation": "PS-VD-014"
+          },
+          {
+            "action_id": "ACT-VD-016",
+            "action_type": "distribution-shift",
+            "description": "Launched democratization initiative for mass-affluent investors through ASIF and registered funds; wealth channel raised over $20B in 2025.",
+            "timeline": "Ongoing 2023-2025.",
+            "source_citation": "PS-VD-013"
+          },
+          {
+            "action_id": "ACT-VD-062",
+            "action_type": "technology-operations",
+            "description": "Integrated AI into investment and reporting processes as part of a firm-wide initiative at $622B AUM scale, enhancing credit underwriting and investor reporting efficiency.",
+            "timeline": "Ongoing 2024-2025.",
+            "source_citation": "PS-VD-013"
+          }
+        ],
+        "driver_performance": {
+          "FEAUM_quartile": "Q2",
+          "DE_share_quartile": "Q1",
+          "FRE_Growth_quartile": "Q2",
+          "FRE_Margin_quartile": "Q4",
+          "narrative": "Ares presents the most analytically interesting combination in the peer set: Q1 DE/share combined with Q4 FRE_Margin. This confirms the pipeline-level finding that FRE_Margin is not correlated with valuation multiples (rho=0.20 at the cross-sectional level) — Ares has the lowest-margin operating model among its peers (ARCC regulated as a BDC incurs compliance overhead; democratization initiative involves distribution costs that depress margin) yet still commands Q1 DE/share. The explanation is volume: at $622.5B AUM with a 26% 5-year CAGR, Ares's absolute earnings pool is large enough to drive high DE/share despite thin margins. This validates the scale-first hypothesis: market does not penalize Ares for its Q4 margin position because scale generates sufficient absolute earnings."
+        },
+        "value_creation_narrative": "Ares commands a valuation premium relative to its Q2 FEAUM position largely because it has demonstrated that credit-first multi-asset management can command Q1 DE/share even when FRE margins are compressed — the market prices earnings growth and volume, not efficiency ratios in isolation. The GCP acquisition ($44B AUM, $3.7B cost) illustrates Ares's willingness to use inorganic levers to achieve scale jumps in segments where organic growth would take a decade — APAC real estate and data center infrastructure is a market Ares could not have entered organically in 2024. The GCP integration also added APAC secondaries capabilities, enabling the fourth-segment Secondaries ambition without building from scratch. The ARIS equity raise ($2.3B+) is structurally distinct from Apollo's Athene model: Ares is building an insurance solutions business by raising equity from insurance company clients rather than acquiring an insurance platform — lower regulatory complexity, lower capital requirements, but also a lower captive capital guarantee. The democratization initiative (mass-affluent distribution at lower minimums) is the fastest-growing distribution channel in 2025 and positions Ares ahead of peers who have not yet scaled wealth-channel infrastructure. Source citations: PS-VD-012, PS-VD-013, PS-VD-014, PS-VD-060.",
+        "transferable_insights": [
+          {
+            "insight_id": "INS-013",
+            "insight": "Acquiring a scaled manager in a strategically adjacent asset class (real estate, infrastructure) provides an immediate FEAUM step-change and geographic capability (APAC) that would require a decade to build organically — dramatically compressing the time to becoming a credible multi-asset manager.",
+            "how_they_did_it": "GCP acquisition ($3.7B for $44B AUM, including $55B+ post-integration) added APAC logistics, data center, and real estate infrastructure in a single transaction. Integration required: GCP investment management platform integration, multi-jurisdictional APAC regulatory approvals (Singapore, Japan, China), retention of approximately 200+ GCP investment staff, and real estate segment reporting expansion. The fund administration for GCP-origin vehicles was transferred to Ares infrastructure.",
+            "timeline": "Announced Q1 2024; closed Q3 2024; integration ongoing 2025. Effective AUM contribution immediate; operational integration approximately 12-18 months.",
+            "enabling_conditions": "Acquirer must have sufficient balance sheet to fund $3.7B acquisition without impairing existing fund operations. Integration credibility with GCP's LPs requires Ares to demonstrate continuity of investment team and strategy — retention of approximately 200 GCP professionals is a prerequisite, not an option. APAC regulatory approvals are country-specific and cannot be accelerated; 6-9 month timeline must be planned.",
+            "action_citations": ["ACT-VD-013"],
+            "evidence_class": "corroborated"
+          },
+          {
+            "insight_id": "INS-014",
+            "insight": "Building an insurance solutions platform through equity raises from insurance company clients (rather than acquiring an insurance carrier) creates a captive capital channel with lower regulatory complexity and capital requirements — a viable alternative for managers unable to acquire a full insurance platform.",
+            "how_they_did_it": "Ares raised $2.3B+ equity for ARIS from insurance company clients who became both capital providers and mandate clients. Insurance solutions AUM grew to $25.9B. Prerequisite: insurance investment guideline compliance framework, ALM expertise for liability-matching, dedicated insurance solutions leadership team, and state insurance regulatory approvals for the new insurance entity.",
+            "timeline": "ARIS equity raise Q2-Q3 2024; platform operational 2025.",
+            "enabling_conditions": "Insurance clients will only commit capital and mandates to managers with demonstrated credit underwriting capability — Ares's $406B Credit Group track record is the prerequisite. ARIS requires separate legal entity registration and regulatory approval from state insurance authorities.",
+            "action_citations": ["ACT-VD-015"],
+            "evidence_class": "corroborated"
+          },
+          {
+            "insight_id": "INS-015",
+            "insight": "Scaling a dedicated wealth distribution team to 100+ professionals before the product suite is fully built — not after — is the operational precondition that enables a wealth channel to reach $20B+ annual fundraising. The distribution infrastructure investment must precede revenue by 18-24 months.",
+            "how_they_did_it": "Ares expanded its wealth distribution team from approximately 20 to 100+ dedicated professionals concurrent with the ASIF democratization product launch. Investor portal and reporting for retail-registered structures were built in advance of distribution launch. Third-party fund administrators for 40-Act vehicles, and SEC registered investment adviser compliance, were established as prerequisites.",
+            "timeline": "Distribution build 2023-2024; $20B+ wealth channel fundraising achieved in 2025. Approximately 18-month runway from team build to revenue.",
+            "enabling_conditions": "Sufficient FRE from institutional vehicles must fund the distribution team before wealth revenue materializes. SEC registered fund compliance is a non-negotiable prerequisite for retail distribution.",
+            "action_citations": ["ACT-VD-016"],
+            "evidence_class": "inferred"
+          }
+        ]
+      }
+    },
+    {
+      "firm_id": "FIRM-010",
+      "firm_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "sections": {
+        "identity_and_scale": {
+          "total_aum_bn": 477.0,
+          "feaum_bn": 332.0,
+          "feaum_note": "Total AUM $477B (+8% YoY), fee-earning AUM $332B at Q4 2025. Global PE $163.5B, Global Credit $211.3B, Investment Solutions (AlpInvest) $102B. Figures from PS-VD-024, PS-VD-025, PS-VD-026, PS-VD-057.",
+          "geography": "Global — United States, Europe, Asia-Pacific, Middle East. Headquartered Washington D.C. Number one PE sponsor globally by IPO proceeds (approximately $10B over past two years).",
+          "asset_class_mix": "Global Credit 44% (~$211B), Global PE 34% (~$164B), Investment Solutions/AlpInvest 21% (~$102B).",
+          "listing_history": "NASDAQ-listed. C-corp since 2020 governance simplification. Previously complex partnership structure.",
+          "ownership_structure": "Single class common shares since 2020. Founders Rubenstein, Conway, D'Aniello reduced day-to-day roles. Three Co-Presidents appointed January 2025."
+        },
+        "strategic_agenda": {
+          "priorities": [
+            "Sustain $40B+ annual inflow run rate, building toward $50B+ — organic fundraising discipline as core KPI. 2024 inflows were $53.7B (+32%), exceeding $40B target.",
+            "Grow Global Credit to $250B+ as the primary AUM growth engine, with CLOs, direct lending, and asset-backed as sub-drivers.",
+            "Scale wealth channel from 9 to 15+ evergreen products — making retail a material and diversified capital channel.",
+            "Deploy capital markets capabilities as a recurring revenue driver — maintain momentum beyond record $225M in 2024.",
+            "Complete leadership transition following Schwartz three-year transformation — cement three Co-Presidents structure for next growth phase."
+          ],
+          "source_citations": ["PS-VD-024", "PS-VD-025", "PS-VD-026", "PS-VD-057"]
+        },
+        "key_actions": [
+          {
+            "action_id": "ACT-VD-028",
+            "action_type": "organizational-change",
+            "description": "Appointed three Co-Presidents (Redett, Jenkins, Nedelman) effective January 2025, completing the leadership transition after the Schwartz transformation period.",
+            "timeline": "Announced Q4 2024; effective January 2025.",
+            "source_citation": "PS-VD-025"
+          },
+          {
+            "action_id": "ACT-VD-029",
+            "action_type": "distribution-shift",
+            "description": "Expanded wealth channel from 3 to 9 evergreen products; wealth professionals grew significantly to support nine concurrent registered vehicles.",
+            "timeline": "Ongoing 2023-2025.",
+            "source_citation": "PS-VD-025"
+          },
+          {
+            "action_id": "ACT-VD-030",
+            "action_type": "M&A",
+            "description": "Partnered with KKR to acquire $10.1B student loan portfolio from Discover Financial, demonstrating Carlyle credit platform scale in asset-based finance.",
+            "timeline": "Announced Q3 2024; closed Q4 2024.",
+            "source_citation": "PS-VD-024"
+          },
+          {
+            "action_id": "ACT-VD-031",
+            "action_type": "capital-structure-change",
+            "description": "Announced $2B share buyback program at the 2026 Shareholder Update, signaling transition to capital return phase after three-year transformation.",
+            "timeline": "Announced Q1 2026.",
+            "source_citation": "PS-VD-025"
+          },
+          {
+            "action_id": "ACT-VD-032",
+            "action_type": "distribution-shift",
+            "description": "Advanced Fortitude Re insurance solutions strategy, raising $2.1B for Fortitude Re as a dedicated insurance permanent capital vehicle.",
+            "timeline": "Ongoing 2023-2025.",
+            "source_citation": "PS-VD-024"
+          },
+          {
+            "action_id": "ACT-VD-066",
+            "action_type": "organizational-change",
+            "description": "Schwartz completed three-year transformation: eliminated underperforming lines, reshaped culture. FRE grew 12% YoY to record in FY2025; FRE margin expanded.",
+            "timeline": "Began 2022; completed 2025.",
+            "source_citation": "PS-VD-025"
+          }
+        ],
+        "driver_performance": {
+          "FEAUM_quartile": "Q2",
+          "DE_share_quartile": "Q2",
+          "FRE_Growth_quartile": "Q1",
+          "FRE_Margin_quartile": "Q3",
+          "narrative": "Carlyle occupies the most instructive position in the peer set for understanding turnaround dynamics: Q1 FRE_Growth combined with Q2 FEAUM and Q3 FRE_Margin signals a firm where operating leverage is expanding — FRE is growing fast enough to indicate margin improvement in progress, even if the current margin rank is sub-optimal. The $53.7B in FY2024 inflows (+32%) and $40B annual target exceeded is concrete evidence of renewed fundraising momentum. The $2B buyback authorization is a capital return signal that typically follows confidence in recurring earnings — consistent with a firm exiting transformation. The Schwartz three-year restructuring period (2022-2025) created temporary multiple compression that Carlyle's Q1 FRE_Growth suggests is unwinding."
+        },
+        "value_creation_narrative": "Carlyle's current valuation reflects the market partially pricing in a recovery from the 2022-2024 strategic drift period, while still applying a discount for three risks: (1) leadership transition (founders departed, three Co-Presidents untested), (2) lower FRE margins than direct peers, and (3) AlpInvest (solutions/FOF) which is a lower-multiple business than direct PE or credit. The Schwartz transformation eliminated underperforming business lines and refocused the platform on three segments with clear growth vectors — Credit (target $250B+), PE (IPO pipeline), and Wealth (3 to 9 evergreen products). The $2B buyback signals completion of the transformation investment phase and confidence in recurring FRE. Carlyle's instructiveness for the peer set is as a recovery archetype: a firm that compressed multiples during strategic drift and then regained them through operational discipline and inflow momentum, without a single transformative acquisition. Source citations: PS-VD-024, PS-VD-025, PS-VD-026, PS-VD-057.",
+        "transferable_insights": [
+          {
+            "insight_id": "INS-016",
+            "insight": "Committing to a three-year operational transformation — eliminating underperforming business lines, restructuring leadership, and refocusing on core growth segments — can recover FRE growth trajectory and multiple without requiring a large inorganic transaction, provided the fundraising discipline is demonstrated organically.",
+            "how_they_did_it": "Under Harvey Schwartz (CEO from early 2023), Carlyle divested underperforming units, installed three Co-Presidents in a shared leadership model, and concentrated capital allocation on three segments with the clearest FRE growth vectors (Credit, PE, AlpInvest). $53.7B in 2024 inflows (+32%) and FRE growth of 12% YoY in FY2025 were the measurable outcomes. Prerequisite: CEO mandate with board confidence to execute painful cuts without shareholder revolt — requires clear transformation narrative communicated to investors.",
+            "timeline": "Transformation began 2022; completed 2025. Three-year window with market patience anchored by explicit transformation communication.",
+            "enabling_conditions": "External CEO with mandate for change (Schwartz was a former Goldman Sachs president) is the enabling governance condition. Board alignment on the transformation thesis is required before painful cuts can be executed without activist shareholder interference.",
+            "action_citations": ["ACT-VD-066", "ACT-VD-028"],
+            "evidence_class": "directly_documented"
+          },
+          {
+            "insight_id": "INS-017",
+            "insight": "Announcing a share buyback authorization following a transformation period functions as a credibility signal to the market — it communicates that management believes the stock is undervalued and that recurring FRE is now durable enough to return capital, accelerating multiple re-rating.",
+            "how_they_did_it": "Carlyle announced $2B buyback at the 2026 Shareholder Update, coinciding with Co-Presidents taking operational control and transformation declared complete. The buyback signal works because it requires compliance with SEC Rule 10b-18 and a 10b5-1 trading plan — a mechanistic commitment that the market can verify. Prerequisite: FRE must be sufficiently stable and growing for management to commit cash to buyback without impairing fund operations or fundraising.",
+            "timeline": "Announced Q1 2026; execution timeline across 2026.",
+            "enabling_conditions": "Buyback requires liquidity not needed for fund operations or acquisitions. Prior to authorizing, Carlyle's FRE must have been visibly growing (12% YoY) for multiple quarters to establish credibility for the capital return signal.",
+            "action_citations": ["ACT-VD-031"],
+            "evidence_class": "directly_documented"
+          }
+        ]
+      }
+    },
+    {
+      "firm_id": "FIRM-008",
+      "firm_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "cautionary_case": true,
+      "sections": {
+        "identity_and_scale": {
+          "total_aum_bn": 307.4,
+          "feaum_bn": 187.7,
+          "feaum_note": "AUM $307.4B, FPAUM (fee-paying AUM) $187.7B at Q4 2025. Credit approximately $170B, Real Assets (net lease + digital infra) approximately $92B, GP Strategic Capital approximately $46B. Figures from PS-VD-018, PS-VD-019, PS-VD-020, PS-VD-063.",
+          "geography": "Primarily North America. IPI Partners acquisition added global digital infrastructure (data centers, fiber, cell towers). European credit expanding. Headquartered New York.",
+          "asset_class_mix": "Credit 55% (~$170B), Real Assets/Net Lease 30% (~$92B), GP Strategic Capital 15% (~$46B). 100% permanent capital model.",
+          "listing_history": "NYSE-listed Class A. SPAC merger in 2021 combining Owl Rock and Dyal Capital Partners.",
+          "ownership_structure": "Dual-class: Co-founders Doug Ostrover, Marc Lipschultz, Craig Packer hold Class B with enhanced voting rights. NYSE-listed Class A."
+        },
+        "strategic_agenda": {
+          "priorities": [
+            "Maintain 100% permanent capital model — scale to $500B+ AUM without introducing drawdown fund complexity.",
+            "Grow insurance channel via KAM (Kuvare Asset Management) to create captive credit origination pipeline at scale.",
+            "Expand digital infrastructure (IPI) into the largest alternative digital infrastructure manager.",
+            "Build GP Strategic Capital beyond GP stakes into sports, media, and entertainment.",
+            "Drive international distribution growth in Europe and APAC for direct lending and real assets products."
+          ],
+          "source_citations": ["PS-VD-018", "PS-VD-019", "PS-VD-020", "PS-VD-063"]
+        },
+        "key_actions": [
+          {
+            "action_id": "ACT-VD-021",
+            "action_type": "M&A",
+            "description": "Acquired IPI Partners, leading digital infrastructure investment firm managing 80+ global data centers, adding approximately $15B AUM as a fifth asset class.",
+            "timeline": "Announced Q1 2024; closed Q2 2024.",
+            "source_citation": "PS-VD-018"
+          },
+          {
+            "action_id": "ACT-VD-022",
+            "action_type": "M&A",
+            "description": "Acquired Kuvare Asset Management, launching dedicated insurance channel managing over $20B and creating a captive credit origination pipeline.",
+            "timeline": "Announced Q3 2024; closed Q1 2025.",
+            "source_citation": "PS-VD-018"
+          },
+          {
+            "action_id": "ACT-VD-023",
+            "action_type": "M&A",
+            "description": "Acquired Atalaya Capital Management, expanding alternative credit into asset-based finance with $8B+ in specialty finance capabilities.",
+            "timeline": "Announced Q4 2023; closed Q1 2024.",
+            "source_citation": "PS-VD-018"
+          },
+          {
+            "action_id": "ACT-VD-024",
+            "action_type": "product-launch",
+            "description": "Launched inaugural $3B secondaries fund providing liquidity to PE LP investors, extending the permanent capital model into the secondaries market.",
+            "timeline": "Announced Q1 2025; first close Q3 2025.",
+            "source_citation": "PS-VD-063"
+          },
+          {
+            "action_id": "ACT-VD-064",
+            "action_type": "M&A",
+            "description": "Acquired Prima Capital Advisors (June 2024) to add real estate credit capabilities, complementing existing direct lending and net lease.",
+            "timeline": "Announced Q1 2024; closed Q2 2024.",
+            "source_citation": "PS-VD-018"
+          }
+        ],
+        "driver_performance": {
+          "FEAUM_quartile": "Q2",
+          "DE_share_quartile": "Q4",
+          "FRE_Growth_quartile": "Q2",
+          "FRE_Margin_quartile": "Q1",
+          "narrative": "Blue Owl is the cautionary case in the peer universe: Q2 FEAUM and Q1 FRE_Margin with Q4 DE/share. This is the scale-without-earnings-efficiency trap. Despite having the highest FRE margin in the top quartile (consistent with permanent capital model low redemption costs) and Q2 FEAUM, OWL's per-share earnings are the weakest among non-micro-cap peers. The likely mechanism is share count dilution from the SPAC formation (2021) and multiple subsequent acquisitions (IPI, Kuvare, Atalaya, Prima) funded partly by equity issuance. Each acquisition added AUM (supporting FEAUM) but also added shares, diluting DE/share. The rapid inorganic growth model (from sub-$100B at formation to $307B in 4 years) is impressive by AUM metrics but has not translated to per-share value creation at the pace the market expected. The Q2 FRE_Growth confirms ongoing fundraising momentum — the engine is running; the problem is the equity base denominator, not the numerator."
+        },
+        "value_creation_narrative": "Blue Owl trades at a discount to its Q2 FEAUM position precisely because Q4 DE/share reveals the structural cost of rapid acquisition-driven scaling: each bolt-on (IPI, Kuvare, Atalaya, Prima) added AUM but also added acquisition costs, integration expenses, and equity compensation dilution, suppressing per-share earnings even as total earnings grew. The 100% permanent capital model is theoretically premium-deserving — durable fee streams with no drawdown risk — but the market discounts the premium when DE/share growth does not keep pace with AUM growth. This is the clearest empirical confirmation of the pipeline's key finding: scale (FEAUM) is rewarded, but only when DE/share accompanies it. Blue Owl's FEAUM growth outpaced DE/share growth, creating a multiple compression that acts as a cautionary signal for any manager that prioritizes top-line AUM growth over per-share earnings compounding. The path forward for OWL likely requires a pause in acquisition-funded growth and a period of organic earnings compounding to reduce the gap between FEAUM quartile rank and DE/share quartile rank. Source citations: PS-VD-018, PS-VD-019, PS-VD-020, PS-VD-063.",
+        "transferable_insights": [
+          {
+            "insight_id": "INS-018",
+            "insight": "The 100% permanent capital model (all AUM in evergreen or perpetual structures) is a structurally premium business — but the premium requires that AUM growth translates to DE/share growth. Acquisition-funded AUM expansion that dilutes the equity base destroys the per-share multiple even when the aggregate fee pool grows. Managers pursuing permanent capital should stress-test each acquisition for DE/share impact, not just AUM contribution.",
+            "how_they_did_it": "Blue Owl's KAM, IPI, Atalaya, and Prima acquisitions collectively drove AUM from sub-$100B to $307B in approximately four years. Each acquisition required: systems integration, regulatory approvals, and equity or OP unit consideration. The KAM acquisition specifically required ALM framework establishment and state insurance regulatory approval for insurance asset manager acquisition. The structural lesson is operational: the acquisition pace exceeded the earnings integration speed.",
+            "timeline": "SPAC formation 2021; IPI Q2 2024; Kuvare Q1 2025; Atalaya Q1 2024; Prima Q2 2024. Four acquisitions in two years.",
+            "enabling_conditions": "Permanent capital model requires 100% fee revenue from AUM in durable vehicles — the Q1 FRE_Margin confirms this model is more efficient than drawdown when working. The cautionary lesson is that rapid inorganic growth requires financing discipline that OWL appears to have strained.",
+            "action_citations": ["ACT-VD-021", "ACT-VD-022", "ACT-VD-023", "ACT-VD-064"],
+            "evidence_class": "corroborated"
+          },
+          {
+            "insight_id": "INS-019",
+            "insight": "GP stakes as an asset class (acquiring minority interests in alternative asset managers) creates a portfolio of growing fee streams at one remove — providing exposure to the alt-management industry's AUM growth without requiring the manager to build its own strategies. This is a viable institutional product for managers who have LP relationships but limited direct investment capabilities.",
+            "how_they_did_it": "Blue Owl's GP Strategic Capital business (Dyal Capital heritage) manages approximately $46B in GP stakes. Insurance mandates (via KAM) provide permanent capital to deploy into GP stakes. Prerequisites: existing relationships with alternative managers willing to sell minority stakes; insurance capital as a durable long-hold vehicle; sports league approvals for sports-adjacent investing. The secondaries fund (ACT-VD-024) extends the GP relationships model into LP secondaries.",
+            "timeline": "Dyal Capital GP stakes heritage predates 2021 merger. Current platform at approximately $46B. Secondaries fund launched 2025.",
+            "enabling_conditions": "GP stakes require target managers to be willing to sell minority interests — existing relationship networks with alternative managers are the non-replicable prerequisite. Insurance capital (KAM) is the natural permanent capital vehicle for GP stakes given long hold periods.",
+            "action_citations": ["ACT-VD-022", "ACT-VD-024"],
+            "evidence_class": "corroborated"
+          }
+        ]
+      }
+    },
+    {
+      "firm_id": "FIRM-009",
+      "firm_name": "TPG Inc.",
+      "ticker": "TPG",
+      "sections": {
+        "identity_and_scale": {
+          "total_aum_bn": 303.0,
+          "feaum_bn": 200.0,
+          "feaum_note": "AUM $303B (+23% YoY at Q4 2025). FEAUM estimated at approximately $200B based on management fee-paying capital across six platforms. Angelo Gordon credit adds approximately $80B FEAUM contribution. Figures from PS-VD-021, PS-VD-022, PS-VD-023.",
+          "geography": "Global — United States, Europe, Asia-Pacific. Headquartered Fort Worth (operational base San Francisco). Asia-Pacific historical roots (co-founded in Hong Kong). Angelo Gordon has US and European operations.",
+          "asset_class_mix": "PE and Growth Equity 45% (~$136B), Credit/Angelo Gordon 30% (~$91B), Real Estate 10% (~$30B), Impact 8% (~$24B), Market Solutions 7% (~$21B).",
+          "listing_history": "NASDAQ-listed since January 2022 IPO. Dual-class structure.",
+          "ownership_structure": "Dual-class: Founders Jim Coulter and David Bonderman retain special voting interests through partnership units. Class A publicly traded on NASDAQ."
+        },
+        "strategic_agenda": {
+          "priorities": [
+            "Declare 2025 a 'breakout year' with $50B+ in fundraising — demonstrate organic fundraising capacity post-Angelo Gordon integration.",
+            "Scale Angelo Gordon credit platform to $100B+ AUM through expanded direct lending, structured credit, and asset-based finance.",
+            "Build Market Solutions into a recurring insurance capital management and capital markets revenue engine.",
+            "Grow TPG Rise (impact) as a differentiated platform attracting ESG-mandated institutional capital.",
+            "Expand private wealth and evergreen product offerings to diversify beyond institutional drawdown."
+          ],
+          "source_citations": ["PS-VD-021", "PS-VD-022", "PS-VD-023"]
+        },
+        "key_actions": [
+          {
+            "action_id": "ACT-VD-025",
+            "action_type": "M&A",
+            "description": "Completed acquisition of Angelo Gordon, a $74B credit and real estate manager, adding a scaled credit platform and diversifying beyond PE and growth equity.",
+            "timeline": "Announced Q2 2023; closed Q4 2023.",
+            "source_citation": "PS-VD-021"
+          },
+          {
+            "action_id": "ACT-VD-026",
+            "action_type": "M&A",
+            "description": "Acquired Peppertree Capital Management, wireless tower and communication infrastructure specialist with approximately $5B AUM.",
+            "timeline": "Announced Q2 2024; closed Q4 2024.",
+            "source_citation": "PS-VD-021"
+          },
+          {
+            "action_id": "ACT-VD-027",
+            "action_type": "distribution-shift",
+            "description": "Entered strategic insurance mandate with Jackson Financial to manage up to $20B, providing stable long-duration AUM and validating TPG credit platform quality.",
+            "timeline": "Announced Q4 2024; operational Q1 2025.",
+            "source_citation": "PS-VD-023"
+          },
+          {
+            "action_id": "ACT-VD-065",
+            "action_type": "product-launch",
+            "description": "Designated 2025 a 'breakout year'; $50B+ fundraising target across six platforms. AUM reached $303B (+23% YoY), $72B dry powder entering 2026.",
+            "timeline": "Announced Q4 2025.",
+            "source_citation": "PS-VD-023"
+          }
+        ],
+        "driver_performance": {
+          "FEAUM_quartile": "Q3",
+          "DE_share_quartile": "Q3",
+          "FRE_Growth_quartile": "Q1",
+          "FRE_Margin_quartile": "Q4",
+          "narrative": "TPG is the most instructive aspirational analog in the peer set: Q3 FEAUM and Q3 DE/share but Q1 FRE_Growth — demonstrating that a manager in the Q3 FEAUM tier can sustain Q1 growth rates while simultaneously integrating a large acquisition (Angelo Gordon). The Q4 FRE_Margin position (consistent with ARES's Q4 margin — credit-heavy platforms incur distribution and compliance costs that compress margins) does not prevent the market from assigning a premium for Q1 growth momentum. TPG's $23% YoY AUM growth to $303B and the 'breakout year' designation confirm that the Angelo Gordon integration phase is complete and organic fundraising is now the primary growth driver. The 166% AUM growth since 2021 IPO is substantially inorganic but the Q1 FRE_Growth suggests the organic engine is now activated."
+        },
+        "value_creation_narrative": "TPG trades at a scale discount relative to Q1 peers (BX, APO) but commands a trajectory premium within its Q3 FEAUM tier because the market recognizes that it is on a similar path to where KKR was five years ago: post-IPO, post-major-acquisition integration, beginning to demonstrate organic fundraising scale. The Angelo Gordon acquisition ($74B credit at Q4 2023) was the transformative move: it gave TPG a multi-platform identity (PE + Credit + Impact + Real Estate) that institutional LPs require before writing large mandates. The Jackson Financial mandate ($20B insurance capital) confirms that the credit platform now has credibility with insurance allocators — a validation signal that typically precedes broader institutional distribution. TPG's differentiated positioning (impact investing via Rise, tech-sector PE) attracts LP types that most peers do not reach, potentially reducing LP concentration risk relative to purely institutional credit platforms. Source citations: PS-VD-021, PS-VD-022, PS-VD-023.",
+        "transferable_insights": [
+          {
+            "insight_id": "INS-020",
+            "insight": "Acquiring a scaled credit manager simultaneously adds a second large asset class, a different LP base (credit-focused vs. PE-focused), and a distinct distribution channel — effectively transforming a single-asset-class manager into a multi-platform operator in a single transaction, at a pace impossible through organic fund launches.",
+            "how_they_did_it": "Angelo Gordon ($74B, Q4 2023) added credit and real estate to TPG's PE and growth equity platform. Integration required: investment management system integration, credit segment reporting establishment within TPG financials, retention of approximately 300 AG investment professionals, SEC approval for merger of registered investment advisers, and migration of AG fund vehicles to TPG fund administration. The operational integration was completed within approximately 12 months based on Q1 FRE_Growth performance in 2025.",
+            "timeline": "Announced Q2 2023; closed Q4 2023; integration substantially complete by Q4 2024. Approximately 12-month integration timeline.",
+            "enabling_conditions": "Acquiring a manager of AG's scale requires sufficient balance sheet and equity capital — TPG's 2022 IPO provided the public currency for the acquisition. Retention of approximately 300 AG professionals requires competitive compensation structures and must be negotiated pre-close. SEC approval for merger of registered advisers is a 6-9 month regulatory process.",
+            "action_citations": ["ACT-VD-025"],
+            "evidence_class": "corroborated"
+          },
+          {
+            "insight_id": "INS-021",
+            "insight": "Securing a strategic insurance mandate from a named insurance company (rather than raising an insurance-specific fund) validates the credit platform's underwriting quality and provides a reference client for future insurance LP acquisition — at lower regulatory complexity than acquiring an insurance platform outright.",
+            "how_they_did_it": "TPG secured a strategic mandate from Jackson Financial to manage up to $20B in insurance assets. Investment management reporting and insurance investment guideline compliance monitoring were established. ALM framework for Jackson's general account was implemented. The mandate validates Angelo Gordon's middle-market credit capabilities in an externally observable way.",
+            "timeline": "Mandate announced Q4 2024; operational Q1 2025.",
+            "enabling_conditions": "Insurance mandates require demonstrated track record in the specific credit strategy the insurer needs (typically middle-market direct lending or asset-backed). ALM expertise and insurance investment guideline compliance are prerequisites. Jackson's decision to award the mandate is anchored by Angelo Gordon's pre-acquisition track record — the mandate was likely in discussion before the TPG acquisition closed.",
+            "action_citations": ["ACT-VD-027"],
+            "evidence_class": "inferred"
+          }
+        ]
+      }
+    },
+    {
+      "firm_id": "FIRM-011",
+      "firm_name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "sections": {
+        "identity_and_scale": {
+          "total_aum_bn": 220.0,
+          "feaum_bn": 100.0,
+          "feaum_note": "Discretionary AUM $220B (December 2025). Total capital responsibility $811B including non-discretionary advisory and supervision. FEAUM estimated at approximately $100B (fee-earning subset of $220B discretionary). Private Wealth Solutions $10.2B (July 2025). Figures from PS-VD-033, PS-VD-034, PS-VD-035.",
+          "geography": "Global — 25+ offices. United States, Europe, Asia-Pacific, Middle East. Japan private wealth entry (Mika Tashiro hire, 2025) as APAC distribution expansion.",
+          "asset_class_mix": "Private Equity 50% (~$110B), Private Debt 20% (~$44B), Real Estate 15% (~$33B), Infrastructure 15% (~$33B). Solutions model provides access across all asset classes and modes.",
+          "listing_history": "NASDAQ-listed Class A. Fiscal year ends March.",
+          "ownership_structure": "Dual-class: Class A (publicly traded NASDAQ) and Class B (held by founders and employees with economic and voting rights). Founder-controlled governance."
+        },
+        "strategic_agenda": {
+          "priorities": [
+            "Deepen SMA penetration — maintain 90%+ re-up rate and 30%+ average growth on re-ups as the anchor of the business model.",
+            "Scale Private Wealth Solutions to $20B+ AUM through STPEX, SPRIM, and new product launches targeting HNW and mass-affluent investors.",
+            "Expand APAC private wealth distribution — Japan entry (Tashiro hire) signals near-term geographic expansion priority.",
+            "Grow infrastructure and private debt platforms to balance PE dominance in AUM mix.",
+            "Leverage $811B total capital responsibility as a data and sourcing advantage — deepen GP relationships to improve co-investment access."
+          ],
+          "source_citations": ["PS-VD-033", "PS-VD-034", "PS-VD-035"]
+        },
+        "key_actions": [
+          {
+            "action_id": "ACT-VD-041",
+            "action_type": "product-launch",
+            "description": "Launched STPEX, an evergreen interval fund providing retail access to PE co-investments; Private Wealth Solutions grew to $10.2B AUM by July 2025 (doubled in under one year).",
+            "timeline": "Launched Q3 2024; operational Q4 2024.",
+            "source_citation": "PS-VD-033"
+          },
+          {
+            "action_id": "ACT-VD-042",
+            "action_type": "distribution-shift",
+            "description": "Scaled Private Wealth Solutions to $10.2B AUM by July 2025, doubling in under one year through STPEX and dedicated wealth team expansion.",
+            "timeline": "Ongoing 2024-2025.",
+            "source_citation": "PS-VD-034"
+          },
+          {
+            "action_id": "ACT-VD-043",
+            "action_type": "technology-operations",
+            "description": "Co-developed 2026 Private Equity GP Outlook with Bain & Company, leveraging proprietary data on 4,000+ GPs to build thought leadership positioning among wealth advisers.",
+            "timeline": "Published Q1 2026.",
+            "source_citation": "PS-VD-034"
+          },
+          {
+            "action_id": "ACT-VD-067",
+            "action_type": "product-launch",
+            "description": "Closed Tactical Growth Fund IV at over $700M, extending StepStone's secondary-market PE capability as a complement to primary co-investment.",
+            "timeline": "Final close Q2 2025.",
+            "source_citation": "PS-VD-033"
+          }
+        ],
+        "driver_performance": {
+          "FEAUM_quartile": "Q3",
+          "DE_share_quartile": "Q3",
+          "FRE_Growth_quartile": "N/A",
+          "FRE_Margin_quartile": "Q4",
+          "narrative": "StepStone occupies the Q3 FEAUM and Q3 DE/share position with 100% metric coverage in the quantitative dataset — the highest data completeness in the peer set. FRE_Growth_YoY quartile data is unavailable for STEP due to insufficient coverage in the standardized dataset (noted in flagged_gaps of final_peer_set.json). FRE_Margin at Q4 reflects the solutions model's inherently lower margins — advisory and non-discretionary revenues have lower fee rates than direct investing, and the 90%+ SMA re-up model involves minimal per-mandate distribution cost but significant relationship management overhead. The $31B raised in FY2025 (29% organic FEAUM growth) is the most directly comparable organic growth benchmark for peers in this FEAUM tier."
+        },
+        "value_creation_narrative": "StepStone's valuation reflects a solutions-model premium: the $811B total capital responsibility creates an information and relationship advantage that institutional LPs pay for, even when the fee rate is lower than direct investing managers. The 90%+ SMA re-up rate and 30%+ average growth on re-ups mean StepStone's AUM is the stickiest in the peer set — churn risk is structurally lower than for drawdown funds that mature and require re-solicitation. The STPEX product (co-investment access for wealth investors) successfully transplanted an institutional advantage (co-investment deal flow from 4,000+ GP relationships) into a wealth-accessible format, doubling Private Wealth AUM in under one year. The value creation mechanism is data-moat: $811B of capital responsibility creates a proprietary view into GP performance, deal pricing, and co-investment valuations that smaller solutions providers and direct managers cannot replicate. Source citations: PS-VD-033, PS-VD-034, PS-VD-035.",
+        "transferable_insights": [
+          {
+            "insight_id": "INS-022",
+            "insight": "Translating an institutional co-investment advantage (access to GP-sourced deal flow) into a retail-accessible evergreen product creates a differentiated wealth offering that established direct-investing managers cannot easily replicate — because the co-investment access itself requires the GP relationship network, which takes years to build.",
+            "how_they_did_it": "StepStone launched STPEX as an SEC-registered interval fund providing retail access to PE co-investments sourced through its 4,000+ GP relationships. Infrastructure required: 40-Act interval fund registration, dedicated wealth distribution team (scaled from approximately 5 to 20+ professionals), valuation and liquidity gate controls for co-investment assets, and transfer agent relationships for the registered fund.",
+            "timeline": "STPEX launched Q3 2024; $10.2B Private Wealth AUM by July 2025 — approximately 9-month ramp to $10B.",
+            "enabling_conditions": "The co-investment deal flow (the product's differentiator) requires existing GP relationships — STPEX could not be launched without StepStone's 30-year GP relationship network as the sourcing engine. SEC interval fund registration is approximately a 6-month process. Distribution team must be pre-hired before the fund launch to enable immediate distribution.",
+            "action_citations": ["ACT-VD-041", "ACT-VD-042"],
+            "evidence_class": "inferred"
+          },
+          {
+            "insight_id": "INS-023",
+            "insight": "Using proprietary data from a large advisory or solutions client base (4,000+ GPs, $811B capital responsibility) to publish thought leadership research creates a brand differentiation mechanism that attracts both GP relationships (who want their performance context interpreted accurately) and LP relationships (who value the analytical framework) — a flywheel that reinforces the data moat.",
+            "how_they_did_it": "StepStone co-published the 2026 PE GP Outlook with Bain & Company, drawing on proprietary data from its 4,000+ GP monitoring relationships. The publication required: proprietary GP database infrastructure, research methodology alignment with Bain, and data governance controls to ensure LP-level confidentiality. The thought leadership positions StepStone as the intelligence layer in private markets, reinforcing LP preference for StepStone solutions mandates.",
+            "timeline": "Published Q1 2026; research is recurring (annual).",
+            "enabling_conditions": "The GP database (proprietary, from $811B capital responsibility) is the non-replicable asset. A manager without comparable data coverage cannot credibly publish the same research — the authenticity requires the underlying data.",
+            "action_citations": ["ACT-VD-043"],
+            "evidence_class": "inferred"
+          }
+        ]
+      }
+    },
+    {
+      "firm_id": "FIRM-015",
+      "firm_name": "EQT AB",
+      "ticker": "EQT",
+      "sections": {
+        "identity_and_scale": {
+          "total_aum_eur_bn": 270.0,
+          "total_aum_usd_bn": 291.6,
+          "feaum_eur_bn": 141.0,
+          "feaum_note": "Total AUM EUR 270B (~$291.6B USD equivalent) at Q4 2025. Fee-generating AUM EUR 141B. Private Capital EUR approximately 175B, Real Assets EUR approximately 95B. Coller Capital acquisition will add EUR 28B FAUM. Figures from PS-VD-027, PS-VD-028, PS-VD-029, PS-VD-058. Currency EUR unless stated.",
+          "geography": "Global — European home market (Sweden, Germany, UK), Asia-Pacific (EQT Private Capital Asia — Hong Kong, Singapore, Mumbai, Beijing), North America (expanding). Largest European-headquartered pure-play alt manager.",
+          "asset_class_mix": "Private Capital 65% (~EUR 175B), Real Assets 35% (~EUR 95B). Post-Coller: Secondaries will be a third major pillar.",
+          "listing_history": "NASDAQ Stockholm listed. Swedish company with supervisory board governance. Not a US-listed company.",
+          "ownership_structure": "Single class shares on NASDAQ Stockholm. Co-founders Conni Jonsson and Thomas von Koch retain significant ownership but no enhanced voting rights. CEO Christian Sinding."
+        },
+        "strategic_agenda": {
+          "priorities": [
+            "Scale fee-generating AUM to EUR 200B+ through continued fundraising across Private Capital and Real Assets.",
+            "Integrate Coller Capital to establish secondaries as a major third pillar alongside PE and infrastructure.",
+            "Expand evergreen and open-ended strategies for private wealth — 'inflection point' declared at Capital Markets Day.",
+            "Deepen EQT Private Capital Asia as a standalone brand covering China, India, Japan, and Southeast Asia.",
+            "Accelerate portfolio value creation through digital and AI-powered transformation of portfolio companies."
+          ],
+          "source_citations": ["PS-VD-027", "PS-VD-028", "PS-VD-029", "PS-VD-058"]
+        },
+        "key_actions": [
+          {
+            "action_id": "ACT-VD-033",
+            "action_type": "M&A",
+            "description": "Agreed to acquire 100% of Coller Capital (EUR 28B FAUM) to expand secondaries platform, establishing secondaries as a third major pillar alongside Private Capital and Real Assets.",
+            "timeline": "Announced Q3 2025; expected close H1 2026.",
+            "source_citation": "PS-VD-027"
+          },
+          {
+            "action_id": "ACT-VD-034",
+            "action_type": "M&A",
+            "description": "Acquired Perficient, global digital consultancy for approximately $3B in a take-private, applying EQT's tech-enabled value creation model.",
+            "timeline": "Announced Q3 2023; closed Q1 2024.",
+            "source_citation": "PS-VD-028"
+          },
+          {
+            "action_id": "ACT-VD-035",
+            "action_type": "product-launch",
+            "description": "Scaled evergreen and open-ended strategies to EUR 3.5B+ AUM for private wealth, declaring an 'inflection point' in private wealth distribution.",
+            "timeline": "Ongoing 2024-2025.",
+            "source_citation": "PS-VD-029"
+          },
+          {
+            "action_id": "ACT-VD-036",
+            "action_type": "M&A",
+            "description": "Renamed BPEA to EQT Private Capital Asia (Q2 2024), completing brand integration of the 2022 BPEA acquisition and unifying the EQT brand across approximately $15B+ APAC AUM.",
+            "timeline": "Rebranded Q2 2024.",
+            "source_citation": "PS-VD-027"
+          },
+          {
+            "action_id": "ACT-VD-071",
+            "action_type": "organizational-change",
+            "description": "Achieved strongest realization year ever in 2025 with EUR 16B gross fund investments and EUR 14B co-investments — both records.",
+            "timeline": "Record year 2025.",
+            "source_citation": "PS-VD-027"
+          }
+        ],
+        "driver_performance": {
+          "FEAUM_quartile": "Q2",
+          "DE_share_quartile": "N/A",
+          "FRE_Growth_quartile": "N/A",
+          "FRE_Margin_quartile": "Q3",
+          "narrative": "EQT's driver performance has limited cross-sectional comparability due to IFRS reporting (versus US GAAP for most peers), EUR-denominated financials, and absence of DE/share data in the quantitative dataset. Q2 FEAUM is based on USD-equivalent conversion (~$291B total AUM). FRE_Growth_YoY quartile data is unavailable due to insufficient standardized dataset coverage. FRE_Margin Q3 reflects EUR 2.6B management fees (FY2025) against a fee base that includes infrastructure fund management fees at lower rates than credit peers. EQT is included primarily for qualitative strategic instructiveness: European-listed PE manager with advanced ESG integration, thematic investing model, and a credible secondaries build (Coller). The EUR 26B+ gross inflows in 2025 more than doubled the prior year — a growth signal consistent with Q1-equivalent trajectory if comparable metrics were available."
+        },
+        "value_creation_narrative": "EQT's valuation on Stockholm exchange reflects a European asset manager premium for its dominant position as the largest European-headquartered alt manager — a structural home-market advantage with access to Scandinavian and continental European pension and insurance capital that US-listed peers cannot easily replicate. The 'Future' thematic investing approach (technology, healthcare, sustainability) is not just branding — it systematically targets portfolio companies in structural growth sectors, which has contributed to strong DPI generation. The record EUR 16B realization year in 2025 validates the active ownership model: EQT transforms companies through the value creation team and then realizes at premium multiples. The Coller acquisition (EUR 28B secondaries) is a structural diversification move that will change EQT's product mix from two-pillar to three-pillar — providing both AUM growth and a fundamentally different return profile that de-risks the earnings stream from primary fund cycle timing. The Perficient take-private illustrates EQT's conviction in its own thematic: buying a digital transformation consultancy to both generate return and gain proprietary digital expertise for portfolio companies. Source citations: PS-VD-027, PS-VD-028, PS-VD-029, PS-VD-058.",
+        "transferable_insights": [
+          {
+            "insight_id": "INS-024",
+            "insight": "Applying an explicit thematic investment framework ('Future' themes: digitalization, automation, healthier living) across the entire portfolio — not just in a dedicated thematic fund — creates a coherent LP narrative that attracts ESG-mandated and thematic-oriented institutional capital, while also structurally tilting the portfolio toward higher-growth sectors.",
+            "how_they_did_it": "EQT's thematic framework is applied at the investment thesis level for every PE and infrastructure acquisition — team members screen against 'Future' theme alignment as a valuation driver criterion. This is documented in investment committee materials and disclosed in fund marketing. Prerequisite: thematic investment expertise and sector research capability must be built before the framework can be credibly applied. Perficient (digital consultancy, ACT-VD-034) is both a thematic investment and a source of digital expertise for value creation.",
+            "timeline": "Thematic framework applied since EQT's early history; institutionalized and marketed as differentiator post-BPEA acquisition (2022). Ongoing investment committee discipline.",
+            "enabling_conditions": "Institutional LP acceptance of thematic frameworks requires demonstrated historical returns — EQT's 30-year track record provides this credibility. Without a performance track record, thematic branding is empty marketing.",
+            "action_citations": ["ACT-VD-034"],
+            "evidence_class": "inferred"
+          },
+          {
+            "insight_id": "INS-025",
+            "insight": "Acquiring and fully integrating an APAC-branded manager (BPEA) and then unifying it under the global brand — rather than maintaining it as a separate entity — accelerates LP recognition in the region and enables cross-selling of the full platform's capabilities to APAC institutional allocators.",
+            "how_they_did_it": "EQT acquired BPEA (Asia PE, approximately $15B AUM) in 2022 and completed brand integration by renaming to EQT Private Capital Asia in Q2 2024. Integration required: systems migration to EQT technology stack, Asia segment reporting consolidation under EQT Private Capital, and regulatory notifications across Hong Kong, Singapore, India, and China for name changes. The unified brand enables EQT's Hong Kong, Singapore, Mumbai, and Beijing offices to pitch the full EQT platform (PE + Infrastructure + Secondaries post-Coller) rather than only the Asia-specific strategy.",
+            "timeline": "BPEA acquisition 2022; brand integration completed Q2 2024. Approximately 2-year integration timeline.",
+            "enabling_conditions": "Brand unification requires LP consent across BPEA-origin fund vehicles for management company name changes. Regulatory name change notifications across four APAC jurisdictions add 3-6 months to the timeline. Retention of BPEA investment team throughout the transition is critical to LP confidence.",
+            "action_citations": ["ACT-VD-036"],
+            "evidence_class": "inferred"
+          }
+        ]
+      }
+    },
+    {
+      "firm_id": "FIRM-016",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "sections": {
+        "identity_and_scale": {
+          "total_aum_bn": 185.0,
+          "feaum_bn": 130.0,
+          "feaum_note": "AUM $185B (approximately CHF 165B) at Q4 2025; $30B new assets received in 2025. FEAUM estimated at approximately $130B based on management fee-earning AUM disclosure. Evergreen AUM approaching $50B+. Figures from PS-VD-030, PS-VD-031, PS-VD-032, PS-VD-059. Reported in CHF; USD conversion at prevailing rate.",
+          "geography": "Global — 20 offices globally, 1,500+ professionals. Headquartered Baar, Switzerland. European institutional base with APAC and Middle East expansion via JV partnerships.",
+          "asset_class_mix": "Private Equity 50% (~$92B), Infrastructure 20% (~$37B), Private Debt 20% (~$37B), Private Real Estate 10% (~$18B). Private markets royalties as emerging 5th asset class.",
+          "listing_history": "SIX Swiss Exchange listed (registered shares). Not NYSE/NASDAQ listed. Reporting in CHF under IFRS.",
+          "ownership_structure": "Single class of registered shares on SIX. Co-CEOs André Frei and Steffen Meister hold economic interests without dual-class voting structure. FINMA-regulated."
+        },
+        "strategic_agenda": {
+          "priorities": [
+            "Scale evergreen platform to 50%+ of AUM — seven new evergreen offerings in 2025; become the leading evergreen direct investing platform globally.",
+            "Grow private markets royalties as a differentiated 5th asset class with $10B+ AUM target.",
+            "Expand APAC and Middle East distribution through JV partnerships with local financial institutions.",
+            "Scale direct debt platform to $50B+ through direct lending, infrastructure credit, and real estate credit.",
+            "Integrate Empira Group to establish European residential real estate as a meaningful direct investing capability."
+          ],
+          "source_citations": ["PS-VD-030", "PS-VD-031", "PS-VD-032", "PS-VD-059"]
+        },
+        "key_actions": [
+          {
+            "action_id": "ACT-VD-037",
+            "action_type": "M&A",
+            "description": "Acquired Empira Group, European residential real estate platform with EUR 14B AUM, adding defensive asset class and residential RE origination capability across Germany, Austria, and Switzerland.",
+            "timeline": "Announced Q2 2024; closed Q4 2024.",
+            "source_citation": "PS-VD-030"
+          },
+          {
+            "action_id": "ACT-VD-038",
+            "action_type": "product-launch",
+            "description": "Launched private markets royalties as a fifth asset class (May 2024), providing uncorrelated inflation-linked cash flows from music, patent, natural resource, and infrastructure royalty streams.",
+            "timeline": "Announced May 2024; first close Q1 2025.",
+            "source_citation": "PS-VD-031"
+          },
+          {
+            "action_id": "ACT-VD-039",
+            "action_type": "M&A",
+            "description": "Made strategic investments in Trinity Investments (US hospitality RE) and Sievert (German logistics), extending direct investing model across new geographies and real asset sub-classes.",
+            "timeline": "Trinity Q2 2024; Sievert Q3 2024.",
+            "source_citation": "PS-VD-030"
+          },
+          {
+            "action_id": "ACT-VD-040",
+            "action_type": "product-launch",
+            "description": "Expanded evergreen fund suite with seven new offerings in 2025 for private wealth, scaling evergreen AUM toward $50B+.",
+            "timeline": "Ongoing 2025.",
+            "source_citation": "PS-VD-031"
+          },
+          {
+            "action_id": "ACT-VD-068",
+            "action_type": "geographic-expansion",
+            "description": "Expanded APAC and Middle East presence through joint ventures with regional financial firms; APAC and Middle East LP commitments growing as share of $30B 2025 inflows.",
+            "timeline": "Ongoing 2024-2025.",
+            "source_citation": "PS-VD-031"
+          }
+        ],
+        "driver_performance": {
+          "FEAUM_quartile": "N/A",
+          "DE_share_quartile": "N/A",
+          "FRE_Growth_quartile": "N/A",
+          "FRE_Margin_quartile": "N/A",
+          "narrative": "Partners Group has no quartile data on primary value drivers due to incomplete DE/FEAUM comparability under IFRS reporting and CHF denomination. The firm's SIX listing creates a different reporting framework from US-listed peers, making cross-sectional multiple comparison (P/FRE, EV/FEAUM) unreliable. Partners Group is included in the peer set exclusively for qualitative strategic instructiveness: it operates the most institutionally advanced global wealth-distribution model in the peer universe (integrated solutions, discretionary mandates, evergreen model with 50%+ AUM ambition) and provides geographic and listing-structure diversity. Qualitative assessment of Partners Group's positioning suggests it would likely occupy Q2-Q3 FEAUM equivalent, Q2 margin equivalent given its asset-light model and high management fees relative to AUM."
+        },
+        "value_creation_narrative": "Partners Group commands the most distinctive market positioning in the peer set: the longest-running proponent of the evergreen direct investing model (operating evergreens since the early 2000s, well before most peers), and the most institutionally sophisticated direct investing capability (originating investments alongside GPs rather than allocating to fund vehicles). Seven new evergreen launches in 2025 reflects an industrialization of the evergreen product model — Partners Group has effectively built an evergreen product factory that competitors are only beginning to approach. The private markets royalties launch (5th asset class) is an innovation that no direct peer has replicated: royalty streams from music, patents, and natural resources are uncorrelated to economic cycles, making them defensive allocations that attract insurance and pension mandates. The $30B of new assets received in 2025 and the SIX listing (European institutional LP base) make Partners Group structurally differentiated from the US-listed alt manager pack. Source citations: PS-VD-030, PS-VD-031, PS-VD-032, PS-VD-059.",
+        "transferable_insights": [
+          {
+            "insight_id": "INS-026",
+            "insight": "Launching a proprietary 5th asset class (private markets royalties) that is uncorrelated to economic cycles and denominated in inflation-linked cash flows creates differentiated LP demand from insurance companies and liability-matching investors who cannot find the same risk-return profile in conventional PE, credit, or infrastructure.",
+            "how_they_did_it": "Partners Group launched private markets royalties (May 2024) targeting royalty streams from music, patents, natural resources, and infrastructure. The fund required: royalty asset cashflow monitoring and reporting infrastructure, revenue verification and audit rights for underlying royalty streams, new fund vehicle administration, and specialist royalties investment team (requiring domain expertise in music IP, patent rights, and natural resource royalties not present in conventional alt management teams).",
+            "timeline": "Announced May 2024; first close Q1 2025. Full AUM build-out to $10B+ is a multi-year ambition.",
+            "enabling_conditions": "Royalties require specialist expertise in revenue verification, IP valuation, and asset-class-specific legal frameworks. Partners Group's direct investing model (originating investments directly rather than allocating to managers) provides the operational prerequisite — a solutions/advisory firm cannot credibly originate royalties directly.",
+            "action_citations": ["ACT-VD-038"],
+            "evidence_class": "inferred"
+          },
+          {
+            "insight_id": "INS-027",
+            "insight": "Expanding into new geographies through joint ventures with local financial institutions — rather than building wholly-owned offices — dramatically accelerates LP acquisition in markets where local relationships are the primary trust signal, while limiting the upfront capital and regulatory burden.",
+            "how_they_did_it": "Partners Group expanded APAC and Middle East presence through JV partnerships with local financial firms. JVs required: regional fund vehicles for APAC and Middle East investors, regulatory registrations in UAE, Saudi Arabia, Singapore, and Japan, and regional office staffing in Singapore and Dubai for distribution. The JV model means Partners Group shares economics with local partners but gains immediate LP access that a newly established wholly-owned office cannot achieve.",
+            "timeline": "Ongoing 2024-2025. JV partnerships appear to have been established progressively, with Singapore and Dubai as primary hubs.",
+            "enabling_conditions": "JV partners must be credible financial institutions with existing LP relationships — the value of the JV is the partner's network, not just the office. Regulatory registrations in each jurisdiction require legal counsel and compliance infrastructure with local expertise.",
+            "action_citations": ["ACT-VD-068"],
+            "evidence_class": "inferred"
+          },
+          {
+            "insight_id": "INS-028",
+            "insight": "Launching seven new evergreen product vehicles in a single year — across multiple asset classes and geographies — requires a standardized fund formation playbook (legal templates, fund admin processes, compliance frameworks) that can be replicated across vehicles without per-vehicle innovation, making the evergreen model scalable rather than bespoke.",
+            "how_they_did_it": "Partners Group launched seven new evergreen offerings in 2025 across PE, debt, infrastructure, and real estate. Each required: standardized NAV reporting and monthly calculation infrastructure (scaled across multiple vehicles), redemption and liquidity management frameworks, fund administration for registered vehicles in multiple jurisdictions (UCITS, 40-Act, AIFMD), and multi-geographic wealth distribution expansion (US, Europe, Asia). The prerequisite is a fully industrialized fund formation and administration function — without this, launching seven vehicles in one year is operationally impossible.",
+            "timeline": "Seven launches in 2025; evergreen AUM approaching $50B+.",
+            "enabling_conditions": "A standardized fund formation playbook requires having launched multiple prior evergreens (Partners Group's history in evergreens dates to the early 2000s). Third-party fund administrators with multi-jurisdiction registered fund capability are required; building in-house equivalents takes years. Wealth distribution network across US, Europe, and Asia must be pre-established for product launches to generate immediate capital flows.",
+            "action_citations": ["ACT-VD-040"],
+            "evidence_class": "inferred"
+          }
+        ]
+      }
+    }
+  ],
+  "total_firms": 11,
+  "generated_at": "2026-03-08",
+  "key_findings_incorporated": [
+    "Scale (FEAUM) is the dominant valuation driver (rho=0.85 vs P/FRE when 3i structural outlier excluded) — all profiles contextualize each firm's FEAUM position as the primary multiple anchor.",
+    "FRE_Margin is NOT independently rewarded by market (rho=0.20) — Ares (Q4 margin, Q1 DE/share) and Blue Owl (Q1 margin, Q4 DE/share) are the two clearest empirical demonstrations of this finding, profiled accordingly.",
+    "OWL is the cautionary case: scale-without-earnings trap (Q2 FEAUM but Q4 DE/share) — Blue Owl profile includes explicit cautionary_case flag and analytical account of the mechanism (acquisition-diluted equity base).",
+    "Transferable insights are anchored to documented ACT-VD-NNN actions; insights marked inferred where evidence_class is inferred in strategic_actions.json."
+  ],
+  "methodology_notes": [
+    "Quantitative metrics for this profile set are drawn primarily from strategy_profiles.json (most current) and supplemented by quantitative_data.json (which has full coverage for BX, APO, BAM, BN only).",
+    "FEAUM figures for KKR, ARES, CG, OWL, TPG, STEP, EQT, PGHN are estimated from narrative disclosures in strategy_profiles.json and cross-referenced against driver_ranking.json quartile positions.",
+    "Partners Group (PGHN) and EQT (FIRM-015) driver performance sections note N/A for most quartile dimensions due to IFRS reporting incompatibility and incomplete standardized dataset coverage, consistent with flagged_gaps in final_peer_set.json.",
+    "No PAX references appear in peer profiles per task instruction. All insights are self-contained and operationally specific."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "catalog_path": "merged: crawl + crawl-backfill-selective",
+  "run_name": "2026-03-09-run2-merged-selective",
+  "source_count": 84,
+  "result_count": 135,
+  "failure_count": 13,
+  "visited_url_count": 135,
+  "finished_at": "2026-03-10T02:13:15.199507Z",
+  "stats": {
+    "requests_finished": 153,
+    "requests_failed": 13,
+    "requests_total": 166
+  },
+  "components": {
+    "base_results": 113,
+    "backfill_results": 22,
+    "base_failures": 12,
+    "backfill_failures": 1
+  }
+}

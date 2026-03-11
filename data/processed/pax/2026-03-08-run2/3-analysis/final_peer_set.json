@@ -1,0 +1,292 @@
+{
+  "stage": "VD-C1",
+  "stage_name": "Convergence and Final Peer Set Selection",
+  "generated_date": "2026-03-08",
+  "run_id": "2026-03-08-run2",
+  "company": "Patria Investments Limited",
+  "ticker": "PAX",
+  "final_set": [
+    {
+      "firm_id": "FIRM-002",
+      "firm_name": "Blackstone Inc.",
+      "ticker": "BX",
+      "exchange": "NYSE",
+      "inclusion_rationale": "Auto-include: Q1 on FEAUM (primary value driver, rho=0.85 vs P/FRE). Largest alt manager globally ($1.275T AUM); defines the upper bound of scale premium in the universe. Q1 on DE/share. 5 dedicated sources, 75% metric coverage. Strategically instructive as the benchmark case for perpetual capital scaling and wealth distribution.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 5,
+      "metric_coverage_pct": 75.0,
+      "quartile_on_feaum": "Q1",
+      "key_driver_scores": {
+        "FEAUM": "Q1",
+        "DE_share": "Q1",
+        "FRE_Growth_YoY": "Q2"
+      }
+    },
+    {
+      "firm_id": "FIRM-004",
+      "firm_name": "Apollo Global Management, Inc.",
+      "ticker": "APO",
+      "exchange": "NYSE",
+      "inclusion_rationale": "Auto-include: Q1 on FEAUM. Q1 on DE/share and highest FRE_Margin in universe (Q1). Highest metric coverage (80%) among the Q1 cohort. Strategically instructive for origination-platform model and insurance-channel integration — directly relevant to PAX's credit platform buildout.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 80.0,
+      "quartile_on_feaum": "Q1",
+      "key_driver_scores": {
+        "FEAUM": "Q1",
+        "DE_share": "Q1",
+        "FRE_Growth_YoY": "Q3"
+      }
+    },
+    {
+      "firm_id": "FIRM-006",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "ticker": "BAM",
+      "exchange": "NYSE",
+      "inclusion_rationale": "Auto-include: Q1 on FEAUM. Q2 on DE/share, Q2 on FRE_Growth. 4 sources, 60% coverage (meets minimum). Distinctive asset-light carve-out from Brookfield Corporation; demonstrates capital-light fee-stream model and perpetual capital approach from a non-US/EM-exposed platform — relevant to PAX's Latam positioning.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 60.0,
+      "quartile_on_feaum": "Q1",
+      "key_driver_scores": {
+        "FEAUM": "Q1",
+        "DE_share": "Q2",
+        "FRE_Growth_YoY": "Q2"
+      }
+    },
+    {
+      "firm_id": "FIRM-003",
+      "firm_name": "KKR & Co. Inc.",
+      "ticker": "KKR",
+      "exchange": "NYSE",
+      "inclusion_rationale": "Q2 on FEAUM; Q1 on FRE_Growth (fastest-growing among large peers) and Q2 on DE/share. 5 sources, 75% metric coverage. Strategically instructive for capital-markets platform diversification and insurance balance-sheet integration (Global Atlantic). Highest FRE growth rate among the Q1-Q2 FEAUM cohort, making it the aspirational growth benchmark.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 5,
+      "metric_coverage_pct": 75.0,
+      "quartile_on_feaum": "Q2",
+      "key_driver_scores": {
+        "FEAUM": "Q2",
+        "DE_share": "Q2",
+        "FRE_Growth_YoY": "Q1"
+      }
+    },
+    {
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "ticker": "ARES",
+      "exchange": "NYSE",
+      "inclusion_rationale": "Q2 on FEAUM; Q1 on DE/share (strongest DE/share among Q2 FEAUM firms). Q2 on FRE_Growth. 4 sources, 70% metric coverage. Best-in-cohort on credit-oriented multi-asset model; demonstrates how a credit-first manager commands premium DE/share multiples. Directly instructive for PAX's credit platform launch thesis.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 70.0,
+      "quartile_on_feaum": "Q2",
+      "key_driver_scores": {
+        "FEAUM": "Q2",
+        "DE_share": "Q1",
+        "FRE_Growth_YoY": "Q2"
+      }
+    },
+    {
+      "firm_id": "FIRM-010",
+      "firm_name": "The Carlyle Group Inc.",
+      "ticker": "CG",
+      "exchange": "NASDAQ",
+      "inclusion_rationale": "Q2 on FEAUM; Q2 on DE/share; Q1 on FRE_Growth. 4 sources, 70% metric coverage. Instructive as a turnaround/restructuring case: demonstrates how a firm can recover DE/share momentum and FRE growth after a period of strategic drift. Valuable cautionary-and-recovery archetype for governance playbook.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 70.0,
+      "quartile_on_feaum": "Q2",
+      "key_driver_scores": {
+        "FEAUM": "Q2",
+        "DE_share": "Q2",
+        "FRE_Growth_YoY": "Q1"
+      }
+    },
+    {
+      "firm_id": "FIRM-008",
+      "firm_name": "Blue Owl Capital Inc.",
+      "ticker": "OWL",
+      "exchange": "NYSE",
+      "inclusion_rationale": "Q2 on FEAUM but Q4 on DE/share — included as cautionary case illustrating the disconnect between scale and per-share earnings when management fee rates are high and permanent capital vehicles are over-leveraged. Q2 on FRE_Growth indicates strong fundraising momentum offsetting poor DE conversion. 4 sources, 65% metric coverage.",
+      "cautionary_case": true,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 65.0,
+      "quartile_on_feaum": "Q2",
+      "key_driver_scores": {
+        "FEAUM": "Q2",
+        "DE_share": "Q4",
+        "FRE_Growth_YoY": "Q2"
+      }
+    },
+    {
+      "firm_id": "FIRM-009",
+      "firm_name": "TPG Inc.",
+      "ticker": "TPG",
+      "exchange": "NASDAQ",
+      "inclusion_rationale": "Q3 on FEAUM — same scale cohort as PAX. Q3 on DE/share but Q1 on FRE_Growth (strongest growth in the Q3 FEAUM tier). 3 sources, 70% metric coverage. Critical aspirational benchmark within PAX's own size tier: demonstrates what FRE growth acceleration looks like for a manager transitioning from sub-scale to scale. Most instructive analog for PAX's 3-5 year trajectory.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 3,
+      "metric_coverage_pct": 70.0,
+      "quartile_on_feaum": "Q3",
+      "key_driver_scores": {
+        "FEAUM": "Q3",
+        "DE_share": "Q3",
+        "FRE_Growth_YoY": "Q1"
+      }
+    },
+    {
+      "firm_id": "FIRM-011",
+      "firm_name": "StepStone Group Inc.",
+      "ticker": "STEP",
+      "exchange": "NASDAQ",
+      "inclusion_rationale": "Q3 on FEAUM — PAX's direct scale cohort. Highest metric coverage in the universe (100%). 3 sources. Secondary/solutions specialist with differentiated model (GP-led secondaries, co-investments) that illustrates the fee-multiple trade-offs of non-flagship product lines. Useful as a scale-comparable with distinct strategic positioning. Q3 DE/share aligns with PAX's current positioning.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 3,
+      "metric_coverage_pct": 100.0,
+      "quartile_on_feaum": "Q3",
+      "key_driver_scores": {
+        "FEAUM": "Q3",
+        "DE_share": "Q3",
+        "FRE_Growth_YoY": "N/A"
+      }
+    },
+    {
+      "firm_id": "FIRM-015",
+      "firm_name": "EQT AB",
+      "ticker": "EQT",
+      "exchange": "NASDAQ-Stockholm",
+      "inclusion_rationale": "Q2 on FEAUM; 100% metric coverage (tied with STEP for highest in universe). 4 sources. European-listed PE manager; provides geographic and structural diversity in the peer set. Instructive for ESG integration as a valuation narrative and for the listed partnership structure in non-US markets. Absence of DE/share data limits driver-level comparisons but quantitative completeness is high.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 100.0,
+      "quartile_on_feaum": "Q2",
+      "key_driver_scores": {
+        "FEAUM": "Q2",
+        "DE_share": "N/A",
+        "FRE_Growth_YoY": "N/A"
+      }
+    },
+    {
+      "firm_id": "FIRM-016",
+      "firm_name": "Partners Group Holding AG",
+      "ticker": "PGHN",
+      "exchange": "SIX",
+      "inclusion_rationale": "4 sources, 65% metric coverage. Quartile data unavailable on primary drivers due to incomplete DE/FEAUM comparability under IFRS. Included for qualitative strategic instructiveness: Partners Group operates the most institutionally advanced global wealth-distribution model in the peer set (integrated solutions, discretionary mandates), directly relevant to PAX's ambitions to expand beyond Latam institutional LPs. Provides geographic and listing-structure diversity.",
+      "cautionary_case": false,
+      "non_obvious_peer": false,
+      "source_count": 4,
+      "metric_coverage_pct": 65.0,
+      "quartile_on_feaum": "N/A",
+      "key_driver_scores": {
+        "FEAUM": "N/A",
+        "DE_share": "N/A",
+        "FRE_Growth_YoY": "N/A"
+      }
+    }
+  ],
+  "excluded_candidates": [
+    {
+      "firm_id": "FIRM-001",
+      "firm_name": "Patria Investments Limited",
+      "ticker": "PAX",
+      "exclusion_rationale": "Target company — not included in peer set by definition."
+    },
+    {
+      "firm_id": "FIRM-007",
+      "firm_name": "Brookfield Corporation",
+      "ticker": "BN",
+      "exclusion_rationale": "Fails metric coverage threshold: 40% (minimum required: 60%). Q1 FEAUM but balance-sheet investor structure (BN consolidates BAM, renewable power, infrastructure, real estate at corporate level) makes like-for-like multiple comparison misleading. BAM (asset-light fee entity) already represents the Brookfield family in the peer set."
+    },
+    {
+      "firm_id": "FIRM-012",
+      "firm_name": "Hamilton Lane Incorporated",
+      "ticker": "HLNE",
+      "exclusion_rationale": "Meets source (3) and coverage (70%) thresholds but has no quartile data on FEAUM, DE/share, or FRE_Growth — insufficient quantitative driver comparability. Secondaries/solutions model diverges significantly from PAX's primary direct-investing model. STEP covers similar strategic territory with superior coverage (100%) and full quartile data."
+    },
+    {
+      "firm_id": "FIRM-013",
+      "firm_name": "GCM Grosvenor Inc.",
+      "ticker": "GCMG",
+      "exclusion_rationale": "Fails minimum source requirement: 0 dedicated sources in source_catalog.json. 3 strategic actions documented but insufficient primary evidence for quantitative validation."
+    },
+    {
+      "firm_id": "FIRM-014",
+      "firm_name": "Ridgepost Capital, Inc. (formerly P10, Inc.)",
+      "ticker": "RPC",
+      "exclusion_rationale": "Fails minimum source requirement: 0 dedicated sources. Q4 on FEAUM and Q3 on DE/share; would qualify as cautionary case on scale but lacks the source coverage required for defensible strategic action analysis."
+    },
+    {
+      "firm_id": "FIRM-017",
+      "firm_name": "Intermediate Capital Group plc",
+      "ticker": "ICP",
+      "exclusion_rationale": "Meets source (3) and coverage (75%) thresholds but has no quartile data on primary value drivers (FEAUM, DE/share) due to structural differences under UK GAAP reporting. European credit specialist; ICP's strategic profile is more closely aligned with European insurance-linked credit than with Latam alt management. Insufficient strategic instructiveness for PAX playbook."
+    },
+    {
+      "firm_id": "FIRM-018",
+      "firm_name": "Man Group plc",
+      "ticker": "EMG",
+      "exclusion_rationale": "Fails minimum source requirement: 0 dedicated sources. Q4 on DE/share. Quant/systematic hedge fund model is structurally distinct from the fundamental PE/infra/credit alt management model that drives PAX comparables."
+    },
+    {
+      "firm_id": "FIRM-019",
+      "firm_name": "CVC Capital Partners plc",
+      "ticker": "CVC",
+      "exclusion_rationale": "Fails minimum source requirement: 0 dedicated sources. 60% metric coverage (barely meets threshold) but only 3 strategic actions. Recently listed (2024); insufficient track record as a public company for meaningful valuation driver comparisons."
+    },
+    {
+      "firm_id": "FIRM-020",
+      "firm_name": "Bridgepoint Group plc",
+      "ticker": "BPT",
+      "exclusion_rationale": "Fails minimum source requirement: 0 dedicated sources in source_catalog.json. 60% metric coverage, 4 strategic actions — borderline qualitatively but insufficient primary documentation."
+    },
+    {
+      "firm_id": "FIRM-021",
+      "firm_name": "Antin Infrastructure Partners S.A.",
+      "ticker": "ANTIN",
+      "exclusion_rationale": "Fails minimum source requirement: 0 dedicated sources. Q4 on FEAUM and Q4 on DE/share and Q4 on FRE_Growth — would serve as cautionary case but lack of primary sources makes strategic action interpretation unreliable. Only 2 documented actions (lowest in the universe)."
+    },
+    {
+      "firm_id": "FIRM-022",
+      "firm_name": "Tikehau Capital S.C.A.",
+      "ticker": "TKO",
+      "exclusion_rationale": "Fails minimum source requirement: 0 dedicated sources. Q4 on FRE_Growth. French holding structure (SCA) creates significant GAAP comparability issues for multiple-based analysis."
+    },
+    {
+      "firm_id": "FIRM-023",
+      "firm_name": "Vinci Compass Investments Ltd.",
+      "ticker": "VINP",
+      "exclusion_rationale": "Fails minimum source requirement: 0 dedicated sources. Fails coverage threshold: 45% (minimum 60%). Q4 on FEAUM, Q4 on DE/share, Q4 on FRE_Growth. While Brazil-domiciled and therefore a direct regional peer to PAX, the data deficiency makes inclusion indefensible. Flagged as a gap for future runs."
+    },
+    {
+      "firm_id": "FIRM-024",
+      "firm_name": "3i Group plc",
+      "ticker": "III",
+      "exclusion_rationale": "Fails minimum source requirement: 0 dedicated sources. Fails coverage threshold: 35%. Structural outlier: balance-sheet investor (not fee-earning alt manager) — the Q4 FEAUM and outlier EV/FEAUM ratio (571%) are definitional artifacts, not valuation comparables. Already flagged as structural outlier in correlations.json (COR-008 sensitivity analysis)."
+    },
+    {
+      "firm_id": "FIRM-025",
+      "firm_name": "Eurazeo SE",
+      "ticker": "RF",
+      "exclusion_rationale": "Fails minimum source requirement: 0 dedicated sources. Q4 on FEAUM and Q4 on FRE_Growth. French conglomerate structure (publicly listed but hybrid balance-sheet/manager model) limits comparability with pure-play alt managers."
+    }
+  ],
+  "total_final_set_size": 11,
+  "flagged_gaps": [
+    "VINP (Vinci Compass / Vinci Partners): Brazil-domiciled alt manager is the single most relevant regional analog to PAX (shared Latam market exposure, similar AUM scale) but fails both source and coverage thresholds. Data collection for a future run should prioritize VINP CVM filings, earnings releases, and investor presentations to enable inclusion.",
+    "PHLL excluded pre-screening: delisted December 2025, zero public data, zero strategic actions. No path to inclusion.",
+    "BN (Brookfield Corporation): Q1 FEAUM but only 40% metric coverage and hybrid balance-sheet structure. BAM (the asset-light fee carve-out) is the appropriate Brookfield representative; BN's exclusion is structural, not evidentiary.",
+    "No firm formally meets stable_value_driver criteria (requires abs(rho)>=0.5 on BOTH primary multiples with N>=12). FEAUM qualifies under leave-one-out sensitivity (excluding 3i outlier, rho=0.81 vs EV/FEAUM, N=13). Final peer set reflects this high-confidence empirical signal despite the formal classification gap.",
+    "FRE_Growth_YoY quartile data is absent for STEP (FIRM-011) and EQT (FIRM-015) due to insufficient coverage in the standardized dataset. This limits growth-trajectory comparisons for those two firms."
+  ],
+  "selection_methodology": "Two-pass selection. Pass 1 applied eligibility filters: minimum 2 dedicated sources in source_catalog.json AND minimum 60% metric coverage in quantitative_data.json, reducing the 25-firm candidate universe to 13 eligible firms. Pass 2 applied positive-inclusion rules: (a) auto-include all firms in Q1 on FEAUM (the primary value driver, rho=0.85 vs P/FRE) that pass eligibility — yielding BX, APO, BAM (BN excluded by coverage); (b) include Q2 FEAUM firms with the highest strategic instructiveness across DE/share and FRE_Growth dimensions — yielding KKR, ARES, CG; (c) include OWL as a cautionary case (Q2 FEAUM, Q4 DE/share) illustrating scale-without-earnings-efficiency; (d) include PAX's scale-cohort comparables (Q3 FEAUM: TPG, STEP) as aspirational near-term benchmarks; (e) include EQT and Partners Group for geographic and structural diversity (European-listed managers with 4 sources and strong coverage). Final set of 11 firms spans Q1-Q3 on FEAUM, covers 3 exchanges (NYSE, NASDAQ, SIX/Stockholm), and provides sufficient driver variation for regression and playbook synthesis. HLNE and ICP were considered but excluded due to insufficient primary-driver quartile data and strategic overlap with already-included peers."
+}

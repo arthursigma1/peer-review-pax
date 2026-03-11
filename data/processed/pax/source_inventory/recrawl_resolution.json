@@ -1,0 +1,1396 @@
+{
+  "metadata": {
+    "generated_at": "2026-03-11T01:03:58.394955Z",
+    "registry_path": "data/processed/pax/source_inventory/carry_forward_registry.json",
+    "recrawl_item_count": 10,
+    "execution_ready_count": 9,
+    "manual_review_count": 1,
+    "bucket_counts": {
+      "wrong_or_stale_url": 1,
+      "missing_artifact": 6,
+      "hub_page_needs_direct_doc": 2,
+      "rendered_page_needs_browser": 1
+    },
+    "strategy_counts": {
+      "replace_with_better_url": 1,
+      "http_crawler": 6,
+      "harvest_direct_documents_then_crawl": 2,
+      "http_crawler_with_scrapling_or_browser_fallback": 1
+    },
+    "execution_group_counts": {
+      "manual_review": 1,
+      "direct_fetch": 6,
+      "hub_harvest": 2,
+      "browser_fallback": 1
+    }
+  },
+  "resolved_items": [
+    {
+      "source_id": "PS-VD-035",
+      "firm": "StepStone Group (STEP)",
+      "title": "StepStone Group FY2025 Q4 and Full Year Earnings Presentation",
+      "canonical_url": "https://filecache.investorroom.com/mr5ir_hamiltonlane/309/HLNE_Fiscal_2025_Q4_and_Full_Year_2025_Earnings_Presentation.pdf",
+      "normalized_url": "filecache.investorroom.com/mr5ir_hamiltonlane/309/HLNE_Fiscal_2025_Q4_and_Full_Year_2025_Earnings_Presentation.pdf",
+      "priority_score": 102,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "wrong_or_stale_url",
+      "resolution_reason": "url_points_to_hamilton_lane_asset",
+      "selected_strategy": "replace_with_better_url",
+      "recommended_strategy": "replace_with_better_url",
+      "execution_group": "manual_review",
+      "execution_ready": false,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "output_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL.",
+        "Review and replace the seed URL before any new crawl run."
+      ]
+    },
+    {
+      "source_id": "PS-VD-096",
+      "firm": "Patria Investments",
+      "title": "Patria Investments Q4 2025 Earnings Press Release",
+      "canonical_url": "https://ir.patriainvestments.com/news-releases/news-release-details/patria-investments-reports-fourth-quarter-and-full-year-2025",
+      "normalized_url": "ir.patriainvestments.com/news-releases/news-release-details/patria-investments-reports-fourth-quarter-and-full-year-2025",
+      "priority_score": 102,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "missing_artifact",
+      "resolution_reason": "direct_document_without_cached_artifact",
+      "selected_strategy": "http_crawler",
+      "recommended_strategy": "http_crawler",
+      "execution_group": "direct_fetch",
+      "execution_ready": true,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [
+        "2026-03-10-run2"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-10-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL."
+      ]
+    },
+    {
+      "source_id": "PS-VD-089",
+      "firm": "Eurazeo",
+      "title": "Eurazeo Investor Day 2024 Presentation",
+      "canonical_url": "https://www.eurazeo.com/en/investors/publications-results/",
+      "normalized_url": "www.eurazeo.com/en/investors/publications-results",
+      "priority_score": 102,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "missing_artifact",
+      "resolution_reason": "direct_document_without_cached_artifact",
+      "selected_strategy": "http_crawler",
+      "recommended_strategy": "http_crawler",
+      "execution_group": "direct_fetch",
+      "execution_ready": true,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [
+        "2026-03-10-run2"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-10-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": true,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL."
+      ]
+    },
+    {
+      "source_id": "PS-VD-001",
+      "firm": "Blackstone (BX)",
+      "title": "Blackstone Inc. Form 10-K Annual Report (FY2024)",
+      "canonical_url": "https://www.sec.gov/Archives/edgar/data/1393818/000119312525042469/0001193125-25-042469-index.htm",
+      "normalized_url": "www.sec.gov/Archives/edgar/data/1393818/000119312525042469/0001193125-25-042469-index.htm",
+      "priority_score": 102,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "immutable_filing",
+      "freshness_ttl_days": null,
+      "material_change_policy": "immutable_requires_anomaly_review",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "hub_page_needs_direct_doc",
+      "resolution_reason": "sec_index_page_should_resolve_to_primary_document",
+      "selected_strategy": "harvest_direct_documents_then_crawl",
+      "recommended_strategy": "harvest_direct_documents_then_crawl",
+      "execution_group": "hub_harvest",
+      "execution_ready": true,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "output_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL."
+      ]
+    },
+    {
+      "source_id": "PS-VD-005",
+      "firm": "KKR (KKR)",
+      "title": "KKR & Co. Inc. Form 10-K Annual Report (FY2024)",
+      "canonical_url": "https://www.sec.gov/Archives/edgar/data/1404912/000140491225000015/0001404912-25-000015-index.htm",
+      "normalized_url": "www.sec.gov/Archives/edgar/data/1404912/000140491225000015/0001404912-25-000015-index.htm",
+      "priority_score": 102,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "immutable_filing",
+      "freshness_ttl_days": null,
+      "material_change_policy": "immutable_requires_anomaly_review",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "hub_page_needs_direct_doc",
+      "resolution_reason": "sec_index_page_should_resolve_to_primary_document",
+      "selected_strategy": "harvest_direct_documents_then_crawl",
+      "recommended_strategy": "harvest_direct_documents_then_crawl",
+      "execution_group": "hub_harvest",
+      "execution_ready": true,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "output_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL."
+      ]
+    },
+    {
+      "source_id": "PS-VD-908",
+      "firm": "Industry-wide (Deloitte / Casey Quirk)",
+      "title": "Asset Managers Pivot to Private Markets: Casey Quirk Results",
+      "canonical_url": "https://www.deloitte.com/us/en/about/press-room/casey-quirk-survey-asset-managers-continue-to-pivot-to-private-markets.html",
+      "normalized_url": "www.deloitte.com/us/en/about/press-room/casey-quirk-survey-asset-managers-continue-to-pivot-to-private-markets.html",
+      "priority_score": 92,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "browser_blocked_page",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": "ce6fdb14143376cc45d81d2c7d5520d59147fee1",
+      "resolution_bucket": "rendered_page_needs_browser",
+      "resolution_reason": "known_browser_or_render_heavy_domain",
+      "selected_strategy": "http_crawler_with_scrapling_or_browser_fallback",
+      "recommended_strategy": "http_crawler_with_scrapling_or_browser_fallback",
+      "execution_group": "browser_fallback",
+      "execution_ready": true,
+      "best_artifact_quality": "missing",
+      "best_artifact_text_length": 0,
+      "catalog_sessions": [
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [
+        "2026-03-10-run2"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-10-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Best cached artifact quality: missing with text_length 0.",
+        "Prefer Crawlee first and use Scrapling/browser fallback only if the primary request is blocked or under-rendered."
+      ]
+    },
+    {
+      "source_id": "PS-VD-070",
+      "firm": "Ares Management",
+      "title": "Ares Management Q4 2025 Earnings Supplement",
+      "canonical_url": "https://ir.aresmgmt.com/",
+      "normalized_url": "ir.aresmgmt.com",
+      "priority_score": 67,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": "4fa78e07d692305279fef3b69a3dab8d1d194ea9",
+      "resolution_bucket": "missing_artifact",
+      "resolution_reason": "direct_document_without_cached_artifact",
+      "selected_strategy": "http_crawler",
+      "recommended_strategy": "http_crawler",
+      "execution_group": "direct_fetch",
+      "execution_ready": true,
+      "best_artifact_quality": "missing",
+      "best_artifact_text_length": 0,
+      "catalog_sessions": [
+        "2026-03-09-run2",
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [
+        "2026-03-09-run2",
+        "2026-03-10-run2",
+        "2026-03-11-incremental-pilot"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-09-run2",
+        "2026-03-10-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": true,
+        "baseline_in_original_outputs": true,
+        "baseline_in_augmented_outputs": true,
+        "older_only": false,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "Best cached artifact quality: missing with text_length 0."
+      ]
+    },
+    {
+      "source_id": "PS-VD-061",
+      "firm": "Blackstone",
+      "title": "Blackstone Q4 2025 Earnings Supplement",
+      "canonical_url": "https://ir.blackstone.com/",
+      "normalized_url": "ir.blackstone.com",
+      "priority_score": 67,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": "8152b8cb07738274d000559e5a1c6698017c6f8f",
+      "resolution_bucket": "missing_artifact",
+      "resolution_reason": "direct_document_without_cached_artifact",
+      "selected_strategy": "http_crawler",
+      "recommended_strategy": "http_crawler",
+      "execution_group": "direct_fetch",
+      "execution_ready": true,
+      "best_artifact_quality": "missing",
+      "best_artifact_text_length": 0,
+      "catalog_sessions": [
+        "2026-03-09-run2",
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [
+        "2026-03-09-run2",
+        "2026-03-10-run2",
+        "2026-03-11-incremental-pilot"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-09-run2",
+        "2026-03-10-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": true,
+        "baseline_in_original_outputs": true,
+        "baseline_in_augmented_outputs": true,
+        "older_only": false,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "Best cached artifact quality: missing with text_length 0."
+      ]
+    },
+    {
+      "source_id": "PS-VD-101",
+      "firm": "Hamilton Lane",
+      "title": "Hamilton Lane Q3 FY2026 Results",
+      "canonical_url": "https://www.hamiltonlane.com/en-us/news/hlne-reports-q3-fiscal-2026-results",
+      "normalized_url": "www.hamiltonlane.com/en-us/news/hlne-reports-q3-fiscal-2026-results",
+      "priority_score": 67,
+      "carry_forward_reason": "direct_document_without_good_cached_artifact",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "missing_artifact",
+      "resolution_reason": "direct_document_without_cached_artifact",
+      "selected_strategy": "http_crawler",
+      "recommended_strategy": "http_crawler",
+      "execution_group": "direct_fetch",
+      "execution_ready": true,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [],
+      "augmented_output_sessions": [],
+      "signals": {
+        "historically_used": false,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL."
+      ]
+    },
+    {
+      "source_id": "PS-VD-102",
+      "firm": "Intermediate Capital Group",
+      "title": "ICG Half-Year Results FY2026",
+      "canonical_url": "https://www.icgam.com/2025/11/20/icg-half-year-results-fy2026/",
+      "normalized_url": "www.icgam.com/2025/11/20/icg-half-year-results-fy2026",
+      "priority_score": 67,
+      "carry_forward_reason": "direct_document_without_good_cached_artifact",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "missing_artifact",
+      "resolution_reason": "direct_document_without_cached_artifact",
+      "selected_strategy": "http_crawler",
+      "recommended_strategy": "http_crawler",
+      "execution_group": "direct_fetch",
+      "execution_ready": true,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [],
+      "augmented_output_sessions": [],
+      "signals": {
+        "historically_used": false,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL."
+      ]
+    }
+  ],
+  "execution_queue": [
+    {
+      "source_id": "PS-VD-096",
+      "firm": "Patria Investments",
+      "title": "Patria Investments Q4 2025 Earnings Press Release",
+      "canonical_url": "https://ir.patriainvestments.com/news-releases/news-release-details/patria-investments-reports-fourth-quarter-and-full-year-2025",
+      "normalized_url": "ir.patriainvestments.com/news-releases/news-release-details/patria-investments-reports-fourth-quarter-and-full-year-2025",
+      "priority_score": 102,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "missing_artifact",
+      "resolution_reason": "direct_document_without_cached_artifact",
+      "selected_strategy": "http_crawler",
+      "recommended_strategy": "http_crawler",
+      "execution_group": "direct_fetch",
+      "execution_ready": true,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [
+        "2026-03-10-run2"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-10-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL."
+      ]
+    },
+    {
+      "source_id": "PS-VD-089",
+      "firm": "Eurazeo",
+      "title": "Eurazeo Investor Day 2024 Presentation",
+      "canonical_url": "https://www.eurazeo.com/en/investors/publications-results/",
+      "normalized_url": "www.eurazeo.com/en/investors/publications-results",
+      "priority_score": 102,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "missing_artifact",
+      "resolution_reason": "direct_document_without_cached_artifact",
+      "selected_strategy": "http_crawler",
+      "recommended_strategy": "http_crawler",
+      "execution_group": "direct_fetch",
+      "execution_ready": true,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [
+        "2026-03-10-run2"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-10-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": true,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL."
+      ]
+    },
+    {
+      "source_id": "PS-VD-001",
+      "firm": "Blackstone (BX)",
+      "title": "Blackstone Inc. Form 10-K Annual Report (FY2024)",
+      "canonical_url": "https://www.sec.gov/Archives/edgar/data/1393818/000119312525042469/0001193125-25-042469-index.htm",
+      "normalized_url": "www.sec.gov/Archives/edgar/data/1393818/000119312525042469/0001193125-25-042469-index.htm",
+      "priority_score": 102,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "immutable_filing",
+      "freshness_ttl_days": null,
+      "material_change_policy": "immutable_requires_anomaly_review",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "hub_page_needs_direct_doc",
+      "resolution_reason": "sec_index_page_should_resolve_to_primary_document",
+      "selected_strategy": "harvest_direct_documents_then_crawl",
+      "recommended_strategy": "harvest_direct_documents_then_crawl",
+      "execution_group": "hub_harvest",
+      "execution_ready": true,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "output_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL."
+      ]
+    },
+    {
+      "source_id": "PS-VD-005",
+      "firm": "KKR (KKR)",
+      "title": "KKR & Co. Inc. Form 10-K Annual Report (FY2024)",
+      "canonical_url": "https://www.sec.gov/Archives/edgar/data/1404912/000140491225000015/0001404912-25-000015-index.htm",
+      "normalized_url": "www.sec.gov/Archives/edgar/data/1404912/000140491225000015/0001404912-25-000015-index.htm",
+      "priority_score": 102,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "immutable_filing",
+      "freshness_ttl_days": null,
+      "material_change_policy": "immutable_requires_anomaly_review",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "hub_page_needs_direct_doc",
+      "resolution_reason": "sec_index_page_should_resolve_to_primary_document",
+      "selected_strategy": "harvest_direct_documents_then_crawl",
+      "recommended_strategy": "harvest_direct_documents_then_crawl",
+      "execution_group": "hub_harvest",
+      "execution_ready": true,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "output_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-07",
+        "2026-03-07-run2",
+        "2026-03-08-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL."
+      ]
+    },
+    {
+      "source_id": "PS-VD-908",
+      "firm": "Industry-wide (Deloitte / Casey Quirk)",
+      "title": "Asset Managers Pivot to Private Markets: Casey Quirk Results",
+      "canonical_url": "https://www.deloitte.com/us/en/about/press-room/casey-quirk-survey-asset-managers-continue-to-pivot-to-private-markets.html",
+      "normalized_url": "www.deloitte.com/us/en/about/press-room/casey-quirk-survey-asset-managers-continue-to-pivot-to-private-markets.html",
+      "priority_score": 92,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "browser_blocked_page",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": "ce6fdb14143376cc45d81d2c7d5520d59147fee1",
+      "resolution_bucket": "rendered_page_needs_browser",
+      "resolution_reason": "known_browser_or_render_heavy_domain",
+      "selected_strategy": "http_crawler_with_scrapling_or_browser_fallback",
+      "recommended_strategy": "http_crawler_with_scrapling_or_browser_fallback",
+      "execution_group": "browser_fallback",
+      "execution_ready": true,
+      "best_artifact_quality": "missing",
+      "best_artifact_text_length": 0,
+      "catalog_sessions": [
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [
+        "2026-03-10-run2"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-10-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Best cached artifact quality: missing with text_length 0.",
+        "Prefer Crawlee first and use Scrapling/browser fallback only if the primary request is blocked or under-rendered."
+      ]
+    },
+    {
+      "source_id": "PS-VD-070",
+      "firm": "Ares Management",
+      "title": "Ares Management Q4 2025 Earnings Supplement",
+      "canonical_url": "https://ir.aresmgmt.com/",
+      "normalized_url": "ir.aresmgmt.com",
+      "priority_score": 67,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": "4fa78e07d692305279fef3b69a3dab8d1d194ea9",
+      "resolution_bucket": "missing_artifact",
+      "resolution_reason": "direct_document_without_cached_artifact",
+      "selected_strategy": "http_crawler",
+      "recommended_strategy": "http_crawler",
+      "execution_group": "direct_fetch",
+      "execution_ready": true,
+      "best_artifact_quality": "missing",
+      "best_artifact_text_length": 0,
+      "catalog_sessions": [
+        "2026-03-09-run2",
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [
+        "2026-03-09-run2",
+        "2026-03-10-run2",
+        "2026-03-11-incremental-pilot"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-09-run2",
+        "2026-03-10-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": true,
+        "baseline_in_original_outputs": true,
+        "baseline_in_augmented_outputs": true,
+        "older_only": false,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "Best cached artifact quality: missing with text_length 0."
+      ]
+    },
+    {
+      "source_id": "PS-VD-061",
+      "firm": "Blackstone",
+      "title": "Blackstone Q4 2025 Earnings Supplement",
+      "canonical_url": "https://ir.blackstone.com/",
+      "normalized_url": "ir.blackstone.com",
+      "priority_score": 67,
+      "carry_forward_reason": "historically_used_but_not_reliably_cached",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": "8152b8cb07738274d000559e5a1c6698017c6f8f",
+      "resolution_bucket": "missing_artifact",
+      "resolution_reason": "direct_document_without_cached_artifact",
+      "selected_strategy": "http_crawler",
+      "recommended_strategy": "http_crawler",
+      "execution_group": "direct_fetch",
+      "execution_ready": true,
+      "best_artifact_quality": "missing",
+      "best_artifact_text_length": 0,
+      "catalog_sessions": [
+        "2026-03-09-run2",
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [
+        "2026-03-09-run2",
+        "2026-03-10-run2",
+        "2026-03-11-incremental-pilot"
+      ],
+      "augmented_output_sessions": [
+        "2026-03-09-run2",
+        "2026-03-10-run2"
+      ],
+      "signals": {
+        "historically_used": true,
+        "baseline_in_catalog": true,
+        "baseline_in_original_outputs": true,
+        "baseline_in_augmented_outputs": true,
+        "older_only": false,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "Best cached artifact quality: missing with text_length 0."
+      ]
+    },
+    {
+      "source_id": "PS-VD-101",
+      "firm": "Hamilton Lane",
+      "title": "Hamilton Lane Q3 FY2026 Results",
+      "canonical_url": "https://www.hamiltonlane.com/en-us/news/hlne-reports-q3-fiscal-2026-results",
+      "normalized_url": "www.hamiltonlane.com/en-us/news/hlne-reports-q3-fiscal-2026-results",
+      "priority_score": 67,
+      "carry_forward_reason": "direct_document_without_good_cached_artifact",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "missing_artifact",
+      "resolution_reason": "direct_document_without_cached_artifact",
+      "selected_strategy": "http_crawler",
+      "recommended_strategy": "http_crawler",
+      "execution_group": "direct_fetch",
+      "execution_ready": true,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [],
+      "augmented_output_sessions": [],
+      "signals": {
+        "historically_used": false,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL."
+      ]
+    },
+    {
+      "source_id": "PS-VD-102",
+      "firm": "Intermediate Capital Group",
+      "title": "ICG Half-Year Results FY2026",
+      "canonical_url": "https://www.icgam.com/2025/11/20/icg-half-year-results-fy2026/",
+      "normalized_url": "www.icgam.com/2025/11/20/icg-half-year-results-fy2026",
+      "priority_score": 67,
+      "carry_forward_reason": "direct_document_without_good_cached_artifact",
+      "freshness_class": "semi_static_document",
+      "freshness_ttl_days": 180,
+      "material_change_policy": "semistatic_latest_auto_promote",
+      "current_evidence_version_id": null,
+      "resolution_bucket": "missing_artifact",
+      "resolution_reason": "direct_document_without_cached_artifact",
+      "selected_strategy": "http_crawler",
+      "recommended_strategy": "http_crawler",
+      "execution_group": "direct_fetch",
+      "execution_ready": true,
+      "best_artifact_quality": null,
+      "best_artifact_text_length": null,
+      "catalog_sessions": [
+        "2026-03-10-run2"
+      ],
+      "output_sessions": [],
+      "augmented_output_sessions": [],
+      "signals": {
+        "historically_used": false,
+        "baseline_in_catalog": false,
+        "baseline_in_original_outputs": false,
+        "baseline_in_augmented_outputs": false,
+        "older_only": true,
+        "source_id_collision": false,
+        "third_party_domain": false,
+        "hub_like": false,
+        "direct_document": true
+      },
+      "notes": [
+        "Source looks like a document-level target rather than a general IR hub.",
+        "No cached crawl artifact is currently attached to this URL."
+      ]
+    }
+  ],
+  "grouped_queues": {
+    "hub_harvest_queue": [
+      {
+        "source_id": "PS-VD-001",
+        "firm": "Blackstone (BX)",
+        "title": "Blackstone Inc. Form 10-K Annual Report (FY2024)",
+        "canonical_url": "https://www.sec.gov/Archives/edgar/data/1393818/000119312525042469/0001193125-25-042469-index.htm",
+        "normalized_url": "www.sec.gov/Archives/edgar/data/1393818/000119312525042469/0001193125-25-042469-index.htm",
+        "priority_score": 102,
+        "carry_forward_reason": "historically_used_but_not_reliably_cached",
+        "freshness_class": "immutable_filing",
+        "freshness_ttl_days": null,
+        "material_change_policy": "immutable_requires_anomaly_review",
+        "current_evidence_version_id": null,
+        "resolution_bucket": "hub_page_needs_direct_doc",
+        "resolution_reason": "sec_index_page_should_resolve_to_primary_document",
+        "selected_strategy": "harvest_direct_documents_then_crawl",
+        "recommended_strategy": "harvest_direct_documents_then_crawl",
+        "execution_group": "hub_harvest",
+        "execution_ready": true,
+        "best_artifact_quality": null,
+        "best_artifact_text_length": null,
+        "catalog_sessions": [
+          "2026-03-07",
+          "2026-03-07-run2",
+          "2026-03-08-run2"
+        ],
+        "output_sessions": [
+          "2026-03-07",
+          "2026-03-07-run2",
+          "2026-03-08-run2"
+        ],
+        "augmented_output_sessions": [
+          "2026-03-07",
+          "2026-03-07-run2",
+          "2026-03-08-run2"
+        ],
+        "signals": {
+          "historically_used": true,
+          "baseline_in_catalog": false,
+          "baseline_in_original_outputs": false,
+          "baseline_in_augmented_outputs": false,
+          "older_only": true,
+          "source_id_collision": false,
+          "third_party_domain": false,
+          "hub_like": false,
+          "direct_document": true
+        },
+        "notes": [
+          "Source looks like a document-level target rather than a general IR hub.",
+          "No cached crawl artifact is currently attached to this URL."
+        ]
+      },
+      {
+        "source_id": "PS-VD-005",
+        "firm": "KKR (KKR)",
+        "title": "KKR & Co. Inc. Form 10-K Annual Report (FY2024)",
+        "canonical_url": "https://www.sec.gov/Archives/edgar/data/1404912/000140491225000015/0001404912-25-000015-index.htm",
+        "normalized_url": "www.sec.gov/Archives/edgar/data/1404912/000140491225000015/0001404912-25-000015-index.htm",
+        "priority_score": 102,
+        "carry_forward_reason": "historically_used_but_not_reliably_cached",
+        "freshness_class": "immutable_filing",
+        "freshness_ttl_days": null,
+        "material_change_policy": "immutable_requires_anomaly_review",
+        "current_evidence_version_id": null,
+        "resolution_bucket": "hub_page_needs_direct_doc",
+        "resolution_reason": "sec_index_page_should_resolve_to_primary_document",
+        "selected_strategy": "harvest_direct_documents_then_crawl",
+        "recommended_strategy": "harvest_direct_documents_then_crawl",
+        "execution_group": "hub_harvest",
+        "execution_ready": true,
+        "best_artifact_quality": null,
+        "best_artifact_text_length": null,
+        "catalog_sessions": [
+          "2026-03-07",
+          "2026-03-07-run2",
+          "2026-03-08-run2"
+        ],
+        "output_sessions": [
+          "2026-03-07",
+          "2026-03-07-run2",
+          "2026-03-08-run2"
+        ],
+        "augmented_output_sessions": [
+          "2026-03-07",
+          "2026-03-07-run2",
+          "2026-03-08-run2"
+        ],
+        "signals": {
+          "historically_used": true,
+          "baseline_in_catalog": false,
+          "baseline_in_original_outputs": false,
+          "baseline_in_augmented_outputs": false,
+          "older_only": true,
+          "source_id_collision": false,
+          "third_party_domain": false,
+          "hub_like": false,
+          "direct_document": true
+        },
+        "notes": [
+          "Source looks like a document-level target rather than a general IR hub.",
+          "No cached crawl artifact is currently attached to this URL."
+        ]
+      }
+    ],
+    "direct_fetch_queue": [
+      {
+        "source_id": "PS-VD-096",
+        "firm": "Patria Investments",
+        "title": "Patria Investments Q4 2025 Earnings Press Release",
+        "canonical_url": "https://ir.patriainvestments.com/news-releases/news-release-details/patria-investments-reports-fourth-quarter-and-full-year-2025",
+        "normalized_url": "ir.patriainvestments.com/news-releases/news-release-details/patria-investments-reports-fourth-quarter-and-full-year-2025",
+        "priority_score": 102,
+        "carry_forward_reason": "historically_used_but_not_reliably_cached",
+        "freshness_class": "semi_static_document",
+        "freshness_ttl_days": 180,
+        "material_change_policy": "semistatic_latest_auto_promote",
+        "current_evidence_version_id": null,
+        "resolution_bucket": "missing_artifact",
+        "resolution_reason": "direct_document_without_cached_artifact",
+        "selected_strategy": "http_crawler",
+        "recommended_strategy": "http_crawler",
+        "execution_group": "direct_fetch",
+        "execution_ready": true,
+        "best_artifact_quality": null,
+        "best_artifact_text_length": null,
+        "catalog_sessions": [
+          "2026-03-10-run2"
+        ],
+        "output_sessions": [
+          "2026-03-10-run2"
+        ],
+        "augmented_output_sessions": [
+          "2026-03-10-run2"
+        ],
+        "signals": {
+          "historically_used": true,
+          "baseline_in_catalog": false,
+          "baseline_in_original_outputs": false,
+          "baseline_in_augmented_outputs": false,
+          "older_only": true,
+          "source_id_collision": false,
+          "third_party_domain": false,
+          "hub_like": false,
+          "direct_document": true
+        },
+        "notes": [
+          "Source looks like a document-level target rather than a general IR hub.",
+          "No cached crawl artifact is currently attached to this URL."
+        ]
+      },
+      {
+        "source_id": "PS-VD-089",
+        "firm": "Eurazeo",
+        "title": "Eurazeo Investor Day 2024 Presentation",
+        "canonical_url": "https://www.eurazeo.com/en/investors/publications-results/",
+        "normalized_url": "www.eurazeo.com/en/investors/publications-results",
+        "priority_score": 102,
+        "carry_forward_reason": "historically_used_but_not_reliably_cached",
+        "freshness_class": "semi_static_document",
+        "freshness_ttl_days": 180,
+        "material_change_policy": "semistatic_latest_auto_promote",
+        "current_evidence_version_id": null,
+        "resolution_bucket": "missing_artifact",
+        "resolution_reason": "direct_document_without_cached_artifact",
+        "selected_strategy": "http_crawler",
+        "recommended_strategy": "http_crawler",
+        "execution_group": "direct_fetch",
+        "execution_ready": true,
+        "best_artifact_quality": null,
+        "best_artifact_text_length": null,
+        "catalog_sessions": [
+          "2026-03-10-run2"
+        ],
+        "output_sessions": [
+          "2026-03-10-run2"
+        ],
+        "augmented_output_sessions": [
+          "2026-03-10-run2"
+        ],
+        "signals": {
+          "historically_used": true,
+          "baseline_in_catalog": false,
+          "baseline_in_original_outputs": false,
+          "baseline_in_augmented_outputs": false,
+          "older_only": true,
+          "source_id_collision": true,
+          "third_party_domain": false,
+          "hub_like": false,
+          "direct_document": true
+        },
+        "notes": [
+          "Source looks like a document-level target rather than a general IR hub.",
+          "No cached crawl artifact is currently attached to this URL."
+        ]
+      },
+      {
+        "source_id": "PS-VD-070",
+        "firm": "Ares Management",
+        "title": "Ares Management Q4 2025 Earnings Supplement",
+        "canonical_url": "https://ir.aresmgmt.com/",
+        "normalized_url": "ir.aresmgmt.com",
+        "priority_score": 67,
+        "carry_forward_reason": "historically_used_but_not_reliably_cached",
+        "freshness_class": "semi_static_document",
+        "freshness_ttl_days": 180,
+        "material_change_policy": "semistatic_latest_auto_promote",
+        "current_evidence_version_id": "4fa78e07d692305279fef3b69a3dab8d1d194ea9",
+        "resolution_bucket": "missing_artifact",
+        "resolution_reason": "direct_document_without_cached_artifact",
+        "selected_strategy": "http_crawler",
+        "recommended_strategy": "http_crawler",
+        "execution_group": "direct_fetch",
+        "execution_ready": true,
+        "best_artifact_quality": "missing",
+        "best_artifact_text_length": 0,
+        "catalog_sessions": [
+          "2026-03-09-run2",
+          "2026-03-10-run2"
+        ],
+        "output_sessions": [
+          "2026-03-09-run2",
+          "2026-03-10-run2",
+          "2026-03-11-incremental-pilot"
+        ],
+        "augmented_output_sessions": [
+          "2026-03-09-run2",
+          "2026-03-10-run2"
+        ],
+        "signals": {
+          "historically_used": true,
+          "baseline_in_catalog": true,
+          "baseline_in_original_outputs": true,
+          "baseline_in_augmented_outputs": true,
+          "older_only": false,
+          "source_id_collision": false,
+          "third_party_domain": false,
+          "hub_like": false,
+          "direct_document": true
+        },
+        "notes": [
+          "Source looks like a document-level target rather than a general IR hub.",
+          "Best cached artifact quality: missing with text_length 0."
+        ]
+      },
+      {
+        "source_id": "PS-VD-061",
+        "firm": "Blackstone",
+        "title": "Blackstone Q4 2025 Earnings Supplement",
+        "canonical_url": "https://ir.blackstone.com/",
+        "normalized_url": "ir.blackstone.com",
+        "priority_score": 67,
+        "carry_forward_reason": "historically_used_but_not_reliably_cached",
+        "freshness_class": "semi_static_document",
+        "freshness_ttl_days": 180,
+        "material_change_policy": "semistatic_latest_auto_promote",
+        "current_evidence_version_id": "8152b8cb07738274d000559e5a1c6698017c6f8f",
+        "resolution_bucket": "missing_artifact",
+        "resolution_reason": "direct_document_without_cached_artifact",
+        "selected_strategy": "http_crawler",
+        "recommended_strategy": "http_crawler",
+        "execution_group": "direct_fetch",
+        "execution_ready": true,
+        "best_artifact_quality": "missing",
+        "best_artifact_text_length": 0,
+        "catalog_sessions": [
+          "2026-03-09-run2",
+          "2026-03-10-run2"
+        ],
+        "output_sessions": [
+          "2026-03-09-run2",
+          "2026-03-10-run2",
+          "2026-03-11-incremental-pilot"
+        ],
+        "augmented_output_sessions": [
+          "2026-03-09-run2",
+          "2026-03-10-run2"
+        ],
+        "signals": {
+          "historically_used": true,
+          "baseline_in_catalog": true,
+          "baseline_in_original_outputs": true,
+          "baseline_in_augmented_outputs": true,
+          "older_only": false,
+          "source_id_collision": false,
+          "third_party_domain": false,
+          "hub_like": false,
+          "direct_document": true
+        },
+        "notes": [
+          "Source looks like a document-level target rather than a general IR hub.",
+          "Best cached artifact quality: missing with text_length 0."
+        ]
+      },
+      {
+        "source_id": "PS-VD-101",
+        "firm": "Hamilton Lane",
+        "title": "Hamilton Lane Q3 FY2026 Results",
+        "canonical_url": "https://www.hamiltonlane.com/en-us/news/hlne-reports-q3-fiscal-2026-results",
+        "normalized_url": "www.hamiltonlane.com/en-us/news/hlne-reports-q3-fiscal-2026-results",
+        "priority_score": 67,
+        "carry_forward_reason": "direct_document_without_good_cached_artifact",
+        "freshness_class": "semi_static_document",
+        "freshness_ttl_days": 180,
+        "material_change_policy": "semistatic_latest_auto_promote",
+        "current_evidence_version_id": null,
+        "resolution_bucket": "missing_artifact",
+        "resolution_reason": "direct_document_without_cached_artifact",
+        "selected_strategy": "http_crawler",
+        "recommended_strategy": "http_crawler",
+        "execution_group": "direct_fetch",
+        "execution_ready": true,
+        "best_artifact_quality": null,
+        "best_artifact_text_length": null,
+        "catalog_sessions": [
+          "2026-03-10-run2"
+        ],
+        "output_sessions": [],
+        "augmented_output_sessions": [],
+        "signals": {
+          "historically_used": false,
+          "baseline_in_catalog": false,
+          "baseline_in_original_outputs": false,
+          "baseline_in_augmented_outputs": false,
+          "older_only": true,
+          "source_id_collision": false,
+          "third_party_domain": false,
+          "hub_like": false,
+          "direct_document": true
+        },
+        "notes": [
+          "Source looks like a document-level target rather than a general IR hub.",
+          "No cached crawl artifact is currently attached to this URL."
+        ]
+      },
+      {
+        "source_id": "PS-VD-102",
+        "firm": "Intermediate Capital Group",
+        "title": "ICG Half-Year Results FY2026",
+        "canonical_url": "https://www.icgam.com/2025/11/20/icg-half-year-results-fy2026/",
+        "normalized_url": "www.icgam.com/2025/11/20/icg-half-year-results-fy2026",
+        "priority_score": 67,
+        "carry_forward_reason": "direct_document_without_good_cached_artifact",
+        "freshness_class": "semi_static_document",
+        "freshness_ttl_days": 180,
+        "material_change_policy": "semistatic_latest_auto_promote",
+        "current_evidence_version_id": null,
+        "resolution_bucket": "missing_artifact",
+        "resolution_reason": "direct_document_without_cached_artifact",
+        "selected_strategy": "http_crawler",
+        "recommended_strategy": "http_crawler",
+        "execution_group": "direct_fetch",
+        "execution_ready": true,
+        "best_artifact_quality": null,
+        "best_artifact_text_length": null,
+        "catalog_sessions": [
+          "2026-03-10-run2"
+        ],
+        "output_sessions": [],
+        "augmented_output_sessions": [],
+        "signals": {
+          "historically_used": false,
+          "baseline_in_catalog": false,
+          "baseline_in_original_outputs": false,
+          "baseline_in_augmented_outputs": false,
+          "older_only": true,
+          "source_id_collision": false,
+          "third_party_domain": false,
+          "hub_like": false,
+          "direct_document": true
+        },
+        "notes": [
+          "Source looks like a document-level target rather than a general IR hub.",
+          "No cached crawl artifact is currently attached to this URL."
+        ]
+      }
+    ],
+    "browser_fallback_queue": [
+      {
+        "source_id": "PS-VD-908",
+        "firm": "Industry-wide (Deloitte / Casey Quirk)",
+        "title": "Asset Managers Pivot to Private Markets: Casey Quirk Results",
+        "canonical_url": "https://www.deloitte.com/us/en/about/press-room/casey-quirk-survey-asset-managers-continue-to-pivot-to-private-markets.html",
+        "normalized_url": "www.deloitte.com/us/en/about/press-room/casey-quirk-survey-asset-managers-continue-to-pivot-to-private-markets.html",
+        "priority_score": 92,
+        "carry_forward_reason": "historically_used_but_not_reliably_cached",
+        "freshness_class": "browser_blocked_page",
+        "freshness_ttl_days": 180,
+        "material_change_policy": "semistatic_latest_auto_promote",
+        "current_evidence_version_id": "ce6fdb14143376cc45d81d2c7d5520d59147fee1",
+        "resolution_bucket": "rendered_page_needs_browser",
+        "resolution_reason": "known_browser_or_render_heavy_domain",
+        "selected_strategy": "http_crawler_with_scrapling_or_browser_fallback",
+        "recommended_strategy": "http_crawler_with_scrapling_or_browser_fallback",
+        "execution_group": "browser_fallback",
+        "execution_ready": true,
+        "best_artifact_quality": "missing",
+        "best_artifact_text_length": 0,
+        "catalog_sessions": [
+          "2026-03-10-run2"
+        ],
+        "output_sessions": [
+          "2026-03-10-run2"
+        ],
+        "augmented_output_sessions": [
+          "2026-03-10-run2"
+        ],
+        "signals": {
+          "historically_used": true,
+          "baseline_in_catalog": false,
+          "baseline_in_original_outputs": false,
+          "baseline_in_augmented_outputs": false,
+          "older_only": true,
+          "source_id_collision": false,
+          "third_party_domain": false,
+          "hub_like": false,
+          "direct_document": true
+        },
+        "notes": [
+          "Best cached artifact quality: missing with text_length 0.",
+          "Prefer Crawlee first and use Scrapling/browser fallback only if the primary request is blocked or under-rendered."
+        ]
+      }
+    ],
+    "manual_review_queue": [
+      {
+        "source_id": "PS-VD-035",
+        "firm": "StepStone Group (STEP)",
+        "title": "StepStone Group FY2025 Q4 and Full Year Earnings Presentation",
+        "canonical_url": "https://filecache.investorroom.com/mr5ir_hamiltonlane/309/HLNE_Fiscal_2025_Q4_and_Full_Year_2025_Earnings_Presentation.pdf",
+        "normalized_url": "filecache.investorroom.com/mr5ir_hamiltonlane/309/HLNE_Fiscal_2025_Q4_and_Full_Year_2025_Earnings_Presentation.pdf",
+        "priority_score": 102,
+        "carry_forward_reason": "historically_used_but_not_reliably_cached",
+        "freshness_class": "semi_static_document",
+        "freshness_ttl_days": 180,
+        "material_change_policy": "semistatic_latest_auto_promote",
+        "current_evidence_version_id": null,
+        "resolution_bucket": "wrong_or_stale_url",
+        "resolution_reason": "url_points_to_hamilton_lane_asset",
+        "selected_strategy": "replace_with_better_url",
+        "recommended_strategy": "replace_with_better_url",
+        "execution_group": "manual_review",
+        "execution_ready": false,
+        "best_artifact_quality": null,
+        "best_artifact_text_length": null,
+        "catalog_sessions": [
+          "2026-03-07",
+          "2026-03-07-run2",
+          "2026-03-08-run2"
+        ],
+        "output_sessions": [
+          "2026-03-07",
+          "2026-03-07-run2",
+          "2026-03-08-run2"
+        ],
+        "augmented_output_sessions": [
+          "2026-03-07",
+          "2026-03-07-run2",
+          "2026-03-08-run2"
+        ],
+        "signals": {
+          "historically_used": true,
+          "baseline_in_catalog": false,
+          "baseline_in_original_outputs": false,
+          "baseline_in_augmented_outputs": false,
+          "older_only": true,
+          "source_id_collision": false,
+          "third_party_domain": false,
+          "hub_like": false,
+          "direct_document": true
+        },
+        "notes": [
+          "Source looks like a document-level target rather than a general IR hub.",
+          "No cached crawl artifact is currently attached to this URL.",
+          "Review and replace the seed URL before any new crawl run."
+        ]
+      }
+    ]
+  }
+}

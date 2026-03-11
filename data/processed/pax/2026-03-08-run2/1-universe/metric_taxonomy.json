@@ -1,0 +1,246 @@
+{
+  "stage": "VD-A1",
+  "title": "Metric Taxonomy for Valuation Driver Analysis",
+  "generated_date": "2026-03-07",
+  "run_id": "2026-03-07-run2",
+  "company": "Patria Investments Limited",
+  "ticker": "PAX",
+  "sector": "alt-asset-management",
+  "total_metrics": 23,
+  "driver_candidates": 14,
+  "dependent_variables": 3,
+  "contextual_only": 3,
+  "note": "Streamlined from prior run (25 metrics) by removing management fee revenue and its YoY growth from fee_quality — these are intermediate inputs to management fee rate, not independent drivers.",
+  "metrics": [
+    {
+      "metric_id": "MET-VD-001",
+      "name": "Distributable Earnings per Share",
+      "abbreviation": "DE/share",
+      "unit": "USD",
+      "category": "earnings",
+      "is_driver_candidate": true,
+      "calculation_notes": "Distributable earnings / diluted share count. DE is a non-GAAP measure with significant definition heterogeneity across firms — some include realized performance fees, others exclude them. Some firms deduct equity-based compensation, others do not. Tax treatment varies (pre-tax vs. after-tax DE). Always record each firm's specific DE definition alongside the value."
+    },
+    {
+      "metric_id": "MET-VD-002",
+      "name": "Earnings per Share (GAAP)",
+      "abbreviation": "EPS",
+      "unit": "USD",
+      "category": "earnings",
+      "is_driver_candidate": true,
+      "calculation_notes": "GAAP net income attributable to common shareholders / diluted share count. For firms reporting under IFRS, use IFRS diluted EPS. GAAP EPS for alt managers is highly volatile due to mark-to-market on carried interest and unrealized investment income — expected to be a noisier signal than DE/share."
+    },
+    {
+      "metric_id": "MET-VD-003",
+      "name": "DE/Share Growth, 3-Year CAGR",
+      "abbreviation": "DE growth 3yr",
+      "unit": "%",
+      "category": "earnings",
+      "is_driver_candidate": true,
+      "calculation_notes": "(DE_share_t / DE_share_t-3)^(1/3) - 1. Requires at least 4 annual data points. Undefined when base-year DE is negative or zero — record as N/A. M&A activity can distort growth rates if share count changed materially."
+    },
+    {
+      "metric_id": "MET-VD-004",
+      "name": "Fee-Earning AUM",
+      "abbreviation": "FEAUM",
+      "unit": "USD bn",
+      "category": "scale",
+      "is_driver_candidate": true,
+      "calculation_notes": "Subset of total AUM on which the firm earns management fees. Definitions vary: some firms count committed but uninvested capital, others only invested capital. Equivalent terms include 'Fee-Paying AUM' and 'Fee-Generating AUM.' Convert to USD at period-end exchange rates for non-USD denominated funds."
+    },
+    {
+      "metric_id": "MET-VD-005",
+      "name": "Total AUM",
+      "abbreviation": "AUM",
+      "unit": "USD bn",
+      "category": "scale",
+      "is_driver_candidate": true,
+      "calculation_notes": "Total assets under management including both fee-earning and non-fee-earning assets (e.g., dry powder, co-investment capital). Exclude 'Assets Under Advisement' if separately disclosed. Less standardized than FEAUM — double-counting risk with fund-of-funds or leveraged vehicles."
+    },
+    {
+      "metric_id": "MET-VD-006",
+      "name": "FEAUM Growth, Year-over-Year",
+      "abbreviation": "FEAUM YoY",
+      "unit": "%",
+      "category": "scale",
+      "is_driver_candidate": true,
+      "calculation_notes": "(FEAUM_t / FEAUM_t-1) - 1. Use end-of-fiscal-year values. Captures both organic and M&A-driven AUM growth — less clean as a signal than organic growth. FX movements affect USD-denominated FEAUM for non-USD fund managers."
+    },
+    {
+      "metric_id": "MET-VD-007",
+      "name": "FEAUM Growth, 3-Year CAGR",
+      "abbreviation": "FEAUM CAGR 3yr",
+      "unit": "%",
+      "category": "scale",
+      "is_driver_candidate": true,
+      "calculation_notes": "(FEAUM_t / FEAUM_t-3)^(1/3) - 1. Smooths year-to-year volatility; provides a medium-term growth trajectory. Requires 4 data points. Includes inorganic growth; firms with recent IPOs or major restructuring may have non-comparable base-year figures."
+    },
+    {
+      "metric_id": "MET-VD-008",
+      "name": "Net Organic FEAUM Growth",
+      "abbreviation": "Organic growth",
+      "unit": "%",
+      "category": "organic_growth",
+      "is_driver_candidate": true,
+      "calculation_notes": "(Gross inflows - outflows - realizations) / beginning-of-period FEAUM. Excludes M&A-driven AUM additions and market appreciation/depreciation. The cleanest measure of franchise strength. Not all firms provide a clean organic growth figure — may require decomposing the AUM bridge into organic inflows, market effects, realizations, and M&A."
+    },
+    {
+      "metric_id": "MET-VD-009",
+      "name": "Fundraising as Percentage of AUM",
+      "abbreviation": "Fundraising ratio",
+      "unit": "%",
+      "category": "organic_growth",
+      "is_driver_candidate": true,
+      "calculation_notes": "Total capital raised in period / beginning-of-period AUM * 100. Includes new fund closes, continuation vehicles, and incremental commitments to existing open-end vehicles; excludes reinvested distributions. Fundraising is lumpy — large flagship fund closes create spikes."
+    },
+    {
+      "metric_id": "MET-VD-010",
+      "name": "Asset Class Herfindahl-Hirschman Index",
+      "abbreviation": "Asset class HHI",
+      "unit": "index (0-10000)",
+      "category": "mix_and_diversification",
+      "is_driver_candidate": true,
+      "calculation_notes": "Sum(share_i^2) * 10,000, where share_i is the fraction of total AUM in asset class i. Higher HHI = more concentrated (10,000 = single asset class). Lower HHI signals more diversified fee streams. Standardize across firms using 5-7 asset class categories: private equity, credit, real assets/infrastructure, hedge fund solutions, insurance solutions, other."
+    },
+    {
+      "metric_id": "MET-VD-011",
+      "name": "Permanent Capital Percentage",
+      "abbreviation": "Perm capital %",
+      "unit": "%",
+      "category": "mix_and_diversification",
+      "is_driver_candidate": true,
+      "calculation_notes": "Perpetual/open-end/evergreen AUM / total AUM * 100. Permanent capital includes publicly listed vehicles (BDCs, REITs), perpetual private funds, insurance general accounts, and long-duration vehicles with no fixed end date. Higher permanent capital implies more predictable management fee streams with lower re-fundraising risk."
+    },
+    {
+      "metric_id": "MET-VD-012",
+      "name": "Credit Percentage of AUM",
+      "abbreviation": "Credit %",
+      "unit": "%",
+      "category": "mix_and_diversification",
+      "is_driver_candidate": true,
+      "calculation_notes": "Credit AUM / total AUM * 100. Credit strategies include direct lending, distressed debt, structured credit (CLOs), mezzanine, and investment-grade private credit. Excludes equity-oriented special situations. Credit is the fastest-growing segment in alternatives — high exposure may signal growth optionality."
+    },
+    {
+      "metric_id": "MET-VD-013",
+      "name": "Fee-Related Earnings Margin",
+      "abbreviation": "FRE margin",
+      "unit": "%",
+      "category": "efficiency",
+      "is_driver_candidate": true,
+      "calculation_notes": "FRE / management fee revenue * 100. Measures operating leverage on the fee-earning business, excluding performance income. FRE is non-GAAP with significant definition differences: (1) whether equity-based compensation is deducted, (2) whether transaction/advisory fees are included in revenue, (3) treatment of distribution/placement costs. Document each firm's definition."
+    },
+    {
+      "metric_id": "MET-VD-014",
+      "name": "FRE Growth, Year-over-Year",
+      "abbreviation": "FRE growth YoY",
+      "unit": "%",
+      "category": "efficiency",
+      "is_driver_candidate": true,
+      "calculation_notes": "(FRE_t / FRE_t-1) - 1. Captures both revenue growth and margin expansion/contraction. Undefined when prior-year FRE is negative. M&A-driven revenue additions and one-time items (e.g., catch-up fees) can distort."
+    },
+    {
+      "metric_id": "MET-VD-015",
+      "name": "Compensation-to-Revenue Ratio",
+      "abbreviation": "Comp ratio",
+      "unit": "%",
+      "category": "efficiency",
+      "is_driver_candidate": true,
+      "calculation_notes": "Total compensation and benefits expense / total revenue * 100. Lower ratios indicate greater operating leverage. Revenue denominator is volatile due to performance fees — computing on fee revenue only may yield a cleaner signal. Partnership structures may obscure true compensation costs."
+    },
+    {
+      "metric_id": "MET-VD-016",
+      "name": "Management Fee Rate",
+      "abbreviation": "Mgmt fee rate",
+      "unit": "bps",
+      "category": "fee_quality",
+      "is_driver_candidate": true,
+      "calculation_notes": "Management fee revenue / average FEAUM * 10,000 (expressed as FRE/FEAUM in basis points). Use average FEAUM (beginning + end of period / 2) to avoid timing distortions. Higher rates indicate pricing power and/or mix tilted toward higher-fee strategies. Blended rate masks strategy-level variation."
+    },
+    {
+      "metric_id": "MET-VD-017",
+      "name": "Performance Fee Share of Total Revenue",
+      "abbreviation": "Perf fee share",
+      "unit": "%",
+      "category": "fee_quality",
+      "is_driver_candidate": true,
+      "calculation_notes": "(Performance/incentive fees + realized carried interest) / total revenue * 100. Measures revenue cyclicality and upside optionality. Highly volatile year-to-year depending on vintage harvesting cycles. Market may discount high performance fee share (preferring stable fees) or reward it (as optionality) — direction of correlation is theoretically ambiguous."
+    },
+    {
+      "metric_id": "MET-VD-018",
+      "name": "Price-to-Fee-Related Earnings",
+      "abbreviation": "P/FRE",
+      "unit": "x",
+      "category": "valuation_multiples",
+      "is_driver_candidate": false,
+      "calculation_notes": "Market capitalization / annual FRE. The most widely used valuation multiple for listed alt managers. Market cap = share price * diluted shares (treasury stock method). Use consistent reference date for share price across the sample. Undefined when FRE is negative. For multi-class share structures, use total economic market cap."
+    },
+    {
+      "metric_id": "MET-VD-019",
+      "name": "Price-to-Distributable Earnings",
+      "abbreviation": "P/DE",
+      "unit": "x",
+      "category": "valuation_multiples",
+      "is_driver_candidate": false,
+      "calculation_notes": "Market capitalization / annual DE. Broader than P/FRE — captures full economic earnings including realized performance income. DE includes realized performance fees which are volatile, making P/DE less stable than P/FRE across periods. Undefined when DE is negative."
+    },
+    {
+      "metric_id": "MET-VD-020",
+      "name": "Enterprise Value-to-Fee-Earning AUM",
+      "abbreviation": "EV/FEAUM",
+      "unit": "%",
+      "category": "valuation_multiples",
+      "is_driver_candidate": false,
+      "calculation_notes": "(Market cap + total debt - cash) / FEAUM * 100. Expressed as percentage (e.g., 5% = $0.05 of EV per $1 of FEAUM). Use only corporate-level debt; exclude fund-level non-recourse debt. Minority interests in fund management subsidiaries may require adjustment."
+    },
+    {
+      "metric_id": "MET-VD-021",
+      "name": "Average Daily Trading Volume",
+      "abbreviation": "ADTV",
+      "unit": "shares",
+      "category": "market_structure",
+      "is_driver_candidate": false,
+      "calculation_notes": "Average number of shares traded per day over the trailing 90-day period. Contextual liquidity measure only — excluded from correlation analysis. ADTV is a consequence of investor demand and index inclusion, not a fundamental characteristic management can influence."
+    },
+    {
+      "metric_id": "MET-VD-022",
+      "name": "Passive Ownership Percentage",
+      "abbreviation": "Passive %",
+      "unit": "%",
+      "category": "market_structure",
+      "is_driver_candidate": false,
+      "calculation_notes": "Shares held by passive/index funds / total shares outstanding * 100. Contextual ownership structure measure — excluded from correlation analysis. Passive ownership is a consequence of index inclusion decisions and market cap thresholds, not a fundamental driver."
+    },
+    {
+      "metric_id": "MET-VD-023",
+      "name": "Free Float Percentage",
+      "abbreviation": "Free float %",
+      "unit": "%",
+      "category": "market_structure",
+      "is_driver_candidate": false,
+      "calculation_notes": "(Total shares outstanding - insider/founder/strategic holdings) / total shares outstanding * 100. Contextual measure of trading availability — excluded from correlation analysis. Free float is a structural artifact of founding/ownership history, not a management-actionable lever."
+    }
+  ],
+  "categories": {
+    "earnings": ["MET-VD-001", "MET-VD-002", "MET-VD-003"],
+    "scale": ["MET-VD-004", "MET-VD-005", "MET-VD-006", "MET-VD-007"],
+    "organic_growth": ["MET-VD-008", "MET-VD-009"],
+    "mix_and_diversification": ["MET-VD-010", "MET-VD-011", "MET-VD-012"],
+    "efficiency": ["MET-VD-013", "MET-VD-014", "MET-VD-015"],
+    "fee_quality": ["MET-VD-016", "MET-VD-017"],
+    "valuation_multiples": ["MET-VD-018", "MET-VD-019", "MET-VD-020"],
+    "market_structure": ["MET-VD-021", "MET-VD-022", "MET-VD-023"]
+  },
+  "correlation_design": {
+    "method": "Spearman rank correlation",
+    "rationale": "Non-parametric, robust to outliers and non-normality, appropriate for small N (~25). Does not require distributional assumptions.",
+    "dependent_variables": ["P/FRE", "P/DE", "EV/FEAUM"],
+    "independent_variables_count": 14,
+    "approximate_tests": 42,
+    "significance_note": "With N~25, Spearman rho of ~0.40 is statistically significant at p<0.05 (two-tailed). Report both rho and p-value for each test.",
+    "stable_driver_criterion": "rho > 0.5 across all three multiples with p < 0.05",
+    "multiple_specific_criterion": "rho > 0.5 for exactly one multiple with p < 0.05",
+    "moderate_signal_criterion": "0.3 <= rho <= 0.5 for at least one multiple",
+    "not_a_driver_criterion": "rho < 0.3 for all three multiples",
+    "multiple_testing_correction": "Benjamini-Hochberg FDR at q=0.10"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "normalized_url": "www.calstrs.com/investment-portfolio",
+  "canonical_url": "https://www.calstrs.com/investment-portfolio",
+  "carry_forward_status": "recrawl",
+  "carry_forward_reason": "artifact_exists_but_is_thin",
+  "priority_score": 41,
+  "preferred_source": {
+    "source_id": "PS-VD-055",
+    "firm": "Industry-wide",
+    "title": "CalSTRS Investment Portfolio Overview",
+    "date": "2025-12-31",
+    "document_type": "pension_document",
+    "bias_tag": "third-party-analyst",
+    "url": "https://www.calstrs.com/investment-portfolio",
+    "notes": "CalSTRS portfolio composition \u2014 alternative allocation breakdown, GP relationships, and return expectations from institutional LP perspective",
+    "catalog_path": "data/processed/pax/2026-03-09-run2/1-universe/source_catalog.json"
+  },
+  "best_artifact": {
+    "session": "2026-03-09-run2",
+    "crawl_run": "crawl",
+    "seed_url": "https://www.calstrs.com/investment-portfolio",
+    "loaded_url": "https://www.calstrs.com/investment-portfolio",
+    "title": "Investment\u00a0portfolio - CalSTRS",
+    "document_type": "pension_document",
+    "bias_tag": "third-party-analyst",
+    "content_type": "text/html; charset=utf-8",
+    "text_path": "data/raw/pax/crawled/2026-03-09-run2/PS-VD-055_calstrs-investment-portfolio-overview_12afffa1.txt",
+    "text_length": 1050,
+    "quality_score": 4050,
+    "quality_bucket": "thin",
+    "quality_reason": "thin_text",
+    "relevant_snippets": [
+      "Public Equity* 167,957 42.33% 39.00% 3.33% +/- 8%",
+      "Fixed Income 50,028 12.61% 13.00% -0.39% +/- 5%",
+      "Real Estate* 49,180 12.40% 15.00% -2.60% +/- 5%",
+      "Private Equity* 57,130 14.40% 14.00% 0.40% +/- 5%",
+      "Inflation Sensitive 27,675 6.98% 7.00% -0.02% +/- 5%"
+    ],
+    "extraction_modes": []
+  },
+  "canonical_text_path": "data/raw/pax/canonical/a5/a5c499cc027ea61d21397abcc2be6b62c2740569/evidence.txt",
+  "copied_at": "2026-03-11T00:05:00.403531Z"
+}

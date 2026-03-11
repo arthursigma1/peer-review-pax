@@ -1,0 +1,35 @@
+{
+  "normalized_url": "www.sec.gov/cgi-bin/browse-edgar",
+  "canonical_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1393818&type=10-K",
+  "content_hash": "c670b72e81fd7f93fcc7357ae911a4e4d5273a35",
+  "evidence_version_id": "d924c87e3069d3ab57ae1ba70c695b1a83ac9b9c",
+  "supersedes_version_id": null,
+  "captured_at": "2026-03-10T00:40:58.863369Z",
+  "verified_at": "2026-03-11T00:36:34.426487Z",
+  "derived_from_run": "2026-03-09-run2",
+  "crawl_run": "crawl",
+  "source_id_at_capture": "PS-VD-001",
+  "firm_at_capture": "Blackstone",
+  "quality_bucket": "good",
+  "text_length": 6171,
+  "content_type": "text/html",
+  "freshness_class": "immutable_filing",
+  "freshness_ttl_days": null,
+  "material_change_policy": "immutable_requires_anomaly_review",
+  "extraction_modes": [
+    "document_links"
+  ],
+  "carry_forward_status": "reuse",
+  "carry_forward_reason": "good_artifact:crawl",
+  "priority_score": 32,
+  "pinned_sessions": [
+    "2026-03-09-run2",
+    "2026-03-10-run2",
+    "2026-03-11-incremental-pilot"
+  ],
+  "anomaly_flags": [
+    "source_id_collision"
+  ],
+  "canonical_text_path": "data/raw/pax/canonical/f9/f92dbfeb12a8296d79ec2445d93f90481bc72530/c670b72e81fd7f93fcc7357ae911a4e4d5273a35/evidence.txt",
+  "metadata_path": "data/raw/pax/canonical/f9/f92dbfeb12a8296d79ec2445d93f90481bc72530/c670b72e81fd7f93fcc7357ae911a4e4d5273a35/metadata.json"
+}
