@@ -182,6 +182,7 @@ Audit cross-cutting dependencies across pipeline agents, dashboard, CLAUDE.md, a
 - Every claim in drift reports must cite source IDs (S-*, STR-*, ACT-*, CMT-*, PIL-*)
 - Every claim in peer reports must cite source IDs (PS-*, PEER-*, MET-*, BENCH-*, RANK-*, PIL-*)
 - Every claim in VDA reports must cite source IDs (PS-VD-*, FIRM-*, MET-VD-*, COR-*, DVR-*, ACT-VD-*, PLAY-*, ANTI-*, THEME-*)
+- Every claim in VDA claim index must use IDs (CLM-MET-*, CLM-COR-*, CLM-DVR-*, CLM-PLAY-*, CLM-ANTI-*, CLM-TL-*)
 - Per-company directory convention: `data/processed/{ticker}/`, `data/raw/{ticker}/`
 - Multiple runs per day use incremental suffix: `YYYY-MM-DD`, `YYYY-MM-DD-run2`, `YYYY-MM-DD-run3`
 - VDA data collection always splits into 3 parallel tiers (~9 firms each)
@@ -196,6 +197,7 @@ Audit cross-cutting dependencies across pipeline agents, dashboard, CLAUDE.md, a
 | 3 | 4-deep-dives | `platform_profiles.json`, `asset_class_analysis.json` |
 | 4 | 5-playbook | `playbook.json`, `platform_playbook.json`, `asset_class_playbooks.json`, `target_lens.json`, `final_report.html` |
 | 5 | 6-review | `methodology_review.md`, `results_review.md` |
+| cross-step | (run root) | `claim_index.json` |
 - VDA playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN). Play card canonical structure (Variant B): **Reference firm** / **What was done** / **Why it works** / **Operational prerequisites**
 - VDA Fact Checker produces audit files per checkpoint: `audit_cp1_data.json`, `audit_cp2_deep_dives.json`, `audit_cp3_playbook.json`
 - Claims marked `INFERRED` by Fact Checker require hedged language in final report ("suggests", "appears to", never "demonstrates" or "proves")
