@@ -141,7 +141,7 @@ const DEFAULT_CONFIG: AgentConfig = {
     {
       id: "platform-analyst", name: "Platform Profiler",
       role: "Produces platform-level deep-dives — identity, strategy, actions, driver performance, value narrative, transferable insights",
-      instructions: "For each firm in the final set, produce a platform profile that remains peer-evidence-first but is transferability-aware. Required sections: identity and scale, archetype assignment, strategic agenda, key actions with operational prerequisites, driver performance using the current stable-driver rule, value-creation narrative with hedged language where needed, technology as enabler of value drivers (map each firm's documented tech investments to ranked driver performance — e.g., operational automation → FRE margin, digital distribution → FEAUM growth — using hedged language for all causal claims), and transferability signals documenting what is informative, what is structurally non-transferable, what is inspiration only, and what is a warning for PAX. Keep self-contained and do not turn the profile into a PAX recommendation.",
+      instructions: "For each firm in the final set, produce a platform profile that remains peer-evidence-first but is transferability-aware. Required sections: identity and scale, archetype assignment, strategic agenda, key actions with operational prerequisites, driver performance using the current stable-driver rule, value-creation narrative with hedged language where needed, technology as enabler of value drivers (for each firm's documented tech investments, trace the specific causal chain: what system/capability was built → what operational change it produced → which ranked driver it plausibly moved. Do not list generic labels like 'digital transformation' — name the actual capability and the actual metric. The best alt-asset managers are doing things with technology far beyond basic automation; discover what those are from the evidence. Use hedged language for all causal claims), and transferability signals documenting what is informative, what is structurally non-transferable, what is inspiration only, and what is a warning for PAX. Keep self-contained and do not turn the profile into a PAX recommendation.",
       step: 3, parallel: true, model: "claude-opus-4-6", temperature: 0.3, max_output_tokens: 32000, timeout_minutes: 20,
       tools: ["WebSearch", "Read", "Write", "Agent"],
       input_files: ["3-analysis/final_peer_set.json", "3-analysis/driver_ranking.json", "2-data/strategy_profiles.json", "2-data/strategic_actions.json"],
@@ -189,13 +189,33 @@ const DEFAULT_CONFIG: AgentConfig = {
       retry_strategy: "same_prompt",
     },
     {
-      id: "claim-auditor", name: "Fact Checker",
-      role: "Verifies all claims against upstream evidence using 4-dimension over-compliance audit (invalid premises, misleading context, sycophantic fabrication, confidence miscalibration). Produces structured verdicts per claim. Hard-blocks pipeline on ungrounded or fabricated claims.",
-      instructions: "Read the audited files in full and enumerate every factual claim, causal assertion, recommendation, and required-field contract element. Audit exhaustively; do not sample. Check all 4 audit dimensions plus schema completeness. For PAX-specific runs, also use docs/pax-peer-assessment-framework.md and docs/pax-peer-strategy-ontology.md as spec references only: they are not evidence for claims, but they should be used to catch silent omission of required hypothesis families, collapse of the ontology baseline without disclosure, and outputs that present initial hypotheses as proven findings. For CP-3, audit value_principles.md, platform_playbook.json, asset_class_playbooks.json, target_company_lens.json, and final_report.html. Block if required PAX relevance, execution realism, transferability, or evidence-strength fields are missing; block if any stable-driver claim violates stable_v1_two_of_three; block if inferred operational prerequisites are restated as hard facts; block if report metadata and statistical metadata disagree.",
+      id: "claim-auditor-cp1", name: "Fact Checker (CP-1)",
+      role: "Post-data verification — checks quantitative data claims against source evidence. Blocks invalid premises and misleading context.",
+      instructions: "Checkpoint CP-1: Post-Data Fact Check. Read 2-data/quantitative_data.json and cross-reference against 1-universe/source_catalog.json and tier files. Audit focus: invalid_premises (data points without source support), misleading_context (values taken out of context or misattributed). Consulting source enforcement: verify that no quantitative tier data cites PS-VD-9xx sources as the primary basis for any firm-specific metric value. Enumerate every factual claim exhaustively; do not sample. For each claim produce a structured verdict (grounded/inferred/ungrounded/fabricated). Hard-block on ungrounded or fabricated data points.",
+      step: -1, parallel: false, model: "claude-opus-4-6", temperature: 0.0, max_output_tokens: 16000, timeout_minutes: 10,
+      tools: ["Read", "Grep", "Glob"],
+      input_files: ["2-data/quantitative_data.json", "2-data/quantitative_tier1.json", "2-data/quantitative_tier2.json", "2-data/quantitative_tier3.json", "1-universe/source_catalog.json"],
+      output_files: ["2-data/audit_cp1_data.json"],
+      retry_strategy: "simplified_prompt",
+    },
+    {
+      id: "claim-auditor-cp2", name: "Fact Checker (CP-2)",
+      role: "Post-deep-dive verification — the CRITICAL checkpoint. All 4 audit dimensions active plus operational prerequisite evidence validation.",
+      instructions: "Checkpoint CP-2: Post-Deep-Dive Fact Check. Read 4-deep-dives/platform_profiles.json and 4-deep-dives/asset_class_analysis.json. Cross-reference against 3-analysis/driver_ranking.json, 2-data/strategic_actions.json, 2-data/strategy_profiles.json. All 4 audit dimensions active: invalid_premises, misleading_context, sycophantic_fabrication, confidence_miscalibration. Additional checks: operational_prerequisite_evidence (block any prerequisite based solely on job postings or vendor PRs), consulting_source_enforcement (block firm-specific claims solely backed by PS-VD-9xx sources). Verify technology-as-enabler claims use hedged language (appears to, coincided with, may have enabled). Enumerate every claim exhaustively. Hard-block on ungrounded, fabricated, or unsupported-but-stated-as-fact claims.",
       step: -1, parallel: false, model: "claude-opus-4-6", temperature: 0.0, max_output_tokens: 32000, timeout_minutes: 15,
       tools: ["Read", "Grep", "Glob"],
-      input_files: ["(checkpoint-dependent)"],
-      output_files: ["audit_cp1_data.json", "audit_cp2_deep_dives.json", "audit_cp3_playbook.json"],
+      input_files: ["4-deep-dives/platform_profiles.json", "4-deep-dives/asset_class_analysis.json", "3-analysis/driver_ranking.json", "2-data/strategic_actions.json", "2-data/strategy_profiles.json"],
+      output_files: ["4-deep-dives/audit_cp2_deep_dives.json"],
+      retry_strategy: "simplified_prompt",
+    },
+    {
+      id: "claim-auditor-cp3", name: "Fact Checker (CP-3)",
+      role: "Post-playbook verification — validates play completeness, emerging themes hedging, and evidence strength before report generation.",
+      instructions: "Checkpoint CP-3: Post-Playbook Fact Check. Read 5-playbook/platform_playbook.json and 5-playbook/asset_class_playbooks.json. Cross-reference against 4-deep-dives/platform_profiles.json, 4-deep-dives/asset_class_analysis.json, 3-analysis/driver_ranking.json. Audit focus: sycophantic_fabrication, confidence_miscalibration, mandatory_field_completeness. Block any PLAY-NNN or ANTI-NNN lacking Operational_And_Tech_Prerequisites, Failure_Modes_And_Margin_Destroyers, or Evidence_Strength. Block any THEME-NNN lacking theme_name, actions, firms_involved, What_Is_Observed, Why_It_May_Matter, Coverage_Gap, Evidence_Strength, or source_citations. Block any THEME-NNN that asserts causal impact on valuation instead of using hedged language. Consulting source enforcement: verify no PLAY-NNN uses PS-VD-9xx as sole evidence for a firm-specific claim. For PAX runs, use docs/pax-peer-assessment-framework.md and docs/pax-peer-strategy-ontology.md as spec references to catch omission of required hypothesis families.",
+      step: -1, parallel: false, model: "claude-opus-4-6", temperature: 0.0, max_output_tokens: 32000, timeout_minutes: 15,
+      tools: ["Read", "Grep", "Glob"],
+      input_files: ["5-playbook/platform_playbook.json", "5-playbook/asset_class_playbooks.json", "4-deep-dives/platform_profiles.json", "4-deep-dives/asset_class_analysis.json", "3-analysis/driver_ranking.json", "docs/pax-peer-assessment-framework.md", "docs/pax-peer-strategy-ontology.md"],
+      output_files: ["5-playbook/audit_cp3_playbook.json"],
       retry_strategy: "simplified_prompt",
     },
     {
@@ -384,8 +404,11 @@ export function AgentsOrg() {
                   </div>
                   {/* Checkpoint indicators */}
                   {INITIAL_CHECKPOINTS.filter((cp) => cp.afterStep === step.index).map((cp) => (
-                    <button key={cp.id} onClick={() => setSelectedAgent("claim-auditor")}
-                      className={`ml-4 my-1 w-[calc(100%-1rem)] text-left flex items-center gap-2 px-3 py-1 rounded border border-dashed transition-colors text-[10px] ${selectedAgent === "claim-auditor" ? "border-emerald-400 bg-emerald-100 text-emerald-700" : "border-emerald-200 bg-emerald-50 text-emerald-600 hover:bg-emerald-100"}`}
+                    <button key={cp.id} onClick={() => {
+                        const cpAgentMap: Record<string, string> = { "CP-1": "claim-auditor-cp1", "CP-2": "claim-auditor-cp2", "CP-3": "claim-auditor-cp3" };
+                        setSelectedAgent(cpAgentMap[cp.id] ?? "claim-auditor-cp1");
+                      }}
+                      className={`ml-4 my-1 w-[calc(100%-1rem)] text-left flex items-center gap-2 px-3 py-1 rounded border border-dashed transition-colors text-[10px] ${(() => { const cpAgentMap: Record<string, string> = { "CP-1": "claim-auditor-cp1", "CP-2": "claim-auditor-cp2", "CP-3": "claim-auditor-cp3" }; return selectedAgent === cpAgentMap[cp.id]; })() ? "border-emerald-400 bg-emerald-100 text-emerald-700" : "border-emerald-200 bg-emerald-50 text-emerald-600 hover:bg-emerald-100"}`}
                     >
                       <span>&#x1F6E1;</span>
                       <span className="font-mono">{cp.id}</span>
