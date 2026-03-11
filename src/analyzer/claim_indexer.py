@@ -128,7 +128,22 @@ def collect_claims_from_dir(
 _PS_VD_PATTERN = re.compile(r"PS-VD-\d+")
 
 
-_CONFIDENCE_MAP = {"high": 3, "medium": 2, "low": 1}
+# Maps production data_points confidence labels to VDA confidence labels
+_DATA_POINTS_CONFIDENCE = {"high": "grounded", "medium": "partial", "low": "sourced"}
+
+
+def _make_matrix_claim(met_id: str, firm_id: str, score: int, confidence: str, evidence: list[str]) -> dict:
+    """Build a single matrix claim dict."""
+    met_short = met_id.replace("MET-VD-", "MET-")
+    return {
+        "id": f"CLM-{met_short}-{firm_id}-01",
+        "parent_id": met_id,
+        "type": "factual",
+        "evidence": evidence,
+        "confidence": confidence,
+        "score": score,
+        "layer": "2-data",
+    }
 
 
 def generate_matrix_claims(matrix: dict) -> tuple[list[dict], list[str]]:
@@ -139,16 +154,14 @@ def generate_matrix_claims(matrix: dict) -> tuple[list[dict], list[str]]:
     - Flat format: {"data_points": [{"firm_id": "FIRM-001", "metric_id": "MET-VD-001", "value_raw": ..., "confidence": "high"}]}
 
     For nested format, extracts PS-VD-* IDs from source strings.
-    For flat format, maps confidence (high→3, medium→2, low→1).
+    For flat format, maps confidence (high→grounded, medium→partial, low→sourced).
     """
     if not isinstance(matrix, dict):
         return [], ["standardized_matrix.json root is not a dict"]
 
-    # Flat data_points format (production)
     if "data_points" in matrix:
         return _generate_claims_from_data_points(matrix["data_points"])
 
-    # Nested metrics format (unit tests / legacy)
     return _generate_claims_from_metrics(matrix.get("metrics", {}))
 
 
@@ -168,21 +181,9 @@ def _generate_claims_from_data_points(data_points: list) -> tuple[list[dict], li
         if not firm_id or not met_id:
             continue
 
-        conf_label = dp.get("confidence", "low")
-        score = _CONFIDENCE_MAP.get(conf_label, 1)
-        confidence = _SCORE_TO_CONFIDENCE.get(score, "sourced")
-
-        met_short = met_id.replace("MET-VD-", "MET-")
-        claim_id = f"CLM-{met_short}-{firm_id}-01"
-        claims.append({
-            "id": claim_id,
-            "parent_id": met_id,
-            "type": "factual",
-            "evidence": [],
-            "confidence": confidence,
-            "score": score,
-            "layer": "2-data",
-        })
+        confidence = _DATA_POINTS_CONFIDENCE.get(dp.get("confidence", "low"), "sourced")
+        score = _CONFIDENCE_TO_SCORE[confidence]
+        claims.append(_make_matrix_claim(met_id, firm_id, score, confidence, []))
 
     return claims, warnings
 
@@ -196,45 +197,25 @@ def _generate_claims_from_metrics(metrics: dict) -> tuple[list[dict], list[str]]
         if not isinstance(met_data, dict):
             continue
         firms = met_data.get("firms", {})
-        met_short = met_id.replace("MET-VD-", "MET-")
         for firm_id, cell in firms.items():
             if not isinstance(cell, dict):
                 continue
-            value = cell.get("value")
-            if value is None:
+            if cell.get("value") is None:
                 continue
 
             source_str = cell.get("source", "")
             ps_vd_ids = _PS_VD_PATTERN.findall(source_str) if source_str else []
 
             if ps_vd_ids:
-                score = 3
-                confidence = "grounded"
-                evidence = sorted(set(ps_vd_ids))
+                score, confidence, evidence = 3, "grounded", sorted(set(ps_vd_ids))
             elif source_str:
-                score = 1
-                confidence = "sourced"
-                evidence = []
-                warnings.append(
-                    f"Matrix cell {met_id}/{firm_id}: source text present "
-                    f"but no PS-VD-* ID parseable"
-                )
+                score, confidence, evidence = 1, "sourced", []
+                warnings.append(f"Matrix cell {met_id}/{firm_id}: source text present but no PS-VD-* ID parseable")
             else:
-                score = 1
-                confidence = "sourced"
-                evidence = []
+                score, confidence, evidence = 1, "sourced", []
                 warnings.append(f"Matrix cell {met_id}/{firm_id}: no source field")
 
-            claim_id = f"CLM-{met_short}-{firm_id}-01"
-            claims.append({
-                "id": claim_id,
-                "parent_id": met_id,
-                "type": "factual",
-                "evidence": evidence,
-                "confidence": confidence,
-                "score": score,
-                "layer": "2-data",
-            })
+            claims.append(_make_matrix_claim(met_id, firm_id, score, confidence, evidence))
 
     return claims, warnings
 
@@ -278,18 +259,17 @@ def resolve_chains(claims: dict[str, dict]) -> dict[str, dict]:
     return result
 
 
-def _evidence_score(ev_id: str, claims: dict[str, dict]) -> int:
+def _evidence_score(ev_id: str, claims: dict[str, dict], parent_index: dict[str, list[str]]) -> int:
     """Return the score of an evidence item. CLM-* returns claim score, others use defaults."""
     if ev_id.startswith("CLM-") and ev_id in claims:
         return claims[ev_id]["score"]
-    # Non-CLM: check prefix against defaults
     for prefix, default in NON_CLM_DEFAULT_SCORES.items():
         if ev_id.startswith(prefix):
             return default
-    # MET-VD, COR, DVR without covering CLM → check if a CLM covers it
-    covering = [c for c in claims.values() if c.get("parent_id") == ev_id]
-    if covering:
-        return min(c["score"] for c in covering)
+    # Non-CLM without prefix match → check covering CLM via parent_index (O(1) lookup)
+    covering_ids = parent_index.get(ev_id, [])
+    if covering_ids:
+        return min(claims[cid]["score"] for cid in covering_ids if cid in claims)
     return 1  # uncovered non-CLM ID
 
 
@@ -307,6 +287,13 @@ def apply_score_cascading(
     result = {cid: {**c} for cid, c in claims.items()}
     downgraded_ids: set[str] = set()
 
+    # Build parent_id → [claim_ids] index once for O(1) evidence lookups
+    parent_index: dict[str, list[str]] = {}
+    for cid, c in result.items():
+        pid = c.get("parent_id")
+        if pid:
+            parent_index.setdefault(pid, []).append(cid)
+
     # Iterate until stable (handles transitive dependencies)
     changed = True
     max_iterations = 50  # safety bound
@@ -322,7 +309,7 @@ def apply_score_cascading(
             if not evidence:
                 continue
 
-            ev_scores = [_evidence_score(ev_id, result) for ev_id in evidence]
+            ev_scores = [_evidence_score(ev_id, result, parent_index) for ev_id in evidence]
             min_ev = min(ev_scores)
             cascaded = min(claim["score"], min_ev)
 
@@ -378,8 +365,8 @@ def build_claim_index(run_dir: Path) -> dict:
             claims[mc["id"]] = {**mc, "source_file": _MATRIX_FILE}
 
     # Detect legacy run (no agent-emitted claims found)
-    agent_claims = [c for c in claims.values() if c.get("layer") != "2-data"]
-    legacy_run = len(agent_claims) == 0 and len(matrix_claims_list) > 0
+    has_agent_claims = any(c.get("layer") != "2-data" for c in claims.values())
+    legacy_run = not has_agent_claims and len(matrix_claims_list) > 0
 
     # 3. Resolve chains
     claims = resolve_chains(claims)
@@ -391,7 +378,7 @@ def build_claim_index(run_dir: Path) -> dict:
     by_score: dict[int, int] = {0: 0, 1: 0, 2: 0, 3: 0}
     by_type: dict[str, int] = {}
     for c in claims.values():
-        by_score[c["score"]] = by_score.get(c["score"], 0) + 1
+        by_score[c["score"]] += 1
         by_type[c["type"]] = by_type.get(c["type"], 0) + 1
 
     total = len(claims)
