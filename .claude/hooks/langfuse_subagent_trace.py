@@ -71,6 +71,33 @@ def main() -> None:
             metadata={"duration_ms": duration_ms},
         )
 
+        # Extract claim IDs from output files for trace↔claim bridge
+        run_dir = metadata.get("run_dir", "")
+        claim_ids = []
+        claim_scores = []
+        for filepath in output_files:
+            full_path = os.path.join(run_dir, filepath) if run_dir else filepath
+            if not os.path.exists(full_path):
+                continue
+            try:
+                with open(full_path) as f:
+                    file_data = json.load(f)
+                for claim in file_data.get("_claims", []):
+                    if isinstance(claim, dict) and "id" in claim:
+                        claim_ids.append(claim["id"])
+                        claim_scores.append(claim.get("score", -1))
+            except (json.JSONDecodeError, OSError):
+                continue
+
+        if claim_ids:
+            trace.update(
+                metadata={
+                    "claim_ids": claim_ids,
+                    "claim_count": len(claim_ids),
+                    "min_claim_score": min(claim_scores),
+                },
+            )
+
         client.flush()
 
     except Exception:
