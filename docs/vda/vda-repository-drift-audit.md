@@ -22,15 +22,15 @@ This document records the key mismatches found in the partially-updated VDA repo
 ## 2. Patch Plan
 
 1. Update the authoritative methodology and repository-level docs.
-   Files: `docs/pax-first-valuation-driver-methodology.md`, `README.md`, `CLAUDE.md`, `docs/valuation-driver-methodology.md`
+   Files: `docs/methodology/pax-first-valuation-driver-methodology.md`, `README.md`, `CLAUDE.md`, `docs/valuation-driver-methodology.md`
 2. Rewrite runtime agent instructions to one PAX-first contract.
    Files: `src/tauri/src/components/AgentsOrg.tsx`, `src/tauri/src/types/pipeline.ts`, `src/tauri/src/lib/ptyParser.ts`
 3. Tighten statistical governance and metadata.
-   Files: `schemas/vda/statistics_metadata.schema.json`, `src/validation/vda_contracts.py`
+   Files: `archive/schemas/vda/statistics_metadata.schema.json`, `src/validation/vda_contracts.py`
 4. Rebuild playbook and decision-layer contracts.
-   Files: `schemas/vda/playbook_entry.schema.json`, `schemas/vda/pax_lens.schema.json`, `schemas/vda/report_metadata.schema.json`, `src/validation/vda_contracts.py`
+   Files: `archive/schemas/vda/playbook_entry.schema.json`, `archive/schemas/vda/pax_lens.schema.json`, `archive/schemas/vda/report_metadata.schema.json`, `src/validation/vda_contracts.py`
 5. Add operational-prerequisite and strategy-subtype contracts.
-   Files: `schemas/vda/strategic_action.schema.json`, `schemas/vda/strategy_subtype_analysis.schema.json`, `src/validation/vda_contracts.py`
+   Files: `archive/schemas/vda/strategic_action.schema.json`, `archive/schemas/vda/strategy_subtype_analysis.schema.json`, `src/validation/vda_contracts.py`
 6. Add tests for validation and metadata consistency.
    Files: `tests/test_vda_contracts.py`
 

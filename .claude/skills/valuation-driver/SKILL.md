@@ -161,7 +161,7 @@ If no tone profile was provided, write the default tone profile:
   "hedging": "explicit",
   "data_presentation": "tables-first",
   "terminology": "technical",
-  "nuances": "Lead with the answer before the evidence (Pyramid Principle). Section headers are action titles that state a conclusion, not topic labels (e.g., 'Scale is the dominant valuation driver, but not all scale is equal' not 'Industry Value Drivers'). Every claim cites a numbered footnote linking to source title, date, and bias tag. Use Oxford commas. Qualify correlation-based findings with statistical confidence. Avoid marketing language. Statistical methodology details belong in the Appendix, not inline. Plays are framed as observed peer mechanisms, not recommendations. Reference: docs/sigma-final-report-guide.md"
+  "nuances": "Lead with the answer before the evidence (Pyramid Principle). Section headers are action titles that state a conclusion, not topic labels (e.g., 'Scale is the dominant valuation driver, but not all scale is equal' not 'Industry Value Drivers'). Every claim cites a numbered footnote linking to source title, date, and bias tag. Use Oxford commas. Qualify correlation-based findings with statistical confidence. Avoid marketing language. Statistical methodology details belong in the Appendix, not inline. Plays are framed as observed peer mechanisms, not recommendations. Reference: docs/vda/sigma-final-report-guide.md"
 }
 ```
 
@@ -646,8 +646,8 @@ Instructions:
 > **Task A — Stage VD-B1:** Execute Strategy Extraction for all firms in the qualitative peer set.
 >
 > Read `data/processed/{TICKER}/{DATE}/1-universe/source_catalog.json` for sources.
-> Read `docs/pax-peer-strategy-ontology.md` for the minimum business-model decomposition grid.
-> Read `docs/pax-peer-assessment-framework.md` for business context.
+> Read `docs/pax/pax-peer-strategy-ontology.md` for the minimum business-model decomposition grid.
+> Read `docs/pax/pax-peer-assessment-framework.md` for business context.
 > Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context_slim.json` if it exists — use it ONLY to enrich `contextual_market_factors` and to frame industry trends (retailization, wealth-channel expansion, fee pressure, fundraising conditions, operating-model demands). Do NOT use consulting sources to assert a peer strategic action or stated priority unless peer/company evidence also supports it.
 >
 > **CONSULTING RULE:** consulting_context_slim.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
@@ -675,7 +675,7 @@ Instructions:
 >
 > **URL log:** Append every URL you visit to `data/raw/{TICKER}/{DATE}/urls_consumed_strategy.jsonl` — one JSON object per line: `{"url": "...", "firm": "...", "timestamp": "...", "status": "ok|error|irrelevant"}`.
 >
-> **Output A:** `data/processed/{TICKER}/{DATE}/2-data/strategy_profiles.json` (must conform to `schemas/vda/strategy_profile.schema.json`)
+> **Output A:** `data/processed/{TICKER}/{DATE}/2-data/strategy_profiles.json` (validated by `src/validation/vda_contracts.py`)
 >
 > **Task B — Stage VD-B2:** Execute Action Cataloging for all firms in the qualitative peer set.
 >
@@ -893,7 +893,7 @@ Send all subsequent steps in this phase to metric-architect via SendMessage, wai
 >
 > **Output:** `data/processed/{TICKER}/{DATE}/3-analysis/statistical_methodology.md`
 >
-> **Additionally produce:** `data/processed/{TICKER}/{DATE}/3-analysis/statistics_metadata.json` conforming to the `schemas/vda/statistics_metadata.schema.json` schema. Include `n_effective`, `temporal_depth` (object with `target_range`, `actual_years`, `firms_with_multi_year`), `ci_method`, and `minimum_sample_rule` fields.
+> **Additionally produce:** `data/processed/{TICKER}/{DATE}/3-analysis/statistics_metadata.json` validated by `src/validation/vda_contracts.py`. Include `n_effective`, `temporal_depth` (object with `target_range`, `actual_years`, `firms_with_multi_year`), `ci_method`, and `minimum_sample_rule` fields.
 
 ### Send to metric-architect: VD-A5 Value Driver Ranking
 
@@ -1074,8 +1074,8 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/3-analysis/driver_ranking.json` for which stable drivers are most salient.
 > Read `data/processed/{TICKER}/{DATE}/4-deep-dives/strategic_actions_final.json` for peer actions (pre-sliced to final peer set firms only).
-> Read `docs/pax-peer-strategy-ontology.md` for the minimum business-model decomposition grid.
-> Read `docs/pax-peer-assessment-framework.md` for business context.
+> Read `docs/pax/pax-peer-strategy-ontology.md` for the minimum business-model decomposition grid.
+> Read `docs/pax/pax-peer-assessment-framework.md` for business context.
 > Read `data/processed/{TICKER}/{DATE}/2-data/consulting_context_slim.json` if it exists — use it as formal input for vertical and sub-strategy context. It may support claims about market structure, private credit growth, wealth distribution, consolidation, democratization, and operating-model requirements. Keep all peer-specific examples grounded in peer evidence.
 >
 > **CONSULTING RULE:** consulting_context_slim.json is market context only. Never use it as primary evidence for firm-specific metrics, actions, or causal claims. If consulting conflicts with peer evidence, peer evidence wins.
@@ -1358,7 +1358,7 @@ Rules for action titles:
   - "Industry Value Drivers"
   - "Peer Profiles"
   - "Strategic Implications"
-- Reference: `docs/sigma-final-report-guide.md` (Ghost Report section)
+- Reference: `docs/vda/sigma-final-report-guide.md` (Ghost Report section)
 
 Output: `data/processed/{TICKER}/{DATE}/5-playbook/ghost_report_skeleton.md`
 
@@ -1390,7 +1390,7 @@ Instructions:
 >
 > **CONSULTING RULE:** Add a short "Industry Context" section using consulting_context_slim.json. Keep it clearly labeled and separate from peer findings. Consulting sources (PS-VD-9xx) may only support market-level claims. Any firm-specific claim must cite peer PS-VD sources, not consulting sources.
 >
-> Also read the writing reference: `docs/sigma-final-report-guide.md`
+> Also read the writing reference: `docs/vda/sigma-final-report-guide.md`
 >
 > Produce a single self-contained HTML file with two addressable layers:
 >
@@ -1486,7 +1486,7 @@ Instructions:
 > - Annotate ALL prescriptive/comparative claims in the target company lens section
 > - Do NOT annotate: section headings, methodology descriptions, general definitions
 >
-> **Writing principles (mandatory — reference: docs/sigma-final-report-guide.md):**
+> **Writing principles (mandatory — reference: docs/vda/sigma-final-report-guide.md):**
 > - **Pyramid Principle:** Lead every section with the answer/conclusion, then support with evidence. The reader should understand the "so what" before seeing the proof.
 > - **Action titles:** Use the action titles from `ghost_report_skeleton.md` as H2 headers. Each title states a conclusion, not a topic label.
 > - **Bumper statements:** End major sections (Executive Summary, Driver Findings, Strategic Implications, Anti-patterns) with "Therefore: [implication for {COMPANY}]"

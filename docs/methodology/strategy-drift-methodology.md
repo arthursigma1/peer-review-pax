@@ -55,7 +55,7 @@ Prompt-driven analytical workflow to evaluate whether a public company's actions
 | Strategic Disconnect | < 2.0 |
 
 ## Second Derivative: Peer Comparison
-The drift analysis can be extended with a peer comparison pipeline that contextualizes internal strategic coherence against external competitive positioning. The peer pipeline reads PIL-* from Stage 2 and maps them to industry-specific metrics, producing competitive rankings and a drift-competition correlation analysis. See `docs/peer-comparison-methodology.md` for the full methodology and `prompts/peer/` for prompt templates.
+The drift analysis can be extended with a peer comparison pipeline that contextualizes internal strategic coherence against external competitive positioning. The peer pipeline reads PIL-* from Stage 2 and maps them to industry-specific metrics, producing competitive rankings and a drift-competition correlation analysis. See `docs/methodology/peer-comparison-methodology.md` for the full methodology and `prompts/peer/` for prompt templates.
 
 ## Reuse
 To apply to a different company: replace "Block, Inc." in prompts, update source-scout search targets, run the same pipeline. All prompts use {COMPANY} and {TICKER} placeholders.

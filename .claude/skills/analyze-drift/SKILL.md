@@ -119,7 +119,7 @@ Instructions to include in the prompt:
 > **SEC CIK:** {SEC_CIK}
 >
 > **Your task:** Execute Stage 0 — Source Identification and Classification.
-> Read the prompt at `prompts/00_source_mapping.md` and follow it exactly.
+> Read the prompt at `prompts/drift/00_source_mapping.md` and follow it exactly.
 > Replace all placeholders with the company values above.
 >
 > **Output path:** `data/processed/{TICKER}/{DATE}/stage_0_sources.md`
@@ -164,7 +164,7 @@ Instructions:
 > **Company Context:** Read `data/processed/{TICKER}/{DATE}/company_context.json`
 >
 > **Your task:** Execute Stage 1A — Strategy Element Extraction.
-> Read the prompt at `prompts/01_gather_strategy.md` and follow it exactly.
+> Read the prompt at `prompts/drift/01_gather_strategy.md` and follow it exactly.
 > Use the source catalog at `data/processed/{TICKER}/{DATE}/stage_0_sources.md`.
 > Replace all placeholders with company values.
 >
@@ -187,11 +187,11 @@ Instructions:
 > **Tasks (sequential):**
 >
 > **Task A — Stage 1B:** Execute Action and Execution Evidence Extraction.
-> Read `prompts/01_gather_actions.md`. Use source catalog at `data/processed/{TICKER}/{DATE}/stage_0_sources.md`.
+> Read `prompts/drift/01_gather_actions.md`. Use source catalog at `data/processed/{TICKER}/{DATE}/stage_0_sources.md`.
 > Output: `data/raw/{TICKER}/{DATE}/{TICKER_LOWER}_actions_{source_id}.txt` + `data/processed/{TICKER}/{DATE}/stage_1b_actions.json`
 >
 > **Task B — Stage 1C:** Execute Forward-Looking Commitment Extraction (after Task A).
-> Read `prompts/01_gather_commitments.md`.
+> Read `prompts/drift/01_gather_commitments.md`.
 > Output: `data/raw/{TICKER}/{DATE}/{TICKER_LOWER}_commitments_{source_id}.txt` + `data/processed/{TICKER}/{DATE}/stage_1c_commitments.json`
 
 ### Quality Gate 2
@@ -209,7 +209,7 @@ Write `data/processed/{TICKER}/{DATE}/source_sufficiency_assessment.md`.
 ### Send to strategy-intel (via SendMessage):
 
 > Proceed to Stage 2 — Strategic Pillar Synthesis.
-> Read `prompts/02_map_pillars.md`.
+> Read `prompts/drift/02_map_pillars.md`.
 > Inputs: `data/processed/{TICKER}/{DATE}/stage_1a_strategy.json` + `data/processed/{TICKER}/{DATE}/stage_1c_commitments.json`
 > Output: `data/processed/{TICKER}/{DATE}/stage_2_pillars.json`
 
@@ -218,7 +218,7 @@ Wait for Stage 2 to complete, then send to execution-intel:
 ### Send to execution-intel (via SendMessage):
 
 > Proceed to Stage 3 — Action and Commitment to Pillar Mapping.
-> Read `prompts/03_map_actions.md`.
+> Read `prompts/drift/03_map_actions.md`.
 > Inputs: `data/processed/{TICKER}/{DATE}/stage_2_pillars.json` + `data/processed/{TICKER}/{DATE}/stage_1b_actions.json` + `data/processed/{TICKER}/{DATE}/stage_1c_commitments.json`
 > Output: `data/processed/{TICKER}/{DATE}/stage_3_actions.json`
 
@@ -241,12 +241,12 @@ Instructions:
 > **Company Context:** Read `data/processed/{TICKER}/{DATE}/company_context.json`
 >
 > **Task A — Stage 4:** Execute Multi-Dimensional Coherence Analysis.
-> Read `prompts/04_coherence_analysis.md`.
+> Read `prompts/drift/04_coherence_analysis.md`.
 > Inputs: ALL stage files in `data/processed/{TICKER}/{DATE}/`
 > Output: `data/processed/{TICKER}/{DATE}/stage_4_coherence.json`
 >
 > **Task B — Stage 5:** Generate Final Report.
-> Read `prompts/05_final_report.md`.
+> Read `prompts/drift/05_final_report.md`.
 > Inputs: ALL stage files in `data/processed/{TICKER}/{DATE}/`
 > Output: `data/processed/{TICKER}/{DATE}/final_report.md`
 >

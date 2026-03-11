@@ -2,7 +2,7 @@
 
 ## Objective
 
-Catalog all publicly available information sources for {COMPANY} ({TICKER}) and each identified peer that are necessary for quantitative benchmarking. This stage extends the source mapping framework from the drift pipeline (`prompts/00_source_mapping.md`) to cover multiple companies simultaneously.
+Catalog all publicly available information sources for {COMPANY} ({TICKER}) and each identified peer that are necessary for quantitative benchmarking. This stage extends the source mapping framework from the drift pipeline (`prompts/drift/00_source_mapping.md`) to cover multiple companies simultaneously.
 
 ## Inputs
 

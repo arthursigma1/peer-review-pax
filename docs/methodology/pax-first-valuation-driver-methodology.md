@@ -17,8 +17,8 @@ The repository therefore defaults to a PAX decision memo, not a neutral play men
 For PAX-specific runs, two companion documents capture the commissioning team's
 business framing:
 
-- `docs/pax-peer-assessment-framework.md`
-- `docs/pax-peer-strategy-ontology.md`
+- `docs/pax/pax-peer-assessment-framework.md`
+- `docs/pax/pax-peer-strategy-ontology.md`
 
 These documents are mandatory starting points for PAX work. They seed the
 initial KPI hypotheses, deep-dive shape, and business-model ontology. They are
@@ -254,7 +254,7 @@ The metric taxonomy must include:
 - Context-only market structure metrics
 
 For PAX runs, the initial candidate set should be seeded from
-`docs/pax-peer-assessment-framework.md`. Metrics from that business spec may be
+`docs/pax/pax-peer-assessment-framework.md`. Metrics from that business spec may be
 classified as `formal_ranking_eligible`, `contextual_only`, or `unsupported`,
 but they may not be silently omitted without explanation.
 
@@ -346,7 +346,8 @@ If an operational prerequisite is inferred, it must never be presented as hard f
 Each peer in `strategy_profiles.json` must map the business model across the
 ontology grid and capture contextual market factors as a separate object. The
 output is a JSON array of profile objects conforming to
-`schemas/vda/strategy_profile.schema.json`. Contextual market factors (TAM,
+`archive/schemas/vda/strategy_profile.schema.json` (archived; runtime validation
+via `src/validation/vda_contracts.py`). Contextual market factors (TAM,
 market share, governance, regulation) are market-context data, not
 business-model choices, and must not be mixed into the ontology mapping.
 
@@ -355,7 +356,7 @@ business-model choices, and must not be mixed into the ontology mapping.
 Verticals must be broken into strategy sub-types. The repository may not treat `Private Equity`, `Credit`, `Infrastructure`, or `Solutions` as monoliths.
 
 For PAX runs, the minimum business-model decomposition grid is defined in
-`docs/pax-peer-strategy-ontology.md`. Agents may add dimensions or values when
+`docs/pax/pax-peer-strategy-ontology.md`. Agents may add dimensions or values when
 the evidence demands it, but they may not collapse the analysis below that
 baseline without disclosure.
 
@@ -495,7 +496,7 @@ Required report metadata:
 
 ## 13. Validation and Hard Fail Rules
 
-The repository must validate outputs against the JSON schemas under `schemas/vda/` and the validator module under `src/validation/vda_contracts.py`.
+The repository must validate outputs against the JSON schemas under `archive/schemas/vda/` (archived; runtime validation via `src/validation/vda_contracts.py`) and the validator module under `src/validation/vda_contracts.py`.
 
 Hard fail the run when:
 

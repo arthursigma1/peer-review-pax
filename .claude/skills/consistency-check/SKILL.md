@@ -52,7 +52,7 @@ Verify step numbering, agent assignments, and output files are aligned.
 
 ### 6. Methodology
 Read and compare:
-- `docs/pax-first-valuation-driver-methodology.md`
+- `docs/methodology/pax-first-valuation-driver-methodology.md`
 - `CLAUDE.md` conventions section
 
 Verify the methodology doc reflects current pipeline behavior (correlation classifications, evidence hierarchy, agent roles).

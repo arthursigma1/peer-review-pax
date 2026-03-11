@@ -37,7 +37,7 @@ Required outcomes:
 
 - deep-dive each selected peer's strategic agenda and business value drivers
 - use the PAX peer strategy ontology in
-  `docs/pax-peer-strategy-ontology.md`
+  `docs/pax/pax-peer-strategy-ontology.md`
 - explain how each peer's business-model design appears to produce the observed
   KPI outcomes
 - compare rule-confirming cases and instructive exceptions
@@ -154,4 +154,4 @@ Must answer:
 - Agents may add dimensions, metrics, or hypotheses when evidence warrants
 - Agents may reject an initial hypothesis when evidence does not support it
 - Statistical classification, report governance, and hard-fail rules remain
-  governed by `docs/pax-first-valuation-driver-methodology.md`
+  governed by `docs/methodology/pax-first-valuation-driver-methodology.md`
