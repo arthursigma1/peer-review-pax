@@ -251,7 +251,7 @@ def apply_score_cascading(
     Returns (updated_claims, downgrade_count).
     """
     result = {cid: {**c} for cid, c in claims.items()}
-    downgrades = 0
+    downgraded_ids: set[str] = set()
 
     # Iterate until stable (handles transitive dependencies)
     changed = True
@@ -285,6 +285,6 @@ def apply_score_cascading(
                 claim["confidence"] = _SCORE_TO_CONFIDENCE.get(cascaded, "partial")
                 changed = True
                 if cascaded < old:
-                    downgrades += 1
+                    downgraded_ids.add(cid)
 
-    return result, downgrades
+    return result, len(downgraded_ids)

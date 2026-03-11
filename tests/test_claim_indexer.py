@@ -389,8 +389,9 @@ class TestScoreCascading:
         }
         result, downgrades = apply_score_cascading(claims)
         # Cascading: min(3, 1) = 1, but damping floor = max(1, 1) = 1
-        assert result["CLM-DVR-001-01"]["score"] <= 2
-        assert downgrades >= 1
+        assert result["CLM-DVR-001-01"]["score"] == 1
+        assert downgrades == 1
+        assert result["CLM-DVR-001-01"]["confidence"] == "sourced"  # score 1 → sourced
 
     def test_damping_floor_prevents_hard_block_from_weak_source(self):
         claims = {
@@ -443,3 +444,36 @@ class TestScoreCascading:
         result, _ = apply_score_cascading(claims)
         # Causal ceiling = 2; PS-VD default = 3; min(2, 3) = 2; ceiling = 2 → 2
         assert result["CLM-PLAY-001-02"]["score"] == 2
+
+    def test_non_clm_via_parent_id_fallback(self):
+        """COR-191 in evidence has no default — falls back to covering CLM or score 1."""
+        claims = {
+            "CLM-DVR-001-01": {
+                "id": "CLM-DVR-001-01", "type": "statistical",
+                "evidence": ["COR-191"], "score": 3, "confidence": "grounded",
+                "layer": "3-analysis",
+            },
+        }
+        result, downgrades = apply_score_cascading(claims)
+        # COR-191 has no covering CLM → fallback to 1 → min(3,1)=1, max(1,1)=1
+        assert result["CLM-DVR-001-01"]["score"] == 1
+        assert downgrades == 1
+
+    def test_non_clm_with_covering_claim_uses_its_score(self):
+        """COR-191 in evidence is covered by a CLM with parent_id=COR-191 → uses its score."""
+        claims = {
+            "CLM-COR-191-01": {
+                "id": "CLM-COR-191-01", "type": "statistical",
+                "evidence": ["MET-VD-021"], "score": 3, "confidence": "grounded",
+                "layer": "3-analysis", "parent_id": "COR-191",
+            },
+            "CLM-DVR-001-01": {
+                "id": "CLM-DVR-001-01", "type": "statistical",
+                "evidence": ["COR-191"], "score": 3, "confidence": "grounded",
+                "layer": "3-analysis",
+            },
+        }
+        result, downgrades = apply_score_cascading(claims)
+        # COR-191 covered by CLM-COR-191-01 (score 3) → min(3, 3)=3
+        assert result["CLM-DVR-001-01"]["score"] == 3
+        assert downgrades == 0

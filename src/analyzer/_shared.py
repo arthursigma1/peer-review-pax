@@ -77,4 +77,5 @@ NON_CLM_DEFAULT_SCORES: dict[str, int] = {
     "PS-VD": 3,
     "FIRM": 3,
     "ACT-VD": 3,
+    "MET-VD": 3,
 }
