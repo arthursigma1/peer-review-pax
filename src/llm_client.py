@@ -1,10 +1,20 @@
 """Shared LLM client wrapper. All LLM calls go through here."""
 
+from __future__ import annotations
+
 import os
 from pathlib import Path
 
 import anthropic
 from dotenv import load_dotenv
+
+try:
+    from langfuse.decorators import observe
+except ImportError:
+    def observe(**kwargs):
+        def decorator(fn):
+            return fn
+        return decorator
 
 load_dotenv()
 
@@ -19,7 +29,8 @@ def load_prompt(name: str) -> str:
     return path.read_text()
 
 
-def ask(prompt: str, system: str = "", model: str = "claude-sonnet-4-20250514") -> str:
+@observe(as_type="generation")
+def ask(prompt: str, system: str = "", model: str = "claude-sonnet-4-20250514", metadata: dict | None = None) -> str:
     """Send a single prompt to Claude and return the text response."""
     messages = [{"role": "user", "content": prompt}]
     kwargs: dict = {"model": model, "max_tokens": 4096, "messages": messages}
