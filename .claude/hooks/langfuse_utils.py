@@ -6,6 +6,19 @@ Used by langfuse_trace.py (Stop hook) and langfuse_subagent_trace.py (SubagentSt
 from __future__ import annotations
 
 import os
+from pathlib import Path
+
+# Load .env from project root (hooks run as standalone scripts).
+# Only loads once; skipped if _LANGFUSE_ENV_LOADED is set (e.g., by tests).
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+_ENV_FILE = _PROJECT_ROOT / ".env"
+if _ENV_FILE.exists() and "_LANGFUSE_ENV_LOADED" not in os.environ:
+    for line in _ENV_FILE.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, _, value = line.partition("=")
+            os.environ.setdefault(key.strip(), value.strip())
+    os.environ["_LANGFUSE_ENV_LOADED"] = "1"
 
 # Maps output filename patterns to VDA agent names (mirrors FILE_TO_AGENT in usePipeline.ts)
 _FILE_TO_AGENT: dict[str, str] = {
@@ -49,13 +62,13 @@ def detect_agent_name(output_files: list[str]) -> str:
 
 
 def get_langfuse_client():
-    """Create and return a Langfuse client. Returns None if keys not configured."""
+    """Create and return a Langfuse client. Returns None if keys not configured.
+
+    Langfuse v3 reads LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY, and LANGFUSE_HOST
+    from environment variables automatically.
+    """
     try:
         from langfuse import Langfuse
-        return Langfuse(
-            public_key=os.environ.get("LANGFUSE_PUBLIC_KEY", ""),
-            secret_key=os.environ.get("LANGFUSE_SECRET_KEY", ""),
-            host=os.environ.get("LANGFUSE_HOST", "https://cloud.langfuse.com"),
-        )
+        return Langfuse()
     except Exception:
         return None

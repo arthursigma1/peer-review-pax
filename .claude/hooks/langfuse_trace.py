@@ -43,32 +43,37 @@ def main() -> None:
         # Extract tool calls
         tool_calls = payload.get("tool_calls", [])
 
-        trace = client.trace(
+        # V3 API: start_as_current_span creates trace + root span
+        with client.start_as_current_span(
             name="claude-code-turn",
-            session_id=session_id,
             metadata={
                 "model": model,
                 "tool_count": len(tool_calls),
                 "hook_type": "Stop",
             },
-        )
+        ):
+            client.update_current_trace(session_id=session_id)
 
-        # Log the generation
-        trace.generation(
-            name="llm-call",
-            model=model,
-            usage={
-                "input": input_tokens,
-                "output": output_tokens,
-            },
-        )
-
-        # Log each tool call as a span
-        for tc in tool_calls:
-            trace.span(
-                name=tc.get("name", "unknown-tool"),
-                metadata={"tool_input_preview": str(tc.get("input", ""))[:200]},
+            # Log the LLM generation
+            gen = client.start_observation(
+                name="llm-call",
+                as_type="generation",
+                model=model,
+                usage_details={
+                    "input": input_tokens,
+                    "output": output_tokens,
+                },
             )
+            gen.end()
+
+            # Log each tool call as a span
+            for tc in tool_calls:
+                tool_span = client.start_observation(
+                    name=tc.get("name", "unknown-tool"),
+                    as_type="tool",
+                    metadata={"tool_input_preview": str(tc.get("input", ""))[:200]},
+                )
+                tool_span.end()
 
         client.flush()
 

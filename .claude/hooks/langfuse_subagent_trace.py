@@ -47,9 +47,9 @@ def main() -> None:
         step = metadata.get("step", "unknown")
         ticker = metadata.get("ticker", "unknown")
 
-        trace = client.trace(
+        # V3 API: start_as_current_span creates trace + root span
+        with client.start_as_current_span(
             name=f"agent:{agent_name}",
-            session_id=session_id,
             metadata={
                 "agent_id": agent_id,
                 "agent_name": agent_name,
@@ -61,42 +61,45 @@ def main() -> None:
                 "output_files": output_files,
                 "hook_type": "SubagentStop",
             },
-        )
+        ):
+            client.update_current_trace(session_id=session_id)
 
-        # Log generation summary
-        trace.generation(
-            name=f"{agent_name}-session",
-            model=model,
-            usage={"total": total_tokens},
-            metadata={"duration_ms": duration_ms},
-        )
-
-        # Extract claim IDs from output files for trace↔claim bridge
-        run_dir = metadata.get("run_dir", "")
-        claim_ids = []
-        claim_scores = []
-        for filepath in output_files:
-            full_path = os.path.join(run_dir, filepath) if run_dir else filepath
-            if not os.path.exists(full_path):
-                continue
-            try:
-                with open(full_path) as f:
-                    file_data = json.load(f)
-                for claim in file_data.get("_claims", []):
-                    if isinstance(claim, dict) and "id" in claim:
-                        claim_ids.append(claim["id"])
-                        claim_scores.append(claim.get("score", -1))
-            except (json.JSONDecodeError, OSError):
-                continue
-
-        if claim_ids:
-            trace.update(
-                metadata={
-                    "claim_ids": claim_ids,
-                    "claim_count": len(claim_ids),
-                    "min_claim_score": min(claim_scores),
-                },
+            # Log generation summary
+            gen = client.start_observation(
+                name=f"{agent_name}-session",
+                as_type="generation",
+                model=model,
+                usage_details={"total": total_tokens},
+                metadata={"duration_ms": duration_ms},
             )
+            gen.end()
+
+            # Extract claim IDs from output files for trace↔claim bridge
+            run_dir = metadata.get("run_dir", "")
+            claim_ids = []
+            claim_scores = []
+            for filepath in output_files:
+                full_path = os.path.join(run_dir, filepath) if run_dir else filepath
+                if not os.path.exists(full_path):
+                    continue
+                try:
+                    with open(full_path) as f:
+                        file_data = json.load(f)
+                    for claim in file_data.get("_claims", []):
+                        if isinstance(claim, dict) and "id" in claim:
+                            claim_ids.append(claim["id"])
+                            claim_scores.append(claim.get("score", -1))
+                except (json.JSONDecodeError, OSError):
+                    continue
+
+            if claim_ids:
+                client.update_current_trace(
+                    metadata={
+                        "claim_ids": claim_ids,
+                        "claim_count": len(claim_ids),
+                        "min_claim_score": min(claim_scores),
+                    },
+                )
 
         client.flush()
 

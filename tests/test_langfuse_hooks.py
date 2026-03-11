@@ -27,6 +27,8 @@ def _hooks_path():
 def _import_utils():
     """Import (or reimport) langfuse_utils with a clean module cache."""
     sys.modules.pop("langfuse_utils", None)
+    # Prevent .env loading during tests (tests control env vars explicitly)
+    os.environ["_LANGFUSE_ENV_LOADED"] = "1"
     import langfuse_utils
     return langfuse_utils
 
