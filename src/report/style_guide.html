@@ -501,6 +501,188 @@ figure[data-chart-type] .chart-so-what {
 }
 
 /* ══════════════════════════════════════════════════════════════════
+   COMPONENT: SCATTER PLOT (inline SVG)
+   Driver × Multiple scatter with inline ticker labels.
+   Target company dot highlighted in primary blue; all others gray.
+   Use <figure data-chart-type="scatterPlot"> wrapper.
+   ══════════════════════════════════════════════════════════════════ */
+.scatter-plot {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 4 / 3;
+  margin: 0 auto;
+}
+
+.scatter-plot svg {
+  width: 100%;
+  height: 100%;
+}
+
+.scatter-plot .axis-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--color-text-muted);
+}
+
+.scatter-plot .axis-title {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  fill: var(--color-text-secondary);
+}
+
+.scatter-plot .dot {
+  r: 5;
+  fill: var(--color-bar-default);
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+
+.scatter-plot .dot-highlight {
+  r: 7;
+  fill: var(--color-primary);
+  stroke: var(--color-primary-hover);
+  stroke-width: 2;
+}
+
+.scatter-plot .dot-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--color-text-muted);
+}
+
+.scatter-plot .dot-label-highlight {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  fill: var(--color-primary);
+}
+
+.scatter-plot .trend-line {
+  stroke: var(--color-text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  fill: none;
+  opacity: 0.5;
+}
+
+.scatter-plot .rho-annotation {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  fill: var(--color-text-secondary);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: TRANSFERABILITY MATRIX
+   Summary table: PLAY-NNN × transferability rating for the target.
+   Compact one-glance view of all plays with applicability assessment.
+   ══════════════════════════════════════════════════════════════════ */
+.transferability-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin: 1.5rem 0;
+}
+
+.transferability-matrix th {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 2px solid var(--color-border);
+  background: var(--color-surface-raised);
+}
+
+.transferability-matrix td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-surface-alt);
+  vertical-align: middle;
+}
+
+.transferability-matrix tr:hover {
+  background: var(--color-surface-raised);
+}
+
+.transferability-matrix .play-ref {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.transferability-matrix .rating-high {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #dcfce7;
+  color: #166534;
+}
+
+.transferability-matrix .rating-medium {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.transferability-matrix .rating-low {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.transferability-matrix .rating-na {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: FULL DRIVER TABLE (all candidate metrics)
+   Extended driver ranking showing all tested metrics including
+   rejected ones with exclusion reasons. Rejected rows use muted
+   styling to visually separate confirmed from rejected drivers.
+   ══════════════════════════════════════════════════════════════════ */
+.driver-table-full .row-rejected td {
+  color: var(--color-text-muted);
+  background: var(--color-surface-alt);
+  font-style: italic;
+}
+
+.driver-table-full .row-rejected .badge {
+  opacity: 0.6;
+}
+
+.driver-table-full .exclusion-reason {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ══════════════════════════════════════════════════════════════════
    COMPONENT: FOOTNOTE APPARATUS
    Numbered superscript citations + footnotes section with bias tags.
    ══════════════════════════════════════════════════════════════════ */
@@ -1179,6 +1361,94 @@ hr.section-divider {
   font-size: 0.95rem;
   color: var(--color-text-primary);
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENT: INFO TOOLTIP
+   Inline methodology explainers — hover/focus to reveal.
+   Pure CSS, no JavaScript. Use next to technical terms
+   (Spearman rho, R², driver classification, etc.).
+   ══════════════════════════════════════════════════════════════════ */
+.info-tip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-primary-dim);
+  color: var(--color-primary);
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  cursor: help;
+  vertical-align: middle;
+  margin-left: 4px;
+  border: 1px solid rgba(0, 104, 255, 0.2);
+  transition: background 0.15s, border-color 0.15s;
+  /* Make focusable for keyboard users */
+  outline: none;
+}
+
+.info-tip:hover,
+.info-tip:focus {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.info-tip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 320px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: var(--color-text-primary);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Tooltip arrow */
+.info-tip::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--color-text-primary);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 101;
+}
+
+.info-tip:hover::after,
+.info-tip:focus::after,
+.info-tip:hover::before,
+.info-tip:focus::before {
+  opacity: 1;
+}
+
+/* When tooltip would clip the left edge, anchor left */
+.info-tip.tip-right::after { left: 0; transform: none; }
+.info-tip.tip-right::before { left: 8px; transform: none; }
+
+/* When tooltip would clip the right edge, anchor right */
+.info-tip.tip-left::after { left: auto; right: 0; transform: none; }
+.info-tip.tip-left::before { left: auto; right: 8px; transform: none; }
 
 /* ══════════════════════════════════════════════════════════════════
    PRINT
@@ -2221,6 +2491,49 @@ hr.section-divider {
     </div>
   </div>
 
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECTION 25: INFO TOOLTIPS
+       ════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sg-info-tips">
+    <h2>Info Tooltips</h2>
+    <div class="component-label">component: .info-tip</div>
+    <p class="sg-rule">Inline methodology explainers for non-specialist readers. Place after technical terms. Content goes in the <code>data-tip</code> attribute. Pure CSS &mdash; hover or keyboard-focus to reveal. Use <code>.tip-left</code> or <code>.tip-right</code> when the tooltip would clip a page edge. Keep tooltip text under ~60 words.</p>
+
+    <!-- COMPONENT: info-tip -->
+    <h3>Inline with correlation analysis</h3>
+    <p>The Spearman rank correlation
+      <span class="info-tip" tabindex="0" data-tip="Spearman's rho measures the strength of a monotonic relationship between two ranked variables. Unlike Pearson, it does not assume linearity and is robust to outliers. Values range from &minus;1 (perfect inverse) to +1 (perfect direct).">i</span>
+      between DE/share and P/E multiple is <strong>0.73</strong>
+      <span class="info-tip" tabindex="0" data-tip="A rho of 0.73 is classified as 'strong' (|rho| &ge; 0.5). This means firms with higher distributable earnings per share tend to trade at higher P/E multiples, with the relationship holding across most of the peer universe.">i</span>,
+      making it the only stable driver across 2 of 3 valuation multiples
+      <span class="info-tip" tabindex="0" data-tip="'Stable driver' means |rho| &ge; 0.5 on at least 2 of 3 eligible multiples (P/E, P/DE, P/FRE). This is the strictest classification — it rules out metrics that only explain a single multiple.">i</span>.
+    </p>
+
+    <h3>Inline with driver ranking</h3>
+    <figure data-chart-type="horizontalBar">
+      <h4 class="chart-title">DE/share drives 73% of P/E variation
+        <span class="info-tip tip-left" tabindex="0" data-tip="'Drives X% of variation' is shorthand for rho&sup2; (coefficient of determination). A rho of 0.73 means rho&sup2; &asymp; 0.53, so ~53% of P/E variation is explained by DE/share rank. The 73% in the chart title refers to the rho value, not rho&sup2;.">i</span>
+      </h4>
+      <div class="bar-chart">
+        <div class="bar-row"><span class="bar-label">DE/share</span><div class="bar highlight" style="width:73%">0.73</div></div>
+        <div class="bar-row"><span class="bar-label">FRE Growth</span><div class="bar" style="width:58%">0.58</div></div>
+        <div class="bar-row"><span class="bar-label">AUM</span><div class="bar" style="width:42%">0.42</div></div>
+      </div>
+      <p class="chart-so-what">Only stable driver with &rho; &ge; 0.5 on 2/3 multiples</p>
+    </figure>
+
+    <h3>Inline with classification badges</h3>
+    <p>Driver classification
+      <span class="info-tip" tabindex="0" data-tip="Drivers are classified in 4 tiers: Stable (|rho| &ge; 0.5 on 2/3 multiples), Multiple-specific (|rho| &ge; 0.5 on exactly 1), Contextual (useful for interpretation only), and Unsupported (not defensible). Only Stable and Multiple-specific drivers inform the strategic playbook.">i</span>:
+      <span class="badge badge-stable">Stable</span>
+      <span class="badge badge-multi-specific">Multiple-specific</span>
+      <span class="badge badge-contextual">Contextual</span>
+      <span class="badge badge-unsupported">Unsupported</span>
+    </p>
+  </div>
+
+
 </div><!-- /.container -->
 
 
@@ -2259,6 +2572,7 @@ hr.section-divider {
   <a href="#sg-rho" class="nav-sub">Rho Indicator Classes</a>
   <a href="#sg-vertical-header" class="nav-sub">Vertical Header</a>
   <a href="#sg-cards" class="nav-sub">Generic Card Variants</a>
+  <a href="#sg-info-tips" class="nav-sub">Info Tooltips</a>
 </nav>
 
 

@@ -21,11 +21,11 @@
       "target_company_lens": "target-company-lens",
       "appendix": "appendix"
     },
-    "playbook_subsections": ["plays", "anti_patterns", "emerging_themes"]
+    "playbook_subsections": ["plays", "anti_patterns", "emerging_themes", "transferability_matrix"]
   },
   "chart_rules": {
     "forbidden_types": ["pie", "donut", "radar", "3d"],
-    "allowed_types": ["horizontalBar", "heatmap", "simpleText"],
+    "allowed_types": ["horizontalBar", "heatmap", "simpleText", "scatterPlot"],
     "require_action_title": true,
     "require_so_what_caption": true,
     "max_highlight_colors": 1,

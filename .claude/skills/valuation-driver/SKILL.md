@@ -1204,6 +1204,8 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/4-deep-dives/platform_profiles.json`.
 >
+> **CRITICAL — Self-Reference Guard Rail:** The target company ({COMPANY}/{TICKER}) MUST NOT appear as a reference firm in any PLAY-NNN or ANTI-NNN. Plays document mechanisms observed at PEER firms — the target company's own actions belong exclusively in the Target Company Lens (VD-P5). If you encounter an action from {COMPANY} in `strategic_actions.json`, skip it for playbook purposes. A play with `reference_firm == {TICKER}` is a pipeline defect and will be blocked at CP-3.
+>
 > Organize findings into a strategic menu at the platform level. Organize by value driver (not by firm). For each stable value driver:
 > - Enumerate the proven strategic plays that peers have executed to improve performance on that driver
 > - **Every PLAY-NNN must include ALL mandatory fields:**
@@ -1297,6 +1299,8 @@ Instructions:
 >
 > Read `data/processed/{TICKER}/{DATE}/4-deep-dives/asset_class_analysis.json`.
 >
+> **CRITICAL — Self-Reference Guard Rail (same as VD-P2):** The target company ({COMPANY}/{TICKER}) MUST NOT appear as a reference firm in any PLAY-NNN or ANTI-NNN. Target company actions belong in the Target Lens only.
+>
 > Produce a parallel strategic menu at the vertical level, organized by value driver within each vertical. Same structure as VD-P2 — every PLAY-NNN and ANTI-NNN must include ALL mandatory fields (What_Was_Done, Observed_Metric_Impact, Prerequisites, Operational_And_Tech_Prerequisites, Execution_Burden, Failure_Modes_And_Margin_Destroyers, Transferability_Constraints, Evidence_Strength, source_citations). Evidence citations to specific peer actions (ACT-VD-NNN). Cover all 5 verticals: Credit, Private Equity, Infrastructure, Real Estate, GP-Led Solutions/Secondaries.
 >
 > Within each vertical, organize plays by **strategy sub-type** (from VD-D2) where applicable, so readers can identify plays relevant to their specific sub-type.
@@ -1320,18 +1324,19 @@ After playbook-synthesizer produces outputs and BEFORE report-builder generates 
    - Checkpoint: CP-3
    - Stage audited: VD-P1, VD-P2, VD-P3
    - Files audited: `5-playbook/platform_playbook.json`, `5-playbook/asset_class_playbooks.json`
-   - Audit focus: sycophantic_fabrication, confidence_miscalibration, mandatory_field_completeness (block any PLAY-NNN or ANTI-NNN lacking Operational_And_Tech_Prerequisites, Failure_Modes_And_Margin_Destroyers, or Evidence_Strength; block any THEME-NNN lacking theme_name, actions, firms_involved, What_Is_Observed, Why_It_May_Matter, Coverage_Gap, Evidence_Strength, or source_citations; block any THEME-NNN that asserts causal impact on valuation instead of using hedged language)
+   - Audit focus: sycophantic_fabrication, confidence_miscalibration, mandatory_field_completeness (block any PLAY-NNN or ANTI-NNN lacking Operational_And_Tech_Prerequisites, Failure_Modes_And_Margin_Destroyers, or Evidence_Strength; block any THEME-NNN lacking theme_name, actions, firms_involved, What_Is_Observed, Why_It_May_Matter, Coverage_Gap, Evidence_Strength, or source_citations; block any THEME-NNN that asserts causal impact on valuation instead of using hedged language), **self_reference_guard_rail** (block any PLAY-NNN or ANTI-NNN where `reference_firm` matches the target company ticker {TICKER} — the target company's own actions belong exclusively in the Target Company Lens, never in the playbook)
 4. Wait for claim-auditor response
 5. Parse the audit JSON:
    - If verdict is `PASSED` → save `audit_cp3_playbook.json`, proceed to report-builder
    - If verdict is `BLOCKED`:
-     a. Send blocked_claims to playbook-synthesizer with revision instructions (include which mandatory fields are missing)
+     a. Send blocked_claims to playbook-synthesizer with revision instructions (include which mandatory fields are missing or which plays violate the self-reference guard rail)
      b. Wait for revised output
      c. Re-dispatch claim-auditor (max 2 retries)
      d. If still blocked → forcibly downgrade, save audit file, proceed
 6. Pass any INFERRED claims list to report-builder so it uses hedged language for those specific claims
-7. Log: `[CLAIM-AUDIT] CP-3 PASSED (N/N claims)` or `[CLAIM-AUDIT] CP-3 BLOCKED (N ungrounded, N fabricated, N incomplete_fields)`
+7. Log: `[CLAIM-AUDIT] CP-3 PASSED (N/N claims)` or `[CLAIM-AUDIT] CP-3 BLOCKED (N ungrounded, N fabricated, N incomplete_fields, N self_reference)`
 8. **Consulting source enforcement:** Verify that no PLAY-NNN or recommendation uses PS-VD-9xx as the sole evidence for a firm-specific claim. PS-VD-9xx may support "why this matters" context but not "what worked at firm X."
+9. **Self-reference enforcement:** Verify that no PLAY-NNN or ANTI-NNN uses the target company ({TICKER}) as its reference firm. If found, block with reason `self_reference_violation` and instruct playbook-synthesizer to either remove the play or replace the reference firm with a peer that executed a comparable action.
 
 ### Ghost Report Skeleton
 
@@ -1377,6 +1382,8 @@ Instructions:
 > - `4-deep-dives/asset_class_analysis.json`
 > - `3-analysis/statistical_methodology.md`
 > - `3-analysis/driver_ranking.json`
+> - `3-analysis/standardized_matrix.json` — full cross-sectional data matrix (needed for scatter plot generation)
+> - `3-analysis/correlations.json` — correlation results with BH significance flags (needed for scatter plot selection)
 > - `5-playbook/footnote_registry.json` — pre-built compact registry (source_id, firm, title, document_type, bias_tag only)
 > - `5-playbook/action_source_lookup.json` — pre-built ACT-VD → PS-VD lookup (action_id, firm_id, source_citation only)
 > - `2-data/consulting_context_slim.json` — for Industry Context section (if it exists, top_snippets removed)
@@ -1498,8 +1505,61 @@ Instructions:
 > - "Strategic Implications for {COMPANY}" chapter (if target lens available)
 > - Style adaptation from style_guide.json (if available)
 >
+> **Scatter plots (inline SVG — required for each BH-significant correlation):**
+>
+> Read `3-analysis/standardized_matrix.json` and `3-analysis/correlations.json`. For each correlation that passes Benjamini-Hochberg significance (q ≤ 0.10), generate an inline SVG scatter plot:
+>
+> 1. **Data source:** Extract the driver metric (x-axis) and valuation multiple (y-axis) values per firm from `standardized_matrix.json`. Only plot firms with non-null values for both axes.
+> 2. **SVG generation:** Produce a `<svg class="scatter-plot" viewBox="0 0 600 450">` element (4:3 aspect ratio). Use the CSS classes defined in `src/report/style_guide.html`:
+>    - Each peer firm is a `<circle class="dot">` (gray, r=6) with a `<text class="dot-label">` showing the ticker
+>    - The target company ({TICKER}) is a `<circle class="dot dot-highlight">` (blue #0068ff, r=8) with a `<text class="dot-label dot-label-highlight">` in bold
+>    - Add a `<line class="trend-line">` (dashed gray) showing the linear trend
+>    - Add a `<text class="rho-annotation">` in the top-right showing "ρ = X.XX, N = NN, q = X.XXX"
+>    - X-axis label: metric name and unit. Y-axis label: multiple name and unit
+> 3. **Action title:** Each scatter plot gets an action title as its `<h4>` header (e.g., "Scale measured by AUM explains 53% of P/FRE variation across the peer universe"). Follow the chart_rules in `report_schema.json` — require an action title verb from chart_title_verbs.
+> 4. **So-what caption:** Below the SVG, add a `<p class="chart-caption">` with a one-sentence "so what" interpreting the scatter for the target company (e.g., "{COMPANY}'s position at X.X× AUM relative to the peer median suggests..."). Use hedged language.
+> 5. **Placement:** Place scatter plots in the "Industry Value Driver Findings" section, one per BH-significant correlation, immediately after the textual discussion of that driver.
+> 6. **Minimum:** At least 2 scatter plots (AUM × P/FRE and FEAUM × P/FRE are typically BH-significant). If no correlations pass BH, generate the top 2 by absolute ρ with an explicit disclaimer that they did not survive multiple-testing correction.
+>
+> **Full driver rejection table (required in Driver Findings section):**
+>
+> Read `3-analysis/driver_ranking.json` and `3-analysis/correlations.json`. Generate a comprehensive table showing ALL candidate driver metrics tested (not just the top 5-6 that made the ranking):
+>
+> 1. **Table structure:** Use `<table class="driver-table-full">` (CSS class defined in `style_guide.html`). Columns:
+>    - Metric name
+>    - Category (Scale, Earnings, Organic Growth, Mix, Efficiency, Fee Quality, Operational Feasibility)
+>    - ρ vs P/FRE | ρ vs P/DE | ρ vs EV/FEAUM (three columns, show actual values or "N<12" if insufficient sample)
+>    - Classification (Stable / Multiple-Specific / Moderate / Exploratory / Unsupported / Insufficient Sample)
+>    - Exclusion reason (for non-top-ranked metrics: "ρ < 0.3 all multiples", "N < 12", "temporally unstable", "contextual-only (coverage < 60%)", etc.)
+> 2. **Row styling:** Top-ranked drivers use normal styling. Rejected metrics use `<tr class="row-rejected">` (muted text). Exclusion reasons use `<span class="exclusion-reason">`.
+> 3. **Sort order:** Top-ranked drivers first (sorted by avg |ρ|), then remaining metrics sorted by highest individual |ρ| descending.
+> 4. **Action title:** "Only {N} of {M} candidate metrics survive as statistically meaningful value drivers" (or similar conclusion-stating title).
+> 5. **Placement:** In the Driver Findings section, after the narrative discussion of the top drivers and their scatter plots. This table provides the complete picture — the reader sees both what made the cut and what didn't, with transparent reasons.
+>
+> **Transferability matrix (required in Target Company Lens section):**
+>
+> Read `5-playbook/target_company_lens.json`. Generate a summary matrix of all PLAY-NNN entries with their transferability assessment:
+>
+> 1. **Table structure:** Use `<table class="transferability-matrix">` (CSS class defined in `style_guide.html`). Columns:
+>    - Play ID
+>    - Play description (short — 1 line)
+>    - Reference firm(s)
+>    - Applicability (`directly_applicable` / `requires_adaptation` / `not_applicable`)
+>    - Transferability score (1-5, rendered as a visual badge)
+>    - Adaptation distance (low / medium / high)
+>    - Key constraint (1-line summary of the binding transferability constraint)
+> 2. **Badge styling:** Use the rating classes from `style_guide.html`:
+>    - Score 4-5: `<span class="rating-high">` (green)
+>    - Score 2-3: `<span class="rating-medium">` (amber)
+>    - Score 1: `<span class="rating-low">` (red)
+>    - N/A: `<span class="rating-na">` (gray)
+> 3. **Sort order:** Group by applicability (directly_applicable first, then requires_adaptation, then not_applicable). Within each group, sort by transferability_score descending.
+> 4. **Action title:** State a conclusion about the overall transferability landscape (e.g., "{N} of {M} peer-demonstrated plays appear directly transferable to {COMPANY}'s current platform").
+> 5. **Placement:** At the beginning of the "Strategic Implications for {COMPANY}" chapter, before the detailed per-play assessments. This gives the executive reader a single-glance overview of which plays are relevant and which are not.
+> 6. **Bumper statement:** End the matrix section with "Therefore: [summary of {COMPANY}'s transferability position relative to the peer universe]."
+>
 > **Consumer entry points:**
-> - C-suite / IR / Corporate Strategy: Executive summary → Platform strategic menu
+> - C-suite / IR / Corporate Strategy: Executive summary → Transferability matrix → Platform strategic menu
 > - Credit BU: Credit vertical section
 > - Private Equity BU: PE vertical section
 > - Infrastructure BU: Infrastructure vertical section
