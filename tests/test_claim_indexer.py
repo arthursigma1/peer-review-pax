@@ -249,6 +249,68 @@ class TestGenerateMatrixClaims:
         assert any("no source field" in w for w in warnings)
 
 
+class TestGenerateMatrixClaimsDataPoints:
+    """Tests for the flat data_points format (production standardized_matrix.json)."""
+
+    def test_high_confidence_gets_score_3(self):
+        matrix = {
+            "data_points": [
+                {"firm_id": "FIRM-001", "metric_id": "MET-VD-001", "value_raw": 4.64,
+                 "confidence": "high", "missing": False},
+            ],
+        }
+        claims, warnings = generate_matrix_claims(matrix)
+        assert len(claims) == 1
+        assert claims[0]["score"] == 3
+        assert claims[0]["confidence"] == "grounded"
+
+    def test_medium_confidence_gets_score_2(self):
+        matrix = {
+            "data_points": [
+                {"firm_id": "FIRM-001", "metric_id": "MET-VD-001", "value_raw": 1.0,
+                 "confidence": "medium", "missing": False},
+            ],
+        }
+        claims, warnings = generate_matrix_claims(matrix)
+        assert len(claims) == 1
+        assert claims[0]["score"] == 2
+
+    def test_low_confidence_gets_score_1(self):
+        matrix = {
+            "data_points": [
+                {"firm_id": "FIRM-001", "metric_id": "MET-VD-001", "value_raw": 1.0,
+                 "confidence": "low", "missing": False},
+            ],
+        }
+        claims, warnings = generate_matrix_claims(matrix)
+        assert len(claims) == 1
+        assert claims[0]["score"] == 1
+
+    def test_missing_data_points_skipped(self):
+        matrix = {
+            "data_points": [
+                {"firm_id": "FIRM-001", "metric_id": "MET-VD-001", "value_raw": None,
+                 "confidence": "high", "missing": True},
+            ],
+        }
+        claims, _ = generate_matrix_claims(matrix)
+        assert len(claims) == 0
+
+    def test_multiple_data_points(self):
+        matrix = {
+            "data_points": [
+                {"firm_id": "FIRM-001", "metric_id": "MET-VD-001", "value_raw": 4.64,
+                 "confidence": "high", "missing": False},
+                {"firm_id": "FIRM-002", "metric_id": "MET-VD-001", "value_raw": 2.0,
+                 "confidence": "medium", "missing": False},
+                {"firm_id": "FIRM-001", "metric_id": "MET-VD-002", "value_raw": 100,
+                 "confidence": "low", "missing": False},
+            ],
+        }
+        claims, _ = generate_matrix_claims(matrix)
+        assert len(claims) == 3
+
+
 class TestResolveChains:
     def test_simple_chain_to_leaf(self):
         claims = {

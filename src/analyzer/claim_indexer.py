@@ -128,20 +128,70 @@ def collect_claims_from_dir(
 _PS_VD_PATTERN = re.compile(r"PS-VD-\d+")
 
 
+_CONFIDENCE_MAP = {"high": 3, "medium": 2, "low": 1}
+
+
 def generate_matrix_claims(matrix: dict) -> tuple[list[dict], list[str]]:
-    """Auto-generate factual claims from standardized_matrix.json source fields.
+    """Auto-generate factual claims from standardized_matrix.json.
 
-    For each non-null cell, extracts PS-VD-* IDs from the source string.
-    Score 3 if PS-VD found, score 1 if source text present but no PS-VD parseable.
-    Null cells (missing_reason) are skipped.
+    Supports two formats:
+    - Nested format: {"metrics": {"MET-VD-021": {"firms": {"FIRM-001": {"value": ..., "source": "..."}}}}}
+    - Flat format: {"data_points": [{"firm_id": "FIRM-001", "metric_id": "MET-VD-001", "value_raw": ..., "confidence": "high"}]}
+
+    For nested format, extracts PS-VD-* IDs from source strings.
+    For flat format, maps confidence (high→3, medium→2, low→1).
     """
-    claims: list[dict] = []
-    warnings: list[str] = []
-
     if not isinstance(matrix, dict):
         return [], ["standardized_matrix.json root is not a dict"]
 
-    metrics = matrix.get("metrics", {})
+    # Flat data_points format (production)
+    if "data_points" in matrix:
+        return _generate_claims_from_data_points(matrix["data_points"])
+
+    # Nested metrics format (unit tests / legacy)
+    return _generate_claims_from_metrics(matrix.get("metrics", {}))
+
+
+def _generate_claims_from_data_points(data_points: list) -> tuple[list[dict], list[str]]:
+    """Generate claims from flat data_points list format."""
+    claims: list[dict] = []
+    warnings: list[str] = []
+
+    for dp in data_points:
+        if not isinstance(dp, dict):
+            continue
+        if dp.get("missing", False):
+            continue
+
+        firm_id = dp.get("firm_id", "")
+        met_id = dp.get("metric_id", "")
+        if not firm_id or not met_id:
+            continue
+
+        conf_label = dp.get("confidence", "low")
+        score = _CONFIDENCE_MAP.get(conf_label, 1)
+        confidence = _SCORE_TO_CONFIDENCE.get(score, "sourced")
+
+        met_short = met_id.replace("MET-VD-", "MET-")
+        claim_id = f"CLM-{met_short}-{firm_id}-01"
+        claims.append({
+            "id": claim_id,
+            "parent_id": met_id,
+            "type": "factual",
+            "evidence": [],
+            "confidence": confidence,
+            "score": score,
+            "layer": "2-data",
+        })
+
+    return claims, warnings
+
+
+def _generate_claims_from_metrics(metrics: dict) -> tuple[list[dict], list[str]]:
+    """Generate claims from nested metrics dict format."""
+    claims: list[dict] = []
+    warnings: list[str] = []
+
     for met_id, met_data in metrics.items():
         if not isinstance(met_data, dict):
             continue
