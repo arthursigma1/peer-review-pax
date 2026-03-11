@@ -112,6 +112,46 @@ Moderate-signal correlations (0.3 ≤ rho ≤ 0.5) do NOT support causal languag
 
 ---
 
+### Dimension 5 — Chain Integrity (CP-3 only)
+
+**When:** This dimension is evaluated ONLY at CP-3 (after claim_index.json is generated).
+
+**Input:** Read `claim_index.json` from the run root directory.
+
+**Checks:**
+
+| # | Check | Pass | Fail |
+|---|---|---|---|
+| D5.1 | Every CLM-* has non-empty `evidence[]` | PASS | score 0 → HARD BLOCK |
+| D5.2 | Every ID in `evidence[]` resolves to an object in the run | PASS | Orphan ID → WARNING |
+| D5.3 | Recursive chain reaches leaf (PS-VD-*) | PASS | Broken chain → score <= 2 |
+| D5.4 | Score cascading consistent (no child > parent evidence) | PASS | Downgrade applied → NOTE |
+| D5.5 | Causal/prescriptive claims use hedged language in report | PASS | Hard language → FLAG |
+
+**Output:** Add `chain_integrity` section to existing audit JSON:
+
+```json
+{
+  "chain_integrity": {
+    "total_claims_audited": 347,
+    "grounded": 289,
+    "partial": 41,
+    "sourced": 12,
+    "unsupported": 5,
+    "score_avg": 2.77,
+    "hard_blocks": 5,
+    "cascading_downgrades": 14,
+    "orphan_ids": [],
+    "broken_chains": [],
+    "language_flags": []
+  }
+}
+```
+
+**Verdict interaction:** If `hard_blocks > 0`, overall checkpoint verdict = BLOCKED (same as existing D3 FABRICATED behavior).
+
+---
+
 ## Verdict Taxonomy
 
 Assign exactly one verdict per claim. Do not assign partial verdicts or combine verdicts.
@@ -186,9 +226,9 @@ When any claim receives `UNGROUNDED` or `FABRICATED`, the overall audit verdict 
 
 **Scope:** PLAY-* recommendations, ANTI-* anti-patterns, target-company recommendations, report metadata, and all target-company-specific claims in the final decision outputs.
 
-**Primary dimensions:** Sycophantic Fabrication (D3), Confidence Miscalibration (D4).
+**Primary dimensions:** Sycophantic Fabrication (D3), Confidence Miscalibration (D4), Chain Integrity (D5). Five dimensions active at CP-3 — D5 requires `claim_index.json` to be present in the run root directory. If `claim_index.json` is absent, skip D5 and record a WARNING in the audit JSON.
 
-**Evidence files:** `platform_profiles.json`, `asset_class_analysis.json`, `driver_ranking.json`, `statistics_metadata.json`.
+**Evidence files:** `platform_profiles.json`, `asset_class_analysis.json`, `driver_ranking.json`, `statistics_metadata.json`, `claim_index.json` (required for D5).
 
 **Focus questions:**
 - Is every PLAY-NNN recommendation traceable to at least one platform profile or asset class analysis entry?
