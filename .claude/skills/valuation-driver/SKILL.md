@@ -280,6 +280,24 @@ TeamCreate → team_name: "vda-{TICKER_LOWER}"
 
 - **claim-auditor** (Fact Checker): Verifies all claims against upstream evidence using 4-dimension over-compliance audit. Runs at checkpoints CP-1, CP-2, CP-3. Model: claude-opus-4-6. Temperature: 0.0. Max tokens: 32000. Tools: Read, Grep, Glob.
 
+## General Output Conventions (All Agents)
+
+**Trace metadata (OPTIONAL):** If you have access to session information, add a `_trace_metadata` field to your JSON output:
+
+```json
+{
+  "_trace_metadata": {
+    "agent_name": "<your-agent-name>",
+    "session_id": "<claude-code-session-id-if-available>",
+    "step": "<pipeline-step>",
+    "started_at": "<ISO-8601>",
+    "completed_at": "<ISO-8601>"
+  }
+}
+```
+
+This field is optional — if omitted, the claim indexer and Langfuse hooks will degrade gracefully.
+
 ## Step 7: Step 1 of 5 — "Map the Industry" (Parallel)
 
 **Step range check:** If `FROM_STEP > 1`, skip this step entirely. Load existing outputs for this step from the prior run directory identified in the Step Range Behavior section above.
