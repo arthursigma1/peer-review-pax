@@ -1302,7 +1302,7 @@ After playbook-synthesizer produces outputs and BEFORE report-builder generates 
    - Checkpoint: CP-3
    - Stage audited: VD-P1, VD-P2, VD-P3
    - Files audited: `5-playbook/platform_playbook.json`, `5-playbook/asset_class_playbooks.json`
-   - Audit focus: sycophantic_fabrication, confidence_miscalibration, mandatory_field_completeness (block any PLAY-NNN or ANTI-NNN lacking Operational_And_Tech_Prerequisites, Failure_Modes_And_Margin_Destroyers, or Evidence_Strength)
+   - Audit focus: sycophantic_fabrication, confidence_miscalibration, mandatory_field_completeness (block any PLAY-NNN or ANTI-NNN lacking Operational_And_Tech_Prerequisites, Failure_Modes_And_Margin_Destroyers, or Evidence_Strength; block any THEME-NNN lacking theme_name, actions, firms_involved, What_Is_Observed, Why_It_May_Matter, Coverage_Gap, Evidence_Strength, or source_citations; block any THEME-NNN that asserts causal impact on valuation instead of using hedged language)
 4. Wait for claim-auditor response
 5. Parse the audit JSON:
    - If verdict is `PASSED` → save `audit_cp3_playbook.json`, proceed to report-builder
@@ -1386,6 +1386,7 @@ Instructions:
 > - If `data/processed/{TICKER}/{DATE}/5-playbook/target_company_lens.json` exists, incorporate the Strategic Guidance section as a dedicated chapter after the Executive Summary
 > - Structure: "Strategic Implications for {COMPANY}" → PHL/Board Guidance → Management Priorities → Per-BU Recommendations
 > - Include an "Anti-patterns & Cautionary Lessons" section after the Platform Strategic Menu
+> - Include an "Emerging Themes" section after Anti-patterns — render THEME-NNN entries from `platform_playbook.json` and per-vertical emerging themes from `asset_class_playbooks.json`. Frame as "Themes to Monitor" with explicit disclaimers that these lack statistical validation. Use collapsible detail panels for each theme.
 >
 > **Style matching:**
 > - If `data/processed/{TICKER}/{DATE}/style_guide.json` exists, adapt the report's tone, terminology, and structure to match the style guide while preserving all analytical rigor and mandatory disclaimers
