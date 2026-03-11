@@ -45,31 +45,31 @@ Map the Industry → Gather Data → Find What Drives Value → Deep-Dive Peers 
 - **Gather Data** — Collect quantitative data and extract strategies (Data Collector splits into 3 tiers of ~9 firms; Strategy Researcher runs in parallel)
 - **Find What Drives Value** — Standardize, correlate (Spearman), rank drivers (Statistical Analyst, sequential)
 - **Deep-Dive Peers** — Platform profiles and asset class analysis (Platform Profiler + Sector Specialist, parallel)
-- **Build the Playbook** — Synthesize insights and generate HTML report (Insight Synthesizer + Report Composer, sequential). Report Composer receives `src/report/style_guide.html` + `src/report/report_schema.json` as static prompt prefix (~6.5K tokens, prompt-cached); `src/report/report_validator.py` runs post-generation with 1 repair pass on WARN/FAIL. Playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN). Target Company Lens agent extracts transferable principles from peer evidence for governance cascade (PHL/Board → Management → per-BU) — language is exploratory, not prescriptive. A Ghost Report Skeleton (action titles) is produced before the final report to ensure narrative coherence. Supports `--base-run YYYY-MM-DD` for iterative refinement and `--style-ref /path/to/doc` for writing style matching. Writing reference: `docs/sigma-final-report-guide.md`.
+- **Build the Playbook** — Synthesize insights and generate HTML report (Insight Synthesizer + Report Composer, sequential). Report Composer receives `src/report/style_guide.html` + `src/report/report_schema.json` as static prompt prefix (~6.5K tokens, prompt-cached); `src/report/report_validator.py` runs post-generation with 1 repair pass on WARN/FAIL. Playbooks include Anti-patterns (ANTI-NNN) alongside proven plays (PLAY-NNN). Target Company Lens agent extracts transferable principles from peer evidence for governance cascade (PHL/Board → Management → per-BU) — language is exploratory, not prescriptive. A Ghost Report Skeleton (action titles) is produced before the final report to ensure narrative coherence. Supports `--base-run YYYY-MM-DD` for iterative refinement and `--style-ref /path/to/doc` for writing style matching. Writing reference: `docs/vda/sigma-final-report-guide.md`.
 
 **Independence:** VDA pipeline operates independently of the drift pipeline. No PIL-* pillar IDs are referenced.
 
 **Claim Verification:** A Fact Checker agent runs at three checkpoints (CP-1 after data collection, CP-2 after deep-dives, CP-3 after playbook) to verify claims against upstream evidence using a 4-dimension over-compliance audit. Ungrounded or fabricated claims trigger a hard block requiring revision.
 
-**Methodology:** `docs/pax-first-valuation-driver-methodology.md` — Authoritative PAX-first VDA methodology reference. The legacy reusable spec in `docs/valuation-driver-methodology.md` is archival only.
+**Methodology:** `docs/methodology/pax-first-valuation-driver-methodology.md` — Authoritative PAX-first VDA methodology reference. The legacy reusable spec is archived at `archive/docs/valuation-driver-methodology.md`.
 
 ### Key Directories
 
-- `prompts/` — Drift pipeline prompt templates (`0X_*.md`), version-controlled
+- `prompts/drift/` — Drift pipeline prompt templates (`0X_*.md`), version-controlled
 - `prompts/peer/` — Peer comparison pipeline prompt templates (`p0X_*.md`)
+- `prompts/vda/` — VDA pipeline prompt templates (claim_auditor, traceback_agent)
 - `data/raw/{ticker}/` — Raw source documents per company
-- `data/processed/{ticker}/` — Pipeline outputs per company (drift, peer, VDA)
+- `data/processed/{ticker}/` — Pipeline outputs per company (drift in `drift/`, VDA in date-folders)
+- `docs/methodology/` — Reusable methodology docs (drift, peer, VDA, scoring framework)
+- `docs/vda/` — VDA reference docs (correlation classification, evidence hierarchy, orchestration, drift audit, SIGMA writing guide)
+- `docs/pax/` — PAX-specific docs (peer assessment framework, strategy ontology)
 - `docs/plans/` — Execution plans with agent team architecture
-- `docs/strategy-drift-methodology.md` — Reusable drift methodology
-- `docs/peer-comparison-methodology.md` — Reusable peer comparison methodology
-- `docs/pax-first-valuation-driver-methodology.md` — Authoritative PAX-first VDA methodology
-- `docs/vda-repository-drift-audit.md` — Drift log and patch plan
-- `docs/valuation-driver-methodology.md` — Legacy reusable VDA methodology kept for historical reference
-- `docs/sigma-final-report-guide.md` — SIGMA writing guide for final report (Pyramid Principle, action titles, footnotes, bumper statements)
 - `src/tauri/` — Tauri desktop dashboard (React + TypeScript + Tailwind + Rust)
-- `src/analyzer/` — VDA data quality tools (metric_checklist, data_gaps, delta_spec, consulting_context)
+- `src/analyzer/` — VDA data quality tools (metric_checklist, data_gaps, delta_spec, consulting_context, context_slicer, evidence_store, incremental_*)
+- `src/ingestion/` — Web crawlers (crawlee_vda, source_catalog)
 - `src/report/` — Report consistency system (style_guide.html, report_schema.json, report_validator.py)
 - `src/document_converter.py` — PDF/DOCX/PPTX to text converter using marker-pdf
+- `archive/` — Legacy files (old methodology docs, PLAN.md, standalone schemas)
 
 ## Commands
 
@@ -205,10 +205,10 @@ Audit cross-cutting dependencies across pipeline agents, dashboard, CLAUDE.md, a
 
 ## Reference Docs
 
-- **Drift scoring framework** — `docs/drift-scoring-framework.md` (score ranges, dimension weights)
-- **VDA correlation classification** — `docs/vda-correlation-classification.md` (stable/multiple-specific/contextual/unsupported)
-- **VDA consulting evidence hierarchy** — `docs/vda-consulting-evidence-hierarchy.md` (PS-VD-9xx rules, agent routing, scope classification)
-- **VDA agent orchestration** — `docs/vda-agent-orchestration.md` (1-agent-per-firm, no WebSearch, gap-fill, stall detection)
+- **Drift scoring framework** — `docs/methodology/drift-scoring-framework.md` (score ranges, dimension weights)
+- **VDA correlation classification** — `docs/vda/vda-correlation-classification.md` (stable/multiple-specific/contextual/unsupported)
+- **VDA consulting evidence hierarchy** — `docs/vda/vda-consulting-evidence-hierarchy.md` (PS-VD-9xx rules, agent routing, scope classification)
+- **VDA agent orchestration** — `docs/vda/vda-agent-orchestration.md` (1-agent-per-firm, no WebSearch, gap-fill, stall detection)
 
 ## Reuse for Another Company
 
