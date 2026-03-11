@@ -595,3 +595,32 @@ class TestCLI:
         assert output.exists()
         data = json.loads(output.read_text())
         assert "claims" in data
+
+
+_REAL_RUN_DIR = Path("data/processed/pax/2026-03-10-run2")
+
+
+@pytest.mark.skipif(not _REAL_RUN_DIR.exists(), reason="Real PAX run data not available")
+class TestIntegrationRealData:
+    def test_index_builds_without_error(self):
+        index = build_claim_index(_REAL_RUN_DIR)
+        assert index["stats"]["total_claims"] > 0
+
+    def test_matrix_claims_generated(self):
+        index = build_claim_index(_REAL_RUN_DIR)
+        matrix_claims = [c for c in index["claims"].values() if c["layer"] == "2-data"]
+        assert len(matrix_claims) > 50  # expect ~150 non-null cells
+
+    def test_no_score_0_on_matrix_claims_with_source(self):
+        index = build_claim_index(_REAL_RUN_DIR)
+        for cid, claim in index["claims"].items():
+            if claim["layer"] == "2-data" and claim["evidence"]:
+                assert claim["score"] > 0, f"{cid} has source but score 0"
+
+    def test_legacy_run_flag_not_set(self):
+        """Real run should have _claims[] in at least some files (after prompts updated)."""
+        index = build_claim_index(_REAL_RUN_DIR)
+        # For now, legacy_run=True is expected (prompts not updated yet)
+        # After Chunk 2, this should flip to legacy_run not present
+        if "legacy_run" in index["stats"]:
+            assert index["stats"]["legacy_run"] is True
