@@ -183,3 +183,42 @@ def generate_matrix_claims(matrix: dict) -> tuple[list[dict], list[str]]:
             })
 
     return claims, warnings
+
+
+def resolve_chains(claims: dict[str, dict]) -> dict[str, dict]:
+    """Resolve evidence chains recursively for all claims.
+
+    For each claim, follows evidence[] references. If an evidence ID starts with
+    'CLM-', recursively follows that claim's evidence too. Non-CLM IDs are leaf
+    nodes. Adds a 'chain' field (sorted list of all transitive evidence IDs).
+
+    Handles circular references by tracking visited nodes.
+    """
+    cache: dict[str, list[str]] = {}
+
+    def _resolve(claim_id: str, visited: set[str]) -> list[str]:
+        if claim_id in cache:
+            return cache[claim_id]
+        if claim_id in visited:
+            return []  # circular reference — stop
+        visited.add(claim_id)
+
+        claim = claims.get(claim_id)
+        if not claim:
+            return []
+
+        chain: list[str] = []
+        for ev_id in claim.get("evidence", []):
+            chain.append(ev_id)
+            if ev_id.startswith("CLM-") and ev_id in claims:
+                chain.extend(_resolve(ev_id, visited))
+
+        cache[claim_id] = sorted(set(chain))
+        return cache[claim_id]
+
+    result = {}
+    for cid, claim in claims.items():
+        _resolve(cid, set())
+        result[cid] = {**claim, "chain": cache.get(cid, [])}
+
+    return result

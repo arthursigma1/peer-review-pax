@@ -165,7 +165,7 @@ class TestCollectClaims:
         assert len(warnings) > 0
 
 
-from src.analyzer.claim_indexer import generate_matrix_claims
+from src.analyzer.claim_indexer import generate_matrix_claims, resolve_chains
 
 
 class TestGenerateMatrixClaims:
@@ -245,3 +245,70 @@ class TestGenerateMatrixClaims:
         assert len(claims) == 1
         assert claims[0]["score"] == 1
         assert any("no source field" in w for w in warnings)
+
+
+class TestResolveChains:
+    def test_simple_chain_to_leaf(self):
+        claims = {
+            "CLM-DVR-010-01": {
+                "id": "CLM-DVR-010-01", "type": "statistical",
+                "evidence": ["COR-191", "COR-192"], "score": 3, "layer": "3-analysis",
+            },
+        }
+        result = resolve_chains(claims)
+        # Non-CLM IDs are leaves — chain should include them directly
+        assert set(result["CLM-DVR-010-01"]["chain"]) == {"COR-191", "COR-192"}
+
+    def test_chain_follows_clm_references(self):
+        claims = {
+            "CLM-COR-191-01": {
+                "id": "CLM-COR-191-01", "type": "statistical",
+                "evidence": ["MET-VD-021", "MET-VD-026"], "score": 3, "layer": "3-analysis",
+            },
+            "CLM-DVR-010-01": {
+                "id": "CLM-DVR-010-01", "type": "statistical",
+                "evidence": ["CLM-COR-191-01"], "score": 3, "layer": "3-analysis",
+            },
+        }
+        result = resolve_chains(claims)
+        chain = result["CLM-DVR-010-01"]["chain"]
+        assert "CLM-COR-191-01" in chain
+        assert "MET-VD-021" in chain
+        assert "MET-VD-026" in chain
+
+    def test_circular_reference_does_not_infinite_loop(self):
+        claims = {
+            "CLM-A-01": {
+                "id": "CLM-A-01", "type": "factual",
+                "evidence": ["CLM-B-01"], "score": 2, "layer": "3-analysis",
+            },
+            "CLM-B-01": {
+                "id": "CLM-B-01", "type": "factual",
+                "evidence": ["CLM-A-01"], "score": 2, "layer": "3-analysis",
+            },
+        }
+        # Should not hang — returns whatever it resolved without looping
+        result = resolve_chains(claims)
+        assert "CLM-A-01" in result
+        assert "CLM-B-01" in result
+
+    def test_deep_chain_3_levels(self):
+        claims = {
+            "CLM-MET-021-FIRM-001-01": {
+                "id": "CLM-MET-021-FIRM-001-01", "type": "factual",
+                "evidence": ["PS-VD-001"], "score": 3, "layer": "2-data",
+            },
+            "CLM-COR-191-01": {
+                "id": "CLM-COR-191-01", "type": "statistical",
+                "evidence": ["CLM-MET-021-FIRM-001-01"], "score": 3, "layer": "3-analysis",
+            },
+            "CLM-DVR-010-01": {
+                "id": "CLM-DVR-010-01", "type": "statistical",
+                "evidence": ["CLM-COR-191-01"], "score": 3, "layer": "3-analysis",
+            },
+        }
+        result = resolve_chains(claims)
+        chain = result["CLM-DVR-010-01"]["chain"]
+        assert "PS-VD-001" in chain
+        assert "CLM-COR-191-01" in chain
+        assert "CLM-MET-021-FIRM-001-01" in chain
