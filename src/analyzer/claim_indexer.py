@@ -101,6 +101,14 @@ def collect_claims_from_dir(
 
         rel_path = str(path.relative_to(run_dir))
 
+        # Extract trace metadata for claim↔trace bridge
+        trace_meta = data.get("_trace_metadata")
+        trace_session_id = (
+            trace_meta.get("session_id")
+            if isinstance(trace_meta, dict)
+            else None
+        )
+
         for claim in raw_claims:
             if not isinstance(claim, dict):
                 warnings.append(f"{rel_path}: non-dict entry in _claims[]")
@@ -120,7 +128,10 @@ def collect_claims_from_dir(
                 )
                 continue
 
-            claims[cid] = {**claim, "source_file": rel_path}
+            claim_entry = {**claim, "source_file": rel_path}
+            if trace_session_id:
+                claim_entry["trace_session_id"] = trace_session_id
+            claims[cid] = claim_entry
 
     return claims, warnings
 

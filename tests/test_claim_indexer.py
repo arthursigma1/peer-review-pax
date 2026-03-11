@@ -637,6 +637,71 @@ class TestBuildClaimIndex:
         assert index["stats"]["total_claims"] > 0  # matrix claims still generated
 
 
+class TestTraceMetadata:
+    def test_trace_session_id_added_to_claims(self, tmp_path):
+        data = {
+            "_trace_metadata": {
+                "agent_name": "metric-architect",
+                "session_id": "sess-abc-123",
+                "step": "3-analysis",
+            },
+            "_claims": [
+                {
+                    "id": "CLM-COR-001-01",
+                    "parent_id": "COR-001",
+                    "type": "statistical",
+                    "evidence": ["MET-VD-001"],
+                    "confidence": "grounded",
+                    "score": 3,
+                    "layer": "3-analysis",
+                },
+            ],
+        }
+        _write_json(tmp_path / "3-analysis" / "correlation_results.json", data)
+        index = build_claim_index(tmp_path)
+        claim = index["claims"]["CLM-COR-001-01"]
+        assert claim.get("trace_session_id") == "sess-abc-123"
+
+    def test_missing_trace_metadata_no_error(self, tmp_path):
+        data = {
+            "_claims": [
+                {
+                    "id": "CLM-COR-001-01",
+                    "parent_id": "COR-001",
+                    "type": "statistical",
+                    "evidence": ["MET-VD-001"],
+                    "confidence": "grounded",
+                    "score": 3,
+                    "layer": "3-analysis",
+                },
+            ],
+        }
+        _write_json(tmp_path / "3-analysis" / "correlation_results.json", data)
+        index = build_claim_index(tmp_path)
+        claim = index["claims"]["CLM-COR-001-01"]
+        assert "trace_session_id" not in claim
+
+    def test_trace_metadata_not_dict_ignored(self, tmp_path):
+        data = {
+            "_trace_metadata": "not-a-dict",
+            "_claims": [
+                {
+                    "id": "CLM-COR-001-01",
+                    "parent_id": "COR-001",
+                    "type": "statistical",
+                    "evidence": ["MET-VD-001"],
+                    "confidence": "grounded",
+                    "score": 3,
+                    "layer": "3-analysis",
+                },
+            ],
+        }
+        _write_json(tmp_path / "3-analysis" / "correlation_results.json", data)
+        index = build_claim_index(tmp_path)
+        claim = index["claims"]["CLM-COR-001-01"]
+        assert "trace_session_id" not in claim
+
+
 class TestCLI:
     def test_cli_writes_output_file(self, tmp_path):
         matrix = {
