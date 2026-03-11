@@ -1,507 +1,1510 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Developer Onboarding Guide</title>
+<title>Peer Review SIGMA — Onboarding</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --blue: #0068ff;
-    --blue-light: #e8f0ff;
-    --blue-mid: #c0d4ff;
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-400: #9ca3af;
-    --gray-500: #6b7280;
-    --gray-600: #4b5563;
-    --gray-700: #374151;
-    --gray-900: #111827;
-    --code-bg: #1e1e2e;
-    --code-fg: #cdd6f4;
-    --sidebar-w: 248px;
-    --header-h: 64px;
-  }
-
-  html { font-size: 14px; scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', system-ui, sans-serif;
-    background: #fff;
-    color: var(--gray-900);
-    line-height: 1.6;
-    display: flex;
-    min-height: 100vh;
-  }
-
-  /* ── SIDEBAR ── */
-  #sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: var(--sidebar-w);
-    height: 100vh;
-    background: var(--gray-50);
-    border-right: 1px solid var(--gray-200);
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    z-index: 100;
-  }
-
-  .sidebar-brand {
-    padding: 20px 20px 16px;
-    border-bottom: 1px solid var(--gray-200);
-    flex-shrink: 0;
-  }
-
-  .sidebar-brand-title {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--blue);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .sidebar-brand-sub {
-    font-size: 11px;
-    color: var(--gray-500);
-    margin-top: 2px;
-    line-height: 1.4;
-  }
-
-  nav { padding: 12px 0; flex: 1; }
-
-  nav a {
-    display: block;
-    padding: 6px 20px;
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--gray-600);
-    text-decoration: none;
-    border-left: 2px solid transparent;
-    transition: color 0.15s, border-color 0.15s, background 0.15s;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  nav a:hover {
-    color: var(--gray-900);
-    background: var(--gray-100);
-  }
-
-  nav a.active {
-    color: var(--blue);
-    border-left-color: var(--blue);
-    background: var(--blue-light);
-    font-weight: 500;
-  }
-
-  nav .nav-section-label {
-    display: block;
-    padding: 10px 20px 4px;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray-400);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  /* ── MAIN CONTENT ── */
-  #main {
-    margin-left: var(--sidebar-w);
-    flex: 1;
-    min-width: 0;
-  }
-
-  .page-header {
-    background: #fff;
-    border-bottom: 1px solid var(--gray-200);
-    padding: 24px 48px;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-  }
-
-  .page-header h1 {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--gray-900);
-    letter-spacing: -0.01em;
-  }
-
-  .page-header p {
-    font-size: 13px;
-    color: var(--gray-500);
-    margin-top: 2px;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .content { padding: 40px 48px 80px; max-width: 900px; }
-
-  /* ── SECTIONS ── */
-  section {
-    margin-bottom: 60px;
-    scroll-margin-top: 80px;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--gray-200);
-  }
-
-  .section-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    background: var(--blue);
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    border-radius: 6px;
-    flex-shrink: 0;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  section h2 {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--gray-900);
-    letter-spacing: -0.01em;
-  }
-
-  section h3 {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--gray-800);
-    margin: 28px 0 12px;
-    letter-spacing: -0.005em;
-  }
-
-  section h4 {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--gray-700);
-    margin: 20px 0 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  p { color: var(--gray-700); font-size: 14px; margin-bottom: 12px; line-height: 1.65; }
-
-  ul, ol { padding-left: 20px; margin-bottom: 12px; }
-  li { color: var(--gray-700); font-size: 14px; margin-bottom: 5px; line-height: 1.6; }
-  li strong { color: var(--gray-900); }
-
-  /* ── CODE ── */
-  code {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    background: var(--gray-100);
-    color: var(--blue);
-    padding: 1px 5px;
-    border-radius: 3px;
-  }
-
-  pre {
-    background: var(--code-bg);
-    color: var(--code-fg);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    line-height: 1.6;
-    padding: 20px 24px;
-    border-radius: 8px;
-    overflow-x: auto;
-    margin: 16px 0;
-    border: 1px solid #313244;
-  }
-
-  pre code {
-    background: transparent;
-    color: inherit;
-    padding: 0;
-    font-size: inherit;
-  }
-
-  /* ── TABLES ── */
-  .table-wrap { overflow-x: auto; margin: 16px 0; }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-
-  thead th {
-    background: var(--gray-50);
-    color: var(--gray-600);
-    font-weight: 600;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    padding: 10px 14px;
-    text-align: left;
-    border-bottom: 1px solid var(--gray-200);
-    white-space: nowrap;
-  }
-
-  tbody td {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--gray-100);
-    color: var(--gray-700);
-    vertical-align: top;
-  }
-
-  tbody tr:hover td { background: var(--gray-50); }
-
-  td code { font-size: 11px; }
-
-  /* ── CARDS ── */
-  .card {
-    background: #fff;
-    border: 1px solid var(--gray-200);
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin: 16px 0;
-  }
-
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
-    margin: 16px 0;
-  }
-
-  .card-sm {
-    background: #fff;
-    border: 1px solid var(--gray-200);
-    border-radius: 6px;
-    padding: 14px 16px;
-  }
-
-  .card-sm-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--gray-500);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    font-family: 'IBM Plex Mono', monospace;
-    margin-bottom: 6px;
-  }
-
-  .card-sm-value {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--gray-900);
-  }
-
-  /* ── CALLOUT ── */
-  .callout {
-    border-left: 3px solid var(--blue);
-    background: var(--blue-light);
-    border-radius: 0 6px 6px 0;
-    padding: 14px 18px;
-    margin: 16px 0;
-  }
-
-  .callout p { color: var(--gray-700); margin: 0; font-size: 13px; }
-  .callout strong { color: var(--gray-900); }
-
-  .callout-warn {
-    border-left-color: #d97706;
-    background: #fffbeb;
-  }
-
-  /* ── PIPELINE FLOW ── */
-  .pipeline-flow {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    flex-wrap: wrap;
-    margin: 20px 0;
-    padding: 20px;
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: 8px;
-    overflow-x: auto;
-  }
-
-  .flow-step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
-  .flow-box {
-    background: #fff;
-    border: 1px solid var(--gray-300);
-    border-radius: 6px;
-    padding: 10px 14px;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--gray-800);
-    text-align: center;
-    white-space: nowrap;
-    font-family: 'IBM Plex Mono', monospace;
-    min-width: 80px;
-  }
-
-  .flow-box.active { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
-
-  .flow-label {
-    margin-top: 6px;
-    font-size: 10px;
-    color: var(--gray-500);
-    text-align: center;
-    max-width: 80px;
-    line-height: 1.3;
-  }
-
-  .flow-arrow {
-    font-size: 14px;
-    color: var(--gray-400);
-    margin: 0 4px;
-    flex-shrink: 0;
-    padding-bottom: 20px;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  /* ── COLLAPSIBLE ── */
-  details {
-    border: 1px solid var(--gray-200);
-    border-radius: 8px;
-    margin: 12px 0;
-    overflow: hidden;
-  }
-
-  summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 18px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--gray-800);
-    background: var(--gray-50);
-    list-style: none;
-    user-select: none;
-    border-bottom: 1px solid transparent;
-    transition: background 0.15s;
-  }
-
-  summary:hover { background: var(--gray-100); }
-
-  details[open] summary {
-    border-bottom-color: var(--gray-200);
-    background: var(--gray-100);
-  }
-
-  summary::after {
-    content: '+';
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 16px;
-    color: var(--gray-400);
-    transition: transform 0.2s;
-  }
-
-  details[open] summary::after { content: '\2212'; color: var(--blue); }
-
-  .details-body { padding: 20px 18px; }
-
-  /* ── BADGE ── */
-  .badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 500;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .badge-blue { background: var(--blue-light); color: var(--blue); }
-  .badge-gray { background: var(--gray-100); color: var(--gray-600); }
-  .badge-green { background: #ecfdf5; color: #059669; }
-  .badge-amber { background: #fffbeb; color: #d97706; }
-
-  /* ── STEP GRID ── */
-  .step-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
-    margin: 20px 0;
-  }
-
-  .step-card {
-    border: 1px solid var(--gray-200);
-    border-radius: 6px;
-    padding: 12px 14px;
-    background: #fff;
-  }
-
-  .step-card-num {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--blue);
-    font-family: 'IBM Plex Mono', monospace;
-    margin-bottom: 4px;
-  }
-
-  .step-card-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--gray-800);
-    margin-bottom: 6px;
-  }
-
-  .step-card-agents {
-    font-size: 11px;
-    color: var(--gray-500);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  /* ── SCORING TABLE ── */
-  .score-row { display: flex; gap: 0; margin: 16px 0; border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; }
-  .score-cell { flex: 1; padding: 12px 16px; text-align: center; border-right: 1px solid var(--gray-200); }
-  .score-cell:last-child { border-right: none; }
-  .score-cell-label { font-size: 11px; color: var(--gray-500); font-weight: 500; margin-bottom: 2px; }
-  .score-cell-val { font-size: 15px; font-weight: 600; color: var(--gray-900); font-family: 'IBM Plex Mono', monospace; }
-  .score-cell-tag { font-size: 11px; color: var(--gray-600); margin-top: 2px; }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--gray-200);
-    padding: 20px 48px;
-    font-size: 12px;
-    color: var(--gray-400);
-    font-family: 'IBM Plex Mono', monospace;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  /* ── SCROLLBAR ── */
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #0068ff;
+  --blue-light: #e8f0ff;
+  --blue-mid: #c0d4ff;
+  --blue-dark: #0050cc;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --emerald: #059669;
+  --emerald-light: #ecfdf5;
+  --amber: #d97706;
+  --amber-light: #fffbeb;
+  --red: #dc2626;
+  --red-light: #fef2f2;
+  --code-bg: #0f172a;
+  --code-fg: #e2e8f0;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  background: #fff;
+  color: var(--gray-900);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+.topnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 0 48px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.3s;
+}
+
+.topnav-brand {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.04em;
+}
+
+.topnav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.topnav-links a {
+  font-size: 13px;
+  color: var(--gray-500);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.topnav-links a:hover { color: var(--gray-900); }
+
+/* ── SECTIONS ── */
+.section {
+  padding: 120px 48px;
+  position: relative;
+}
+
+.section-dark {
+  background: var(--gray-900);
+  color: #fff;
+}
+
+.section-dark p,
+.section-dark li { color: var(--gray-300); }
+
+.section-alt { background: var(--gray-50); }
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* ── TYPOGRAPHY ── */
+.kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.section-dark .kicker { color: var(--blue-mid); }
+
+h1 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.lead {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--gray-600);
+  max-width: 640px;
+}
+
+.section-dark .lead { color: var(--gray-400); }
+
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 56px;
+  background: linear-gradient(180deg, #fff 0%, var(--gray-50) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--blue-light);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--blue);
+  margin-bottom: 24px;
+}
+
+.hero-badge-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--emerald);
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 span {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-visual {
+  position: relative;
+  height: 480px;
+}
+
+/* Animated orbit diagram */
+.orbit-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: var(--blue);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.3;
+  z-index: 2;
+  box-shadow: 0 0 0 1px rgba(0,104,255,0.1), 0 20px 60px -10px rgba(0,104,255,0.25);
+}
+
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px dashed var(--gray-300);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-ring-1 { width: 240px; height: 240px; }
+.orbit-ring-2 { width: 380px; height: 380px; }
+
+.orbit-node {
+  position: absolute;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray-700);
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  z-index: 3;
+}
+
+.orbit-node .node-icon {
+  font-size: 14px;
+  margin-right: 6px;
+}
+
+.orbit-node-1 { top: 12%; left: 60%; animation: float-1 6s ease-in-out infinite; }
+.orbit-node-2 { top: 40%; left: 85%; animation: float-2 7s ease-in-out infinite; }
+.orbit-node-3 { top: 72%; left: 65%; animation: float-3 5s ease-in-out infinite; }
+.orbit-node-4 { top: 75%; left: 15%; animation: float-1 8s ease-in-out infinite; }
+.orbit-node-5 { top: 35%; left: 2%; animation: float-2 6s ease-in-out infinite; }
+.orbit-node-6 { top: 8%; left: 20%; animation: float-3 7s ease-in-out infinite; }
+
+@keyframes float-1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes float-2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+@keyframes float-3 {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-6px); }
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── PROBLEM SECTION ── */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.problem-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 32px 28px;
+  transition: border-color 0.3s;
+}
+
+.problem-card:hover {
+  border-color: rgba(0,104,255,0.3);
+}
+
+.problem-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.problem-icon-red { background: rgba(220,38,38,0.15); }
+.problem-icon-amber { background: rgba(217,119,6,0.15); }
+.problem-icon-blue { background: rgba(0,104,255,0.15); }
+
+.problem-card h3 { color: #fff; }
+.problem-card p { color: var(--gray-400); font-size: 14px; }
+
+/* ── THREE PILLARS ── */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.pillar {
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 36px 28px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.pillar:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  border-color: var(--blue-mid);
+}
+
+.pillar-number {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--gray-100);
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  line-height: 1;
+}
+
+.pillar-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.pillar-tag-blue { background: var(--blue-light); color: var(--blue); }
+.pillar-tag-emerald { background: var(--emerald-light); color: var(--emerald); }
+.pillar-tag-amber { background: var(--amber-light); color: var(--amber); }
+
+.pillar h3 { font-size: 1.3rem; margin-bottom: 12px; }
+.pillar p { font-size: 14px; color: var(--gray-600); margin-bottom: 20px; }
+
+.pillar-flow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-100);
+}
+
+.pillar-flow-step {
+  padding: 5px 10px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gray-600);
+  white-space: nowrap;
+}
+
+.pillar-flow-arrow {
+  color: var(--gray-300);
+  font-size: 12px;
+}
+
+/* ── VDA PIPELINE ── */
+.pipeline-visual {
+  margin-top: 48px;
+}
+
+.pipeline-steps {
+  display: flex;
+  gap: 16px;
+  position: relative;
+  margin-bottom: 48px;
+}
+
+.pipeline-steps::before {
+  content: '';
+  position: absolute;
+  top: 38px;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  background: var(--gray-200);
+  z-index: 0;
+}
+
+.pipe-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.pipe-step-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--gray-300);
+  margin: 28px auto 16px;
+  transition: all 0.5s;
+  position: relative;
+}
+
+.pipe-step.active .pipe-step-dot {
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 4px rgba(0,104,255,0.15);
+}
+
+.pipe-step-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.pipe-step-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 4px;
+}
+
+.pipe-step-desc {
+  font-size: 11px;
+  color: var(--gray-500);
+  line-height: 1.4;
+}
+
+.pipe-step-agents {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.agent-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--gray-600);
+  white-space: nowrap;
+}
+
+.agent-chip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--emerald);
+}
+
+/* ── AGENT GRID ── */
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.agent-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 20px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.agent-card:hover {
+  border-color: rgba(0,104,255,0.3);
+  transform: translateY(-2px);
+}
+
+.agent-card-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--blue-mid);
+  margin-bottom: 6px;
+}
+
+.agent-card-role {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.agent-card-desc {
+  font-size: 12px;
+  color: var(--gray-400);
+  line-height: 1.5;
+}
+
+/* ── STATS ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 28px 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+}
+
+.stat-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-value .stat-unit {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--gray-400);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--gray-400);
+}
+
+/* ── EVIDENCE CHAIN ── */
+.evidence-chain {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 40px 0;
+  padding: 32px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.evidence-node {
+  text-align: center;
+  flex-shrink: 0;
+  min-width: 140px;
+}
+
+.evidence-node-box {
+  padding: 14px 20px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-800);
+  margin-bottom: 8px;
+}
+
+.evidence-node-id {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.evidence-arrow {
+  font-size: 18px;
+  color: var(--gray-300);
+  flex-shrink: 0;
+  margin: 0 8px;
+  padding-bottom: 24px;
+}
+
+/* ── DASHBOARD MOCKUP ── */
+.dashboard-frame {
+  margin-top: 48px;
+  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+}
+
+.dashboard-titlebar {
+  height: 40px;
+  background: var(--gray-100);
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 8px;
+}
+
+.dashboard-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dashboard-dot-r { background: #ff5f57; }
+.dashboard-dot-y { background: #febc2e; }
+.dashboard-dot-g { background: #28c840; }
+
+.dashboard-body {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 400px;
+}
+
+.dashboard-sidebar {
+  background: var(--gray-50);
+  border-right: 1px solid var(--gray-200);
+  padding: 20px;
+}
+
+.dashboard-sidebar-section {
+  margin-bottom: 24px;
+}
+
+.dashboard-sidebar-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 10px;
+}
+
+.dashboard-step-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--gray-600);
+  margin-bottom: 2px;
+}
+
+.dashboard-step-item.done { color: var(--emerald); }
+.dashboard-step-item.running { color: var(--blue); background: var(--blue-light); font-weight: 500; }
+
+.step-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.step-indicator.done { background: var(--emerald); }
+.step-indicator.running { background: var(--blue); animation: pulse-dot 1.5s infinite; }
+.step-indicator.pending { background: var(--gray-300); }
+
+.dashboard-terminal {
+  background: var(--code-bg);
+  padding: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--code-fg);
+  overflow: hidden;
+}
+
+.term-prompt { color: var(--blue-mid); }
+.term-agent { color: #a78bfa; }
+.term-success { color: #34d399; }
+.term-dim { color: #475569; }
+
+/* ── TECH STACK ── */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.tech-card {
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 28px;
+  background: #fff;
+}
+
+.tech-card h3 { font-size: 1rem; margin-bottom: 16px; }
+
+.tech-list {
+  list-style: none;
+  padding: 0;
+}
+
+.tech-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 13px;
+  color: var(--gray-700);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.tech-list li:last-child { border-bottom: none; }
+
+.tech-list-key {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--blue);
+  font-weight: 500;
+  flex-shrink: 0;
+  min-width: 120px;
+}
+
+/* ── FILE TREE ── */
+.file-tree {
+  background: var(--code-bg);
+  border-radius: 10px;
+  padding: 24px 28px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--code-fg);
+  margin-top: 32px;
+  overflow-x: auto;
+}
+
+.file-tree .dir { color: var(--blue-mid); font-weight: 500; }
+.file-tree .file { color: var(--gray-400); }
+.file-tree .comment { color: #64748b; }
+
+/* ── SCORING ── */
+.scoring-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin: 32px 0;
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.scoring-cell {
+  padding: 24px;
+  text-align: center;
+  border-right: 1px solid var(--gray-200);
+}
+
+.scoring-cell:last-child { border-right: none; }
+
+.scoring-range {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.scoring-label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.scoring-desc {
+  font-size: 11px;
+  color: var(--gray-500);
+}
+
+.score-emerald { color: var(--emerald); }
+.score-blue { color: var(--blue); }
+.score-amber { color: var(--amber); }
+.score-red { color: var(--red); }
+
+/* ── CTA ── */
+.cta-section {
+  text-align: center;
+  padding: 100px 48px;
+  background: linear-gradient(180deg, var(--gray-50) 0%, #fff 100%);
+}
+
+.cta-code {
+  display: inline-block;
+  background: var(--code-bg);
+  color: var(--code-fg);
+  padding: 16px 32px;
+  border-radius: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 15px;
+  margin-top: 24px;
+  letter-spacing: 0.02em;
+}
+
+.cta-code .cmd { color: var(--blue-mid); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 32px 48px;
+  border-top: 1px solid var(--gray-200);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--gray-400);
+  text-align: center;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .pillars { grid-template-columns: 1fr; }
+  .pipeline-steps { flex-direction: column; gap: 24px; }
+  .pipeline-steps::before { display: none; }
+  .agent-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-row { grid-template-columns: repeat(3, 1fr); }
+  .dashboard-body { grid-template-columns: 1fr; }
+  .dashboard-sidebar { display: none; }
+  .scoring-grid { grid-template-columns: repeat(2, 1fr); }
+  .scoring-cell:nth-child(2) { border-right: none; }
+  .scoring-cell:nth-child(1),
+  .scoring-cell:nth-child(2) { border-bottom: 1px solid var(--gray-200); }
+  .tech-grid { grid-template-columns: 1fr; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .section { padding: 80px 24px; }
+}
+
+@media (max-width: 640px) {
+  .topnav-links { display: none; }
+  .agent-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+}
 </style>
 </head>
 <body>
+
+<!-- ════════════ NAV ════════════ -->
+<header class="topnav">
+  <div class="topnav-brand" style="display:flex;align-items:center;gap:10px;">
+    <img src="sigma-logo.svg" alt="SIGMA" style="height:24px;width:auto;">
+    SIGMA <span style="font-weight:400;color:var(--gray-400);margin-left:2px;">Peer Strategy Intelligence</span>
+  </div>
+  <ul class="topnav-links">
+    <li><a href="#problema">O Problema</a></li>
+    <li><a href="#pipelines">Pipelines</a></li>
+    <li><a href="#vda">VDA</a></li>
+    <li><a href="#agentes">Agentes</a></li>
+    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#dev">Desenvolvedores</a></li>
+  </ul>
+</header>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="section hero" id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:28px;">
+          <img src="sigma-logo.svg" alt="SIGMA" style="height:44px;width:auto;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600;color:var(--gray-900);letter-spacing:0.03em;line-height:1.3;">
+            SIGMA<br><span style="font-weight:400;color:var(--gray-500);font-size:12px;letter-spacing:0.06em;">PEER STRATEGY INTELLIGENCE</span>
+          </div>
+        </div>
+        <h1>Inteligencia estrategica<br><span>movida por agentes de IA</span></h1>
+        <p class="lead">
+          Um sistema que analisa se as acoes de uma empresa publica estao alinhadas
+          com sua estrategia declarada, compara com pares do setor, e identifica
+          o que realmente impulsiona a valorizacao no mercado.
+        </p>
+        <div style="margin-top:32px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#pipelines" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--blue);color:#fff;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;transition:background 0.2s;">
+            Conhecer os Pipelines &darr;
+          </a>
+          <a href="#dev" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--gray-100);color:var(--gray-700);border:1px solid var(--gray-200);border-radius:8px;text-decoration:none;font-size:14px;font-weight:500;transition:background 0.2s;">
+            Ir para Devs &darr;
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="orbit-ring orbit-ring-1"></div>
+        <div class="orbit-ring orbit-ring-2"></div>
+        <div class="orbit-center">CLAUDE<br>AGENTS</div>
+        <div class="orbit-node orbit-node-1"><span class="node-icon">&#x1f50d;</span> 10-Ks &amp; Filings</div>
+        <div class="orbit-node orbit-node-2"><span class="node-icon">&#x1f4ca;</span> Earnings Calls</div>
+        <div class="orbit-node orbit-node-3"><span class="node-icon">&#x1f4c4;</span> Investor Decks</div>
+        <div class="orbit-node orbit-node-4"><span class="node-icon">&#x1f310;</span> Industry Reports</div>
+        <div class="orbit-node orbit-node-5"><span class="node-icon">&#x1f4dd;</span> Press Releases</div>
+        <div class="orbit-node orbit-node-6"><span class="node-icon">&#x1f4b0;</span> Market Data</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ THE PROBLEM ════════════ -->
+<section class="section section-dark" id="problema">
+  <div class="container">
+    <span class="kicker reveal">O Problema</span>
+    <h2 class="reveal">Empresas dizem uma coisa.<br>Fazem outra.</h2>
+    <p class="lead reveal">
+      Relatorios anuais, earnings calls, investor days &mdash; todos projetam uma narrativa
+      estrategica coerente. Mas entre o discurso e a execucao, surgem lacunas que investidores
+      e conselhos muitas vezes so percebem tarde demais.
+    </p>
+
+    <div class="problem-grid">
+      <div class="problem-card reveal reveal-delay-1">
+        <div class="problem-icon problem-icon-red">&#x26a0;</div>
+        <h3>Drift Estrategico</h3>
+        <p>A empresa declara "foco em fintech" mas aloca 60% do capex em hardware. As acoes contradizem os pilares estrategicos.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-2">
+        <div class="problem-icon problem-icon-amber">&#x2696;</div>
+        <h3>Posicionamento Cego</h3>
+        <p>Sem benchmark sistematico contra pares, e impossivel saber se a empresa esta liderando ou ficando para tras no setor.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-3">
+        <div class="problem-icon problem-icon-blue">&#x1f4b9;</div>
+        <h3>Drivers Ocultos</h3>
+        <p>O que realmente move o multiplo de valuation? Sem analise de correlacao, gestores operam no escuro sobre o que o mercado precifica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ THREE PIPELINES ════════════ -->
+<section class="section" id="pipelines">
+  <div class="container">
+    <span class="kicker reveal">A Solucao</span>
+    <h2 class="reveal">Tres pipelines de analise.<br>Um sistema integrado.</h2>
+    <p class="lead reveal">
+      Cada pipeline responde a uma pergunta fundamental de governanca corporativa.
+      Juntos, formam uma visao completa da saude estrategica de uma empresa.
+    </p>
+
+    <div class="pillars">
+      <!-- Pipeline 1: Drift -->
+      <div class="pillar reveal reveal-delay-1">
+        <div class="pillar-number">01</div>
+        <span class="pillar-tag pillar-tag-blue">DRIFT DETECTION</span>
+        <h3>A empresa faz o que diz?</h3>
+        <p>Extrai pilares estrategicos declarados, mapeia acoes concretas, e pontua a coerencia entre discurso e execucao em 5 dimensoes.</p>
+        <div class="pillar-flow">
+          <span class="pillar-flow-step">Fontes</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Coleta</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Pilares</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Mapeamento</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Score</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Relatorio</span>
+        </div>
+      </div>
+
+      <!-- Pipeline 2: Peer Comparison -->
+      <div class="pillar reveal reveal-delay-2">
+        <div class="pillar-number">02</div>
+        <span class="pillar-tag pillar-tag-emerald">PEER COMPARISON</span>
+        <h3>Como se compara aos pares?</h3>
+        <p>Identifica concorrentes, padroniza metricas, e gera rankings comparativos com contexto estrategico para cada posicao.</p>
+        <div class="pillar-flow">
+          <span class="pillar-flow-step">Pares</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Metricas</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Coleta</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Padronizacao</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Rankings</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Relatorio</span>
+        </div>
+      </div>
+
+      <!-- Pipeline 3: VDA -->
+      <div class="pillar reveal reveal-delay-3">
+        <div class="pillar-number">03</div>
+        <span class="pillar-tag pillar-tag-amber">VALUATION DRIVERS</span>
+        <h3>O que move o multiplo?</h3>
+        <p>Analisa um universo de 20+ empresas para descobrir quais metricas e acoes realmente impulsionam a valorizacao de mercado.</p>
+        <div class="pillar-flow">
+          <span class="pillar-flow-step">Industria</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Dados</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Correlacao</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Deep Dives</span>
+          <span class="pillar-flow-arrow">&rarr;</span>
+          <span class="pillar-flow-step">Playbook</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ VDA DEEP DIVE ════════════ -->
+<section class="section section-alt" id="vda">
+  <div class="container">
+    <span class="kicker reveal">VDA em Detalhe</span>
+    <h2 class="reveal">5 etapas. 13 agentes especializados.<br>Uma narrativa coerente.</h2>
+    <p class="lead reveal">
+      O pipeline de Valuation Driver Analysis e o mais complexo do sistema.
+      Cada etapa e executada por agentes de IA especializados, coordenados
+      por um orquestrador central.
+    </p>
+
+    <div class="pipeline-visual reveal">
+      <div class="pipeline-steps">
+        <div class="pipe-step active">
+          <div class="pipe-step-num">STEP 1</div>
+          <div class="pipe-step-dot"></div>
+          <div class="pipe-step-title">Mapear a Industria</div>
+          <div class="pipe-step-desc">Universo de pares, catalogo de fontes, taxonomia de metricas</div>
+          <div class="pipe-step-agents">
+            <span class="agent-chip"><span class="agent-chip-dot"></span>Industry Scanner</span>
+            <span class="agent-chip"><span class="agent-chip-dot"></span>Source Cataloger</span>
+            <span class="agent-chip"><span class="agent-chip-dot"></span>Metrics Designer</span>
+          </div>
+        </div>
+        <div class="pipe-step active">
+          <div class="pipe-step-num">STEP 2</div>
+          <div class="pipe-step-dot"></div>
+          <div class="pipe-step-title">Coletar Dados</div>
+          <div class="pipe-step-desc">Dados quantitativos em 3 tiers + perfis estrategicos</div>
+          <div class="pipe-step-agents">
+            <span class="agent-chip"><span class="agent-chip-dot"></span>Data Collector &times;3</span>
+            <span class="agent-chip"><span class="agent-chip-dot"></span>Strategy Researcher</span>
+          </div>
+        </div>
+        <div class="pipe-step active">
+          <div class="pipe-step-num">STEP 3</div>
+          <div class="pipe-step-dot"></div>
+          <div class="pipe-step-title">Achar os Drivers</div>
+          <div class="pipe-step-desc">Padronizacao, correlacao Spearman, ranking de drivers</div>
+          <div class="pipe-step-agents">
+            <span class="agent-chip"><span class="agent-chip-dot"></span>Statistical Analyst</span>
+          </div>
+        </div>
+        <div class="pipe-step active">
+          <div class="pipe-step-num">STEP 4</div>
+          <div class="pipe-step-dot"></div>
+          <div class="pipe-step-title">Deep Dives</div>
+          <div class="pipe-step-desc">Perfis de plataforma e analise por segmento</div>
+          <div class="pipe-step-agents">
+            <span class="agent-chip"><span class="agent-chip-dot"></span>Platform Profiler</span>
+            <span class="agent-chip"><span class="agent-chip-dot"></span>Sector Specialist</span>
+          </div>
+        </div>
+        <div class="pipe-step active">
+          <div class="pipe-step-num">STEP 5</div>
+          <div class="pipe-step-dot"></div>
+          <div class="pipe-step-title">Playbook</div>
+          <div class="pipe-step-desc">Sintese, lens da empresa-alvo, relatorio final HTML</div>
+          <div class="pipe-step-agents">
+            <span class="agent-chip"><span class="agent-chip-dot"></span>Insight Synthesizer</span>
+            <span class="agent-chip"><span class="agent-chip-dot"></span>Report Composer</span>
+            <span class="agent-chip"><span class="agent-chip-dot"></span>Target Company Lens</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Evidence Chain -->
+    <h3 class="reveal" style="margin-top:48px;">Cadeia de Evidencias</h3>
+    <p class="reveal" style="color:var(--gray-600);max-width:640px;">
+      Cada afirmacao no relatorio final deve citar fontes rastreadas. Se nao ha evidencia, o Fact Checker bloqueia a publicacao.
+    </p>
+    <div class="evidence-chain reveal">
+      <div class="evidence-node">
+        <div class="evidence-node-box">Fonte Publica</div>
+        <div class="evidence-node-id">PS-VD-*</div>
+      </div>
+      <div class="evidence-arrow">&rarr;</div>
+      <div class="evidence-node">
+        <div class="evidence-node-box">Metrica Coletada</div>
+        <div class="evidence-node-id">MET-VD-*</div>
+      </div>
+      <div class="evidence-arrow">&rarr;</div>
+      <div class="evidence-node">
+        <div class="evidence-node-box">Correlacao</div>
+        <div class="evidence-node-id">COR-*</div>
+      </div>
+      <div class="evidence-arrow">&rarr;</div>
+      <div class="evidence-node">
+        <div class="evidence-node-box">Driver Ranqueado</div>
+        <div class="evidence-node-id">DVR-*</div>
+      </div>
+      <div class="evidence-arrow">&rarr;</div>
+      <div class="evidence-node">
+        <div class="evidence-node-box">Play / Anti-pattern</div>
+        <div class="evidence-node-id">PLAY-* / ANTI-*</div>
+      </div>
+      <div class="evidence-arrow">&rarr;</div>
+      <div class="evidence-node">
+        <div class="evidence-node-box" style="border-color:var(--blue);color:var(--blue);">Relatorio Final</div>
+        <div class="evidence-node-id">HTML</div>
+      </div>
+    </div>
+
+    <!-- Scoring -->
+    <h3 class="reveal" style="margin-top:48px;">Classificacao de Drift</h3>
+    <p class="reveal" style="color:var(--gray-600);max-width:640px;">
+      O pipeline de drift gera um score de coerencia de 0 a 5 por pilar estrategico, ponderando 5 dimensoes.
+    </p>
+    <div class="scoring-grid reveal">
+      <div class="scoring-cell">
+        <div class="scoring-range score-emerald">&#x2265; 4.0</div>
+        <div class="scoring-label score-emerald">Alinhado</div>
+        <div class="scoring-desc">Acoes consistentes com a estrategia</div>
+      </div>
+      <div class="scoring-cell">
+        <div class="scoring-range score-blue">3.0&ndash;3.9</div>
+        <div class="scoring-label score-blue">Drift Menor</div>
+        <div class="scoring-desc">Desvios pontuais e gerenciaveis</div>
+      </div>
+      <div class="scoring-cell">
+        <div class="scoring-range score-amber">2.0&ndash;2.9</div>
+        <div class="scoring-label score-amber">Drift Significativo</div>
+        <div class="scoring-desc">Contradicoes entre discurso e acao</div>
+      </div>
+      <div class="scoring-cell">
+        <div class="scoring-range score-red">&lt; 2.0</div>
+        <div class="scoring-label score-red">Desconexao</div>
+        <div class="scoring-desc">Estrategia declarada e irrelevante</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ AGENTS ════════════ -->
+<section class="section section-dark" id="agentes">
+  <div class="container">
+    <span class="kicker reveal">Os Agentes</span>
+    <h2 class="reveal">13 agentes especializados.<br>Coordenados por IA.</h2>
+    <p class="lead reveal">
+      Nao e um unico modelo fazendo tudo. Cada agente tem escopo definido,
+      fontes permitidas, e formato de output rigido. O orquestrador distribui
+      tarefas em paralelo e valida cada entrega.
+    </p>
+
+    <div class="agent-grid">
+      <div class="agent-card reveal reveal-delay-1">
+        <div class="agent-card-name">industry-scanner</div>
+        <div class="agent-card-role">Industry Scanner</div>
+        <div class="agent-card-desc">Identifica o universo de empresas comparaveis e define o perimetro da analise.</div>
+      </div>
+      <div class="agent-card reveal reveal-delay-1">
+        <div class="agent-card-name">source-cataloger</div>
+        <div class="agent-card-role">Source Cataloger</div>
+        <div class="agent-card-desc">Cataloga fontes publicas com tags de vies: filing, analyst, industry-report.</div>
+      </div>
+      <div class="agent-card reveal reveal-delay-1">
+        <div class="agent-card-name">metrics-designer</div>
+        <div class="agent-card-role">Metrics Designer</div>
+        <div class="agent-card-desc">Define a taxonomia de metricas relevantes para o setor e suas formulas.</div>
+      </div>
+      <div class="agent-card reveal reveal-delay-2">
+        <div class="agent-card-name">data-collector</div>
+        <div class="agent-card-role">Data Collector &times;3</div>
+        <div class="agent-card-desc">Tres tiers paralelos coletando dados quantitativos de ~9 empresas cada.</div>
+      </div>
+      <div class="agent-card reveal reveal-delay-2">
+        <div class="agent-card-name">strategy-researcher</div>
+        <div class="agent-card-role">Strategy Researcher</div>
+        <div class="agent-card-desc">Extrai perfis estrategicos e acoes concretas de cada empresa do universo.</div>
+      </div>
+      <div class="agent-card reveal reveal-delay-2">
+        <div class="agent-card-name">statistical-analyst</div>
+        <div class="agent-card-role">Statistical Analyst</div>
+        <div class="agent-card-desc">Padroniza dados, calcula correlacoes Spearman, ranqueia value drivers.</div>
+      </div>
+      <div class="agent-card reveal reveal-delay-3">
+        <div class="agent-card-name">platform-profiler</div>
+        <div class="agent-card-role">Platform Profiler</div>
+        <div class="agent-card-desc">Deep-dives em cada plataforma: modelo operacional, vantagens, riscos.</div>
+      </div>
+      <div class="agent-card reveal reveal-delay-3">
+        <div class="agent-card-name">sector-specialist</div>
+        <div class="agent-card-role">Sector Specialist</div>
+        <div class="agent-card-desc">Analise por classe de ativo e vertical de mercado.</div>
+      </div>
+      <div class="agent-card reveal reveal-delay-3">
+        <div class="agent-card-name">insight-synthesizer</div>
+        <div class="agent-card-role">Insight Synthesizer</div>
+        <div class="agent-card-desc">Consolida todas as evidencias em plays acionaveis e anti-patterns.</div>
+      </div>
+      <div class="agent-card reveal reveal-delay-4">
+        <div class="agent-card-name">report-composer</div>
+        <div class="agent-card-role">Report Composer</div>
+        <div class="agent-card-desc">Gera o relatorio final em HTML seguindo o SIGMA writing guide.</div>
+      </div>
+      <div class="agent-card reveal reveal-delay-4">
+        <div class="agent-card-name">target-lens</div>
+        <div class="agent-card-role">Target Company Lens</div>
+        <div class="agent-card-desc">Extrai principios transferiveis para a empresa-alvo, com cascata de governanca.</div>
+      </div>
+      <div class="agent-card reveal reveal-delay-4">
+        <div class="agent-card-name">fact-checker</div>
+        <div class="agent-card-role">Fact Checker</div>
+        <div class="agent-card-desc">3 checkpoints de auditoria. Claims sem evidencia = bloqueio imediato.</div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row reveal">
+      <div class="stat-card">
+        <div class="stat-value">23</div>
+        <div class="stat-label">Empresas analisadas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">31</div>
+        <div class="stat-label">Metricas rastreadas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">52</div>
+        <div class="stat-label">Acoes estrategicas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">15</div>
+        <div class="stat-label">Plays + Anti-patterns</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">98<span class="stat-unit">KB</span></div>
+        <div class="stat-label">Relatorio HTML final</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DASHBOARD ════════════ -->
+<section class="section" id="dashboard">
+  <div class="container">
+    <span class="kicker reveal">O Dashboard</span>
+    <h2 class="reveal">Acompanhe tudo em tempo real.</h2>
+    <p class="lead reveal">
+      Um aplicativo desktop (Tauri) que mostra o progresso do pipeline,
+      os agentes ativos, e o terminal interativo do Claude Code &mdash; tudo
+      em uma interface unica.
+    </p>
+
+    <div class="dashboard-frame reveal">
+      <div class="dashboard-titlebar">
+        <div class="dashboard-dot dashboard-dot-r"></div>
+        <div class="dashboard-dot dashboard-dot-y"></div>
+        <div class="dashboard-dot dashboard-dot-g"></div>
+        <span style="flex:1;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gray-500);">Peer Review SIGMA &mdash; Valuation Driver Analysis</span>
+      </div>
+      <div class="dashboard-body">
+        <div class="dashboard-sidebar">
+          <div class="dashboard-sidebar-section">
+            <div class="dashboard-sidebar-label">Pipeline VDA</div>
+            <div class="dashboard-step-item done">
+              <span class="step-indicator done"></span>
+              1. Mapear Industria
+            </div>
+            <div class="dashboard-step-item done">
+              <span class="step-indicator done"></span>
+              2. Coletar Dados
+            </div>
+            <div class="dashboard-step-item running">
+              <span class="step-indicator running"></span>
+              3. Achar Drivers
+            </div>
+            <div class="dashboard-step-item">
+              <span class="step-indicator pending"></span>
+              4. Deep Dives
+            </div>
+            <div class="dashboard-step-item">
+              <span class="step-indicator pending"></span>
+              5. Playbook
+            </div>
+          </div>
+          <div class="dashboard-sidebar-section">
+            <div class="dashboard-sidebar-label">Agentes Ativos</div>
+            <div class="dashboard-step-item running">
+              <span class="step-indicator running"></span>
+              Statistical Analyst
+            </div>
+          </div>
+        </div>
+        <div class="dashboard-terminal">
+          <div><span class="term-prompt">$</span> /valuation-driver SIGMA --auto</div>
+          <div><span class="term-dim">[Step 1]</span> Mapeando universo de pares...</div>
+          <div><span class="term-agent">@industry-scanner</span> 23 empresas identificadas</div>
+          <div><span class="term-agent">@source-cataloger</span> 187 fontes catalogadas</div>
+          <div><span class="term-agent">@metrics-designer</span> 31 metricas definidas</div>
+          <div><span class="term-success">&#x2713;</span> Step 1 completo <span class="term-dim">(peer_universe.json, source_catalog.json, metric_taxonomy.json)</span></div>
+          <div>&nbsp;</div>
+          <div><span class="term-dim">[Step 2]</span> Coletando dados quantitativos...</div>
+          <div><span class="term-agent">@data-collector-t1</span> 9 empresas &mdash; tier 1 <span class="term-success">&#x2713;</span></div>
+          <div><span class="term-agent">@data-collector-t2</span> 8 empresas &mdash; tier 2 <span class="term-success">&#x2713;</span></div>
+          <div><span class="term-agent">@data-collector-t3</span> 6 empresas &mdash; tier 3 <span class="term-success">&#x2713;</span></div>
+          <div><span class="term-agent">@strategy-researcher</span> 14 perfis estrategicos extraidos</div>
+          <div><span class="term-success">&#x2713;</span> Step 2 completo</div>
+          <div><span class="term-dim">[Checkpoint CP-1]</span> <span class="term-agent">@fact-checker</span> auditando claims...</div>
+          <div><span class="term-success">&#x2713;</span> CP-1 aprovado &mdash; 0 claims bloqueados</div>
+          <div>&nbsp;</div>
+          <div><span class="term-dim">[Step 3]</span> Analisando drivers de valor...</div>
+          <div><span class="term-agent">@statistical-analyst</span> Padronizando matriz 23&times;31...</div>
+          <div><span class="term-agent">@statistical-analyst</span> Correlacao Spearman em progresso... <span style="animation:pulse-dot 1s infinite;">&#x2588;</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FOR DEVELOPERS ════════════ -->
+<section class="section section-alt" id="dev">
+  <div class="container">
+    <span class="kicker reveal">Para Desenvolvedores</span>
+    <h2 class="reveal">Arquitetura, stack, e como rodar.</h2>
+
+    <div class="tech-grid reveal">
+      <div class="tech-card">
+        <h3>Stack Principal</h3>
+        <ul class="tech-list">
+          <li><span class="tech-list-key">Orquestracao</span> Claude Code Agent teams</li>
+          <li><span class="tech-list-key">LLM</span> Claude Sonnet via Anthropic SDK</li>
+          <li><span class="tech-list-key">Backend</span> Python 3.11+ com type hints</li>
+          <li><span class="tech-list-key">Desktop</span> Tauri (Rust + React + TypeScript)</li>
+          <li><span class="tech-list-key">Styling</span> Tailwind CSS</li>
+          <li><span class="tech-list-key">Terminal</span> xterm.js + portable-pty</li>
+          <li><span class="tech-list-key">Fontes</span> DM Sans + IBM Plex Mono (woff2)</li>
+        </ul>
+      </div>
+      <div class="tech-card">
+        <h3>Principios de Design</h3>
+        <ul class="tech-list">
+          <li><span class="tech-list-key">Prompts</span> Version-controlled em prompts/</li>
+          <li><span class="tech-list-key">Evidencia</span> Toda claim cita fonte rastreavel</li>
+          <li><span class="tech-list-key">Anti-hallucination</span> Fact Checker em 3 checkpoints</li>
+          <li><span class="tech-list-key">Bias tags</span> Toda fonte recebe classificacao</li>
+          <li><span class="tech-list-key">Tone</span> Academico, sem marketing speak</li>
+          <li><span class="tech-list-key">Iteracao</span> --base-run para refinar runs</li>
+          <li><span class="tech-list-key">Delta</span> Nunca re-coleta dados existentes</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="file-tree reveal">
+      <div><span class="dir">peer-review-pax/</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">prompts/</span> <span class="comment"># Templates de prompt (drift, peer, VDA)</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">data/</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">raw/{ticker}/</span> <span class="comment"># Documentos fonte (PDFs, 10-Ks)</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">processed/{ticker}/{date}/</span> <span class="comment"># Outputs do pipeline</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">1-universe/</span> <span class="comment"># peer_universe.json, source_catalog.json, metric_taxonomy.json</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">2-data/</span> <span class="comment"># quantitative_tier*.json, strategy_profiles.json</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">3-analysis/</span> <span class="comment"># standardized_matrix.json, correlation_results.json, driver_ranking.json</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">4-deep-dives/</span> <span class="comment"># platform_profiles.json, asset_class_analysis.json</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">5-playbook/</span> <span class="comment"># playbook.json, target_lens.json, final_report.html</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">6-review/</span> <span class="comment"># methodology_review.md, results_review.md</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">src/</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">tauri/</span> <span class="comment"># Desktop dashboard (React + Rust)</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">analyzer/</span> <span class="comment"># metric_checklist, data_gaps, delta_spec, consulting_context</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">llm_client.py</span> <span class="comment"># Wrapper compartilhado para API Anthropic</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">document_converter.py</span> <span class="comment"># PDF/DOCX/PPTX para texto</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">docs/</span> <span class="comment"># Metodologias, specs, planos</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">schemas/vda/</span> <span class="comment"># JSON schemas de output</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">tests/</span> <span class="comment"># 268 testes (metric_checklist, data_gaps, delta_spec)</span></div>
+    </div>
+
+    <!-- Quick Start -->
+    <h3 class="reveal" style="margin-top:48px;">Quick Start</h3>
+    <div style="background:var(--code-bg);border-radius:10px;padding:24px 28px;margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:2;color:var(--code-fg);overflow-x:auto;" class="reveal">
+      <div><span style="color:#64748b;"># Instalar dependencias Python</span></div>
+      <div>pip install -r requirements.txt</div>
+      <div>&nbsp;</div>
+      <div><span style="color:#64748b;"># Rodar o dashboard desktop</span></div>
+      <div>cd src/tauri && npm install && npm run tauri dev</div>
+      <div>&nbsp;</div>
+      <div><span style="color:#64748b;"># Executar pipeline VDA via CLI</span></div>
+      <div><span style="color:var(--blue-mid);">/valuation-driver</span> SIGMA --auto</div>
+      <div>&nbsp;</div>
+      <div><span style="color:#64748b;"># Executar drift detection</span></div>
+      <div><span style="color:var(--blue-mid);">/analyze-drift</span> SIGMA</div>
+      <div>&nbsp;</div>
+      <div><span style="color:#64748b;"># Checar qualidade dos dados</span></div>
+      <div>python3 -m src.analyzer.data_gaps --run-dir data/processed/pax/2026-03-09-run2/</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CTA ════════════ -->
+<section class="cta-section">
+  <div class="container">
+    <span class="kicker reveal">Pronto para comecar?</span>
+    <h2 class="reveal" style="max-width:600px;margin:0 auto 12px;">Uma linha. Qualquer empresa publica.</h2>
+    <p class="reveal" style="color:var(--gray-500);font-size:15px;max-width:480px;margin:0 auto;">
+      Substitua o ticker e o sistema faz o resto &mdash; identifica pares, coleta dados,
+      analisa drivers, e gera o relatorio.
+    </p>
+    <div class="cta-code reveal">
+      <span class="cmd">/valuation-driver</span> TICKER --auto
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <span>Peer Review SIGMA &mdash; Strategy Drift + Peer Comparison + Valuation Driver Analysis</span>
+</footer>
+
+<!-- ════════════ SCROLL REVEAL JS ════════════ -->
+<script>
+(function() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Animate pipeline steps sequentially
+  const pipeSteps = document.querySelectorAll('.pipe-step');
+  let delay = 0;
+  const pipeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        pipeSteps.forEach((step, i) => {
+          setTimeout(() => step.classList.add('active'), i * 200);
+        });
+        pipeObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.2 });
+
+  if (pipeSteps.length > 0) {
+    pipeSteps.forEach(s => s.classList.remove('active'));
+    pipeObserver.observe(pipeSteps[0].parentElement);
+  }
+})();
+</script>
+
+</body>
+</html>

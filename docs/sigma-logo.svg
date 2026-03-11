@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" fill="none">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4a9eda"/>
+      <stop offset="50%" stop-color="#1a3a5c"/>
+      <stop offset="100%" stop-color="#0d1f33"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="60" y1="0" x2="160" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5aafee"/>
+      <stop offset="100%" stop-color="#142d47"/>
+    </linearGradient>
+  </defs>
+  <!-- Upper swoosh / tail of sigma -->
+  <path d="M105 18 C120 14, 155 10, 170 28 C178 38, 168 42, 158 36 C148 30, 130 28, 105 35"
+        stroke="url(#g2)" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <!-- Main circular body of sigma -->
+  <path d="M105 35 C60 35, 28 65, 28 108 C28 152, 60 180, 105 180 C150 180, 178 152, 178 108 C178 72, 158 48, 130 40"
+        stroke="url(#g1)" stroke-width="14" stroke-linecap="round" fill="none"/>
+  <!-- Left eye -->
+  <circle cx="80" cy="102" r="7" fill="#1a3a5c"/>
+  <!-- Right eye -->
+  <circle cx="126" cy="102" r="7" fill="#1a3a5c"/>
+  <!-- Smile -->
+  <path d="M78 128 C88 146, 114 146, 126 128" stroke="#1a3a5c" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <!-- Bottom swoosh -->
+  <path d="M52 192 C80 200, 130 200, 156 192" stroke="url(#g2)" stroke-width="8" stroke-linecap="round" fill="none"/>
+</svg>
