@@ -1,0 +1,326 @@
+{
+  "checkpoint": "CP-2",
+  "verdict": "BLOCKED",
+  "auditor": "claim-auditor",
+  "run_id": "2026-03-10-run4",
+  "generated_at": "2026-03-11T08:30:00Z",
+  "files_audited": [
+    "data/processed/pax/2026-03-10-run4/4-deep-dives/platform_profiles.json",
+    "data/processed/pax/2026-03-10-run4/4-deep-dives/asset_class_analysis.json"
+  ],
+  "evidence_files": [
+    "data/processed/pax/2026-03-10-run4/3-analysis/correlation_results.json",
+    "data/processed/pax/2026-03-10-run4/3-analysis/driver_ranking.json",
+    "data/processed/pax/2026-03-10-run4/4-deep-dives/strategic_actions_final.json",
+    "data/processed/pax/2026-03-10-run4/4-deep-dives/strategy_profiles_final.json"
+  ],
+  "total_claims_reviewed": 47,
+  "passed_claims": 29,
+  "flagged_claims": [
+    {
+      "claim_id": "AUDIT-CP2-FLAG-001",
+      "file": "platform_profiles.json",
+      "location": "metadata.driver_ranking_reference.DVR-001",
+      "claim_text": "DVR-001: 'DE/share — stable value driver (rho P/FRE=0.52, rho P/DE=0.56; re-confirmed run4)'",
+      "dimension": "invalid_premises",
+      "severity": "WARN",
+      "explanation": "The corrected driver_ranking.json (on-disk) shows DVR-001 = Total AUM (multiple_specific, avg|rho|=0.462). DE/share (MET-VD-001) is classified as 'unsupported' (max|rho|=0.28, well below the 0.50 stable threshold). The rho values cited (0.52, 0.56) match a prior preliminary ranking that was superseded. This metadata block must be replaced with the corrected mapping.",
+      "correction_required": "Replace DVR-001 reference from 'DE/share — stable value driver' to 'Total AUM — multiple_specific driver (rho P/FRE=0.73)'. Add corrected note that DE/share is unsupported (max|rho|=0.28) in run4."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-002",
+      "file": "platform_profiles.json",
+      "location": "metadata.driver_ranking_reference.DVR-010",
+      "claim_text": "DVR-010: 'G&A/FEAUM — stable value driver (rho P/FRE=-0.62, rho P/DE=-0.51; confirmed two runs)'",
+      "dimension": "invalid_premises",
+      "severity": "WARN",
+      "explanation": "The corrected driver_ranking.json shows DVR-010 = Credit Percentage of AUM (moderate_signal, avg|rho|=0.184). G&A/FEAUM is DVR-005 (moderate_signal, max|rho|=-0.448, below 0.50 stable threshold). The rho values cited (-0.62, -0.51) are from the preliminary run2 version, not the corrected run4 analysis. G&A/FEAUM is not a stable driver in run4.",
+      "correction_required": "Replace DVR-010 reference from 'G&A/FEAUM — stable value driver' to 'Credit % of AUM — moderate_signal'. Document that G&A/FEAUM maps to DVR-005 and is moderate_signal (max|rho|=-0.45, BH-non-significant)."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-003",
+      "file": "platform_profiles.json",
+      "location": "metadata.key_finding",
+      "claim_text": "Two stable value drivers confirmed in run4: DE/share (DVR-001) and G&A/FEAUM (DVR-010).",
+      "dimension": "invalid_premises",
+      "severity": "WARN",
+      "explanation": "The corrected correlation_results.json and driver_ranking.json both explicitly state 'stable_value_drivers: []' — no stable drivers identified in run4. This key_finding is factually incorrect against the evidence on disk.",
+      "correction_required": "Replace with: 'No stable value drivers confirmed in run4 (23-firm sample). Primary drivers are: DVR-001 Total AUM (multiple_specific, P/FRE rho=0.73), DVR-002 FRE Growth (multiple_specific, EV/FEAUM rho=-0.61), DVR-003 FEAUM (multiple_specific). DE/share is unsupported (max|rho|=0.28). G&A/FEAUM is moderate_signal (max|rho|=-0.45, DVR-005).'"
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-004",
+      "file": "platform_profiles.json",
+      "location": "metadata.improvements_from_base_run[0]",
+      "claim_text": "Added two new firms: FIRM-009 (TPG) and FIRM-015 (Hamilton Lane), both newly qualifying on DVR-001 (stable DE/share)",
+      "dimension": "invalid_premises",
+      "severity": "WARN",
+      "explanation": "DVR-001 in the corrected ranking is Total AUM, not DE/share. DE/share is unsupported in run4. TPG and HLNE were added to the peer set based on their DE/share profile — but DE/share's corrected DVR-ID is not DVR-001 and it is not a stable driver.",
+      "correction_required": "Update qualification criterion language: TPG and HLNE were added for high DE/share quality (a relevant earnings-quality signal) but DE/share (MET-VD-001) is classified unsupported in run4 due to structural comparability issues (PGHN outlier). Their inclusion rationale should reference PE/solutions model analogy rather than DVR-001 stable-driver qualification."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-005",
+      "file": "platform_profiles.json",
+      "location": "FIRM-002 (BAM) section_4_value_driver_performance.scale_efficiency_position",
+      "claim_text": "BAM occupies a rare dual-Q1 position on both stable drivers: Q1 on DVR-010 (G&A efficiency) and Q2 on DVR-001 (DE/share quality).",
+      "dimension": "invalid_premises",
+      "severity": "WARN",
+      "explanation": "Neither DVR-010 nor DVR-001 as used here match the corrected driver_ranking.json IDs. In the corrected file: DVR-001 = Total AUM and DVR-010 = Credit % of AUM. The claim also asserts these are 'stable drivers' — a classification that does not exist in run4 (stable_value_drivers is empty).",
+      "correction_required": "Rewrite to reference correct DVR-IDs and correct classifications. BAM's efficiency profile references G&A/FEAUM (DVR-005, moderate_signal) and the earnings narrative should reference DE/share as 'unsupported signal' or 'earnings quality dimension' without asserting stable driver status."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-006",
+      "file": "platform_profiles.json",
+      "location": "FIRM-004 (KKR) section_4_value_driver_performance.scale_efficiency_position",
+      "claim_text": "KKR mirrors Apollo and BAM in the efficiency-dominant cluster: Q1 on both stable efficiency drivers (DVR-010 and DVR-009) and Q4 on both scale drivers.",
+      "dimension": "invalid_premises",
+      "severity": "WARN",
+      "explanation": "DVR-010 and DVR-009 are described as 'stable efficiency drivers' — but no stable drivers exist in run4. DVR-009 (Comp&Ben/FEAUM) is moderate_signal (max|rho|=-0.407). DVR-010 as used here (G&A/FEAUM) maps to DVR-005 in the corrected file, also moderate_signal.",
+      "correction_required": "Replace 'stable efficiency drivers' with 'efficiency-correlated moderate_signal drivers'. Maintain the efficiency narrative but remove stable-driver classification."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-007",
+      "file": "platform_profiles.json",
+      "location": "FIRM-006 (CG) cautionary_case_rationale",
+      "claim_text": "Q1 on DVR-010 (stable, G&A efficiency) and DVR-009 (efficiency)",
+      "dimension": "invalid_premises",
+      "severity": "WARN",
+      "explanation": "DVR-010 is labeled '(stable, G&A efficiency)' — incorrect. No stable drivers in run4. G&A/FEAUM maps to DVR-005 (moderate_signal) in corrected file.",
+      "correction_required": "Replace '(stable, G&A efficiency)' with '(moderate_signal, G&A efficiency)'."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-008",
+      "file": "platform_profiles.json",
+      "location": "FIRM-009 (TPG) non_obvious_peer_note",
+      "claim_text": "Added to run4 peer set on strength of Q1 on DVR-001 (stable, DE/share at $5.8/share FY2025).",
+      "dimension": "invalid_premises",
+      "severity": "WARN",
+      "explanation": "DVR-001 in the corrected ranking is Total AUM, not DE/share. DE/share is unsupported in run4 (max|rho|=0.28). Labeling DE/share as 'stable' and mapping it to DVR-001 both conflict with the authoritative on-disk evidence.",
+      "correction_required": "Replace 'Q1 on DVR-001 (stable, DE/share)' with 'strong DE/share quality ($5.8/share FY2025; DE/share classified unsupported in run4 cross-section due to structural outliers, but high absolute per-share earnings remain analytically relevant as an earnings quality signal)'."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-009",
+      "file": "platform_profiles.json",
+      "location": "FIRM-009 (TPG) section_4_value_driver_performance.valuation_summary",
+      "claim_text": "Q1 on both DVR-001 and DVR-002 (the two most growth-sensitive stable and multiple-specific drivers) positions TPG for forward multiple expansion as the integration matures.",
+      "dimension": "invalid_premises",
+      "severity": "WARN",
+      "explanation": "DVR-001 as referenced here (DE/share) is not a stable driver in run4. The claim groups DVR-001 and DVR-002 as 'stable and multiple-specific drivers' — but run4 has zero stable drivers. DVR-001 in the corrected file is Total AUM (TPG is Q3, not Q1).",
+      "correction_required": "Remove 'stable' classification. Reframe as: 'Strong DE/share quality (unsupported in cross-section but analytically relevant) and Q1 FRE growth (DVR-002, multiple-specific).' Note TPG is Q3 on DVR-001 (Total AUM)."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-010",
+      "file": "platform_profiles.json",
+      "location": "FIRM-015 (HLNE) non_obvious_peer_note",
+      "claim_text": "Added to run4 peer set on strength of Q1 on DVR-001 (stable, DE/share). DVR-001 confirmed as stable driver in run4.",
+      "dimension": "invalid_premises",
+      "severity": "WARN",
+      "explanation": "Direct contradiction of the authoritative driver_ranking.json on disk: DVR-001 is Total AUM (multiple_specific), not DE/share. DE/share is unsupported. 'DVR-001 confirmed as stable driver in run4' is factually wrong per all three evidence files (correlation_results.json, driver_ranking.json).",
+      "correction_required": "Replace with: 'Added to run4 peer set for high DE/share quality (capital-light advisory model). Note: DE/share (MET-VD-001) is classified unsupported in run4 cross-section (max|rho|=0.28) due to structural outliers; HLNE is included as a qualitative earnings quality analog rather than on a quantitative stable-driver criterion.'"
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-011",
+      "file": "platform_profiles.json",
+      "location": "FIRM-024 (ANTIN) non_obvious_peer_note",
+      "claim_text": "Q1 on DVR-001 (stable, DE/share) confirmed in run4.",
+      "dimension": "invalid_premises",
+      "severity": "WARN",
+      "explanation": "Same error as FLAGS 008 and 010. DVR-001 in corrected file is Total AUM. DE/share is unsupported. 'Stable' classification is incorrect.",
+      "correction_required": "Remove 'stable' label and DVR-001 mapping to DE/share. Reframe as DE/share earnings quality context without stable-driver assertion."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-012",
+      "file": "platform_profiles.json",
+      "location": "FIRM-019 (PAX) section_4_value_driver_performance.scale_efficiency_position",
+      "claim_text": "Q2 on DVR-001 (DE/share) is a relative strength: per-share earnings quality is above the median, which is the most important stable driver for multiple re-rating.",
+      "dimension": "confidence_miscalibration",
+      "severity": "WARN",
+      "explanation": "Describes DVR-001/DE/share as 'the most important stable driver' — but DE/share is unsupported in run4 (max|rho|=0.28) and no stable drivers exist. This overstates both the driver's classification and its re-rating importance.",
+      "correction_required": "Replace 'most important stable driver' with 'earnings quality dimension (classified unsupported in run4 cross-section, but analytically relevant as a forward valuation quality signal)'. Remove assertion of stable-driver primacy."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-013",
+      "file": "asset_class_analysis.json",
+      "location": "metadata.primary_analytical_frame",
+      "claim_text": "Two stable value drivers confirmed for run4: DVR-001 (DE/share, avg |rho|=0.455) and DVR-010 (G&A/FEAUM, avg |rho|=0.439). The dual-driver frame requires each vertical analysis to address both.",
+      "dimension": "invalid_premises",
+      "severity": "BLOCK",
+      "explanation": "This is the core framing error for the entire asset_class_analysis.json. The corrected driver_ranking.json and correlation_results.json both confirm: stable_value_drivers=[], zero stable drivers. DE/share avg|rho|=0.28 (not 0.455). G&A/FEAUM max|rho|=-0.448 (not 0.439 avg across 2 multiples). Both DVR-001 and DVR-010 are misidentified. The entire asset class analysis was framed around incorrect driver data. The rho values cited do not appear in the corrected correlation_results.json.",
+      "correction_required": "FULL REVISION REQUIRED. The asset_class_analysis.json analytical frame must be rebuilt around the corrected driver structure: Primary drivers are DVR-001 (Total AUM, multiple_specific), DVR-002 (FRE Growth, multiple_specific), DVR-003 (FEAUM, multiple_specific). No stable drivers. G&A/FEAUM is moderate_signal (DVR-005). DE/share is unsupported. Per-vertical analysis should shift focus to scale (AUM/FEAUM) as the primary value driver narrative."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-014",
+      "file": "asset_class_analysis.json",
+      "location": "metadata.driver_ranking_reference.stable_value_drivers",
+      "claim_text": "stable_value_drivers: ['DVR-001 (DE/share) — avg |rho|=0.455; rho on P/FRE=+0.518, rho on P/DE=+0.561; BH-significant on both', 'DVR-010 (G&A/FEAUM) — avg |rho|=0.439; rho on P/FRE=-0.618, rho on P/DE=-0.515; BH-significant on both']",
+      "dimension": "invalid_premises",
+      "severity": "BLOCK",
+      "explanation": "All values in this field contradict the authoritative evidence: (1) stable_value_drivers is empty in run4 per correlation_results.json; (2) DE/share (MET-VD-001) has max|rho|=0.28, not 0.518/0.561; (3) G&A/FEAUM max|rho|=-0.448, not -0.618; (4) Neither metric achieves BH-significance in the corrected analysis — only 2 correlations achieve BH-significance in run4 (COR-004 and COR-007, which are AUM/FEAUM on P/FRE). These rho values appear to originate from the preliminary run2/run3 analysis that was superseded.",
+      "correction_required": "Replace stable_value_drivers list with empty array. Move to multiple_specific_drivers: DVR-001 Total AUM (avg|rho|=0.462, BH-sig on P/FRE), DVR-002 FRE Growth (avg|rho|=0.419, BH-sig on EV/FEAUM), DVR-003 FEAUM (avg|rho|=0.346). Moderate signal: DVR-005 G&A/FEAUM (max|rho|=-0.448)."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-015",
+      "file": "asset_class_analysis.json",
+      "location": "metadata.improvements_over_base_run[0]",
+      "claim_text": "Dual stable driver frame: DVR-001 (DE/share) re-confirmed alongside DVR-010 (G&A/FEAUM). Base run analyzed only DVR-010. Run4 integrates both.",
+      "dimension": "invalid_premises",
+      "severity": "BLOCK",
+      "explanation": "There is no 'dual stable driver frame' in run4. Neither DE/share nor G&A/FEAUM achieves stable classification. This improvement narrative is entirely built on incorrect data.",
+      "correction_required": "Replace with: 'Run4 expands from a 2-driver stable-driver frame (run2) to a no-stable-driver result (run4 23-firm sample). Primary drivers are scale-based (DVR-001 Total AUM, DVR-003 FEAUM). Analysis updated to reflect that scale is the dominant value driver, not earnings quality or efficiency metrics at current sample size.'"
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-016",
+      "file": "asset_class_analysis.json",
+      "location": "asset_classes[0] (Credit) vertical_specific_metric_drivers DVR-001",
+      "claim_text": "driver_id: 'DVR-001', driver_name: 'DE/share', salience_for_vertical: 'HIGH'",
+      "dimension": "invalid_premises",
+      "severity": "WARN",
+      "explanation": "DVR-001 in the corrected driver_ranking.json is Total AUM (multiple_specific), not DE/share. Using the stale ID creates an inconsistency between the vertical analysis and the authoritative driver ranking.",
+      "correction_required": "If the intent is to analyze DE/share's salience for the credit vertical, reference DE/share by metric name (MET-VD-001) and its unsupported classification, not by DVR-001. For DVR-001 (Total AUM), add the correct driver_name and salience assessment."
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-017",
+      "file": "asset_class_analysis.json",
+      "location": "pax_valuation_re_rating_roadmap.framework",
+      "claim_text": "The re-rating path requires improving on both stable value drivers simultaneously — DE/share improvement (DVR-001) does NOT require first solving G&A/FEAUM (DVR-010). They can advance in parallel.",
+      "dimension": "invalid_premises",
+      "severity": "BLOCK",
+      "explanation": "The entire re-rating roadmap is framed around 'both stable value drivers' — a framing that has no basis in the corrected evidence. No stable drivers exist in run4. The re-rating narrative should be reframed around scale accumulation (DVR-001 Total AUM, the only BH-significant driver) and moderate-signal efficiency drivers.",
+      "correction_required": "Reframe roadmap around scale as primary mechanism: 'The re-rating path is primarily scale-driven — each $10B of FEAUM growth improves PAX's quartile on DVR-001 (Total AUM, multiple_specific) and mechanically compresses per-unit cost ratios (DVR-005 G&A/FEAUM, DVR-009 Comp&Ben/FEAUM, both moderate_signal). DE/share quality (unsupported cross-sectionally but analytically relevant) can improve in parallel through GPMS scaling and infrastructure/PE carry crystallization.'"
+    },
+    {
+      "claim_id": "AUDIT-CP2-FLAG-018",
+      "file": "asset_class_analysis.json",
+      "location": "pax_valuation_re_rating_roadmap.key_insight",
+      "claim_text": "The STEP/HLNE/Antin finding — that mid-scale specialists achieve Q1 DE/share WITHOUT Q1 G&A/FEAUM — reframes PAX's valuation challenge. PAX does not need to resolve its G&A/FEAUM structural constraint before achieving DE/share improvement.",
+      "dimension": "confidence_miscalibration",
+      "severity": "WARN",
+      "explanation": "The observational finding about STEP/HLNE/ANTIN achieving high DE/share at mid-scale is grounded in evidence (these firms do have high per-share earnings). However, asserting this 'reframes PAX's valuation challenge' via two stable drivers overstates the causal inference: in run4, DE/share is unsupported cross-sectionally. The claim implies that improving DE/share will drive valuation re-rating — but the correlation evidence does not support this at the required significance level.",
+      "correction_required": "Maintain the observational STEP/HLNE/ANTIN finding as a qualitative analog while hedging the causal inference: 'The pattern is consistent with a hypothesis that DE/share quality supports valuation quality at mid-scale — however DE/share is classified unsupported in run4 (max|rho|=0.28), and this inference should be treated as suggestive rather than empirically confirmed.'"
+    }
+  ],
+  "blocked_claims": [
+    {
+      "claim_id": "AUDIT-CP2-BLOCK-001",
+      "references": ["AUDIT-CP2-FLAG-013", "AUDIT-CP2-FLAG-014", "AUDIT-CP2-FLAG-015", "AUDIT-CP2-FLAG-017"],
+      "file": "asset_class_analysis.json",
+      "scope": "metadata.primary_analytical_frame + metadata.driver_ranking_reference.stable_value_drivers + metadata.improvements_over_base_run + pax_valuation_re_rating_roadmap",
+      "block_reason": "The analytical frame of asset_class_analysis.json is built on a factually incorrect premise: that run4 confirmed two stable value drivers (DE/share and G&A/FEAUM). The corrected driver_ranking.json and correlation_results.json both unambiguously show zero stable drivers. The rho values cited in the metadata do not match any value in the corrected evidence files. This is not a minor labeling issue — it is the founding premise of the entire analysis. The playbook agent must not use the asset_class_analysis.json dual-stable-driver framing as-is. The per-vertical analysis observations (economic models, transferability scores, emerging trends) are largely sound and can be retained, but all framing language asserting DE/share and G&A/FEAUM as stable drivers must be corrected before the playbook proceeds.",
+      "path_forward": "The platform-analyst or vertical-analyst must issue a corrected asset_class_analysis.json metadata section and pax_valuation_re_rating_roadmap reflecting the corrected driver structure. The per-vertical observations (sub_type analysis, transferability scores, economic models) can be retained with the following targeted corrections: (1) rename DVR-001 references in vertical_specific_metric_drivers to DE/share by metric name; (2) reframe all 'stable driver' language as 'earnings quality dimension (unsupported)' or 'moderate_signal efficiency metric'; (3) rewrite the pax_valuation_re_rating_roadmap to center scale accumulation as the primary empirically supported lever."
+    },
+    {
+      "claim_id": "AUDIT-CP2-BLOCK-002",
+      "references": ["AUDIT-CP2-FLAG-001", "AUDIT-CP2-FLAG-002", "AUDIT-CP2-FLAG-003"],
+      "file": "platform_profiles.json",
+      "scope": "metadata.driver_ranking_reference + metadata.key_finding",
+      "block_reason": "The platform_profiles.json metadata block presents the same incorrect driver classification as the asset_class_analysis.json. All 12 firm profiles downstream use DVR-001 as 'DE/share' and DVR-010 as 'G&A/FEAUM' with stable-driver classifications that do not exist in run4. While individual firm observations about their efficiency and earnings quality are largely sound, the DVR-ID mapping and stability classification pervades the entire file. The playbook agent must receive corrected DVR-ID mappings before generating playbook content, or the playbook will propagate the same incorrect classifications.",
+      "path_forward": "Platform-analyst must issue a corrected metadata block for platform_profiles.json with: (1) corrected DVR-001 = Total AUM (multiple_specific); (2) corrected DVR-005 = G&A/FEAUM (moderate_signal); (3) zero stable drivers; (4) updated firm-level DVR-ID references in section_4 to match corrected IDs. The substantive firm-level narrative in sections 1-3 and 5-7 does not require revision — only the section_4 driver_scores DVR-IDs and any associated 'stable driver' labels."
+    }
+  ],
+  "dvr_id_reconciliation_flags": [
+    {
+      "flag_id": "DVR-RECON-001",
+      "description": "DVR-001 ID collision: deep-dive files use DVR-001 for DE/share (stale); corrected driver_ranking.json uses DVR-001 for Total AUM.",
+      "stale_mapping": "DVR-001 = DE/share (stable value driver, avg|rho|=0.455)",
+      "corrected_mapping": "DVR-001 = Total AUM (multiple_specific, avg|rho|=0.462, BH-significant on P/FRE)",
+      "de_share_corrected_status": "DE/share (MET-VD-001) = unsupported, max|rho|=0.28 across all 3 multiples",
+      "impact": "All 12 firm profiles in platform_profiles.json reference DVR-001 as DE/share in section_4 driver_scores. All vertical analyses in asset_class_analysis.json use DVR-001 for DE/share in vertical_specific_metric_drivers. Non-obvious peer qualifications for TPG, HLNE, ANTIN all cite DVR-001 (stable, DE/share).",
+      "files_affected": ["platform_profiles.json — metadata.driver_ranking_reference, all section_4.driver_scores[DVR-001], all non_obvious_peer_note references", "asset_class_analysis.json — metadata.driver_ranking_reference, all vertical_specific_metric_drivers[DVR-001]"],
+      "instances_affected": "12 firm profiles x 1 DVR-001 entry = 12 section_4 entries; 3 non_obvious_peer_notes; 2 metadata blocks; multiple scale_efficiency_position narrative strings"
+    },
+    {
+      "flag_id": "DVR-RECON-002",
+      "description": "DVR-010 ID collision: deep-dive files use DVR-010 for G&A/FEAUM (stale, labeled stable); corrected driver_ranking.json uses DVR-010 for Credit Percentage of AUM (moderate_signal). G&A/FEAUM correctly maps to DVR-005.",
+      "stale_mapping": "DVR-010 = G&A/FEAUM (stable value driver, avg|rho|=0.439)",
+      "corrected_mapping": "DVR-010 = Credit % of AUM (moderate_signal, avg|rho|=0.184); G&A/FEAUM = DVR-005 (moderate_signal, max|rho|=-0.448, not BH-significant)",
+      "ga_feaum_corrected_status": "G&A/FEAUM is DVR-005, moderate_signal — significant on P/FRE (rho=-0.448, p=0.037) but not BH-corrected-significant",
+      "impact": "All 12 firm profiles reference DVR-010 as G&A/FEAUM in section_4 driver_scores. Carlyle cautionary_case_rationale cites 'DVR-010 (stable, G&A efficiency)'. BAM scale_efficiency_position references 'both stable drivers: Q1 on DVR-010'.",
+      "files_affected": ["platform_profiles.json — metadata.driver_ranking_reference, all section_4.driver_scores[DVR-010], cautionary case rationales", "asset_class_analysis.json — metadata.driver_ranking_reference, vertical analyses referencing DVR-010 as G&A/FEAUM"],
+      "instances_affected": "12 firm profiles x 1 DVR-010 entry = 12 section_4 entries; 2 metadata blocks; multiple scale_efficiency_position narrative strings"
+    },
+    {
+      "flag_id": "DVR-RECON-003",
+      "description": "Stable driver classification error pervading both files: both files assert run4 'confirmed' or 're-confirmed' DE/share and G&A/FEAUM as stable value drivers. The corrected evidence shows stable_value_drivers=[] in run4.",
+      "corrected_finding": "Run4 has ZERO stable value drivers. The broader 23-firm sample (vs smaller run2 sample) reduces cross-sectional correlation signal due to structural heterogeneity across European and EM-based managers. DE/share reclassified from stable (run2) to unsupported (run4); G&A/FEAUM reclassified from stable (run2) to moderate_signal (run4).",
+      "rho_discrepancy_detail": {
+        "de_share_cited_in_deep_dives": "rho P/FRE=+0.52, rho P/DE=+0.56 (labeled BH-significant)",
+        "de_share_in_corrected_correlation_results": "max|rho|=0.28 across all 3 multiples; classified unsupported",
+        "ga_feaum_cited_in_deep_dives": "rho P/FRE=-0.62, rho P/DE=-0.51 (labeled BH-significant)",
+        "ga_feaum_in_corrected_correlation_results": "rho P/FRE=-0.448 (p=0.037, not BH-significant); rho P/DE=-0.349 (p=0.132); classified moderate_signal"
+      }
+    },
+    {
+      "flag_id": "DVR-RECON-004",
+      "description": "DVR-002 mapping is consistent between files: both deep-dive files and the corrected driver_ranking.json map DVR-002 to FRE Growth YoY (multiple_specific). No correction required for DVR-002.",
+      "stale_mapping": "DVR-002 = FRE Growth YoY (multiple-specific driver)",
+      "corrected_mapping": "DVR-002 = FRE Growth YoY (multiple_specific, avg|rho|=0.419, BH-significant on EV/FEAUM)",
+      "status": "CONSISTENT — no correction required"
+    },
+    {
+      "flag_id": "DVR-RECON-005",
+      "description": "DVR-003 mapping inconsistency: deep-dive files use DVR-003 for Total AUM; corrected driver_ranking.json uses DVR-003 for Fee-Earning AUM. DVR-001 = Total AUM in corrected file.",
+      "stale_mapping": "DVR-003 = Total AUM",
+      "corrected_mapping": "DVR-003 = Fee-Earning AUM (multiple_specific, avg|rho|=0.346); DVR-001 = Total AUM (multiple_specific, avg|rho|=0.462)",
+      "impact": "Moderate — the narratives about AUM and FEAUM scale are substantively correct; the DVR-ID labels are swapped. All firm-level DVR-003/DVR-004 quartile assessments should be reconciled against corrected IDs.",
+      "status": "FLAG — requires reconciliation in playbook output, no blocking issue beyond DVR-001/DVR-010"
+    },
+    {
+      "flag_id": "DVR-RECON-006",
+      "description": "DVR-009 mapping: deep-dive files use DVR-009 for Comp&Ben/FEAUM. Corrected driver_ranking.json also uses DVR-009 for Comp&Ben/FEAUM (moderate_signal). Consistent.",
+      "status": "CONSISTENT — no correction required"
+    }
+  ],
+  "passed_claims_summary": [
+    {
+      "category": "Firm-level action evidence (sections 1-3, sections 5-7)",
+      "assessment": "PASSED — firm-level strategic priorities, key actions, and transferable insights are grounded in strategy_profiles_final.json and strategic_actions_final.json. Source citations (PS-VD-NNN, ACT-VD-NNN) are present and internally consistent. Technology section assessments (section_7) are appropriately hedged with INFERRED flags where applicable.",
+      "examples": "APO AtlasX (ACT-VD-003, INFERRED), BAM internalization (ACT-VD-010, documented), KKR Global Atlantic (ACT-VD-015, documented), TPG Angelo Gordon (ACT-VD-023, documented), STEP Cobalt (ACT-VD-029, documented), HLNE Equity Advantage (ACT-VD-036, documented), CVC IPO (ACT-VD-031, documented), PAX GPMS (ACT-VD-044, documented), ANTIN Fund VI (ACT-VD-057, documented)"
+    },
+    {
+      "category": "PAX quartile identification (FIRM-019 vs FIRM-023)",
+      "assessment": "PASSED — the profile correctly identifies PAX as FIRM-019 (not FIRM-023, which is Eurazeo/RF). This self-correction was properly noted.",
+      "evidence": "platform_profiles.json section_4 DVR-001 context note explicitly flags the FIRM-023 vs FIRM-019 distinction"
+    },
+    {
+      "category": "Consulting source enforcement",
+      "assessment": "PASSED — consulting_context_slim.json is used only for market-level context (distribution_context, market_context) as declared. No firm-specific metrics or causal claims rely solely on PS-VD-9xx sources. The metadata explicitly states the consulting_rule.",
+      "evidence": "metadata.consulting_rule; asset_class_analysis market_structure sections cite PS-VD-902/903 for market context only, not firm-specific claims"
+    },
+    {
+      "category": "Operational prerequisite evidence",
+      "assessment": "PASSED — operational prerequisites in transferable insights are grounded in disclosed corporate actions, regulatory filings, and earnings disclosures. No operational prerequisite is based solely on job postings or vendor PRs.",
+      "examples": "APO Athene prerequisites (regulatory approvals, actuarial capability), KKR Global Atlantic prerequisites (20+ state insurance clearances), STEP Cobalt prerequisites ($500B+ total capital responsibility)"
+    },
+    {
+      "category": "Credit vertical analysis per-sub-type observations",
+      "assessment": "PASSED — CLO economics, direct lending economics, insurance-integrated credit economic models are consistent with public market evidence. PAX transferability scores and reasoning are appropriate and internally consistent.",
+      "note": "The vertical analysis observations are substantively sound; only the DVR-ID framing layer requires correction per BLOCKS 001 and 002"
+    },
+    {
+      "category": "Confidence calibration on technology claims",
+      "assessment": "PASSED — AtlasX (APO) correctly marked INFERRED with hedged language. Cobalt (STEP, HLNE) correctly marked DIRECTLY DOCUMENTED. The confidence/hedging framework is applied consistently.",
+      "evidence": "Section_7 entries consistently distinguish INFERRED from DIRECTLY DOCUMENTED claims"
+    }
+  ],
+  "revision_instructions": {
+    "priority": "HIGH — playbook agent must not proceed until corrections are applied",
+    "required_before_playbook": [
+      "Correct platform_profiles.json metadata.driver_ranking_reference: DVR-001 = Total AUM, DVR-005 = G&A/FEAUM, zero stable drivers",
+      "Correct platform_profiles.json metadata.key_finding to reflect zero stable drivers and corrected primary drivers",
+      "Correct all platform_profiles.json section_4.driver_scores entries: DVR-001 rows should be renamed to Total AUM with corrected quartile (per driver_ranking.json pax_quartile / firm quartile on AUM); DVR-010 rows should be renamed to G&A/FEAUM with corrected DVR-005 ID",
+      "Remove all 'stable' labels from DVR-001 (DE/share) and DVR-010 (G&A/FEAUM) references throughout platform_profiles.json",
+      "Correct asset_class_analysis.json metadata.primary_analytical_frame and metadata.driver_ranking_reference to reflect zero stable drivers",
+      "Rewrite asset_class_analysis.json pax_valuation_re_rating_roadmap with scale accumulation (DVR-001 Total AUM) as primary empirically supported lever",
+      "Update asset_class_analysis.json vertical_specific_metric_drivers to use corrected DVR-IDs or reference metrics by name",
+      "Apply INFERRED hedging language to all claims about DE/share driving valuation re-rating (not empirically supported at the required significance level in run4)"
+    ],
+    "can_retain_without_revision": [
+      "All firm-level narrative in sections 1-3 (identity, strategy, actions) across all 12 profiles",
+      "All section_6 transferable insights (evidence grounding is sound)",
+      "All section_7 technology assessments",
+      "All asset_class_analysis.json per-sub-type economic models, transferability scores, and emerging trends",
+      "Consulting source enforcement declarations",
+      "PAX FIRM-019 identification and quartile notes on DVR-004/DVR-009"
+    ]
+  },
+  "notes": "The root cause of the CP-2 blocking failures is that both deep-dive agents (platform-analyst and vertical-analyst) received a preliminary driver_ranking.json that reflected an intermediate run2/run3 state with two stable drivers (DE/share and G&A/FEAUM). The final corrected driver_ranking.json on disk (generated at 2026-03-11T07:30:00Z) supersedes those preliminary findings: the 23-firm sample yields zero stable drivers, DE/share is reclassified unsupported (max|rho|=0.28), and G&A/FEAUM is moderate_signal (max|rho|=-0.448). The substantive firm-level analysis is largely sound and the deep-dive work is not wasted — it requires a targeted correction pass on the framing layer (metadata blocks, DVR-ID labels, stable-driver classification language) rather than a full rewrite. The per-vertical sub-type analysis, firm transferable insights, and PAX-specific re-rating levers are analytically correct in substance and can be retained with hedged language adjustments."
+}

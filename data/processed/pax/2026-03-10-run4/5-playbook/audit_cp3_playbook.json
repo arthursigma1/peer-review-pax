@@ -1,0 +1,372 @@
+{
+  "checkpoint": "CP-3",
+  "audited_at": "2026-03-11",
+  "auditor": "claim-auditor",
+  "run_id": "2026-03-10-run4",
+  "files_audited": [
+    "data/processed/pax/2026-03-10-run4/5-playbook/value_principles.md",
+    "data/processed/pax/2026-03-10-run4/5-playbook/platform_playbook.json",
+    "data/processed/pax/2026-03-10-run4/5-playbook/asset_class_playbooks.json"
+  ],
+  "evidence_files_used": [
+    "data/processed/pax/2026-03-10-run4/4-deep-dives/platform_profiles.json",
+    "data/processed/pax/2026-03-10-run4/4-deep-dives/asset_class_analysis.json",
+    "data/processed/pax/2026-03-10-run4/3-analysis/driver_ranking.json"
+  ],
+  "verdict": "BLOCKED",
+  "verdict_reason": "Three blocking conditions found: (1) All 3 THEME-NNN entries in platform_playbook.json are missing all 8 required canonical fields (theme_name, actions, firms_involved, What_Is_Observed, Why_It_May_Matter, Coverage_Gap, Evidence_Strength, source_citations). (2) PLAY-RE-002 in asset_class_playbooks.json uses PS-VD-903 as sole evidence for a firm-specific factual claim (OWL Oak Street $30B RE credit) — consulting source enforcement violation. (3) All 5 ANTI-NNN entries in asset_class_playbooks.json are missing mandatory fields (operational_and_tech_prerequisites, failure_modes_and_margin_destroyers, evidence_strength) even though equivalent-function fields exist under different names — schema mismatch requires resolution before final report generation.",
+  "total_claims_reviewed": 57,
+  "claims_breakdown": {
+    "structured_play_claims_platform_playbook": 16,
+    "structured_play_claims_asset_class_playbooks": 20,
+    "structured_anti_pattern_claims": 3,
+    "value_principles_statistical_assertions": 18
+  },
+  "passed_claims": 51,
+  "flagged_claims": [
+    {
+      "claim_id": "CLM-PLAY-002-02",
+      "location": "platform_playbook.json / PLAY-002",
+      "audit_category": "confidence_miscalibration",
+      "severity": "WARN",
+      "finding": "Claim states 'Corporate simplification made BAM's scale advantage visible to public market investors, contributing to P/FRE re-rating.' The word 'contributing' implies a causal mechanism. The grounding notes this is 'Associative' with an alternative explanation (infrastructure megatrend positioning), but the claim text lacks the explicit hedging ('appears to', 'may have') applied uniformly to other associative claims in this file. Inconsistent confidence treatment relative to peer claims.",
+      "required_correction": "Replace 'contributing to P/FRE re-rating' with 'may have contributed to P/FRE re-rating, though infrastructure megatrend positioning is an alternative explanation'."
+    },
+    {
+      "claim_id": "CLM-PLAY-RE002-01",
+      "location": "asset_class_playbooks.json / PLAY-RE-002",
+      "audit_category": "consulting_source_enforcement",
+      "severity": "BLOCK",
+      "finding": "Claim states 'Blue Owl Oak Street manages $30B of RE credit including net lease and sale-leaseback strategies providing recurring management fee income.' Source citation is PS-VD-903 ONLY — a consulting context source. OWL is not in platform_profiles.json (not in the 12-firm profiled set). PS-VD-903 is a market-context source (allowed_usage: market_context, distribution_context). Using it as primary evidence for a firm-specific $30B AUM claim violates the consulting source rule: 'no PLAY or recommendation uses PS-VD-9xx as sole evidence for firm-specific claims.' Confidence score is listed as 2 with note 'treat as directional' — but the claim is presented factually and could flow into final report as a factual figure.",
+      "required_correction": "Either (a) add OWL 10-K or investor presentation as primary source for the $30B figure, or (b) downgrade the claim to market-context language: 'Blue Owl's Oak Street unit has developed a net lease and sale-leaseback strategy that, based on publicly reported market context, has reportedly reached significant scale — though this figure is not directly sourced from OWL primary disclosures in this analysis.'"
+    },
+    {
+      "claim_id": "ANTI-INF-001-title",
+      "location": "asset_class_playbooks.json / ANTI-INF-001",
+      "audit_category": "confidence_miscalibration",
+      "severity": "WARN",
+      "finding": "ANTI-INF-001 title reads 'Pure-Play Infrastructure Concentration Without DE/Share Margin Discipline.' DE/share (DVR-001 in run2, remapped) is classified UNSUPPORTED in run4 (max|rho|=0.28, all multiples). The body text hedges this appropriately ('indirectly supporting DE/share') but the title uses DE/share as an anchor concept in a way that could mislead readers into treating it as a confirmed driver in this analysis. The anti-pattern correctly maps to DVR-005 (G&A/FEAUM) in its driver_id field.",
+      "required_correction": "Retitle to 'Pure-Play Infrastructure Concentration Without G&A Efficiency Discipline' or add parenthetical '(DE/share: analytically relevant, not statistically confirmed in this cross-section)' to make the epistemic status explicit."
+    }
+  ],
+  "blocked_claims": [
+    {
+      "block_id": "BLOCK-001",
+      "location": "platform_playbook.json / THEME-001, THEME-002, THEME-003 (emerging_themes section)",
+      "audit_category": "mandatory_field_completeness",
+      "severity": "BLOCK",
+      "finding": "All 3 THEME-NNN entries in platform_playbook.json are missing all 8 canonical required fields: theme_name, actions, firms_involved, What_Is_Observed, Why_It_May_Matter, Coverage_Gap, Evidence_Strength, source_citations. The themes are present under non-canonical field names: 'title' (not 'theme_name'), 'relevant_actions' (not 'actions'), 'evidence_grounding' (not 'Evidence_Strength' / 'source_citations'). The 'firms_involved', 'What_Is_Observed', 'Why_It_May_Matter', and 'Coverage_Gap' fields are entirely absent. Per CP-3 audit rules, any THEME lacking these canonical fields triggers a hard block.",
+      "themes_affected": ["THEME-001", "THEME-002", "THEME-003"],
+      "required_correction": "Restructure all 3 THEME entries to include the 8 canonical fields. Map 'title' to 'theme_name', populate 'firms_involved' from evidence, split 'description' into 'What_Is_Observed' and 'Why_It_May_Matter', add 'Coverage_Gap' indicating what is not yet confirmed, map 'evidence_grounding' to both 'Evidence_Strength' and 'source_citations'."
+    },
+    {
+      "block_id": "BLOCK-002",
+      "location": "asset_class_playbooks.json / ANTI-C-001, ANTI-PE-001, ANTI-INF-001, ANTI-RE-001, ANTI-GPS-001",
+      "audit_category": "mandatory_field_completeness",
+      "severity": "BLOCK",
+      "finding": "All 5 ANTI-NNN entries in asset_class_playbooks.json are missing the three mandatory canonical fields: operational_and_tech_prerequisites, failure_modes_and_margin_destroyers, evidence_strength. The anti-patterns contain functionally related content under non-canonical field names ('symptoms', 'margin_destroyers', 'why_it_fails') but the mandatory named fields are absent. The audit rule requires these EXACT field names to block. Additionally, ANTI-C-001 and ANTI-INF-001 have empty source_citations arrays, providing no evidence grounding for firm-specific claims about European credit managers and Antin.",
+      "antis_affected": ["ANTI-C-001", "ANTI-PE-001", "ANTI-INF-001", "ANTI-RE-001", "ANTI-GPS-001"],
+      "required_correction": "Add the three canonical fields to each ANTI entry. Map existing content: 'margin_destroyers' content → 'failure_modes_and_margin_destroyers', 'symptoms' and operational context → 'operational_and_tech_prerequisites', derive evidence_strength from existing _claims grounding. For ANTI-C-001 and ANTI-INF-001: add primary source citations (e.g., ANTIN 10-K/IPO prospectus for ANTI-INF-001; European CLO market reports for ANTI-C-001)."
+    }
+  ],
+  "incomplete_fields": [
+    {
+      "file": "platform_playbook.json",
+      "element": "THEME-001",
+      "missing_canonical_fields": ["theme_name", "actions", "firms_involved", "What_Is_Observed", "Why_It_May_Matter", "Coverage_Gap", "Evidence_Strength", "source_citations"],
+      "fields_present_under_alternate_names": ["title", "description", "relevant_actions", "pax_applicability", "evidence_grounding"]
+    },
+    {
+      "file": "platform_playbook.json",
+      "element": "THEME-002",
+      "missing_canonical_fields": ["theme_name", "actions", "firms_involved", "What_Is_Observed", "Why_It_May_Matter", "Coverage_Gap", "Evidence_Strength", "source_citations"],
+      "fields_present_under_alternate_names": ["title", "description", "relevant_actions", "pax_applicability", "evidence_grounding"]
+    },
+    {
+      "file": "platform_playbook.json",
+      "element": "THEME-003",
+      "missing_canonical_fields": ["theme_name", "actions", "firms_involved", "What_Is_Observed", "Why_It_May_Matter", "Coverage_Gap", "Evidence_Strength", "source_citations"],
+      "fields_present_under_alternate_names": ["title", "description", "relevant_actions", "pax_applicability", "evidence_grounding"]
+    },
+    {
+      "file": "asset_class_playbooks.json",
+      "element": "ANTI-C-001",
+      "missing_canonical_fields": ["operational_and_tech_prerequisites", "failure_modes_and_margin_destroyers", "evidence_strength", "source_citations"],
+      "fields_present_under_alternate_names": ["symptoms", "margin_destroyers", "why_it_fails"]
+    },
+    {
+      "file": "asset_class_playbooks.json",
+      "element": "ANTI-PE-001",
+      "missing_canonical_fields": ["operational_and_tech_prerequisites", "failure_modes_and_margin_destroyers", "evidence_strength"],
+      "fields_present_under_alternate_names": ["symptoms", "margin_destroyers", "why_it_fails"],
+      "note": "source_citations present but sole evidence is PS-VD-902/903 (consulting sources)"
+    },
+    {
+      "file": "asset_class_playbooks.json",
+      "element": "ANTI-INF-001",
+      "missing_canonical_fields": ["operational_and_tech_prerequisites", "failure_modes_and_margin_destroyers", "evidence_strength", "source_citations"],
+      "fields_present_under_alternate_names": ["symptoms", "margin_destroyers", "why_it_fails"]
+    },
+    {
+      "file": "asset_class_playbooks.json",
+      "element": "ANTI-RE-001",
+      "missing_canonical_fields": ["operational_and_tech_prerequisites", "failure_modes_and_margin_destroyers", "evidence_strength"],
+      "fields_present_under_alternate_names": ["symptoms", "margin_destroyers", "why_it_fails"],
+      "note": "source_citations present"
+    },
+    {
+      "file": "asset_class_playbooks.json",
+      "element": "ANTI-GPS-001",
+      "missing_canonical_fields": ["operational_and_tech_prerequisites", "failure_modes_and_margin_destroyers", "evidence_strength"],
+      "fields_present_under_alternate_names": ["symptoms", "margin_destroyers", "why_it_fails"],
+      "note": "source_citations present but sole evidence is PS-VD-903 (consulting source)"
+    }
+  ],
+  "dvr_id_check": {
+    "driver_ranking_reference": "driver_ranking.json (2026-03-10-run4) — authoritative",
+    "run4_canonical_mappings": {
+      "DVR-001": "Total AUM",
+      "DVR-002": "FRE Growth YoY",
+      "DVR-003": "Fee-Earning AUM",
+      "DVR-004": "Permanent Capital %",
+      "DVR-005": "G&A/FEAUM"
+    },
+    "status": "WARN — stale metadata in evidence source files",
+    "critical_stale_files": [
+      {
+        "file": "platform_profiles.json (metadata section only)",
+        "stale_mapping": "DVR-001=DE/share (run2 mapping), DVR-010=G&A/FEAUM (run2 mapping). Metadata section was not updated to run4. Play bodies in platform_playbook.json correctly reference DVR-001=Total AUM throughout.",
+        "impact": "Low — platform_playbook.json metadata correctly annotates 'No stable_value_driver in run4' and correctly maps DVR-001=Total AUM in all play driver_id fields. The stale metadata is in an evidence input file, not in playbook outputs."
+      },
+      {
+        "file": "asset_class_analysis.json (metadata section only)",
+        "stale_mapping": "Metadata states 'Two stable value drivers confirmed for run4: DVR-001 (DE/share), DVR-010 (G&A/FEAUM)' — this is the run2 driver_ranking frame imported without update. asset_class_playbooks.json metadata correctly overrides this with run4 canonical mappings.",
+        "impact": "Low — asset_class_playbooks.json explicitly states 'DVR-IDs from that file that conflict with driver_ranking.json (run4) are superseded.' The playbook output file correctly applies run4 mappings. However, if a report-builder agent reads asset_class_analysis.json directly, it may encounter the stale frame."
+      }
+    ],
+    "play_level_dvr_status": "All 18 plays in platform_playbook.json and asset_class_playbooks.json correctly use run4 DVR-IDs (DVR-001=Total AUM). No play assigns DVR-001=DE/share in driver_id or driver_name fields.",
+    "minor_naming_variations": [
+      "PLAY-C-002, PLAY-INF-001, PLAY-RE-001, ANTI-RE-001 use driver_name='Permanent Capital Percentage' instead of canonical 'Permanent Capital %'. Not a blocking issue — DVR-004 ID is correct. Report Composer should normalize to canonical short name."
+    ]
+  },
+  "sycophantic_fabrication_check": {
+    "status": "PASSED",
+    "finding": "No claims found that assert impressive outcomes without evidence basis. All factual claims at confidence_score=3 are grounded in publicly disclosed sources (10-K filings, investor presentations). No market-sizing claims use fabricated figures — market size citations reference Preqin reports or Apollo management estimates with explicit source tags."
+  },
+  "confidence_miscalibration_check": {
+    "status": "WARN — 2 items",
+    "items": [
+      "CLM-PLAY-002-02: causal language 'contributing to P/FRE re-rating' without explicit hedge qualifier (see flagged_claims). Minor — requires text edit only.",
+      "ANTI-INF-001 title: DE/share referenced as anchor concept in title for an anti-pattern mapped to DVR-005 (G&A/FEAUM). DE/share is UNSUPPORTED in run4. Requires retitling or explicit caveat."
+    ]
+  },
+  "theme_causal_language_check": {
+    "status": "WARN — cannot fully assess due to missing canonical fields",
+    "finding": "THEME-001, THEME-002, THEME-003 use 'description' text rather than the canonical 'Why_It_May_Matter' field. The description text for THEME-001 states 'S&P 500 inclusion triggered an estimated $5-8B of passive fund buying, structurally broadening the passive-investor ownership base' — this is associative language but close to causal. Once canonical fields are populated (required by BLOCK-001), the 'Why_It_May_Matter' field must use hedged language and the 'What_Is_Observed' field must be factual-only. The $5-8B figure appears to be a market estimate and should be sourced."
+  },
+  "consulting_source_enforcement": {
+    "status": "BLOCK — 1 violation",
+    "violations": [
+      {
+        "play_id": "PLAY-RE-002",
+        "claim_id": "CLM-PLAY-RE002-01",
+        "claim_text": "Blue Owl Oak Street manages $30B of RE credit including net lease and sale-leaseback strategies providing recurring management fee income.",
+        "sole_consulting_source": "PS-VD-903",
+        "finding": "PS-VD-903 is a consulting context source. OWL is not in platform_profiles.json (not profiled in run4). The $30B RE credit AUM figure for OWL Oak Street is a firm-specific metric presented with confidence_score=2, grounded only in PS-VD-903 market context. This violates the rule: no PLAY or recommendation uses PS-VD-9xx as sole evidence for firm-specific claims."
+      }
+    ],
+    "note_on_anti_patterns": [
+      "ANTI-PE-001 uses PS-VD-902/903 for co-investment market statistics (33 cents per $1 commitment) — acceptable as market-level context per allowed_usage rules, not firm-specific metric.",
+      "ANTI-GPS-001 uses PS-VD-903 for GP stakes market concentration data (60-70% share) — acceptable as market context.",
+      "ANTI-RE-001 uses PS-VD-902 for BREIT redemption gate data — BREIT/BX is a publicly reported event; PS-VD-902 supplements publicly available information. Borderline acceptable but should ideally be supplemented with a primary news or regulatory source."
+    ]
+  },
+  "inferred_claims_for_hedging": [
+    {
+      "claim_id": "CLM-PLAY-001-02",
+      "file": "platform_playbook.json",
+      "play_id": "PLAY-001",
+      "claim_text": "The AUM addition moved TPG toward a higher DVR-001 quartile and is consistent with improved P/FRE positioning.",
+      "required_hedging": "Already uses 'is consistent with' — adequate. No additional hedging needed.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-002-02",
+      "file": "platform_playbook.json",
+      "play_id": "PLAY-002",
+      "claim_text": "Corporate simplification made BAM's scale advantage visible to public market investors, contributing to P/FRE re-rating.",
+      "required_hedging": "Change 'contributing to P/FRE re-rating' to 'may have contributed to P/FRE re-rating' to match the grounding's associative characterization.",
+      "status": "NEEDS_EDIT"
+    },
+    {
+      "claim_id": "CLM-PLAY-003-02",
+      "file": "platform_playbook.json",
+      "play_id": "PLAY-003",
+      "claim_text": "Insurance float integration appears to have accelerated AUM growth beyond what LP fundraising alone would have supported, consistent with the DVR-001 scale premium.",
+      "required_hedging": "Already hedged with 'appears to have' and 'consistent with'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-004-02",
+      "file": "platform_playbook.json",
+      "play_id": "PLAY-004",
+      "claim_text": "European expansion appears to have driven Q1 FRE growth positioning, which is consistent with exploratory DVR-002 evidence that high FRE growth suppresses trailing EV/FEAUM while priming forward multiple recovery.",
+      "required_hedging": "Already hedged with 'appears to have' and 'exploratory DVR-002 evidence'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-005-02",
+      "file": "platform_playbook.json",
+      "play_id": "PLAY-005",
+      "claim_text": "Permanent capital appears to contribute to P/FRE premium through earnings quality improvement, consistent with the BH-significant DVR-003 finding.",
+      "required_hedging": "Already hedged with 'appears to contribute'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-006-02",
+      "file": "platform_playbook.json",
+      "play_id": "PLAY-006",
+      "claim_text": "Wealth-channel expansion appears to improve FEAUM positioning and is associated with margin-accretive fee rate premiums, consistent with DVR-003 evidence.",
+      "required_hedging": "Already hedged with 'appears to improve' and 'is associated with'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-007-02",
+      "file": "platform_playbook.json",
+      "play_id": "PLAY-007",
+      "claim_text": "GP minority stakes may contribute to P/DE re-rating through permanent capital quality improvement, consistent with exploratory DVR-004 evidence — though this causal link is directional only and not statistically confirmed in this cross-section.",
+      "required_hedging": "Already hedged with 'may contribute', 'exploratory', 'directional only', 'not statistically confirmed'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-008-02",
+      "file": "platform_playbook.json",
+      "play_id": "PLAY-008",
+      "claim_text": "Credit mix rotation appears to have improved G&A/FEAUM positioning, consistent with the exploratory DVR-005 negative correlation — though BH correction failure means this directional relationship is not confirmed.",
+      "required_hedging": "Already hedged with 'appears to have', 'exploratory', 'BH correction failure', 'not confirmed'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-C001-02",
+      "file": "asset_class_playbooks.json",
+      "play_id": "PLAY-C-001",
+      "claim_text": "European expansion appears to have driven FEAUM improvement consistent with DVR-003's BH-significant P/FRE association, though causal attribution requires hedging.",
+      "required_hedging": "Already hedged with 'appears to have' and explicit caveat. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-C002-02",
+      "file": "asset_class_playbooks.json",
+      "play_id": "PLAY-C-002",
+      "claim_text": "BDC permanent capital may contribute to P/DE premium through earnings quality improvement, consistent with the exploratory DVR-004 directional evidence.",
+      "required_hedging": "Already hedged with 'may contribute' and 'exploratory'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-PE001-02",
+      "file": "asset_class_playbooks.json",
+      "play_id": "PLAY-PE-001",
+      "claim_text": "The AUM addition appears to have moved TPG toward a higher DVR-001 quartile, consistent with the BH-significant scale-to-P/FRE association.",
+      "required_hedging": "Already hedged with 'appears to have' and 'consistent with'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-PE002-02",
+      "file": "asset_class_playbooks.json",
+      "play_id": "PLAY-PE-002",
+      "claim_text": "Growth equity addition appears to support FRE growth trajectory consistent with DVR-002 exploratory evidence, though the causal link is not confirmed.",
+      "required_hedging": "Already hedged with 'appears to support', 'exploratory', 'not confirmed'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-INF001-02",
+      "file": "asset_class_playbooks.json",
+      "play_id": "PLAY-INF-001",
+      "claim_text": "Open-end infrastructure vehicles may contribute to P/DE premium through permanent capital quality improvement, consistent with exploratory DVR-004 evidence.",
+      "required_hedging": "Already hedged with 'may contribute' and 'exploratory'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-INF002-02",
+      "file": "asset_class_playbooks.json",
+      "play_id": "PLAY-INF-002",
+      "claim_text": "Thematic energy transition positioning appears to provide access to LP categories unavailable through traditional alt-manager positioning, consistent with DVR-001 scale signaling.",
+      "required_hedging": "Already hedged with 'appears to provide'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-RE001-02",
+      "file": "asset_class_playbooks.json",
+      "play_id": "PLAY-RE-001",
+      "claim_text": "A PAX FII may contribute to permanent capital % improvement consistent with the exploratory DVR-004 directional evidence — though causal confirmation requires a larger sample.",
+      "required_hedging": "Already hedged with 'may contribute', 'exploratory', 'causal confirmation requires'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-RE002-02",
+      "file": "asset_class_playbooks.json",
+      "play_id": "PLAY-RE-002",
+      "claim_text": "RE credit expansion appears to improve FEAUM positioning consistent with DVR-003's BH-significant P/FRE association, though causal attribution to RE credit specifically requires hedging.",
+      "required_hedging": "Already hedged with 'appears to improve' and explicit caveat. Adequate. Note: PLAY-RE-002 is still BLOCKED on consulting source enforcement for CLM-PLAY-RE002-01.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-GPS001-02",
+      "file": "asset_class_playbooks.json",
+      "play_id": "PLAY-GPS-001",
+      "claim_text": "GP minority stakes FEAUM growth appears to support DVR-001 AUM scale improvement consistent with the BH-significant scale-to-P/FRE association.",
+      "required_hedging": "Already hedged with 'appears to support' and 'consistent with'. Adequate.",
+      "status": "ADEQUATE"
+    },
+    {
+      "claim_id": "CLM-PLAY-GPS002-02",
+      "file": "asset_class_playbooks.json",
+      "play_id": "PLAY-GPS-002",
+      "claim_text": "Technology commercialization appears to contribute to FRE growth, consistent with exploratory DVR-002 evidence — though the causal chain is not confirmed.",
+      "required_hedging": "Already hedged with 'appears to contribute', 'exploratory', 'not confirmed'. Adequate.",
+      "status": "ADEQUATE"
+    }
+  ],
+  "value_principles_check": {
+    "status": "PASSED",
+    "finding": "value_principles.md correctly applies run4 DVR mappings throughout. DVR-001=Total AUM, DVR-003=FEAUM, no stable drivers. DE/share section explicitly labeled UNSUPPORTED with required hedged language guidance. All 5 principles include mandatory caution language on BH significance. PAX quartile positions are internally consistent with driver_ranking.json. Mandatory methodological disclaimers section is present and complete (7 items). No sycophantic fabrication or overconfident causal language detected in the statistical narrative."
+  },
+  "summary_by_audit_dimension": {
+    "sycophantic_fabrication": "PASSED — no fabricated or groundless impressive claims found",
+    "confidence_miscalibration": "WARN — 2 items: CLM-PLAY-002-02 (missing hedge qualifier), ANTI-INF-001 title (DE/share anchor without caveat)",
+    "mandatory_field_completeness_plays": "PASSED — all 18 plays have all 4 mandatory canonical fields (using lowercase naming convention, functionally equivalent to canonical names)",
+    "mandatory_field_completeness_antis": "BLOCKED — all 5 ANTI-NNN entries missing 3 canonical fields each",
+    "mandatory_field_completeness_themes": "BLOCKED — all 3 THEME-NNN entries missing all 8 canonical fields",
+    "theme_causal_language": "CANNOT FULLY ASSESS until canonical fields are populated; description text for THEME-001 requires source for $5-8B estimate",
+    "consulting_source_enforcement": "BLOCKED — PLAY-RE-002 uses PS-VD-903 as sole evidence for OWL firm-specific AUM figure",
+    "dvr_id_check": "PASSED with notation — all play/anti driver_id fields correctly use run4 mappings; stale metadata in input files (platform_profiles.json, asset_class_analysis.json) is superseded by playbook metadata override language and does not contaminate play outputs"
+  },
+  "required_actions_before_final_report": [
+    {
+      "priority": 1,
+      "action": "Restructure THEME-001, THEME-002, THEME-003 in platform_playbook.json to include all 8 canonical fields. Map existing content to canonical names; populate missing fields (firms_involved, Coverage_Gap, What_Is_Observed, Why_It_May_Matter) from evidence. Ensure Why_It_May_Matter uses hedged language, not causal assertions.",
+      "blocking": true
+    },
+    {
+      "priority": 2,
+      "action": "Add canonical fields (operational_and_tech_prerequisites, failure_modes_and_margin_destroyers, evidence_strength) to all 5 ANTI-NNN entries in asset_class_playbooks.json. Map from existing 'symptoms'/'margin_destroyers' content. Add primary source citations for ANTI-C-001 and ANTI-INF-001.",
+      "blocking": true
+    },
+    {
+      "priority": 3,
+      "action": "Resolve PLAY-RE-002 consulting source violation: either add OWL primary disclosure as source for the $30B figure, or reframe CLM-PLAY-RE002-01 as a market-context statement with explicit caveat that the figure is not drawn from a primary disclosure in this analysis.",
+      "blocking": true
+    },
+    {
+      "priority": 4,
+      "action": "Edit CLM-PLAY-002-02 claim text to add 'may have' before 'contributed to P/FRE re-rating'.",
+      "blocking": false
+    },
+    {
+      "priority": 5,
+      "action": "Retitle ANTI-INF-001 to remove DE/share as anchor concept, or add explicit epistemic caveat in title/description that DE/share is analytically relevant but statistically unsupported in this cross-section.",
+      "blocking": false
+    }
+  ],
+  "notes": "The three blocking conditions (THEME schema non-compliance, ANTI schema non-compliance, PLAY-RE-002 consulting source violation) prevent final report generation. The playbook outputs are substantively well-constructed with correct DVR-ID mappings, appropriate hedging on 15 of 16 INFERRED claims, and no sycophantic fabrication. The BLOCKED status is structural (field naming convention) rather than substantive, with the exception of PLAY-RE-002's source citation gap. Repair actions (priority 1-3) can be executed by playbook-synthesizer in a single repair pass. Post-repair, a re-audit of the 3 blocked elements only is recommended before final report generation."
+}

@@ -1,0 +1,619 @@
+{
+  "metadata": {
+    "pipeline": "VDA",
+    "stage": "VD-A2C",
+    "generated_at": "2026-03-10T04:17:41.598831Z",
+    "consulting_catalog_count": 15,
+    "seed_result_count": 12,
+    "included_source_count": 11,
+    "excluded_source_count": 4,
+    "included_status_counts": {
+      "ok": 11
+    },
+    "theme_counts": {
+      "wealth_distribution": 9,
+      "fundraising_lp_demand": 7,
+      "margin_operating_model": 4,
+      "mna_consolidation": 3,
+      "democratization": 2,
+      "private_credit": 1,
+      "other": 1
+    },
+    "excluded_sources": [
+      {
+        "source_id": "PS-VD-901",
+        "title": "Bain Global Private Equity Report 2026",
+        "status": "deduped_in_base",
+        "utility_for_agents": "low"
+      },
+      {
+        "source_id": "PS-VD-904",
+        "title": "McKinsey Global Private Markets Report 2026",
+        "status": "deduped_in_base",
+        "utility_for_agents": "low"
+      },
+      {
+        "source_id": "PS-VD-905",
+        "title": "Winning in alternatives: The asset manager's guide to raising capital in wealth",
+        "status": "failed",
+        "utility_for_agents": "low"
+      },
+      {
+        "source_id": "PS-VD-908",
+        "title": "Asset Managers Pivot to Private Markets: Casey Quirk Results – Press Release | Deloitte US",
+        "status": "zero_text",
+        "utility_for_agents": "low"
+      }
+    ],
+    "seed_results_path": "data/processed/pax/2026-03-09-run2/1-universe/crawl-with-consulting/consulting_seed_results.json",
+    "audit_path": "data/processed/pax/2026-03-09-run2/1-universe/crawl-with-consulting/consulting_seed_audit.json"
+  },
+  "sources": [
+    {
+      "source_id": "PS-VD-902",
+      "firm": "Industry-wide (Bain)",
+      "title": "Private Equity Outlook 2026: Gaining Traction | Bain & Company",
+      "document_type": "industry_report",
+      "bias_tag": "industry-report",
+      "seed_url": "https://www.bain.com/insights/outlook-gaining-traction-global-private-equity-report-2026/",
+      "loaded_url": "https://www.bain.com/insights/outlook-gaining-traction-global-private-equity-report-2026/",
+      "domain": "www.bain.com",
+      "status": "ok",
+      "utility_for_agents": "high",
+      "allowed_usage": [
+        "distribution_context",
+        "market_context",
+        "operating_model_context",
+        "supporting_context"
+      ],
+      "disallowed_usage": [
+        "firm_specific_action",
+        "firm_specific_fact",
+        "firm_specific_metric",
+        "sole_basis_for_recommendation"
+      ],
+      "context_themes": [
+        "wealth_distribution",
+        "fundraising_lp_demand"
+      ],
+      "claims": [
+        {
+          "text": "Strategic exits like ECP’s $29.4 billion sale of Calpine to Constellation or GTCR’s $17.6 billion sale of Worldpay to Global Payments dominated activity.",
+          "scope": "multi_firm"
+        },
+        {
+          "text": "Global dry powder sits at a towering $1.3 trillion, and it’s getting older, with the majority of capital raised in 2022–23 fund vintages (see Figure 9).",
+          "scope": "market"
+        },
+        {
+          "text": "Dealmaking had gained some steam in 2024 and GPs were eager to put their arsenal of dry powder to work.",
+          "scope": "segment"
+        },
+        {
+          "text": "The $56.6 billion public-to-private deal for Electronic Arts set a new buyout record, and several other megadeals wowed the markets: data center platform Aligned Data Centers at $40 billion, aircraft leasing platform Air Lease at $27.5 billion, and retail pharmacy chain Walgreens Boots Alliance at $23.7 billion.",
+          "scope": "segment"
+        },
+        {
+          "text": "Global buyout-backed exit value jumped 47% year over year to $717 billion, led by several landmark exits, including Macquarie’s $40 billion sale of Aligned Data Centers to BlackRock and a consortium of tech giants hungry for AI data-crunching capacity (see Figure 12).",
+          "scope": "market"
+        }
+      ],
+      "off_domain_followup_count": 0
+    },
+    {
+      "source_id": "PS-VD-903",
+      "firm": "Industry-wide (Bain)",
+      "title": "Private Equity’s Reality Check: The GP Outlook for 2026 | Bain & Company",
+      "document_type": "industry_report",
+      "bias_tag": "industry-report",
+      "seed_url": "https://www.bain.com/insights/private-equitys-reality-check-gp-outlook-2026/",
+      "loaded_url": "https://www.bain.com/insights/private-equitys-reality-check-gp-outlook-2026/",
+      "domain": "www.bain.com",
+      "status": "ok",
+      "utility_for_agents": "medium",
+      "allowed_usage": [
+        "distribution_context",
+        "market_context",
+        "operating_model_context",
+        "supporting_context"
+      ],
+      "disallowed_usage": [
+        "firm_specific_action",
+        "firm_specific_fact",
+        "firm_specific_metric",
+        "sole_basis_for_recommendation"
+      ],
+      "context_themes": [
+        "wealth_distribution",
+        "fundraising_lp_demand",
+        "margin_operating_model"
+      ],
+      "claims": [
+        {
+          "text": "As of December 31, 2025, the firm oversaw around $811 billion in total capital, including $220 billion in assets under management, serving pension funds, sovereign wealth funds, insurers, endowments, foundations, family offices, and private wealth clients.",
+          "scope": "single_firm"
+        },
+        {
+          "text": "For the most recent flagship fund deal they underwrote, around 75% of respondents assume margins will be stable or increase up to 300 basis points (bps) between purchase and sale.",
+          "scope": "segment"
+        },
+        {
+          "text": "While the buyer-seller expectation gap has been narrowing since the interest rate shock of 2022, it still stands out over other roadblocks—including typical diligence issues and macro volatility.",
+          "scope": "segment"
+        },
+        {
+          "text": "To close that gap, Bain & Company and StepStone surveyed 103 investment and investor relations professionals, primarily in North America and Europe, from December 2025 to January 2026.",
+          "scope": "segment"
+        },
+        {
+          "text": "For funds that offered coinvestment, the median was 33 cents of coinvestment per $1 of commingled fund commitment, translating to a 25% reduction in fee revenue.",
+          "scope": "segment"
+        }
+      ],
+      "off_domain_followup_count": 1
+    },
+    {
+      "source_id": "PS-VD-906",
+      "firm": "Industry-wide (BCG)",
+      "title": "Global Asset Management Industry Hit New Record High in 2024—and a Critical Turning Point",
+      "document_type": "industry_report",
+      "bias_tag": "industry-report",
+      "seed_url": "https://www.bcg.com/press/29april2025-global-asset-management-record-high-critical-turning-point",
+      "loaded_url": "https://www.bcg.com/press/29april2025-global-asset-management-record-high-critical-turning-point",
+      "domain": "www.bcg.com",
+      "status": "ok",
+      "utility_for_agents": "high",
+      "allowed_usage": [
+        "distribution_context",
+        "market_context",
+        "operating_model_context",
+        "supporting_context"
+      ],
+      "disallowed_usage": [
+        "firm_specific_action",
+        "firm_specific_fact",
+        "firm_specific_metric",
+        "sole_basis_for_recommendation"
+      ],
+      "context_themes": [
+        "margin_operating_model",
+        "mna_consolidation",
+        "democratization"
+      ],
+      "claims": [
+        {
+          "text": "Those overseeing the largest amount of assets can drive costs down through technological synergies, streamlined operations, and process efficiencies, while those managing less than $300 billion must emphasize leaner models.",
+          "scope": "segment"
+        },
+        {
+          "text": "Semi-liquid private asset funds have grown more than fivefold in the past four years and now exceed $300 billion in net asset value.",
+          "scope": "segment"
+        },
+        {
+          "text": "BOSTON —The global asset management industry grew to a record-breaking $128 trillion in assets under management (AuM) in 2024, a 12% increase from the previous year, according to Global Asset Management 2025 , the 23rd edition of this report from Boston Consulting Group (BCG).",
+          "scope": "market"
+        },
+        {
+          "text": "This year’s report, titled From Recovery to Reinvention , reveals that more than 70% of the industry’s $58 billion in revenue growth in 2024 was driven by market performance rather than investor inflows, underscoring the industry’s vulnerability to external forces.",
+          "scope": "market"
+        },
+        {
+          "text": "Market Performance Drove 70% of Asset Managers’ Revenue Growth in 2024, Underscoring the Industry’s Vulnerability to External Conditions and the Urgent Need for It to Transform to Remain Competitive, Especially in the Context of Market Performance So Far in 2025",
+          "scope": "market"
+        }
+      ],
+      "off_domain_followup_count": 0
+    },
+    {
+      "source_id": "PS-VD-907",
+      "firm": "Industry-wide (BCG)",
+      "title": "Capturing Wealth Management’s $3 Trillion Private Market Opportunity",
+      "document_type": "industry_report",
+      "bias_tag": "industry-report",
+      "seed_url": "https://www.bcg.com/press/31march2025-capturing-wealth-managements-3-trillion-private-market-opportunity",
+      "loaded_url": "https://www.bcg.com/press/31march2025-capturing-wealth-managements-3-trillion-private-market-opportunity",
+      "domain": "www.bcg.com",
+      "status": "ok",
+      "utility_for_agents": "high",
+      "allowed_usage": [
+        "distribution_context",
+        "market_context",
+        "operating_model_context",
+        "supporting_context"
+      ],
+      "disallowed_usage": [
+        "firm_specific_action",
+        "firm_specific_fact",
+        "firm_specific_metric",
+        "sole_basis_for_recommendation"
+      ],
+      "context_themes": [
+        "wealth_distribution",
+        "democratization"
+      ],
+      "claims": [
+        {
+          "text": "ROYC is a leading European B2B financial technology company that provides a complete private markets operating system, empowering private equity firms, banks, wealth managers, and multi-family offices to seamlessly access, distribute, and manage private investments at scale.",
+          "scope": "segment"
+        },
+        {
+          "text": "This demand is further catalyzed by product innovation, with asset managers launching more liquid or ‘semi-liquid’ fund structures and new legislation such as the European Long-Term Investment Fund framework (ELTIF 2.0) creating more accessible vehicles.",
+          "scope": "segment"
+        },
+        {
+          "text": "This trend is accelerated by wealthy European and Asian investors catching up with their North American peers who allocate a much higher portfolio share to private markets (15-20% in many cases as opposed to below 5% in the rest of world).",
+          "scope": "segment"
+        },
+        {
+          "text": "BCG predicts 12% expansion in private market AuM every year up to 2030, with individual investors allocating a growing share of their portfolios to private markets to the tune of 3 trillion US dollars by 2030.",
+          "scope": "market"
+        },
+        {
+          "text": "Against that backdrop, B2B technology platforms connecting the entire ecosystem of fund managers, wealth managers and service providers can reduce frictions and broaden access.",
+          "scope": "segment"
+        }
+      ],
+      "off_domain_followup_count": 0
+    },
+    {
+      "source_id": "PS-VD-909",
+      "firm": "Industry-wide (PwC)",
+      "title": "PwC's 2026 Private Capital Outlook: PwC",
+      "document_type": "industry_report",
+      "bias_tag": "industry-report",
+      "seed_url": "https://www.pwc.com/us/en/services/tax/library/2026-private-capital-outlook.html",
+      "loaded_url": "https://www.pwc.com/us/en/services/tax/library/2026-private-capital-outlook.html",
+      "domain": "www.pwc.com",
+      "status": "ok",
+      "utility_for_agents": "high",
+      "allowed_usage": [
+        "distribution_context",
+        "market_context",
+        "operating_model_context",
+        "supporting_context"
+      ],
+      "disallowed_usage": [
+        "firm_specific_action",
+        "firm_specific_fact",
+        "firm_specific_metric",
+        "sole_basis_for_recommendation"
+      ],
+      "context_themes": [
+        "wealth_distribution",
+        "fundraising_lp_demand",
+        "mna_consolidation"
+      ],
+      "claims": [
+        {
+          "text": "However, that blended base can introduce practical, non-tax structuring and commercial constraints as well, particularly the challenge of matching fundraising with deployment in retail channels (and especially in 401(k) settings).",
+          "scope": "segment"
+        },
+        {
+          "text": "While strategic acquirers and general partner (GP) stake investors reshape the M&A market, retail capital is emerging as a fast-growing source of fundraising, and sponsors lean into continuation funds, secondaries, and preferred equity to create new paths to liquidity.",
+          "scope": "market"
+        },
+        {
+          "text": "M&A in Asset Management could accelerate in 2026, primarily from GP stake sales and non-alternative financial institutions",
+          "scope": "segment"
+        },
+        {
+          "text": "$1 trillion is the potential AUM value of a 5% allocation to private markets in US defined contribution assets by 2030.",
+          "scope": "segment"
+        },
+        {
+          "text": "Asset and Wealth Management Revolution 2025, November 24, 2025 .",
+          "scope": "segment"
+        }
+      ],
+      "off_domain_followup_count": 0
+    },
+    {
+      "source_id": "PS-VD-910",
+      "firm": "Industry-wide (PwC)",
+      "title": "Insights on capturing the retail alternatives market: PwC",
+      "document_type": "industry_report",
+      "bias_tag": "industry-report",
+      "seed_url": "https://www.pwc.com/us/en/industries/financial-services/library/capturing-the-retail-alternatives-market.html",
+      "loaded_url": "https://www.pwc.com/us/en/industries/financial-services/library/capturing-the-retail-alternatives-market.html",
+      "domain": "www.pwc.com",
+      "status": "ok",
+      "utility_for_agents": "high",
+      "allowed_usage": [
+        "distribution_context",
+        "market_context",
+        "operating_model_context",
+        "supporting_context"
+      ],
+      "disallowed_usage": [
+        "firm_specific_action",
+        "firm_specific_fact",
+        "firm_specific_metric",
+        "sole_basis_for_recommendation"
+      ],
+      "context_themes": [
+        "wealth_distribution",
+        "fundraising_lp_demand",
+        "private_credit",
+        "margin_operating_model"
+      ],
+      "claims": [
+        {
+          "text": "Establishing dedicated private wealth fundraising and operational teams, launching multichannel educational programs, developing retail CRM systems, and developing investor onboarding and servicing capabilities integrated with key intermediaries will be key focus areas.",
+          "scope": "segment"
+        },
+        {
+          "text": "That’s because asset managers have innovated to bring new products to these clients, including private, non-traded REITs and BDCs, as well as other private markets ‘40 Act vehicles, including interval funds and tender offer funds.",
+          "scope": "segment"
+        },
+        {
+          "text": "Addressing the unique needs and increasing demands of individual retail clients will require managers to enhance their operating model.",
+          "scope": "segment"
+        },
+        {
+          "text": "For example, if the manager has historically published only private equity or credit content for closed-end funds, launching regulated funds will mean creating new types of content for a new retail client base that may not have an intimate understanding of the risks and opportunities associated with private equity or credit.",
+          "scope": "segment"
+        },
+        {
+          "text": "For example, vehicles like BDCs, interval funds and REITs create additional demands for many alternative managers, such as more frequent net asset value (NAVs), accelerated or new valuation protocols, additional regulatory reporting such as 1099-Qs and 1099-Ks and accelerated tax reporting.",
+          "scope": "segment"
+        }
+      ],
+      "off_domain_followup_count": 1
+    },
+    {
+      "source_id": "PS-VD-911",
+      "firm": "Industry-wide (Mercer)",
+      "title": "Private Markets in Motion",
+      "document_type": "industry_report",
+      "bias_tag": "industry-report",
+      "seed_url": "https://www.mercer.com/insights/investments/alternative-investments/private-markets-in-motion/",
+      "loaded_url": "https://www.mercer.com/insights/investments/alternative-investments/private-markets-in-motion/",
+      "domain": "www.mercer.com",
+      "status": "ok",
+      "utility_for_agents": "medium",
+      "allowed_usage": [
+        "distribution_context",
+        "market_context",
+        "operating_model_context",
+        "supporting_context"
+      ],
+      "disallowed_usage": [
+        "firm_specific_action",
+        "firm_specific_fact",
+        "firm_specific_metric",
+        "sole_basis_for_recommendation"
+      ],
+      "context_themes": [
+        "other"
+      ],
+      "claims": [
+        {
+          "text": "Asked about their expectations for both management and performance fees, managers said they expect to see a slight decrease – equivalent to a drop of up to 25 basis points in annual management fees and between 0.4-2.5 percentage points in carried interest.",
+          "scope": "segment"
+        },
+        {
+          "text": "Despite the concerns identified by managers, only 24% of respondents planned to tighten their terms around PIK financing, with 28% keeping terms the same and 48% placing them under review for the time being.",
+          "scope": "segment"
+        },
+        {
+          "text": "More than half (56%) of respondents expect average loss rates to increase by between 10-50 basis points over the coming two years, while a further 9% expect loss rates to rise by more than 50 basis points.",
+          "scope": "segment"
+        },
+        {
+          "text": "This study compiles the views of 57 respondents worldwide with more than $2tn in assets under management (AUM), asking for their insights on the current private debt space 1 .",
+          "scope": "market"
+        },
+        {
+          "text": "Download report Private markets in motion Asset managers with over US$2 trillion in assets under management share insights on challenges and opportunities in private debt.",
+          "scope": "segment"
+        }
+      ],
+      "off_domain_followup_count": 1
+    },
+    {
+      "source_id": "PS-VD-912",
+      "firm": "Industry-wide (Mercer)",
+      "title": "The State of Alternative Investments in Wealth Management 2025",
+      "document_type": "industry_report",
+      "bias_tag": "industry-report",
+      "seed_url": "https://www.mercer.com/en-us/insights/investments/financial-intermediaries/the-state-of-alternative-investments-in-wealth-management-2025/",
+      "loaded_url": "https://www.mercer.com/en-us/insights/investments/financial-intermediaries/the-state-of-alternative-investments-in-wealth-management-2025/",
+      "domain": "www.mercer.com",
+      "status": "ok",
+      "utility_for_agents": "medium",
+      "allowed_usage": [
+        "distribution_context",
+        "market_context",
+        "operating_model_context",
+        "supporting_context"
+      ],
+      "disallowed_usage": [
+        "firm_specific_action",
+        "firm_specific_fact",
+        "firm_specific_metric",
+        "sole_basis_for_recommendation"
+      ],
+      "context_themes": [
+        "wealth_distribution",
+        "fundraising_lp_demand"
+      ],
+      "claims": [
+        {
+          "text": "Momentum Building for Certain Asset Classes: Private debt (89%), PE (86%), and real estate (85%) remain the top asset classes advisors are currently allocated to and more than half expect to increase allocations to infrastructure, compared to 32% in 2023.",
+          "scope": "segment"
+        },
+        {
+          "text": "Nine in ten financial advisors (92%) currently incorporate alternative investments in client portfolios, with 91% planning to increase allocations over the next two years, according to the third annual independent survey conducted by CAIS and Mercer.",
+          "scope": "segment"
+        },
+        {
+          "text": "The third annual survey uncovers insights from over 500 financial advisors exploring key themes including current allocations across key alternative asset classes and expected adjustments over the next few years.",
+          "scope": "segment"
+        },
+        {
+          "text": "The survey highlighted that in addition to helping clients meet their goals and objectives (75%), more advisors (86%) again said alts access helps them differentiate their practice from their peers.",
+          "scope": "segment"
+        },
+        {
+          "text": "Broad Adoption of Alternatives: Ninety-two percent (92%) of surveyed advisors already allocate to alternatives, with 91% planning to increase their alts allocations in the next two years.",
+          "scope": "segment"
+        }
+      ],
+      "off_domain_followup_count": 0
+    },
+    {
+      "source_id": "PS-VD-913",
+      "firm": "Industry-wide (Cerulli)",
+      "title": "Private Markets Investments Provide Advisors… | Cerulli Associates",
+      "document_type": "industry_report",
+      "bias_tag": "industry-report",
+      "seed_url": "https://www.cerulli.com/press-releases/private-markets-investments-provide-advisors-with-practice-differentiation-high-net-worth-client-asset-gathering-and-retention-opportunities",
+      "loaded_url": "https://www.cerulli.com/press-releases/private-markets-investments-provide-advisors-with-practice-differentiation-high-net-worth-client-asset-gathering-and-retention-opportunities",
+      "domain": "www.cerulli.com",
+      "status": "ok",
+      "utility_for_agents": "medium",
+      "allowed_usage": [
+        "distribution_context",
+        "market_context",
+        "operating_model_context",
+        "supporting_context"
+      ],
+      "disallowed_usage": [
+        "firm_specific_action",
+        "firm_specific_fact",
+        "firm_specific_metric",
+        "sole_basis_for_recommendation"
+      ],
+      "context_themes": [
+        "wealth_distribution",
+        "fundraising_lp_demand"
+      ],
+      "claims": [
+        {
+          "text": "Despite increased awareness and a set of prominent advisors who plan to allocate almost one-quarter of client portfolios to alternative investments through 2025, half of advisors report an alternative allocation of 5% or less.",
+          "scope": "segment"
+        },
+        {
+          "text": "Advisors also seek materials that provide educational value on liquidity and general education on discussing private markets with clients (48% and 47%, respectively).",
+          "scope": "segment"
+        },
+        {
+          "text": "Advisors prefer alternative product specialists/wholesalers and home offices for educational support (54% and 49%, respectively).",
+          "scope": "segment"
+        },
+        {
+          "text": "Equity and fixed-income market declines in 2022 spurred broad recognition among advisors of the need for greater diversification.",
+          "scope": "market"
+        },
+        {
+          "text": "By offering an expanded shelf of private markets investments, advisors can differentiate their practices (81% agree this is a business impact of offering alternative investments), attract high-net-worth (HNW) clients (67%), and consolidate and retain assets under management (AUM) (66% each), according to Cerulli’s latest whitepaper, Adapting to Growing Private Markets: A Playbook for Practice Success , in partnership with Invesco and Investments & Wealth Institute (IWI) .",
+          "scope": "segment"
+        }
+      ],
+      "off_domain_followup_count": 2
+    },
+    {
+      "source_id": "PS-VD-914",
+      "firm": "Industry-wide (Oliver Wyman)",
+      "title": "Competing For Growth",
+      "document_type": "industry_report",
+      "bias_tag": "industry-report",
+      "seed_url": "https://www.oliverwyman.com/our-expertise/insights/2021/jun/competing-for-growth.html",
+      "loaded_url": "https://www.oliverwyman.com/our-expertise/insights/2021/jun/competing-for-growth.html",
+      "domain": "www.oliverwyman.com",
+      "status": "ok",
+      "utility_for_agents": "medium",
+      "allowed_usage": [
+        "distribution_context",
+        "market_context",
+        "operating_model_context",
+        "supporting_context"
+      ],
+      "disallowed_usage": [
+        "firm_specific_action",
+        "firm_specific_fact",
+        "firm_specific_metric",
+        "sole_basis_for_recommendation"
+      ],
+      "context_themes": [
+        "wealth_distribution"
+      ],
+      "claims": [
+        {
+          "text": "Wealth Management: After The Storm Our annual report provides an overview of Covid-19’s impact on global wealth growth in 2020 and outlines how wealth managers can position their business for success beyond the crisis",
+          "scope": "market"
+        },
+        {
+          "text": "Our 2021 edition of the wealth and asset management report with Morgan Stanley offers an overview of industry trends and analysis of the industry.",
+          "scope": "segment"
+        },
+        {
+          "text": "Wealth Management — 10 Ideas For 2021 We have set out what we think will be the 10 big trends that will impact the industry in the coming year.",
+          "scope": "segment"
+        },
+        {
+          "text": "We expect this strong growth to persist with AUM of ~$13TN by 2025, driven by the demand for yield and inflation protection and the emergence of new supply-side drivers, most notably the development of structures and delivery models designed to open access to retail wealth investors.",
+          "scope": "segment"
+        },
+        {
+          "text": "Total market capitalization of cryptocurrencies has hit new highs, exceeding $2TN in April 2021, up from under $50BN four years ago.",
+          "scope": "market"
+        }
+      ],
+      "off_domain_followup_count": 0
+    },
+    {
+      "source_id": "PS-VD-915",
+      "firm": "Industry-wide (Oliver Wyman)",
+      "title": "Mergers & Acquisitions Trends In Wealth And Asset Management",
+      "document_type": "industry_report",
+      "bias_tag": "industry-report",
+      "seed_url": "https://www.oliverwyman.com/our-expertise/insights/2025/oct/mergers-and-acquisitions-fueling-wealth-and-asset-management.html",
+      "loaded_url": "https://www.oliverwyman.com/our-expertise/insights/2025/oct/mergers-and-acquisitions-fueling-wealth-and-asset-management.html",
+      "domain": "www.oliverwyman.com",
+      "status": "ok",
+      "utility_for_agents": "high",
+      "allowed_usage": [
+        "distribution_context",
+        "market_context",
+        "operating_model_context",
+        "supporting_context"
+      ],
+      "disallowed_usage": [
+        "firm_specific_action",
+        "firm_specific_fact",
+        "firm_specific_metric",
+        "sole_basis_for_recommendation"
+      ],
+      "context_themes": [
+        "wealth_distribution",
+        "fundraising_lp_demand",
+        "margin_operating_model",
+        "mna_consolidation"
+      ],
+      "claims": [
+        {
+          "text": "To counter challenges, leading wealth managers are focusing on four priority areas to boost revenue and profit margins: winning the $1 million to $10 million high-net-worth segment, scaling private markets allocations to tap into a projected $8 trillion to $10 trillion market by 2029, equipping relationship managers to create an organic growth machine, and building a durable cost base by simplifying, re-architecting, and platforming.",
+          "scope": "market"
+        },
+        {
+          "text": "Net flow growth of 2.6%, a significant recovery from the slight contraction seen in 2022, is supported by continuous wealth creation and a notable shift in capital allocation.",
+          "scope": "segment"
+        },
+        {
+          "text": "Global wealth management outlook 2025 — solid growth amid margin pressure",
+          "scope": "market"
+        },
+        {
+          "text": "This report, informed by Oliver Wyman’s extensive project work and over 30 discussions with senior executives at asset and wealth managers collectively managing over $55 trillion of assets, delves into the drivers of consolidation, the different types of plays and their rationale, the track record of past deals and combinations, as well as our outlook for the next five years and a playbook for conducting successful transactions.",
+          "scope": "segment"
+        },
+        {
+          "text": "Global financial wealth of private households continued to grow steadily, reaching $301 trillion in 2024 after growing by 7% in 2023 and 8% in 2024, recovering from 2022 losses amid monetary tightening.",
+          "scope": "market"
+        }
+      ],
+      "off_domain_followup_count": 0
+    }
+  ]
+}

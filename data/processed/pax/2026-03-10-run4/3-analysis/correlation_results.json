@@ -1,0 +1,1515 @@
+{
+  "stage": "VD-A4",
+  "title": "Spearman Correlation Results",
+  "run_id": "2026-03-10-run4",
+  "base_run_id": "2026-03-10-run2",
+  "generated_at": "2026-03-11T07:00:00Z",
+  "cross_section_period": "FY2024",
+  "n_complete_multiple_set": 23,
+  "n_driver_candidates": 17,
+  "n_valuation_multiples": 3,
+  "n_correlation_pairs": 51,
+  "n_computed": 51,
+  "cp1_corrections_applied": true,
+  "cp1_correction_note": "8 records corrected per CP-1 audit: VCTR/MAN/TPG MET-VD-016 unit conversion, OWL MET-VD-001 carry-forward override, BX/APO/TPG/CVC MET-VD-014 sentinel nullification",
+  "statistical_parameters": {
+    "method": "Spearman rank correlation",
+    "bootstrap_ci": {
+      "method": "percentile",
+      "resamples": 10000,
+      "confidence": 0.95,
+      "seed": 42
+    },
+    "multiple_testing_correction": {
+      "method": "Benjamini-Hochberg FDR",
+      "q": 0.1,
+      "n_tests": 51,
+      "bh_threshold_p": 0.002882,
+      "bonferroni_threshold_p": 0.00098
+    },
+    "minimum_n_compute": 12,
+    "minimum_n_report": 8
+  },
+  "significance_summary": {
+    "bh_significant": 2,
+    "bonferroni_significant": 1,
+    "bh_significant_cors": [
+      "COR-004",
+      "COR-007"
+    ],
+    "bonferroni_significant_cors": [
+      "COR-007"
+    ]
+  },
+  "driver_classification_summary": {
+    "stable_value_drivers": [],
+    "multiple_specific_drivers": [
+      "MET-VD-005",
+      "MET-VD-014",
+      "MET-VD-004"
+    ],
+    "moderate_signal_drivers": [
+      "MET-VD-011",
+      "MET-VD-021",
+      "MET-VD-009",
+      "MET-VD-006",
+      "MET-VD-007",
+      "MET-VD-020",
+      "MET-VD-012"
+    ],
+    "unsupported_drivers": [
+      "MET-VD-001",
+      "MET-VD-015",
+      "MET-VD-022",
+      "MET-VD-018",
+      "MET-VD-013",
+      "MET-VD-010",
+      "MET-VD-016"
+    ]
+  },
+  "change_from_base_run": {
+    "base_run_id": "2026-03-10-run2",
+    "key_changes": [
+      "No stable_value_driver identified in run4 (run2 found G&A/FEAUM as stable; run4 G&A/FEAUM rho max=-0.45, below 0.50 threshold)",
+      "AUM (MET-VD-005) emerges as primary multiple_specific driver for P/FRE (rho=0.73, BH-significant)",
+      "FRE growth (MET-VD-014) emerges as primary multiple_specific driver for EV/FEAUM (rho=-0.61, BH-significant)",
+      "DE/share (MET-VD-001) reclassified as unsupported (max|rho|=0.28 vs 0.56 in run2); structural comparability issues with PGHN (81.6 CHF/share outlier) and ONEX (proxy earnings) weaken cross-sectional signal in 23-firm sample",
+      "MET-VD-014 FRE Growth: N reduced from 19 to 18 (BX/APO/TPG/CVC FY2024 sentinel nullified per CP-1); CVC still missing from MET-VD-014 correlation pairs"
+    ],
+    "methodology_note": "run4 uses FY2024 as primary cross-section (vs what was labeled FY2025 in run2 partial write); now consistent with quantitative_data period labels"
+  },
+  "multicollinearity_flags": [
+    {
+      "driver_1": "MET-VD-004",
+      "driver_2": "MET-VD-005",
+      "label": "FEAUM vs AUM",
+      "inter_rho": 0.9591,
+      "n": 22,
+      "level": "HIGH"
+    },
+    {
+      "driver_1": "MET-VD-020",
+      "driver_2": "MET-VD-021",
+      "label": "Comp&Ben/FEAUM vs G&A/FEAUM",
+      "inter_rho": 0.9607,
+      "n": 23,
+      "level": "HIGH"
+    }
+  ],
+  "temporal_stability_notes": "Single cross-section (FY2024); temporal stability cannot be assessed without multi-year panel. FY2023 FRE growth records available for subset but insufficient for full temporal stability test.",
+  "per_correlation_results": [
+    {
+      "cor_id": "COR-001",
+      "driver_id": "MET-VD-001",
+      "driver_abbr": "DE/share",
+      "driver_name": "Distributable Earnings per Share",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 21,
+      "rho": 0.1702,
+      "p_value": 0.460795,
+      "ci_95_lo": -0.3429,
+      "ci_95_hi": 0.6126,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-002",
+      "driver_id": "MET-VD-001",
+      "driver_abbr": "DE/share",
+      "driver_name": "Distributable Earnings per Share",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": 0.2521,
+      "p_value": 0.283659,
+      "ci_95_lo": -0.2631,
+      "ci_95_hi": 0.6717,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-003",
+      "driver_id": "MET-VD-001",
+      "driver_abbr": "DE/share",
+      "driver_name": "Distributable Earnings per Share",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 21,
+      "rho": 0.2832,
+      "p_value": 0.213493,
+      "ci_95_lo": -0.2503,
+      "ci_95_hi": 0.7131,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-004",
+      "driver_id": "MET-VD-004",
+      "driver_abbr": "FEAUM",
+      "driver_name": "Fee-Earning AUM",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": 0.6045,
+      "p_value": 0.002882,
+      "ci_95_lo": 0.2184,
+      "ci_95_hi": 0.8513,
+      "status": "computed",
+      "bh_significant": true,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-005",
+      "driver_id": "MET-VD-004",
+      "driver_abbr": "FEAUM",
+      "driver_name": "Fee-Earning AUM",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": 0.3489,
+      "p_value": 0.131642,
+      "ci_95_lo": -0.1021,
+      "ci_95_hi": 0.7291,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-006",
+      "driver_id": "MET-VD-004",
+      "driver_abbr": "FEAUM",
+      "driver_name": "Fee-Earning AUM",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": 0.0853,
+      "p_value": 0.705821,
+      "ci_95_lo": -0.3136,
+      "ci_95_hi": 0.4955,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-007",
+      "driver_id": "MET-VD-005",
+      "driver_abbr": "AUM",
+      "driver_name": "Total AUM",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": 0.7286,
+      "p_value": 0.00012,
+      "ci_95_lo": 0.423,
+      "ci_95_hi": 0.88,
+      "status": "computed",
+      "bh_significant": true,
+      "bonferroni_significant": true
+    },
+    {
+      "cor_id": "COR-008",
+      "driver_id": "MET-VD-005",
+      "driver_abbr": "AUM",
+      "driver_name": "Total AUM",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": 0.4906,
+      "p_value": 0.028074,
+      "ci_95_lo": 0.0649,
+      "ci_95_hi": 0.7678,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-009",
+      "driver_id": "MET-VD-005",
+      "driver_abbr": "AUM",
+      "driver_name": "Total AUM",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": 0.1661,
+      "p_value": 0.460178,
+      "ci_95_lo": -0.2522,
+      "ci_95_hi": 0.5865,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-010",
+      "driver_id": "MET-VD-006",
+      "driver_abbr": "FEAUM YoY",
+      "driver_name": "FEAUM Growth, Year-over-Year",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": -0.3178,
+      "p_value": 0.149527,
+      "ci_95_lo": -0.6482,
+      "ci_95_hi": 0.0959,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-011",
+      "driver_id": "MET-VD-006",
+      "driver_abbr": "FEAUM YoY",
+      "driver_name": "FEAUM Growth, Year-over-Year",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": -0.318,
+      "p_value": 0.171814,
+      "ci_95_lo": -0.7135,
+      "ci_95_hi": 0.184,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-012",
+      "driver_id": "MET-VD-006",
+      "driver_abbr": "FEAUM YoY",
+      "driver_name": "FEAUM Growth, Year-over-Year",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": -0.1515,
+      "p_value": 0.500817,
+      "ci_95_lo": -0.5306,
+      "ci_95_hi": 0.3236,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-013",
+      "driver_id": "MET-VD-007",
+      "driver_abbr": "FEAUM CAGR 3yr",
+      "driver_name": "FEAUM Growth, 3-Year CAGR",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": 0.3265,
+      "p_value": 0.138118,
+      "ci_95_lo": -0.1248,
+      "ci_95_hi": 0.6845,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-014",
+      "driver_id": "MET-VD-007",
+      "driver_abbr": "FEAUM CAGR 3yr",
+      "driver_name": "FEAUM Growth, 3-Year CAGR",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": 0.2588,
+      "p_value": 0.270482,
+      "ci_95_lo": -0.1912,
+      "ci_95_hi": 0.6429,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-015",
+      "driver_id": "MET-VD-007",
+      "driver_abbr": "FEAUM CAGR 3yr",
+      "driver_name": "FEAUM Growth, 3-Year CAGR",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": -0.174,
+      "p_value": 0.438778,
+      "ci_95_lo": -0.5709,
+      "ci_95_hi": 0.2698,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-016",
+      "driver_id": "MET-VD-009",
+      "driver_abbr": "Fundraising ratio",
+      "driver_name": "Fundraising as Percentage of AUM",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": 0.4033,
+      "p_value": 0.062737,
+      "ci_95_lo": -0.0775,
+      "ci_95_hi": 0.7764,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-017",
+      "driver_id": "MET-VD-009",
+      "driver_abbr": "Fundraising ratio",
+      "driver_name": "Fundraising as Percentage of AUM",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": 0.2581,
+      "p_value": 0.271927,
+      "ci_95_lo": -0.2623,
+      "ci_95_hi": 0.6882,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-018",
+      "driver_id": "MET-VD-009",
+      "driver_abbr": "Fundraising ratio",
+      "driver_name": "Fundraising as Percentage of AUM",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": -0.1378,
+      "p_value": 0.5408,
+      "ci_95_lo": -0.5582,
+      "ci_95_hi": 0.3007,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-019",
+      "driver_id": "MET-VD-010",
+      "driver_abbr": "Asset class HHI",
+      "driver_name": "Asset Class Herfindahl-Hirschman Index",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": -0.0779,
+      "p_value": 0.730263,
+      "ci_95_lo": -0.5563,
+      "ci_95_hi": 0.4308,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-020",
+      "driver_id": "MET-VD-010",
+      "driver_abbr": "Asset class HHI",
+      "driver_name": "Asset Class Herfindahl-Hirschman Index",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": 0.1189,
+      "p_value": 0.617625,
+      "ci_95_lo": -0.3639,
+      "ci_95_hi": 0.577,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-021",
+      "driver_id": "MET-VD-010",
+      "driver_abbr": "Asset class HHI",
+      "driver_name": "Asset Class Herfindahl-Hirschman Index",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": -0.0712,
+      "p_value": 0.752979,
+      "ci_95_lo": -0.4567,
+      "ci_95_hi": 0.3163,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-022",
+      "driver_id": "MET-VD-011",
+      "driver_abbr": "Perm capital %",
+      "driver_name": "Permanent Capital Percentage",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": 0.3665,
+      "p_value": 0.093372,
+      "ci_95_lo": -0.0727,
+      "ci_95_hi": 0.6869,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-023",
+      "driver_id": "MET-VD-011",
+      "driver_abbr": "Perm capital %",
+      "driver_name": "Permanent Capital Percentage",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": 0.4308,
+      "p_value": 0.057938,
+      "ci_95_lo": -0.0375,
+      "ci_95_hi": 0.7648,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-024",
+      "driver_id": "MET-VD-011",
+      "driver_abbr": "Perm capital %",
+      "driver_name": "Permanent Capital Percentage",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": 0.148,
+      "p_value": 0.510895,
+      "ci_95_lo": -0.3445,
+      "ci_95_hi": 0.5904,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-025",
+      "driver_id": "MET-VD-012",
+      "driver_abbr": "Credit %",
+      "driver_name": "Credit Percentage of AUM",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": 0.3488,
+      "p_value": 0.111592,
+      "ci_95_lo": -0.1479,
+      "ci_95_hi": 0.7305,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-026",
+      "driver_id": "MET-VD-012",
+      "driver_abbr": "Credit %",
+      "driver_name": "Credit Percentage of AUM",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": 0.199,
+      "p_value": 0.400237,
+      "ci_95_lo": -0.3245,
+      "ci_95_hi": 0.6961,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-027",
+      "driver_id": "MET-VD-012",
+      "driver_abbr": "Credit %",
+      "driver_name": "Credit Percentage of AUM",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": 0.0031,
+      "p_value": 0.989016,
+      "ci_95_lo": -0.4347,
+      "ci_95_hi": 0.4366,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-028",
+      "driver_id": "MET-VD-013",
+      "driver_abbr": "FRE margin",
+      "driver_name": "Fee-Related Earnings Margin",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": -0.004,
+      "p_value": 0.986052,
+      "ci_95_lo": -0.4359,
+      "ci_95_hi": 0.4303,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-029",
+      "driver_id": "MET-VD-013",
+      "driver_abbr": "FRE margin",
+      "driver_name": "Fee-Related Earnings Margin",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": 0.1709,
+      "p_value": 0.471358,
+      "ci_95_lo": -0.2651,
+      "ci_95_hi": 0.5549,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-030",
+      "driver_id": "MET-VD-013",
+      "driver_abbr": "FRE margin",
+      "driver_name": "Fee-Related Earnings Margin",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": 0.1137,
+      "p_value": 0.614534,
+      "ci_95_lo": -0.338,
+      "ci_95_hi": 0.5507,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-031",
+      "driver_id": "MET-VD-014",
+      "driver_abbr": "FRE growth YoY",
+      "driver_name": "FRE Growth, Year-over-Year",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 18,
+      "rho": -0.2044,
+      "p_value": 0.415791,
+      "ci_95_lo": -0.6691,
+      "ci_95_hi": 0.3277,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-032",
+      "driver_id": "MET-VD-014",
+      "driver_abbr": "FRE growth YoY",
+      "driver_name": "FRE Growth, Year-over-Year",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 16,
+      "rho": -0.4386,
+      "p_value": 0.089267,
+      "ci_95_lo": -0.7952,
+      "ci_95_hi": 0.0964,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-033",
+      "driver_id": "MET-VD-014",
+      "driver_abbr": "FRE growth YoY",
+      "driver_name": "FRE Growth, Year-over-Year",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 18,
+      "rho": -0.6133,
+      "p_value": 0.006793,
+      "ci_95_lo": -0.9106,
+      "ci_95_hi": -0.1062,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-034",
+      "driver_id": "MET-VD-015",
+      "driver_abbr": "Comp ratio",
+      "driver_name": "Compensation-to-Revenue Ratio",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": -0.2153,
+      "p_value": 0.33603,
+      "ci_95_lo": -0.6468,
+      "ci_95_hi": 0.2711,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-035",
+      "driver_id": "MET-VD-015",
+      "driver_abbr": "Comp ratio",
+      "driver_name": "Compensation-to-Revenue Ratio",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": -0.0004,
+      "p_value": 0.998744,
+      "ci_95_lo": -0.4346,
+      "ci_95_hi": 0.4531,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-036",
+      "driver_id": "MET-VD-015",
+      "driver_abbr": "Comp ratio",
+      "driver_name": "Compensation-to-Revenue Ratio",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": -0.1559,
+      "p_value": 0.48834,
+      "ci_95_lo": -0.5913,
+      "ci_95_hi": 0.3309,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-037",
+      "driver_id": "MET-VD-016",
+      "driver_abbr": "Mgmt fee rate",
+      "driver_name": "Management Fee Rate",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": 0.0593,
+      "p_value": 0.793141,
+      "ci_95_lo": -0.4201,
+      "ci_95_hi": 0.5312,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-038",
+      "driver_id": "MET-VD-016",
+      "driver_abbr": "Mgmt fee rate",
+      "driver_name": "Management Fee Rate",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": 0.128,
+      "p_value": 0.590824,
+      "ci_95_lo": -0.4128,
+      "ci_95_hi": 0.5895,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-039",
+      "driver_id": "MET-VD-016",
+      "driver_abbr": "Mgmt fee rate",
+      "driver_name": "Management Fee Rate",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": -0.0277,
+      "p_value": 0.902668,
+      "ci_95_lo": -0.5356,
+      "ci_95_hi": 0.4859,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-040",
+      "driver_id": "MET-VD-018",
+      "driver_abbr": "Headcount/FEAUM",
+      "driver_name": "Headcount to FEAUM",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": -0.0689,
+      "p_value": 0.76053,
+      "ci_95_lo": -0.488,
+      "ci_95_hi": 0.3402,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-041",
+      "driver_id": "MET-VD-018",
+      "driver_abbr": "Headcount/FEAUM",
+      "driver_name": "Headcount to FEAUM",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": -0.0444,
+      "p_value": 0.852567,
+      "ci_95_lo": -0.4832,
+      "ci_95_hi": 0.441,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-042",
+      "driver_id": "MET-VD-018",
+      "driver_abbr": "Headcount/FEAUM",
+      "driver_name": "Headcount to FEAUM",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": 0.2305,
+      "p_value": 0.302048,
+      "ci_95_lo": -0.2399,
+      "ci_95_hi": 0.6168,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-043",
+      "driver_id": "MET-VD-020",
+      "driver_abbr": "Comp&Ben/FEAUM",
+      "driver_name": "Compensation and Benefits to FEAUM",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": -0.4073,
+      "p_value": 0.059885,
+      "ci_95_lo": -0.755,
+      "ci_95_hi": 0.054,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-044",
+      "driver_id": "MET-VD-020",
+      "driver_abbr": "Comp&Ben/FEAUM",
+      "driver_name": "Compensation and Benefits to FEAUM",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": -0.2525,
+      "p_value": 0.28273,
+      "ci_95_lo": -0.7213,
+      "ci_95_hi": 0.2504,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-045",
+      "driver_id": "MET-VD-020",
+      "driver_abbr": "Comp&Ben/FEAUM",
+      "driver_name": "Compensation and Benefits to FEAUM",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": -0.0124,
+      "p_value": 0.95622,
+      "ci_95_lo": -0.4491,
+      "ci_95_hi": 0.4224,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-046",
+      "driver_id": "MET-VD-021",
+      "driver_abbr": "G&A/FEAUM",
+      "driver_name": "G&A Expense to FEAUM",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": -0.4477,
+      "p_value": 0.03667,
+      "ci_95_lo": -0.8047,
+      "ci_95_hi": 0.0333,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-047",
+      "driver_id": "MET-VD-021",
+      "driver_abbr": "G&A/FEAUM",
+      "driver_name": "G&A Expense to FEAUM",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": -0.3488,
+      "p_value": 0.131777,
+      "ci_95_lo": -0.8026,
+      "ci_95_hi": 0.1835,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-048",
+      "driver_id": "MET-VD-021",
+      "driver_abbr": "G&A/FEAUM",
+      "driver_name": "G&A Expense to FEAUM",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": -0.0633,
+      "p_value": 0.779547,
+      "ci_95_lo": -0.5047,
+      "ci_95_hi": 0.377,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-049",
+      "driver_id": "MET-VD-022",
+      "driver_abbr": "OpEx-Rev growth gap",
+      "driver_name": "OpEx Growth minus Fee Revenue Growth",
+      "multiple_id": "MET-VD-026",
+      "multiple_name": "P/FRE",
+      "n": 22,
+      "rho": -0.1758,
+      "p_value": 0.433999,
+      "ci_95_lo": -0.5184,
+      "ci_95_hi": 0.2392,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-050",
+      "driver_id": "MET-VD-022",
+      "driver_abbr": "OpEx-Rev growth gap",
+      "driver_name": "OpEx Growth minus Fee Revenue Growth",
+      "multiple_id": "MET-VD-027",
+      "multiple_name": "P/DE",
+      "n": 20,
+      "rho": -0.0361,
+      "p_value": 0.879797,
+      "ci_95_lo": -0.4168,
+      "ci_95_hi": 0.3567,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    },
+    {
+      "cor_id": "COR-051",
+      "driver_id": "MET-VD-022",
+      "driver_abbr": "OpEx-Rev growth gap",
+      "driver_name": "OpEx Growth minus Fee Revenue Growth",
+      "multiple_id": "MET-VD-028",
+      "multiple_name": "EV/FEAUM",
+      "n": 22,
+      "rho": 0.1469,
+      "p_value": 0.514072,
+      "ci_95_lo": -0.2737,
+      "ci_95_hi": 0.5286,
+      "status": "computed",
+      "bh_significant": false,
+      "bonferroni_significant": false
+    }
+  ],
+  "full_driver_summary": [
+    {
+      "driver_id": "MET-VD-005",
+      "driver_abbr": "AUM",
+      "driver_name": "Total AUM",
+      "classification": "multiple_specific_driver",
+      "avg_abs_rho": 0.4618,
+      "strong_multiple_count": 1,
+      "moderate_multiple_count": 1,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.7286,
+          "p_value": 0.00012,
+          "n": 22,
+          "ci_95_lo": 0.423,
+          "ci_95_hi": 0.88,
+          "bh_significant": true
+        },
+        "MET-VD-027": {
+          "rho": 0.4906,
+          "p_value": 0.028074,
+          "n": 20,
+          "ci_95_lo": 0.0649,
+          "ci_95_hi": 0.7678,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": 0.1661,
+          "p_value": 0.460178,
+          "n": 22,
+          "ci_95_lo": -0.2522,
+          "ci_95_hi": 0.5865,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-014",
+      "driver_abbr": "FRE growth YoY",
+      "driver_name": "FRE Growth, Year-over-Year",
+      "classification": "multiple_specific_driver",
+      "avg_abs_rho": 0.4188,
+      "strong_multiple_count": 1,
+      "moderate_multiple_count": 1,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.2044,
+          "p_value": 0.415791,
+          "n": 18,
+          "ci_95_lo": -0.6691,
+          "ci_95_hi": 0.3277,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": -0.4386,
+          "p_value": 0.089267,
+          "n": 16,
+          "ci_95_lo": -0.7952,
+          "ci_95_hi": 0.0964,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.6133,
+          "p_value": 0.006793,
+          "n": 18,
+          "ci_95_lo": -0.9106,
+          "ci_95_hi": -0.1062,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-004",
+      "driver_abbr": "FEAUM",
+      "driver_name": "Fee-Earning AUM",
+      "classification": "multiple_specific_driver",
+      "avg_abs_rho": 0.3462,
+      "strong_multiple_count": 1,
+      "moderate_multiple_count": 1,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.6045,
+          "p_value": 0.002882,
+          "n": 22,
+          "ci_95_lo": 0.2184,
+          "ci_95_hi": 0.8513,
+          "bh_significant": true
+        },
+        "MET-VD-027": {
+          "rho": 0.3489,
+          "p_value": 0.131642,
+          "n": 20,
+          "ci_95_lo": -0.1021,
+          "ci_95_hi": 0.7291,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": 0.0853,
+          "p_value": 0.705821,
+          "n": 22,
+          "ci_95_lo": -0.3136,
+          "ci_95_hi": 0.4955,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-011",
+      "driver_abbr": "Perm capital %",
+      "driver_name": "Permanent Capital Percentage",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.3151,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 2,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.3665,
+          "p_value": 0.093372,
+          "n": 22,
+          "ci_95_lo": -0.0727,
+          "ci_95_hi": 0.6869,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": 0.4308,
+          "p_value": 0.057938,
+          "n": 20,
+          "ci_95_lo": -0.0375,
+          "ci_95_hi": 0.7648,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": 0.148,
+          "p_value": 0.510895,
+          "n": 22,
+          "ci_95_lo": -0.3445,
+          "ci_95_hi": 0.5904,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-021",
+      "driver_abbr": "G&A/FEAUM",
+      "driver_name": "G&A Expense to FEAUM",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.2866,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 2,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.4477,
+          "p_value": 0.03667,
+          "n": 22,
+          "ci_95_lo": -0.8047,
+          "ci_95_hi": 0.0333,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": -0.3488,
+          "p_value": 0.131777,
+          "n": 20,
+          "ci_95_lo": -0.8026,
+          "ci_95_hi": 0.1835,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.0633,
+          "p_value": 0.779547,
+          "n": 22,
+          "ci_95_lo": -0.5047,
+          "ci_95_hi": 0.377,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-009",
+      "driver_abbr": "Fundraising ratio",
+      "driver_name": "Fundraising as Percentage of AUM",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.2664,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 1,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.4033,
+          "p_value": 0.062737,
+          "n": 22,
+          "ci_95_lo": -0.0775,
+          "ci_95_hi": 0.7764,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": 0.2581,
+          "p_value": 0.271927,
+          "n": 20,
+          "ci_95_lo": -0.2623,
+          "ci_95_hi": 0.6882,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.1378,
+          "p_value": 0.5408,
+          "n": 22,
+          "ci_95_lo": -0.5582,
+          "ci_95_hi": 0.3007,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-006",
+      "driver_abbr": "FEAUM YoY",
+      "driver_name": "FEAUM Growth, Year-over-Year",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.2624,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 2,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.3178,
+          "p_value": 0.149527,
+          "n": 22,
+          "ci_95_lo": -0.6482,
+          "ci_95_hi": 0.0959,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": -0.318,
+          "p_value": 0.171814,
+          "n": 20,
+          "ci_95_lo": -0.7135,
+          "ci_95_hi": 0.184,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.1515,
+          "p_value": 0.500817,
+          "n": 22,
+          "ci_95_lo": -0.5306,
+          "ci_95_hi": 0.3236,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-007",
+      "driver_abbr": "FEAUM CAGR 3yr",
+      "driver_name": "FEAUM Growth, 3-Year CAGR",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.2531,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 1,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.3265,
+          "p_value": 0.138118,
+          "n": 22,
+          "ci_95_lo": -0.1248,
+          "ci_95_hi": 0.6845,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": 0.2588,
+          "p_value": 0.270482,
+          "n": 20,
+          "ci_95_lo": -0.1912,
+          "ci_95_hi": 0.6429,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.174,
+          "p_value": 0.438778,
+          "n": 22,
+          "ci_95_lo": -0.5709,
+          "ci_95_hi": 0.2698,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-001",
+      "driver_abbr": "DE/share",
+      "driver_name": "Distributable Earnings per Share",
+      "classification": "unsupported",
+      "avg_abs_rho": 0.2352,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 0,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.1702,
+          "p_value": 0.460795,
+          "n": 21,
+          "ci_95_lo": -0.3429,
+          "ci_95_hi": 0.6126,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": 0.2521,
+          "p_value": 0.283659,
+          "n": 20,
+          "ci_95_lo": -0.2631,
+          "ci_95_hi": 0.6717,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": 0.2832,
+          "p_value": 0.213493,
+          "n": 21,
+          "ci_95_lo": -0.2503,
+          "ci_95_hi": 0.7131,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-020",
+      "driver_abbr": "Comp&Ben/FEAUM",
+      "driver_name": "Compensation and Benefits to FEAUM",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.2241,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 1,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.4073,
+          "p_value": 0.059885,
+          "n": 22,
+          "ci_95_lo": -0.755,
+          "ci_95_hi": 0.054,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": -0.2525,
+          "p_value": 0.28273,
+          "n": 20,
+          "ci_95_lo": -0.7213,
+          "ci_95_hi": 0.2504,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.0124,
+          "p_value": 0.95622,
+          "n": 22,
+          "ci_95_lo": -0.4491,
+          "ci_95_hi": 0.4224,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-012",
+      "driver_abbr": "Credit %",
+      "driver_name": "Credit Percentage of AUM",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.1836,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 1,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.3488,
+          "p_value": 0.111592,
+          "n": 22,
+          "ci_95_lo": -0.1479,
+          "ci_95_hi": 0.7305,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": 0.199,
+          "p_value": 0.400237,
+          "n": 20,
+          "ci_95_lo": -0.3245,
+          "ci_95_hi": 0.6961,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": 0.0031,
+          "p_value": 0.989016,
+          "n": 22,
+          "ci_95_lo": -0.4347,
+          "ci_95_hi": 0.4366,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-015",
+      "driver_abbr": "Comp ratio",
+      "driver_name": "Compensation-to-Revenue Ratio",
+      "classification": "unsupported",
+      "avg_abs_rho": 0.1239,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 0,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.2153,
+          "p_value": 0.33603,
+          "n": 22,
+          "ci_95_lo": -0.6468,
+          "ci_95_hi": 0.2711,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": -0.0004,
+          "p_value": 0.998744,
+          "n": 20,
+          "ci_95_lo": -0.4346,
+          "ci_95_hi": 0.4531,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.1559,
+          "p_value": 0.48834,
+          "n": 22,
+          "ci_95_lo": -0.5913,
+          "ci_95_hi": 0.3309,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-022",
+      "driver_abbr": "OpEx-Rev growth gap",
+      "driver_name": "OpEx Growth minus Fee Revenue Growth",
+      "classification": "unsupported",
+      "avg_abs_rho": 0.1196,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 0,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.1758,
+          "p_value": 0.433999,
+          "n": 22,
+          "ci_95_lo": -0.5184,
+          "ci_95_hi": 0.2392,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": -0.0361,
+          "p_value": 0.879797,
+          "n": 20,
+          "ci_95_lo": -0.4168,
+          "ci_95_hi": 0.3567,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": 0.1469,
+          "p_value": 0.514072,
+          "n": 22,
+          "ci_95_lo": -0.2737,
+          "ci_95_hi": 0.5286,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-018",
+      "driver_abbr": "Headcount/FEAUM",
+      "driver_name": "Headcount to FEAUM",
+      "classification": "unsupported",
+      "avg_abs_rho": 0.1146,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 0,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.0689,
+          "p_value": 0.76053,
+          "n": 22,
+          "ci_95_lo": -0.488,
+          "ci_95_hi": 0.3402,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": -0.0444,
+          "p_value": 0.852567,
+          "n": 20,
+          "ci_95_lo": -0.4832,
+          "ci_95_hi": 0.441,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": 0.2305,
+          "p_value": 0.302048,
+          "n": 22,
+          "ci_95_lo": -0.2399,
+          "ci_95_hi": 0.6168,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-013",
+      "driver_abbr": "FRE margin",
+      "driver_name": "Fee-Related Earnings Margin",
+      "classification": "unsupported",
+      "avg_abs_rho": 0.0962,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 0,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.004,
+          "p_value": 0.986052,
+          "n": 22,
+          "ci_95_lo": -0.4359,
+          "ci_95_hi": 0.4303,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": 0.1709,
+          "p_value": 0.471358,
+          "n": 20,
+          "ci_95_lo": -0.2651,
+          "ci_95_hi": 0.5549,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": 0.1137,
+          "p_value": 0.614534,
+          "n": 22,
+          "ci_95_lo": -0.338,
+          "ci_95_hi": 0.5507,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-010",
+      "driver_abbr": "Asset class HHI",
+      "driver_name": "Asset Class Herfindahl-Hirschman Index",
+      "classification": "unsupported",
+      "avg_abs_rho": 0.0893,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 0,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.0779,
+          "p_value": 0.730263,
+          "n": 22,
+          "ci_95_lo": -0.5563,
+          "ci_95_hi": 0.4308,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": 0.1189,
+          "p_value": 0.617625,
+          "n": 20,
+          "ci_95_lo": -0.3639,
+          "ci_95_hi": 0.577,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.0712,
+          "p_value": 0.752979,
+          "n": 22,
+          "ci_95_lo": -0.4567,
+          "ci_95_hi": 0.3163,
+          "bh_significant": false
+        }
+      }
+    },
+    {
+      "driver_id": "MET-VD-016",
+      "driver_abbr": "Mgmt fee rate",
+      "driver_name": "Management Fee Rate",
+      "classification": "unsupported",
+      "avg_abs_rho": 0.0717,
+      "strong_multiple_count": 0,
+      "moderate_multiple_count": 0,
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.0593,
+          "p_value": 0.793141,
+          "n": 22,
+          "ci_95_lo": -0.4201,
+          "ci_95_hi": 0.5312,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": 0.128,
+          "p_value": 0.590824,
+          "n": 20,
+          "ci_95_lo": -0.4128,
+          "ci_95_hi": 0.5895,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.0277,
+          "p_value": 0.902668,
+          "n": 22,
+          "ci_95_lo": -0.5356,
+          "ci_95_hi": 0.4859,
+          "bh_significant": false
+        }
+      }
+    }
+  ]
+}

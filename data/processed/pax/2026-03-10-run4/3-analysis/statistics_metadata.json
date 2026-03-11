@@ -1,0 +1,91 @@
+{
+  "stage": "VD-A4b",
+  "title": "Statistics Metadata",
+  "run_id": "2026-03-10-run4",
+  "base_run_id": "2026-03-10-run2",
+  "generated_at": "2026-03-11T07:30:00Z",
+  "cross_section_period": "FY2024",
+  "n_effective": {
+    "minimum": 16,
+    "maximum": 23,
+    "modal": 22,
+    "note": "N varies by metric coverage. Minimum N=16 for P/DE x FRE growth (MET-VD-014; sentinel nullification reduced N for this multiple). Maximum N=23 for Total AUM and Fundraising ratio (near-universal coverage). Modal N=22 applies to most operational metrics."
+  },
+  "temporal_depth": {
+    "primary_period": "FY2024",
+    "primary_period_note": "FY2024 is the most recently reported full fiscal year for calendar-year firms as of March 2026. HLNE (FIRM-015) uses FY2025 (March fiscal year ending March 2025) as the FY2024 proxy.",
+    "secondary_period_for_stability_check": "FY2023",
+    "tertiary_period_available": "FY2022",
+    "temporal_stability_note": "Single cross-section; temporal stability cannot be formally tested without a full prior-period cross-section at the same N."
+  },
+  "ci_method": {
+    "type": "bootstrap_percentile",
+    "n_bootstrap_resamples": 10000,
+    "random_seed": 42,
+    "confidence_level": 0.95,
+    "method_note": "Percentile bootstrap (not BCa) due to small N. BCa requires reliable jackknife acceleration estimates, which are unstable for N<25. Percentile method is conservative — CIs are wider but more honest at small N."
+  },
+  "minimum_sample_rule": {
+    "threshold_for_computation": 12,
+    "threshold_for_reporting": 8,
+    "rationale": "N<12 produces unreliable Spearman estimates. Critical value for p<0.05 significance is rho=0.587 at N=12 and rho=0.506 at N=15. At N<8, the 95% CI covers the full range [-1, +1] and the estimate is uninformative.",
+    "applied_note": "All 51 computed pairs have N>=16. No pairs were dropped for insufficient N."
+  },
+  "multiple_testing_correction": {
+    "method": "Benjamini-Hochberg FDR",
+    "q_threshold": 0.10,
+    "n_tests_total": 51,
+    "n_tests_significant_at_bh": 2,
+    "n_tests_significant_at_p05_pre_bh": 7,
+    "bh_threshold_approximate_p": 0.002882,
+    "bonferroni_threshold_p": 0.000980,
+    "bonferroni_significant_count": 1,
+    "bonferroni_significant_correlations": ["COR-007 (AUM x P/FRE, p=0.0001)"],
+    "bh_significant_correlations": ["COR-007 (AUM x P/FRE)", "COR-004 (FEAUM x P/FRE)"],
+    "recommendation": "BH-FDR at q=0.10 is the primary correction standard. Only 2 of 51 tests survive. Exploratory patterns (p<0.05 but failing BH) are documented but treated as hypothesis-generating only."
+  },
+  "sensitivity_analysis_summary": {
+    "loo_performed": true,
+    "loo_threshold_delta_rho": 0.12,
+    "loo_result": "AUM x P/FRE: removing BX reduces rho from +0.73 to ~+0.62. FEAUM x P/FRE: removing BX reduces rho from +0.60 to ~+0.52. FRE growth x EV/FEAUM (exploratory): removing HLNE shifts rho from -0.61 to ~-0.54. No classification changes.",
+    "temporal_stability_checks": 0,
+    "temporal_stability_note": "Single FY2024 cross-section; temporal stability testing not possible. Prior-period panel insufficient for full test.",
+    "structural_outlier_exclusion_tested": true,
+    "outlier_exclusion_result": "Excluding PGHN from DE/share correlations shifts rho x P/FRE from +0.17 to approximately +0.30-0.35; still unsupported classification. No classification changes for any driver."
+  },
+  "cp1_corrections_applied": {
+    "total_records_corrected": 8,
+    "corrections": [
+      {"firm": "VCTR", "metric": "MET-VD-016", "old_value": 578, "new_value": 76, "unit": "bps"},
+      {"firm": "MAN", "metric": "MET-VD-016", "old_value": 0.52, "new_value": 52, "unit": "bps"},
+      {"firm": "TPG", "metric": "MET-VD-016", "old_value": 0.56, "new_value": 56, "unit": "bps"},
+      {"firm": "OWL", "metric": "MET-VD-001", "old_value": 0.84, "new_value": 0.71, "unit": "USD"},
+      {"firm": "BX", "metric": "MET-VD-014", "old_value": 0.0, "new_value": null, "reason": "sentinel_placeholder"},
+      {"firm": "APO", "metric": "MET-VD-014", "old_value": 0.0, "new_value": null, "reason": "sentinel_placeholder"},
+      {"firm": "TPG", "metric": "MET-VD-014", "old_value": 0.0, "new_value": null, "reason": "sentinel_placeholder"},
+      {"firm": "CVC", "metric": "MET-VD-014", "old_value": 0.0, "new_value": null, "reason": "sentinel_placeholder"}
+    ]
+  },
+  "driver_classification_summary": {
+    "stable_value_drivers": [],
+    "multiple_specific_drivers": ["MET-VD-005 (AUM)", "MET-VD-014 (FRE growth)", "MET-VD-004 (FEAUM)"],
+    "moderate_signal_drivers": ["MET-VD-011", "MET-VD-021", "MET-VD-009", "MET-VD-006", "MET-VD-007", "MET-VD-020", "MET-VD-012"],
+    "unsupported_drivers": ["MET-VD-001", "MET-VD-015", "MET-VD-022", "MET-VD-018", "MET-VD-013", "MET-VD-010", "MET-VD-016"],
+    "stable_driver_note": "No stable_value_driver (|rho|>=0.50 on >=2 multiples) identified in this run. The broader 23-firm sample including European and EM-based managers introduces structural heterogeneity that reduces cross-sectional signal strength. This contrasts with the base run (2026-03-10-run2) where G&A/FEAUM was classified as stable; run4 G&A/FEAUM max|rho|=-0.45 on P/FRE only."
+  },
+  "disclaimers_summary": [
+    "correlation_not_causation",
+    "survivorship_bias_publicly_listed_only",
+    "point_in_time_cross_section_FY2024",
+    "small_N_wide_confidence_intervals",
+    "endogeneity_scale_growth_cost_metrics",
+    "fre_definition_heterogeneity_across_firms",
+    "de_share_currency_and_per_share_scale_heterogeneity"
+  ],
+  "universe_changes_from_base_run": {
+    "firms_retained_qualitative_only": ["FIRM-021 (VINP)"],
+    "total_correlation_universe": 23,
+    "total_qualitative_universe": 24,
+    "note": "Base run (2026-03-10-run2) had 21 firms in correlation universe. Run4 adds TKO (FIRM-020) and includes ICP (FIRM-016) which was previously borderline. Net: +2 firms in correlation universe."
+  }
+}

@@ -1,0 +1,2109 @@
+{
+  "metadata": {
+    "generated_at": "2026-03-11T02:43:06.201851Z",
+    "base_run_dir": "/Users/arthurhrk/Documents/GitHub/peer-review-pax/data/processed/pax/2026-03-10-run2",
+    "new_run_dir": "/Users/arthurhrk/Documents/GitHub/peer-review-pax/data/processed/pax/2026-03-10-run4",
+    "mode": "incremental",
+    "total_cells_to_collect": 182,
+    "total_cells_existing": 488,
+    "total_cells_skipped_not_disclosed": 74,
+    "priority_breakdown": {
+      "critical": 0,
+      "high": 0,
+      "medium": 182,
+      "low": 0
+    },
+    "sliced_tier": "tier2",
+    "sliced_from": "/Users/arthurhrk/Documents/GitHub/peer-review-pax/data/processed/pax/2026-03-10-run4/2-data/delta_spec.json",
+    "sliced_at": "2026-03-11T04:10:10.071180Z"
+  },
+  "carry_forward": {
+    "description": "These data points are carried forward unchanged from the base run",
+    "cells": [
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-001",
+        "value": 2.48,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-004",
+        "value": 141.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-005",
+        "value": 245.9,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-006",
+        "value": 2.9,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-007",
+        "value": 9.3,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-009",
+        "value": 9.3,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-010",
+        "value": 2847,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-011",
+        "value": 12.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-012",
+        "value": 37.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-013",
+        "value": 42.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-014",
+        "value": 0.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-015",
+        "value": 43.5,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-018",
+        "value": 13.5,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-019",
+        "value": 0.074,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-020",
+        "value": 55.5,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-021",
+        "value": 14.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-022",
+        "value": 8.5,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-024",
+        "value": 2.1,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-026",
+        "value": 21.7,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-027",
+        "value": 19.8,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-028",
+        "value": 11.7,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-001",
+        "value": 0.56,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-004",
+        "value": 146.9,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-005",
+        "value": 290.5,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-006",
+        "value": 2.7,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-007",
+        "value": 9.6,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-009",
+        "value": 7.8,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-010",
+        "value": 4218,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-011",
+        "value": 8.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-012",
+        "value": 3.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-013",
+        "value": 53.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-014",
+        "value": 2.4,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-015",
+        "value": 52.1,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-016",
+        "value": 175.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-018",
+        "value": 13.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-019",
+        "value": 0.076,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-020",
+        "value": 87.5,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-021",
+        "value": 16.8,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-022",
+        "value": -2.1,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-023",
+        "value": 5.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-026",
+        "value": 32.3,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-027",
+        "value": 56.9,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-028",
+        "value": 26.3,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-001",
+        "value": 0.323,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-005",
+        "value": 168.6,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-009",
+        "value": 13.5,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-011",
+        "value": 35.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-012",
+        "value": 18.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-013",
+        "value": 43.1,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-014",
+        "value": 39.1,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-022",
+        "value": -7.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-026",
+        "value": 8.7,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-027",
+        "value": 10.3,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-028",
+        "value": 3.1,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-001",
+        "value": 2.21,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-004",
+        "value": 127.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-005",
+        "value": 157.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-006",
+        "value": 0.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-007",
+        "value": 26.4,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-009",
+        "value": 20.4,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-010",
+        "value": 3128,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-011",
+        "value": 42.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-012",
+        "value": 8.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-013",
+        "value": 40.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-014",
+        "value": 0.48,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-015",
+        "value": 55.8,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-016",
+        "value": 63.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-018",
+        "value": 7.8,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-019",
+        "value": 0.128,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-020",
+        "value": 37.5,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-021",
+        "value": 10.3,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-022",
+        "value": -7.6,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-026",
+        "value": 17.7,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-027",
+        "value": 25.3,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-028",
+        "value": 4.5,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-001",
+        "value": 0.7776,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-004",
+        "value": 159.1,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-005",
+        "value": 216.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-006",
+        "value": 35.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-007",
+        "value": 13.8,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-009",
+        "value": 11.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-010",
+        "value": 4032,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-011",
+        "value": 18.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-012",
+        "value": 26.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-013",
+        "value": 59.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-014",
+        "value": 0.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-015",
+        "value": 41.3,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-016",
+        "value": 104.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-018",
+        "value": 5.3,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-019",
+        "value": 0.189,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-020",
+        "value": 37.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-021",
+        "value": 11.8,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-022",
+        "value": -18.4,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-023",
+        "value": 28.5,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-024",
+        "value": 1.8,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-026",
+        "value": 19.3,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-027",
+        "value": 19.8,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-028",
+        "value": 10.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-001",
+        "value": 81.6,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-005",
+        "value": 152.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-009",
+        "value": 8.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-011",
+        "value": 72.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-012",
+        "value": 14.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-013",
+        "value": 63.6,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-014",
+        "value": 0.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-022",
+        "value": 1.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-023",
+        "value": 4.8,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-026",
+        "value": 15.9,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-027",
+        "value": 28.1,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-028",
+        "value": 32.3,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-001",
+        "value": 3.53,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2025"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-004",
+        "value": 66.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-005",
+        "value": 124.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-006",
+        "value": 15.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-007",
+        "value": 18.4,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2025"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-009",
+        "value": 17.7,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2025"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-010",
+        "value": 2934,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-011",
+        "value": 58.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-012",
+        "value": 17.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-013",
+        "value": 61.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-014",
+        "value": 0.343,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2025"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-015",
+        "value": 53.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2025"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-016",
+        "value": 73.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-018",
+        "value": 11.7,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-019",
+        "value": 0.085,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-020",
+        "value": 40.2,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2025"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-021",
+        "value": 13.1,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2025"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-022",
+        "value": -6.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2025"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-026",
+        "value": 28.6,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-027",
+        "value": 36.3,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-028",
+        "value": 12.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-001",
+        "value": 0.96,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-004",
+        "value": 70.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-005",
+        "value": 98.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-006",
+        "value": 11.5,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-007",
+        "value": 12.7,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-009",
+        "value": 9.1,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-010",
+        "value": 3486,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-011",
+        "value": 22.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-012",
+        "value": 50.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-015",
+        "value": 44.8,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-016",
+        "value": 96.0,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-018",
+        "value": 10.8,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-019",
+        "value": 0.093,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-020",
+        "value": 42.1,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-021",
+        "value": 18.6,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-022",
+        "value": 1.5,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-023",
+        "value": 2.4,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-026",
+        "value": 14.4,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-027",
+        "value": 27.1,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-028",
+        "value": 10.7,
+        "unit": null,
+        "source": null,
+        "as_of": "FY2024"
+      }
+    ]
+  },
+  "skip": {
+    "description": "These cells are skipped — firm confirmed non-disclosure in base run",
+    "cells": [
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-029",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-030",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-009",
+        "ticker": "TPG",
+        "metric_id": "MET-VD-031",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-029",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-030",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-010",
+        "ticker": "EQT",
+        "metric_id": "MET-VD-031",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-029",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-030",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-011",
+        "ticker": "MAN",
+        "metric_id": "MET-VD-031",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-029",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-030",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-012",
+        "ticker": "STEP",
+        "metric_id": "MET-VD-031",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-029",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-030",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-013",
+        "ticker": "CVC",
+        "metric_id": "MET-VD-031",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-029",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-030",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-014",
+        "ticker": "PGHN",
+        "metric_id": "MET-VD-031",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-029",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-030",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-015",
+        "ticker": "HLNE",
+        "metric_id": "MET-VD-031",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-029",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-030",
+        "reason": "unknown"
+      },
+      {
+        "firm_id": "FIRM-016",
+        "ticker": "ICP",
+        "metric_id": "MET-VD-031",
+        "reason": "unknown"
+      }
+    ]
+  },
+  "collect": {
+    "description": "These cells need collection — organized by tier for parallel dispatch",
+    "tier2": {
+      "firms": [
+        "FIRM-009",
+        "FIRM-010",
+        "FIRM-011",
+        "FIRM-012",
+        "FIRM-013",
+        "FIRM-014",
+        "FIRM-015",
+        "FIRM-016"
+      ],
+      "assignments": [
+        {
+          "firm_id": "FIRM-009",
+          "ticker": "TPG",
+          "metrics_to_collect": [
+            {
+              "metric_id": "MET-VD-002",
+              "metric_name": "Earnings per Share (GAAP)",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search TPG 10-K, earnings supplement, or investor presentation for Earnings per Share (GAAP)"
+            },
+            {
+              "metric_id": "MET-VD-003",
+              "metric_name": "DE/Share Growth, 3-Year CAGR",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search TPG 10-K, earnings supplement, or investor presentation for DE/Share Growth, 3-Year CAGR"
+            },
+            {
+              "metric_id": "MET-VD-008",
+              "metric_name": "Net Organic FEAUM Growth",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search TPG 10-K, earnings supplement, or investor presentation for Net Organic FEAUM Growth"
+            },
+            {
+              "metric_id": "MET-VD-016",
+              "metric_name": "Management Fee Rate",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search TPG 10-K, earnings supplement, or investor presentation for Management Fee Rate"
+            },
+            {
+              "metric_id": "MET-VD-017",
+              "metric_name": "Performance Fee Share of Total Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search TPG 10-K, earnings supplement, or investor presentation for Performance Fee Share of Total Revenue"
+            },
+            {
+              "metric_id": "MET-VD-023",
+              "metric_name": "Constant Currency Revenue Growth",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search TPG 10-K, earnings supplement, or investor presentation for Constant Currency Revenue Growth"
+            },
+            {
+              "metric_id": "MET-VD-025",
+              "metric_name": "CapEx to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search TPG 10-K, earnings supplement, or investor presentation for CapEx to FEAUM"
+            }
+          ]
+        },
+        {
+          "firm_id": "FIRM-010",
+          "ticker": "EQT",
+          "metrics_to_collect": [
+            {
+              "metric_id": "MET-VD-002",
+              "metric_name": "Earnings per Share (GAAP)",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search EQT 10-K, earnings supplement, or investor presentation for Earnings per Share (GAAP)"
+            },
+            {
+              "metric_id": "MET-VD-003",
+              "metric_name": "DE/Share Growth, 3-Year CAGR",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search EQT 10-K, earnings supplement, or investor presentation for DE/Share Growth, 3-Year CAGR"
+            },
+            {
+              "metric_id": "MET-VD-008",
+              "metric_name": "Net Organic FEAUM Growth",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search EQT 10-K, earnings supplement, or investor presentation for Net Organic FEAUM Growth"
+            },
+            {
+              "metric_id": "MET-VD-017",
+              "metric_name": "Performance Fee Share of Total Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search EQT 10-K, earnings supplement, or investor presentation for Performance Fee Share of Total Revenue"
+            },
+            {
+              "metric_id": "MET-VD-024",
+              "metric_name": "Integration Costs to Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search EQT 10-K, earnings supplement, or investor presentation for Integration Costs to Revenue"
+            },
+            {
+              "metric_id": "MET-VD-025",
+              "metric_name": "CapEx to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search EQT 10-K, earnings supplement, or investor presentation for CapEx to FEAUM"
+            }
+          ]
+        },
+        {
+          "firm_id": "FIRM-011",
+          "ticker": "MAN",
+          "metrics_to_collect": [
+            {
+              "metric_id": "MET-VD-002",
+              "metric_name": "Earnings per Share (GAAP)",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for Earnings per Share (GAAP)"
+            },
+            {
+              "metric_id": "MET-VD-003",
+              "metric_name": "DE/Share Growth, 3-Year CAGR",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for DE/Share Growth, 3-Year CAGR"
+            },
+            {
+              "metric_id": "MET-VD-004",
+              "metric_name": "Fee-Earning AUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for Fee-Earning AUM"
+            },
+            {
+              "metric_id": "MET-VD-006",
+              "metric_name": "FEAUM Growth, Year-over-Year",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for FEAUM Growth, Year-over-Year"
+            },
+            {
+              "metric_id": "MET-VD-007",
+              "metric_name": "FEAUM Growth, 3-Year CAGR",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for FEAUM Growth, 3-Year CAGR"
+            },
+            {
+              "metric_id": "MET-VD-008",
+              "metric_name": "Net Organic FEAUM Growth",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for Net Organic FEAUM Growth"
+            },
+            {
+              "metric_id": "MET-VD-010",
+              "metric_name": "Asset Class Herfindahl-Hirschman Index",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for Asset Class Herfindahl-Hirschman Index"
+            },
+            {
+              "metric_id": "MET-VD-015",
+              "metric_name": "Compensation-to-Revenue Ratio",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for Compensation-to-Revenue Ratio"
+            },
+            {
+              "metric_id": "MET-VD-016",
+              "metric_name": "Management Fee Rate",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for Management Fee Rate"
+            },
+            {
+              "metric_id": "MET-VD-017",
+              "metric_name": "Performance Fee Share of Total Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for Performance Fee Share of Total Revenue"
+            },
+            {
+              "metric_id": "MET-VD-018",
+              "metric_name": "Headcount to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for Headcount to FEAUM"
+            },
+            {
+              "metric_id": "MET-VD-019",
+              "metric_name": "FEAUM per Employee",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for FEAUM per Employee"
+            },
+            {
+              "metric_id": "MET-VD-020",
+              "metric_name": "Compensation and Benefits to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for Compensation and Benefits to FEAUM"
+            },
+            {
+              "metric_id": "MET-VD-021",
+              "metric_name": "G&A Expense to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for G&A Expense to FEAUM"
+            },
+            {
+              "metric_id": "MET-VD-023",
+              "metric_name": "Constant Currency Revenue Growth",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for Constant Currency Revenue Growth"
+            },
+            {
+              "metric_id": "MET-VD-024",
+              "metric_name": "Integration Costs to Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for Integration Costs to Revenue"
+            },
+            {
+              "metric_id": "MET-VD-025",
+              "metric_name": "CapEx to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search MAN 10-K, earnings supplement, or investor presentation for CapEx to FEAUM"
+            }
+          ]
+        },
+        {
+          "firm_id": "FIRM-012",
+          "ticker": "STEP",
+          "metrics_to_collect": [
+            {
+              "metric_id": "MET-VD-002",
+              "metric_name": "Earnings per Share (GAAP)",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search STEP 10-K, earnings supplement, or investor presentation for Earnings per Share (GAAP)"
+            },
+            {
+              "metric_id": "MET-VD-003",
+              "metric_name": "DE/Share Growth, 3-Year CAGR",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search STEP 10-K, earnings supplement, or investor presentation for DE/Share Growth, 3-Year CAGR"
+            },
+            {
+              "metric_id": "MET-VD-008",
+              "metric_name": "Net Organic FEAUM Growth",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search STEP 10-K, earnings supplement, or investor presentation for Net Organic FEAUM Growth"
+            },
+            {
+              "metric_id": "MET-VD-017",
+              "metric_name": "Performance Fee Share of Total Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search STEP 10-K, earnings supplement, or investor presentation for Performance Fee Share of Total Revenue"
+            },
+            {
+              "metric_id": "MET-VD-023",
+              "metric_name": "Constant Currency Revenue Growth",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search STEP 10-K, earnings supplement, or investor presentation for Constant Currency Revenue Growth"
+            },
+            {
+              "metric_id": "MET-VD-024",
+              "metric_name": "Integration Costs to Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search STEP 10-K, earnings supplement, or investor presentation for Integration Costs to Revenue"
+            },
+            {
+              "metric_id": "MET-VD-025",
+              "metric_name": "CapEx to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search STEP 10-K, earnings supplement, or investor presentation for CapEx to FEAUM"
+            }
+          ]
+        },
+        {
+          "firm_id": "FIRM-013",
+          "ticker": "CVC",
+          "metrics_to_collect": [
+            {
+              "metric_id": "MET-VD-002",
+              "metric_name": "Earnings per Share (GAAP)",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search CVC 10-K, earnings supplement, or investor presentation for Earnings per Share (GAAP)"
+            },
+            {
+              "metric_id": "MET-VD-003",
+              "metric_name": "DE/Share Growth, 3-Year CAGR",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search CVC 10-K, earnings supplement, or investor presentation for DE/Share Growth, 3-Year CAGR"
+            },
+            {
+              "metric_id": "MET-VD-008",
+              "metric_name": "Net Organic FEAUM Growth",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search CVC 10-K, earnings supplement, or investor presentation for Net Organic FEAUM Growth"
+            },
+            {
+              "metric_id": "MET-VD-017",
+              "metric_name": "Performance Fee Share of Total Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search CVC 10-K, earnings supplement, or investor presentation for Performance Fee Share of Total Revenue"
+            },
+            {
+              "metric_id": "MET-VD-025",
+              "metric_name": "CapEx to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search CVC 10-K, earnings supplement, or investor presentation for CapEx to FEAUM"
+            }
+          ]
+        },
+        {
+          "firm_id": "FIRM-014",
+          "ticker": "PGHN",
+          "metrics_to_collect": [
+            {
+              "metric_id": "MET-VD-002",
+              "metric_name": "Earnings per Share (GAAP)",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for Earnings per Share (GAAP)"
+            },
+            {
+              "metric_id": "MET-VD-003",
+              "metric_name": "DE/Share Growth, 3-Year CAGR",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for DE/Share Growth, 3-Year CAGR"
+            },
+            {
+              "metric_id": "MET-VD-004",
+              "metric_name": "Fee-Earning AUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for Fee-Earning AUM"
+            },
+            {
+              "metric_id": "MET-VD-006",
+              "metric_name": "FEAUM Growth, Year-over-Year",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for FEAUM Growth, Year-over-Year"
+            },
+            {
+              "metric_id": "MET-VD-007",
+              "metric_name": "FEAUM Growth, 3-Year CAGR",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for FEAUM Growth, 3-Year CAGR"
+            },
+            {
+              "metric_id": "MET-VD-008",
+              "metric_name": "Net Organic FEAUM Growth",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for Net Organic FEAUM Growth"
+            },
+            {
+              "metric_id": "MET-VD-010",
+              "metric_name": "Asset Class Herfindahl-Hirschman Index",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for Asset Class Herfindahl-Hirschman Index"
+            },
+            {
+              "metric_id": "MET-VD-015",
+              "metric_name": "Compensation-to-Revenue Ratio",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for Compensation-to-Revenue Ratio"
+            },
+            {
+              "metric_id": "MET-VD-016",
+              "metric_name": "Management Fee Rate",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for Management Fee Rate"
+            },
+            {
+              "metric_id": "MET-VD-017",
+              "metric_name": "Performance Fee Share of Total Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for Performance Fee Share of Total Revenue"
+            },
+            {
+              "metric_id": "MET-VD-018",
+              "metric_name": "Headcount to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for Headcount to FEAUM"
+            },
+            {
+              "metric_id": "MET-VD-019",
+              "metric_name": "FEAUM per Employee",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for FEAUM per Employee"
+            },
+            {
+              "metric_id": "MET-VD-020",
+              "metric_name": "Compensation and Benefits to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for Compensation and Benefits to FEAUM"
+            },
+            {
+              "metric_id": "MET-VD-021",
+              "metric_name": "G&A Expense to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for G&A Expense to FEAUM"
+            },
+            {
+              "metric_id": "MET-VD-024",
+              "metric_name": "Integration Costs to Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for Integration Costs to Revenue"
+            },
+            {
+              "metric_id": "MET-VD-025",
+              "metric_name": "CapEx to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search PGHN 10-K, earnings supplement, or investor presentation for CapEx to FEAUM"
+            }
+          ]
+        },
+        {
+          "firm_id": "FIRM-015",
+          "ticker": "HLNE",
+          "metrics_to_collect": [
+            {
+              "metric_id": "MET-VD-002",
+              "metric_name": "Earnings per Share (GAAP)",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search HLNE 10-K, earnings supplement, or investor presentation for Earnings per Share (GAAP)"
+            },
+            {
+              "metric_id": "MET-VD-003",
+              "metric_name": "DE/Share Growth, 3-Year CAGR",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search HLNE 10-K, earnings supplement, or investor presentation for DE/Share Growth, 3-Year CAGR"
+            },
+            {
+              "metric_id": "MET-VD-008",
+              "metric_name": "Net Organic FEAUM Growth",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search HLNE 10-K, earnings supplement, or investor presentation for Net Organic FEAUM Growth"
+            },
+            {
+              "metric_id": "MET-VD-017",
+              "metric_name": "Performance Fee Share of Total Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search HLNE 10-K, earnings supplement, or investor presentation for Performance Fee Share of Total Revenue"
+            },
+            {
+              "metric_id": "MET-VD-023",
+              "metric_name": "Constant Currency Revenue Growth",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search HLNE 10-K, earnings supplement, or investor presentation for Constant Currency Revenue Growth"
+            },
+            {
+              "metric_id": "MET-VD-024",
+              "metric_name": "Integration Costs to Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search HLNE 10-K, earnings supplement, or investor presentation for Integration Costs to Revenue"
+            },
+            {
+              "metric_id": "MET-VD-025",
+              "metric_name": "CapEx to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search HLNE 10-K, earnings supplement, or investor presentation for CapEx to FEAUM"
+            }
+          ]
+        },
+        {
+          "firm_id": "FIRM-016",
+          "ticker": "ICP",
+          "metrics_to_collect": [
+            {
+              "metric_id": "MET-VD-002",
+              "metric_name": "Earnings per Share (GAAP)",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search ICP 10-K, earnings supplement, or investor presentation for Earnings per Share (GAAP)"
+            },
+            {
+              "metric_id": "MET-VD-003",
+              "metric_name": "DE/Share Growth, 3-Year CAGR",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search ICP 10-K, earnings supplement, or investor presentation for DE/Share Growth, 3-Year CAGR"
+            },
+            {
+              "metric_id": "MET-VD-008",
+              "metric_name": "Net Organic FEAUM Growth",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search ICP 10-K, earnings supplement, or investor presentation for Net Organic FEAUM Growth"
+            },
+            {
+              "metric_id": "MET-VD-013",
+              "metric_name": "Fee-Related Earnings Margin",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search ICP 10-K, earnings supplement, or investor presentation for Fee-Related Earnings Margin"
+            },
+            {
+              "metric_id": "MET-VD-014",
+              "metric_name": "FRE Growth, Year-over-Year",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search ICP 10-K, earnings supplement, or investor presentation for FRE Growth, Year-over-Year"
+            },
+            {
+              "metric_id": "MET-VD-017",
+              "metric_name": "Performance Fee Share of Total Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search ICP 10-K, earnings supplement, or investor presentation for Performance Fee Share of Total Revenue"
+            },
+            {
+              "metric_id": "MET-VD-024",
+              "metric_name": "Integration Costs to Revenue",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search ICP 10-K, earnings supplement, or investor presentation for Integration Costs to Revenue"
+            },
+            {
+              "metric_id": "MET-VD-025",
+              "metric_name": "CapEx to FEAUM",
+              "collection_priority": "medium",
+              "gap_classification": "never_attempted",
+              "hint": "Search ICP 10-K, earnings supplement, or investor presentation for CapEx to FEAUM"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

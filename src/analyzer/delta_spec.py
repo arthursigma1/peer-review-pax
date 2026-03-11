@@ -382,8 +382,14 @@ def _build_metrics_index(metric_taxonomy: dict[str, object]) -> dict[str, Metric
 def _index_matrix(
     standardized_matrix: dict[str, object],
 ) -> dict[tuple[str, str], dict[str, object]]:
-    """Return (firm_id, metric_id) → cell dict from the standardized matrix."""
+    """Return (firm_id, metric_id) → cell dict from the standardized matrix.
+
+    Supports both the nested ``matrix`` format (firm → metrics dict) and the
+    flat ``data_points`` format (list of {firm_id, metric_id, ...} records).
+    """
     index: dict[tuple[str, str], dict[str, object]] = {}
+
+    # Nested matrix format.
     for firm_row in standardized_matrix.get("matrix", []):
         if not isinstance(firm_row, dict):
             continue
@@ -394,6 +400,24 @@ def _index_matrix(
         for metric_id, cell in metrics.items():
             if isinstance(cell, dict):
                 index[(firm_id, str(metric_id))] = cell
+
+    # Flat data_points format (fallback when matrix key is absent or empty).
+    if not index:
+        for dp in standardized_matrix.get("data_points", []):
+            if not isinstance(dp, dict):
+                continue
+            firm_id = str(dp.get("firm_id", ""))
+            metric_id = str(dp.get("metric_id", ""))
+            if firm_id and metric_id:
+                val = dp.get("value_standardized", dp.get("value_raw"))
+                index[(firm_id, metric_id)] = {
+                    "value": val,
+                    "missing_reason": dp.get("missing_reason"),
+                    "as_of": dp.get("period_end_date", dp.get("period", "")),
+                    "confidence": dp.get("confidence"),
+                    "source_id": dp.get("source_id"),
+                }
+
     return index
 
 

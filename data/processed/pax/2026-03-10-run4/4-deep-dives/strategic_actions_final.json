@@ -1,0 +1,813 @@
+{
+  "metadata": {
+    "pipeline": "VDA",
+    "stage": "VD-B2",
+    "generated_at": "2026-03-10",
+    "run_id": "2026-03-10-run4",
+    "base_run": "2026-03-10-run2",
+    "total_actions": 58,
+    "firms_covered": 24,
+    "tech_sweep_actions": 24,
+    "tech_actions_found": 7,
+    "tech_actions_not_found": 17,
+    "notes": "Run4 improvements: (1) full op_prereq subfields for all actions; (2) mandatory tech/data platform sweep for all 24 firms; (3) Tikehau Capital (FIRM-020) actions enhanced with 2025 year-end data; (4) updated metric impacts to reflect Dec-31-2025 actuals; (5) CONSULTING RULE applied — consulting_context_slim.json used only for industry trend framing in contextual_market_factors, not as primary evidence for any firm-specific action.",
+    "sliced_from": "/Users/arthurhrk/Documents/GitHub/peer-review-pax/data/processed/pax/2026-03-10-run4/2-data/strategic_actions.json",
+    "sliced_at": "2026-03-11T04:10:10.089470Z",
+    "original_action_count": 58,
+    "sliced_action_count": 30
+  },
+  "actions": [
+    {
+      "action_id": "ACT-VD-001",
+      "firm_id": "FIRM-003",
+      "firm_name": "Apollo Global Management, Inc.",
+      "action_type": "M&A",
+      "description": "Completed the full merger with Athene Holding in January 2022, consolidating the retirement services platform into Apollo's corporate structure and eliminating the minority interest discount that had persisted since Athene's 2020 partial merger.",
+      "stated_rationale": "Management argued that full integration would unify Apollo's origination-to-distribution model, remove structural complexity, and allow Apollo to present a single P&L capturing both asset management fees and insurance spread income.",
+      "observable_metric_impact": "Added ~$210B of Athene general account assets to Apollo's AUM; retirement services FRE contribution became fully consolidated; EPS accretion estimated at 15-20% in first full year. By end-2025, Athene general account had grown to $300B+.",
+      "timeline": {
+        "announced": "2021-03",
+        "closed": "2022-01",
+        "operational": "2022-06"
+      },
+      "source_citation": "PS-VD-008",
+      "operational_prerequisites": {
+        "systems_integration": "Integration of Athene's actuarial, ALM, and investment management systems into Apollo's operating model; unified data warehousing for general account and AM portfolios",
+        "data_reporting_stack": "Combined P&L reporting requiring harmonization of insurance GAAP with AM fee-related earnings; new segment reporting disclosures for SEC filings",
+        "qa_controls_reconciliation": "Asset-liability matching controls under Iowa insurance regulatory requirements; actuarial reserving reconciliation under Bermuda Solvency II-equivalent standards",
+        "fund_admin_servicing": "Consolidation of Athene's policyholder servicing, claims processing, and annuity administration into unified Apollo-Athene operations",
+        "compliance_risk_treasury": "Regulatory approvals from multiple state insurance departments (Iowa primary), SEC and antitrust clearance; ongoing compliance with Iowa insurance regulation and Bermuda regulatory standards",
+        "hiring_org_redesign": "Harmonization of compensation structures between AM and insurance teams; integration of Athene actuarial staff into consolidated leadership structure",
+        "geographic_integration": "No significant geographic integration required — both entities US/Bermuda domiciled pre-merger"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "regulatory-filing"
+    },
+    {
+      "action_id": "ACT-VD-002",
+      "firm_id": "FIRM-003",
+      "firm_name": "Apollo Global Management, Inc.",
+      "action_type": "product-launch",
+      "description": "Spun off Atlas SP Partners as a dedicated asset-backed lending and securitization platform, creating a standalone origination engine for investment-grade and high-grade credit across consumer, commercial, and specialty finance verticals.",
+      "stated_rationale": "Management positioned Atlas SP as the institutional expression of Apollo's origination thesis — that manufacturing high-quality credit at scale would differentiate Apollo from peers reliant on secondary market sourcing.",
+      "observable_metric_impact": "Atlas SP reached over $45B in platform assets by 2024; contributed to Apollo's $300B+ annual origination volume target. Credit AUM grew from ~$400B to $749B by end-2025.",
+      "timeline": {
+        "announced": "2022-06",
+        "closed": "2022-09",
+        "operational": "2023-03"
+      },
+      "source_citation": "PS-VD-008",
+      "operational_prerequisites": {
+        "systems_integration": "Transfer of origination teams and warehouse facilities from Apollo's balance sheet to standalone entity; independent technology platform for loan origination and servicing",
+        "data_reporting_stack": "Separate financial reporting for standalone Atlas SP entity; new data pipelines for securitization collateral monitoring across consumer, commercial, specialty verticals",
+        "qa_controls_reconciliation": "Warehouse credit facility underwriting standards and collateral quality controls; rating agency compliance for securitization transactions",
+        "fund_admin_servicing": "Establishment of independent fund administration and third-party capital raising capability separate from Apollo's core AM vehicles",
+        "compliance_risk_treasury": "SEC registration for standalone entity; anti-money laundering and KYC requirements for new banking-channel origination",
+        "hiring_org_redesign": "Dedicated management team and governance for Atlas SP; senior hire of former banking professionals to lead origination verticals",
+        "geographic_integration": "Limited — Atlas SP primarily US-domiciled with focused expansion across specialty finance verticals"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "regulatory-filing"
+    },
+    {
+      "action_id": "ACT-VD-003",
+      "firm_id": "FIRM-003",
+      "firm_name": "Apollo Global Management, Inc.",
+      "action_type": "technology-investment",
+      "description": "Launched AtlasX, a digital distribution and client services platform providing institutional and wealth-channel investors with direct digital access to Apollo's private credit and yield products. Launched 2025 as Apollo's proprietary technology-enabled distribution layer.",
+      "stated_rationale": "Management described AtlasX as Apollo's answer to the operational complexity barrier in private credit distribution, enabling automated subscription, portfolio monitoring, and reporting that traditional fund administration cannot provide at scale.",
+      "observable_metric_impact": "AtlasX went live in 2025; targeted to become the primary distribution interface for Apollo's wealth-channel products, reducing subscription cycle times and expanding addressable investor base. Wealth-channel is explicitly targeted as Apollo's fastest-growing distribution segment.",
+      "timeline": {
+        "announced": "2024-11",
+        "closed": null,
+        "operational": "2025-06"
+      },
+      "source_citation": "PS-VD-009",
+      "operational_prerequisites": {
+        "systems_integration": "API integrations with major wealth management platforms and custodians (Schwab, Fidelity, DTCC); digital subscription processing infrastructure",
+        "data_reporting_stack": "Real-time NAV calculation and portfolio reporting for wealth-channel clients; standardized data feeds to financial advisors",
+        "qa_controls_reconciliation": "Digital KYC/AML automation for retail-scale investor onboarding; regulatory compliance testing across 50-state securities laws",
+        "fund_admin_servicing": "Automated subscription/redemption processing; digital investor communications replacing paper-based fund administration",
+        "compliance_risk_treasury": "SEC Regulation D and Regulation A+ compliance review; digital platform subject to FINRA examination for any broker-dealer-adjacent activities",
+        "hiring_org_redesign": "Dedicated product and engineering team for AtlasX platform; UX/UI designers experienced in financial services digital platforms",
+        "geographic_integration": "US-first rollout with future international expansion; GDPR and non-US data privacy compliance required for European expansion"
+      },
+      "no_tech_action_found": false,
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-004",
+      "firm_id": "FIRM-003",
+      "firm_name": "Apollo Global Management, Inc.",
+      "action_type": "distribution-shift",
+      "description": "Established strategic co-origination partnership with Citibank for direct lending, creating a joint platform to originate and distribute investment-grade and near-investment-grade private credit at scale.",
+      "stated_rationale": "Combines Citi's corporate banking relationships and balance sheet with Apollo's structuring and distribution capabilities; targeted $25B+ annual co-origination volume.",
+      "observable_metric_impact": "Partnership targeted $25B+ annual co-origination across corporate direct lending, ABF, and structured credit. Expands Apollo's origination capacity beyond its own balance sheet and Athene channel. Announced March 2025.",
+      "timeline": {
+        "announced": "2025-03",
+        "closed": "2025-06",
+        "operational": "2025-09"
+      },
+      "source_citation": "PS-VD-009",
+      "operational_prerequisites": {
+        "systems_integration": "Joint credit pipeline management technology; data sharing protocols between Citi's corporate banking CRM and Apollo's origination systems",
+        "data_reporting_stack": "Co-origination transaction reporting meeting both Citi bank regulatory standards and Apollo investor reporting requirements",
+        "qa_controls_reconciliation": "Joint credit committee governance; unified underwriting standards reconciling bank regulatory capital treatment with alternative credit investor requirements",
+        "fund_admin_servicing": "Shared servicing arrangement for co-originated loans; agency bank functions allocated between parties",
+        "compliance_risk_treasury": "Regulatory clearance for co-lending arrangement; bank regulatory compliance (OCC/Fed oversight of Citi component); revenue-sharing economics documentation",
+        "hiring_org_redesign": "Senior relationship management dedicated to Citi partnership; integration of Citi deal flow into Apollo's origination tracking systems",
+        "geographic_integration": "US corporate lending focus initially; international extension subject to applicable lending licenses"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-005",
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "action_type": "M&A",
+      "description": "Acquired Black Creek Group, a Canadian real estate and private equity manager with ~$15B AUM, in Q1 2022, expanding real assets platform and gaining access to non-traded REIT distribution.",
+      "stated_rationale": "Strengthen real assets vertical and establish non-traded vehicle distribution capabilities for retail and wealth-channel investors.",
+      "observable_metric_impact": "Real Assets AUM grew from ~$35B to ~$50B at acquisition; added non-traded REIT (AREIT) to product suite; AREIT has subsequently grown as wealth-channel vehicle.",
+      "timeline": {
+        "announced": "2021-07",
+        "closed": "2022-01",
+        "operational": "2022-Q1"
+      },
+      "source_citation": "PS-VD-012",
+      "operational_prerequisites": {
+        "systems_integration": "Integration of Black Creek investment teams and fund administration into Ares Real Assets group; migration of non-traded REIT technology platform to Ares infrastructure",
+        "data_reporting_stack": "Non-traded REIT NAV calculation and quarterly reporting; FINRA-compliant distribution reporting for retail investors",
+        "qa_controls_reconciliation": "Non-traded REIT valuation governance and independent appraisal processes under SEC non-traded REIT regulations",
+        "fund_admin_servicing": "Migration of investor accounts and transfer agent relationships to Ares-compatible systems; Canadian fund administration for legacy Black Creek vehicles",
+        "compliance_risk_treasury": "SEC registration for non-traded REIT; Canadian provincial securities regulation for legacy vehicles; antitrust clearance",
+        "hiring_org_redesign": "Retention of Black Creek senior investment team; integration of real estate origination professionals into Ares Real Assets platform",
+        "geographic_integration": "Cross-border integration of Canadian-headquartered team into US parent; alignment of Canadian real estate investment processes with Ares global standards"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "regulatory-filing"
+    },
+    {
+      "action_id": "ACT-VD-006",
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "action_type": "M&A",
+      "description": "Launched Aspida Financial insurance platform in 2024, acquiring a block of fixed annuity liabilities to create a captive insurance capital channel similar to Apollo/Athene and KKR/Global Atlantic models.",
+      "stated_rationale": "Establish insurance-linked permanent capital to diversify funding sources and grow fixed income origination capacity in line with peers' insurance integration strategies.",
+      "observable_metric_impact": "Aspida contributed incremental AUM and captive capital for credit origination; insurance AUM targeted to grow to $50B+. By end-2025, Aspida represents Ares's fastest-growing capital source.",
+      "timeline": {
+        "announced": "2023-09",
+        "closed": "2024-01",
+        "operational": "2024-H1"
+      },
+      "source_citation": "PS-VD-014",
+      "operational_prerequisites": {
+        "systems_integration": "Insurance investment management system integration; ALM technology linking Aspida liabilities to Ares credit origination deal flow",
+        "data_reporting_stack": "Insurance statutory accounting and regulatory reporting (Iowa insurance department); separate GAAP reporting for insurance segment",
+        "qa_controls_reconciliation": "Asset-liability matching controls; actuarial reserving and claims estimation; risk-based capital management",
+        "fund_admin_servicing": "Annuity policyholder servicing and claims administration; separate fund admin for insurance general account vs. third-party AM vehicles",
+        "compliance_risk_treasury": "State insurance department approvals (Iowa-domiciled); rating agency engagement for initial credit ratings; Bermuda-equivalent oversight if reinsurance structure deployed",
+        "hiring_org_redesign": "Insurance investment management team; actuarial and ALM professionals not previously present in Ares operating structure; dedicated insurance executive leadership",
+        "geographic_integration": "US domestic insurance focus initially; Bermuda reinsurance structure potentially for future premium redeployment"
+      },
+      "evidence_class": "corroborated",
+      "source_bias_tag": "regulatory-filing"
+    },
+    {
+      "action_id": "ACT-VD-007",
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "action_type": "geographic-expansion",
+      "description": "Expanded European direct lending franchise significantly from 2022-2025, establishing Ares as the largest non-bank direct lender in Europe with dedicated European Direct Lending funds (EDL IV, V).",
+      "stated_rationale": "Capture post-Basel III/IV banking retrenchment in European middle-market lending; leverage regulatory-driven opportunity for non-bank credit providers.",
+      "observable_metric_impact": "European credit AUM grew substantially; EDL IV raised over EUR 10B; FRE margin in Credit group expanded to ~45%. Total credit AUM reached $407B by end-2025.",
+      "timeline": {
+        "announced": "2022-01",
+        "closed": null,
+        "operational": "2022-2025"
+      },
+      "source_citation": "PS-VD-013",
+      "operational_prerequisites": {
+        "systems_integration": "London, Paris, and Frankfurt office expansion with dedicated credit origination technology; European deal tracking systems integrated with US platform",
+        "data_reporting_stack": "EU-domiciled fund regulatory reporting; AIFMD Annex IV transparency reporting; SFDR disclosures for sustainability-labeled products",
+        "qa_controls_reconciliation": "European credit underwriting standards reconciled with Ares global credit policy; jurisdiction-specific covenant testing for multi-country leveraged finance",
+        "fund_admin_servicing": "Luxembourg-domiciled fund administration for European LP vehicles; local custodian arrangements across EU markets",
+        "compliance_risk_treasury": "AIFMD authorization expansion in Luxembourg and other EU jurisdictions; Basel IV implications monitoring for European bank lending environment",
+        "hiring_org_redesign": "Senior European credit professionals across London, Paris, Frankfurt origination hubs; language-specific deal teams for Benelux, DACH, Southern European markets",
+        "geographic_integration": "Full integration of European credit platform with US credit committee; unified deal allocation policy across European and US direct lending strategies"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-008",
+      "firm_id": "FIRM-005",
+      "firm_name": "Ares Management Corporation",
+      "action_type": "technology-investment",
+      "description": "Technology sweep for Ares Management: No standalone proprietary technology platform or AI/ML product commercialization identified. Ares invests in operational technology for credit monitoring, portfolio management, and LP reporting but has not commercialized technology as a standalone product or standalone revenue driver.",
+      "stated_rationale": "Technology serves as operational infrastructure for Ares's 1,000+ investment professional platform rather than as a strategic product offering.",
+      "observable_metric_impact": "Operational technology improvements support Ares's ability to manage 190+ fund vehicles and $622.5B AUM efficiently. No standalone tech revenue stream identified.",
+      "timeline": {
+        "announced": null,
+        "closed": null,
+        "operational": null
+      },
+      "source_citation": "PS-VD-013",
+      "no_tech_action_found": true,
+      "operational_prerequisites": {
+        "systems_integration": "Internal portfolio management systems scaled for 190+ fund vehicles; credit monitoring infrastructure for $407B+ credit AUM",
+        "data_reporting_stack": "Proprietary LP reporting portal; standardized reporting across 1,000+ credit positions",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null
+      },
+      "evidence_class": "inferred",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-009",
+      "firm_id": "FIRM-002",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "action_type": "organizational-change",
+      "description": "Completed spin-off from Brookfield Corporation (BN) as standalone publicly traded asset management company, distributing 25% of AM business to BN shareholders and listing BAM on NYSE/TSX in December 2022.",
+      "stated_rationale": "Separate capital-light, fee-based AM business from BN's balance-sheet-intensive operations to unlock valuation re-rating, attract pure-play AM investors, and create dedicated equity currency.",
+      "observable_metric_impact": "BAM listed at ~$20/share (Dec 2022). Full internalization completed Dec 2025 — BAM now owns 100% of AM economics. FRE $3B in 2025 (+22% YoY), 58% margin.",
+      "timeline": {
+        "announced": "2022-09",
+        "closed": "2022-12",
+        "operational": "2023-03"
+      },
+      "source_citation": "PS-VD-015",
+      "operational_prerequisites": {
+        "systems_integration": "Legal separation of AM contracts and fee streams from BN's operating businesses; standalone accounting and ERP systems",
+        "data_reporting_stack": "Independent SEC and TSX public company financial reporting; segment-level FRE disclosure for pure-play investors; ongoing inter-company fee reconciliation with BN",
+        "qa_controls_reconciliation": "Independent audit committee and Big-4 external audit of separate AM entity; arm's-length review of inter-company service agreements",
+        "fund_admin_servicing": "Re-registration of investment management agreements from BN to BAM; LP consent processes for mandate transfers",
+        "compliance_risk_treasury": "TSX/NYSE dual-listing filings; SEC Form 20-F registration; antitrust clearance for corporate reorganization",
+        "hiring_org_redesign": "Dedicated BAM C-suite (CEO, CFO, General Counsel) separate from BN leadership; IR and legal teams for public company obligations",
+        "geographic_integration": "No significant geographic change — AM operations span same global footprint as BN; administrative restructuring across 30+ countries"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "regulatory-filing"
+    },
+    {
+      "action_id": "ACT-VD-010",
+      "firm_id": "FIRM-002",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "action_type": "organizational-change",
+      "description": "Completed full internalization of the asset management business from BN, with BAM acquiring the remaining 75% economic interest in AM operations it did not already own, consolidating all fee-related earnings under listed BAM entity. Closed December 2025.",
+      "stated_rationale": "Eliminate dual-entity complexity, simplify investor understanding of BAM's earnings power, and position BAM as a fully independent, scaled alternative asset manager.",
+      "observable_metric_impact": "Transaction approximately quadrupled BAM's directly attributable FRE; simplifies earnings attribution. New CEO Connor Teskey effective January 2026. FRE $3B in 2025 (+22% YoY) with full internalization completing in December 2025.",
+      "timeline": {
+        "announced": "2025-01",
+        "closed": "2025-12",
+        "operational": "2026-01"
+      },
+      "source_citation": "PS-VD-015",
+      "operational_prerequisites": {
+        "systems_integration": "Full consolidation of inter-company fund management systems previously shared between BAM and BN; unified technology stack under single BAM entity",
+        "data_reporting_stack": "Restated financial disclosures showing 100% AM economics; new FRE attribution methodology; updated analyst models for fully internalized AM earnings",
+        "qa_controls_reconciliation": "Transfer pricing review for elimination of inter-company fees; independent valuation of AM business at internalization price",
+        "fund_admin_servicing": "Transition of all fund management agreements to fully internalized BAM entity; LP notifications and consent processes",
+        "compliance_risk_treasury": "Regulatory approvals across multiple jurisdictions for corporate restructuring; SEC, TSX, and NYSE filings; antitrust clearance",
+        "hiring_org_redesign": "CEO succession (Connor Teskey) effective January 2026; C-suite restructuring for fully independent entity; compensation plan update for all AM employees",
+        "geographic_integration": "Administrative restructuring across 30+ countries; elimination of BN-affiliated AM operations in each jurisdiction"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-011",
+      "firm_id": "FIRM-002",
+      "firm_name": "Brookfield Asset Management Ltd.",
+      "action_type": "technology-investment",
+      "description": "Technology sweep for Brookfield Asset Management: No proprietary investment technology platform built for external sale or commercialization identified. Technology investment is primarily operational — portfolio management, LP reporting, ESG data systems. BAM does not commercialize technology as a revenue stream.",
+      "stated_rationale": "Technology serves operational infrastructure for real asset investment management across $603B fee-bearing capital rather than as a standalone product.",
+      "observable_metric_impact": "Operational systems support management of $1T+ AUM across 30+ countries and portfolio companies. No standalone tech revenue stream identified.",
+      "timeline": {
+        "announced": null,
+        "closed": null,
+        "operational": null
+      },
+      "source_citation": "PS-VD-016",
+      "no_tech_action_found": true,
+      "operational_prerequisites": {
+        "systems_integration": "Global portfolio management systems for real assets across infrastructure, renewables, real estate, and credit; operating company data aggregation from 800+ portfolio companies",
+        "data_reporting_stack": "ESG reporting systems for portfolio carbon monitoring and transition metric disclosure; LP reporting standardized across 30+ countries",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null
+      },
+      "evidence_class": "inferred",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-015",
+      "firm_id": "FIRM-004",
+      "firm_name": "KKR & Co. Inc.",
+      "action_type": "M&A",
+      "description": "Acquired the remaining 37% minority stake in Global Atlantic Financial Group for approximately $2.7B, bringing full ownership of the insurance and retirement services platform and consolidating ~$160B of insurance AUM under KKR's direct control from January 2024.",
+      "stated_rationale": "Full ownership unlocks operational integration efficiencies, aligns incentives for product development, and simplifies KKR's earnings narrative for investors.",
+      "observable_metric_impact": "Consolidated ~$160B of Global Atlantic AUM; eliminated minority interest deduction; insurance segment FRE fully attributable to KKR from Q1 2024. By end-2025, Global Atlantic AUM grew to $200B+.",
+      "timeline": {
+        "announced": "2023-08",
+        "closed": "2024-01",
+        "operational": "2024-03"
+      },
+      "source_citation": "PS-VD-004",
+      "operational_prerequisites": {
+        "systems_integration": "Full integration of Global Atlantic's investment operations into KKR's asset management platform; unified credit origination across KKR's 15+ origination verticals and Global Atlantic general account",
+        "data_reporting_stack": "Fully consolidated insurance segment P&L reporting; elimination of minority interest deduction from KKR earnings disclosures; actuarial data integration",
+        "qa_controls_reconciliation": "Insurance regulatory capital management under multi-state oversight; NAIC risk-based capital testing; Bermuda Solvency II-equivalent for reinsurance activities",
+        "fund_admin_servicing": "Integration of Global Atlantic's annuity administration and policyholder service into KKR operating model; annuity product development and distribution expansion",
+        "compliance_risk_treasury": "Negotiation with Global Atlantic founders on buyout terms; 20+ state insurance regulatory approvals; Bermuda BMA regulatory approval",
+        "hiring_org_redesign": "Integration of Global Atlantic executive team into KKR; compensation harmonization; product development team expansion for new annuity product launches",
+        "geographic_integration": "Primarily US domestic with Bermuda reinsurance structure; Global Atlantic's national broker-dealer and bank distribution network retained"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "regulatory-filing"
+    },
+    {
+      "action_id": "ACT-VD-016",
+      "firm_id": "FIRM-004",
+      "firm_name": "KKR & Co. Inc.",
+      "action_type": "technology-investment",
+      "description": "Technology sweep for KKR: No standalone proprietary technology platform built for external commercialization identified. KKR has invested in AI/analytics capabilities for deal sourcing and portfolio monitoring but these are internally focused. EQT Motherbrain AI is the peer analog; KKR does not have an equivalent externally marketed product.",
+      "stated_rationale": "KKR's technology investments are primarily operational (portfolio company data collection, deal sourcing analytics, LP portal) rather than commercialized products.",
+      "observable_metric_impact": "Technology investment supports $744B AUM operational management efficiency but does not constitute a distinct technology revenue stream.",
+      "timeline": {
+        "announced": null,
+        "closed": null,
+        "operational": null
+      },
+      "source_citation": "PS-VD-006",
+      "no_tech_action_found": true,
+      "operational_prerequisites": {
+        "systems_integration": "KKR Capstone portfolio operations platform for value creation monitoring across portfolio companies; deal sourcing analytics platform",
+        "data_reporting_stack": "Proprietary LP reporting portal; consolidated AUM and performance reporting across $744B",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null
+      },
+      "evidence_class": "inferred",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-017",
+      "firm_id": "FIRM-006",
+      "firm_name": "The Carlyle Group Inc.",
+      "action_type": "organizational-change",
+      "description": "Appointed Harvey Schwartz as CEO in February 2023, replacing Kewsong Lee who departed abruptly in August 2022. Schwartz, former Goldman Sachs president and CFO, took the helm with mandate to accelerate growth, reset culture, and restore investor confidence.",
+      "stated_rationale": "Proven Wall Street operational discipline and capital markets expertise to re-energize fundraising, strengthen credit platform, and professionalize management beyond founding generation.",
+      "observable_metric_impact": "Under Schwartz (2023-2025): total AUM grew from ~$382B to ~$477B (+25%); FRE $1.24B (record, 47% margin); $40B fundraising target for 2024 broadly achieved. Share price recovered from 2022 lows.",
+      "timeline": {
+        "announced": "2022-09",
+        "closed": "2023-02",
+        "operational": "2023-02"
+      },
+      "source_citation": "PS-VD-016",
+      "operational_prerequisites": {
+        "systems_integration": "New management reporting cadence and dashboard for CEO; restructured executive committee",
+        "data_reporting_stack": "New investor day format and medium-term FRE/DE targets disclosed; enhanced performance metrics tracking",
+        "qa_controls_reconciliation": "Board governance review under new CEO; independent board review of strategy and culture post Lee departure",
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": "SEC proxy disclosure of executive compensation and governance changes; LP confidence restoration through transparent communication",
+        "hiring_org_redesign": "Compensation package competitive with bulge-bracket peers; rapid strategic plan articulation to stabilize LP relationships; senior team stability post-transition",
+        "geographic_integration": null
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "third-party-analyst"
+    },
+    {
+      "action_id": "ACT-VD-018",
+      "firm_id": "FIRM-006",
+      "firm_name": "The Carlyle Group Inc.",
+      "action_type": "technology-investment",
+      "description": "Technology sweep for Carlyle: No standalone proprietary technology platform for external commercialization identified. Carlyle invests in operational systems for CLO management, portfolio monitoring, and LP reporting. No AI/ML investment product or data commercialization identified.",
+      "stated_rationale": "Technology serves operational infrastructure for managing $477B AUM across three segments. CLO management systems are operationally significant but not commercialized.",
+      "observable_metric_impact": "CLO management infrastructure supports Carlyle's position as top-5 global CLO manager. No standalone tech revenue identified.",
+      "timeline": {
+        "announced": null,
+        "closed": null,
+        "operational": null
+      },
+      "source_citation": "PS-VD-018",
+      "no_tech_action_found": true,
+      "operational_prerequisites": {
+        "systems_integration": "CLO collateral management system; AlpInvest portfolio monitoring across 100+ fund-of-funds positions; Fortitude Re investment management system",
+        "data_reporting_stack": "Proprietary LP reporting across three segments; standardized FRE attribution by segment",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null
+      },
+      "evidence_class": "inferred",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-023",
+      "firm_id": "FIRM-009",
+      "firm_name": "TPG Inc.",
+      "action_type": "M&A",
+      "description": "Acquired Angelo Gordon, a $73B AUM credit and real estate focused alternative investment firm, for approximately $2.7B in cash-and-stock, establishing a scaled credit platform overnight.",
+      "stated_rationale": "Diversify fee streams beyond PE-centric model; access Angelo Gordon's direct lending, CLO, and structured credit capabilities; establish real estate credit platform.",
+      "observable_metric_impact": "Added ~$73B in AUM (55% increase to TPG's pre-deal base). Credit AUM went from negligible to ~$73B. AUM tripled from ~$100B at IPO to $303B by end-2025. FRE $953M (+25% YoY) in 2025.",
+      "timeline": {
+        "announced": "2023-04",
+        "closed": "2023-11",
+        "operational": "2024-01"
+      },
+      "source_citation": "PS-VD-022",
+      "operational_prerequisites": {
+        "systems_integration": "Integration of Angelo Gordon's credit origination platform (~600 employees) into TPG's operating infrastructure; unified deal tracking and pipeline management",
+        "data_reporting_stack": "Combined reporting for credit (AG), PE (Capital/Growth), and real estate (AG) segments; new segment disclosure for SEC filings post-acquisition",
+        "qa_controls_reconciliation": "Credit underwriting standards harmonization across Angelo Gordon's 10+ credit strategies; fund-level NAV reconciliation",
+        "fund_admin_servicing": "Fund administration transition for $73B in AUM across AG credit and real estate vehicles; LP notification and consent processes",
+        "compliance_risk_treasury": "SEC/DOJ antitrust clearance; HSR filing for $2.7B acquisition; regulatory license transfers across Angelo Gordon's registered entities",
+        "hiring_org_redesign": "Retention of Angelo Gordon senior investment professionals; incentive alignment across credit and real estate strategies through equity and carry programs",
+        "geographic_integration": "Integration of Angelo Gordon's NY headquarters team into TPG's Fort Worth/San Francisco platform; European credit team coordination"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "regulatory-filing"
+    },
+    {
+      "action_id": "ACT-VD-024",
+      "firm_id": "FIRM-009",
+      "firm_name": "TPG Inc.",
+      "action_type": "technology-investment",
+      "description": "Technology sweep for TPG: No standalone proprietary technology platform or AI/ML investment product commercialization identified. TPG Rise Climate has developed proprietary carbon impact quantification methodology but this is an internal investment decision tool, not a commercialized product. No digital distribution platform equivalent to AtlasX or Cobalt identified.",
+      "stated_rationale": "Technology investment at TPG is primarily operational (portfolio monitoring, deal sourcing) and Rise Climate's ESG methodology. No external commercialization identified.",
+      "observable_metric_impact": "Rise Climate's impact quantification methodology supports fundraising for climate-specific LP mandates but is not a separately commercialized product.",
+      "timeline": {
+        "announced": null,
+        "closed": null,
+        "operational": null
+      },
+      "source_citation": "PS-VD-022",
+      "no_tech_action_found": true,
+      "operational_prerequisites": {
+        "systems_integration": "Post-Angelo Gordon: unified portfolio management systems for five platforms (Capital, Growth, AG Credit, AG RE, Rise/Impact); deal pipeline integration",
+        "data_reporting_stack": "Impact reporting for Rise Climate and Rise Fund under IRIS+ and UN SDG frameworks; carbon quantification methodology for Article 9 fund disclosures",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null
+      },
+      "evidence_class": "inferred",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-029",
+      "firm_id": "FIRM-012",
+      "firm_name": "StepStone Group Inc.",
+      "action_type": "technology-investment",
+      "description": "Continued investment in and commercialization of the Cobalt LP portfolio monitoring platform and broader Hamilton Lane-equivalent data ecosystem covering 50,000+ private-markets funds. Cobalt is an increasingly commercially differentiated tool licensed to third-party institutional investors.",
+      "stated_rationale": "Differentiate StepStone from competing private-markets advisors through data and technology moat built on $709B+ total capital responsibility — difficult to replicate without similar scale.",
+      "observable_metric_impact": "Cobalt platform client base expanded beyond StepStone's own advisory clients to third-party institutional investors. Technology and data analytics revenue growing as distinct line item. Proprietary database informs StepStone's own fund selection and underwriting.",
+      "timeline": {
+        "announced": "2022-03",
+        "closed": null,
+        "operational": "2022-06"
+      },
+      "source_citation": "PS-VD-032",
+      "no_tech_action_found": false,
+      "operational_prerequisites": {
+        "systems_integration": "Data ingestion pipelines across thousands of GP reporting formats; LP portfolio monitoring APIs for institutional client access",
+        "data_reporting_stack": "Standardized private markets performance reporting; benchmarking analytics across 50,000+ fund database",
+        "qa_controls_reconciliation": "Data quality governance for GP-reported metrics; validation of IRR, MOIC, and distribution data accuracy",
+        "fund_admin_servicing": "Separate technology licensing agreements for third-party Cobalt access; SaaS-equivalent commercial structure",
+        "compliance_risk_treasury": "Data licensing compliance across GP data provider agreements; client confidentiality protections for portfolio data",
+        "hiring_org_redesign": "Dedicated data engineering and product management team for Cobalt platform development; client success function for institutional Cobalt subscribers",
+        "geographic_integration": "Global client access — deployed across Americas, Europe, Asia-Pacific institutional investors; multilingual and multi-currency reporting"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-030",
+      "firm_id": "FIRM-012",
+      "firm_name": "StepStone Group Inc.",
+      "action_type": "distribution-shift",
+      "description": "Launched and expanded StepStone Private Wealth (SPW) division targeting high-net-worth individuals with semi-liquid and evergreen private markets products. Flagship is the SPRING Fund (interval fund); expanded to include dedicated credit, infrastructure, and real estate wealth-channel vehicles.",
+      "stated_rationale": "Wealth channel is StepStone's highest-margin growth vector, with wealth-channel management fee rates exceeding institutional SMA rates by 40-60bps.",
+      "observable_metric_impact": "Wealth-channel AUM grew from near-zero (pre-2023) to $8B+ by end-2025. SPW products distributed through 15+ wirehouse and RIA platform agreements. Wealth-channel revenue estimated at 10-15% of total FRE.",
+      "timeline": {
+        "announced": "2022-10",
+        "closed": "2023-03",
+        "operational": "2023-06"
+      },
+      "source_citation": "PS-VD-033",
+      "operational_prerequisites": {
+        "systems_integration": "Interval fund technology infrastructure for quarterly tender offer processing; NAV calculation for daily liquidity estimate reporting",
+        "data_reporting_stack": "Retail-grade fund reporting (shareholder letters, quarterly reports) for SPRING Fund; financial advisor-facing data feeds",
+        "qa_controls_reconciliation": "Interval fund compliance testing for portfolio liquidity thresholds; valuation governance for illiquid private markets positions within interval fund wrappers",
+        "fund_admin_servicing": "SEC registration under Investment Company Act for SPRING Fund and successor vehicles; transfer agent and custodian relationships for retail distribution",
+        "compliance_risk_treasury": "FINRA examination compliance for broker-dealer distribution partnerships; ERISA considerations for wealth-channel IRAs",
+        "hiring_org_redesign": "Dedicated SPW sales team for wirehouse and RIA platforms; separate product management function for wealth-channel vs. institutional products",
+        "geographic_integration": "US wirehouse and RIA distribution (15+ platforms); international wealth distribution not yet operational"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-031",
+      "firm_id": "FIRM-013",
+      "firm_name": "CVC Capital Partners plc",
+      "action_type": "organizational-change",
+      "description": "Completed IPO on Euronext Amsterdam in April 2024, raising approximately EUR 2B and listing CVC as a publicly traded alternative asset manager after decades as a private partnership.",
+      "stated_rationale": "Permanent equity capital for GP commitments, acquisition currency, institutional visibility, and talent retention through equity compensation.",
+      "observable_metric_impact": "Raised EUR 2B at IPO; initial market cap ~EUR 15B. CVC became first major European PE house to list since EQT's 2019 IPO. FPAUM grew to EUR 148B by Dec-2025 (+12% YoY) with post-IPO distribution expansion.",
+      "timeline": {
+        "announced": "2024-01",
+        "closed": "2024-04",
+        "operational": "2024-04"
+      },
+      "source_citation": "PS-VD-071",
+      "operational_prerequisites": {
+        "systems_integration": "Implementation of public company governance and ERP systems meeting Dutch AFM requirements; public market financial reporting infrastructure",
+        "data_reporting_stack": "IFRS-compliant financial reporting; quarterly earnings disclosure; new segment-level FRE and management fee disclosures for public markets investors",
+        "qa_controls_reconciliation": "Independent audit committee; Big-4 external audit for public company annual reporting; Euronext Amsterdam listing standards compliance",
+        "fund_admin_servicing": "Ongoing fund administration unchanged; new requirement for NAV transparency to support post-IPO GP balance sheet co-investment reporting",
+        "compliance_risk_treasury": "AFM (Dutch regulator) listing approval; Luxembourg AIFM regulatory compliance; partnership-to-corporate conversion; multi-year financial audit preparation",
+        "hiring_org_redesign": "New CFO, General Counsel, and IR function for public company obligations; compensation plan redesign including public equity component for senior professionals",
+        "geographic_integration": "Luxembourg-headquartered AIFM with Amsterdam-listed holding company; multi-jurisdictional regulatory compliance across 31 offices"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "regulatory-filing"
+    },
+    {
+      "action_id": "ACT-VD-032",
+      "firm_id": "FIRM-013",
+      "firm_name": "CVC Capital Partners plc",
+      "action_type": "technology-investment",
+      "description": "Technology sweep for CVC: No standalone proprietary AI/ML investment platform or data commercialization identified. CVC invests in operational technology for PE portfolio monitoring (CVC Ignite portfolio operations) but does not commercialize technology. DIF Capital Partners data center infrastructure investment is a capital deployment theme, not a technology product build.",
+      "stated_rationale": "CVC's competitive advantage is relationship-driven PE deal sourcing and European credit origination rather than technology-enabled systematic processes.",
+      "observable_metric_impact": "CVC Ignite (portfolio operations) supports value creation across EUR 65B+ PE portfolio. No external technology revenue stream identified.",
+      "timeline": {
+        "announced": null,
+        "closed": null,
+        "operational": null
+      },
+      "source_citation": "PS-VD-072",
+      "no_tech_action_found": true,
+      "operational_prerequisites": {
+        "systems_integration": "CVC Ignite portfolio operations platform; credit origination CRM across London, New York, and European offices",
+        "data_reporting_stack": "FPAUM and deployment reporting for public company quarterly disclosures; LP reporting standardized across five strategies",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null
+      },
+      "evidence_class": "inferred",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-035",
+      "firm_id": "FIRM-015",
+      "firm_name": "Hamilton Lane Incorporated",
+      "action_type": "technology-investment",
+      "description": "Continued investment in and commercialization of the proprietary Cobalt LP portfolio monitoring platform and Hamilton Lane data ecosystem covering 50,000+ private-markets funds. Cobalt is licensed to third-party institutional investors as a standalone product.",
+      "stated_rationale": "Differentiate Hamilton Lane from competing private-markets advisors through data and technology moat difficult to replicate without similar scale and $1T+ total capital responsibility.",
+      "observable_metric_impact": "Technology and data analytics revenue grew as distinct line item contributing to total FRE. Cobalt platform client base expanded globally. Q3 FY26 EPS $1.55 (beat estimates). $146.1B discretionary AUM.",
+      "timeline": {
+        "announced": "2022-03",
+        "closed": null,
+        "operational": "2022-06"
+      },
+      "source_citation": "PS-VD-034",
+      "no_tech_action_found": false,
+      "operational_prerequisites": {
+        "systems_integration": "Data ingestion pipelines across thousands of GP reporting formats for 50,000+ fund universe; API integration for institutional client access",
+        "data_reporting_stack": "Standardized benchmarking analytics; IRR, MOIC, and distribution accuracy validation across private markets fund database",
+        "qa_controls_reconciliation": "Data quality governance; cross-validation of GP-reported metrics against public disclosures where available",
+        "fund_admin_servicing": "SaaS-equivalent commercial structure for Cobalt licensing; client success management for institutional subscribers",
+        "compliance_risk_treasury": "Data privacy compliance (GDPR, CCPA) for LP and GP data; confidentiality protections in Cobalt licensing agreements",
+        "hiring_org_redesign": "Dedicated data engineering, product management, and client success teams for Cobalt commercialization; ongoing R&D investment",
+        "geographic_integration": "Global client access across Americas, Europe, Asia-Pacific; multilingual reporting and support"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-036",
+      "firm_id": "FIRM-015",
+      "firm_name": "Hamilton Lane Incorporated",
+      "action_type": "distribution-shift",
+      "description": "Launched Equity Advantage evergreen platform, providing continuous access to Hamilton Lane's direct co-investment and secondary strategies through a perpetual-vehicle structure with quarterly liquidity and lower minimums.",
+      "stated_rationale": "Next generation of wealth-channel offering — direct PE exposure rather than fund-of-funds — through simplified evergreen format appealing to financial advisors.",
+      "observable_metric_impact": "Equity Advantage attracted significant initial inflows upon launch, contributing to $146.1B discretionary AUM trajectory. Platform expanded distribution agreements with major wirehouses.",
+      "timeline": {
+        "announced": "2024-09",
+        "closed": null,
+        "operational": "2025-01"
+      },
+      "source_citation": "PS-VD-034",
+      "operational_prerequisites": {
+        "systems_integration": "Interval fund registration under Investment Company Act; co-investment portfolio construction for continuous deployment",
+        "data_reporting_stack": "Quarterly NAV reporting; investor statements and K-1/1099 issuance for wealth-channel clients",
+        "qa_controls_reconciliation": "Continuous deployment governance; valuation of co-investments within interval fund at fair value",
+        "fund_admin_servicing": "Transfer agent and custodian for interval fund; quarterly tender offer processing",
+        "compliance_risk_treasury": "SEC registration; FINRA compliance for wirehouse distribution agreements",
+        "hiring_org_redesign": "Dedicated Equity Advantage product management and distribution team; training for financial advisor-facing sales",
+        "geographic_integration": "US wirehouse focus; international expansion requires separate fund vehicles"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-043",
+      "firm_id": "FIRM-019",
+      "firm_name": "Patria Investments Limited",
+      "action_type": "M&A",
+      "description": "Acquisition of iGah3, a Brazilian growth equity platform, to enter growth equity vertical and expand PE capabilities beyond traditional buyout.",
+      "stated_rationale": "Adds dedicated growth equity capability targeting mid-market Brazilian technology and tech-enabled services companies, filling product gap between Patria's buyout franchise and early-stage venture.",
+      "observable_metric_impact": "Pro-forma FEAUM increase ~$1.5-2B from iGah3's committed capital. Broadens PE segment into growth equity. Contributes to pro-forma FEAUM of $47.4B.",
+      "timeline": {
+        "announced": "2024-06",
+        "closed": "2024-10",
+        "operational": "2025-01"
+      },
+      "source_citation": "PS-VD-041",
+      "operational_prerequisites": {
+        "systems_integration": "Integration of iGah3 investment team into Patria's operating platform; unified deal tracking and portfolio monitoring for PE and growth equity strategies",
+        "data_reporting_stack": "Growth equity portfolio reporting integrated with Patria's PE segment reporting; new FEAUM attribution for growth equity sub-segment",
+        "qa_controls_reconciliation": "Investment committee governance for growth equity deals separate from buyout; valuation methodology for growth-stage (revenue-multiple) vs. buyout (EBITDA-multiple) investments",
+        "fund_admin_servicing": "iGah3 fund vehicle management integration; LP consent for addition to Patria platform",
+        "compliance_risk_treasury": "CVM (Brazilian) regulatory approval for acquisition; NASDAQ public company disclosure of material acquisition",
+        "hiring_org_redesign": "Retention of iGah3 investment professionals; alignment of carry and incentive programs with Patria's compensation structure",
+        "geographic_integration": "Brazil-centric initially; potential expansion to other LatAm markets for growth equity deal flow"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "regulatory-filing"
+    },
+    {
+      "action_id": "ACT-VD-044",
+      "firm_id": "FIRM-019",
+      "firm_name": "Patria Investments Limited",
+      "action_type": "product-launch",
+      "description": "Build-out of US GP minority stakes (GPMS) capability, acquiring non-controlling equity positions in mid-sized US alternative asset managers to diversify Patria's revenue base beyond LatAm.",
+      "stated_rationale": "GPMS diversifies revenue beyond LatAm-domiciled fund management and provides exposure to the secular growth of the broader alternatives industry; incremental revenue from management fee shares in US managers.",
+      "observable_metric_impact": "GPMS contributed approximately $6-7B to pro-forma FEAUM by 2025. Revenue diversification beyond LatAm explicitly cited as strategic objective. Contributes to pro-forma FEAUM of $47.4B.",
+      "timeline": {
+        "announced": "2023-09",
+        "closed": "2024-03",
+        "operational": "2024-06"
+      },
+      "source_citation": "PS-VD-041",
+      "operational_prerequisites": {
+        "systems_integration": "US-based deal team infrastructure; GP stakes valuation and monitoring platform for minority equity positions in US alt managers",
+        "data_reporting_stack": "GP stakes revenue attribution reporting; US manager portfolio transparency for LP reporting to PAX's GPMS fund investors",
+        "qa_controls_reconciliation": "Minority stake valuation methodology for illiquid GP equity positions; independent valuation of GP stakes at quarterly reporting intervals",
+        "fund_admin_servicing": "US-domiciled GP minority stakes vehicle administration; Delaware LP structures for US institutional investors in GPMS fund",
+        "compliance_risk_treasury": "US SEC considerations for minority positions in registered investment advisers; potential HSR filing depending on stake size; NASDAQ disclosure obligations",
+        "hiring_org_redesign": "US-based GPMS deal team with GP stakes sourcing relationships; senior hire with Blue Owl Dyal-style GP relationship network",
+        "geographic_integration": "US GP stakes universe managed from New York; integration with Patria's São Paulo headquarters for investment committee approval and fund management"
+      },
+      "evidence_class": "corroborated",
+      "source_bias_tag": "regulatory-filing"
+    },
+    {
+      "action_id": "ACT-VD-045",
+      "firm_id": "FIRM-019",
+      "firm_name": "Patria Investments Limited",
+      "action_type": "technology-investment",
+      "description": "Technology sweep for Patria Investments: No standalone proprietary AI/ML investment platform, data commercialization, or digital distribution platform identified. Patria's origination advantage is built on 30+ year local LatAm relationships and deep government/corporate connections, not technology-enabled deal sourcing. No tech-action found.",
+      "stated_rationale": "Patria's competitive moat is LatAm-specific origination relationships and local regulatory expertise across Brazil, Chile, and Colombia — not technology infrastructure.",
+      "observable_metric_impact": "No external technology revenue stream identified. $52.6B AUM managed through sector teams with LatAm regional specialization.",
+      "timeline": {
+        "announced": null,
+        "closed": null,
+        "operational": null
+      },
+      "source_citation": "PS-VD-041",
+      "no_tech_action_found": true,
+      "operational_prerequisites": {
+        "systems_integration": "Portfolio monitoring systems for LatAm infrastructure and PE assets across Brazil, Chile, Colombia; GPMS US portfolio monitoring",
+        "data_reporting_stack": "NASDAQ-compliant public company reporting; CVM-compliant fund reporting in Brazil; LP reporting in English and Portuguese",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null
+      },
+      "evidence_class": "inferred",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-055",
+      "firm_id": "FIRM-023",
+      "firm_name": "Eurazeo SE",
+      "action_type": "organizational-change",
+      "description": "Continued transformation from listed investment holding company into third-party alternative asset manager, growing third-party AUM from EUR 22B (2022) to EUR 27.5B (H1 2025) while maintaining significant proprietary balance sheet of EUR 9.3B.",
+      "stated_rationale": "Unlock fee-related revenue stream and valuation re-rating that pure-play alt managers command while retaining balance sheet as co-investment advantage.",
+      "observable_metric_impact": "Third-party AUM grew from EUR 22B to EUR 27.5B (+10% YoY at H1 2025). FRE from third-party management fees became increasingly material. New CEO Christophe Baviere since 2024 reinforcing AM-first strategy.",
+      "timeline": {
+        "announced": "2022-01",
+        "closed": null,
+        "operational": "2025-06"
+      },
+      "source_citation": "PS-VD-083",
+      "operational_prerequisites": {
+        "systems_integration": "Separation of proprietary balance sheet investment systems from third-party fund management infrastructure; unified investor reporting for dual-track entity",
+        "data_reporting_stack": "IFRS reporting for listed Euronext entity; separate segment reporting distinguishing balance sheet returns from third-party management fee revenue; SFDR disclosures",
+        "qa_controls_reconciliation": "Conflict-of-interest governance between proprietary balance sheet and third-party fund co-investments; AMF regulatory oversight of dual-structure",
+        "fund_admin_servicing": "Luxembourg-domiciled fund vehicles for third-party LP capital; separate administration from proprietary investment vehicles",
+        "compliance_risk_treasury": "AMF regulatory requirements for combined AM/investment company entity; related-party transaction disclosures; AIFMD compliance for third-party fund management",
+        "hiring_org_redesign": "Buildout of institutional distribution and IR capabilities for third-party LP relationships; new CEO (Baviere) with AM growth mandate",
+        "geographic_integration": "European third-party LP base (primary); expanding to Asia-Pacific (Korea, Japan, Singapore) and Middle Eastern institutional investors"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-056",
+      "firm_id": "FIRM-023",
+      "firm_name": "Eurazeo SE",
+      "action_type": "technology-investment",
+      "description": "Technology sweep for Eurazeo: No standalone proprietary AI/ML investment platform or data commercialization identified. Eurazeo has a proprietary ESG monitoring tool for portfolio companies but does not commercialize this externally. iM Global Partner stake investment (distribution tech exposure) is a financial investment, not an operational platform build.",
+      "stated_rationale": "Eurazeo's competitive advantage is European mid-market PE sector expertise and balance sheet-backed LP alignment rather than technology-enabled processes.",
+      "observable_metric_impact": "No external technology revenue stream. EUR 36.8B AUM (H1 2025) managed through sector-specialist teams with European relationship origination.",
+      "timeline": {
+        "announced": null,
+        "closed": null,
+        "operational": null
+      },
+      "source_citation": "PS-VD-083",
+      "no_tech_action_found": true,
+      "operational_prerequisites": {
+        "systems_integration": "Portfolio company monitoring across EUR 9.3B balance sheet investments; ESG data collection system for SFDR reporting",
+        "data_reporting_stack": "IFRS public company reporting; third-party LP fund reporting; SFDR Article 8/9 disclosures",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null
+      },
+      "evidence_class": "inferred",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-057",
+      "firm_id": "FIRM-024",
+      "firm_name": "Antin Infrastructure Partners S.A.",
+      "action_type": "fundraise",
+      "description": "Raised Antin Infrastructure Partners Fund V (mid-cap flagship) and launched fundraising for Fund VI (large-cap flagship targeting EUR 12-15B), continuing Antin's pure-play infrastructure fund vintage succession model.",
+      "stated_rationale": "Demonstrate investor confidence in pure-play infrastructure at scale; leverage energy transition, digitalization, and EU infrastructure investment programs as structural fundraising tailwinds.",
+      "observable_metric_impact": "Fee-paying AUM EUR 21.8B (+6.2% YoY). Total AUM EUR 33B+ (H1 2025). Q3 2025 activity update confirms good fundraising momentum. Fund VI targeted at EUR 12-15B (vs Fund IV EUR 6.5B) — significant scale-up.",
+      "timeline": {
+        "announced": "2024-06",
+        "closed": null,
+        "operational": "2025-01"
+      },
+      "source_citation": "PS-VD-085",
+      "operational_prerequisites": {
+        "systems_integration": "Global LP roadshow management for simultaneous Fund V and Fund VI marketing; CRM for institutional LP relationship tracking across 60+ LPs",
+        "data_reporting_stack": "Fund V and VI marketing materials; SFDR Article 8 fund classification and sustainability reporting for EU-marketed funds; performance track record from Fund I-IV vintages",
+        "qa_controls_reconciliation": "Fund V/VI portfolio construction governance; investment committee approval for each infrastructure transaction above threshold",
+        "fund_admin_servicing": "Luxembourg-domiciled AIF structures for Fund V and VI; LP capital call administration and distribution waterfall tracking",
+        "compliance_risk_treasury": "AIFMD authorization for new fund vintages; AMF approval; EU regulatory compliance for SFDR-labeled funds",
+        "hiring_org_redesign": "Expanded investor relations team for larger Fund VI LP base; sector specialist hiring for new thematic verticals (circular economy, digital infrastructure at scale)",
+        "geographic_integration": "European infrastructure investment (primary); New York and Singapore offices supporting non-European LP fundraising and deal sourcing"
+      },
+      "evidence_class": "directly_documented",
+      "source_bias_tag": "company-produced"
+    },
+    {
+      "action_id": "ACT-VD-058",
+      "firm_id": "FIRM-024",
+      "firm_name": "Antin Infrastructure Partners S.A.",
+      "action_type": "technology-investment",
+      "description": "Technology sweep for Antin Infrastructure Partners: No standalone proprietary AI/ML investment platform or data commercialization identified. Antin's infrastructure investment model relies on sector-specialist teams with deep relationships in utilities, telecoms, and government concession authorities — not technology-enabled deal sourcing. Digital infrastructure investments (data centers, fiber, towers) are capital deployment themes, not platform builds.",
+      "stated_rationale": "Antin's competitive advantage is pure-play infrastructure sector expertise and origination relationships with utilities, regulators, and infrastructure owners — not technology infrastructure.",
+      "observable_metric_impact": "No external technology revenue identified. EUR 33B+ AUM (H1 2025) managed through sector-specialist teams. Digital infrastructure theme generates deal flow rather than internal technology investment.",
+      "timeline": {
+        "announced": null,
+        "closed": null,
+        "operational": null
+      },
+      "source_citation": "PS-VD-086",
+      "no_tech_action_found": true,
+      "operational_prerequisites": {
+        "systems_integration": "Infrastructure asset operational monitoring systems (energy production, fiber utilization, transport throughput); concession license tracking across 60+ portfolio assets",
+        "data_reporting_stack": "SFDR reporting for sustainability-labeled infrastructure funds; LP reporting for long-dated (10-15 year) infrastructure vehicles",
+        "qa_controls_reconciliation": null,
+        "fund_admin_servicing": null,
+        "compliance_risk_treasury": null,
+        "hiring_org_redesign": null,
+        "geographic_integration": null
+      },
+      "evidence_class": "inferred",
+      "source_bias_tag": "company-produced"
+    }
+  ]
+}

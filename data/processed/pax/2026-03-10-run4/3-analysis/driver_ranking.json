@@ -1,0 +1,511 @@
+{
+  "stage": "VD-A5",
+  "title": "Value Driver Ranking",
+  "run_id": "2026-03-10-run4",
+  "base_run_id": "2026-03-10-run2",
+  "generated_at": "2026-03-11T07:30:00Z",
+  "cross_section_period": "FY2024",
+  "n_firms": 23,
+  "n_primary_drivers_ranked": 3,
+  "n_moderate_drivers_ranked": 7,
+  "ranking_methodology": {
+    "primary_criterion": "avg_abs_rho across 3 valuation multiples (higher = stronger signal)",
+    "classification_tiers": {
+      "stable_value_driver": "avg|rho| on >=2 multiples >= 0.50 AND not temporally unstable",
+      "multiple_specific_driver": "avg|rho| on exactly 1 multiple >= 0.50",
+      "moderate_signal": "0.30 <= max|rho| < 0.50 on at least 1 multiple",
+      "unsupported": "max|rho| < 0.30 on all multiples"
+    },
+    "stable_driver_note": "No stable_value_driver identified in this run. In the 23-firm cross-section (FY2024), no driver meets the |rho|>=0.50 on >=2 multiples criterion. This contrasts with previous runs where DE/share and G&A/FEAUM achieved stable status. The broader sample reduces cross-sectional signal strength due to structural heterogeneity across European and EM-based managers."
+  },
+  "pax_valuation_position_summary": {
+    "P/FRE": {
+      "pax": 14.9,
+      "peer_median": 17.7,
+      "discount": -15.8
+    },
+    "P/DE": {
+      "pax": 13.4,
+      "peer_median": 25.3,
+      "discount": -47.0
+    },
+    "EV/FEAUM": {
+      "pax": 7.7,
+      "peer_median": 10.7,
+      "discount": -28.0
+    }
+  },
+  "non_obvious_peers": [],
+  "ranked_drivers": [
+    {
+      "rank": 1,
+      "driver_id": "DVR-001",
+      "metric_id": "MET-VD-005",
+      "driver_abbr": "AUM",
+      "driver_name": "Total AUM",
+      "classification": "multiple_specific_driver",
+      "avg_abs_rho": 0.4618,
+      "strongest_multiple_id": "MET-VD-026",
+      "strongest_multiple_name": "P/FRE",
+      "pax_quartile": "Q4",
+      "pax_rank_detail": "18/22",
+      "top_peers_on_driver": [
+        "BX (1127.2)",
+        "BAM (1000.0)",
+        "APO (751.0)"
+      ],
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.7286,
+          "p_value": 0.00012,
+          "n": 22,
+          "ci_95_lo": 0.423,
+          "ci_95_hi": 0.88,
+          "bh_significant": true
+        },
+        "MET-VD-027": {
+          "rho": 0.4906,
+          "p_value": 0.028074,
+          "n": 20,
+          "ci_95_lo": 0.0649,
+          "ci_95_hi": 0.7678,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": 0.1661,
+          "p_value": 0.460178,
+          "n": 22,
+          "ci_95_lo": -0.2522,
+          "ci_95_hi": 0.5865,
+          "bh_significant": false
+        }
+      },
+      "interpretation": "Scale captures investor confidence in platform longevity. Larger AUM signals institutional staying power and fee diversification. Cross-sectionally: moving from $20B to $200B AUM is associated with significantly higher P/FRE multiples, consistent with investor preference for scale platforms in alt-asset management.",
+      "claim_id": "CLM-DVR-001-01"
+    },
+    {
+      "rank": 2,
+      "driver_id": "DVR-002",
+      "metric_id": "MET-VD-014",
+      "driver_abbr": "FRE growth YoY",
+      "driver_name": "FRE Growth, Year-over-Year",
+      "classification": "multiple_specific_driver",
+      "avg_abs_rho": 0.4188,
+      "strongest_multiple_id": "MET-VD-028",
+      "strongest_multiple_name": "EV/FEAUM",
+      "pax_quartile": "Q3",
+      "pax_rank_detail": "11/19",
+      "top_peers_on_driver": [
+        "PGHN (0.0)",
+        "HLNE (0.34)",
+        "STEP (0.48)"
+      ],
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.2044,
+          "p_value": 0.415791,
+          "n": 18,
+          "ci_95_lo": -0.6691,
+          "ci_95_hi": 0.3277,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": -0.4386,
+          "p_value": 0.089267,
+          "n": 16,
+          "ci_95_lo": -0.7952,
+          "ci_95_hi": 0.0964,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.6133,
+          "p_value": 0.006793,
+          "n": 18,
+          "ci_95_lo": -0.9106,
+          "ci_95_hi": -0.1062,
+          "bh_significant": false
+        }
+      },
+      "interpretation": "Counterintuitive negative relationship: firms posting higher FRE growth trade at lower EV/FEAUM. Market applies execution discount \u2014 high-growth FRE may signal aggressive fee monetization that could compress with AUM deceleration. Alternatively, high-FRE-growth firms often have smaller FEAUM bases (younger platforms), and smaller platforms trade at lower EV/FEAUM regardless of growth rate.",
+      "claim_id": "CLM-DVR-002-01"
+    },
+    {
+      "rank": 3,
+      "driver_id": "DVR-003",
+      "metric_id": "MET-VD-004",
+      "driver_abbr": "FEAUM",
+      "driver_name": "Fee-Earning AUM",
+      "classification": "multiple_specific_driver",
+      "avg_abs_rho": 0.3462,
+      "strongest_multiple_id": "MET-VD-026",
+      "strongest_multiple_name": "P/FRE",
+      "pax_quartile": "Q4",
+      "pax_rank_detail": "18/22",
+      "top_peers_on_driver": [
+        "BX (830.7)",
+        "APO (569.0)",
+        "BAM (539.0)"
+      ],
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.6045,
+          "p_value": 0.002882,
+          "n": 22,
+          "ci_95_lo": 0.2184,
+          "ci_95_hi": 0.8513,
+          "bh_significant": true
+        },
+        "MET-VD-027": {
+          "rho": 0.3489,
+          "p_value": 0.131642,
+          "n": 20,
+          "ci_95_lo": -0.1021,
+          "ci_95_hi": 0.7291,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": 0.0853,
+          "p_value": 0.705821,
+          "n": 22,
+          "ci_95_lo": -0.3136,
+          "ci_95_hi": 0.4955,
+          "bh_significant": false
+        }
+      },
+      "interpretation": "FEAUM (fee-earning subset of AUM) is the direct revenue base. Higher FEAUM signals fee quality and locked-up capital. The P/FRE multiple premiums accrue to firms with larger locked-in fee streams. Closely correlated with AUM (inter-rho ~0.90); AUM is used for ranking due to higher p-value significance.",
+      "claim_id": "CLM-DVR-003-01"
+    },
+    {
+      "rank": 4,
+      "driver_id": "DVR-004",
+      "metric_id": "MET-VD-011",
+      "driver_abbr": "Perm capital %",
+      "driver_name": "Permanent Capital Percentage",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.3151,
+      "strongest_multiple_id": "MET-VD-027",
+      "strongest_multiple_name": "P/DE",
+      "pax_quartile": "Q3",
+      "pax_rank_detail": "13/22",
+      "top_peers_on_driver": [
+        "OWL (90.0)",
+        "PGHN (72.0)",
+        "APO (62.0)"
+      ],
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.3665,
+          "p_value": 0.093372,
+          "n": 22,
+          "ci_95_lo": -0.0727,
+          "ci_95_hi": 0.6869,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": 0.4308,
+          "p_value": 0.057938,
+          "n": 20,
+          "ci_95_lo": -0.0375,
+          "ci_95_hi": 0.7648,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": 0.148,
+          "p_value": 0.510895,
+          "n": 22,
+          "ci_95_lo": -0.3445,
+          "ci_95_hi": 0.5904,
+          "bh_significant": false
+        }
+      },
+      "interpretation": "",
+      "claim_id": "CLM-DVR-004-01"
+    },
+    {
+      "rank": 5,
+      "driver_id": "DVR-005",
+      "metric_id": "MET-VD-021",
+      "driver_abbr": "G&A/FEAUM",
+      "driver_name": "G&A Expense to FEAUM",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.2866,
+      "strongest_multiple_id": "MET-VD-026",
+      "strongest_multiple_name": "P/FRE",
+      "pax_quartile": "Q4",
+      "pax_rank_detail": "22/23",
+      "top_peers_on_driver": [
+        "APO (7)",
+        "MAN (7.0)",
+        "BAM (8)"
+      ],
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.4477,
+          "p_value": 0.03667,
+          "n": 22,
+          "ci_95_lo": -0.8047,
+          "ci_95_hi": 0.0333,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": -0.3488,
+          "p_value": 0.131777,
+          "n": 20,
+          "ci_95_lo": -0.8026,
+          "ci_95_hi": 0.1835,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.0633,
+          "p_value": 0.779547,
+          "n": 22,
+          "ci_95_lo": -0.5047,
+          "ci_95_hi": 0.377,
+          "bh_significant": false
+        }
+      },
+      "interpretation": "",
+      "claim_id": "CLM-DVR-005-01"
+    },
+    {
+      "rank": 6,
+      "driver_id": "DVR-006",
+      "metric_id": "MET-VD-009",
+      "driver_abbr": "Fundraising ratio",
+      "driver_name": "Fundraising as Percentage of AUM",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.2664,
+      "strongest_multiple_id": "MET-VD-026",
+      "strongest_multiple_name": "P/FRE",
+      "pax_quartile": "Q2",
+      "pax_rank_detail": "7/23",
+      "top_peers_on_driver": [
+        "ARES (38.2)",
+        "OWL (37.6)",
+        "TKO (30.5)"
+      ],
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.4033,
+          "p_value": 0.062737,
+          "n": 22,
+          "ci_95_lo": -0.0775,
+          "ci_95_hi": 0.7764,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": 0.2581,
+          "p_value": 0.271927,
+          "n": 20,
+          "ci_95_lo": -0.2623,
+          "ci_95_hi": 0.6882,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.1378,
+          "p_value": 0.5408,
+          "n": 22,
+          "ci_95_lo": -0.5582,
+          "ci_95_hi": 0.3007,
+          "bh_significant": false
+        }
+      },
+      "interpretation": "",
+      "claim_id": "CLM-DVR-006-01"
+    },
+    {
+      "rank": 7,
+      "driver_id": "DVR-007",
+      "metric_id": "MET-VD-006",
+      "driver_abbr": "FEAUM YoY",
+      "driver_name": "FEAUM Growth, Year-over-Year",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.2624,
+      "strongest_multiple_id": "MET-VD-027",
+      "strongest_multiple_name": "P/DE",
+      "pax_quartile": "Q4",
+      "pax_rank_detail": "22/22",
+      "top_peers_on_driver": [
+        "CG (-1.1)",
+        "APO (0.0)",
+        "ARES (0.0)"
+      ],
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.3178,
+          "p_value": 0.149527,
+          "n": 22,
+          "ci_95_lo": -0.6482,
+          "ci_95_hi": 0.0959,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": -0.318,
+          "p_value": 0.171814,
+          "n": 20,
+          "ci_95_lo": -0.7135,
+          "ci_95_hi": 0.184,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.1515,
+          "p_value": 0.500817,
+          "n": 22,
+          "ci_95_lo": -0.5306,
+          "ci_95_hi": 0.3236,
+          "bh_significant": false
+        }
+      },
+      "interpretation": "",
+      "claim_id": "CLM-DVR-007-01"
+    },
+    {
+      "rank": 8,
+      "driver_id": "DVR-008",
+      "metric_id": "MET-VD-007",
+      "driver_abbr": "FEAUM CAGR 3yr",
+      "driver_name": "FEAUM Growth, 3-Year CAGR",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.2531,
+      "strongest_multiple_id": "MET-VD-026",
+      "strongest_multiple_name": "P/FRE",
+      "pax_quartile": "Q1",
+      "pax_rank_detail": "6/23",
+      "top_peers_on_driver": [
+        "OWL (42.3)",
+        "ARES (26.7)",
+        "STEP (26.4)"
+      ],
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.3265,
+          "p_value": 0.138118,
+          "n": 22,
+          "ci_95_lo": -0.1248,
+          "ci_95_hi": 0.6845,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": 0.2588,
+          "p_value": 0.270482,
+          "n": 20,
+          "ci_95_lo": -0.1912,
+          "ci_95_hi": 0.6429,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.174,
+          "p_value": 0.438778,
+          "n": 22,
+          "ci_95_lo": -0.5709,
+          "ci_95_hi": 0.2698,
+          "bh_significant": false
+        }
+      },
+      "interpretation": "",
+      "claim_id": "CLM-DVR-008-01"
+    },
+    {
+      "rank": 9,
+      "driver_id": "DVR-009",
+      "metric_id": "MET-VD-020",
+      "driver_abbr": "Comp&Ben/FEAUM",
+      "driver_name": "Compensation and Benefits to FEAUM",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.2241,
+      "strongest_multiple_id": "MET-VD-026",
+      "strongest_multiple_name": "P/FRE",
+      "pax_quartile": "Q4",
+      "pax_rank_detail": "21/23",
+      "top_peers_on_driver": [
+        "CG (25)",
+        "KKR (26)",
+        "MAN (27.9)"
+      ],
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": -0.4073,
+          "p_value": 0.059885,
+          "n": 22,
+          "ci_95_lo": -0.755,
+          "ci_95_hi": 0.054,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": -0.2525,
+          "p_value": 0.28273,
+          "n": 20,
+          "ci_95_lo": -0.7213,
+          "ci_95_hi": 0.2504,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": -0.0124,
+          "p_value": 0.95622,
+          "n": 22,
+          "ci_95_lo": -0.4491,
+          "ci_95_hi": 0.4224,
+          "bh_significant": false
+        }
+      },
+      "interpretation": "",
+      "claim_id": "CLM-DVR-009-01"
+    },
+    {
+      "rank": 10,
+      "driver_id": "DVR-010",
+      "metric_id": "MET-VD-012",
+      "driver_abbr": "Credit %",
+      "driver_name": "Credit Percentage of AUM",
+      "classification": "moderate_signal",
+      "avg_abs_rho": 0.1836,
+      "strongest_multiple_id": "MET-VD-026",
+      "strongest_multiple_name": "P/FRE",
+      "pax_quartile": "Q3",
+      "pax_rank_detail": "16/22",
+      "top_peers_on_driver": [
+        "APO (70.0)",
+        "ARES (68.0)",
+        "OWL (65.0)"
+      ],
+      "per_multiple": {
+        "MET-VD-026": {
+          "rho": 0.3488,
+          "p_value": 0.111592,
+          "n": 22,
+          "ci_95_lo": -0.1479,
+          "ci_95_hi": 0.7305,
+          "bh_significant": false
+        },
+        "MET-VD-027": {
+          "rho": 0.199,
+          "p_value": 0.400237,
+          "n": 20,
+          "ci_95_lo": -0.3245,
+          "ci_95_hi": 0.6961,
+          "bh_significant": false
+        },
+        "MET-VD-028": {
+          "rho": 0.0031,
+          "p_value": 0.989016,
+          "n": 22,
+          "ci_95_lo": -0.4347,
+          "ci_95_hi": 0.4366,
+          "bh_significant": false
+        }
+      },
+      "interpretation": "",
+      "claim_id": "CLM-DVR-010-01"
+    }
+  ],
+  "change_from_base_run": {
+    "base_run_id": "2026-03-10-run2",
+    "key_changes": [
+      "No stable_value_driver in run4 (run2 had G&A/FEAUM as stable); broader 23-firm sample reduces cross-sectional correlation strength",
+      "AUM (MET-VD-005) is now primary driver by |rho| and BH significance",
+      "FRE growth (MET-VD-014) significant for EV/FEAUM (negative relationship)",
+      "DE/share (MET-VD-001) reclassified unsupported; structural comparability issues confirmed (PGHN CHF outlier)",
+      "Run4 base period is FY2024 for all calendar-year firms; corrections applied per CP-1 audit"
+    ]
+  }
+}

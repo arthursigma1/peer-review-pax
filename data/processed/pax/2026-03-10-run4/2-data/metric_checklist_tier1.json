@@ -1,0 +1,2070 @@
+{
+  "metadata": {
+    "generated_at": "2026-03-11T02:28:33.306029Z",
+    "run_dir": "data/processed/pax/2026-03-10-run4",
+    "total_firms": 24,
+    "total_metrics": 31,
+    "driver_metrics": 25,
+    "tiers": {
+      "tier1": 8,
+      "tier2": 8,
+      "tier3": 8
+    },
+    "sliced_tier": "tier1",
+    "sliced_from": "/Users/arthurhrk/Documents/GitHub/peer-review-pax/data/processed/pax/2026-03-10-run4/2-data/metric_checklist.json",
+    "sliced_at": "2026-03-11T04:10:10.040711Z"
+  },
+  "priority_rules": {
+    "critical": "Valuation multiples — must populate for correlation analysis",
+    "high": "Core driver metrics with expected >60% disclosure rate",
+    "medium": "Derivable from components — search for inputs even if ratio not disclosed",
+    "low": "Sparse disclosure expected — attempt but do not block on failure",
+    "skip": "Market structure / contextual-only — excluded from correlation"
+  },
+  "tier": {
+    "firms": [
+      "FIRM-001",
+      "FIRM-002",
+      "FIRM-003",
+      "FIRM-004",
+      "FIRM-005",
+      "FIRM-006",
+      "FIRM-007",
+      "FIRM-008"
+    ],
+    "checklist": [
+      {
+        "firm_id": "FIRM-001",
+        "ticker": "BX",
+        "metrics": [
+          {
+            "metric_id": "MET-VD-001",
+            "metric_name": "Distributable Earnings per Share",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-002",
+            "metric_name": "Earnings per Share (GAAP)",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-003",
+            "metric_name": "DE/Share Growth, 3-Year CAGR",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-004",
+            "metric_name": "Fee-Earning AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-005",
+            "metric_name": "Total AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-006",
+            "metric_name": "FEAUM Growth, Year-over-Year",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-007",
+            "metric_name": "FEAUM Growth, 3-Year CAGR",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-008",
+            "metric_name": "Net Organic FEAUM Growth",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-009",
+            "metric_name": "Fundraising as Percentage of AUM",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-010",
+            "metric_name": "Asset Class Herfindahl-Hirschman Index",
+            "category": "mix_and_diversification",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-011",
+            "metric_name": "Permanent Capital Percentage",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-012",
+            "metric_name": "Credit Percentage of AUM",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-013",
+            "metric_name": "Fee-Related Earnings Margin",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-014",
+            "metric_name": "FRE Growth, Year-over-Year",
+            "category": "efficiency",
+            "collection_priority": "medium",
+            "derivable_from": "FRE_t / FRE_t-1) - 1",
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-015",
+            "metric_name": "Compensation-to-Revenue Ratio",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-016",
+            "metric_name": "Management Fee Rate",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-017",
+            "metric_name": "Performance Fee Share of Total Revenue",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-018",
+            "metric_name": "Headcount to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-019",
+            "metric_name": "FEAUM per Employee",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-020",
+            "metric_name": "Compensation and Benefits to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-021",
+            "metric_name": "G&A Expense to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-022",
+            "metric_name": "OpEx Growth minus Fee Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-023",
+            "metric_name": "Constant Currency Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-024",
+            "metric_name": "Integration Costs to Revenue",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-025",
+            "metric_name": "CapEx to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-026",
+            "metric_name": "Price-to-Fee-Related Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-027",
+            "metric_name": "Price-to-Distributable Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-028",
+            "metric_name": "Enterprise Value-to-Fee-Earning AUM",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-029",
+            "metric_name": "Average Daily Trading Volume",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-030",
+            "metric_name": "Passive Ownership Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-031",
+            "metric_name": "Free Float Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "firm_id": "FIRM-002",
+        "ticker": "BAM",
+        "metrics": [
+          {
+            "metric_id": "MET-VD-001",
+            "metric_name": "Distributable Earnings per Share",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-002",
+            "metric_name": "Earnings per Share (GAAP)",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-003",
+            "metric_name": "DE/Share Growth, 3-Year CAGR",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-004",
+            "metric_name": "Fee-Earning AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-005",
+            "metric_name": "Total AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-006",
+            "metric_name": "FEAUM Growth, Year-over-Year",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-007",
+            "metric_name": "FEAUM Growth, 3-Year CAGR",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-008",
+            "metric_name": "Net Organic FEAUM Growth",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-009",
+            "metric_name": "Fundraising as Percentage of AUM",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-010",
+            "metric_name": "Asset Class Herfindahl-Hirschman Index",
+            "category": "mix_and_diversification",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-011",
+            "metric_name": "Permanent Capital Percentage",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-012",
+            "metric_name": "Credit Percentage of AUM",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-013",
+            "metric_name": "Fee-Related Earnings Margin",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-014",
+            "metric_name": "FRE Growth, Year-over-Year",
+            "category": "efficiency",
+            "collection_priority": "medium",
+            "derivable_from": "FRE_t / FRE_t-1) - 1",
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-015",
+            "metric_name": "Compensation-to-Revenue Ratio",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-016",
+            "metric_name": "Management Fee Rate",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-017",
+            "metric_name": "Performance Fee Share of Total Revenue",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-018",
+            "metric_name": "Headcount to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-019",
+            "metric_name": "FEAUM per Employee",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-020",
+            "metric_name": "Compensation and Benefits to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-021",
+            "metric_name": "G&A Expense to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-022",
+            "metric_name": "OpEx Growth minus Fee Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-023",
+            "metric_name": "Constant Currency Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-024",
+            "metric_name": "Integration Costs to Revenue",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-025",
+            "metric_name": "CapEx to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-026",
+            "metric_name": "Price-to-Fee-Related Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-027",
+            "metric_name": "Price-to-Distributable Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-028",
+            "metric_name": "Enterprise Value-to-Fee-Earning AUM",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-029",
+            "metric_name": "Average Daily Trading Volume",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-030",
+            "metric_name": "Passive Ownership Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-031",
+            "metric_name": "Free Float Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "firm_id": "FIRM-003",
+        "ticker": "APO",
+        "metrics": [
+          {
+            "metric_id": "MET-VD-001",
+            "metric_name": "Distributable Earnings per Share",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-002",
+            "metric_name": "Earnings per Share (GAAP)",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-003",
+            "metric_name": "DE/Share Growth, 3-Year CAGR",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-004",
+            "metric_name": "Fee-Earning AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-005",
+            "metric_name": "Total AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-006",
+            "metric_name": "FEAUM Growth, Year-over-Year",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-007",
+            "metric_name": "FEAUM Growth, 3-Year CAGR",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-008",
+            "metric_name": "Net Organic FEAUM Growth",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-009",
+            "metric_name": "Fundraising as Percentage of AUM",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-010",
+            "metric_name": "Asset Class Herfindahl-Hirschman Index",
+            "category": "mix_and_diversification",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-011",
+            "metric_name": "Permanent Capital Percentage",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-012",
+            "metric_name": "Credit Percentage of AUM",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-013",
+            "metric_name": "Fee-Related Earnings Margin",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-014",
+            "metric_name": "FRE Growth, Year-over-Year",
+            "category": "efficiency",
+            "collection_priority": "medium",
+            "derivable_from": "FRE_t / FRE_t-1) - 1",
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-015",
+            "metric_name": "Compensation-to-Revenue Ratio",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-016",
+            "metric_name": "Management Fee Rate",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-017",
+            "metric_name": "Performance Fee Share of Total Revenue",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-018",
+            "metric_name": "Headcount to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-019",
+            "metric_name": "FEAUM per Employee",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-020",
+            "metric_name": "Compensation and Benefits to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-021",
+            "metric_name": "G&A Expense to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-022",
+            "metric_name": "OpEx Growth minus Fee Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-023",
+            "metric_name": "Constant Currency Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-024",
+            "metric_name": "Integration Costs to Revenue",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-025",
+            "metric_name": "CapEx to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-026",
+            "metric_name": "Price-to-Fee-Related Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-027",
+            "metric_name": "Price-to-Distributable Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-028",
+            "metric_name": "Enterprise Value-to-Fee-Earning AUM",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-029",
+            "metric_name": "Average Daily Trading Volume",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-030",
+            "metric_name": "Passive Ownership Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-031",
+            "metric_name": "Free Float Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "firm_id": "FIRM-004",
+        "ticker": "KKR",
+        "metrics": [
+          {
+            "metric_id": "MET-VD-001",
+            "metric_name": "Distributable Earnings per Share",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-002",
+            "metric_name": "Earnings per Share (GAAP)",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-003",
+            "metric_name": "DE/Share Growth, 3-Year CAGR",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-004",
+            "metric_name": "Fee-Earning AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-005",
+            "metric_name": "Total AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-006",
+            "metric_name": "FEAUM Growth, Year-over-Year",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-007",
+            "metric_name": "FEAUM Growth, 3-Year CAGR",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-008",
+            "metric_name": "Net Organic FEAUM Growth",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-009",
+            "metric_name": "Fundraising as Percentage of AUM",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-010",
+            "metric_name": "Asset Class Herfindahl-Hirschman Index",
+            "category": "mix_and_diversification",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-011",
+            "metric_name": "Permanent Capital Percentage",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-012",
+            "metric_name": "Credit Percentage of AUM",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-013",
+            "metric_name": "Fee-Related Earnings Margin",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-014",
+            "metric_name": "FRE Growth, Year-over-Year",
+            "category": "efficiency",
+            "collection_priority": "medium",
+            "derivable_from": "FRE_t / FRE_t-1) - 1",
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-015",
+            "metric_name": "Compensation-to-Revenue Ratio",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-016",
+            "metric_name": "Management Fee Rate",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-017",
+            "metric_name": "Performance Fee Share of Total Revenue",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-018",
+            "metric_name": "Headcount to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-019",
+            "metric_name": "FEAUM per Employee",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-020",
+            "metric_name": "Compensation and Benefits to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-021",
+            "metric_name": "G&A Expense to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-022",
+            "metric_name": "OpEx Growth minus Fee Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-023",
+            "metric_name": "Constant Currency Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-024",
+            "metric_name": "Integration Costs to Revenue",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-025",
+            "metric_name": "CapEx to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-026",
+            "metric_name": "Price-to-Fee-Related Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-027",
+            "metric_name": "Price-to-Distributable Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-028",
+            "metric_name": "Enterprise Value-to-Fee-Earning AUM",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-029",
+            "metric_name": "Average Daily Trading Volume",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-030",
+            "metric_name": "Passive Ownership Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-031",
+            "metric_name": "Free Float Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "firm_id": "FIRM-005",
+        "ticker": "ARES",
+        "metrics": [
+          {
+            "metric_id": "MET-VD-001",
+            "metric_name": "Distributable Earnings per Share",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-002",
+            "metric_name": "Earnings per Share (GAAP)",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-003",
+            "metric_name": "DE/Share Growth, 3-Year CAGR",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-004",
+            "metric_name": "Fee-Earning AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-005",
+            "metric_name": "Total AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-006",
+            "metric_name": "FEAUM Growth, Year-over-Year",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-007",
+            "metric_name": "FEAUM Growth, 3-Year CAGR",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-008",
+            "metric_name": "Net Organic FEAUM Growth",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-009",
+            "metric_name": "Fundraising as Percentage of AUM",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-010",
+            "metric_name": "Asset Class Herfindahl-Hirschman Index",
+            "category": "mix_and_diversification",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-011",
+            "metric_name": "Permanent Capital Percentage",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-012",
+            "metric_name": "Credit Percentage of AUM",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-013",
+            "metric_name": "Fee-Related Earnings Margin",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-014",
+            "metric_name": "FRE Growth, Year-over-Year",
+            "category": "efficiency",
+            "collection_priority": "medium",
+            "derivable_from": "FRE_t / FRE_t-1) - 1",
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-015",
+            "metric_name": "Compensation-to-Revenue Ratio",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-016",
+            "metric_name": "Management Fee Rate",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-017",
+            "metric_name": "Performance Fee Share of Total Revenue",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-018",
+            "metric_name": "Headcount to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-019",
+            "metric_name": "FEAUM per Employee",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-020",
+            "metric_name": "Compensation and Benefits to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-021",
+            "metric_name": "G&A Expense to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-022",
+            "metric_name": "OpEx Growth minus Fee Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-023",
+            "metric_name": "Constant Currency Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-024",
+            "metric_name": "Integration Costs to Revenue",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-025",
+            "metric_name": "CapEx to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-026",
+            "metric_name": "Price-to-Fee-Related Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-027",
+            "metric_name": "Price-to-Distributable Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-028",
+            "metric_name": "Enterprise Value-to-Fee-Earning AUM",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-029",
+            "metric_name": "Average Daily Trading Volume",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-030",
+            "metric_name": "Passive Ownership Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-031",
+            "metric_name": "Free Float Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "firm_id": "FIRM-006",
+        "ticker": "CG",
+        "metrics": [
+          {
+            "metric_id": "MET-VD-001",
+            "metric_name": "Distributable Earnings per Share",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-002",
+            "metric_name": "Earnings per Share (GAAP)",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-003",
+            "metric_name": "DE/Share Growth, 3-Year CAGR",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-004",
+            "metric_name": "Fee-Earning AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-005",
+            "metric_name": "Total AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-006",
+            "metric_name": "FEAUM Growth, Year-over-Year",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-007",
+            "metric_name": "FEAUM Growth, 3-Year CAGR",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-008",
+            "metric_name": "Net Organic FEAUM Growth",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-009",
+            "metric_name": "Fundraising as Percentage of AUM",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-010",
+            "metric_name": "Asset Class Herfindahl-Hirschman Index",
+            "category": "mix_and_diversification",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-011",
+            "metric_name": "Permanent Capital Percentage",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-012",
+            "metric_name": "Credit Percentage of AUM",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-013",
+            "metric_name": "Fee-Related Earnings Margin",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-014",
+            "metric_name": "FRE Growth, Year-over-Year",
+            "category": "efficiency",
+            "collection_priority": "medium",
+            "derivable_from": "FRE_t / FRE_t-1) - 1",
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-015",
+            "metric_name": "Compensation-to-Revenue Ratio",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-016",
+            "metric_name": "Management Fee Rate",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-017",
+            "metric_name": "Performance Fee Share of Total Revenue",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-018",
+            "metric_name": "Headcount to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-019",
+            "metric_name": "FEAUM per Employee",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-020",
+            "metric_name": "Compensation and Benefits to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-021",
+            "metric_name": "G&A Expense to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-022",
+            "metric_name": "OpEx Growth minus Fee Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-023",
+            "metric_name": "Constant Currency Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-024",
+            "metric_name": "Integration Costs to Revenue",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-025",
+            "metric_name": "CapEx to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-026",
+            "metric_name": "Price-to-Fee-Related Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-027",
+            "metric_name": "Price-to-Distributable Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-028",
+            "metric_name": "Enterprise Value-to-Fee-Earning AUM",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-029",
+            "metric_name": "Average Daily Trading Volume",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-030",
+            "metric_name": "Passive Ownership Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-031",
+            "metric_name": "Free Float Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "firm_id": "FIRM-007",
+        "ticker": "VCTR",
+        "metrics": [
+          {
+            "metric_id": "MET-VD-001",
+            "metric_name": "Distributable Earnings per Share",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-002",
+            "metric_name": "Earnings per Share (GAAP)",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-003",
+            "metric_name": "DE/Share Growth, 3-Year CAGR",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-004",
+            "metric_name": "Fee-Earning AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-005",
+            "metric_name": "Total AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-006",
+            "metric_name": "FEAUM Growth, Year-over-Year",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-007",
+            "metric_name": "FEAUM Growth, 3-Year CAGR",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-008",
+            "metric_name": "Net Organic FEAUM Growth",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-009",
+            "metric_name": "Fundraising as Percentage of AUM",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-010",
+            "metric_name": "Asset Class Herfindahl-Hirschman Index",
+            "category": "mix_and_diversification",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-011",
+            "metric_name": "Permanent Capital Percentage",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-012",
+            "metric_name": "Credit Percentage of AUM",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-013",
+            "metric_name": "Fee-Related Earnings Margin",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-014",
+            "metric_name": "FRE Growth, Year-over-Year",
+            "category": "efficiency",
+            "collection_priority": "medium",
+            "derivable_from": "FRE_t / FRE_t-1) - 1",
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-015",
+            "metric_name": "Compensation-to-Revenue Ratio",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-016",
+            "metric_name": "Management Fee Rate",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-017",
+            "metric_name": "Performance Fee Share of Total Revenue",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-018",
+            "metric_name": "Headcount to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-019",
+            "metric_name": "FEAUM per Employee",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-020",
+            "metric_name": "Compensation and Benefits to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-021",
+            "metric_name": "G&A Expense to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-022",
+            "metric_name": "OpEx Growth minus Fee Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-023",
+            "metric_name": "Constant Currency Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-024",
+            "metric_name": "Integration Costs to Revenue",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-025",
+            "metric_name": "CapEx to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-026",
+            "metric_name": "Price-to-Fee-Related Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-027",
+            "metric_name": "Price-to-Distributable Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-028",
+            "metric_name": "Enterprise Value-to-Fee-Earning AUM",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-029",
+            "metric_name": "Average Daily Trading Volume",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-030",
+            "metric_name": "Passive Ownership Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-031",
+            "metric_name": "Free Float Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "firm_id": "FIRM-008",
+        "ticker": "OWL",
+        "metrics": [
+          {
+            "metric_id": "MET-VD-001",
+            "metric_name": "Distributable Earnings per Share",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-002",
+            "metric_name": "Earnings per Share (GAAP)",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-003",
+            "metric_name": "DE/Share Growth, 3-Year CAGR",
+            "category": "earnings",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-004",
+            "metric_name": "Fee-Earning AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-005",
+            "metric_name": "Total AUM",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-006",
+            "metric_name": "FEAUM Growth, Year-over-Year",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-007",
+            "metric_name": "FEAUM Growth, 3-Year CAGR",
+            "category": "scale",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-008",
+            "metric_name": "Net Organic FEAUM Growth",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-009",
+            "metric_name": "Fundraising as Percentage of AUM",
+            "category": "organic_growth",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-010",
+            "metric_name": "Asset Class Herfindahl-Hirschman Index",
+            "category": "mix_and_diversification",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-011",
+            "metric_name": "Permanent Capital Percentage",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-012",
+            "metric_name": "Credit Percentage of AUM",
+            "category": "mix_and_diversification",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-013",
+            "metric_name": "Fee-Related Earnings Margin",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-014",
+            "metric_name": "FRE Growth, Year-over-Year",
+            "category": "efficiency",
+            "collection_priority": "medium",
+            "derivable_from": "FRE_t / FRE_t-1) - 1",
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-015",
+            "metric_name": "Compensation-to-Revenue Ratio",
+            "category": "efficiency",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-016",
+            "metric_name": "Management Fee Rate",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-017",
+            "metric_name": "Performance Fee Share of Total Revenue",
+            "category": "fee_quality",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-018",
+            "metric_name": "Headcount to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-019",
+            "metric_name": "FEAUM per Employee",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-020",
+            "metric_name": "Compensation and Benefits to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-021",
+            "metric_name": "G&A Expense to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "high",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-022",
+            "metric_name": "OpEx Growth minus Fee Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "medium",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-023",
+            "metric_name": "Constant Currency Revenue Growth",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-024",
+            "metric_name": "Integration Costs to Revenue",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-025",
+            "metric_name": "CapEx to FEAUM",
+            "category": "operational_feasibility",
+            "collection_priority": "low",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-026",
+            "metric_name": "Price-to-Fee-Related Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-027",
+            "metric_name": "Price-to-Distributable Earnings",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-028",
+            "metric_name": "Enterprise Value-to-Fee-Earning AUM",
+            "category": "valuation_multiples",
+            "collection_priority": "critical",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-029",
+            "metric_name": "Average Daily Trading Volume",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-030",
+            "metric_name": "Passive Ownership Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          },
+          {
+            "metric_id": "MET-VD-031",
+            "metric_name": "Free Float Percentage",
+            "category": "market_structure",
+            "collection_priority": "skip",
+            "derivable_from": null,
+            "status": "pending"
+          }
+        ]
+      }
+    ]
+  }
+}

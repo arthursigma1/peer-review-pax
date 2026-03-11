@@ -1,0 +1,103 @@
+{
+  "checkpoint": "CP-1",
+  "stage_audited": "VD-A2",
+  "run_id": "2026-03-10-run4",
+  "base_run_id": "2026-03-10-run2",
+  "audited_at": "2026-03-11T04:00:00Z",
+  "auditor": "claim-auditor",
+  "verdict": "PASSED",
+  "scope_note": "Incremental run. ~488 data points carried forward from 2026-03-10-run2 (already CP-1 cleared). ~180 newly collected data points audited in full. Carry-forward block audited for structural anomalies and internal consistency with newly collected data.",
+  "total_claims_reviewed": 183,
+  "passed_claims": 178,
+  "flagged_claims": [
+    {
+      "claim_id": "FLAG-001",
+      "severity": "WARN",
+      "dimension": "invalid_premises",
+      "firm": "Victory Capital (VCTR)",
+      "firm_id": "FIRM-007",
+      "metric_id": "MET-VD-016",
+      "metric_name": "Management Fee Rate",
+      "period": "FY2024",
+      "data_source": "carry-forward from base run",
+      "value": 578,
+      "unit_in_record": null,
+      "issue": "Carry-forward value of 578 for MET-VD-016 (Management Fee Rate) is logically impossible. All other firms store this metric in basis points (bps), where typical values range 60-175 bps. A value of 578 bps equals a 5.78% management fee rate — economically non-viable for an institutional asset manager. The newly collected data for this run correctly records VCTR MET-VD-016 = 76 bps (line 793-810, source PS-VD-CG-2024-SUPP equivalent). The carry-forward value appears to be a data entry error from the base run, possibly a raw dollar figure ($578M revenue) misrecorded as a rate value.",
+      "recommendation": "Override carry-forward VCTR MET-VD-016 with the newly collected value of 76 bps from this run's data collector output. Flag in standardized_matrix.json as superseded."
+    },
+    {
+      "claim_id": "FLAG-002",
+      "severity": "WARN",
+      "dimension": "misleading_context",
+      "firm": "Man Group (MAN)",
+      "firm_id": "FIRM-011",
+      "metric_id": "MET-VD-016",
+      "metric_name": "Management Fee Rate",
+      "period": "FY2024",
+      "data_source": "PS-VD-MAN-001",
+      "value": 0.52,
+      "unit_in_record": "%",
+      "issue": "Newly collected MAN MET-VD-016 value is 0.52 with unit '%'. However, all other firms in the dataset store Management Fee Rate in basis points (bps): BX = 106 bps, BAM = 91 bps, APO = 81 bps, KKR = 93 bps, CG = 76 bps. A value of 0.52 in the context of a bps-denominated column will be treated as 0.52 bps (0.005%) during correlation — roughly 200x too small — producing a severe outlier that will distort Spearman rank correlation for MET-VD-016. The correct value is 52 bps (= 0.52% expressed in bps).",
+      "recommendation": "Convert MAN MET-VD-016 to 52 (bps) before standardization. Update unit field to 'bps'. Extraction note should be updated to clarify the unit conversion."
+    },
+    {
+      "claim_id": "FLAG-003",
+      "severity": "WARN",
+      "dimension": "misleading_context",
+      "firm": "TPG Inc. (TPG)",
+      "firm_id": "FIRM-009",
+      "metric_id": "MET-VD-016",
+      "metric_name": "Management Fee Rate",
+      "period": "FY2024",
+      "data_source": "PS-VD-TPG-001",
+      "value": 0.56,
+      "unit_in_record": "%",
+      "issue": "Same unit inconsistency as FLAG-002. TPG MET-VD-016 = 0.56 (unit: '%') while the column is implicitly bps-denominated across all other firms. The correct value is 56 bps. As a carry-forward from the base run, this may already exist in standardized_matrix.json with an incorrect scale.",
+      "recommendation": "Convert TPG MET-VD-016 to 56 (bps). Confirm whether standardized_matrix.json from the base run already corrected this; if not, fix before this run's standardization step."
+    },
+    {
+      "claim_id": "FLAG-004",
+      "severity": "WARN",
+      "dimension": "misleading_context",
+      "firm": "Blue Owl Capital (OWL)",
+      "firm_id": "FIRM-008",
+      "metric_id": "MET-VD-001",
+      "metric_name": "Distributable Earnings per Share",
+      "period": "FY2024",
+      "data_source": "carry-forward from base run",
+      "value": 0.84,
+      "issue": "The carry-forward OWL MET-VD-001 (DE/share) = $0.84 conflicts with newly collected evidence. The DE/Share CAGR calculation in this run (FIRM-008, MET-VD-003, line 1136-1153) explicitly states 'Blue Owl FY2024 distributable earnings per share (Class A) = $0.71 (Q4 2024 supplement)'. The carry-forward value of $0.84 is materially higher than the $0.71 reported in this run's data. If downstream correlation uses the carry-forward $0.84 rather than the newly collected $0.71, DE/share will be overstated by 18% for OWL. Possible explanation: $0.84 may be the FY2024 DE/share pre-tax or includes a different share class than the new collection.",
+      "recommendation": "Reconcile carry-forward OWL MET-VD-001 = $0.84 against new evidence of $0.71. If $0.71 is confirmed from Q4 2024 supplement (higher confidence primary source), override carry-forward. If $0.84 is from a different DE definition or period, document clearly. Do not allow conflicting values for the same period to coexist."
+    },
+    {
+      "claim_id": "FLAG-005",
+      "severity": "INFO",
+      "dimension": "invalid_premises",
+      "firm": "Multiple firms (BX, APO, TPG, CVC)",
+      "metric_id": "MET-VD-014",
+      "metric_name": "FRE Growth, Year-over-Year",
+      "period": "FY2024",
+      "data_source": "carry-forward from base run",
+      "value": 0.0,
+      "issue": "Carry-forward MET-VD-014 = 0.0 for FIRM-001 (BX), FIRM-003 (APO), FIRM-009 (TPG), FIRM-013 (CVC). These zero values are almost certainly placeholder sentinels from the base run — not actual FRE Growth of 0%. BX's FRE grew approximately 7-11% in FY2024; APO's FRE grew materially; TPG and CVC grew their fee revenues in FY2024. A value of exactly 0.0% FRE growth for large diversified alt managers in a strong fundraising year is implausible for all four simultaneously. The newly collected data for this run provides valid FRE Growth values for KKR (22.3%), ARES (19.1%), VCTR (32.1%), OWL (28.0%).",
+      "recommendation": "Treat MET-VD-014 = 0.0 for BX, APO, TPG, CVC as missing-not-collected rather than zero growth. In standardized_matrix.json, these should be null rather than 0.0. If the base run genuinely could not compute FRE Growth for these firms, document as not_computed. Do not use 0.0 in Spearman correlation as it will artificially anchor the distribution."
+    }
+  ],
+  "blocked_claims": [],
+  "consulting_source_check": {
+    "consulting_context_present": true,
+    "consulting_context_path": "data/processed/pax/2026-03-10-run4/2-data/consulting_context.json",
+    "ps_vd_9xx_as_primary_source": false,
+    "finding": "No newly collected data points cite PS-VD-9xx sources as the primary basis for any firm-specific metric value. All quantitative data points cite regulatory filings (10-K, annual reports), company-produced earnings supplements, or directly derived from disclosed AUM bridge data. The consulting_context.json is present but not used as a primary quantitative data source in this collection batch. Enforcement: PASSED."
+  },
+  "audit_summary": {
+    "newly_collected_data_points_reviewed": 183,
+    "carry_forward_data_points_spot_checked": 45,
+    "logically_impossible_values": 1,
+    "confidence_tag_mismatches": 0,
+    "unit_scale_inconsistencies": 2,
+    "internal_consistency_conflicts": 2,
+    "not_disclosed_properly_classified": 38,
+    "notes": "The audit identified no hard blocks. Five warnings were raised: one invalid premise (VCTR fee rate sentinel 578 bps), two unit-scale inconsistencies (MAN and TPG fee rates stored as % instead of bps), one internal conflict (OWL DE/share carry-forward $0.84 vs newly collected $0.71), and one structural anomaly (BX/APO/TPG/CVC FRE Growth carry-forwards of exactly 0.0 treated as sentinel placeholders). All five warnings are correctable at the standardization step without requiring re-collection. The newly collected GAAP EPS panel (FIRM-001 through FIRM-016), FRE Growth panel (FIRM-004, -005, -007, -008), DE/Share CAGR (FIRM-003, -008, -009, -015), and operational efficiency metrics (MET-VD-018, -019, -020, -021) are internally consistent and well-sourced. Negative GAAP EPS values (BX FY2022 -$0.23, CG FY2022 -$1.23, OWL FY2023 -$0.03, TPG FY2022-FY2024 negative) are valid and properly documented as mark-to-market driven losses — not logically impossible. All not_disclosed null values are properly substantiated in extraction_notes. Confidence tags on derived values correctly use 'medium' rather than 'high' throughout. PASSED with warnings."
+  }
+}
