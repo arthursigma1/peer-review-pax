@@ -31,6 +31,7 @@ interface PipelineStepDef {
 interface SlashCommandConfig {
   default_sector: string;
   auto_mode: boolean;
+  evidence_mode: "legacy" | "incremental";
   max_retries: number;
   tier_size: number;
   base_run: string | null;
@@ -70,7 +71,7 @@ const DEFAULT_CONFIG: AgentConfig = {
     {
       id: "metric-architect", name: "Metrics Designer",
       role: "Defines the metric taxonomy — driver candidates, valuation multiples, and contextual metrics",
-      instructions: "Define the PAX-first metric taxonomy. Seed the initial candidate set from docs/pax-peer-assessment-framework.md, especially the PAX business-spec hypotheses around EPS / DE-share, FEAUM, AUM mix, TAM / market growth / market share, business efficiency, and market-structure context. Treat those as required starting hypotheses to test, not as confirmed truths: they may be classified as formal_ranking_eligible, contextual_only, or unsupported, but they may not be silently omitted without explanation. Include driver families for earnings, scale, mix/diversification, efficiency, and Operational Feasibility and Scalable Infrastructure. For each metric, assign MET-VD-NNN, unit, calculation notes, eligibility_class (formal_ranking_eligible, contextual_only, unsupported), coverage expectations, comparability caveats, and any mechanical_overlap_risk against valuation multiples. Required alt-manager operational metrics include Headcount_to_FEAUM, FEAUM_per_Employee, Compensation_and_Benefits_to_FEAUM, G&A_to_FEAUM, OpEx_Growth_minus_Fee_Revenue_Growth, Constant_Currency_Revenue_Growth, Integration_Costs_to_Revenue, CapEx_to_FEAUM, and technology / reporting maturity indicators when interpretable. Valuation multiples remain P/FRE, P/DE, and EV/FEAUM.",
+      instructions: "Define the PAX-first metric taxonomy. Seed the initial candidate set from docs/pax-peer-assessment-framework.md, especially the PAX business-spec hypotheses around EPS / DE-share, FEAUM, AUM mix, TAM / market growth / market share, business efficiency, technology and data platforms, and market-structure context. Treat those as required starting hypotheses to test, not as confirmed truths: they may be classified as formal_ranking_eligible, contextual_only, or unsupported, but they may not be silently omitted without explanation. Include driver families for earnings, scale, mix/diversification, efficiency, and Operational Feasibility and Scalable Infrastructure. For each metric, assign MET-VD-NNN, unit, calculation notes, eligibility_class (formal_ranking_eligible, contextual_only, unsupported), coverage expectations, comparability caveats, and any mechanical_overlap_risk against valuation multiples. Required alt-manager operational metrics include Headcount_to_FEAUM, FEAUM_per_Employee, Compensation_and_Benefits_to_FEAUM, G&A_to_FEAUM, OpEx_Growth_minus_Fee_Revenue_Growth, Constant_Currency_Revenue_Growth, Integration_Costs_to_Revenue, CapEx_to_FEAUM, and Technology_Platform_Maturity (qualitative ordinal 0-3: standard vendor / proprietary platform / ML-AI integrated / commercialized product — collected for all firms regardless of capex disclosure). Valuation multiples remain P/FRE, P/DE, and EV/FEAUM.",
       step: 0, parallel: true, model: "claude-sonnet-4-6", temperature: 0.1, max_output_tokens: 12000, timeout_minutes: 10,
       tools: ["Read", "Write"],
       input_files: ["company_context.json", "docs/pax-peer-assessment-framework.md"],
@@ -110,7 +111,7 @@ const DEFAULT_CONFIG: AgentConfig = {
     {
       id: "strategy-extractor", name: "Strategy Researcher",
       role: "Extracts qualitative strategy profiles and catalogs strategic actions for all peer firms",
-      instructions: "For each qualitative peer, extract a source-based strategic profile using docs/pax-peer-strategy-ontology.md as the minimum business-model decomposition grid. `strategy_profiles.json` must be a bare JSON array matching the repository contract exactly: each profile object uses `firm_id`, `firm_ticker`, optional `archetype` / `archetype_secondary`, `ontology_mapping`, `contextual_market_factors`, `stated_strategic_priorities`, `source_ids`, and `missing_dimensions`. Do not wrap the file in `metadata`, `profiles`, or a nested `profile` object. Map the peer across geographic reach, business focus, asset focus, asset class and investment strategies, sector orientation, origination engine, fund type, capital source, distribution strategy, client segment, growth agenda, share class, and any additional criteria that materially shape transferability. Do not force-fit weak evidence; use null plus missing_reason when needed, and add new categories only when repeated evidence requires it. Then catalog concrete strategic actions from the prior 2-3 years in `strategic_actions.json` as a root object `{ \"actions\": [...] }` with ACT-VD-NNN IDs. For every action, run a parallel search for hidden execution work: systems integration, reporting and data-stack upgrades, controls or reconciliation changes, fund admin or servicing changes, compliance / treasury / risk infrastructure, org redesign, hiring needs, and geographic integration complexity. Every operational prerequisite must carry evidence_class, source_bias_tag, confidence_level, and stated_or_inferred. Profiles remain peer-evidence-first and must not use PAX as the baseline.",
+      instructions: "For each qualitative peer, extract a source-based strategic profile using docs/pax-peer-strategy-ontology.md as the minimum business-model decomposition grid, including the technology_capability dimension (proprietary_platform, commercialized_data_product, ml_integrated, standard_vendor). `strategy_profiles.json` must be a bare JSON array matching the repository contract exactly: each profile object uses `firm_id`, `firm_ticker`, optional `archetype` / `archetype_secondary`, `ontology_mapping`, `contextual_market_factors`, `stated_strategic_priorities`, `source_ids`, and `missing_dimensions`. Do not wrap the file in `metadata`, `profiles`, or a nested `profile` object. Map the peer across geographic reach, business focus, asset focus, asset class and investment strategies, sector orientation, origination engine, fund type, capital source, distribution strategy, client segment, growth agenda, share class, technology capability, and any additional criteria that materially shape transferability. Do not force-fit weak evidence; use null plus missing_reason when needed, and add new categories only when repeated evidence requires it. Then catalog concrete strategic actions from the prior 2-3 years in `strategic_actions.json` as a root object `{ \"actions\": [...] }` with ACT-VD-NNN IDs, using action_type values including technology-operations and technology-investment. For every firm, explicitly sweep for technology actions (proprietary platforms, AI/ML integration, commercialized data products, digital distribution, operational automation); if none found, record no_tech_action_found: true. For every action, run a parallel search for hidden execution work: systems integration, reporting and data-stack upgrades, controls or reconciliation changes, fund admin or servicing changes, compliance / treasury / risk infrastructure, org redesign, hiring needs, and geographic integration complexity. Every operational prerequisite must carry evidence_class, source_bias_tag, confidence_level, and stated_or_inferred. Profiles remain peer-evidence-first and must not use PAX as the baseline.",
       step: 1, parallel: true, model: "claude-opus-4-6", temperature: 0.3, max_output_tokens: 64000, timeout_minutes: 35,
       tools: ["WebSearch", "Read", "Write", "Agent"],
       input_files: ["1-universe/source_catalog.json", "docs/pax-peer-assessment-framework.md", "docs/pax-peer-strategy-ontology.md"],
@@ -140,7 +141,7 @@ const DEFAULT_CONFIG: AgentConfig = {
     {
       id: "platform-analyst", name: "Platform Profiler",
       role: "Produces platform-level deep-dives — identity, strategy, actions, driver performance, value narrative, transferable insights",
-      instructions: "For each firm in the final set, produce a platform profile that remains peer-evidence-first but is transferability-aware. Required sections: identity and scale, archetype assignment, strategic agenda, key actions with operational prerequisites, driver performance using the current stable-driver rule, value-creation narrative with hedged language where needed, and transferability signals documenting what is informative, what is structurally non-transferable, what is inspiration only, and what is a warning for PAX. Keep self-contained and do not turn the profile into a PAX recommendation.",
+      instructions: "For each firm in the final set, produce a platform profile that remains peer-evidence-first but is transferability-aware. Required sections: identity and scale, archetype assignment, strategic agenda, key actions with operational prerequisites, driver performance using the current stable-driver rule, value-creation narrative with hedged language where needed, technology as enabler of value drivers (map each firm's documented tech investments to ranked driver performance — e.g., operational automation → FRE margin, digital distribution → FEAUM growth — using hedged language for all causal claims), and transferability signals documenting what is informative, what is structurally non-transferable, what is inspiration only, and what is a warning for PAX. Keep self-contained and do not turn the profile into a PAX recommendation.",
       step: 3, parallel: true, model: "claude-opus-4-6", temperature: 0.3, max_output_tokens: 32000, timeout_minutes: 20,
       tools: ["WebSearch", "Read", "Write", "Agent"],
       input_files: ["3-analysis/final_peer_set.json", "3-analysis/driver_ranking.json", "2-data/strategy_profiles.json", "2-data/strategic_actions.json"],
@@ -160,7 +161,7 @@ const DEFAULT_CONFIG: AgentConfig = {
     {
       id: "playbook-synthesizer", name: "Insight Synthesizer",
       role: "Builds the PAX-first interpretation layer — value principles, platform playbook, and asset-class playbooks",
-      instructions: "Sequential outputs: (1) Value Principles — for each headline driver, state the exact statistical status using the repository contract, disclose mechanical overlap and confounding where relevant, and add PAX relevance plus driver decomposition logic. Respect docs/pax-peer-assessment-framework.md as the business brief: keep the synthesis useful for both platform and BU readers, and preserve the distinction between reinforce current strategies, bring additional angles and opportunities, and suggest new initiatives. (2) Platform Playbook — emit a root object `{ \"driver_playbooks\": [...] }` and no top-level metadata wrapper. Each driver block must contain `driver_id`, `plays`, and `anti_patterns`. Each PLAY-* or ANTI-* entry must use only the contract fields `Play_ID` or `Anti_ID`, `What_Was_Done`, `Observed_Metric_Impact`, `Why_It_Worked`, `PAX_Relevance`, `Preconditions`, `Operational_And_Tech_Prerequisites`, `Execution_Burden`, `Time_To_Build`, `Margin_Risk`, `Failure_Modes_And_Margin_Destroyers`, `Transferability_Constraints`, `Archetype_Relevance`, `Evidence_Strength`, and `Recommendation_For_PAX`; do not emit legacy snake_case fields or decorative metadata. (3) Asset Class Playbooks — emit a root object `{ \"vertical_playbooks\": [...] }` with the same play-entry contract, organized by vertical and strategy sub-type using docs/pax-peer-strategy-ontology.md as the minimum decomposition baseline. Do not call a driver stable unless stable_v1_two_of_three is satisfied. Every recommendation must explicitly state why it matters for PAX, what would have to be true, why it may fail, and whether it is near_term_feasible, medium_term_feasible, or aspirational.",
+      instructions: "Sequential outputs: (1) Value Principles — for each headline driver, state the exact statistical status using the repository contract, disclose mechanical overlap and confounding where relevant, and add PAX relevance plus driver decomposition logic. Respect docs/pax-peer-assessment-framework.md as the business brief: keep the synthesis useful for both platform and BU readers, and preserve the distinction between reinforce current strategies, bring additional angles and opportunities, and suggest new initiatives. (2) Platform Playbook — emit a root object `{ \"driver_playbooks\": [...] }` and no top-level metadata wrapper. Each driver block must contain `driver_id`, `plays`, and `anti_patterns`. Each PLAY-* or ANTI-* entry must use only the contract fields `Play_ID` or `Anti_ID`, `What_Was_Done`, `Observed_Metric_Impact`, `Why_It_Worked`, `PAX_Relevance`, `Preconditions`, `Operational_And_Tech_Prerequisites`, `Execution_Burden`, `Time_To_Build`, `Margin_Risk`, `Failure_Modes_And_Margin_Destroyers`, `Transferability_Constraints`, `Archetype_Relevance`, `Evidence_Strength`, and `Recommendation_For_PAX`; do not emit legacy snake_case fields or decorative metadata. After driver-organized plays, include an Emerging Themes section (THEME-NNN) for actions without ranked drivers — technology/AI minimum 1, maximum 5 themes, hedged language only. (3) Asset Class Playbooks — emit a root object `{ \"vertical_playbooks\": [...] }` with the same play-entry contract, organized by vertical and strategy sub-type using docs/pax-peer-strategy-ontology.md as the minimum decomposition baseline. Include per-vertical Emerging Themes where evidence exists. Do not call a driver stable unless stable_v1_two_of_three is satisfied. Every recommendation must explicitly state why it matters for PAX, what would have to be true, why it may fail, and whether it is near_term_feasible, medium_term_feasible, or aspirational.",
       step: 4, parallel: false, model: "claude-opus-4-6", temperature: 0.3, max_output_tokens: 32000, timeout_minutes: 20,
       tools: ["Read", "Write", "Bash"],
       input_files: ["company_context.json", "docs/pax-peer-assessment-framework.md", "docs/pax-peer-strategy-ontology.md", "3-analysis/driver_ranking.json", "3-analysis/final_peer_set.json", "3-analysis/statistical_methodology.md", "3-analysis/statistics_metadata.json", "4-deep-dives/platform_profiles.json", "4-deep-dives/asset_class_analysis.json"],
@@ -229,6 +230,7 @@ const DEFAULT_CONFIG: AgentConfig = {
   command: {
     default_sector: "Alternative Asset Management",
     auto_mode: false,
+    evidence_mode: "legacy",
     max_retries: 2,
     tier_size: 9,
     base_run: null,
@@ -261,7 +263,17 @@ export function AgentsOrg() {
   useEffect(() => {
     invoke<string>("get_project_root").then((root) => {
       invoke<string>("read_output_file", { path: `${root}/.claude/agent_config.json` })
-        .then((content) => { setConfig(JSON.parse(content) as AgentConfig); setConfigSource("file"); })
+        .then((content) => {
+          const parsed = JSON.parse(content) as Partial<AgentConfig>;
+          setConfig({
+            ...DEFAULT_CONFIG,
+            ...parsed,
+            command: { ...DEFAULT_CONFIG.command, ...(parsed.command ?? {}) },
+            agents: parsed.agents ?? DEFAULT_CONFIG.agents,
+            steps: parsed.steps ?? DEFAULT_CONFIG.steps,
+          });
+          setConfigSource("file");
+        })
         .catch(() => { setConfigSource("default"); });
     });
   }, []);
@@ -623,6 +635,17 @@ export function AgentsOrg() {
                     <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${config.command.auto_mode ? "translate-x-5" : "translate-x-0.5"}`} />
                   </div>
                 </button>
+              </div>
+
+              <div>
+                <label htmlFor="cmd-evidence-mode" className="block text-[10px] text-gray-500 mb-2">Evidence Mode</label>
+                <p className="text-[10px] text-gray-500 mb-2">`incremental` reuses the canonical evidence store and only plans recrawls for gaps</p>
+                <select id="cmd-evidence-mode" value={config.command.evidence_mode}
+                  onChange={(e) => updateCommand("evidence_mode", e.target.value as "legacy" | "incremental")}
+                  className="w-full px-3 py-2 rounded-md bg-gray-50 border border-gray-200 text-sm text-gray-800 focus:ring-2 focus:ring-[#0068ff]/40 focus:border-[#0068ff] focus:outline-none appearance-none">
+                  <option value="legacy">legacy</option>
+                  <option value="incremental">incremental</option>
+                </select>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
