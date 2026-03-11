@@ -384,12 +384,14 @@ export function AgentsOrg() {
                   </div>
                   {/* Checkpoint indicators */}
                   {INITIAL_CHECKPOINTS.filter((cp) => cp.afterStep === step.index).map((cp) => (
-                    <div key={cp.id} className="ml-4 my-1 flex items-center gap-2 px-3 py-1 rounded border border-dashed border-emerald-200 bg-emerald-50 text-emerald-600 text-[10px]">
+                    <button key={cp.id} onClick={() => setSelectedAgent("claim-auditor")}
+                      className={`ml-4 my-1 w-[calc(100%-1rem)] text-left flex items-center gap-2 px-3 py-1 rounded border border-dashed transition-colors text-[10px] ${selectedAgent === "claim-auditor" ? "border-emerald-400 bg-emerald-100 text-emerald-700" : "border-emerald-200 bg-emerald-50 text-emerald-600 hover:bg-emerald-100"}`}
+                    >
                       <span>&#x1F6E1;</span>
                       <span className="font-mono">{cp.id}</span>
                       <span className="text-gray-400">{cp.name}</span>
                       <span className="ml-auto text-gray-400 text-[9px]">Opus</span>
-                    </div>
+                    </button>
                   ))}
                   {step.index < config.steps.length - 1 && (
                     <div className="flex justify-center py-1"><span className="text-gray-300 text-xs">↓</span></div>
