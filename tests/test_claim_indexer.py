@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
 
 from src.analyzer._shared import CLAIM_TYPE_CEILINGS, CLM_ID_PATTERN
-from src.analyzer.claim_indexer import collect_claims_from_dir, validate_claim
+from src.analyzer.claim_indexer import build_claim_index, collect_claims_from_dir, validate_claim
 
 
 def _write_json(path: Path, data: dict) -> None:
@@ -477,3 +479,119 @@ class TestScoreCascading:
         # COR-191 covered by CLM-COR-191-01 (score 3) → min(3, 3)=3
         assert result["CLM-DVR-001-01"]["score"] == 3
         assert downgrades == 0
+
+
+class TestBuildClaimIndex:
+    def _make_run_dir(self, tmp_path: Path) -> Path:
+        """Create a minimal run directory with claims across layers."""
+        cor_data = {
+            "_claims": [
+                {"id": "CLM-COR-001-01", "parent_id": "COR-001", "type": "statistical",
+                 "evidence": ["MET-VD-001", "MET-VD-026"], "confidence": "grounded",
+                 "score": 3, "layer": "3-analysis"},
+            ],
+        }
+        dvr_data = {
+            "_claims": [
+                {"id": "CLM-DVR-001-01", "parent_id": "DVR-001", "type": "statistical",
+                 "evidence": ["CLM-COR-001-01"], "confidence": "grounded",
+                 "score": 3, "layer": "3-analysis"},
+            ],
+        }
+        play_data = {
+            "_claims": [
+                {"id": "CLM-PLAY-001-01", "parent_id": "PLAY-001", "type": "factual",
+                 "evidence": ["PS-VD-018", "ACT-VD-036"], "confidence": "grounded",
+                 "score": 3, "layer": "5-playbook"},
+                {"id": "CLM-PLAY-001-02", "parent_id": "PLAY-001", "type": "causal",
+                 "evidence": ["CLM-PLAY-001-01", "CLM-DVR-001-01"], "confidence": "partial",
+                 "score": 2, "layer": "5-playbook"},
+            ],
+        }
+        matrix_data = {
+            "metrics": {
+                "MET-VD-001": {
+                    "metric_name": "Total AUM",
+                    "firms": {
+                        "FIRM-001": {"value": 1274, "source": "BX 10-K (PS-VD-001)"},
+                    },
+                },
+            },
+        }
+        _write_json(tmp_path / "3-analysis" / "correlation_results.json", cor_data)
+        _write_json(tmp_path / "3-analysis" / "driver_ranking.json", dvr_data)
+        _write_json(tmp_path / "5-playbook" / "platform_playbook.json", play_data)
+        _write_json(tmp_path / "3-analysis" / "standardized_matrix.json", matrix_data)
+        return tmp_path
+
+    def test_build_produces_valid_index(self, tmp_path):
+        run_dir = self._make_run_dir(tmp_path)
+        index = build_claim_index(run_dir)
+        assert "stats" in index
+        assert "claims" in index
+        assert index["stats"]["total_claims"] > 0
+
+    def test_stats_count_by_score(self, tmp_path):
+        run_dir = self._make_run_dir(tmp_path)
+        index = build_claim_index(run_dir)
+        by_score = index["stats"]["by_score"]
+        total = sum(by_score.values())
+        assert total == index["stats"]["total_claims"]
+
+    def test_groundedness_pct_formula(self, tmp_path):
+        run_dir = self._make_run_dir(tmp_path)
+        index = build_claim_index(run_dir)
+        by_score = index["stats"]["by_score"]
+        total = index["stats"]["total_claims"]
+        expected_pct = (by_score.get(3, 0) + by_score.get(2, 0)) / total * 100
+        assert abs(index["stats"]["groundedness_pct"] - expected_pct) < 0.1
+
+    def test_chain_field_present_on_all_claims(self, tmp_path):
+        run_dir = self._make_run_dir(tmp_path)
+        index = build_claim_index(run_dir)
+        for cid, claim in index["claims"].items():
+            assert "chain" in claim, f"Missing chain on {cid}"
+
+    def test_causal_claim_capped_at_2(self, tmp_path):
+        run_dir = self._make_run_dir(tmp_path)
+        index = build_claim_index(run_dir)
+        causal = index["claims"].get("CLM-PLAY-001-02")
+        assert causal is not None
+        assert causal["score"] <= 2
+
+    def test_legacy_run_without_claims(self, tmp_path):
+        """Run dir with no _claims[] in any file but with standardized_matrix."""
+        matrix_data = {
+            "metrics": {
+                "MET-VD-001": {
+                    "metric_name": "AUM",
+                    "firms": {"FIRM-001": {"value": 100, "source": "Filing (PS-VD-001)"}},
+                },
+            },
+        }
+        _write_json(tmp_path / "3-analysis" / "standardized_matrix.json", matrix_data)
+        index = build_claim_index(tmp_path)
+        assert index["stats"].get("legacy_run") is True
+        assert index["stats"]["total_claims"] > 0  # matrix claims still generated
+
+
+class TestCLI:
+    def test_cli_writes_output_file(self, tmp_path):
+        matrix = {
+            "metrics": {
+                "MET-VD-001": {
+                    "metric_name": "AUM",
+                    "firms": {"FIRM-001": {"value": 100, "source": "(PS-VD-001)"}},
+                },
+            },
+        }
+        _write_json(tmp_path / "3-analysis" / "standardized_matrix.json", matrix)
+        result = subprocess.run(
+            [sys.executable, "-m", "src.analyzer.claim_indexer", "--run-dir", str(tmp_path)],
+            capture_output=True, text=True,
+        )
+        assert result.returncode == 0, result.stderr
+        output = tmp_path / "claim_index.json"
+        assert output.exists()
+        data = json.loads(output.read_text())
+        assert "claims" in data

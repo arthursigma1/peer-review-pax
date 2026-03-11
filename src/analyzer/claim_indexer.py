@@ -288,3 +288,120 @@ def apply_score_cascading(
                     downgraded_ids.add(cid)
 
     return result, len(downgraded_ids)
+
+
+_MATRIX_FILE = "3-analysis/standardized_matrix.json"
+
+
+def build_claim_index(run_dir: Path) -> dict:
+    """Build the full claim index for a pipeline run.
+
+    1. Collect _claims[] from all pipeline JSONs
+    2. Auto-generate matrix claims from standardized_matrix.json
+    3. Resolve evidence chains recursively
+    4. Apply score cascading with damping
+    5. Compute stats
+
+    Returns the complete index dict ready for JSON serialization.
+    """
+    # 1. Collect agent-emitted claims
+    claims, warnings = collect_claims_from_dir(run_dir)
+
+    # 2. Auto-generate matrix claims
+    matrix_path = run_dir / _MATRIX_FILE
+    matrix_claims_list: list[dict] = []
+    if matrix_path.exists():
+        try:
+            matrix = json.loads(matrix_path.read_text(encoding="utf-8"))
+            matrix_claims_list, matrix_warnings = generate_matrix_claims(matrix)
+            warnings.extend(matrix_warnings)
+        except (json.JSONDecodeError, UnicodeDecodeError) as e:
+            warnings.append(f"Failed to read standardized_matrix.json: {e}")
+
+    # Merge matrix claims (don't overwrite agent-emitted ones)
+    for mc in matrix_claims_list:
+        if mc["id"] not in claims:
+            claims[mc["id"]] = {**mc, "source_file": _MATRIX_FILE}
+
+    # Detect legacy run (no agent-emitted claims found)
+    agent_claims = [c for c in claims.values() if c.get("layer") != "2-data"]
+    legacy_run = len(agent_claims) == 0 and len(matrix_claims_list) > 0
+
+    # 3. Resolve chains
+    claims = resolve_chains(claims)
+
+    # 4. Score cascading
+    claims, downgrade_count = apply_score_cascading(claims)
+
+    # 5. Compute stats
+    by_score: dict[int, int] = {0: 0, 1: 0, 2: 0, 3: 0}
+    by_type: dict[str, int] = {}
+    for c in claims.values():
+        by_score[c["score"]] = by_score.get(c["score"], 0) + 1
+        by_type[c["type"]] = by_type.get(c["type"], 0) + 1
+
+    total = len(claims)
+    groundedness_pct = ((by_score.get(3, 0) + by_score.get(2, 0)) / total * 100) if total else 0.0
+
+    stats: dict = {
+        "total_claims": total,
+        "by_score": by_score,
+        "by_type": by_type,
+        "groundedness_pct": round(groundedness_pct, 1),
+        "cascading_downgrades": downgrade_count,
+    }
+    if legacy_run:
+        stats["legacy_run"] = True
+    if warnings:
+        stats["warnings_count"] = len(warnings)
+
+    run_name = run_dir.name
+
+    return {
+        "run": run_name,
+        "generated_at": utcnow_iso(),
+        "stats": stats,
+        "claims": claims,
+        "warnings": warnings if warnings else [],
+    }
+
+
+def build_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(
+        description="Build claim_index.json for a VDA pipeline run.",
+    )
+    p.add_argument(
+        "--run-dir",
+        type=Path,
+        required=True,
+        help="Path to the pipeline run directory (e.g., data/processed/pax/2026-03-10-run2/)",
+    )
+    p.add_argument(
+        "--output",
+        type=Path,
+        default=None,
+        help="Output path for claim_index.json (default: {run-dir}/claim_index.json)",
+    )
+    return p
+
+
+def main() -> None:
+    parser = build_parser()
+    args = parser.parse_args()
+    run_dir: Path = args.run_dir
+    if not run_dir.is_dir():
+        parser.error(f"Run directory not found: {run_dir}")
+
+    index = build_claim_index(run_dir)
+
+    output_path = args.output or (run_dir / "claim_index.json")
+    output_path.write_text(json.dumps(index, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"claim_index.json written to {output_path}")
+    print(f"  Total claims: {index['stats']['total_claims']}")
+    print(f"  Groundedness: {index['stats']['groundedness_pct']}%")
+    if index.get("warnings"):
+        print(f"  Warnings: {len(index['warnings'])}")
+
+
+if __name__ == "__main__":
+    main()
