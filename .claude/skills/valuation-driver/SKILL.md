@@ -1558,6 +1558,29 @@ Instructions:
 > 5. **Placement:** At the beginning of the "Strategic Implications for {COMPANY}" chapter, before the detailed per-play assessments. This gives the executive reader a single-glance overview of which plays are relevant and which are not.
 > 6. **Bumper statement:** End the matrix section with "Therefore: [summary of {COMPANY}'s transferability position relative to the peer universe]."
 >
+> **Trade-off rendering (required if `target_company_lens.json` contains `trade_offs`):**
+>
+> For each play card in the Strategic Implications section, render trade-offs inline between the evidence badges (`play-evidence`) and the recommendation block (`play-recommendation`). One `div` per trade-off:
+>
+> ```html
+> <div class="play-trade-off" data-severity="high">
+>   <span class="trade-off-label">Trade-off</span>
+>   <span class="claim" data-claim="CLM-TL-TO-005-01">
+>     Conservative gate design limits LP appeal vs. aggressive gates expose
+>     redemption crisis risk — At $40.8B FEAUM, PAX lacks the liquidity
+>     buffer to absorb stress redemptions (cf. ANTI-003).
+>   </span>
+> </div>
+> ```
+>
+> Rules:
+> - CSS classes (`play-trade-off`, `trade-off-label`) are defined in `style_guide.html`
+> - `data-severity` attribute controls border color: `high` = amber, `medium`/`low` = gray
+> - Trade-off text format: `{trade_off} — {mechanism} (cf. {linked_anti_pattern})` where mechanism is condensed to 1-2 sentences
+> - The entire text is wrapped in `<span class="claim" data-claim="...">` for the tooltip evidence chain
+> - Plays classified `not_applicable` have no trade-offs — skip rendering
+> - If a play has zero trade-offs (e.g., empty array), do not render any trade-off divs for that play
+>
 > **Consumer entry points:**
 > - C-suite / IR / Corporate Strategy: Executive summary → Transferability matrix → Platform strategic menu
 > - Credit BU: Credit vertical section
