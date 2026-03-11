@@ -62,7 +62,7 @@ const FILE_TO_AGENT: Record<string, { step: number; id: string; name: string }> 
   "correlations.json": { step: 2, id: "metric-architect", name: "Statistical Analyst" },
   "correlation_results.json": { step: 2, id: "metric-architect", name: "Statistical Analyst" },
   "driver_ranking.json": { step: 2, id: "metric-architect", name: "Statistical Analyst" },
-  "final_peer_set.json": { step: 2, id: "metric-architect", name: "Statistical Analyst" },
+  "final_peer_set.json": { step: 2, id: "convergence-analyst", name: "Convergence Analyst" },
   // Step 3 — Deep-Dive Peers
   "platform_profiles.json": { step: 3, id: "platform-analyst", name: "Platform Profiler" },
   "asset_class_analysis.json": { step: 3, id: "vertical-analyst", name: "Sector Specialist" },
@@ -328,6 +328,12 @@ export function usePipeline() {
     [pendingGate]
   );
 
+  // Resume a previously loaded session — just marks running without resetting state.
+  const resume = useCallback(() => {
+    setIsRunning(true);
+    setStartTime(Date.now());
+  }, []);
+
   const stop = useCallback(async () => {
     if (childRef.current) {
       await childRef.current.kill();
@@ -435,6 +441,7 @@ export function usePipeline() {
         ticker: ticker.toUpperCase(),
         sector: "",
         autoMode: false,
+        evidenceMode: "legacy",
         sellSideDir: null,
         consultingDir: null,
         referencePeers: null,
@@ -457,7 +464,11 @@ export function usePipeline() {
       setCurrentStep(snapshot.currentStep);
       setStartTime(snapshot.startTime);
       setLogs(snapshot.logs);
-      setConfig(snapshot.config);
+      setConfig(
+        snapshot.config
+          ? { ...snapshot.config, evidenceMode: snapshot.config.evidenceMode ?? "legacy" }
+          : null
+      );
       setRunDate(snapshot.runDate ?? restoreRunDate ?? null);
       if (snapshot.checkpoints) {
         setCheckpoints(snapshot.checkpoints);
@@ -493,6 +504,7 @@ export function usePipeline() {
     runDate,
     setRunDate,
     start,
+    resume,
     stop,
     reset,
     approveGate,
