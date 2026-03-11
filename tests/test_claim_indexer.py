@@ -163,3 +163,85 @@ class TestCollectClaims:
         claims, warnings = collect_claims_from_dir(tmp_path)
         assert len(claims) == 0
         assert len(warnings) > 0
+
+
+from src.analyzer.claim_indexer import generate_matrix_claims
+
+
+class TestGenerateMatrixClaims:
+    def _make_matrix(self) -> dict:
+        return {
+            "metrics": {
+                "MET-VD-021": {
+                    "metric_name": "G&A/FEAUM",
+                    "firms": {
+                        "FIRM-001": {
+                            "value": 0.42,
+                            "source": "BX FY2024 10-K (PS-VD-001)",
+                        },
+                        "FIRM-002": {
+                            "value": None,
+                            "missing_reason": "not disclosed",
+                        },
+                        "FIRM-003": {
+                            "value": 0.38,
+                            "source": "some description without PS-VD id",
+                        },
+                    },
+                },
+            },
+        }
+
+    def test_generates_claim_for_cell_with_ps_vd(self):
+        claims, warnings = generate_matrix_claims(self._make_matrix())
+        matching = [c for c in claims if "FIRM-001" in c["id"] and "MET-021" in c["id"]]
+        assert len(matching) == 1
+        assert matching[0]["score"] == 3
+        assert "PS-VD-001" in matching[0]["evidence"]
+
+    def test_skips_null_cells(self):
+        claims, warnings = generate_matrix_claims(self._make_matrix())
+        firm2_claims = [c for c in claims if "FIRM-002" in c["id"]]
+        assert len(firm2_claims) == 0
+
+    def test_score_1_when_no_ps_vd_in_source(self):
+        claims, warnings = generate_matrix_claims(self._make_matrix())
+        matching = [c for c in claims if "FIRM-003" in c["id"]]
+        assert len(matching) == 1
+        assert matching[0]["score"] == 1
+        assert matching[0]["confidence"] == "sourced"
+
+    def test_extracts_multiple_ps_vd_from_source_string(self):
+        matrix = {
+            "metrics": {
+                "MET-VD-005": {
+                    "metric_name": "Total AUM",
+                    "firms": {
+                        "FIRM-001": {
+                            "value": 1274,
+                            "source": "BX 10-K (PS-VD-001) and earnings (PS-VD-034)",
+                        },
+                    },
+                },
+            },
+        }
+        claims, _ = generate_matrix_claims(matrix)
+        assert len(claims) == 1
+        assert set(claims[0]["evidence"]) == {"PS-VD-001", "PS-VD-034"}
+        assert claims[0]["score"] == 3
+
+    def test_no_source_field_gets_score_1_with_warning(self):
+        matrix = {
+            "metrics": {
+                "MET-VD-001": {
+                    "metric_name": "AUM",
+                    "firms": {
+                        "FIRM-001": {"value": 100},
+                    },
+                },
+            },
+        }
+        claims, warnings = generate_matrix_claims(matrix)
+        assert len(claims) == 1
+        assert claims[0]["score"] == 1
+        assert any("no source field" in w for w in warnings)

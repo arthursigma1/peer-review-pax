@@ -122,3 +122,64 @@ def collect_claims_from_dir(
             claims[cid] = {**claim, "source_file": rel_path}
 
     return claims, warnings
+
+
+_PS_VD_PATTERN = re.compile(r"PS-VD-\d+")
+
+
+def generate_matrix_claims(matrix: dict) -> tuple[list[dict], list[str]]:
+    """Auto-generate factual claims from standardized_matrix.json source fields.
+
+    For each non-null cell, extracts PS-VD-* IDs from the source string.
+    Score 3 if PS-VD found, score 1 if source text present but no PS-VD parseable.
+    Null cells (missing_reason) are skipped.
+    """
+    claims: list[dict] = []
+    warnings: list[str] = []
+
+    metrics = matrix.get("metrics", {})
+    for met_id, met_data in metrics.items():
+        if not isinstance(met_data, dict):
+            continue
+        firms = met_data.get("firms", {})
+        met_short = met_id.replace("MET-VD-", "MET-")
+        for firm_id, cell in firms.items():
+            if not isinstance(cell, dict):
+                continue
+            value = cell.get("value")
+            if value is None:
+                continue
+
+            source_str = cell.get("source", "")
+            ps_vd_ids = _PS_VD_PATTERN.findall(source_str) if source_str else []
+
+            if ps_vd_ids:
+                score = 3
+                confidence = "grounded"
+                evidence = sorted(set(ps_vd_ids))
+            elif source_str:
+                score = 1
+                confidence = "sourced"
+                evidence = []
+                warnings.append(
+                    f"Matrix cell {met_id}/{firm_id}: source text present "
+                    f"but no PS-VD-* ID parseable"
+                )
+            else:
+                score = 1
+                confidence = "sourced"
+                evidence = []
+                warnings.append(f"Matrix cell {met_id}/{firm_id}: no source field")
+
+            claim_id = f"CLM-{met_short}-{firm_id}-01"
+            claims.append({
+                "id": claim_id,
+                "parent_id": met_id,
+                "type": "factual",
+                "evidence": evidence,
+                "confidence": confidence,
+                "score": score,
+                "layer": "2-data",
+            })
+
+    return claims, warnings
