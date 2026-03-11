@@ -278,19 +278,21 @@ class TestResolveChains:
 
     def test_circular_reference_does_not_infinite_loop(self):
         claims = {
-            "CLM-A-01": {
-                "id": "CLM-A-01", "type": "factual",
-                "evidence": ["CLM-B-01"], "score": 2, "layer": "3-analysis",
+            "CLM-FAC-001-01": {
+                "id": "CLM-FAC-001-01", "type": "factual",
+                "evidence": ["CLM-FAC-002-01"], "score": 2, "layer": "3-analysis",
             },
-            "CLM-B-01": {
-                "id": "CLM-B-01", "type": "factual",
-                "evidence": ["CLM-A-01"], "score": 2, "layer": "3-analysis",
+            "CLM-FAC-002-01": {
+                "id": "CLM-FAC-002-01", "type": "factual",
+                "evidence": ["CLM-FAC-001-01"], "score": 2, "layer": "3-analysis",
             },
         }
         # Should not hang — returns whatever it resolved without looping
         result = resolve_chains(claims)
-        assert "CLM-A-01" in result
-        assert "CLM-B-01" in result
+        assert "CLM-FAC-001-01" in result
+        assert "CLM-FAC-002-01" in result
+        assert isinstance(result["CLM-FAC-001-01"]["chain"], list)
+        assert isinstance(result["CLM-FAC-002-01"]["chain"], list)
 
     def test_deep_chain_3_levels(self):
         claims = {
@@ -312,3 +314,43 @@ class TestResolveChains:
         assert "PS-VD-001" in chain
         assert "CLM-COR-191-01" in chain
         assert "CLM-MET-021-FIRM-001-01" in chain
+
+    def test_diamond_dag_shared_intermediate(self):
+        """Two claims share a common CLM- dependency — chain should include all transitive evidence."""
+        claims = {
+            "CLM-SHARED-001-01": {
+                "id": "CLM-SHARED-001-01", "type": "factual",
+                "evidence": ["PS-VD-001"], "score": 3, "layer": "2-data",
+            },
+            "CLM-COR-001-01": {
+                "id": "CLM-COR-001-01", "type": "statistical",
+                "evidence": ["CLM-SHARED-001-01"], "score": 3, "layer": "3-analysis",
+            },
+            "CLM-COR-002-01": {
+                "id": "CLM-COR-002-01", "type": "statistical",
+                "evidence": ["CLM-SHARED-001-01"], "score": 3, "layer": "3-analysis",
+            },
+            "CLM-DVR-001-01": {
+                "id": "CLM-DVR-001-01", "type": "statistical",
+                "evidence": ["CLM-COR-001-01", "CLM-COR-002-01"], "score": 3, "layer": "3-analysis",
+            },
+        }
+        result = resolve_chains(claims)
+        chain = result["CLM-DVR-001-01"]["chain"]
+        assert "CLM-COR-001-01" in chain
+        assert "CLM-COR-002-01" in chain
+        assert "CLM-SHARED-001-01" in chain
+        assert "PS-VD-001" in chain
+
+    def test_dangling_clm_reference_included_as_leaf(self):
+        """Evidence references a CLM- ID that doesn't exist in claims — included but not recursed."""
+        claims = {
+            "CLM-DVR-001-01": {
+                "id": "CLM-DVR-001-01", "type": "statistical",
+                "evidence": ["CLM-MISSING-001-01", "PS-VD-001"], "score": 3, "layer": "3-analysis",
+            },
+        }
+        result = resolve_chains(claims)
+        chain = result["CLM-DVR-001-01"]["chain"]
+        assert "CLM-MISSING-001-01" in chain  # included as leaf even though missing
+        assert "PS-VD-001" in chain
