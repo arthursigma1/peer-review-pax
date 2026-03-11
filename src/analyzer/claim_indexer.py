@@ -54,3 +54,71 @@ def validate_claim(claim: dict) -> list[str]:
         errors.append("Empty evidence[] on claim with score > 0")
 
     return errors
+
+
+_CLAIM_BEARING_FILES = [
+    "3-analysis/correlation_results.json",
+    "3-analysis/driver_ranking.json",
+    "4-deep-dives/platform_profiles.json",
+    "4-deep-dives/asset_class_analysis.json",
+    "5-playbook/platform_playbook.json",
+    "5-playbook/asset_class_playbooks.json",
+    "5-playbook/target_lens.json",
+]
+
+
+def collect_claims_from_dir(
+    run_dir: Path,
+) -> tuple[dict[str, dict], list[str]]:
+    """Scan pipeline JSONs in run_dir for _claims[] arrays.
+
+    Returns (claims_by_id, warnings). Claims are enriched with source_file.
+    Invalid or duplicate claims are skipped and produce warnings.
+    """
+    claims: dict[str, dict] = {}
+    warnings: list[str] = []
+
+    json_files: list[Path] = []
+    for rel in _CLAIM_BEARING_FILES:
+        p = run_dir / rel
+        if p.exists():
+            json_files.append(p)
+    for p in sorted(run_dir.rglob("*.json")):
+        if p not in json_files:
+            json_files.append(p)
+
+    for path in json_files:
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            continue
+        if not isinstance(data, dict):
+            continue
+        raw_claims = data.get("_claims")
+        if not raw_claims or not isinstance(raw_claims, list):
+            continue
+
+        rel_path = str(path.relative_to(run_dir))
+
+        for claim in raw_claims:
+            if not isinstance(claim, dict):
+                warnings.append(f"{rel_path}: non-dict entry in _claims[]")
+                continue
+
+            errors = validate_claim(claim)
+            if errors:
+                cid = claim.get("id", "<no id>")
+                warnings.append(f"{rel_path}: invalid claim {cid}: {'; '.join(errors)}")
+                continue
+
+            cid = claim["id"]
+            if cid in claims:
+                warnings.append(
+                    f"{rel_path}: duplicate claim id {cid} "
+                    f"(first seen in {claims[cid]['source_file']})"
+                )
+                continue
+
+            claims[cid] = {**claim, "source_file": rel_path}
+
+    return claims, warnings

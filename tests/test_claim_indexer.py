@@ -8,7 +8,12 @@ from pathlib import Path
 import pytest
 
 from src.analyzer._shared import CLAIM_TYPE_CEILINGS, CLM_ID_PATTERN
-from src.analyzer.claim_indexer import validate_claim
+from src.analyzer.claim_indexer import collect_claims_from_dir, validate_claim
+
+
+def _write_json(path: Path, data: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=2))
 
 
 class TestClaimConstants:
@@ -100,3 +105,61 @@ class TestValidateClaim:
         }
         errors = validate_claim(claim)
         assert any("confidence" in e.lower() and "score" in e.lower() for e in errors)
+
+
+class TestCollectClaims:
+    def test_collects_claims_from_single_file(self, tmp_path):
+        data = {
+            "_claims": [
+                {
+                    "id": "CLM-COR-001-01", "parent_id": "COR-001",
+                    "type": "statistical", "evidence": ["MET-VD-001", "MET-VD-026"],
+                    "confidence": "grounded", "score": 3, "layer": "3-analysis",
+                },
+            ],
+            "correlations": [{"correlation_id": "COR-001"}],
+        }
+        _write_json(tmp_path / "3-analysis" / "correlation_results.json", data)
+        claims, warnings = collect_claims_from_dir(tmp_path)
+        assert len(claims) == 1
+        assert claims["CLM-COR-001-01"]["source_file"] == "3-analysis/correlation_results.json"
+
+    def test_collects_from_multiple_files(self, tmp_path):
+        cor_data = {
+            "_claims": [
+                {"id": "CLM-COR-001-01", "parent_id": "COR-001", "type": "statistical",
+                 "evidence": ["MET-VD-001"], "confidence": "grounded", "score": 3, "layer": "3-analysis"},
+            ],
+        }
+        dvr_data = {
+            "_claims": [
+                {"id": "CLM-DVR-001-01", "parent_id": "DVR-001", "type": "statistical",
+                 "evidence": ["COR-001"], "confidence": "grounded", "score": 3, "layer": "3-analysis"},
+            ],
+        }
+        _write_json(tmp_path / "3-analysis" / "correlation_results.json", cor_data)
+        _write_json(tmp_path / "3-analysis" / "driver_ranking.json", dvr_data)
+        claims, warnings = collect_claims_from_dir(tmp_path)
+        assert len(claims) == 2
+
+    def test_skips_files_without_claims(self, tmp_path):
+        _write_json(tmp_path / "1-universe" / "peer_universe.json", {"universe": []})
+        claims, warnings = collect_claims_from_dir(tmp_path)
+        assert len(claims) == 0
+        assert len(warnings) == 0
+
+    def test_duplicate_claim_id_warns(self, tmp_path):
+        claim = {"id": "CLM-COR-001-01", "parent_id": "COR-001", "type": "statistical",
+                 "evidence": ["MET-VD-001"], "confidence": "grounded", "score": 3, "layer": "3-analysis"}
+        _write_json(tmp_path / "a.json", {"_claims": [claim]})
+        _write_json(tmp_path / "b.json", {"_claims": [claim]})
+        claims, warnings = collect_claims_from_dir(tmp_path)
+        assert any("duplicate" in w.lower() for w in warnings)
+
+    def test_invalid_claim_produces_warning(self, tmp_path):
+        bad_claim = {"id": "BAD", "parent_id": "X", "type": "opinion", "evidence": [], "confidence": "grounded",
+                     "score": 3, "layer": "3-analysis"}
+        _write_json(tmp_path / "bad.json", {"_claims": [bad_claim]})
+        claims, warnings = collect_claims_from_dir(tmp_path)
+        assert len(claims) == 0
+        assert len(warnings) > 0
