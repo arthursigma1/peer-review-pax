@@ -61,9 +61,10 @@ _CLAIM_BEARING_FILES = [
     "3-analysis/driver_ranking.json",
     "4-deep-dives/platform_profiles.json",
     "4-deep-dives/asset_class_analysis.json",
+    "5-playbook/playbook.json",
+    "5-playbook/target_lens.json",
     "5-playbook/platform_playbook.json",
     "5-playbook/asset_class_playbooks.json",
-    "5-playbook/target_lens.json",
 ]
 
 
@@ -136,6 +137,9 @@ def generate_matrix_claims(matrix: dict) -> tuple[list[dict], list[str]]:
     """
     claims: list[dict] = []
     warnings: list[str] = []
+
+    if not isinstance(matrix, dict):
+        return [], ["standardized_matrix.json root is not a dict"]
 
     metrics = matrix.get("metrics", {})
     for met_id, met_data in metrics.items():

@@ -520,7 +520,7 @@ class TestBuildClaimIndex:
         }
         _write_json(tmp_path / "3-analysis" / "correlation_results.json", cor_data)
         _write_json(tmp_path / "3-analysis" / "driver_ranking.json", dvr_data)
-        _write_json(tmp_path / "5-playbook" / "platform_playbook.json", play_data)
+        _write_json(tmp_path / "5-playbook" / "playbook.json", play_data)
         _write_json(tmp_path / "3-analysis" / "standardized_matrix.json", matrix_data)
         return tmp_path
 
