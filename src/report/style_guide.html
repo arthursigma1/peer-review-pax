@@ -306,6 +306,42 @@ code, .mono {
   line-height: 1.5;
 }
 
+/* ── Play Trade-Off (inline within play card, between evidence and recommendation) ── */
+.play-trade-off {
+  border-left: 3px solid var(--color-warning);
+  padding: 0.5rem 0.75rem;
+  margin: 0.75rem 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.play-trade-off[data-severity="high"] {
+  border-left-color: var(--color-warning);
+}
+
+.play-trade-off[data-severity="medium"] {
+  border-left-color: var(--color-border);
+}
+
+.play-trade-off[data-severity="low"] {
+  border-left-color: var(--color-border);
+}
+
+.play-trade-off .trade-off-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-warning);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.play-trade-off[data-severity="medium"] .trade-off-label,
+.play-trade-off[data-severity="low"] .trade-off-label {
+  color: var(--color-text-muted);
+}
+
 /* ══════════════════════════════════════════════════════════════════
    COMPONENT: ANTI-PATTERN CARD
    Cautionary lesson (ANTI-NNN). Red border + header.
@@ -1586,6 +1622,13 @@ hr.section-divider {
           <span class="badge badge-specific">PS-VD-008</span>
           <span class="badge badge-contextual">DVR-001</span>
           <span class="badge badge-contextual">DVR-010</span>
+        </div>
+        <!-- Trade-offs render here (between evidence and recommendation) -->
+        <div class="play-trade-off" data-severity="high">
+          <span class="trade-off-label">Trade-off</span>
+          <span class="claim" data-claim="CLM-TL-TO-003-01">
+            Conservative gate design limits LP appeal vs. aggressive gates expose redemption crisis risk — At $40.8B FEAUM, PAX lacks the liquidity buffer to absorb stress redemptions (cf. ANTI-003).
+          </span>
         </div>
         <div class="play-recommendation">
           <strong>Recommendation:</strong> Accelerate the GP stakes mandate (GPMS) — the only current PAX business line with &gt;90% permanent capital and FRE margins above 60%. Each $1B in GP stakes AUM adds approximately $8–10M in permanent FRE at near-zero G&amp;A. Prioritize GP stakes fundraising in the next capital formation cycle over incremental open-end PE vehicles.
